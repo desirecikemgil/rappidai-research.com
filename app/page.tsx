@@ -33,7 +33,7 @@ export default function HomePage() {
           className="ambient-shift pointer-events-none absolute -right-[18rem] -top-[20rem] size-[52rem] rounded-full bg-[radial-gradient(circle,rgba(18,107,255,0.12),rgba(234,242,255,0.25)_45%,transparent_72%)] blur-3xl"
         />
         <div className="page-shell-wide grid min-h-[calc(100svh-var(--header-height))] items-center gap-4 py-[clamp(4.5rem,8vw,7.5rem)] lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="relative z-10 max-w-[47rem]">
+          <div className="liquid-hero-copy relative z-10 max-w-[47rem]">
             <Reveal>
               <p className="eyebrow">{homePageContent.hero.eyebrow}</p>
             </Reveal>

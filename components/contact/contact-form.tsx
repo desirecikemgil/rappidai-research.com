@@ -126,7 +126,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
     "liquid-field mt-2 w-full border border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
 
   return (
-    <div className="liquid-surface border-t border-line p-6 pt-8 sm:p-9 lg:border-t lg:p-10">
+    <div className="liquid-surface border border-white/70 p-5 pt-7 sm:p-9 lg:p-10">
       <p className="eyebrow">ENQUIRY</p>
       <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}

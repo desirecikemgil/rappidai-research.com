@@ -70,7 +70,7 @@ export function ModelIndex() {
                   <p className="body-copy mt-5 max-w-xl">{model.summary}</p>
                 </div>
 
-                <dl className="grid grid-cols-2 gap-x-6 gap-y-5 text-sm lg:grid-cols-1">
+                <dl className="grid grid-cols-1 gap-x-6 gap-y-5 text-sm sm:grid-cols-2 lg:grid-cols-1">
                   {model.indexFacts.slice(1).map((fact, factIndex) => (
                     <div key={fact} className="border-l border-line pl-4">
                       <dt className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">

@@ -23,7 +23,7 @@ export function HeroVisualization() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="liquid-surface relative mx-auto aspect-square w-full max-w-[42rem] overflow-hidden rounded-[42%_58%_46%_54%/55%_42%_58%_45%]" aria-hidden="true">
+    <div className="liquid-surface relative mx-auto aspect-square w-full max-w-[42rem] overflow-hidden rounded-[1.35rem]" aria-hidden="true">
       <div className="ambient-shift absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(18,107,255,0.13),rgba(234,242,255,0.2)_42%,transparent_72%)] blur-2xl" />
       <svg className="relative h-full w-full" viewBox="0 0 680 680" fill="none">
         <defs>
