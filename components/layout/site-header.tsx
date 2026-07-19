@@ -35,7 +35,7 @@ export function SiteHeader() {
   return (
     <header
       data-scrolled={isScrolled || menuOpen}
-      className="sticky top-0 z-50 border-b border-transparent bg-white/88 backdrop-blur-md transition-colors duration-300 data-[scrolled=true]:border-line"
+      className="liquid-header sticky top-0 z-50 border-b border-transparent transition-all duration-500"
     >
       <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-8">
         <BrandLockup priority />
@@ -62,7 +62,7 @@ export function SiteHeader() {
           </div>
           <Link
             href={siteConfig.primaryNavigationAction.href}
-            className="inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
+            className="liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
           >
             {siteConfig.primaryNavigationAction.label}
           </Link>
@@ -74,7 +74,7 @@ export function SiteHeader() {
           aria-controls="mobile-navigation"
           aria-label={menuOpen ? "Close navigation" : "Open navigation"}
           onClick={() => setMenuOpen((current) => !current)}
-          className="flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-ink lg:hidden"
+          className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-ink lg:hidden"
         >
           {menuOpen ? <X aria-hidden="true" size={20} strokeWidth={1.7} /> : <Menu aria-hidden="true" size={20} strokeWidth={1.7} />}
         </button>
@@ -83,7 +83,7 @@ export function SiteHeader() {
       <div
         id="mobile-navigation"
         hidden={!menuOpen}
-        className="border-t border-line bg-white lg:hidden"
+        className="liquid-mobile-menu border-t border-line lg:hidden"
       >
         <nav aria-label="Mobile navigation" className="page-shell py-5">
           <div className="divide-y divide-line border-y border-line">
@@ -108,7 +108,7 @@ export function SiteHeader() {
           <Link
             href={siteConfig.primaryNavigationAction.href}
             onClick={() => setMenuOpen(false)}
-            className="mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
+            className="liquid-button mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
           >
             {siteConfig.primaryNavigationAction.label}
           </Link>

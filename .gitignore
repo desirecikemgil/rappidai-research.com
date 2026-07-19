@@ -34,3 +34,7 @@ next-env.d.ts
 
 # local visual QA evidence
 /work/
+
+# generated deliverables and scratch files
+/output/
+/tmp/

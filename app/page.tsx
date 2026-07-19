@@ -27,7 +27,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-line">
+      <section className="liquid-hero relative overflow-hidden border-b border-line">
         <div
           aria-hidden="true"
           className="ambient-shift pointer-events-none absolute -right-[18rem] -top-[20rem] size-[52rem] rounded-full bg-[radial-gradient(circle,rgba(18,107,255,0.12),rgba(234,242,255,0.25)_45%,transparent_72%)] blur-3xl"
@@ -87,12 +87,12 @@ export default function HomePage() {
         </div>
 
         <DrawRule className="mt-[clamp(4rem,8vw,7rem)]" />
-        <div className="grid lg:grid-cols-3">
+        <div className="mt-5 grid gap-4 lg:grid-cols-3">
           {researchPrinciples.map((principle, index) => (
             <Reveal
               key={principle.number}
               delay={index * 0.06}
-              className={`py-9 lg:min-h-[18rem] lg:py-11 ${index > 0 ? "border-t border-line lg:border-l lg:border-t-0 lg:pl-10" : "lg:pr-10"} ${index === 1 ? "lg:pr-10" : ""}`}
+              className="liquid-card p-7 py-9 lg:min-h-[18rem] lg:p-9 lg:py-11"
             >
               <p className="font-mono text-xs tracking-[0.15em] text-accent">{principle.number}</p>
               <h3 className="mt-14 text-[clamp(1.55rem,2.3vw,2.2rem)] font-[520] tracking-[-0.04em] text-ink">
@@ -105,7 +105,7 @@ export default function HomePage() {
         <DrawRule />
       </section>
 
-      <section className="border-y border-line bg-pale-soft">
+      <section className="liquid-section border-y border-line bg-pale-soft/45">
         <div className="page-shell section-space">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <Reveal>
@@ -115,7 +115,7 @@ export default function HomePage() {
               </h2>
             </Reveal>
             <Reveal delay={0.08}>
-              <span className="inline-flex items-center gap-2 border border-line-strong bg-white px-3 py-2 font-mono text-[0.64rem] tracking-[0.12em] text-accent uppercase">
+              <span className="liquid-pill inline-flex items-center gap-2 border border-line-strong bg-white/35 px-3 py-2 font-mono text-[0.64rem] tracking-[0.12em] text-accent uppercase">
                 <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
                 {featuredModel.statusLabel}
               </span>
@@ -123,7 +123,7 @@ export default function HomePage() {
           </div>
 
           <DrawRule className="mt-12" />
-          <div className="grid gap-12 py-12 lg:grid-cols-[0.45fr_0.55fr] lg:gap-20 lg:py-16">
+          <div className="liquid-surface mt-8 grid gap-12 p-7 py-12 sm:p-10 lg:grid-cols-[0.45fr_0.55fr] lg:gap-20 lg:p-14 lg:py-16">
             <Reveal>
               <p className="font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase">Parameter size</p>
               <div className="mt-5 flex items-end gap-4">
@@ -158,7 +158,7 @@ export default function HomePage() {
           </div>
 
           <Reveal>
-            <div className="overflow-hidden border border-line bg-white">
+            <div className="liquid-frame overflow-hidden border border-line bg-white/35 p-2 sm:p-3">
               <Image
                 src={siteConfig.brandAssets.modelCardReference}
                 alt="Official quantum-1.6-pilot model card showing 50M parameters and research and local experimentation as the primary use"
@@ -183,13 +183,13 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          <div className="relative mt-16 grid border-y border-white/20 lg:grid-cols-3">
+          <div className="relative mt-16 grid gap-4 lg:grid-cols-3">
             <div aria-hidden="true" className="absolute left-0 right-0 top-[4.68rem] hidden h-px bg-white/20 lg:block" />
             {experimentLogs.map((entry, index) => (
               <Reveal
                 key={entry.modelSlug}
                 delay={index * 0.07}
-                className={`relative py-9 lg:min-h-[21rem] lg:py-10 ${index > 0 ? "border-t border-white/20 lg:border-l lg:border-t-0 lg:pl-9" : "lg:pr-9"} ${index === 1 ? "lg:pr-9" : ""}`}
+                className="liquid-card-dark relative border p-7 py-9 lg:min-h-[21rem] lg:p-9 lg:py-10"
               >
                 <div className="flex items-center gap-4">
                   <span className="technical-number text-xs text-[#79aaff]">0{index + 1}</span>
@@ -217,7 +217,7 @@ export default function HomePage() {
         <div className="mt-16 border-b border-line">
           {researchAreas.map((area, index) => (
             <Reveal key={area.id} delay={index * 0.04}>
-              <article className="grid gap-8 border-t border-line py-8 lg:grid-cols-[0.15fr_0.55fr_0.6fr] lg:items-center lg:py-10">
+              <article className="liquid-row grid gap-8 rounded-[1.35rem] border-y border-line py-8 lg:grid-cols-[0.15fr_0.55fr_0.6fr] lg:items-center lg:py-10">
                 <p className="technical-number text-xs text-accent">0{index + 1}</p>
                 <div>
                   <h3 className="text-[clamp(1.7rem,3vw,2.65rem)] font-[515] tracking-[-0.045em] text-ink">{area.title}</h3>
@@ -232,7 +232,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-pale-soft">
+      <section className="liquid-section border-y border-line bg-pale-soft/40">
         <div className="page-shell section-space-sm grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <Reveal>
             <p className="eyebrow">{homePageContent.openResearch.eyebrow}</p>
@@ -257,7 +257,7 @@ export default function HomePage() {
       <section className="page-shell section-space">
         <div className="grid gap-14 lg:grid-cols-[0.68fr_1.32fr] lg:items-center">
           <Reveal>
-            <div className="mx-auto max-w-[20rem] lg:mx-0">
+            <div className="liquid-surface mx-auto max-w-[20rem] p-10 lg:mx-0">
               <BrandSymbol />
             </div>
           </Reveal>
@@ -274,7 +274,7 @@ export default function HomePage() {
       </section>
 
       <section className="page-shell pb-[var(--section-space)]">
-        <div className="border-y border-line py-[clamp(4rem,8vw,7.5rem)]">
+        <div className="liquid-surface px-7 py-[clamp(4rem,8vw,7.5rem)] sm:px-10 lg:px-14">
           <Reveal className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="eyebrow">{homePageContent.contact.eyebrow}</p>

@@ -36,7 +36,7 @@ export default function AboutPage() {
 
           <Reveal
             delay={0.1}
-            className="relative flex min-h-[20rem] items-center justify-center overflow-hidden border-l border-line lg:col-span-5 lg:col-start-8 lg:min-h-[27rem]"
+            className="liquid-surface relative flex min-h-[20rem] items-center justify-center overflow-hidden lg:col-span-5 lg:col-start-8 lg:min-h-[27rem]"
           >
             <div
               aria-hidden="true"
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       <section
         aria-labelledby="what-rappidai-is-not-heading"
-        className="border-y border-line bg-pale-soft"
+        className="liquid-section border-y border-line bg-pale-soft/40"
       >
         <div className="page-shell section-space-sm">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
@@ -132,7 +132,7 @@ export default function AboutPage() {
 
       <section
         aria-labelledby="open-weight-direction-heading"
-        className="ambient-grid border-y border-line bg-pale-soft"
+        className="liquid-section ambient-grid border-y border-line bg-pale-soft/35"
       >
         <div className="page-shell section-space-sm">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
@@ -160,7 +160,7 @@ export default function AboutPage() {
 
             <Reveal
               delay={0.1}
-              className="border-y border-line-strong bg-white/70 px-4 py-8 backdrop-blur-[2px] sm:px-8 lg:col-span-6 lg:col-start-7"
+              className="liquid-surface px-4 py-8 sm:px-8 lg:col-span-6 lg:col-start-7"
             >
               <ResearchDiagram kind="adaptation" />
             </Reveal>

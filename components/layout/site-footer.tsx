@@ -6,7 +6,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-white">
+    <footer className="liquid-section border-t border-line bg-white/35 backdrop-blur-xl">
       <div className="page-shell section-space-sm">
         <div className="grid gap-14 lg:grid-cols-[1.45fr_0.65fr_0.65fr_0.75fr]">
           <div>

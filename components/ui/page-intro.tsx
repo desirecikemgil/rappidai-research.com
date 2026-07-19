@@ -8,7 +8,7 @@ type PageIntroProps = {
 
 export function PageIntro({ eyebrow, title, description }: PageIntroProps) {
   return (
-    <section className="page-shell pt-[clamp(8.5rem,15vw,13rem)] pb-[clamp(5rem,9vw,8rem)]">
+    <section className="page-intro-liquid page-shell pt-[clamp(8.5rem,15vw,13rem)] pb-[clamp(5rem,9vw,8rem)]">
       <Reveal>
         <p className="eyebrow">{eyebrow}</p>
       </Reveal>

@@ -46,7 +46,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
           </Link>
         </Reveal>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_0.33fr] lg:items-end">
+        <div className="liquid-surface mt-16 grid gap-10 p-7 sm:p-10 lg:grid-cols-[1fr_0.33fr] lg:items-end lg:p-12">
           <div>
             <Reveal>
               <p className="eyebrow">Model card · {model.statusLabel}</p>
@@ -110,7 +110,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
       </section>
 
       {model.featured ? (
-        <section className="border-y border-line bg-pale-soft py-[clamp(4.5rem,8vw,8rem)]">
+        <section className="liquid-section border-y border-line bg-pale-soft/40 py-[clamp(4.5rem,8vw,8rem)]">
           <div className="page-shell grid gap-12 lg:grid-cols-[0.5fr_1.2fr] lg:items-center">
             <Reveal>
               <p className="eyebrow">Official reference</p>
@@ -120,7 +120,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
               <p className="body-copy mt-5">A visual snapshot of the model&apos;s parameter size and intended research use.</p>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="overflow-hidden border border-line bg-white">
+              <div className="liquid-frame overflow-hidden border border-line bg-white/30 p-2 sm:p-3">
                 <Image
                   src={siteConfig.brandAssets.modelCardReference}
                   alt="Official quantum-1.6-pilot model card showing 50M parameters and research and local experimentation as the primary use"
@@ -144,7 +144,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
           <div className="border-t border-line">
             {model.limitations.map((limitation, index) => (
               <Reveal key={limitation} delay={index * 0.035}>
-                <div className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-5 sm:grid-cols-[5rem_1fr] sm:py-6">
+                  <div className="liquid-row grid grid-cols-[3rem_1fr] gap-4 rounded-[1.15rem] border-y border-line py-5 sm:grid-cols-[5rem_1fr] sm:py-6">
                   <span className="font-mono text-[0.66rem] tracking-[0.12em] text-accent">{String(index + 1).padStart(2, "0")}</span>
                   <p className="text-lg tracking-[-0.02em] text-ink-soft">{limitation}</p>
                 </div>
@@ -159,12 +159,12 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         ) : null}
       </section>
 
-      <section className="border-y border-line bg-pale-soft">
+      <section className="liquid-section border-y border-line bg-pale-soft/40">
         <div className="page-shell section-space-sm">
           <p className="eyebrow">Related research notes</p>
           <div className="mt-10 border-b border-line">
             {relatedNotes.map((note) => (
-              <div key={note.id} className="grid gap-4 border-t border-line py-6 sm:grid-cols-[1fr_auto] sm:items-center">
+              <div key={note.id} className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 sm:grid-cols-[1fr_auto] sm:items-center">
                 <div>
                   <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">{note.title}</h2>
                   <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">

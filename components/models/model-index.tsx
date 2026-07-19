@@ -30,8 +30,8 @@ export function ModelIndex() {
                 onClick={() => setFilter(item.id)}
                 className={`min-h-10 border px-4 text-[0.78rem] font-medium transition-colors ${
                   active
-                    ? "border-ink bg-ink text-white"
-                    : "border-line bg-white text-muted hover:border-ink hover:text-ink"
+                    ? "liquid-button border-ink bg-ink text-white"
+                    : "liquid-pill border-line bg-white/30 text-muted hover:border-ink hover:text-ink"
                 }`}
               >
                 {item.label}
@@ -41,7 +41,7 @@ export function ModelIndex() {
         </div>
       </div>
 
-      <div className="mt-14 border-b border-line">
+      <div className="mt-14 space-y-3">
         <AnimatePresence mode="popLayout" initial={false}>
           {visibleModels.map((model, index) => (
             <motion.article
@@ -51,7 +51,7 @@ export function ModelIndex() {
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
               transition={{ duration: 0.35, delay: index * 0.035 }}
-              className="group border-t border-line py-8 sm:py-10"
+              className="liquid-row group rounded-[1.35rem] border-y border-line py-8 sm:py-10"
             >
               <Link href={`/models/${model.slug}`} className="grid gap-8 lg:grid-cols-[1.05fr_0.7fr_0.2fr] lg:items-start">
                 <div>
@@ -81,7 +81,7 @@ export function ModelIndex() {
                   ))}
                 </dl>
 
-                <span className="flex size-11 items-center justify-center border border-line text-ink transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-white lg:justify-self-end">
+                <span className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-all duration-300 group-hover:scale-105 group-hover:border-accent group-hover:bg-accent group-hover:text-white lg:justify-self-end">
                   <ArrowRight aria-hidden="true" size={18} strokeWidth={1.6} />
                 </span>
               </Link>

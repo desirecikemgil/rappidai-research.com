@@ -5,6 +5,7 @@ import "./globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { MotionProvider } from "@/components/motion/motion-provider";
+import { InteractiveAtmosphere } from "@/components/effects/interactive-atmosphere";
 import { siteConfig } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
+        <InteractiveAtmosphere />
         <a
           href="#main-content"
           className="fixed left-4 top-4 z-[100] -translate-y-24 bg-ink px-4 py-3 text-sm font-medium text-white transition-transform focus:translate-y-0"
@@ -42,9 +44,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to content
         </a>
         <MotionProvider>
-          <SiteHeader />
-          <main id="main-content">{children}</main>
-          <SiteFooter />
+          <div className="site-frame">
+            <SiteHeader />
+            <main id="main-content">{children}</main>
+            <SiteFooter />
+          </div>
         </MotionProvider>
         <script
           type="application/ld+json"

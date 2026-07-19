@@ -62,7 +62,7 @@ export default function ResearchPage() {
           {researchAreas.map((area, index) => (
             <Reveal
               key={area.id}
-              className="grid border-b border-line py-10 md:grid-cols-12 md:items-center md:gap-8 lg:py-12"
+              className="liquid-row grid rounded-[1.35rem] border-y border-line py-10 md:grid-cols-12 md:items-center md:gap-8 lg:py-12"
             >
               <p className="technical-number text-xs tracking-[0.18em] text-accent md:col-span-1">
                 {String(index + 1).padStart(2, "0")}
@@ -85,7 +85,7 @@ export default function ResearchPage() {
 
       <section
         aria-labelledby="philosophy-heading"
-        className="border-y border-line bg-pale-soft"
+        className="liquid-section border-y border-line bg-pale-soft/40"
       >
         <div className="page-shell section-space">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
@@ -107,7 +107,7 @@ export default function ResearchPage() {
                 <Reveal
                   key={principle.number}
                   delay={index * 0.05}
-                  className="grid gap-5 border-b border-line py-8 sm:grid-cols-[4rem_1fr] lg:py-10"
+                  className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[4rem_1fr] lg:py-10"
                 >
                   <span className="technical-number text-xs tracking-[0.16em] text-accent">
                     {principle.number}
@@ -147,7 +147,7 @@ export default function ResearchPage() {
               <Reveal
                 key={step.number}
                 delay={index * 0.04}
-                className="grid gap-5 border-b border-line py-8 sm:grid-cols-[4.5rem_1fr] lg:py-10"
+                className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[4.5rem_1fr] lg:py-10"
               >
                 <span className="technical-number text-[0.72rem] tracking-[0.18em] text-accent">
                   {step.number}
@@ -195,7 +195,7 @@ export default function ResearchPage() {
           <ol>
             {experimentLogs.map((entry, index) => (
               <li key={entry.modelSlug}>
-                <Reveal className="grid gap-6 border-b border-line py-9 md:grid-cols-12 md:items-start md:gap-8 lg:py-11">
+                <Reveal className="liquid-row grid gap-6 rounded-[1.2rem] border-y border-line py-9 md:grid-cols-12 md:items-start md:gap-8 lg:py-11">
                   <span className="technical-number text-xs tracking-[0.18em] text-accent md:col-span-1">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -247,7 +247,7 @@ export default function ResearchPage() {
             <Reveal
               key={note.id}
               delay={(index % 2) * 0.05}
-              className={`border-b border-line py-9 md:min-h-[15rem] md:py-11 ${
+              className={`liquid-card mb-4 p-7 py-9 md:min-h-[15rem] md:p-9 md:py-11 ${
                 index % 2 === 0
                   ? "md:border-r md:pr-10"
                   : "md:pl-10"
@@ -276,7 +276,7 @@ export default function ResearchPage() {
 
       <section
         aria-labelledby="roadmap-heading"
-        className="ambient-grid border-y border-line bg-pale-soft"
+        className="liquid-section ambient-grid border-y border-line bg-pale-soft/35"
       >
         <div className="page-shell section-space">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
@@ -298,7 +298,7 @@ export default function ResearchPage() {
                 <li key={entry.number}>
                   <Reveal
                     delay={index * 0.05}
-                    className="grid gap-5 border-b border-line-strong bg-white/65 px-0 py-9 backdrop-blur-[2px] sm:grid-cols-[4rem_1fr_auto] sm:gap-7 lg:py-10"
+                    className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line-strong bg-white/20 py-9 sm:grid-cols-[4rem_1fr_auto] sm:gap-7 lg:py-10"
                   >
                     <span className="technical-number text-xs tracking-[0.16em] text-accent">
                       {entry.number}
@@ -342,7 +342,7 @@ export default function ResearchPage() {
               <Reveal
                 key={principle.title}
                 delay={index * 0.04}
-                className="grid gap-4 border-b border-line py-8 sm:grid-cols-[2rem_1fr] lg:py-9"
+                className="liquid-row grid gap-4 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[2rem_1fr] lg:py-9"
               >
                 <span className="technical-number text-xs text-accent">
                   {String(index + 1).padStart(2, "0")}

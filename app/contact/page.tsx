@@ -53,7 +53,7 @@ export default function ContactPage() {
       <section className="page-shell pb-[clamp(6rem,11vw,11rem)]">
         <DrawRule />
         <div className="grid gap-[clamp(4.5rem,9vw,9rem)] pt-[clamp(3.5rem,6vw,6rem)] lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
-          <Reveal>
+          <Reveal className="liquid-surface h-fit p-7 sm:p-9">
             <p className="eyebrow">CONTACT CHANNELS</p>
             <h2 className="mt-5 max-w-[12ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
               {contactPageContent.methodsHeading}

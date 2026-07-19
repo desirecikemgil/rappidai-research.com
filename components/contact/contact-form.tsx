@@ -123,10 +123,10 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
   };
 
   const fieldClassName =
-    "mt-2 w-full border-0 border-b border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
+    "liquid-field mt-2 w-full border border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
 
   return (
-    <div className="border-t border-line pt-8 lg:border-t-0 lg:pt-0">
+    <div className="liquid-surface border-t border-line p-6 pt-8 sm:p-9 lg:border-t lg:p-10">
       <p className="eyebrow">ENQUIRY</p>
       <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}
@@ -246,7 +246,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
         <div className="mt-9 flex flex-col items-start gap-5">
           <button
             type="submit"
-            className="link-arrow inline-flex min-h-12 items-center justify-center gap-2.5 border border-ink bg-ink px-5 text-[0.88rem] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:border-accent hover:bg-accent focus-visible:border-accent focus-visible:bg-accent"
+            className="link-arrow liquid-button inline-flex min-h-12 items-center justify-center gap-2.5 border border-ink bg-ink px-5 text-[0.88rem] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:border-accent hover:bg-accent focus-visible:border-accent focus-visible:bg-accent"
           >
             {form.submitLabel}
             <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
