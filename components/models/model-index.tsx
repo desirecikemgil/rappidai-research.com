@@ -1,0 +1,94 @@
+"use client";
+
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { getModelsByFilter, modelFilters } from "@/content/models";
+import type { ModelFilterId } from "@/content/types";
+
+export function ModelIndex() {
+  const [filter, setFilter] = useState<ModelFilterId>("all");
+  const visibleModels = useMemo(() => getModelsByFilter(filter), [filter]);
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section className="page-shell pb-[var(--section-space)]" aria-labelledby="models-list-heading">
+      <h2 id="models-list-heading" className="sr-only">
+        Model index
+      </h2>
+      <div className="flex flex-col gap-5 border-y border-line py-5 sm:flex-row sm:items-center sm:justify-between">
+        <p className="font-mono text-[0.69rem] tracking-[0.16em] text-muted uppercase">Filter models</p>
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter models">
+          {modelFilters.map((item) => {
+            const active = item.id === filter;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setFilter(item.id)}
+                className={`min-h-10 border px-4 text-[0.78rem] font-medium transition-colors ${
+                  active
+                    ? "border-ink bg-ink text-white"
+                    : "border-line bg-white text-muted hover:border-ink hover:text-ink"
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-14 border-b border-line">
+        <AnimatePresence mode="popLayout" initial={false}>
+          {visibleModels.map((model, index) => (
+            <motion.article
+              key={model.slug}
+              layout={!reduceMotion}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
+              transition={{ duration: 0.35, delay: index * 0.035 }}
+              className="group border-t border-line py-8 sm:py-10"
+            >
+              <Link href={`/models/${model.slug}`} className="grid gap-8 lg:grid-cols-[1.05fr_0.7fr_0.2fr] lg:items-start">
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="inline-flex items-center gap-2 font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
+                      <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
+                      {model.statusLabel}
+                    </span>
+                    <span className="text-xs text-muted">
+                      {model.parameterCount?.label ?? "Parameter size not yet defined"}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 text-[clamp(2rem,4vw,4.25rem)] font-[510] tracking-[-0.052em] text-ink transition-colors group-hover:text-accent">
+                    {model.name}
+                  </h3>
+                  <p className="body-copy mt-5 max-w-xl">{model.summary}</p>
+                </div>
+
+                <dl className="grid grid-cols-2 gap-x-6 gap-y-5 text-sm lg:grid-cols-1">
+                  {model.indexFacts.slice(1).map((fact, factIndex) => (
+                    <div key={fact} className="border-l border-line pl-4">
+                      <dt className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
+                        {factIndex === 0 ? "Status" : factIndex === 1 ? "Model" : "Use"}
+                      </dt>
+                      <dd className="mt-1.5 leading-6 text-ink-soft">{fact}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <span className="flex size-11 items-center justify-center border border-line text-ink transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-white lg:justify-self-end">
+                  <ArrowRight aria-hidden="true" size={18} strokeWidth={1.6} />
+                </span>
+              </Link>
+            </motion.article>
+          ))}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
