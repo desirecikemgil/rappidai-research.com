@@ -83,6 +83,20 @@ export default function ContactPage() {
             <p className="mt-7 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted">
               Based in {siteConfig.location}
             </p>
+
+            <div className="mt-8 border-t border-line pt-7">
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
+                Typical enquiries
+              </p>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {contactPageContent.enquiryTypes.map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-ink-soft">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
 
           <Reveal delay={0.08}>

@@ -227,9 +227,7 @@ export default function AboutPage() {
                 Independent research, built from Berlin.
               </h2>
               <p className="mt-8 max-w-[39rem] text-[clamp(1.05rem,1.45vw,1.28rem)] leading-relaxed text-[#c8d6e9]">
-                rappidAI is currently an early-stage initiative focused on
-                learning through real model development, transparent
-                experimentation and practical deployment.
+                {siteConfig.founder.biography}
               </p>
             </Reveal>
 
@@ -246,6 +244,14 @@ export default function AboutPage() {
               <p className="mt-2 text-sm leading-relaxed text-[#c8d6e9]">
                 {siteConfig.founder.role}
               </p>
+              <ul className="mt-7 space-y-3 border-t border-white/15 pt-6">
+                {siteConfig.founder.focusAreas.map((area) => (
+                  <li key={area} className="flex items-center gap-3 text-sm text-[#c8d6e9]">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-[#72a8ff]" />
+                    {area}
+                  </li>
+                ))}
+              </ul>
               <p className="technical-number mt-8 text-[0.68rem] uppercase tracking-[0.17em] text-[#88a0be]">
                 {siteConfig.location}
               </p>

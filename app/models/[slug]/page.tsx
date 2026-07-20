@@ -109,6 +109,52 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         </div>
       </section>
 
+      {model.technicalFacts.length > 0 || model.inferenceSoftware.length > 0 ? (
+        <section className="liquid-section border-y border-line bg-pale-soft/35">
+          <div className="page-shell section-space-sm">
+            <div className="grid gap-12 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
+              <Reveal>
+                <p className="eyebrow">Technical dossier</p>
+                <h2 className="display-section mt-6">Documented model facts.</h2>
+                <p className="body-copy mt-6 max-w-[34rem]">
+                  Confirmed information from the project handover. Unknown release dates,
+                  licensing terms and unsupported client compatibility are not inferred.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.08}>
+                <dl className="liquid-surface px-6 sm:px-8">
+                  {model.technicalFacts.map((fact) => (
+                    <ModelFact key={fact.label} label={fact.label} value={fact.value} />
+                  ))}
+                  {model.inferenceSoftware.length > 0 ? (
+                    <ModelFact
+                      label="Inference"
+                      value={model.inferenceSoftware.join(" · ")}
+                    />
+                  ) : null}
+                </dl>
+
+                {model.usageExample ? (
+                  <div className="liquid-surface mt-5 p-6 sm:p-8">
+                    <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+                      Reference completion command
+                    </p>
+                    <pre className="mt-5 overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7]">
+                      <code>{model.usageExample}</code>
+                    </pre>
+                    <p className="mt-4 text-sm leading-6 text-muted">
+                      Completion prompting is the confirmed reference path. No chat
+                      template is promised.
+                    </p>
+                  </div>
+                ) : null}
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {model.featured ? (
         <section className="liquid-section border-y border-line bg-pale-soft/40 py-[clamp(4.5rem,8vw,8rem)]">
           <div className="page-shell grid gap-12 lg:grid-cols-[0.5fr_1.2fr] lg:items-center">
@@ -123,7 +169,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
               <div className="liquid-frame overflow-hidden border border-line bg-white/30 p-2 sm:p-3">
                 <Image
                   src={siteConfig.brandAssets.modelCardReference}
-                  alt="Official quantum-1.6-pilot model card showing 50M parameters and research and local experimentation as the primary use"
+                  alt="Official quantum-1.6-pilot model card showing approximately 50M parameters and research and local experimentation as the primary use"
                   width={1600}
                   height={1006}
                   sizes="(max-width: 1024px) 92vw, 62vw"

@@ -24,18 +24,26 @@ export const siteConfig = {
     href: "/models",
   },
   founder: {
-    name: "Jonas",
-    role: "Founder and AI Research Developer",
+    name: "Jonas Désiré Cikemgil",
+    role: "Founder & Independent AI Research Developer",
+    biography:
+      "Jonas Désiré Cikemgil is a Berlin-based independent AI developer focused on compact language models, reproducible training pipelines, GGUF deployment and local inference.",
+    focusAreas: [
+      "Compact language models",
+      "Reproducible training pipelines",
+      "GGUF deployment",
+      "Local inference",
+    ],
   },
   externalLinks: {
     huggingFace: {
       label: "Hugging Face",
-      url: null,
+      url: "https://huggingface.co/rappidAI" as string | null,
       pendingLabel: "Hugging Face link pending",
     },
     github: {
       label: "GitHub",
-      url: null,
+      url: "https://github.com/jonascikemgil07-hue" as string | null,
       pendingLabel: "GitHub link pending",
     },
   },
@@ -49,20 +57,20 @@ export const siteConfig = {
   legal: {
     publicIdentity: "rappidAI research",
     generalLocation: "Berlin, Germany",
-    legalName: null,
-    legalForm: null,
+    legalName: "Jonas Désiré Cikemgil",
+    legalForm: "Private individual / independent initiative",
     serviceAddress: null,
     vatId: null,
     registrationNumber: null,
     registrationCourt: null,
     telephone: null,
-    legalRepresentative: null,
-    responsibleForContent: null,
+    legalRepresentative: "Jonas Désiré Cikemgil",
+    responsibleForContent: "Jonas Désiré Cikemgil",
     missingInformationNotice:
       "Required legal information will be added before publication.",
   },
   privacy: {
-    controllerName: null,
+    controllerName: "Jonas Désiré Cikemgil",
     controllerAddress: null,
     controllerEmail: null,
     hostingProvider: null,

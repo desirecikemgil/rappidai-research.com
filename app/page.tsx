@@ -24,6 +24,9 @@ const diagramKinds = ["adaptation", "inference", "evaluation"] as const;
 export default function HomePage() {
   const featuredModel = getFeaturedModel();
   const heroExternal = siteConfig.externalLinks[homePageContent.hero.externalAction.linkKey];
+  const featuredHuggingFaceLink = featuredModel.links.find(
+    (link) => link.kind === "huggingFace",
+  );
 
   return (
     <>
@@ -152,7 +155,13 @@ export default function HomePage() {
                 <ActionLink href={`/models/${featuredModel.slug}`} variant="primary">
                   Model card
                 </ActionLink>
-                <PendingAction>Hugging Face link pending</PendingAction>
+                {featuredHuggingFaceLink?.url ? (
+                  <ActionLink href={featuredHuggingFaceLink.url} external variant="secondary">
+                    View on Hugging Face
+                  </ActionLink>
+                ) : (
+                  <PendingAction>Hugging Face link pending</PendingAction>
+                )}
               </div>
             </Reveal>
           </div>
@@ -161,7 +170,7 @@ export default function HomePage() {
             <div className="liquid-frame overflow-hidden border border-line bg-white/35 p-2 sm:p-3">
               <Image
                 src={siteConfig.brandAssets.modelCardReference}
-                alt="Official quantum-1.6-pilot model card showing 50M parameters and research and local experimentation as the primary use"
+                alt="Official quantum-1.6-pilot model card showing approximately 50M parameters and research and local experimentation as the primary use"
                 width={1600}
                 height={1006}
                 sizes="(max-width: 1400px) 92vw, 1280px"
@@ -264,7 +273,7 @@ export default function HomePage() {
           <Reveal delay={0.08}>
             <p className="eyebrow">{homePageContent.founder.eyebrow}</p>
             <h2 className="display-section mt-7">{homePageContent.founder.headline}</h2>
-            <p className="body-lg mt-7 max-w-2xl">{homePageContent.founder.text}</p>
+            <p className="body-lg mt-7 max-w-2xl">{siteConfig.founder.biography}</p>
             <div className="mt-10 border-y border-line py-5">
               <p className="text-lg font-[520] tracking-[-0.025em] text-ink">{siteConfig.founder.name}</p>
               <p className="mt-1 text-sm text-muted">{siteConfig.founder.role}</p>

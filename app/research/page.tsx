@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { ResearchDiagram } from "@/components/research/research-diagram";
+import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { researchPageContent } from "@/content/pages";
 import {
   evaluationPrinciples,
   experimentLogs,
+  featuredResearchArtifact,
   researchAreas,
   researchMethodology,
   researchNotes,
@@ -223,6 +225,71 @@ export default function ResearchPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="working-research-artifact-heading"
+        className="liquid-section border-y border-line bg-pale-soft/35"
+      >
+        <div className="page-shell section-space-sm">
+          <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-16">
+            <Reveal>
+              <p className="eyebrow">WORKING RESEARCH ARTIFACT</p>
+              <h2
+                id="working-research-artifact-heading"
+                className="display-section mt-7 text-ink"
+              >
+                {featuredResearchArtifact.title}
+              </h2>
+              <p className="body-lg mt-7 max-w-[38rem]">
+                {featuredResearchArtifact.summary}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <span className="liquid-pill inline-flex items-center gap-2 px-3 py-2 font-mono text-[0.65rem] tracking-[0.12em] text-accent uppercase">
+                  <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                  {featuredResearchArtifact.statusLabel}
+                </span>
+                <span className="text-sm text-muted">Public note or PDF not yet attached</span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <dl className="liquid-surface px-6 sm:px-8">
+                {[
+                  ["Author", featuredResearchArtifact.author],
+                  ["Method", featuredResearchArtifact.method],
+                  ["Results", featuredResearchArtifact.results],
+                  ["Limitations", featuredResearchArtifact.limitations],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="grid gap-3 border-b border-line py-6 sm:grid-cols-[8rem_1fr] sm:gap-8"
+                  >
+                    <dt className="font-mono text-[0.65rem] tracking-[0.13em] text-muted uppercase">
+                      {label}
+                    </dt>
+                    <dd className="text-[0.98rem] leading-7 text-ink-soft">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <Link
+                href={`/models/${featuredResearchArtifact.modelSlug}`}
+                className="link-arrow mt-7 inline-flex items-center gap-3 text-sm font-medium text-ink transition-colors hover:text-accent"
+              >
+                View the referenced model
+              </Link>
+              <div className="mt-5">
+                <ActionLink
+                  href={featuredResearchArtifact.repositoryUrl}
+                  external
+                  variant="secondary"
+                >
+                  View model repository
+                </ActionLink>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

@@ -6,12 +6,13 @@ import type {
 } from "./types";
 
 const pilotLimitations = [
-  "Limited scale",
-  "Unreliable factual output",
-  "Possible repetition",
-  "Inconsistent response quality",
-  "Not suitable for high-stakes decisions",
-  "Not intended as a production assistant",
+  "Semantically weak and factually unreliable output",
+  "Repetition, number loops and boilerplate loops may occur",
+  "Limited to a 512-token context window",
+  "No instruction tuning or chat alignment",
+  "No standardized task benchmarks have been published",
+  "Not suitable for medicine, law, finance, safety or other high-stakes applications",
+  "Not intended as a general production assistant",
 ] as const;
 
 export const models = [
@@ -20,30 +21,46 @@ export const models = [
     name: "quantum-1-pilot",
     status: "experimental",
     statusLabel: "Experimental",
-    availability: "unconfirmed",
-    summary: "Initial small-scale language-model experiment.",
+    availability: "available",
+    summary:
+      "Public legacy and base-model experiment for compact German completion research.",
     parameterCount: {
-      value: 50_000_000,
-      shortLabel: "50M",
-      label: "50M parameters",
+      value: 49_295_872,
+      shortLabel: "49.3M",
+      label: "49,295,872 parameters",
     },
-    modelType: "Independently pretrained compact language model",
-    intendedUse: ["Research use"],
-    languages: [],
-    lineage: "Initial small-scale language-model experiment.",
-    releaseStatus: "Release status has not been supplied.",
+    modelType: "Experimental German completion model",
+    intendedUse: ["Legacy research reference", "Local completion experiments"],
+    languages: ["German"],
+    lineage: "Quantum 1 base model and predecessor to quantum-1.6-pilot.",
+    releaseStatus: "Publicly available as an experimental F16 GGUF release on Hugging Face.",
     license: null,
-    links: [],
+    links: [
+      {
+        kind: "huggingFace",
+        label: "View on Hugging Face",
+        url: "https://huggingface.co/rappidAI/quantum-1-pilot" as string | null,
+        pendingLabel: "Hugging Face model link pending",
+      },
+    ],
+    technicalFacts: [
+      { label: "Version", value: "1.0.0" },
+      { label: "Context", value: "512 tokens" },
+      { label: "Release format", value: "F16 GGUF, approximately 98.99 MB" },
+      { label: "Prompting", value: "Completion mode" },
+    ],
+    inferenceSoftware: [],
+    usageExample: null,
     limitations: pilotLimitations,
     relatedResearchNoteIds: [
-      "what-50m-can-and-cannot-learn",
+      "from-100m-to-600m-german-tokens",
       "from-pretraining-to-focused-adaptation",
     ],
     indexFacts: [
-      "50M parameters",
+      "49.3M parameters",
       "Experimental",
-      "Independently pretrained",
-      "Research use",
+      "Public legacy model",
+      "German completion research",
     ],
     featured: false,
   },
@@ -54,47 +71,106 @@ export const models = [
     statusLabel: "Experimental",
     availability: "available",
     summary:
-      "Improved pilot iteration with a refined training pipeline and broader token exposure.",
+      "A 49.3M-parameter experimental German completion model built to validate continued pretraining, GGUF export and local inference end to end.",
     parameterCount: {
-      value: 50_000_000,
-      shortLabel: "50M",
-      label: "50M parameters",
+      value: 49_295_872,
+      shortLabel: "49.3M",
+      label: "49,295,872 parameters",
     },
-    modelType: "Independently pretrained compact language model",
+    modelType: "LlamaForCausalLM-style experimental completion model",
     intendedUse: [
-      "Research and local experimentation",
-      "German and English experimentation",
+      "Research into reproducible continued-pretraining pipelines",
+      "Local German-language completion experiments",
     ],
-    languages: ["German", "English"],
-    lineage: "Improved pilot iteration following quantum-1-pilot.",
+    languages: ["German"],
+    lineage:
+      "Weights-only continued pretraining of Quantum 1 Base with a fresh optimizer, scheduler and step counter; the final quantum-1 tokenizer remained frozen.",
     releaseStatus:
-      "Available through Hugging Face; the exact model URL has not been supplied.",
+      "Publicly available as an experimental F16 GGUF release of approximately 95 MB.",
     license: null,
     links: [
       {
         kind: "huggingFace",
-        label: "Hugging Face",
-        url: null,
+        label: "View on Hugging Face",
+        url: "https://huggingface.co/rappidAI/quantum-1.6-pilot" as string | null,
         pendingLabel: "Hugging Face model link pending",
       },
       {
         kind: "model-card",
         label: "Model card",
-        url: null,
+        url: "https://huggingface.co/rappidAI/quantum-1.6-pilot/blob/main/README.md" as string | null,
         pendingLabel: "Model card link pending",
       },
     ],
-    limitations: pilotLimitations,
+    technicalFacts: [
+      {
+        label: "Version",
+        value: "1.6.0, derived from the confirmed quantum-1.6-pilot-v1.6.0-f16.gguf export name",
+      },
+      {
+        label: "Release window",
+        value: "July 2026; the exact first-publication date remains to be confirmed from the Hugging Face history",
+      },
+      {
+        label: "Architecture",
+        value:
+          "LlamaForCausalLM-style; hidden size 512; intermediate size 1,536; 12 layers; 8 attention heads; 8 KV heads; tied embeddings",
+      },
+      { label: "Vocabulary", value: "16,384 tokens" },
+      { label: "Context", value: "512 tokens" },
+      {
+        label: "Tokenizer",
+        value: "Custom frozen quantum-1 tokenizer with a 16,384-token vocabulary",
+      },
+      {
+        label: "Training data",
+        value:
+          "Approximately 100M German base tokens plus exactly 500M additional German training tokens, with 2M validation and 2M test tokens from a FineWeb2-HQ deu_Latn pipeline",
+      },
+      {
+        label: "Dataset split",
+        value:
+          "1,400,890 training documents, 14,191 validation documents and 14,504 test documents after overlap filtering",
+      },
+      { label: "Training steps", value: "30,518" },
+      {
+        label: "Evaluation",
+        value:
+          "Validation loss 3.348852; perplexity 28.4700. No reliable public task benchmarks are available.",
+      },
+      {
+        label: "Release",
+        value: "F16 GGUF, approximately 95 MB",
+      },
+      {
+        label: "Quantization",
+        value: "F16 GGUF confirmed; no public Q8 or Q4 variants are confirmed",
+      },
+      {
+        label: "Hardware",
+        value: "Minimum RAM requirements have not been formally measured",
+      },
+    ],
+    inferenceSoftware: [
+      "llama.cpp (directly confirmed)",
+      "Native Android app using local llama.cpp inference (technically confirmed)",
+    ],
+    usageExample:
+      'llama-completion -m quantum-1.6-pilot-v1.6.0-f16.gguf -p "Berlin ist" -n 64 --temp 0 --top-p 1 --top-k 0',
+    limitations: [
+      ...pilotLimitations,
+      "Third-party client compatibility is not guaranteed; a previous PocketPal incompatibility was observed",
+    ],
     relatedResearchNoteIds: [
-      "what-50m-can-and-cannot-learn",
+      "from-100m-to-600m-german-tokens",
       "why-local-inference-changes-the-design-target",
       "evaluating-small-models-without-misleading-benchmarks",
     ],
     indexFacts: [
-      "50M parameters",
+      "49.3M parameters",
       "Experimental",
-      "Improved pilot iteration",
-      "Research and local experimentation",
+      "German completion model",
+      "F16 GGUF · llama.cpp",
     ],
     featured: true,
   },
@@ -117,6 +193,9 @@ export const models = [
     releaseStatus: "In development; not presented as a completed model.",
     license: null,
     links: [],
+    technicalFacts: [],
+    inferenceSoftware: [],
+    usageExample: null,
     limitations: [
       "Specifications, capabilities and limitations are not yet established",
       "Not available for production use",

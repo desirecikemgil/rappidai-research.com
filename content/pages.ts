@@ -13,7 +13,7 @@ export const homePageContent = {
     description:
       "rappidAI develops compact language models and specialized open-weight systems for local, private and resource-efficient AI.",
     supportingText:
-      "We explore how capable language systems can become more accessible without relying exclusively on increasingly large models or permanent cloud infrastructure.",
+      "Built primarily for developers and researchers, the work explores how capable language systems can become more accessible without relying exclusively on increasingly large models or permanent cloud infrastructure.",
     primaryAction: {
       label: "Explore our models",
       href: "/models",
@@ -54,7 +54,6 @@ export const homePageContent = {
   founder: {
     eyebrow: "FOUNDER",
     headline: "Independent research, built from Berlin.",
-    text: "rappidAI was founded as an independent AI research initiative focused on learning through real model development, transparent experimentation and practical deployment.",
   },
   contact: {
     eyebrow: "CONTACT",
@@ -77,7 +76,7 @@ export const modelsPageContent = {
   filterLabel: "Filter models",
   missingParameterLabel: "Final parameter size not yet defined",
   missingLicenseLabel: "Licensing information has not been supplied.",
-  missingLinksLabel: "No model links have been supplied.",
+  missingLinksLabel: "No public model release link is available.",
 } as const;
 
 export const researchPageContent = {
@@ -164,10 +163,19 @@ export const contactPageContent = {
   } satisfies PageIntroduction,
   methodsHeading: "Contact and research profiles",
   emailMissingLabel: "Business email has not yet been supplied.",
+  enquiryTypes: [
+    "Technical questions",
+    "Open-source collaboration",
+    "Model feedback",
+    "Project partnerships",
+  ],
   form: {
     heading: "Send an enquiry",
     description:
       "Complete the fields below. If a business email is configured, the form opens your email application; it does not claim that a message was sent.",
+    unavailableHeading: "Direct email contact is being prepared.",
+    unavailableDescription:
+      "The public business email has not yet been supplied, so the enquiry form remains inactive. Until it is configured, use the linked research profiles for public project context.",
     fields: {
       name: { label: "Name", requiredMessage: "Enter your name." },
       email: {
@@ -210,7 +218,7 @@ export const privacyPageContent = {
     {
       id: "controller",
       title: "Controller information",
-      text: "Controller contact details have not been supplied and must be completed before publication.",
+      text: "Jonas Désiré Cikemgil is identified as the responsible operator. A service address and public business email still need to be supplied before publication.",
     },
     {
       id: "hosting",
@@ -230,7 +238,7 @@ export const privacyPageContent = {
     {
       id: "external-links",
       title: "External links",
-      text: "Links to external research platforms are only enabled after their exact destinations have been configured. Their operators are responsible for their own privacy practices.",
+      text: "The website links to configured research profiles on Hugging Face and GitHub. Their operators are responsible for their own privacy practices when visitors follow those links.",
     },
   ],
 } as const;
@@ -249,12 +257,12 @@ export const pageMetadata = {
   "/models/quantum-1-pilot": {
     title: "quantum-1-pilot — rappidAI Research",
     description:
-      "Model information and documented limitations for the experimental 50M-parameter quantum-1-pilot.",
+      "Model information and documented limitations for the experimental 49.3M-parameter quantum-1-pilot.",
   },
   "/models/quantum-1-6-pilot": {
     title: "quantum-1.6-pilot — rappidAI Research",
     description:
-      "Model information and documented limitations for the experimental 50M-parameter quantum-1.6-pilot.",
+      "Technical details, local inference guidance and documented limitations for the experimental 49.3M-parameter quantum-1.6-pilot.",
   },
   "/models/quantum-1-echelon": {
     title: "quantum-1-echelon — rappidAI Research",

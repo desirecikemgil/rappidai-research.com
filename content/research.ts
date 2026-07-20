@@ -92,16 +92,17 @@ export const experimentLogs = [
   {
     modelSlug: "quantum-1-pilot",
     title: "quantum-1-pilot",
-    description: "Initial small-scale language-model experiment.",
-    statusLabel: "Experimental",
+    description:
+      "Public 49.3M-parameter legacy and base-model experiment released as an F16 GGUF.",
+    statusLabel: "Public legacy experiment",
     publicationDate: null,
   },
   {
     modelSlug: "quantum-1-6-pilot",
     title: "quantum-1.6-pilot",
     description:
-      "Improved training pipeline and broader token exposure.",
-    statusLabel: "Experimental",
+      "Continued-pretraining experiment with 500M additional German tokens, GGUF export and confirmed local llama.cpp inference.",
+    statusLabel: "Public experimental release",
     publicationDate: null,
   },
   {
@@ -115,18 +116,17 @@ export const experimentLogs = [
 ] as const satisfies readonly ExperimentLogEntry[];
 
 /**
- * The brief supplies titles but no published articles, dates, or confirmed
- * progress. They therefore remain planned research notes until real content is
+ * Notes remain non-clickable until a public PDF, repository document or page is
  * attached. A null href must render as non-clickable content.
  */
 export const researchNotes = [
   {
-    id: "what-50m-can-and-cannot-learn",
-    title: "What a 50M parameter model can and cannot learn",
+    id: "from-100m-to-600m-german-tokens",
+    title: "From 100M to 600M German Tokens: Lessons from quantum-1.6-pilot",
     kind: "research-note",
     kindLabel: "Research note",
-    progress: "planned",
-    progressLabel: "Planned",
+    progress: "in-progress",
+    progressLabel: "In progress",
     href: null,
     publicationDate: null,
   },
@@ -161,6 +161,23 @@ export const researchNotes = [
     publicationDate: null,
   },
 ] as const satisfies readonly ResearchNote[];
+
+export const featuredResearchArtifact = {
+  title: "From 100M to 600M German Tokens: Lessons from quantum-1.6-pilot",
+  author: "Jonas Désiré Cikemgil",
+  statusLabel: "In progress",
+  modelSlug: "quantum-1-6-pilot",
+  summary:
+    "A working research note on building a reproducible German continued-pretraining pipeline while separating model-quality limitations from export and runtime issues.",
+  method:
+    "A 49.3M-parameter base model, 500M additional German tokens, a fixed tokenizer, controlled dataset splits, validation, F16 GGUF export and local inference tests.",
+  results:
+    "The training pipeline, checkpointing, evaluation, GGUF export and local inference worked. Validation loss reached 3.348852 and perplexity 28.4700, while linguistic quality remained weak and repetitive.",
+  limitations:
+    "Small model scale, a 512-token context, no chat tuning, no standardized task benchmarks and no claim of general competitiveness.",
+  repositoryUrl: "https://github.com/jonascikemgil07-hue/lumen-quantum",
+  href: null,
+} as const;
 
 export const roadmap = [
   {

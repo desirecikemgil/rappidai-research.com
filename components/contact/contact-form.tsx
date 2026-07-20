@@ -73,6 +73,23 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
       : { kind: "unavailable", message: form.unavailableMessage },
   );
 
+  if (!businessEmail) {
+    return (
+      <div className="liquid-surface border border-white/70 p-6 sm:p-9 lg:p-10">
+        <p className="eyebrow">ENQUIRY</p>
+        <h2 className="mt-5 max-w-[16ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
+          {form.unavailableHeading}
+        </h2>
+        <p className="body-copy mt-5 max-w-[35rem]">
+          {form.unavailableDescription}
+        </p>
+        <p className="mt-8 border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
+          No message is transmitted or stored by this website.
+        </p>
+      </div>
+    );
+  }
+
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {

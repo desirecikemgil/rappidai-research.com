@@ -35,6 +35,8 @@ export interface ExternalCallToAction {
 export interface FounderProfile {
   readonly name: string;
   readonly role: string;
+  readonly biography: string;
+  readonly focusAreas: readonly string[];
 }
 
 export interface BrandAssetConfiguration {
@@ -122,8 +124,13 @@ export interface ModelLink {
   readonly pendingLabel: string;
 }
 
+export interface ModelTechnicalFact {
+  readonly label: string;
+  readonly value: string;
+}
+
 export type ResearchNoteId =
-  | "what-50m-can-and-cannot-learn"
+  | "from-100m-to-600m-german-tokens"
   | "why-local-inference-changes-the-design-target"
   | "from-pretraining-to-focused-adaptation"
   | "evaluating-small-models-without-misleading-benchmarks";
@@ -143,6 +150,9 @@ export interface ModelRecord {
   readonly releaseStatus: string;
   readonly license: string | null;
   readonly links: readonly ModelLink[];
+  readonly technicalFacts: readonly ModelTechnicalFact[];
+  readonly inferenceSoftware: readonly string[];
+  readonly usageExample: string | null;
   readonly limitations: readonly string[];
   readonly relatedResearchNoteIds: readonly ResearchNoteId[];
   readonly indexFacts: readonly string[];
