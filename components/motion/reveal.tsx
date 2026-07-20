@@ -21,10 +21,18 @@ export function Reveal({
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: distance }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.72, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={
+        reduceMotion
+          ? false
+          : { opacity: 0, y: distance, scale: 0.992, filter: "blur(8px)" }
+      }
+      whileInView={
+        reduceMotion
+          ? undefined
+          : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
+      }
+      viewport={{ once: true, amount: 0.2, margin: "0px 0px -7% 0px" }}
+      transition={{ duration: 0.86, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
       {...props}
     >
@@ -40,10 +48,10 @@ export function DrawRule({ className = "" }: { className?: string }) {
     <motion.div
       aria-hidden="true"
       className={`fine-rule ${className}`}
-      initial={reduceMotion ? false : { scaleX: 0 }}
-      whileInView={reduceMotion ? undefined : { scaleX: 1 }}
+      initial={reduceMotion ? false : { scaleX: 0, opacity: 0.25 }}
+      whileInView={reduceMotion ? undefined : { scaleX: 1, opacity: 1 }}
       viewport={{ once: true, amount: 0.6 }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
     />
   );
 }

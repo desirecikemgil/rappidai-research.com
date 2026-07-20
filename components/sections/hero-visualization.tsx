@@ -39,7 +39,24 @@ export function HeroVisualization() {
           <filter id="soft-node" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur stdDeviation="6" />
           </filter>
+          <linearGradient id="hero-scan" x1="0" y1="0" x2="1" y2="0">
+            <stop stopColor="#126BFF" stopOpacity="0" />
+            <stop offset="0.5" stopColor="#8CB7FF" stopOpacity="0.16" />
+            <stop offset="1" stopColor="#126BFF" stopOpacity="0" />
+          </linearGradient>
         </defs>
+
+        {!reduceMotion ? (
+          <motion.rect
+            x="-90"
+            y="72"
+            width="96"
+            height="536"
+            fill="url(#hero-scan)"
+            animate={{ x: [-90, 710] }}
+            transition={{ duration: 8.5, delay: 1.8, repeat: Infinity, repeatDelay: 1.6, ease: "linear" }}
+          />
+        ) : null}
 
         <g opacity="0.56">
           {Array.from({ length: 9 }, (_, index) => (
@@ -80,6 +97,31 @@ export function HeroVisualization() {
             transition={{ duration: 2.1, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
           />
         ))}
+
+        <motion.circle
+          cx="340"
+          cy="340"
+          r="126"
+          stroke="#126BFF"
+          strokeOpacity="0.13"
+          strokeWidth="1"
+          strokeDasharray="2 12"
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: "340px 340px" }}
+        />
+        <motion.circle
+          cx="340"
+          cy="340"
+          r="103"
+          stroke="#8CB7FF"
+          strokeOpacity="0.12"
+          strokeWidth="1"
+          strokeDasharray="30 24"
+          animate={reduceMotion ? undefined : { rotate: -360 }}
+          transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: "340px 340px" }}
+        />
 
         <motion.rect
           x="299"
@@ -134,6 +176,31 @@ export function HeroVisualization() {
             />
           </g>
         ))}
+
+        {!reduceMotion ? (
+          <>
+            <motion.circle
+              r="3"
+              fill="#126BFF"
+              animate={{
+                cx: [106, 246, 365, 458, 574, 626],
+                cy: [451, 244, 431, 318, 272, 123],
+                opacity: [0, 1, 0.8, 1, 0.7, 0],
+              }}
+              transition={{ duration: 7.6, repeat: Infinity, repeatDelay: 1.2, ease: "easeInOut" }}
+            />
+            <motion.circle
+              r="2.4"
+              fill="#79AAFF"
+              animate={{
+                cx: [50, 130, 262, 380, 466, 602, 648],
+                cy: [316, 220, 108, 205, 240, 90, 62],
+                opacity: [0, 0.75, 1, 0.7, 1, 0.55, 0],
+              }}
+              transition={{ duration: 9.2, delay: 2.4, repeat: Infinity, repeatDelay: 0.8, ease: "easeInOut" }}
+            />
+          </>
+        ) : null}
       </svg>
 
       <div className="absolute bottom-[12%] left-[9%] font-mono text-[0.63rem] tracking-[0.17em] text-muted uppercase">

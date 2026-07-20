@@ -12,7 +12,7 @@ export function ParameterGrid() {
         return (
           <motion.span
             key={index}
-            className={`aspect-square border ${emphasized ? "border-accent bg-accent/80" : "border-line bg-white"}`}
+            className={`aspect-square border ${emphasized ? "parameter-node-active border-accent bg-accent/80" : "border-line bg-white"}`}
             initial={reduceMotion ? false : { opacity: 0.14 }}
             whileInView={reduceMotion ? undefined : { opacity: emphasized ? 1 : 0.7 }}
             viewport={{ once: true }}

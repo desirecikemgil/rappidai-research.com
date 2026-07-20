@@ -5,24 +5,64 @@ import { useEffect } from "react";
 export function InteractiveAtmosphere() {
   useEffect(() => {
     const root = document.documentElement;
-    let frame = 0;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    let pointerFrame = 0;
+    let scrollFrame = 0;
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight * 0.35;
+    let currentX = targetX;
+    let currentY = targetY;
+
+    const renderPointer = () => {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+
+      root.style.setProperty("--pointer-x", `${currentX}px`);
+      root.style.setProperty("--pointer-y", `${currentY}px`);
+      const xRatio = currentX / window.innerWidth - 0.5;
+      const yRatio = currentY / window.innerHeight - 0.5;
+      root.style.setProperty("--pointer-shift-x", `${xRatio * -16}px`);
+      root.style.setProperty("--pointer-shift-y", `${yRatio * -12}px`);
+
+      if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+        pointerFrame = requestAnimationFrame(renderPointer);
+      } else {
+        pointerFrame = 0;
+      }
+    };
 
     const updatePointer = (event: PointerEvent) => {
-      if (frame) cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        root.style.setProperty("--pointer-x", `${event.clientX}px`);
-        root.style.setProperty("--pointer-y", `${event.clientY}px`);
-        const xRatio = event.clientX / window.innerWidth - 0.5;
-        const yRatio = event.clientY / window.innerHeight - 0.5;
-        root.style.setProperty("--pointer-shift-x", `${xRatio * -18}px`);
-        root.style.setProperty("--pointer-shift-y", `${yRatio * -14}px`);
+      targetX = event.clientX;
+      targetY = event.clientY;
+      if (!pointerFrame) pointerFrame = requestAnimationFrame(renderPointer);
+    };
+
+    const updateScroll = () => {
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(() => {
+        const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+        const progress = Math.min(Math.max(window.scrollY / scrollable, 0), 1);
+        root.style.setProperty("--scroll-progress", progress.toFixed(4));
+        root.style.setProperty(
+          "--scroll-parallax-y",
+          reducedMotion ? "0px" : `${Math.max(window.scrollY * -0.055, -150)}px`,
+        );
+        scrollFrame = 0;
       });
     };
 
-    window.addEventListener("pointermove", updatePointer, { passive: true });
+    if (finePointer && !reducedMotion) {
+      window.addEventListener("pointermove", updatePointer, { passive: true });
+    }
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    updateScroll();
+
     return () => {
       window.removeEventListener("pointermove", updatePointer);
-      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateScroll);
+      if (pointerFrame) cancelAnimationFrame(pointerFrame);
+      if (scrollFrame) cancelAnimationFrame(scrollFrame);
     };
   }, []);
 
@@ -31,6 +71,16 @@ export function InteractiveAtmosphere() {
       <div className="atmosphere-orb atmosphere-orb-a" />
       <div className="atmosphere-orb atmosphere-orb-b" />
       <div className="atmosphere-orb atmosphere-orb-c" />
+      <div className="atmosphere-lens atmosphere-lens-a" />
+      <div className="atmosphere-lens atmosphere-lens-b" />
+      <svg className="atmosphere-flow" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <path className="flow-line flow-line-a" d="M-80 690C250 430 460 760 745 454C994 188 1185 392 1510 122" />
+        <path className="flow-line flow-line-b" d="M-120 790C258 532 485 850 794 542C1040 296 1240 468 1520 236" />
+        <path className="flow-line flow-line-c" d="M175 -70C350 200 215 376 485 525C738 665 894 470 1125 672C1265 795 1380 770 1510 706" />
+        <circle className="flow-node flow-node-a" cx="746" cy="454" r="3" />
+        <circle className="flow-node flow-node-b" cx="1185" cy="392" r="2.5" />
+        <circle className="flow-node flow-node-c" cx="485" cy="525" r="2.5" />
+      </svg>
       <div className="pointer-aura" />
       <div className="atmosphere-grain" />
     </div>

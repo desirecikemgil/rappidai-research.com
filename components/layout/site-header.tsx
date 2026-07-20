@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ function isCurrentRoute(pathname: string, href: string) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -37,6 +39,7 @@ export function SiteHeader() {
       data-scrolled={isScrolled || menuOpen}
       className="liquid-header sticky top-0 z-50 border-b border-transparent transition-all duration-500"
     >
+      <div className="scroll-progress-line" aria-hidden="true" />
       <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-8">
         <BrandLockup priority />
 
@@ -80,40 +83,53 @@ export function SiteHeader() {
         </button>
       </div>
 
-      <div
-        id="mobile-navigation"
-        hidden={!menuOpen}
-        className="liquid-mobile-menu border-t border-line lg:hidden"
-      >
-        <nav aria-label="Mobile navigation" className="page-shell py-5">
-          <div className="divide-y divide-line border-y border-line">
-            {siteConfig.navigation.map((item) => {
-              const active = isCurrentRoute(pathname, item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
-                  onClick={() => setMenuOpen(false)}
-                  className="flex min-h-14 items-center justify-between text-base text-ink"
-                >
-                  {item.label}
-                  <span className={`font-mono text-xs ${active ? "text-accent" : "text-muted"}`}>
-                    {active ? "ACTIVE" : "↗"}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-          <Link
-            href={siteConfig.primaryNavigationAction.href}
-            onClick={() => setMenuOpen(false)}
-            className="liquid-button mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
+      <AnimatePresence initial={false}>
+        {menuOpen ? (
+          <motion.div
+            id="mobile-navigation"
+            className="liquid-mobile-menu origin-top border-t border-line lg:hidden"
+            initial={reduceMotion ? false : { opacity: 0, height: 0, y: -8 }}
+            animate={reduceMotion ? undefined : { opacity: 1, height: "auto", y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, height: 0, y: -6 }}
+            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
           >
-            {siteConfig.primaryNavigationAction.label}
-          </Link>
-        </nav>
-      </div>
+            <nav aria-label="Mobile navigation" className="page-shell py-5">
+              <div className="divide-y divide-line border-y border-line">
+                {siteConfig.navigation.map((item, index) => {
+                  const active = isCurrentRoute(pathname, item.href);
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={reduceMotion ? false : { opacity: 0, x: -8 }}
+                      animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 0.04 + index * 0.035, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        onClick={() => setMenuOpen(false)}
+                        className="flex min-h-14 items-center justify-between text-base text-ink"
+                      >
+                        {item.label}
+                        <span className={`font-mono text-xs ${active ? "text-accent" : "text-muted"}`}>
+                          {active ? "ACTIVE" : "↗"}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              <Link
+                href={siteConfig.primaryNavigationAction.href}
+                onClick={() => setMenuOpen(false)}
+                className="liquid-button mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
+              >
+                {siteConfig.primaryNavigationAction.label}
+              </Link>
+            </nav>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }
