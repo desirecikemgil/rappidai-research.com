@@ -33,7 +33,7 @@ function ContactChannel({
             variant="text"
             external={kind === "external"}
           >
-            {kind === "email" ? value : label}
+            {kind === "email" ? "Email rappidAI" : label}
           </ActionLink>
         ) : (
           <PendingAction>{pendingLabel}</PendingAction>

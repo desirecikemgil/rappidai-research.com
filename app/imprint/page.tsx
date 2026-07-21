@@ -3,12 +3,9 @@ import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { PageIntro } from "@/components/ui/page-intro";
 import { imprintPageContent } from "@/content/pages";
 import { siteConfig } from "@/content/site";
-import type { LegalConfiguration } from "@/content/types";
 import { metadataFor } from "@/lib/metadata";
 
 export const metadata = metadataFor("/imprint");
-
-const missingValue = "Not supplied.";
 
 function LegalField({
   label,
@@ -16,19 +13,17 @@ function LegalField({
   note,
 }: {
   label: string;
-  value: ReactNode | null;
+  value: ReactNode;
   note?: string;
 }) {
-  const isMissing = value === null;
-
   return (
     <div className="grid gap-2 border-t border-line py-5 sm:grid-cols-[12rem_1fr] sm:gap-8">
       <dt className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.15em] text-muted">
         {label}
       </dt>
-      <dd className={isMissing ? "text-muted" : "text-ink"}>
+      <dd className="text-ink">
         <span className="whitespace-pre-line text-[0.98rem] leading-7">
-          {value ?? missingValue}
+          {value}
         </span>
         {note ? <p className="mt-2 max-w-[42rem] text-sm leading-6 text-muted">{note}</p> : null}
       </dd>
@@ -64,15 +59,9 @@ function LegalGroup({
   );
 }
 
-function isIncomplete(legal: LegalConfiguration, email: string | null) {
-  return [legal.legalName, legal.serviceAddress, email].some(
-    (value) => value === null,
-  );
-}
-
 export default function ImprintPage() {
-  const legal: LegalConfiguration = siteConfig.legal;
-  const businessEmail = siteConfig.businessEmail as string | null;
+  const legal = siteConfig.legal;
+  const businessEmail = siteConfig.businessEmail;
 
   return (
     <>
@@ -81,7 +70,7 @@ export default function ImprintPage() {
       <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
         <DrawRule />
 
-        {isIncomplete(legal, businessEmail) ? (
+        {legal.serviceAddress === null ? (
           <Reveal className="mt-8">
             <p className="max-w-[46rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
               {legal.missingInformationNotice}
@@ -98,11 +87,9 @@ export default function ImprintPage() {
             />
             <LegalField label="Legal name" value={legal.legalName} />
             <LegalField label="Legal form" value={legal.legalForm} />
-            <LegalField label="Legal representative" value={legal.legalRepresentative} />
           </LegalGroup>
 
-          <LegalGroup id="imprint-address" eyebrow="02" title="Address" delay={0.04}>
-            <LegalField label="Service address" value={legal.serviceAddress} />
+          <LegalGroup id="imprint-location" eyebrow="02" title="Location" delay={0.04}>
             <LegalField
               label={imprintPageContent.locationLabel}
               value={legal.generalLocation}
@@ -114,23 +101,14 @@ export default function ImprintPage() {
             <LegalField
               label="Email"
               value={
-                businessEmail ? (
-                  <a className="underline decoration-line-strong underline-offset-4 hover:text-accent" href={`mailto:${businessEmail}`}>
-                    {businessEmail}
-                  </a>
-                ) : null
+                <a className="underline decoration-line-strong underline-offset-4 hover:text-accent" href={`mailto:${businessEmail}`}>
+                  {businessEmail}
+                </a>
               }
             />
-            <LegalField label="Telephone" value={legal.telephone} />
           </LegalGroup>
 
-          <LegalGroup id="imprint-registration" eyebrow="04" title="Registration and tax" delay={0.08}>
-            <LegalField label="Registration court" value={legal.registrationCourt} />
-            <LegalField label="Registration number" value={legal.registrationNumber} />
-            <LegalField label="VAT ID" value={legal.vatId} />
-          </LegalGroup>
-
-          <LegalGroup id="imprint-responsibility" eyebrow="05" title="Content responsibility" delay={0.1}>
+          <LegalGroup id="imprint-responsibility" eyebrow="04" title="Content responsibility" delay={0.08}>
             <LegalField
               label="Responsible person"
               value={legal.responsibleForContent}

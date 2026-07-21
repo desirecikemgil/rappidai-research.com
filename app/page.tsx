@@ -202,7 +202,7 @@ export default function HomePage() {
               >
                 <div className="flex items-center gap-4">
                   <span className="technical-number text-xs text-[#79aaff]">0{index + 1}</span>
-                  <span className={`relative z-10 size-2.5 rounded-full ${entry.statusLabel === "In development" ? "border border-[#79aaff] bg-ink" : "bg-[#79aaff]"}`} />
+                  <span className={`relative z-10 size-2.5 rounded-full ${entry.modelSlug === "quantum-1-echelon" ? "border border-[#79aaff] bg-ink" : "bg-[#79aaff]"}`} />
                 </div>
                 <p className="mt-14 font-mono text-[0.64rem] tracking-[0.12em] text-[#9fb2cf] uppercase">{entry.statusLabel}</p>
                 <h3 className="mt-5 text-[clamp(1.7rem,3vw,2.8rem)] font-[510] tracking-[-0.045em] text-white">{entry.title}</h3>
@@ -290,7 +290,7 @@ export default function HomePage() {
               <h2 className="display-section mt-7">{homePageContent.contact.headline}</h2>
               <p className="body-lg mt-6 max-w-2xl">{homePageContent.contact.text}</p>
               <p className="mt-5 font-mono text-[0.68rem] tracking-[0.1em] text-muted uppercase">
-                {siteConfig.businessEmail ?? "Business email pending configuration"}
+                {siteConfig.businessEmail}
               </p>
             </div>
             <ActionLink href={homePageContent.contact.action.href}>{homePageContent.contact.action.label}</ActionLink>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { getModelBySlug, modelSlugs } from "@/content/models";
@@ -112,18 +112,18 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
       {model.technicalFacts.length > 0 || model.inferenceSoftware.length > 0 ? (
         <section className="liquid-section border-y border-line bg-pale-soft/35">
           <div className="page-shell section-space-sm">
-            <div className="grid gap-12 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
-              <Reveal>
+            <div className="grid min-w-0 gap-12 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
+              <Reveal className="min-w-0">
                 <p className="eyebrow">Technical dossier</p>
                 <h2 className="display-section mt-6">Documented model facts.</h2>
                 <p className="body-copy mt-6 max-w-[34rem]">
-                  Confirmed information from the project handover. Unknown release dates,
+                  Information linked to public project sources. Unknown release dates,
                   licensing terms and unsupported client compatibility are not inferred.
                 </p>
               </Reveal>
 
-              <Reveal delay={0.08}>
-                <dl className="liquid-surface px-6 sm:px-8">
+              <Reveal delay={0.08} className="min-w-0">
+                <dl className="liquid-surface min-w-0 px-6 sm:px-8">
                   {model.technicalFacts.map((fact) => (
                     <ModelFact key={fact.label} label={fact.label} value={fact.value} />
                   ))}
@@ -135,6 +135,25 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                   ) : null}
                 </dl>
 
+                {model.sources.length > 0 ? (
+                  <p className="mt-5 flex flex-wrap gap-x-2 gap-y-1 text-sm leading-6 text-muted">
+                    <span>Primary sources:</span>
+                    {model.sources.map((source, index) => (
+                      <span key={source.url}>
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
+                        >
+                          {source.label}
+                        </a>
+                        {index < model.sources.length - 1 ? " ·" : null}
+                      </span>
+                    ))}
+                  </p>
+                ) : null}
+
                 {model.usageExample ? (
                   <div className="liquid-surface mt-5 p-6 sm:p-8">
                     <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
@@ -144,13 +163,30 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                       <code>{model.usageExample}</code>
                     </pre>
                     <p className="mt-4 text-sm leading-6 text-muted">
-                      Completion prompting is the confirmed reference path. No chat
+                      Completion prompting is the documented reference path. No chat
                       template is promised.
                     </p>
                   </div>
                 ) : null}
               </Reveal>
             </div>
+          </div>
+        </section>
+      ) : null}
+
+      {model.researchContext ? (
+        <section className="page-shell section-space-sm">
+          <div className="grid gap-10 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
+            <Reveal>
+              <p className="eyebrow">Research context</p>
+              <h2 className="display-section mt-6">How this release fits the experiment.</h2>
+            </Reveal>
+            <Reveal delay={0.08} className="border-t border-line pt-8">
+              <p className="body-lg max-w-[44rem]">{model.researchContext}</p>
+              <div className="mt-8">
+                <ActionLink href="/research">Read the research methodology</ActionLink>
+              </div>
+            </Reveal>
           </div>
         </section>
       ) : null}
@@ -205,30 +241,28 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         ) : null}
       </section>
 
-      <section className="liquid-section border-y border-line bg-pale-soft/40">
-        <div className="page-shell section-space-sm">
-          <p className="eyebrow">Related research notes</p>
-          <div className="mt-10 border-b border-line">
-            {relatedNotes.map((note) => (
-              <div key={note.id} className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 sm:grid-cols-[1fr_auto] sm:items-center">
-                <div>
-                  <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">{note.title}</h2>
-                  <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
-                    {note.kindLabel} · {note.progressLabel}
-                  </p>
+      {relatedNotes.length > 0 ? (
+        <section className="liquid-section border-y border-line bg-pale-soft/40">
+          <div className="page-shell section-space-sm">
+            <p className="eyebrow">Related research note</p>
+            <div className="mt-10 border-b border-line">
+              {relatedNotes.map((note) => (
+                <div key={note.id} className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 sm:grid-cols-[1fr_auto] sm:items-center">
+                  <div>
+                    <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">{note.title}</h2>
+                    <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
+                      {note.kindLabel} · {note.progressLabel}
+                    </p>
+                  </div>
+                  <span className="max-w-[18rem] text-sm leading-6 text-muted sm:text-right">
+                    Draft in progress. No public article is available yet.
+                  </span>
                 </div>
-                {note.href ? (
-                  <a href={note.href} className="inline-flex items-center gap-2 text-sm text-accent">
-                    Read note <ArrowUpRight aria-hidden="true" size={15} />
-                  </a>
-                ) : (
-                  <span className="text-sm text-muted">Publication link pending</span>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </>
   );
 }
@@ -237,7 +271,7 @@ function ModelFact({ label, value }: { label: string; value: string }) {
   return (
     <div className="grid gap-2 border-b border-line py-6 sm:grid-cols-[10rem_1fr] sm:gap-6">
       <dt className="font-mono text-[0.65rem] tracking-[0.13em] text-muted uppercase">{label}</dt>
-      <dd className="text-[0.98rem] leading-7 text-ink-soft">{value}</dd>
+      <dd className="min-w-0 break-words text-[0.98rem] leading-7 text-ink-soft">{value}</dd>
     </div>
   );
 }

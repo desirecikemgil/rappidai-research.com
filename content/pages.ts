@@ -11,9 +11,9 @@ export const homePageContent = {
     eyebrow: "INDEPENDENT AI RESEARCH",
     headlineLines: ["Smaller models.", "Focused intelligence."],
     description:
-      "rappidAI develops compact language models and specialized open-weight systems for local, private and resource-efficient AI.",
+      "rappidAI documents compact German-language model experiments, GGUF releases and local-inference workflows. The two public Quantum pilots are experimental base-completion models; focused adaptation of stronger open-weight foundations is the next research direction.",
     supportingText:
-      "Built primarily for developers and researchers, the work explores how capable language systems can become more accessible without relying exclusively on increasingly large models or permanent cloud infrastructure.",
+      "The work is intended for developers and researchers investigating small-model training, reproducible evaluation and local deployment. The current pilots are research artifacts, not chat assistants or production systems.",
     primaryAction: {
       label: "Explore our models",
       href: "/models",
@@ -75,49 +75,17 @@ export const modelsPageContent = {
   } satisfies PageIntroduction,
   filterLabel: "Filter models",
   missingParameterLabel: "Final parameter size not yet defined",
-  missingLicenseLabel: "Licensing information has not been supplied.",
+  missingLicenseLabel: "No public model release exists, so no model license applies.",
   missingLinksLabel: "No public model release link is available.",
 } as const;
 
 export const researchPageContent = {
   introduction: {
     eyebrow: "RESEARCH",
-    title: "Research shaped by practical constraints.",
+    title: "Research behind the Quantum pilots.",
     description:
-      "rappidAI investigates compact architectures, targeted adaptation, efficient inference and transparent evaluation.",
+      "A source-linked account of the questions, controlled variables, public results, observed limitations and open questions behind quantum-1-pilot and quantum-1.6-pilot.",
   } satisfies PageIntroduction,
-  direction: {
-    eyebrow: "CURRENT DIRECTION",
-    title: "From pretraining experiments to focused adaptation.",
-    text: "The current direction focuses on adapting compact open-weight foundation models for narrower, measurable use cases and efficient German-language use.",
-  },
-  philosophy: {
-    eyebrow: "DEVELOPMENT PHILOSOPHY",
-    title: "Useful systems should be judged by more than scale.",
-    text: "The goal is not to imitate frontier-scale laboratories, but to investigate where smaller systems can be genuinely useful, local and transparent about their limits.",
-  },
-  methodology: {
-    eyebrow: "METHODOLOGY",
-    title: "A repeatable path from question to limitation.",
-  },
-  experimentLogs: {
-    eyebrow: "EXPERIMENT LOGS",
-    title: "Model development without invented milestones.",
-    noDatesNotice: "No publication dates have been supplied.",
-  },
-  notes: {
-    eyebrow: "RESEARCH NOTES",
-    title: "Questions for documented investigation.",
-  },
-  roadmap: {
-    eyebrow: "ROADMAP",
-    title: "An undated progression of research work.",
-    noDatesNotice: "No target dates have been supplied.",
-  },
-  evaluation: {
-    eyebrow: "HONEST EVALUATION",
-    title: "Limitations belong in the result.",
-  },
 } as const;
 
 export const aboutPageContent = {
@@ -140,7 +108,24 @@ export const aboutPageContent = {
   whyCompactModelsMatter: {
     eyebrow: "WHY COMPACT MODELS",
     title: "Capability should be considered alongside resources.",
-    text: "Compact systems can support research into private, offline and resource-efficient inference without relying exclusively on permanent cloud infrastructure.",
+    text: "Local inference can reduce dependence on external services and may keep prompts on the user’s device. Actual privacy depends on the application, configuration and surrounding infrastructure.",
+  },
+  projectStructure: {
+    eyebrow: "PROJECT STRUCTURE",
+    title: "One initiative, one development project, one model series.",
+    text: "rappidAI is the research initiative. Lumen is the experimental development project for training and local-inference workflows. Quantum is the model series produced within that work.",
+  },
+  publishedWork: {
+    eyebrow: "PUBLISHED WORK",
+    title: "Two public experimental pilots.",
+    paragraphs: [
+      "rappidAI currently publishes two experimental German base-completion models: quantum-1-pilot and quantum-1.6-pilot. Both contain 49,295,872 parameters and are available as F16 GGUF files for local experimentation. The accompanying public repository documents the training, evaluation and GGUF-export workflow.",
+      "These releases demonstrate a working small-model pipeline. They do not demonstrate production readiness, reliable factual answering or competitiveness with larger general-purpose models.",
+    ],
+    action: {
+      label: "View public models",
+      href: "/models",
+    } satisfies InternalCallToAction,
   },
   openWeightDirection: {
     eyebrow: "CURRENT DIRECTION",
@@ -159,23 +144,23 @@ export const contactPageContent = {
     eyebrow: "CONTACT",
     title: "Interested in the research?",
     description:
-      "For technical discussions, collaboration enquiries or questions about the models, contact rappidAI directly.",
+      "For technical questions, model feedback, open-source collaboration or project enquiries, contact rappidAI by email.",
   } satisfies PageIntroduction,
   methodsHeading: "Contact and research profiles",
-  emailMissingLabel: "Business email has not yet been supplied.",
+  emailMissingLabel: "Email contact is unavailable.",
   enquiryTypes: [
     "Technical questions",
     "Open-source collaboration",
     "Model feedback",
-    "Project partnerships",
+    "Project enquiries",
   ],
   form: {
     heading: "Send an enquiry",
     description:
-      "Complete the fields below. If a business email is configured, the form opens your email application; it does not claim that a message was sent.",
-    unavailableHeading: "Direct email contact is being prepared.",
+      "Complete the fields below to prepare an email in your own email application. Nothing is transmitted or stored by this website.",
+    unavailableHeading: "Direct email contact is unavailable.",
     unavailableDescription:
-      "The public business email has not yet been supplied, so the enquiry form remains inactive. Until it is configured, use the linked research profiles for public project context.",
+      "No recipient is configured for the email draft. Use the linked research profiles for public project context.",
     fields: {
       name: { label: "Name", requiredMessage: "Enter your name." },
       email: {
@@ -198,7 +183,7 @@ export const imprintPageContent = {
     eyebrow: "IMPRINT",
     title: "Provider information",
     description:
-      "This page is reserved for the legally required provider information for rappidAI research.",
+      "Provider information for rappidAI research, an independent initiative operated by Jonas Désiré Cikemgil.",
   } satisfies PageIntroduction,
   identityLabel: "Project identity",
   locationLabel: "General location",
@@ -218,17 +203,17 @@ export const privacyPageContent = {
     {
       id: "controller",
       title: "Controller information",
-      text: "Jonas Désiré Cikemgil is identified as the responsible operator. A service address and public business email still need to be supplied before publication.",
+      text: "Jonas Désiré Cikemgil is the controller for this website. A complete service address has not been verified in the project and remains an open required detail.",
     },
     {
       id: "hosting",
       title: "Hosting",
-      text: "A hosting provider has not been supplied. Hosting and server-log information must be added when deployment is configured.",
+      text: "No hosting provider is identified in the repository. Server-log categories, processing purposes, legal bases and retention periods therefore cannot yet be documented reliably.",
     },
     {
       id: "contact",
       title: "Contact form",
-      text: "The website does not claim to submit the contact form to a server. When a business email is configured, the form opens the visitor's email application through a mailto link.",
+      text: "The contact form has no server endpoint. It validates entries locally and opens the visitor’s email application through a mailto link. The website itself does not transmit or store the entered message.",
     },
     {
       id: "analytics",
@@ -272,7 +257,7 @@ export const pageMetadata = {
   "/research": {
     title: "Research — rappidAI Research",
     description:
-      "Research directions, methodology, experiment logs and evaluation principles for rappidAI's compact-model work.",
+      "Source-linked research questions, experiment design, results, limitations and reproducibility artifacts for the Quantum pilot models.",
   },
   "/about": {
     title: "About — rappidAI Research",

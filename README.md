@@ -46,7 +46,7 @@ pnpm build
 
 Most public copy and factual information can be changed without editing component logic:
 
-- `content/site.ts` — site identity, navigation, business email, canonical site URL, external links, contact details, and legal placeholders.
+- `content/site.ts` — site identity, navigation, business email, canonical site URL, external links, contact details, and legal configuration.
 - `content/models.ts` — model names, statuses, metadata, limitations, lineage, licensing fields, and model links.
 - `content/research.ts` — research areas, notes, statuses, methodology, and roadmap content.
 - `content/pages.ts` — route copy, page metadata, contact-form labels, and honest unavailable-state messages.
@@ -59,16 +59,16 @@ Keep claims factual. Do not add benchmark results, release status, people, partn
 
 ### External links, email, and canonical URL
 
-Update these nullable values in `content/site.ts` before launch:
+Review these centralized values in `content/site.ts` before launch:
 
 - The canonical production origin, including `https://` and no trailing path.
-- The public business email address.
-- The exact Hugging Face organization and model URLs.
-- The exact GitHub organization or repository URLs.
+- The configured public business email address.
+- The configured Hugging Face organization and model URLs.
+- The configured GitHub organization or repository URLs.
 
-Placeholder links are intentionally centralized. Replace them with verified URLs rather than inventing account names. The canonical origin is also used for metadata, Open Graph URLs, the sitemap, and robots configuration.
+Shared links are intentionally centralized. Change them only when a replacement has been verified. The canonical origin is also used for metadata, Open Graph URLs, the sitemap, and robots configuration.
 
-The contact form has no server endpoint. It validates the fields and may open an encoded `mailto:` draft only after `businessEmail` is configured. With no configured address, it must display that sending is unavailable and must never show a sent-success state. Adding a form provider or API requires an explicit integration, error handling, environment configuration, and corresponding privacy updates.
+The contact form has no server endpoint. It validates the fields locally and opens an encoded `mailto:` draft addressed to the configured `businessEmail`; the website itself does not transmit or store the message. Adding a form provider or API requires an explicit integration, error handling, environment configuration, and corresponding privacy updates.
 
 ## Deployment
 
@@ -101,33 +101,33 @@ The Imprint and Privacy routes are structural templates, not completed legal adv
 
 ### Identity and contact
 
-- [ ] Confirm the operator's full legal name.
+- [x] Confirm the operator's full legal name.
 - [ ] Add a complete service/contact address suitable for the intended jurisdiction.
-- [ ] Confirm the public legal-contact email address.
+- [x] Confirm the public legal-contact email address.
 - [ ] Add a telephone number only if required and intentionally made public.
-- [ ] Confirm the person responsible for editorial content, if applicable.
+- [x] Confirm the person responsible for editorial content, if applicable.
 
 ### Registration and tax details
 
-- [ ] Confirm the legal form; do not use `GmbH`, `UG`, `Inc.`, or another entity label unless registered.
+- [x] Confirm the legal form; do not use `GmbH`, `UG`, `Inc.`, or another entity label unless registered.
 - [ ] Add register name, court, and registration number only if they exist.
 - [ ] Add VAT or other tax identification only if it exists and publication is required.
 - [ ] Add supervisory authority or professional-regulation details only if applicable.
 
 ### Privacy details
 
-- [ ] Identify the data controller and provide complete controller contact details.
+- [ ] Complete the identified data controller's contact details with a verified service address.
 - [ ] Confirm the hosting provider, processing location, and relevant processing terms.
 - [ ] Document server-log data, purpose, legal basis, and retention period.
-- [ ] Document how contact enquiries are processed and retained.
-- [ ] Confirm whether the contact experience remains a `mailto:` handoff or is connected to a form provider/backend.
+- [x] Document how the current client-side `mailto:` contact handoff works.
+- [x] Confirm that the contact experience remains a `mailto:` handoff with no form provider or backend.
 - [ ] Review cookies, analytics, embedded media, external fonts, and other third-party services; update consent and privacy text before enabling any of them.
 - [ ] Add the applicable data-subject rights and supervisory-authority information.
 - [ ] Add a verified effective date or revision date.
 
 ### Final launch review
 
-- [ ] Replace every placeholder email and external URL with a verified value.
+- [x] Replace public email, Hugging Face, and GitHub references with verified values.
 - [ ] Confirm the production domain and canonical URL.
 - [ ] Verify model licensing and release links individually.
 - [ ] Run type checking, linting, and the production build.

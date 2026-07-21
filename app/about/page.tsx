@@ -4,6 +4,7 @@ import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { ResearchDiagram } from "@/components/research/research-diagram";
 import { BrandSymbol } from "@/components/ui/brand-lockup";
 import { PageIntro } from "@/components/ui/page-intro";
+import { ActionLink } from "@/components/ui/action-link";
 import { aboutPageContent } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import { metadataFor } from "@/lib/metadata";
@@ -47,6 +48,23 @@ export default function AboutPage() {
               className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-pale blur-3xl"
             />
             <BrandSymbol className="relative z-10 w-[clamp(9rem,18vw,15rem)] opacity-95" />
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="project-structure-heading"
+        className="liquid-section border-y border-line bg-pale-soft/35"
+      >
+        <div className="page-shell section-space-sm grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <Reveal className="lg:col-span-4">
+            <p className="eyebrow">{aboutPageContent.projectStructure.eyebrow}</p>
+            <h2 id="project-structure-heading" className="display-section mt-7 text-ink">
+              {aboutPageContent.projectStructure.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08} className="border-t border-line pt-8 lg:col-span-6 lg:col-start-7">
+            <p className="body-lg max-w-[42rem]">{aboutPageContent.projectStructure.text}</p>
           </Reveal>
         </div>
       </section>
@@ -97,6 +115,28 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section aria-labelledby="published-work-heading" className="page-shell section-space">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <Reveal className="lg:col-span-4">
+            <p className="eyebrow">{aboutPageContent.publishedWork.eyebrow}</p>
+            <h2 id="published-work-heading" className="display-section mt-7 text-ink">
+              {aboutPageContent.publishedWork.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
+            <DrawRule />
+            <div className="space-y-6 py-8">
+              {aboutPageContent.publishedWork.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="body-lg max-w-[44rem]">{paragraph}</p>
+              ))}
+            </div>
+            <ActionLink href={aboutPageContent.publishedWork.action.href}>
+              {aboutPageContent.publishedWork.action.label}
+            </ActionLink>
+          </Reveal>
+        </div>
+      </section>
+
       <section
         aria-labelledby="why-compact-models-heading"
         className="page-shell section-space"
@@ -123,7 +163,7 @@ export default function AboutPage() {
                 Design target
               </p>
               <p className="mt-4 text-xl font-medium leading-snug tracking-[-0.03em] text-ink">
-                Local, private and resource-efficient experimentation.
+                Local and resource-efficient experimentation.
               </p>
             </div>
           </Reveal>

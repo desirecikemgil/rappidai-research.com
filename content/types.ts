@@ -106,7 +106,6 @@ export type ModelAvailability =
 export type ModelFilterId =
   | "all"
   | "available"
-  | "experimental"
   | "in-development";
 
 export type ModelLinkKind = "model-card" | ExternalLinkKey;
@@ -127,6 +126,11 @@ export interface ModelLink {
 export interface ModelTechnicalFact {
   readonly label: string;
   readonly value: string;
+}
+
+export interface ModelSource {
+  readonly label: string;
+  readonly url: string;
 }
 
 export type ResearchNoteId =
@@ -151,8 +155,10 @@ export interface ModelRecord {
   readonly license: string | null;
   readonly links: readonly ModelLink[];
   readonly technicalFacts: readonly ModelTechnicalFact[];
+  readonly sources: readonly ModelSource[];
   readonly inferenceSoftware: readonly string[];
   readonly usageExample: string | null;
+  readonly researchContext: string | null;
   readonly limitations: readonly string[];
   readonly relatedResearchNoteIds: readonly ResearchNoteId[];
   readonly indexFacts: readonly string[];
