@@ -140,7 +140,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
   };
 
   const fieldClassName =
-    "liquid-field mt-2 w-full border border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
+    "liquid-field mt-2 min-h-[3.25rem] w-full border border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
 
   return (
     <div className="liquid-surface border border-white/70 p-5 pt-7 sm:p-9 lg:p-10">
@@ -154,12 +154,12 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
 
       <form
         ref={formRef}
-        className="mt-10"
+        className="mt-8 sm:mt-10"
         noValidate
         aria-describedby={`${idPrefix}-description ${idPrefix}-status`}
         onSubmit={handleSubmit}
       >
-        <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
+        <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 sm:gap-y-7">
           <div>
             <label
               htmlFor={`${idPrefix}-name`}
@@ -253,7 +253,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               value={values.message}
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? `${idPrefix}-message-error` : undefined}
-              className={`${fieldClassName} min-h-40 resize-y`}
+              className={`${fieldClassName} min-h-36 resize-y sm:min-h-40`}
               onChange={handleChange}
             />
             <ErrorMessage id={`${idPrefix}-message-error`} message={errors.message} />
@@ -263,7 +263,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
         <div className="mt-9 flex flex-col items-start gap-5">
           <button
             type="submit"
-            className="link-arrow liquid-button inline-flex min-h-12 items-center justify-center gap-2.5 border border-ink bg-ink px-5 text-[0.88rem] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:border-accent hover:bg-accent focus-visible:border-accent focus-visible:bg-accent"
+            className="link-arrow liquid-button inline-flex min-h-12 w-full items-center justify-center gap-2.5 border border-ink bg-ink px-5 text-[0.88rem] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:border-accent hover:bg-accent focus-visible:border-accent focus-visible:bg-accent sm:w-auto"
           >
             {form.submitLabel}
             <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />

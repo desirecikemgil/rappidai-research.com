@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -32,6 +32,15 @@ export function SiteHeader() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
   }, [menuOpen]);
 
   return (
@@ -87,7 +96,7 @@ export function SiteHeader() {
         {menuOpen ? (
           <motion.div
             id="mobile-navigation"
-            className="liquid-mobile-menu origin-top border-t border-line lg:hidden"
+            className="liquid-mobile-menu max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line lg:hidden"
             initial={reduceMotion ? false : { opacity: 0, height: 0, y: -8 }}
             animate={reduceMotion ? undefined : { opacity: 1, height: "auto", y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, height: 0, y: -6 }}
@@ -111,9 +120,13 @@ export function SiteHeader() {
                         className="flex min-h-14 items-center justify-between text-base text-ink"
                       >
                         {item.label}
-                        <span className={`font-mono text-xs ${active ? "text-accent" : "text-muted"}`}>
-                          {active ? "ACTIVE" : "↗"}
-                        </span>
+                        {active ? (
+                          <span className="font-mono text-[0.65rem] tracking-[0.12em] text-accent">
+                            ACTIVE
+                          </span>
+                        ) : (
+                          <ArrowUpRight aria-hidden="true" className="size-4 text-muted" strokeWidth={1.6} />
+                        )}
                       </Link>
                     </motion.div>
                   );

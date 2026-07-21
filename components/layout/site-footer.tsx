@@ -8,7 +8,7 @@ export function SiteFooter() {
   return (
     <footer className="liquid-section border-t border-line bg-white/35 backdrop-blur-xl">
       <div className="page-shell section-space-sm">
-        <div className="grid gap-14 lg:grid-cols-[1.45fr_0.65fr_0.65fr_0.75fr]">
+        <div className="grid gap-10 sm:gap-14 lg:grid-cols-[1.45fr_0.65fr_0.65fr_0.75fr]">
           <div>
             <BrandLockup priority />
             <p className="body-copy mt-7 max-w-md">{siteConfig.description}</p>
@@ -48,7 +48,7 @@ export function SiteFooter() {
           </FooterColumn>
         </div>
 
-        <div className="mt-20 flex flex-col gap-4 border-t border-line pt-6 text-[0.78rem] text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-[0.78rem] text-muted sm:mt-20 sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {siteConfig.name}</p>
           <p>Independent AI research · Berlin, Germany</p>
         </div>

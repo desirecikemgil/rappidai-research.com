@@ -40,7 +40,7 @@ export default function HomePage() {
             <Reveal>
               <p className="eyebrow">{homePageContent.hero.eyebrow}</p>
             </Reveal>
-            <h1 className="display-hero mt-8 text-ink">
+            <h1 className="display-hero mt-7 text-ink sm:mt-8">
               {homePageContent.hero.headlineLines.map((line, index) => (
                 <Reveal key={line} delay={0.05 + index * 0.08} distance={24}>
                   <span className="block">{line}</span>
@@ -48,12 +48,10 @@ export default function HomePage() {
               ))}
             </h1>
             <Reveal delay={0.24}>
-              <p className="body-lg mt-9 max-w-[40rem]">{homePageContent.hero.description}</p>
+              <p className="body-lg mt-7 max-w-[40rem] sm:mt-9">{homePageContent.hero.description}</p>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="body-copy mt-5 max-w-[38rem]">{homePageContent.hero.supportingText}</p>
-            </Reveal>
-            <Reveal delay={0.36} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
               <ActionLink href={homePageContent.hero.primaryAction.href}>
                 {homePageContent.hero.primaryAction.label}
               </ActionLink>
@@ -64,9 +62,13 @@ export default function HomePage() {
               ) : (
                 <PendingAction>{homePageContent.hero.externalAction.label} · link pending</PendingAction>
               )}
+              </div>
+            </Reveal>
+            <Reveal delay={0.36}>
+              <p className="body-copy mt-5 max-w-[38rem]">{homePageContent.hero.supportingText}</p>
             </Reveal>
             <Reveal delay={0.42}>
-              <p className="mt-9 max-w-xl border-l border-accent pl-4 font-mono text-[0.68rem] leading-5 tracking-[0.08em] text-muted uppercase">
+              <p className="mt-6 max-w-xl border-l border-accent pl-4 font-mono text-[0.68rem] leading-5 tracking-[0.08em] text-muted uppercase sm:mt-9">
                 {homePageContent.hero.status}
               </p>
             </Reveal>

@@ -38,15 +38,15 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
 
   return (
     <>
-      <section className="page-shell pt-[clamp(7.5rem,13vw,11rem)] pb-[clamp(4rem,7vw,7rem)]">
+      <section className="page-shell pt-[clamp(5rem,10vw,8rem)] pb-[clamp(2.75rem,6vw,5.5rem)]">
         <Reveal>
-          <Link href="/models" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink">
+          <Link href="/models" className="-ml-2 inline-flex min-h-11 items-center gap-2 px-2 text-sm text-muted transition-colors hover:text-ink">
             <ArrowLeft aria-hidden="true" size={15} strokeWidth={1.7} />
             All models
           </Link>
         </Reveal>
 
-        <div className="liquid-surface mt-16 grid gap-10 p-7 sm:p-10 lg:grid-cols-[1fr_0.33fr] lg:items-end lg:p-12">
+        <div className="liquid-surface mt-10 grid gap-10 p-7 sm:mt-14 sm:p-10 lg:mt-16 lg:grid-cols-[1fr_0.33fr] lg:items-end lg:p-12">
           <div>
             <Reveal>
               <p className="eyebrow">Model card · {model.statusLabel}</p>
@@ -68,7 +68,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
             </p>
           </Reveal>
         </div>
-        <DrawRule className="mt-16" />
+        <DrawRule className="mt-10 sm:mt-14 lg:mt-16" />
       </section>
 
       <section className="page-shell pb-[var(--section-space)]">

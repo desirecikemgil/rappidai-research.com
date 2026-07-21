@@ -28,7 +28,7 @@ export function ModelIndex() {
                 type="button"
                 aria-pressed={active}
                 onClick={() => setFilter(item.id)}
-                className={`min-h-10 border px-4 text-[0.78rem] font-medium transition-colors ${
+                className={`min-h-11 border px-4 text-[0.78rem] font-medium transition-colors ${
                   active
                     ? "liquid-button border-ink bg-ink text-white"
                     : "liquid-pill border-line bg-white/30 text-muted hover:border-ink hover:text-ink"
