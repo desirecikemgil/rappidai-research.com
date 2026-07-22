@@ -1,6 +1,6 @@
 {
   "name": "rappidai-website",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "The public website for the rappidAI independent AI research initiative.",
   "license": "Apache-2.0",

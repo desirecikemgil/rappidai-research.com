@@ -156,7 +156,7 @@ Use [`CITATION.cff`](CITATION.cff) for this website repository. Model releases s
 
 - Maintainer: Jonas Désiré Cikemgil (`@jonascikemgil07-hue`)
 - Public contact: [cikemgil@rappidai-research.com](mailto:cikemgil@rappidai-research.com)
-- Hugging Face: [rappidai-research](https://huggingface.co/rappidai-research)
+- Hugging Face: [rappidAI](https://huggingface.co/rappidAI)
 - Research implementation: [`lumen-quantum`](https://github.com/jonascikemgil07-hue/lumen-quantum)
 
 The imprint and privacy pages still require a verified service address and deployment-specific legal review. This repository does not present legal documentation as legal advice.

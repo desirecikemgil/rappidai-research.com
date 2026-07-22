@@ -5,7 +5,7 @@ export const publicContact = {
 } as const;
 
 export const publicProfiles = {
-  huggingFace: "https://huggingface.co/rappidai-research",
+  huggingFace: "https://huggingface.co/rappidAI",
   github: "https://github.com/jonascikemgil07-hue/lumen-quantum",
 } as const;
 

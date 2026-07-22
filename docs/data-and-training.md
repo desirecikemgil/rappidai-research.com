@@ -201,8 +201,8 @@ the release record should link:
 
 ## Primary sources
 
-- [`quantum-1-pilot` Hugging Face repository](https://huggingface.co/rappidai-research/quantum-1-pilot)
-- [`quantum-1.6-pilot` Hugging Face repository](https://huggingface.co/rappidai-research/quantum-1.6-pilot)
+- [`quantum-1-pilot` Hugging Face repository](https://huggingface.co/rappidAI/quantum-1-pilot)
+- [`quantum-1.6-pilot` Hugging Face repository](https://huggingface.co/rappidAI/quantum-1.6-pilot)
 - [FineWeb2-HQ dataset card](https://huggingface.co/datasets/epfml/FineWeb2-HQ)
 - [`quantum-1.6-pilot` data configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
 - [`quantum-1.6-pilot` training configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)

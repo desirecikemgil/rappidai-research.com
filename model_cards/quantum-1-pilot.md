@@ -130,9 +130,9 @@ Before treating this release as fully reproducible, publish or pin:
 
 ## Sources
 
-- [Hugging Face model repository](https://huggingface.co/rappidai-research/quantum-1-pilot)
-- [Release manifest](https://huggingface.co/rappidai-research/quantum-1-pilot/blob/7daf415ef09fc131d7440af8514a93fd8cf3f2a1/manifest.json)
-- [Published checksums](https://huggingface.co/rappidai-research/quantum-1-pilot/blob/7daf415ef09fc131d7440af8514a93fd8cf3f2a1/SHA256SUMS.txt)
+- [Hugging Face model repository](https://huggingface.co/rappidAI/quantum-1-pilot)
+- [Release manifest](https://huggingface.co/rappidAI/quantum-1-pilot/blob/7daf415ef09fc131d7440af8514a93fd8cf3f2a1/manifest.json)
+- [Published checksums](https://huggingface.co/rappidAI/quantum-1-pilot/blob/7daf415ef09fc131d7440af8514a93fd8cf3f2a1/SHA256SUMS.txt)
 - [Public research repository](https://github.com/jonascikemgil07-hue/lumen-quantum)
 - [Model specification](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/docs/model_spec.md)
 - [FineWeb2-HQ dataset card](https://huggingface.co/datasets/epfml/FineWeb2-HQ)
