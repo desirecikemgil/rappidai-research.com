@@ -1,0 +1,110 @@
+name: Research proposal
+description: Propose a scoped, reproducible research question for public discussion.
+title: "[Research]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Separate hypotheses from measured results, and state uncertainty. Acceptance of a proposal does not promise implementation, publication, model release, compute allocation, or a delivery date.
+
+        Do not submit private datasets, access credentials, personal data, unpublished model artifacts, or confidential partner information.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checks
+      options:
+        - label: I searched existing issues, discussions, and public literature for related work.
+          required: true
+        - label: I removed secrets, personal data, restricted data, and confidential information.
+          required: true
+        - label: I have clearly separated hypotheses and proposed measurements from established results.
+          required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question and hypothesis
+      description: State a falsifiable question and the expected outcome, including uncertainty.
+    validations:
+      required: true
+
+  - type: textarea
+    id: project-relationship
+    attributes:
+      label: Relationship to the project
+      description: Explain how this relates to the website, published research themes, model architecture, training, evaluation, or tooling.
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-work
+    attributes:
+      label: Related work and evidence
+      description: Cite public, authoritative sources and distinguish source findings from your inference.
+    validations:
+      required: true
+
+  - type: textarea
+    id: method
+    attributes:
+      label: Proposed method
+      description: Describe baselines, controls, variables, implementation outline, and what would falsify the hypothesis.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evaluation
+    attributes:
+      label: Evaluation and success criteria
+      description: Define datasets, metrics, statistical treatment, error analysis, and known limitations.
+    validations:
+      required: true
+
+  - type: textarea
+    id: data-provenance
+    attributes:
+      label: Data provenance and governance
+      description: Identify every proposed dataset, its origin, collection method, consent or privacy considerations, terms, and known quality or bias concerns. Do not attach restricted data.
+    validations:
+      required: true
+
+  - type: textarea
+    id: licensing
+    attributes:
+      label: Licensing and redistribution
+      description: State licenses or permissions for data, code, models, tokenizers, and other artifacts, plus restrictions on derived or redistributed outputs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: compute
+    attributes:
+      label: Compute and hardware estimate
+      description: Estimate accelerator type and count, runtime, memory, storage, energy or cost constraints, and a lower-compute fallback.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Reproducibility plan
+      description: Describe seeds, configurations, dependency versions, checkpoints, logs, and which artifacts could be published safely and lawfully.
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks, ethics, and mitigations
+      description: Consider security, privacy, dual use, bias, harmful content, environmental cost, licensing, and failure modes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Proposed outputs
+      description: List possible code, documentation, measurements, or artifacts. Treat all publication and release decisions as subject to review.
+    validations:
+      required: true

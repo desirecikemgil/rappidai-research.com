@@ -92,21 +92,13 @@ export interface SiteConfiguration {
 }
 
 export type ModelSlug =
-  | "quantum-1-pilot"
-  | "quantum-1-6-pilot"
-  | "quantum-1-echelon";
+  "quantum-1-pilot" | "quantum-1-6-pilot" | "quantum-1-echelon";
 
 export type ModelStatus = "experimental" | "in-development";
 
-export type ModelAvailability =
-  | "available"
-  | "unconfirmed"
-  | "not-released";
+export type ModelAvailability = "available" | "unconfirmed" | "not-released";
 
-export type ModelFilterId =
-  | "all"
-  | "available"
-  | "in-development";
+export type ModelFilterId = "all" | "available" | "in-development";
 
 export type ModelLinkKind = "model-card" | ExternalLinkKey;
 

@@ -47,7 +47,10 @@ export default function ResearchPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-4">
             <p className="eyebrow">{research.questions.eyebrow}</p>
-            <h2 id="research-questions-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="research-questions-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.questions.title}
             </h2>
           </Reveal>
@@ -88,10 +91,15 @@ export default function ResearchPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
             <Reveal className="lg:col-span-5">
               <p className="eyebrow">{research.design.eyebrow}</p>
-              <h2 id="experiment-design-heading" className="display-section mt-7 text-ink">
+              <h2
+                id="experiment-design-heading"
+                className="display-section mt-7 text-ink"
+              >
                 {research.design.title}
               </h2>
-              <p className="body-lg mt-7 max-w-[39rem]">{research.design.text}</p>
+              <p className="body-lg mt-7 max-w-[39rem]">
+                {research.design.text}
+              </p>
               <SourceLine sources={research.design.sources} />
             </Reveal>
 
@@ -108,7 +116,9 @@ export default function ResearchPage() {
                   <h3 className="mt-7 text-xl font-medium tracking-[-0.03em] text-ink">
                     {variable.label}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-muted">{variable.value}</p>
+                  <p className="mt-3 text-sm leading-6 text-muted">
+                    {variable.value}
+                  </p>
                 </Reveal>
               ))}
             </div>
@@ -122,7 +132,10 @@ export default function ResearchPage() {
       >
         <Reveal>
           <p className="eyebrow">{research.hypothesisAndObservation.eyebrow}</p>
-          <h2 id="hypothesis-observation-heading" className="display-section mt-7 text-ink">
+          <h2
+            id="hypothesis-observation-heading"
+            className="display-section mt-7 text-ink"
+          >
             {research.hypothesisAndObservation.title}
           </h2>
         </Reveal>
@@ -136,7 +149,10 @@ export default function ResearchPage() {
               {research.hypothesisAndObservation.hypothesis}
             </p>
           </Reveal>
-          <Reveal delay={0.06} className="liquid-card border-accent/25 p-7 sm:p-10">
+          <Reveal
+            delay={0.06}
+            className="liquid-card border-accent/25 p-7 sm:p-10"
+          >
             <p className="font-mono text-[0.68rem] tracking-[0.15em] text-accent uppercase">
               Observation · public release record
             </p>
@@ -161,7 +177,10 @@ export default function ResearchPage() {
         <div className="page-shell section-space">
           <Reveal className="max-w-[52rem]">
             <p className="eyebrow">{research.comparison.eyebrow}</p>
-            <h2 id="model-comparison-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="model-comparison-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.comparison.title}
             </h2>
           </Reveal>
@@ -227,17 +246,25 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      <section aria-labelledby="data-pipeline-heading" className="page-shell section-space">
+      <section
+        aria-labelledby="data-pipeline-heading"
+        className="page-shell section-space"
+      >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-4">
             <p className="eyebrow">{research.dataPipeline.eyebrow}</p>
-            <h2 id="data-pipeline-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="data-pipeline-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.dataPipeline.title}
             </h2>
           </Reveal>
           <Reveal className="min-w-0 lg:col-span-7 lg:col-start-6">
             <DrawRule />
-            <p className="body-lg mt-8 max-w-[46rem]">{research.dataPipeline.text}</p>
+            <p className="body-lg mt-8 max-w-[46rem]">
+              {research.dataPipeline.text}
+            </p>
             <div className="liquid-surface mt-8 border-l-2 border-accent p-6 sm:p-8">
               <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
                 Documented limitation
@@ -246,7 +273,9 @@ export default function ResearchPage() {
                 {research.dataPipeline.limitation}
               </p>
             </div>
-            <p className="body-copy mt-7 max-w-[46rem]">{research.dataPipeline.status}</p>
+            <p className="body-copy mt-7 max-w-[46rem]">
+              {research.dataPipeline.status}
+            </p>
             <SourceLine sources={research.dataPipeline.sources} />
           </Reveal>
         </div>
@@ -260,7 +289,10 @@ export default function ResearchPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
             <Reveal className="lg:col-span-4">
               <p className="eyebrow">{research.evaluation.eyebrow}</p>
-              <h2 id="evaluation-method-heading" className="display-section mt-7 text-ink">
+              <h2
+                id="evaluation-method-heading"
+                className="display-section mt-7 text-ink"
+              >
                 {research.evaluation.title}
               </h2>
             </Reveal>
@@ -293,11 +325,17 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      <section aria-labelledby="observed-behavior-heading" className="page-shell section-space">
+      <section
+        aria-labelledby="observed-behavior-heading"
+        className="page-shell section-space"
+      >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-4">
             <p className="eyebrow">{research.observedBehavior.eyebrow}</p>
-            <h2 id="observed-behavior-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="observed-behavior-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.observedBehavior.title}
             </h2>
           </Reveal>
@@ -325,7 +363,10 @@ export default function ResearchPage() {
         <div className="page-shell section-space">
           <Reveal>
             <p className="eyebrow">{research.failureModes.eyebrow}</p>
-            <h2 id="failure-modes-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="failure-modes-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.failureModes.title}
             </h2>
           </Reveal>
@@ -355,11 +396,17 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      <section aria-labelledby="conclusions-heading" className="page-shell section-space">
+      <section
+        aria-labelledby="conclusions-heading"
+        className="page-shell section-space"
+      >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-4">
             <p className="eyebrow">{research.conclusions.eyebrow}</p>
-            <h2 id="conclusions-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="conclusions-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.conclusions.title}
             </h2>
           </Reveal>
@@ -368,7 +415,9 @@ export default function ResearchPage() {
               <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
                 Demonstrated by the released artifacts
               </p>
-              <p className="body-lg mt-6">{research.conclusions.demonstrated}</p>
+              <p className="body-lg mt-6">
+                {research.conclusions.demonstrated}
+              </p>
             </div>
             <div className="mt-4 space-y-3">
               {research.conclusions.notDemonstrated.map((statement) => (
@@ -392,10 +441,15 @@ export default function ResearchPage() {
         <div className="page-shell section-space">
           <Reveal className="max-w-[56rem]">
             <p className="eyebrow">{research.reproducibility.eyebrow}</p>
-            <h2 id="reproducibility-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="reproducibility-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.reproducibility.title}
             </h2>
-            <p className="body-lg mt-7">{research.reproducibility.introduction}</p>
+            <p className="body-lg mt-7">
+              {research.reproducibility.introduction}
+            </p>
           </Reveal>
 
           <div className="mt-12 grid gap-3 md:grid-cols-2">
@@ -411,7 +465,9 @@ export default function ResearchPage() {
                 <h3 className="mt-5 text-xl font-medium tracking-[-0.025em] text-ink">
                   {artifact.label}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{artifact.detail}</p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  {artifact.detail}
+                </p>
                 <a
                   href={artifact.url}
                   target="_blank"
@@ -426,7 +482,10 @@ export default function ResearchPage() {
 
           <div className="mt-12 grid gap-4 lg:grid-cols-2">
             {research.reproducibility.releases.map((release) => (
-              <Reveal key={release.model} className="liquid-surface min-w-0 p-7 sm:p-9">
+              <Reveal
+                key={release.model}
+                className="liquid-surface min-w-0 p-7 sm:p-9"
+              >
                 <p className="eyebrow">PUBLIC F16 GGUF</p>
                 <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
                   {release.model}
@@ -453,10 +512,18 @@ export default function ResearchPage() {
                   <ActionLink href={release.ggufUrl} external>
                     GGUF file
                   </ActionLink>
-                  <ActionLink href={release.checksumUrl} external variant="secondary">
+                  <ActionLink
+                    href={release.checksumUrl}
+                    external
+                    variant="secondary"
+                  >
                     Checksum
                   </ActionLink>
-                  <ActionLink href={release.manifestUrl} external variant="secondary">
+                  <ActionLink
+                    href={release.manifestUrl}
+                    external
+                    variant="secondary"
+                  >
                     Manifest
                   </ActionLink>
                 </div>
@@ -478,11 +545,17 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      <section aria-labelledby="open-questions-heading" className="page-shell section-space">
+      <section
+        aria-labelledby="open-questions-heading"
+        className="page-shell section-space"
+      >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-4">
             <p className="eyebrow">{research.openQuestions.eyebrow}</p>
-            <h2 id="open-questions-heading" className="display-section mt-7 text-ink">
+            <h2
+              id="open-questions-heading"
+              className="display-section mt-7 text-ink"
+            >
               {research.openQuestions.title}
             </h2>
           </Reveal>

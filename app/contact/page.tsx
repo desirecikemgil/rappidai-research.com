@@ -68,7 +68,9 @@ export default function ContactPage() {
               />
               <ContactChannel
                 label={siteConfig.externalLinks.huggingFace.label}
-                value={siteConfig.externalLinks.huggingFace.url as string | null}
+                value={
+                  siteConfig.externalLinks.huggingFace.url as string | null
+                }
                 pendingLabel={siteConfig.externalLinks.huggingFace.pendingLabel}
                 kind="external"
               />
@@ -90,8 +92,14 @@ export default function ContactPage() {
               </p>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                 {contactPageContent.enquiryTypes.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-ink-soft">
-                    <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-sm text-ink-soft"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="size-1.5 rounded-full bg-accent"
+                    />
                     {item}
                   </li>
                 ))}

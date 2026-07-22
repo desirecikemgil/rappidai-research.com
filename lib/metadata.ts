@@ -23,7 +23,10 @@ export function metadataFor(route: SiteRoute): Metadata {
       images: canonical
         ? [
             {
-              url: new URL(siteConfig.brandAssets.ambientReference, siteConfig.canonicalUrl!).toString(),
+              url: new URL(
+                siteConfig.brandAssets.ambientReference,
+                siteConfig.canonicalUrl!,
+              ).toString(),
               width: 1672,
               height: 941,
               alt: "rappidAI research",
@@ -36,7 +39,12 @@ export function metadataFor(route: SiteRoute): Metadata {
       title: page.title,
       description: page.description,
       images: canonical
-        ? [new URL(siteConfig.brandAssets.ambientReference, siteConfig.canonicalUrl!).toString()]
+        ? [
+            new URL(
+              siteConfig.brandAssets.ambientReference,
+              siteConfig.canonicalUrl!,
+            ).toString(),
+          ]
         : undefined,
     },
   };

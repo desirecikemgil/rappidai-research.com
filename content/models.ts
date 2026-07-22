@@ -11,7 +11,7 @@ const unstatedPublicModelLicense =
 
 const pilotLimitations = [
   "Semantically weak and factually unreliable output",
-  "Repetition, number loops and boilerplate loops may occur",
+  "Outputs may be incomplete or incoherent",
   "Limited to a 512-token context window",
   "No instruction tuning or chat alignment",
   "No standardized task benchmarks have been published",
@@ -36,8 +36,10 @@ export const models = [
     modelType: "Experimental German completion model",
     intendedUse: ["Legacy research reference", "Local completion experiments"],
     languages: ["German"],
-    lineage: "Quantum 1 base model and predecessor to quantum-1.6-pilot.",
-    releaseStatus: "Publicly available as an experimental F16 GGUF release on Hugging Face.",
+    lineage:
+      "Baseline release in the Quantum series and predecessor to quantum-1.6-pilot. Its public manifest uses the historical model ID quantum-1-base.",
+    releaseStatus:
+      "Publicly available as an experimental F16 GGUF release on Hugging Face.",
     license: unstatedPublicModelLicense,
     links: [
       {
@@ -50,7 +52,10 @@ export const models = [
     technicalFacts: [
       { label: "Version", value: "1.0.0" },
       { label: "Context", value: "512 tokens" },
-      { label: "Release format", value: "F16 GGUF, approximately 98.99 MB" },
+      {
+        label: "Release format",
+        value: "F16 GGUF, 98,990,560 bytes (98.99 MB; 94.40 MiB)",
+      },
       { label: "Prompting", value: "Completion mode" },
     ],
     sources: [
@@ -59,7 +64,9 @@ export const models = [
         url: publicResearchUrls.quantum1ModelCard,
       },
     ],
-    inferenceSoftware: [],
+    inferenceSoftware: [
+      "llama.cpp compatibility is documented by the public release",
+    ],
     usageExample: null,
     researchContext:
       "This release provides the baseline for the Quantum model series and documents the first public small-scale German base-model experiment.",
@@ -80,7 +87,7 @@ export const models = [
     statusLabel: "Public experimental release",
     availability: "available",
     summary:
-      "A 49.3M-parameter experimental German completion model built to validate continued pretraining, GGUF export and local inference end to end.",
+      "A 49.3M-parameter experimental German completion model released after a reported continued-pretraining stage.",
     parameterCount: {
       value: 49_295_872,
       shortLabel: "49.3M",
@@ -88,14 +95,14 @@ export const models = [
     },
     modelType: "LlamaForCausalLM-style experimental completion model",
     intendedUse: [
-      "Research into reproducible continued-pretraining pipelines",
+      "Research into documented continued-pretraining workflows",
       "Local German-language completion experiments",
     ],
     languages: ["German"],
     lineage:
-      "Weights-only continued pretraining of Quantum 1 Base with a fresh optimizer, scheduler and step counter; the final quantum-1 tokenizer remained frozen.",
+      "The release card reports continued pretraining from Quantum 1 Base. The public configuration specifies weights-only initialization, a fresh optimizer, scheduler and step counter, and a frozen quantum-1 tokenizer; no final public run manifest verifies every configured detail.",
     releaseStatus:
-      "Publicly available as an experimental F16 GGUF release; Hugging Face currently lists the model file at approximately 99 MB.",
+      "Publicly available as an experimental F16 GGUF release; the public artifact is 98,990,560 bytes.",
     license: unstatedPublicModelLicense,
     links: [
       {
@@ -107,14 +114,15 @@ export const models = [
       {
         kind: "model-card",
         label: "Model card",
-        url: `${publicModelUrls["quantum-1-6-pilot"]}/blob/main/README.md` as string | null,
+        url: publicResearchUrls.quantum16ModelCard as string | null,
         pendingLabel: "Model card link pending",
       },
     ],
     technicalFacts: [
       {
         label: "Version",
-        value: "1.6.0, matching the public quantum-1.6-pilot-v1.6.0-f16.gguf filename and release manifest",
+        value:
+          "1.6.0, matching the public quantum-1.6-pilot-v1.6.0-f16.gguf filename and release manifest",
       },
       {
         label: "Architecture",
@@ -125,7 +133,8 @@ export const models = [
       { label: "Context", value: "512 tokens" },
       {
         label: "Tokenizer",
-        value: "Custom frozen quantum-1 tokenizer with a 16,384-token vocabulary",
+        value:
+          "Custom frozen quantum-1 tokenizer with a 16,384-token vocabulary",
       },
       {
         label: "Training data",
@@ -135,12 +144,12 @@ export const models = [
       {
         label: "Training configuration",
         value:
-          "The public project documentation describes a target of approximately 30,518 steps, derived from 500M tokens at an effective 16,384 tokens per step.",
+          "The public configuration targets approximately 30,518 steps, derived from 500M tokens at an effective 16,384 tokens per step. A final public run log is not linked.",
       },
       {
         label: "Evaluation",
         value:
-          "Validation loss 3.348852 and perplexity 28.4700. No standardized downstream-task benchmarks have been published.",
+          "The Hugging Face model card reports validation loss 3.348852 and perplexity 28.4700. No versioned evaluation report or standardized downstream-task benchmarks have been published.",
       },
       {
         label: "Release",
@@ -148,7 +157,8 @@ export const models = [
       },
       {
         label: "Quantization",
-        value: "The public release provides an F16 GGUF; no Q8 or Q4 variants are listed",
+        value:
+          "The public release provides an F16 GGUF; no Q8 or Q4 variants are listed",
       },
       {
         label: "Hardware",
@@ -158,7 +168,7 @@ export const models = [
     sources: [
       {
         label: "Hugging Face model card",
-        url: publicModelUrls["quantum-1-6-pilot"],
+        url: publicResearchUrls.quantum16ModelCard,
       },
       {
         label: "Training documentation",
@@ -175,10 +185,10 @@ export const models = [
     usageExample:
       'llama-completion -m quantum-1.6-pilot-v1.6.0-f16.gguf -p "Berlin ist" -n 64 --temp 0 --top-p 1 --top-k 0',
     researchContext:
-      "This release investigates continued pretraining while keeping the architecture and tokenizer fixed, allowing the additional training phase to be examined separately.",
+      "This release reports continued pretraining with a fixed architecture and tokenizer. Public configuration and code are available, but a final run manifest and complete training logs are not linked.",
     limitations: [
       ...pilotLimitations,
-      "Third-party client compatibility is not guaranteed; a previous PocketPal incompatibility was observed",
+      "Third-party client compatibility has not been established by a published validation report",
     ],
     relatedResearchNoteIds: ["from-100m-to-600m-german-tokens"],
     indexFacts: [
@@ -193,36 +203,85 @@ export const models = [
     slug: "quantum-1-echelon",
     name: "quantum-1-echelon",
     status: "in-development",
-    statusLabel: "Research direction — no public model release",
+    statusLabel: "Pipeline in development — no model release",
     availability: "not-released",
     summary:
-      "An announced research direction for adapting stronger open-weight foundations to focused German-language use. Architecture, parameter count, training data and release timing have not been finalized publicly.",
-    parameterCount: null,
-    modelType: "Open-weight model adaptation research",
+      "The strategic next Quantum model line. A public base-architecture preflight, tokenizer validation and data-pipeline smoke test exist; the production data run and model training have not been reported as started.",
+    parameterCount: {
+      value: 506_333_440,
+      shortLabel: "506.3M",
+      label: "506,333,440 parameters in the public base-architecture preflight",
+    },
+    modelType:
+      "Configured Llama-style causal decoder; not publicly trained or released",
     intendedUse: [
-      "Research into efficient German-language open-weight adaptation",
+      "Research into a larger German-language base-model pipeline",
+      "Validation of architecture, tokenizer and data-preparation workflows before training",
     ],
-    languages: ["German-language focus"],
+    languages: ["German-language focus; the production corpus is not complete"],
     lineage:
-      "Next research phase focused on adapting stronger open-weight foundations.",
-    releaseStatus: "Research direction; no public model release is available.",
-    license: null,
+      "A separate Quantum model line. Public path configuration treats quantum-1-echelon-base and quantum-1-echelon-chat as stages or variants of quantum-1-echelon and forbids reuse of the pilot models, tokenizers and data.",
+    releaseStatus:
+      "Architecture and pipeline development are public; no trained checkpoint or model release is available.",
+    license:
+      "No model weights have been released. A license for any future quantum-1-echelon weights has not been documented.",
     links: [],
-    technicalFacts: [],
-    sources: [],
+    technicalFacts: [
+      {
+        label: "Architecture preflight",
+        value:
+          "506,333,440 parameters; hidden size 1,280; intermediate size 3,584; 26 layers; 20 attention heads; 5 KV heads; tied embeddings",
+      },
+      { label: "Configured context", value: "2,048 tokens" },
+      {
+        label: "Tokenizer",
+        value:
+          "SentencePiece BPE with a 32,768-token vocabulary; 23 published validation cases report zero failures",
+      },
+      {
+        label: "Garden smoke test",
+        value:
+          "5,001 documents seen; 1,559 accepted; 1,380,886 tokens produced",
+      },
+      {
+        label: "Production status",
+        value:
+          "The public Garden report states that the full production data run has not started",
+      },
+      {
+        label: "Model evaluation",
+        value: "Not available because no trained model has been released",
+      },
+    ],
+    sources: [
+      {
+        label: "Base-architecture preflight",
+        url: publicResearchUrls.echelonArchitecturePreflight,
+      },
+      {
+        label: "Tokenizer validation",
+        url: publicResearchUrls.echelonTokenizerValidation,
+      },
+      {
+        label: "Garden pipeline report",
+        url: publicResearchUrls.echelonGardenReport,
+      },
+    ],
     inferenceSoftware: [],
     usageExample: null,
     researchContext: null,
     limitations: [
-      "Specifications, capabilities and limitations are not yet established",
-      "Not available for production use",
+      "The architecture has only been preflighted; no public checkpoint exists",
+      "The full production data run and model training have not been reported as started",
+      "Capabilities, model-quality results, hardware requirements and release timing are not established",
+      "Not available for inference or production use",
     ],
     relatedResearchNoteIds: [],
     indexFacts: [
-      "Parameter size not yet defined",
-      "Research direction — no public model release",
-      "Open-weight model adaptation research",
-      "Focused German-language adaptation",
+      "506.3M-parameter base preflight",
+      "Pipeline in development — no model release",
+      "2,048-token configured context",
+      "German-language training pipeline",
     ],
     featured: false,
   },

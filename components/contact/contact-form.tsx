@@ -8,9 +8,10 @@ import { contactPageContent } from "@/content/pages";
 type ContactField = "name" | "email" | "subject" | "message";
 type ContactValues = Record<ContactField, string>;
 type ContactErrors = Partial<Record<ContactField, string>>;
-type SubmissionStatus =
-  | { kind: "opening" | "unavailable"; message: string }
-  | null;
+type SubmissionStatus = {
+  kind: "opening" | "unavailable";
+  message: string;
+} | null;
 
 type ContactFormProps = {
   businessEmail: string | null;
@@ -148,7 +149,10 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
       <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}
       </h2>
-      <p id={`${idPrefix}-description`} className="body-copy mt-5 max-w-[35rem]">
+      <p
+        id={`${idPrefix}-description`}
+        className="body-copy mt-5 max-w-[35rem]"
+      >
         {form.description}
       </p>
 
@@ -178,7 +182,9 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.name}
               aria-invalid={Boolean(errors.name)}
-              aria-describedby={errors.name ? `${idPrefix}-name-error` : undefined}
+              aria-describedby={
+                errors.name ? `${idPrefix}-name-error` : undefined
+              }
               className={fieldClassName}
               onChange={handleChange}
             />
@@ -204,11 +210,16 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.email}
               aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? `${idPrefix}-email-error` : undefined}
+              aria-describedby={
+                errors.email ? `${idPrefix}-email-error` : undefined
+              }
               className={fieldClassName}
               onChange={handleChange}
             />
-            <ErrorMessage id={`${idPrefix}-email-error`} message={errors.email} />
+            <ErrorMessage
+              id={`${idPrefix}-email-error`}
+              message={errors.email}
+            />
           </div>
 
           <div className="sm:col-span-2">
@@ -228,11 +239,16 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.subject}
               aria-invalid={Boolean(errors.subject)}
-              aria-describedby={errors.subject ? `${idPrefix}-subject-error` : undefined}
+              aria-describedby={
+                errors.subject ? `${idPrefix}-subject-error` : undefined
+              }
               className={fieldClassName}
               onChange={handleChange}
             />
-            <ErrorMessage id={`${idPrefix}-subject-error`} message={errors.subject} />
+            <ErrorMessage
+              id={`${idPrefix}-subject-error`}
+              message={errors.subject}
+            />
           </div>
 
           <div className="sm:col-span-2">
@@ -252,11 +268,16 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.message}
               aria-invalid={Boolean(errors.message)}
-              aria-describedby={errors.message ? `${idPrefix}-message-error` : undefined}
+              aria-describedby={
+                errors.message ? `${idPrefix}-message-error` : undefined
+              }
               className={`${fieldClassName} min-h-36 resize-y sm:min-h-40`}
               onChange={handleChange}
             />
-            <ErrorMessage id={`${idPrefix}-message-error`} message={errors.message} />
+            <ErrorMessage
+              id={`${idPrefix}-message-error`}
+              message={errors.message}
+            />
           </div>
         </div>
 

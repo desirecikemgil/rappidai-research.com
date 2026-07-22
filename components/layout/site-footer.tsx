@@ -19,7 +19,11 @@ export function SiteFooter() {
 
           <FooterColumn title="Explore">
             {footerNavigation.explore.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors hover:text-accent">
+              <Link
+                key={item.href}
+                href={item.href}
+                className="transition-colors hover:text-accent"
+              >
                 {item.label}
               </Link>
             ))}
@@ -28,11 +32,21 @@ export function SiteFooter() {
           <FooterColumn title="Research profiles">
             {Object.values(siteConfig.externalLinks).map((item) =>
               item.url ? (
-                <a key={item.label} href={item.url} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">
+                <a
+                  key={item.label}
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-accent"
+                >
                   {item.label}
                 </a>
               ) : (
-                <span key={item.label} className="text-muted" title="External link not configured">
+                <span
+                  key={item.label}
+                  className="text-muted"
+                  title="External link not configured"
+                >
                   {item.pendingLabel}
                 </span>
               ),
@@ -41,7 +55,11 @@ export function SiteFooter() {
 
           <FooterColumn title="Legal">
             {footerNavigation.legal.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors hover:text-accent">
+              <Link
+                key={item.href}
+                href={item.href}
+                className="transition-colors hover:text-accent"
+              >
                 {item.label}
               </Link>
             ))}
@@ -49,7 +67,9 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-[0.78rem] text-muted sm:mt-20 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {siteConfig.name}</p>
+          <p>
+            © {year} {siteConfig.name}
+          </p>
           <p>Independent AI research · Berlin, Germany</p>
         </div>
       </div>
@@ -57,11 +77,21 @@ export function SiteFooter() {
   );
 }
 
-function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <h2 className="font-mono text-[0.68rem] font-medium tracking-[0.14em] text-muted uppercase">{title}</h2>
-      <div className="mt-5 flex flex-col gap-3 text-sm text-ink">{children}</div>
+      <h2 className="font-mono text-[0.68rem] font-medium tracking-[0.14em] text-muted uppercase">
+        {title}
+      </h2>
+      <div className="mt-5 flex flex-col gap-3 text-sm text-ink">
+        {children}
+      </div>
     </div>
   );
 }

@@ -25,7 +25,11 @@ function LegalField({
         <span className="whitespace-pre-line text-[0.98rem] leading-7">
           {value}
         </span>
-        {note ? <p className="mt-2 max-w-[42rem] text-sm leading-6 text-muted">{note}</p> : null}
+        {note ? (
+          <p className="mt-2 max-w-[42rem] text-sm leading-6 text-muted">
+            {note}
+          </p>
+        ) : null}
       </dd>
     </div>
   );
@@ -46,10 +50,16 @@ function LegalGroup({
 }) {
   return (
     <Reveal delay={delay}>
-      <section aria-labelledby={id} className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+      <section
+        aria-labelledby={id}
+        className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]"
+      >
         <div>
           <p className="eyebrow">{eyebrow}</p>
-          <h2 id={id} className="mt-4 text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] tracking-[-0.04em] text-ink">
+          <h2
+            id={id}
+            className="mt-4 text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] tracking-[-0.04em] text-ink"
+          >
             {title}
           </h2>
         </div>
@@ -89,7 +99,12 @@ export default function ImprintPage() {
             <LegalField label="Legal form" value={legal.legalForm} />
           </LegalGroup>
 
-          <LegalGroup id="imprint-location" eyebrow="02" title="Location" delay={0.04}>
+          <LegalGroup
+            id="imprint-location"
+            eyebrow="02"
+            title="Location"
+            delay={0.04}
+          >
             <LegalField
               label={imprintPageContent.locationLabel}
               value={legal.generalLocation}
@@ -97,18 +112,31 @@ export default function ImprintPage() {
             />
           </LegalGroup>
 
-          <LegalGroup id="imprint-contact" eyebrow="03" title={imprintPageContent.contactLabel} delay={0.06}>
+          <LegalGroup
+            id="imprint-contact"
+            eyebrow="03"
+            title={imprintPageContent.contactLabel}
+            delay={0.06}
+          >
             <LegalField
               label="Email"
               value={
-                <a className="underline decoration-line-strong underline-offset-4 hover:text-accent" href={`mailto:${businessEmail}`}>
+                <a
+                  className="underline decoration-line-strong underline-offset-4 hover:text-accent"
+                  href={`mailto:${businessEmail}`}
+                >
                   {businessEmail}
                 </a>
               }
             />
           </LegalGroup>
 
-          <LegalGroup id="imprint-responsibility" eyebrow="04" title="Content responsibility" delay={0.08}>
+          <LegalGroup
+            id="imprint-responsibility"
+            eyebrow="04"
+            title="Content responsibility"
+            delay={0.08}
+          >
             <LegalField
               label="Responsible person"
               value={legal.responsibleForContent}

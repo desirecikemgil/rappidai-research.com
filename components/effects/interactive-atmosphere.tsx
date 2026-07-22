@@ -5,8 +5,12 @@ import { useEffect } from "react";
 export function InteractiveAtmosphere() {
   useEffect(() => {
     const root = document.documentElement;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const finePointer = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    ).matches;
     let pointerFrame = 0;
     let scrollFrame = 0;
     let targetX = window.innerWidth / 2;
@@ -25,7 +29,10 @@ export function InteractiveAtmosphere() {
       root.style.setProperty("--pointer-shift-x", `${xRatio * -16}px`);
       root.style.setProperty("--pointer-shift-y", `${yRatio * -12}px`);
 
-      if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+      if (
+        Math.abs(targetX - currentX) > 0.1 ||
+        Math.abs(targetY - currentY) > 0.1
+      ) {
         pointerFrame = requestAnimationFrame(renderPointer);
       } else {
         pointerFrame = 0;
@@ -41,12 +48,17 @@ export function InteractiveAtmosphere() {
     const updateScroll = () => {
       if (scrollFrame) return;
       scrollFrame = requestAnimationFrame(() => {
-        const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+        const scrollable = Math.max(
+          document.documentElement.scrollHeight - window.innerHeight,
+          1,
+        );
         const progress = Math.min(Math.max(window.scrollY / scrollable, 0), 1);
         root.style.setProperty("--scroll-progress", progress.toFixed(4));
         root.style.setProperty(
           "--scroll-parallax-y",
-          reducedMotion ? "0px" : `${Math.max(window.scrollY * -0.055, -150)}px`,
+          reducedMotion
+            ? "0px"
+            : `${Math.max(window.scrollY * -0.055, -150)}px`,
         );
         scrollFrame = 0;
       });
@@ -73,10 +85,23 @@ export function InteractiveAtmosphere() {
       <div className="atmosphere-orb atmosphere-orb-c" />
       <div className="atmosphere-lens atmosphere-lens-a" />
       <div className="atmosphere-lens atmosphere-lens-b" />
-      <svg className="atmosphere-flow" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-        <path className="flow-line flow-line-a" d="M-80 690C250 430 460 760 745 454C994 188 1185 392 1510 122" />
-        <path className="flow-line flow-line-b" d="M-120 790C258 532 485 850 794 542C1040 296 1240 468 1520 236" />
-        <path className="flow-line flow-line-c" d="M175 -70C350 200 215 376 485 525C738 665 894 470 1125 672C1265 795 1380 770 1510 706" />
+      <svg
+        className="atmosphere-flow"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <path
+          className="flow-line flow-line-a"
+          d="M-80 690C250 430 460 760 745 454C994 188 1185 392 1510 122"
+        />
+        <path
+          className="flow-line flow-line-b"
+          d="M-120 790C258 532 485 850 794 542C1040 296 1240 468 1520 236"
+        />
+        <path
+          className="flow-line flow-line-c"
+          d="M175 -70C350 200 215 376 485 525C738 665 894 470 1125 672C1265 795 1380 770 1510 706"
+        />
         <circle className="flow-node flow-node-a" cx="746" cy="454" r="3" />
         <circle className="flow-node flow-node-b" cx="1185" cy="392" r="2.5" />
         <circle className="flow-node flow-node-c" cx="485" cy="525" r="2.5" />

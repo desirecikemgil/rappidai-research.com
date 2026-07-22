@@ -23,16 +23,33 @@ export function HeroVisualization() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="liquid-surface relative mx-auto aspect-square w-full max-w-[42rem] overflow-hidden rounded-[1.35rem]" aria-hidden="true">
+    <div
+      className="liquid-surface relative mx-auto aspect-square w-full max-w-[42rem] overflow-hidden rounded-[1.35rem]"
+      aria-hidden="true"
+    >
       <div className="ambient-shift absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(18,107,255,0.13),rgba(234,242,255,0.2)_42%,transparent_72%)] blur-2xl" />
       <svg className="relative h-full w-full" viewBox="0 0 680 680" fill="none">
         <defs>
-          <linearGradient id="hero-line" x1="20" y1="340" x2="660" y2="340" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="hero-line"
+            x1="20"
+            y1="340"
+            x2="660"
+            y2="340"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stopColor="#D6E5FF" stopOpacity="0.2" />
             <stop offset="0.48" stopColor="#126BFF" stopOpacity="0.72" />
             <stop offset="1" stopColor="#8CB7FF" stopOpacity="0.12" />
           </linearGradient>
-          <linearGradient id="hero-core" x1="286" y1="142" x2="420" y2="532" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="hero-core"
+            x1="286"
+            y1="142"
+            x2="420"
+            y2="532"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stopColor="#126BFF" />
             <stop offset="1" stopColor="#061E46" />
           </linearGradient>
@@ -54,7 +71,13 @@ export function HeroVisualization() {
             height="536"
             fill="url(#hero-scan)"
             animate={{ x: [-90, 710] }}
-            transition={{ duration: 8.5, delay: 1.8, repeat: Infinity, repeatDelay: 1.6, ease: "linear" }}
+            transition={{
+              duration: 8.5,
+              delay: 1.8,
+              repeat: Infinity,
+              repeatDelay: 1.6,
+              ease: "linear",
+            }}
           />
         ) : null}
 
@@ -93,8 +116,16 @@ export function HeroVisualization() {
             strokeWidth={index === 2 ? 1.6 : 1.1}
             strokeLinecap="round"
             initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-            animate={reduceMotion ? undefined : { pathLength: 1, opacity: [0, 0.86, 0.62] }}
-            transition={{ duration: 2.1, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+            animate={
+              reduceMotion
+                ? undefined
+                : { pathLength: 1, opacity: [0, 0.86, 0.62] }
+            }
+            transition={{
+              duration: 2.1,
+              delay: index * 0.12,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           />
         ))}
 
@@ -148,7 +179,9 @@ export function HeroVisualization() {
             strokeWidth="6"
             strokeLinecap="round"
             initial={reduceMotion ? false : { opacity: 0, scaleX: 0 }}
-            animate={reduceMotion ? undefined : { opacity: 1, scaleX: [0, 1, 0.72, 1] }}
+            animate={
+              reduceMotion ? undefined : { opacity: 1, scaleX: [0, 1, 0.72, 1] }
+            }
             transition={{ duration: 1.25, delay: 0.7 + index * 0.09 }}
             style={{ transformOrigin: "340px center" }}
           />
@@ -163,16 +196,34 @@ export function HeroVisualization() {
               fill="#126BFF"
               opacity="0.14"
               filter="url(#soft-node)"
-              animate={reduceMotion ? undefined : { r: [10, 17, 10], opacity: [0.08, 0.18, 0.08] }}
-              transition={{ duration: 4.8, delay: node.delay, repeat: Infinity, ease: "easeInOut" }}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : { r: [10, 17, 10], opacity: [0.08, 0.18, 0.08] }
+              }
+              transition={{
+                duration: 4.8,
+                delay: node.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
             <motion.circle
               cx={node.cx}
               cy={node.cy}
               r="3.4"
               fill="#126BFF"
-              animate={reduceMotion ? undefined : { y: [0, -5, 0], opacity: [0.55, 1, 0.55] }}
-              transition={{ duration: 4.2, delay: node.delay, repeat: Infinity, ease: "easeInOut" }}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : { y: [0, -5, 0], opacity: [0.55, 1, 0.55] }
+              }
+              transition={{
+                duration: 4.2,
+                delay: node.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
           </g>
         ))}
@@ -187,7 +238,12 @@ export function HeroVisualization() {
                 cy: [451, 244, 431, 318, 272, 123],
                 opacity: [0, 1, 0.8, 1, 0.7, 0],
               }}
-              transition={{ duration: 7.6, repeat: Infinity, repeatDelay: 1.2, ease: "easeInOut" }}
+              transition={{
+                duration: 7.6,
+                repeat: Infinity,
+                repeatDelay: 1.2,
+                ease: "easeInOut",
+              }}
             />
             <motion.circle
               r="2.4"
@@ -197,7 +253,13 @@ export function HeroVisualization() {
                 cy: [316, 220, 108, 205, 240, 90, 62],
                 opacity: [0, 0.75, 1, 0.7, 1, 0.55, 0],
               }}
-              transition={{ duration: 9.2, delay: 2.4, repeat: Infinity, repeatDelay: 0.8, ease: "easeInOut" }}
+              transition={{
+                duration: 9.2,
+                delay: 2.4,
+                repeat: Infinity,
+                repeatDelay: 0.8,
+                ease: "easeInOut",
+              }}
             />
           </>
         ) : null}

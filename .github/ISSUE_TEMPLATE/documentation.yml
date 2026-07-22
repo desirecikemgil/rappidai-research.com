@@ -1,0 +1,79 @@
+name: Documentation issue
+description: Report unclear, inaccurate, missing, or inaccessible documentation.
+title: "[Docs]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Documentation should distinguish verified facts, plans, and research hypotheses. Remove secrets, personal data, private links, unpublished artifacts, and confidential information before submitting.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checks
+      options:
+        - label: I searched existing issues for the same documentation problem.
+          required: true
+        - label: I removed secrets, personal data, and confidential information.
+          required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Documentation location
+      description: Provide the file path, public URL, page section, or symbol name.
+      placeholder: "Example: docs/licensing.md, Model artifacts"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue type
+      options:
+        - Incorrect or outdated information
+        - Missing information
+        - Unclear wording or structure
+        - Broken link or example
+        - Accessibility or readability
+        - Translation or terminology
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-problem
+    attributes:
+      label: Current problem
+      description: Explain what a reader sees and why it is inaccurate, ambiguous, incomplete, or difficult to use.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed correction or addition
+      description: Draft replacement text when practical.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources and verification
+      description: Link authoritative sources for factual or research claims. Identify which statements are inference or proposal.
+    validations:
+      required: true
+
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility and audience considerations
+      description: Note reading level, terminology, localization, screen-reader, keyboard, contrast, or motion concerns. Write "Not applicable" when none apply.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add screenshots or examples only after removing private or confidential information.
