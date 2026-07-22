@@ -41,7 +41,7 @@ Historical display names such as `Quantum 1 Base` refer to the `quantum-1-pilot`
 
 Requirements:
 
-- Node.js 20.19 or newer
+- Node.js 22.13 or newer
 - pnpm 11.9.x (the repository pins `pnpm@11.9.0`)
 
 ```bash

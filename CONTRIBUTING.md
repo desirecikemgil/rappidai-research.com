@@ -20,7 +20,7 @@ or the complete training and inference implementation.
 
 Requirements:
 
-- Node.js 20.19 or newer
+- Node.js 22.13 or newer
 - pnpm 11.9.x; the repository declares `pnpm@11.9.0`
 
 Fork the repository, clone your fork, and create a focused branch:
