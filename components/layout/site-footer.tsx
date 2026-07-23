@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandLockup } from "@/components/ui/brand-lockup";
+import { resourceUtilityLinks } from "@/content/resources";
 import { footerNavigation, siteConfig } from "@/content/site";
 
 export function SiteFooter() {
@@ -8,7 +9,7 @@ export function SiteFooter() {
   return (
     <footer className="liquid-section border-t border-line bg-white/35 backdrop-blur-xl">
       <div className="page-shell section-space-sm">
-        <div className="grid gap-10 sm:gap-14 lg:grid-cols-[1.45fr_0.65fr_0.65fr_0.75fr]">
+        <div className="grid gap-10 sm:grid-cols-2 sm:gap-14 lg:grid-cols-[1.3fr_0.62fr_0.75fr_0.75fr_0.55fr]">
           <div>
             <BrandLockup priority />
             <p className="body-copy mt-7 max-w-md">{siteConfig.description}</p>
@@ -29,7 +30,19 @@ export function SiteFooter() {
             ))}
           </FooterColumn>
 
-          <FooterColumn title="Research profiles">
+          <FooterColumn title="Resources">
+            {footerNavigation.resources.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="transition-colors hover:text-accent"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </FooterColumn>
+
+          <FooterColumn title="Open research">
             {Object.values(siteConfig.externalLinks).map((item) =>
               item.url ? (
                 <a
@@ -51,6 +64,17 @@ export function SiteFooter() {
                 </span>
               ),
             )}
+            {resourceUtilityLinks.map((item) => (
+              <a
+                key={item.label}
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-accent"
+              >
+                {item.label}
+              </a>
+            ))}
           </FooterColumn>
 
           <FooterColumn title="Legal">
@@ -63,6 +87,12 @@ export function SiteFooter() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/resources/licensing"
+              className="transition-colors hover:text-accent"
+            >
+              Licensing
+            </Link>
           </FooterColumn>
         </div>
 

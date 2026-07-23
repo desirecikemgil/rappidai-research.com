@@ -42,6 +42,7 @@ function SectionBody({
           {privacy.controllerEmail ? (
             <Detail label="Email" value={privacy.controllerEmail} />
           ) : null}
+          <Detail label="Address" value={privacy.controllerAddress} />
         </dl>
       </>
     );
@@ -53,7 +54,9 @@ function SectionBody({
         <p>The configured hosting provider is {privacy.hostingProvider}.</p>
         <p>
           Server-log categories, processing purpose, legal basis and retention
-          period must be documented for any confirmed deployment.
+          period remain subject to deployment-specific verification and legal
+          review. This notice does not infer provider behavior that has not been
+          confirmed for the production deployment.
         </p>
       </>
     ) : (
@@ -140,15 +143,6 @@ export default function PrivacyPage() {
       <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
         <DrawRule />
 
-        {privacy.controllerAddress === null ? (
-          <Reveal className="mt-8">
-            <p className="max-w-[48rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
-              A complete controller service address remains unverified and is
-              required before this privacy notice can be treated as complete.
-            </p>
-          </Reveal>
-        ) : null}
-
         {privacy.hostingProvider === null ? (
           <Reveal className="mt-8">
             <p className="max-w-[48rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
@@ -158,6 +152,14 @@ export default function PrivacyPage() {
             </p>
           </Reveal>
         ) : null}
+
+        <Reveal className="mt-8">
+          <p className="max-w-[52rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
+            Last reviewed 23 July 2026. Hosting-specific log categories,
+            processing purposes, legal bases and retention periods remain
+            verification and legal-review items.
+          </p>
+        </Reveal>
 
         <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
           {privacyPageContent.sections.map((section, index) => (

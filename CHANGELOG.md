@@ -10,6 +10,13 @@ versioned releases are introduced.
 
 ### Added
 
+- A public Resources hub covering publications, reproducibility, data and
+  training, responsible use, licensing, project status, and frequently asked
+  questions.
+- A source-linked research note on the documented quantum-1.6-pilot
+  continued-pretraining experiment and its negative generation result.
+- Public artifact-integrity records, evidence statuses, review dates, release
+  checksums, data-provenance boundaries, and reporting channels.
 - Apache-2.0 licensing for original website code and original project
   documentation, with explicit scope exclusions.
 - Contribution, conduct, security, governance, roadmap, citation, release, and
@@ -27,6 +34,10 @@ versioned releases are introduced.
 
 ### Changed
 
+- Completed the public service and controller address while retaining an
+  explicit deployment-specific privacy and legal-review boundary.
+- Connected the homepage, research page, model pages, contact page, footer,
+  sitemap, metadata, and structured data to the new documentation hub.
 - Corrected and source-linked model status, metrics, naming, licensing gaps, and
   the preflight-only state of `quantum-1-echelon`.
 - Pinned research evidence links to the reviewed Hugging Face and

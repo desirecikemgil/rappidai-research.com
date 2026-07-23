@@ -4,6 +4,7 @@ import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { HeroVisualization } from "@/components/sections/hero-visualization";
 import { ParameterGrid } from "@/components/sections/parameter-grid";
 import { ResearchDiagram } from "@/components/research/research-diagram";
+import { EvidenceBadge } from "@/components/resources/resource-ui";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { BrandSymbol } from "@/components/ui/brand-lockup";
 import { getFeaturedModel } from "@/content/models";
@@ -14,6 +15,7 @@ import {
   researchPrinciples,
   researchThesis,
 } from "@/content/research";
+import { resourceCards } from "@/content/resources";
 import { siteConfig } from "@/content/site";
 import { metadataFor } from "@/lib/metadata";
 
@@ -230,7 +232,7 @@ export default function HomePage() {
         <div className="page-shell section-space">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <Reveal>
-              <p className="eyebrow text-[#79aaff]">
+              <p className="eyebrow eyebrow-on-dark">
                 {homePageContent.modelEvolution.eyebrow}
               </p>
             </Reveal>
@@ -306,6 +308,52 @@ export default function HomePage() {
               </article>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      <section className="liquid-section border-y border-line bg-pale-soft/35">
+        <div className="page-shell section-space-sm">
+          <Reveal className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+            <div>
+              <p className="eyebrow">DOCUMENTATION STATUS</p>
+              <h2 className="display-section mt-7 text-ink">
+                Evidence, gaps and reuse boundaries.
+              </h2>
+            </div>
+            <div className="lg:justify-self-end">
+              <p className="max-w-[38rem] text-sm leading-6 text-muted">
+                The resources hub turns “Documented clearly” into a public
+                record of sources, reproducibility, data provenance, responsible
+                use and unresolved information.
+              </p>
+              <div className="mt-6">
+                <ActionLink href="/resources">Explore resources</ActionLink>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-4 lg:grid-cols-3">
+            {resourceCards.slice(0, 3).map((resource, index) => (
+              <Reveal
+                key={resource.id}
+                delay={index * 0.04}
+                className="liquid-card p-7 sm:p-8"
+              >
+                <EvidenceBadge status={resource.status} />
+                <h3 className="mt-6 text-2xl font-medium tracking-[-0.035em] text-ink">
+                  {resource.title}
+                </h3>
+                <p className="mt-4 text-sm leading-6 text-muted">
+                  {resource.description}
+                </p>
+                <div className="mt-7">
+                  <ActionLink href={resource.href} variant="text">
+                    Open resource
+                  </ActionLink>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -8,6 +8,15 @@ const publicRoutes = [
   "/models/quantum-1-6-pilot",
   "/models/quantum-1-echelon",
   "/research",
+  "/resources",
+  "/resources/publications",
+  "/resources/publications/from-100m-to-600m-german-tokens",
+  "/resources/reproducibility",
+  "/resources/data-and-training",
+  "/resources/responsible-use",
+  "/resources/licensing",
+  "/resources/status",
+  "/resources/faq",
   "/about",
   "/contact",
   "/imprint",
@@ -86,6 +95,31 @@ test("reduced-motion rendering avoids horizontal overflow", async ({
 
   expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
 });
+
+for (const route of [
+  "/resources",
+  "/resources/publications/from-100m-to-600m-german-tokens",
+  "/resources/reproducibility",
+  "/resources/data-and-training",
+  "/resources/responsible-use",
+  "/resources/licensing",
+  "/resources/status",
+  "/resources/faq",
+] as const) {
+  test(`${route} fits a reduced-motion mobile viewport`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(route);
+
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+    await expect(page.locator("h1")).toBeVisible();
+  });
+}
 
 test("robots and sitemap endpoints are public", async ({ request }) => {
   const [robots, sitemap] = await Promise.all([
