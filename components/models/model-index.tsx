@@ -51,7 +51,7 @@ export function ModelIndex() {
         </div>
       </div>
 
-      <div className="mt-14 space-y-3">
+      <div className="mt-14 space-y-3 sm:space-y-4">
         <AnimatePresence mode="popLayout" initial={false}>
           {visibleModels.map((model, index) => (
             <motion.article
