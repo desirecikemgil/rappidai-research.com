@@ -23,8 +23,8 @@ release dates. Priorities may change as evidence and maintainer capacity change.
   images, model weights, tokenizers, datasets, and external repositories.
 - Replace ambiguous model claims with sourced facts, explicit unknowns, and
   clearly labeled research status.
-- Complete and verify the production identity, contact, canonical URL, hosting,
-  privacy, and provider information before treating the website as launch-ready.
+- Verify deployment-specific hosting log categories, retention, purposes and
+  legal bases before treating the privacy notice as complete.
 
 ## Next
 
@@ -36,6 +36,7 @@ release dates. Priorities may change as evidence and maintainer capacity change.
   evaluation provenance, data attribution, and model-specific licenses.
 - Publish the missing final run manifests and evaluation artifacts needed to
   assess reproducibility claims.
+- Record creator, provenance and reuse terms for brand and model-card images.
 
 ## Later
 

@@ -5,6 +5,15 @@ export type SiteRoute =
   | "/models/quantum-1-6-pilot"
   | "/models/quantum-1-echelon"
   | "/research"
+  | "/resources"
+  | "/resources/publications"
+  | "/resources/publications/from-100m-to-600m-german-tokens"
+  | "/resources/reproducibility"
+  | "/resources/data-and-training"
+  | "/resources/responsible-use"
+  | "/resources/licensing"
+  | "/resources/status"
+  | "/resources/faq"
   | "/about"
   | "/contact"
   | "/imprint"
@@ -54,19 +63,18 @@ export interface LegalConfiguration {
   readonly generalLocation: string;
   readonly legalName: string | null;
   readonly legalForm: string | null;
-  readonly serviceAddress: string | null;
+  readonly serviceAddress: string;
   readonly vatId: string | null;
   readonly registrationNumber: string | null;
   readonly registrationCourt: string | null;
   readonly telephone: string | null;
   readonly legalRepresentative: string | null;
   readonly responsibleForContent: string | null;
-  readonly missingInformationNotice: string;
 }
 
 export interface PrivacyConfiguration {
   readonly controllerName: string | null;
-  readonly controllerAddress: string | null;
+  readonly controllerAddress: string;
   readonly controllerEmail: string | null;
   readonly hostingProvider: string | null;
   readonly analyticsEnabled: boolean;
@@ -78,6 +86,7 @@ export interface SiteConfiguration {
   readonly shortName: string;
   readonly description: string;
   readonly location: string;
+  readonly lastReviewed: string;
   readonly businessEmail: string | null;
   readonly canonicalUrl: string | null;
   readonly navigation: readonly NavigationItem[];
@@ -175,6 +184,63 @@ export interface ResearchNote {
   readonly progressLabel: string;
   readonly href: string | null;
   readonly publicationDate: string | null;
+}
+
+export type EvidenceStatus =
+  | "Published"
+  | "Partial evidence"
+  | "Not published"
+  | "Not measured"
+  | "Not yet available"
+  | "Maintainer input required";
+
+export type ResourceId =
+  | "publications"
+  | "reproducibility"
+  | "data-and-training"
+  | "responsible-use"
+  | "licensing"
+  | "status"
+  | "faq";
+
+export interface ResourceSource {
+  readonly label: string;
+  readonly url: string;
+}
+
+export interface ResourceCard {
+  readonly id: ResourceId;
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly description: string;
+  readonly href: SiteRoute;
+  readonly status: EvidenceStatus;
+}
+
+export interface PublicationSection {
+  readonly title: string;
+  readonly paragraphs: readonly string[];
+  readonly items?: readonly string[];
+}
+
+export interface PublicationRecord {
+  readonly slug: "from-100m-to-600m-german-tokens";
+  readonly title: string;
+  readonly summary: string;
+  readonly kindLabel: string;
+  readonly status: "published";
+  readonly publicationDate: string;
+  readonly lastReviewed: string;
+  readonly peerReviewStatus: "Not peer-reviewed";
+  readonly doi: null;
+  readonly href: SiteRoute;
+  readonly sources: readonly ResourceSource[];
+  readonly sections: readonly PublicationSection[];
+}
+
+export interface FaqEntry {
+  readonly question: string;
+  readonly answer: string;
 }
 
 export interface NumberedPrinciple {

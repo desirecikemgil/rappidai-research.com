@@ -266,6 +266,45 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         </section>
       ) : null}
 
+      <section className="liquid-section border-y border-line bg-pale-soft/35">
+        <div className="page-shell section-space-sm">
+          <Reveal className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <p className="eyebrow">RELATED RESOURCES</p>
+              <h2 className="display-section mt-6 text-ink">
+                Inspect the wider evidence.
+              </h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                {
+                  label: "Reproducibility",
+                  href: "/resources/reproducibility",
+                },
+                {
+                  label: "Data & training",
+                  href: "/resources/data-and-training",
+                },
+                {
+                  label: "Responsible use",
+                  href: "/resources/responsible-use",
+                },
+                { label: "Licensing", href: "/resources/licensing" },
+              ].map((resource) => (
+                <ActionLink
+                  key={resource.href}
+                  href={resource.href}
+                  variant="secondary"
+                  className="justify-between"
+                >
+                  {resource.label}
+                </ActionLink>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="page-shell section-space">
         <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr]">
           <Reveal>
@@ -301,21 +340,39 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
             <p className="eyebrow">Related research note</p>
             <div className="mt-10 space-y-3 border-b border-line sm:space-y-4">
               {relatedNotes.map((note) => (
-                <div
-                  key={note.id}
-                  className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 sm:grid-cols-[1fr_auto] sm:items-center"
-                >
-                  <div>
-                    <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">
-                      {note.title}
-                    </h2>
-                    <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
-                      {note.kindLabel} · {note.progressLabel}
-                    </p>
-                  </div>
-                  <span className="max-w-[18rem] text-sm leading-6 text-muted sm:text-right">
-                    Draft in progress. No public article is available yet.
-                  </span>
+                <div key={note.id}>
+                  {note.href ? (
+                    <Link
+                      href={note.href}
+                      className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 transition-colors hover:text-accent sm:grid-cols-[1fr_auto] sm:items-center"
+                    >
+                      <div>
+                        <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">
+                          {note.title}
+                        </h2>
+                        <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
+                          {note.kindLabel} · {note.progressLabel} · 23 July 2026
+                        </p>
+                      </div>
+                      <span className="text-sm font-medium text-ink">
+                        Read research note
+                      </span>
+                    </Link>
+                  ) : (
+                    <div className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 sm:grid-cols-[1fr_auto] sm:items-center">
+                      <div>
+                        <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">
+                          {note.title}
+                        </h2>
+                        <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
+                          {note.kindLabel} · {note.progressLabel}
+                        </p>
+                      </div>
+                      <span className="max-w-[18rem] text-sm leading-6 text-muted sm:text-right">
+                        No public article is available yet.
+                      </span>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

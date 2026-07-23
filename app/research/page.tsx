@@ -939,6 +939,23 @@ export default function ResearchPage() {
           </div>
         </div>
       </section>
+
+      <section className="page-shell pb-[var(--section-space)]">
+        <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p className="eyebrow">DETAILED RECORDS</p>
+            <h2 className="display-section mt-7 text-ink">
+              Continue through the resources hub.
+            </h2>
+            <p className="body-lg mt-6 max-w-[48rem]">
+              Inspect the publication, reproducibility record, data provenance,
+              responsible-use guidance, licensing boundaries and current
+              evidence status.
+            </p>
+          </div>
+          <ActionLink href="/resources">Explore resources</ActionLink>
+        </Reveal>
+      </section>
     </>
   );
 }

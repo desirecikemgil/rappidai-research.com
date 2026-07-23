@@ -31,11 +31,26 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: siteConfig.name,
-    description: siteConfig.description,
-    inLanguage: "en",
-    ...(siteConfig.canonicalUrl ? { url: siteConfig.canonicalUrl } : {}),
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": siteConfig.canonicalUrl
+          ? `${siteConfig.canonicalUrl}/#website`
+          : "#website",
+        name: siteConfig.name,
+        description: siteConfig.description,
+        inLanguage: "en",
+        ...(siteConfig.canonicalUrl ? { url: siteConfig.canonicalUrl } : {}),
+      },
+      {
+        "@type": "Person",
+        "@id": siteConfig.canonicalUrl
+          ? `${siteConfig.canonicalUrl}/#founder`
+          : "#founder",
+        name: siteConfig.founder.name,
+        jobTitle: siteConfig.founder.role,
+      },
+    ],
   };
 
   return (

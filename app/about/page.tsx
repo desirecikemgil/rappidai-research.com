@@ -277,7 +277,7 @@ export default function AboutPage() {
         <div className="page-shell section-space-sm">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-10">
             <Reveal className="lg:col-span-7">
-              <p className="eyebrow text-[#72a8ff]">EARLY-STAGE RESEARCH</p>
+              <p className="eyebrow eyebrow-on-dark">EARLY-STAGE RESEARCH</p>
               <h2
                 id="early-stage-heading"
                 className="mt-7 max-w-[16ch] text-[clamp(2.5rem,5vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.06em] text-white"

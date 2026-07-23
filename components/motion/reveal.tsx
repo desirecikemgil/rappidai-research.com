@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
+import { useReducedEffects } from "@/components/motion/use-reduced-effects";
 
 type RevealProps = HTMLMotionProps<"div"> & {
   children: ReactNode;
@@ -17,12 +18,14 @@ export function Reveal({
   className,
   ...props
 }: RevealProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceEffects = useReducedEffects();
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: distance, scale: 0.996 }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+      initial={
+        reduceEffects ? false : { opacity: 0, y: distance, scale: 0.996 }
+      }
+      whileInView={reduceEffects ? undefined : { opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.16, margin: "0px 0px -5% 0px" }}
       transition={{ duration: 0.58, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
@@ -34,14 +37,14 @@ export function Reveal({
 }
 
 export function DrawRule({ className = "" }: { className?: string }) {
-  const reduceMotion = useReducedMotion();
+  const reduceEffects = useReducedEffects();
 
   return (
     <motion.div
       aria-hidden="true"
       className={`fine-rule ${className}`}
-      initial={reduceMotion ? false : { scaleX: 0, opacity: 0.25 }}
-      whileInView={reduceMotion ? undefined : { scaleX: 1, opacity: 1 }}
+      initial={reduceEffects ? false : { scaleX: 0, opacity: 0.25 }}
+      whileInView={reduceEffects ? undefined : { scaleX: 1, opacity: 1 }}
       viewport={{ once: true, amount: 0.6 }}
       transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
     />

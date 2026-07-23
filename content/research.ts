@@ -87,20 +87,16 @@ export const experimentLogs = [
   },
 ] as const satisfies readonly ExperimentLogEntry[];
 
-/**
- * Notes remain non-clickable until a public PDF, repository document or page is
- * attached. A null href must render as non-clickable content.
- */
 export const researchNotes = [
   {
     id: "from-100m-to-600m-german-tokens",
     title: "From 100M to 600M German Tokens: Lessons from quantum-1.6-pilot",
     kind: "research-note",
     kindLabel: "Research note",
-    progress: "in-progress",
-    progressLabel: "In progress",
-    href: null,
-    publicationDate: null,
+    progress: "published",
+    progressLabel: "Published",
+    href: "/resources/publications/from-100m-to-600m-german-tokens",
+    publicationDate: "2026-07-23",
   },
 ] as const satisfies readonly ResearchNote[];
 

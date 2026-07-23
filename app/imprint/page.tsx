@@ -80,14 +80,6 @@ export default function ImprintPage() {
       <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
         <DrawRule />
 
-        {legal.serviceAddress === null ? (
-          <Reveal className="mt-8">
-            <p className="max-w-[46rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
-              {legal.missingInformationNotice}
-            </p>
-          </Reveal>
-        ) : null}
-
         <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
           <LegalGroup id="imprint-identity" eyebrow="01" title="Identity">
             <LegalField
@@ -110,6 +102,7 @@ export default function ImprintPage() {
               value={legal.generalLocation}
               note={imprintPageContent.locationQualification}
             />
+            <LegalField label="Service address" value={legal.serviceAddress} />
           </LegalGroup>
 
           <LegalGroup
@@ -141,6 +134,7 @@ export default function ImprintPage() {
               label="Responsible person"
               value={legal.responsibleForContent}
             />
+            <LegalField label="Last reviewed" value="23 July 2026" />
           </LegalGroup>
         </div>
       </div>

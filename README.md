@@ -94,6 +94,7 @@ Most public facts are centralized outside component logic:
 - [`content/site.ts`](content/site.ts) — identity, verified URLs, contact, legal and privacy configuration.
 - [`content/models.ts`](content/models.ts) — model names, release status, sources, limitations and public artifacts.
 - [`content/research.ts`](content/research.ts) — research questions, evidence boundaries and reproducibility links.
+- [`content/resources.ts`](content/resources.ts) — publications, reproducibility, data, responsible-use, licensing, status and FAQ records.
 - [`content/pages.ts`](content/pages.ts) — route copy and metadata.
 - [`content/types.ts`](content/types.ts) — content contracts.
 
@@ -111,7 +112,7 @@ Keep claims source-linked. Do not add benchmark scores, release status, people, 
 - Planned token totals and architecture targets remain labelled as targets until final public manifests or trained artifacts exist.
 - Model outputs, benchmarks, hardware use, runtime, cost, energy use, licenses and release dates are never inferred.
 
-The `/research` route contains the public evidence ledger, findings, negative results, engineering lessons and reproducibility matrix. The Echelon model page derives its status from the same centralized source records.
+The `/research` route contains the public evidence ledger, findings, negative results, engineering lessons and reproducibility matrix. The `/resources` hub publishes the detailed research note, reproducibility record, data provenance, responsible-use guidance, licensing matrix, project status and FAQ. The Echelon model page derives its status from the same centralized source records.
 
 ## Training, inference and evaluation
 
@@ -181,4 +182,4 @@ Use [`CITATION.cff`](CITATION.cff) for this website repository. Model releases s
 - Hugging Face: [rappidAI](https://huggingface.co/rappidAI)
 - Research implementation: [`lumen-quantum`](https://github.com/jonascikemgil07-hue/lumen-quantum)
 
-The imprint and privacy pages still require a verified service address and deployment-specific legal review. This repository does not present legal documentation as legal advice.
+The imprint and privacy pages contain the maintainer-confirmed service address. Deployment-specific hosting details still require privacy and legal review. This repository does not present legal documentation as legal advice.

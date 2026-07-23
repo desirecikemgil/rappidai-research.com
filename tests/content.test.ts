@@ -6,9 +6,17 @@ import {
   models,
   modelSlugs,
 } from "@/content/models";
-import { getResearchNoteById } from "@/content/research";
+import { getPageMetadata } from "@/content/pages";
+import { experimentLogs, getResearchNoteById } from "@/content/research";
+import {
+  faqEntries,
+  publications,
+  resourceCards,
+  resourceReview,
+} from "@/content/resources";
 import {
   publicModelUrls,
+  publicProjectUrls,
   publicProfiles,
   publicResearchUrls,
   siteConfig,
@@ -65,16 +73,74 @@ describe("model content helpers", () => {
 });
 
 describe("research content helpers", () => {
-  it("resolves a configured research note", () => {
-    expect(
-      getResearchNoteById("from-100m-to-600m-german-tokens")?.progress,
-    ).toBe("in-progress");
+  it("resolves the published pilot research note", () => {
+    const note = getResearchNoteById("from-100m-to-600m-german-tokens");
+
+    expect(note?.progress).toBe("published");
+    expect(note?.href).toBe(
+      "/resources/publications/from-100m-to-600m-german-tokens",
+    );
+    expect(note?.publicationDate).toBe("2026-07-23");
   });
 
   it("returns undefined for a known but unconfigured research-note id", () => {
     expect(
       getResearchNoteById("why-local-inference-changes-the-design-target"),
     ).toBeUndefined();
+  });
+});
+
+describe("resource content contracts", () => {
+  it("gives every resource a unique route and status", () => {
+    expect(resourceCards).toHaveLength(7);
+    expect(new Set(resourceCards.map((resource) => resource.id)).size).toBe(7);
+    expect(new Set(resourceCards.map((resource) => resource.href)).size).toBe(
+      7,
+    );
+
+    for (const resource of resourceCards) {
+      expect(resource.href).toMatch(/^\/resources/);
+      expect(resource.status).toBeTruthy();
+      expect(getPageMetadata(resource.href)).toBeTruthy();
+    }
+  });
+
+  it("requires published notes to have dates, routes and public sources", () => {
+    expect(publications.length).toBeGreaterThan(0);
+
+    for (const publication of publications) {
+      expect(publication.status).toBe("published");
+      expect(publication.publicationDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(publication.href).toMatch(/^\/resources\/publications\//);
+      expect(publication.sources.length).toBeGreaterThan(0);
+      for (const source of publication.sources) {
+        expect(new URL(source.url).protocol).toBe("https:");
+      }
+    }
+  });
+
+  it("keeps historical model release dates unpublished", () => {
+    for (const entry of experimentLogs) {
+      expect(entry.publicationDate).toBeNull();
+    }
+  });
+
+  it("records the reviewed evidence date and exact legal address", () => {
+    expect(resourceReview.isoDate).toBe("2026-07-23");
+    expect(siteConfig.lastReviewed).toBe(resourceReview.isoDate);
+    expect(siteConfig.legal.serviceAddress).toBe(
+      "Almutstraße 3, 13467 Berlin, Germany",
+    );
+    expect(siteConfig.privacy.controllerAddress).toBe(
+      siteConfig.legal.serviceAddress,
+    );
+  });
+
+  it("provides a useful evidence-bounded FAQ", () => {
+    expect(faqEntries.length).toBeGreaterThanOrEqual(8);
+    expect(
+      faqEntries.some((entry) => entry.question.includes("open source")),
+    ).toBe(true);
   });
 });
 
@@ -118,6 +184,12 @@ describe("public source configuration", () => {
     expect(siteConfig.externalLinks.github.url).toBe(
       publicResearchUrls.repository,
     );
+  });
+
+  it("publishes repository governance and documentation links", () => {
+    for (const url of Object.values(publicProjectUrls)) {
+      expect(new URL(url).protocol).toBe("https:");
+    }
   });
 
   it("pins research artifact links to reviewed revisions", () => {

@@ -3,6 +3,7 @@ import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { contactPageContent } from "@/content/pages";
+import { responsibleUseContent } from "@/content/resources";
 import { siteConfig } from "@/content/site";
 import { metadataFor } from "@/lib/metadata";
 
@@ -111,6 +112,33 @@ export default function ContactPage() {
             <ContactForm businessEmail={businessEmail} />
           </Reveal>
         </div>
+
+        <Reveal className="mt-[clamp(4rem,8vw,7rem)]">
+          <p className="eyebrow">REPORTING CHANNELS</p>
+          <h2 className="display-section mt-7 text-ink">
+            Public feedback, private security and sensitive concerns.
+          </h2>
+          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+            {responsibleUseContent.reporting.map((item) => (
+              <div key={item.label} className="liquid-card p-7">
+                <h3 className="text-xl font-medium tracking-[-0.03em] text-ink">
+                  {item.label}
+                </h3>
+                <p className="mt-4 text-sm leading-6 text-muted">
+                  {item.detail}
+                </p>
+                <ActionLink
+                  href={item.url}
+                  external={!item.url.startsWith("mailto:")}
+                  variant="text"
+                  className="mt-5"
+                >
+                  Open channel
+                </ActionLink>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </section>
     </>
   );
