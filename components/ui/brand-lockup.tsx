@@ -5,12 +5,14 @@ type BrandLockupProps = {
   className?: string;
   priority?: boolean;
   href?: string;
+  homeLabel?: string;
 };
 
 export function BrandLockup({
   className = "",
   priority = false,
   href = "/",
+  homeLabel = "rappidAI research home",
 }: BrandLockupProps) {
   const image = (
     <Image
@@ -28,7 +30,7 @@ export function BrandLockup({
   return href ? (
     <Link
       href={href}
-      aria-label="rappidAI research home"
+      aria-label={homeLabel}
       className="block w-[clamp(10.8rem,17vw,13.75rem)]"
     >
       {image}

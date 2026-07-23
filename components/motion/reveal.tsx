@@ -19,15 +19,20 @@ export function Reveal({
   ...props
 }: RevealProps) {
   const reduceEffects = useReducedEffects();
+  const visible = { opacity: 1, y: 0, scale: 1 };
 
   return (
     <motion.div
       initial={
-        reduceEffects ? false : { opacity: 0, y: distance, scale: 0.996 }
+        reduceEffects ? visible : { opacity: 0, y: distance, scale: 0.996 }
       }
-      whileInView={reduceEffects ? undefined : { opacity: 1, y: 0, scale: 1 }}
+      whileInView={visible}
       viewport={{ once: true, amount: 0.16, margin: "0px 0px -5% 0px" }}
-      transition={{ duration: 0.58, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={
+        reduceEffects
+          ? { duration: 0 }
+          : { duration: 0.58, delay, ease: [0.16, 1, 0.3, 1] }
+      }
       className={className}
       {...props}
     >
@@ -38,15 +43,20 @@ export function Reveal({
 
 export function DrawRule({ className = "" }: { className?: string }) {
   const reduceEffects = useReducedEffects();
+  const visible = { scaleX: 1, opacity: 1 };
 
   return (
     <motion.div
       aria-hidden="true"
       className={`fine-rule ${className}`}
-      initial={reduceEffects ? false : { scaleX: 0, opacity: 0.25 }}
-      whileInView={reduceEffects ? undefined : { scaleX: 1, opacity: 1 }}
+      initial={reduceEffects ? visible : { scaleX: 0, opacity: 0.25 }}
+      whileInView={visible}
       viewport={{ once: true, amount: 0.6 }}
-      transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+      transition={
+        reduceEffects
+          ? { duration: 0 }
+          : { duration: 1.15, ease: [0.16, 1, 0.3, 1] }
+      }
     />
   );
 }

@@ -4,6 +4,7 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { imprintPageContent } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/imprint");
 
@@ -69,50 +70,68 @@ function LegalGroup({
   );
 }
 
-export default function ImprintPage() {
-  const legal = siteConfig.legal;
+export function LocalizedImprintPage({ locale }: { locale: Locale }) {
+  const config = localizeContent(siteConfig, locale);
+  const page = localizeContent(imprintPageContent, locale);
+  const legal = config.legal;
   const businessEmail = siteConfig.businessEmail;
 
   return (
     <>
-      <PageIntro {...imprintPageContent.introduction} />
+      <PageIntro {...page.introduction} />
 
       <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
         <DrawRule />
 
         <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
-          <LegalGroup id="imprint-identity" eyebrow="01" title="Identity">
+          <LegalGroup
+            id="imprint-identity"
+            eyebrow="01"
+            title={t(locale, "Identity")}
+          >
             <LegalField
-              label={imprintPageContent.identityLabel}
+              label={page.identityLabel}
               value={legal.publicIdentity}
-              note="This is the public project identity and is not a claim about a registered legal entity."
+              note={t(
+                locale,
+                "This is the public project identity and is not a claim about a registered legal entity.",
+              )}
             />
-            <LegalField label="Legal name" value={legal.legalName} />
-            <LegalField label="Legal form" value={legal.legalForm} />
+            <LegalField
+              label={t(locale, "Legal name")}
+              value={legal.legalName}
+            />
+            <LegalField
+              label={t(locale, "Legal form")}
+              value={legal.legalForm}
+            />
           </LegalGroup>
 
           <LegalGroup
             id="imprint-location"
             eyebrow="02"
-            title="Location"
+            title={t(locale, "Location")}
             delay={0.04}
           >
             <LegalField
-              label={imprintPageContent.locationLabel}
+              label={page.locationLabel}
               value={legal.generalLocation}
-              note={imprintPageContent.locationQualification}
+              note={page.locationQualification}
             />
-            <LegalField label="Service address" value={legal.serviceAddress} />
+            <LegalField
+              label={t(locale, "Service address")}
+              value={legal.serviceAddress}
+            />
           </LegalGroup>
 
           <LegalGroup
             id="imprint-contact"
             eyebrow="03"
-            title={imprintPageContent.contactLabel}
+            title={page.contactLabel}
             delay={0.06}
           >
             <LegalField
-              label="Email"
+              label={t(locale, "Email")}
               value={
                 <a
                   className="underline decoration-line-strong underline-offset-4 hover:text-accent"
@@ -127,17 +146,24 @@ export default function ImprintPage() {
           <LegalGroup
             id="imprint-responsibility"
             eyebrow="04"
-            title="Content responsibility"
+            title={t(locale, "Content responsibility")}
             delay={0.08}
           >
             <LegalField
-              label="Responsible person"
+              label={t(locale, "Responsible person")}
               value={legal.responsibleForContent}
             />
-            <LegalField label="Last reviewed" value="23 July 2026" />
+            <LegalField
+              label={t(locale, "Last reviewed")}
+              value={t(locale, "23 July 2026")}
+            />
           </LegalGroup>
         </div>
       </div>
     </>
   );
+}
+
+export default function ImprintPage() {
+  return <LocalizedImprintPage locale="en" />;
 }

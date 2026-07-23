@@ -11,6 +11,7 @@ import { getResearchNoteById } from "@/content/research";
 import { siteConfig } from "@/content/site";
 import type { ModelLink, SiteRoute } from "@/content/types";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 
 type ModelPageProps = {
   params: Promise<{ slug: string }>;
@@ -31,31 +32,66 @@ export async function generateMetadata({
 
 export default async function ModelDetailPage({ params }: ModelPageProps) {
   const { slug } = await params;
-  const model = getModelBySlug(slug);
+  return <LocalizedModelDetailPage slug={slug} locale="en" />;
+}
+
+export function LocalizedModelDetailPage({
+  slug,
+  locale,
+}: {
+  slug: string;
+  locale: Locale;
+}) {
+  const model = getModelBySlug(slug, locale);
   if (!model) notFound();
+  const page = localizeContent(modelsPageContent, locale);
+  const config = localizeContent(siteConfig, locale);
   const modelLinks = model.links as readonly ModelLink[];
 
-  const relatedNotes = model.relatedResearchNoteIds
-    .map((id) => getResearchNoteById(id))
-    .filter((note) => note !== undefined);
+  const relatedNotes = localizeContent(
+    model.relatedResearchNoteIds
+      .map((id) => getResearchNoteById(id))
+      .filter((note) => note !== undefined),
+    locale,
+  );
+  const relatedResources = localizeContent(
+    [
+      {
+        label: "Reproducibility",
+        href: "/resources/reproducibility",
+      },
+      {
+        label: "Data & training",
+        href: "/resources/data-and-training",
+      },
+      {
+        label: "Responsible use",
+        href: "/resources/responsible-use",
+      },
+      { label: "Licensing", href: "/resources/licensing" },
+    ],
+    locale,
+  );
 
   return (
     <>
       <section className="page-shell pt-[clamp(5rem,10vw,8rem)] pb-[clamp(2.75rem,6vw,5.5rem)]">
         <Reveal>
           <Link
-            href="/models"
+            href={localizePath("/models", locale)}
             className="-ml-2 inline-flex min-h-11 items-center gap-2 px-2 text-sm text-muted transition-colors hover:text-ink"
           >
             <ArrowLeft aria-hidden="true" size={15} strokeWidth={1.7} />
-            All models
+            {t(locale, "All models")}
           </Link>
         </Reveal>
 
         <div className="liquid-surface mt-10 grid gap-10 p-7 sm:mt-14 sm:p-10 lg:mt-16 lg:grid-cols-[1fr_0.33fr] lg:items-end lg:p-12">
           <div>
             <Reveal>
-              <p className="eyebrow">Model card · {model.statusLabel}</p>
+              <p className="eyebrow">
+                {t(locale, "Model card")} · {model.statusLabel}
+              </p>
             </Reveal>
             <Reveal delay={0.06}>
               <h1 className="mt-7 max-w-[14ch] text-[clamp(3.15rem,7vw,7rem)] font-[520] leading-[0.92] tracking-[-0.063em] text-ink">
@@ -66,14 +102,13 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
 
           <Reveal delay={0.12} className="lg:border-l lg:border-line lg:pl-8">
             <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
-              Parameter size
+              {t(locale, "Parameter size")}
             </p>
             <p className="technical-number mt-4 text-[clamp(2.4rem,5vw,4.7rem)] leading-none tracking-[-0.06em] text-accent">
               {model.parameterCount?.shortLabel ?? "—"}
             </p>
             <p className="mt-3 text-sm text-muted">
-              {model.parameterCount?.label ??
-                modelsPageContent.missingParameterLabel}
+              {model.parameterCount?.label ?? page.missingParameterLabel}
             </p>
           </Reveal>
         </div>
@@ -84,13 +119,11 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         <div className="grid gap-14 lg:grid-cols-[0.78fr_1.22fr]">
           <Reveal>
             <div className="lg:sticky lg:top-32">
-              <p className="eyebrow">Summary</p>
+              <p className="eyebrow">{t(locale, "Summary")}</p>
               <p className="body-lg mt-6">{model.summary}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {modelLinks.length === 0 ? (
-                  <PendingAction>
-                    {modelsPageContent.missingLinksLabel}
-                  </PendingAction>
+                  <PendingAction>{page.missingLinksLabel}</PendingAction>
                 ) : (
                   modelLinks.map((link) =>
                     link.url ? (
@@ -115,25 +148,34 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
 
           <Reveal delay={0.08}>
             <dl className="border-t border-line">
-              <ModelFact label="Status" value={model.statusLabel} />
-              <ModelFact label="Model type" value={model.modelType} />
               <ModelFact
-                label="Intended use"
+                label={t(locale, "Status")}
+                value={model.statusLabel}
+              />
+              <ModelFact
+                label={t(locale, "Model type")}
+                value={model.modelType}
+              />
+              <ModelFact
+                label={t(locale, "Intended use")}
                 value={model.intendedUse.join(" · ")}
               />
               <ModelFact
-                label="Languages"
+                label={t(locale, "Languages")}
                 value={
                   model.languages.length
                     ? model.languages.join(" · ")
-                    : "Not specified"
+                    : t(locale, "Not specified")
                 }
               />
-              <ModelFact label="Lineage" value={model.lineage} />
-              <ModelFact label="Release status" value={model.releaseStatus} />
+              <ModelFact label={t(locale, "Lineage")} value={model.lineage} />
               <ModelFact
-                label="License"
-                value={model.license ?? modelsPageContent.missingLicenseLabel}
+                label={t(locale, "Release status")}
+                value={model.releaseStatus}
+              />
+              <ModelFact
+                label={t(locale, "License")}
+                value={model.license ?? page.missingLicenseLabel}
               />
             </dl>
           </Reveal>
@@ -145,14 +187,15 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
           <div className="page-shell section-space-sm">
             <div className="grid min-w-0 gap-12 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
               <Reveal className="min-w-0">
-                <p className="eyebrow">Technical dossier</p>
+                <p className="eyebrow">{t(locale, "Technical dossier")}</p>
                 <h2 className="display-section mt-6">
-                  Documented model facts.
+                  {t(locale, "Documented model facts.")}
                 </h2>
                 <p className="body-copy mt-6 max-w-[34rem]">
-                  Information linked to public project sources. Unknown release
-                  dates, licensing terms and unsupported client compatibility
-                  are not inferred.
+                  {t(
+                    locale,
+                    "Information linked to public project sources. Unknown release dates, licensing terms and unsupported client compatibility are not inferred.",
+                  )}
                 </p>
               </Reveal>
 
@@ -167,7 +210,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                   ))}
                   {model.inferenceSoftware.length > 0 ? (
                     <ModelFact
-                      label="Inference"
+                      label={t(locale, "Inference")}
                       value={model.inferenceSoftware.join(" · ")}
                     />
                   ) : null}
@@ -175,7 +218,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
 
                 {model.sources.length > 0 ? (
                   <p className="mt-5 flex flex-wrap gap-x-2 gap-y-1 text-sm leading-6 text-muted">
-                    <span>Primary sources:</span>
+                    <span>{t(locale, "Primary sources")}:</span>
                     {model.sources.map((source, index) => (
                       <span key={source.url}>
                         <a
@@ -195,18 +238,23 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                 {model.usageExample ? (
                   <div className="liquid-surface mt-5 p-6 sm:p-8">
                     <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
-                      Reference completion command
+                      {t(locale, "Reference completion command")}
                     </p>
                     <pre
-                      aria-label="Scrollable reference completion command"
+                      aria-label={t(
+                        locale,
+                        "Scrollable reference completion command",
+                      )}
                       tabIndex={0}
                       className="mt-5 overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
                     >
                       <code>{model.usageExample}</code>
                     </pre>
                     <p className="mt-4 text-sm leading-6 text-muted">
-                      Completion prompting is the documented reference path. No
-                      chat template is promised.
+                      {t(
+                        locale,
+                        "Completion prompting is the documented reference path. No chat template is promised.",
+                      )}
                     </p>
                   </div>
                 ) : null}
@@ -220,16 +268,16 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         <section className="page-shell section-space-sm">
           <div className="grid gap-10 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
             <Reveal>
-              <p className="eyebrow">Research context</p>
+              <p className="eyebrow">{t(locale, "Research context")}</p>
               <h2 className="display-section mt-6">
-                How this release fits the experiment.
+                {t(locale, "How this release fits the experiment.")}
               </h2>
             </Reveal>
             <Reveal delay={0.08} className="border-t border-line pt-8">
               <p className="body-lg max-w-[44rem]">{model.researchContext}</p>
               <div className="mt-8">
-                <ActionLink href="/research">
-                  Read the research methodology
+                <ActionLink href={localizePath("/research", locale)}>
+                  {t(locale, "Read the research methodology")}
                 </ActionLink>
               </div>
             </Reveal>
@@ -241,20 +289,25 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         <section className="liquid-section border-y border-line bg-pale-soft/40 py-[clamp(4.5rem,8vw,8rem)]">
           <div className="page-shell grid gap-12 lg:grid-cols-[0.5fr_1.2fr] lg:items-center">
             <Reveal>
-              <p className="eyebrow">Repository reference</p>
+              <p className="eyebrow">{t(locale, "Repository reference")}</p>
               <h2 className="mt-6 text-[clamp(2rem,4vw,4rem)] font-[510] leading-[1.02] tracking-[-0.05em] text-ink">
-                The pilot model card.
+                {t(locale, "The pilot model card.")}
               </h2>
               <p className="body-copy mt-5">
-                A visual snapshot of the model&apos;s parameter size and
-                intended research use.
+                {t(
+                  locale,
+                  "A visual snapshot of the model's parameter size and intended research use.",
+                )}
               </p>
             </Reveal>
             <Reveal delay={0.08}>
               <div className="liquid-frame overflow-hidden border border-line bg-white/30 p-2 sm:p-3">
                 <Image
-                  src={siteConfig.brandAssets.modelCardReference}
-                  alt="quantum-1.6-pilot model-card graphic showing approximately 50M parameters and research and local experimentation as the primary use"
+                  src={config.brandAssets.modelCardReference}
+                  alt={t(
+                    locale,
+                    "quantum-1.6-pilot model-card graphic showing approximately 50M parameters and research and local experimentation as the primary use",
+                  )}
                   width={1600}
                   height={1006}
                   sizes="(max-width: 1024px) 92vw, 62vw"
@@ -270,27 +323,13 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         <div className="page-shell section-space-sm">
           <Reveal className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
-              <p className="eyebrow">RELATED RESOURCES</p>
+              <p className="eyebrow">{t(locale, "RELATED RESOURCES")}</p>
               <h2 className="display-section mt-6 text-ink">
-                Inspect the wider evidence.
+                {t(locale, "Inspect the wider evidence.")}
               </h2>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                {
-                  label: "Reproducibility",
-                  href: "/resources/reproducibility",
-                },
-                {
-                  label: "Data & training",
-                  href: "/resources/data-and-training",
-                },
-                {
-                  label: "Responsible use",
-                  href: "/resources/responsible-use",
-                },
-                { label: "Licensing", href: "/resources/licensing" },
-              ].map((resource) => (
+              {relatedResources.map((resource) => (
                 <ActionLink
                   key={resource.href}
                   href={resource.href}
@@ -308,8 +347,10 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
       <section className="page-shell section-space">
         <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr]">
           <Reveal>
-            <p className="eyebrow">Limitations</p>
-            <h2 className="display-section mt-6">Read the limits first.</h2>
+            <p className="eyebrow">{t(locale, "Limitations")}</p>
+            <h2 className="display-section mt-6">
+              {t(locale, "Read the limits first.")}
+            </h2>
           </Reveal>
           <div className="space-y-3 border-t border-line sm:space-y-4">
             {model.limitations.map((limitation, index) => (
@@ -328,8 +369,10 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         </div>
         {model.status === "experimental" ? (
           <p className="mt-10 border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
-            This model is experimental and not production-ready. It must not be
-            used for high-stakes decisions.
+            {t(
+              locale,
+              "This model is experimental and not production-ready. It must not be used for high-stakes decisions.",
+            )}
           </p>
         ) : null}
       </section>
@@ -337,7 +380,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
       {relatedNotes.length > 0 ? (
         <section className="liquid-section border-y border-line bg-pale-soft/40">
           <div className="page-shell section-space-sm">
-            <p className="eyebrow">Related research note</p>
+            <p className="eyebrow">{t(locale, "Related research note")}</p>
             <div className="mt-10 space-y-3 border-b border-line sm:space-y-4">
               {relatedNotes.map((note) => (
                 <div key={note.id}>
@@ -351,11 +394,12 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                           {note.title}
                         </h2>
                         <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
-                          {note.kindLabel} · {note.progressLabel} · 23 July 2026
+                          {note.kindLabel} · {note.progressLabel} ·{" "}
+                          {t(locale, "23 July 2026")}
                         </p>
                       </div>
                       <span className="text-sm font-medium text-ink">
-                        Read research note
+                        {t(locale, "Read research note")}
                       </span>
                     </Link>
                   ) : (
@@ -369,7 +413,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                         </p>
                       </div>
                       <span className="max-w-[18rem] text-sm leading-6 text-muted sm:text-right">
-                        No public article is available yet.
+                        {t(locale, "No public article is available yet.")}
                       </span>
                     </div>
                   )}

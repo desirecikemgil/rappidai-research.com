@@ -8,11 +8,12 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { dataAndTrainingContent } from "@/content/resources";
 import { siteConfig } from "@/content/site";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/resources/data-and-training");
 
-export default function DataAndTrainingPage() {
-  const content = dataAndTrainingContent;
+export function LocalizedDataAndTrainingPage({ locale }: { locale: Locale }) {
+  const content = localizeContent(dataAndTrainingContent, locale);
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function DataAndTrainingPage() {
       <section className="page-shell pb-[var(--section-space)]">
         <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.65fr_1.35fr]">
           <div>
-            <p className="eyebrow">PRIMARY DATASET</p>
+            <p className="eyebrow">{t(locale, "PRIMARY DATASET")}</p>
             <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
               {content.dataset.name}
             </h2>
@@ -38,7 +39,7 @@ export default function DataAndTrainingPage() {
               rel="noreferrer"
               className="mt-6 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 hover:text-accent"
             >
-              Inspect dataset card
+              {t(locale, "Inspect dataset card")}
             </a>
           </div>
         </Reveal>
@@ -55,7 +56,7 @@ export default function DataAndTrainingPage() {
                   <span className="technical-number text-xs text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <EvidenceBadge status={stage.status} />
+                  <EvidenceBadge status={stage.status} locale={locale} />
                 </div>
                 <h2 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
                   {stage.name}
@@ -63,11 +64,17 @@ export default function DataAndTrainingPage() {
               </div>
               <dl className="border-b border-line">
                 <StageFact
-                  label="Source revision"
+                  label={t(locale, "Source revision")}
                   value={stage.sourceRevision}
                 />
-                <StageFact label="Configured target" value={stage.target} />
-                <StageFact label="Public observation" value={stage.observed} />
+                <StageFact
+                  label={t(locale, "Configured target")}
+                  value={stage.target}
+                />
+                <StageFact
+                  label={t(locale, "Public observation")}
+                  value={stage.observed}
+                />
               </dl>
             </Reveal>
           ))}
@@ -75,16 +82,16 @@ export default function DataAndTrainingPage() {
 
         <div className="mt-[clamp(4rem,8vw,8rem)] grid gap-4 lg:grid-cols-2">
           <Reveal className="liquid-card p-7 sm:p-9">
-            <p className="eyebrow">PIPELINE CONTROLS</p>
+            <p className="eyebrow">{t(locale, "PIPELINE CONTROLS")}</p>
             <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
-              Documented controls.
+              {t(locale, "Documented controls.")}
             </h2>
             <BulletList items={content.controls} />
           </Reveal>
           <Reveal delay={0.05} className="liquid-card p-7 sm:p-9">
-            <p className="eyebrow">KNOWN LIMITATIONS</p>
+            <p className="eyebrow">{t(locale, "KNOWN LIMITATIONS")}</p>
             <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
-              Evidence still missing.
+              {t(locale, "Evidence still missing.")}
             </h2>
             <BulletList items={content.limitations} muted />
           </Reveal>
@@ -92,18 +99,22 @@ export default function DataAndTrainingPage() {
 
         <Reveal className="mt-8 border-l-2 border-accent bg-pale-soft px-6 py-5">
           <p className="text-sm leading-6 text-ink-soft">
-            {content.contact} Contact: {siteConfig.businessEmail}
+            {content.contact} {t(locale, "Contact")}: {siteConfig.businessEmail}
           </p>
         </Reveal>
 
         <Reveal className="mt-10">
-          <SourceLinks sources={content.sources} />
+          <SourceLinks sources={content.sources} locale={locale} />
         </Reveal>
       </section>
 
-      <ResourceDirectory current="data-and-training" />
+      <ResourceDirectory current="data-and-training" locale={locale} />
     </>
   );
+}
+
+export default function DataAndTrainingPage() {
+  return <LocalizedDataAndTrainingPage locale="en" />;
 }
 
 function StageFact({ label, value }: { label: string; value: string }) {

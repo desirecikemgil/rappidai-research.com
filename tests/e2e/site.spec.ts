@@ -49,6 +49,19 @@ for (const route of publicRoutes) {
   });
 }
 
+for (const route of publicRoutes) {
+  const germanRoute = route === "/" ? "/de" : `/de${route}`;
+
+  test(`${germanRoute} renders its localized page`, async ({ page }) => {
+    const response = await page.goto(germanRoute);
+
+    expect(response?.status()).toBe(200);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("h1")).toBeVisible();
+    await expect(page.locator("html")).toHaveAttribute("lang", "de");
+  });
+}
+
 test("internal navigation targets return successful responses", async ({
   page,
   request,
@@ -68,6 +81,27 @@ test("internal navigation targets return successful responses", async ({
   }
 });
 
+test("language switch preserves the current deep route", async ({ page }) => {
+  await page.goto("/resources/licensing");
+
+  await page
+    .getByRole("link", { name: /switch to deutsch/i })
+    .first()
+    .click();
+  await expect(page).toHaveURL("/de/resources/licensing");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(
+    "Öffentliche Verfügbarkeit",
+  );
+  await expect(page.locator("html")).toHaveAttribute("lang", "de");
+
+  await page
+    .getByRole("link", { name: /wechseln zu english/i })
+    .first()
+    .click();
+  await expect(page).toHaveURL("/resources/licensing");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+});
+
 test("contact form reports required fields without claiming a send", async ({
   page,
 }) => {
@@ -78,6 +112,18 @@ test("contact form reports required fields without claiming a send", async ({
   await expect(page.locator('input[name="name"]')).toBeFocused();
   await expect(page.getByRole("status")).toContainText(
     "No message has been sent.",
+  );
+});
+
+test("German contact form reports localized validation messages", async ({
+  page,
+}) => {
+  await page.goto("/de/contact");
+  await page.getByRole("button", { name: /in e-mail-app fortfahren/i }).click();
+
+  await expect(page.locator('form [role="alert"]')).toHaveCount(4);
+  await expect(page.getByRole("status")).toContainText(
+    "Es wurde keine Nachricht gesendet.",
   );
 });
 
@@ -121,6 +167,27 @@ for (const route of [
   });
 }
 
+for (const route of [
+  "/de/research",
+  "/de/resources",
+  "/de/resources/publications/from-100m-to-600m-german-tokens",
+  "/de/resources/licensing",
+] as const) {
+  test(`${route} fits a reduced-motion mobile viewport`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(route);
+
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+    await expect(page.locator("h1")).toBeVisible();
+  });
+}
+
 test("robots and sitemap endpoints are public", async ({ request }) => {
   const [robots, sitemap] = await Promise.all([
     request.get("/robots.txt"),
@@ -137,6 +204,11 @@ test("robots and sitemap endpoints are public", async ({ request }) => {
       route === "/"
         ? "https://www.rappidai-research.com"
         : `https://www.rappidai-research.com${route}`,
+    );
+    expect(sitemapBody).toContain(
+      route === "/"
+        ? "https://www.rappidai-research.com/de"
+        : `https://www.rappidai-research.com/de${route}`,
     );
   }
 });

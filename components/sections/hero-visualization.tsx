@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useReducedEffects } from "@/components/motion/use-reduced-effects";
+import { t, type Locale } from "@/lib/i18n";
 
 const paths = [
   "M32 468C122 468 140 244 246 244C346 244 346 404 446 404C544 404 566 182 650 182",
@@ -20,7 +21,7 @@ const nodes = [
   { cx: 626, cy: 123, delay: 0.95 },
 ];
 
-export function HeroVisualization() {
+export function HeroVisualization({ locale = "en" }: { locale?: Locale }) {
   const reduceMotion = useReducedEffects();
 
   return (
@@ -267,10 +268,10 @@ export function HeroVisualization() {
       </svg>
 
       <div className="absolute bottom-[12%] left-[9%] font-mono text-[0.63rem] tracking-[0.17em] text-muted uppercase">
-        token input
+        {t(locale, "token input")}
       </div>
       <div className="absolute right-[7%] top-[13%] text-right font-mono text-[0.63rem] tracking-[0.17em] text-muted uppercase">
-        local output
+        {t(locale, "local output")}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { contactPageContent } from "@/content/pages";
 import { responsibleUseContent } from "@/content/resources";
 import { siteConfig } from "@/content/site";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/contact");
 
@@ -14,6 +15,7 @@ type ContactChannelProps = {
   value: string | null;
   pendingLabel: string;
   kind: "email" | "external";
+  locale: Locale;
 };
 
 function ContactChannel({
@@ -21,6 +23,7 @@ function ContactChannel({
   value,
   pendingLabel,
   kind,
+  locale,
 }: ContactChannelProps) {
   return (
     <div className="grid gap-3 border-t border-line py-5 sm:grid-cols-[8.5rem_1fr] sm:items-center sm:py-6">
@@ -34,7 +37,7 @@ function ContactChannel({
             variant="text"
             external={kind === "external"}
           >
-            {kind === "email" ? "Email rappidAI" : label}
+            {kind === "email" ? t(locale, "Email rappidAI") : label}
           </ActionLink>
         ) : (
           <PendingAction>{pendingLabel}</PendingAction>
@@ -44,55 +47,61 @@ function ContactChannel({
   );
 }
 
-export default function ContactPage() {
+export function LocalizedContactPage({ locale }: { locale: Locale }) {
   const businessEmail = siteConfig.businessEmail as string | null;
+  const page = localizeContent(contactPageContent, locale);
+  const config = localizeContent(siteConfig, locale);
+  const reporting = localizeContent(responsibleUseContent.reporting, locale);
 
   return (
     <>
-      <PageIntro {...contactPageContent.introduction} />
+      <PageIntro {...page.introduction} />
 
       <section className="page-shell pb-[clamp(5rem,9vw,9rem)]">
         <DrawRule />
         <div className="grid gap-[clamp(2.5rem,6vw,6rem)] pt-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
           <Reveal className="liquid-surface h-fit p-6 sm:p-9">
-            <p className="eyebrow">CONTACT CHANNELS</p>
+            <p className="eyebrow">{t(locale, "CONTACT CHANNELS")}</p>
             <h2 className="mt-5 max-w-[12ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
-              {contactPageContent.methodsHeading}
+              {page.methodsHeading}
             </h2>
 
             <dl className="mt-8 border-b border-line sm:mt-10">
               <ContactChannel
-                label="Email"
+                label={t(locale, "Email")}
                 value={businessEmail}
-                pendingLabel={contactPageContent.emailMissingLabel}
+                pendingLabel={page.emailMissingLabel}
                 kind="email"
+                locale={locale}
               />
               <ContactChannel
-                label={siteConfig.externalLinks.huggingFace.label}
+                label={config.externalLinks.huggingFace.label}
                 value={
                   siteConfig.externalLinks.huggingFace.url as string | null
                 }
-                pendingLabel={siteConfig.externalLinks.huggingFace.pendingLabel}
+                pendingLabel={config.externalLinks.huggingFace.pendingLabel}
                 kind="external"
+                locale={locale}
               />
               <ContactChannel
-                label={siteConfig.externalLinks.github.label}
+                label={config.externalLinks.github.label}
                 value={siteConfig.externalLinks.github.url as string | null}
-                pendingLabel={siteConfig.externalLinks.github.pendingLabel}
+                pendingLabel={config.externalLinks.github.pendingLabel}
                 kind="external"
+                locale={locale}
               />
             </dl>
 
             <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted sm:mt-7">
-              Based in {siteConfig.location}
+              {t(locale, "Based in")} {config.location}
             </p>
 
             <div className="mt-6 border-t border-line pt-6 sm:mt-8 sm:pt-7">
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
-                Typical enquiries
+                {t(locale, "Typical enquiries")}
               </p>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                {contactPageContent.enquiryTypes.map((item) => (
+                {page.enquiryTypes.map((item) => (
                   <li
                     key={item}
                     className="flex items-center gap-3 text-sm text-ink-soft"
@@ -109,17 +118,20 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <ContactForm businessEmail={businessEmail} />
+            <ContactForm businessEmail={businessEmail} locale={locale} />
           </Reveal>
         </div>
 
         <Reveal className="mt-[clamp(4rem,8vw,7rem)]">
-          <p className="eyebrow">REPORTING CHANNELS</p>
+          <p className="eyebrow">{t(locale, "REPORTING CHANNELS")}</p>
           <h2 className="display-section mt-7 text-ink">
-            Public feedback, private security and sensitive concerns.
+            {t(
+              locale,
+              "Public feedback, private security and sensitive concerns.",
+            )}
           </h2>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {responsibleUseContent.reporting.map((item) => (
+            {reporting.map((item) => (
               <div key={item.label} className="liquid-card p-7">
                 <h3 className="text-xl font-medium tracking-[-0.03em] text-ink">
                   {item.label}
@@ -133,7 +145,7 @@ export default function ContactPage() {
                   variant="text"
                   className="mt-5"
                 >
-                  Open channel
+                  {t(locale, "Open channel")}
                 </ActionLink>
               </div>
             ))}
@@ -142,4 +154,8 @@ export default function ContactPage() {
       </section>
     </>
   );
+}
+
+export default function ContactPage() {
+  return <LocalizedContactPage locale="en" />;
 }

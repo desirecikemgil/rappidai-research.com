@@ -7,6 +7,15 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/content/site";
 import { BrandLockup } from "@/components/ui/brand-lockup";
+import {
+  alternateLocale,
+  languageName,
+  localeFromPathname,
+  localizeContent,
+  localizePath,
+  t,
+  type Locale,
+} from "@/lib/i18n";
 
 function isCurrentRoute(pathname: string, href: string) {
   return href === "/"
@@ -14,8 +23,61 @@ function isCurrentRoute(pathname: string, href: string) {
     : pathname === href || pathname.startsWith(`${href}/`);
 }
 
+function LanguageSwitcher({
+  locale,
+  pathname,
+  compact = false,
+}: {
+  locale: Locale;
+  pathname: string;
+  compact?: boolean;
+}) {
+  const targetLocale = alternateLocale(locale);
+  const label = t(locale, "Language");
+
+  return (
+    <div
+      className={`liquid-pill inline-flex items-center border border-line bg-white/35 p-1 ${
+        compact ? "w-full justify-between" : ""
+      }`}
+      role="group"
+      aria-label={label}
+    >
+      {(["en", "de"] as const).map((item) => {
+        const active = item === locale;
+        return (
+          <Link
+            key={item}
+            href={localizePath(pathname, item)}
+            hrefLang={item}
+            lang={item}
+            aria-current={active ? "page" : undefined}
+            aria-label={
+              active
+                ? `${languageName(item)} · ${t(locale, "current language")}`
+                : `${t(locale, "Switch to")} ${languageName(item)}`
+            }
+            className={`inline-flex min-h-9 items-center justify-center rounded-full px-3 font-mono text-[0.66rem] font-medium tracking-[0.1em] transition-colors ${
+              active
+                ? "bg-ink text-white shadow-sm"
+                : "text-muted hover:text-ink"
+            } ${compact ? "flex-1" : ""}`}
+          >
+            {item.toUpperCase()}
+          </Link>
+        );
+      })}
+      <span className="sr-only">
+        {t(locale, "Alternative language")}: {languageName(targetLocale)}
+      </span>
+    </div>
+  );
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
+  const locale = localeFromPathname(pathname);
+  const config = localizeContent(siteConfig, locale);
   const reduceMotion = useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,14 +114,18 @@ export function SiteHeader() {
     >
       <div className="scroll-progress-line" aria-hidden="true" />
       <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-8">
-        <BrandLockup priority />
+        <BrandLockup
+          priority
+          href={localizePath("/", locale)}
+          homeLabel={t(locale, "rappidAI research home")}
+        />
 
         <nav
           aria-label="Primary navigation"
           className="hidden items-center gap-8 lg:flex"
         >
           <div className="flex items-center gap-7">
-            {siteConfig.navigation.map((item) => {
+            {config.navigation.map((item) => {
               const active = isCurrentRoute(pathname, item.href);
               return (
                 <Link
@@ -77,11 +143,12 @@ export function SiteHeader() {
               );
             })}
           </div>
+          <LanguageSwitcher locale={locale} pathname={pathname} />
           <Link
-            href={siteConfig.primaryNavigationAction.href}
+            href={config.primaryNavigationAction.href}
             className="liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
           >
-            {siteConfig.primaryNavigationAction.label}
+            {config.primaryNavigationAction.label}
           </Link>
         </nav>
 
@@ -89,7 +156,11 @@ export function SiteHeader() {
           type="button"
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
-          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-label={
+            menuOpen
+              ? t(locale, "Close navigation")
+              : t(locale, "Open navigation")
+          }
           onClick={() => setMenuOpen((current) => !current)}
           className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-ink lg:hidden"
         >
@@ -115,9 +186,12 @@ export function SiteHeader() {
             }
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <nav aria-label="Mobile navigation" className="page-shell py-5">
+            <nav
+              aria-label={t(locale, "Mobile navigation")}
+              className="page-shell py-5"
+            >
               <div className="divide-y divide-line border-y border-line">
-                {siteConfig.navigation.map((item, index) => {
+                {config.navigation.map((item, index) => {
                   const active = isCurrentRoute(pathname, item.href);
                   return (
                     <motion.div
@@ -139,7 +213,7 @@ export function SiteHeader() {
                         {item.label}
                         {active ? (
                           <span className="font-mono text-[0.65rem] tracking-[0.12em] text-accent">
-                            ACTIVE
+                            {t(locale, "ACTIVE")}
                           </span>
                         ) : (
                           <ArrowUpRight
@@ -153,12 +227,15 @@ export function SiteHeader() {
                   );
                 })}
               </div>
+              <div className="mt-5">
+                <LanguageSwitcher locale={locale} pathname={pathname} compact />
+              </div>
               <Link
-                href={siteConfig.primaryNavigationAction.href}
+                href={config.primaryNavigationAction.href}
                 onClick={() => setMenuOpen(false)}
                 className="liquid-button mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
               >
-                {siteConfig.primaryNavigationAction.label}
+                {config.primaryNavigationAction.label}
               </Link>
             </nav>
           </motion.div>

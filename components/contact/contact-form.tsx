@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useId, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { contactPageContent } from "@/content/pages";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 type ContactField = "name" | "email" | "subject" | "message";
 type ContactValues = Record<ContactField, string>;
@@ -15,6 +16,7 @@ type SubmissionStatus = {
 
 type ContactFormProps = {
   businessEmail: string | null;
+  locale?: Locale;
 };
 
 const initialValues: ContactValues = {
@@ -26,8 +28,8 @@ const initialValues: ContactValues = {
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function validate(values: ContactValues): ContactErrors {
-  const { fields } = contactPageContent.form;
+function validate(values: ContactValues, locale: Locale): ContactErrors {
+  const { fields } = localizeContent(contactPageContent, locale).form;
   const errors: ContactErrors = {};
 
   if (!values.name.trim()) {
@@ -51,19 +53,32 @@ function validate(values: ContactValues): ContactErrors {
   return errors;
 }
 
-function ErrorMessage({ id, message }: { id: string; message?: string }) {
+function ErrorMessage({
+  id,
+  message,
+  locale,
+}: {
+  id: string;
+  message?: string;
+  locale: Locale;
+}) {
   if (!message) return null;
 
   return (
     <p id={id} role="alert" className="mt-2 text-sm leading-6 text-ink">
-      <span className="mr-1 font-semibold text-accent">Error:</span>
+      <span className="mr-1 font-semibold text-accent">
+        {t(locale, "Error:")}
+      </span>
       {message}
     </p>
   );
 }
 
-export function ContactForm({ businessEmail }: ContactFormProps) {
-  const { form } = contactPageContent;
+export function ContactForm({
+  businessEmail,
+  locale = "en",
+}: ContactFormProps) {
+  const { form } = localizeContent(contactPageContent, locale);
   const formRef = useRef<HTMLFormElement>(null);
   const idPrefix = useId();
   const [values, setValues] = useState<ContactValues>(initialValues);
@@ -77,7 +92,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
   if (!businessEmail) {
     return (
       <div className="liquid-surface border border-white/70 p-6 sm:p-9 lg:p-10">
-        <p className="eyebrow">ENQUIRY</p>
+        <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
         <h2 className="mt-5 max-w-[16ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
           {form.unavailableHeading}
         </h2>
@@ -85,7 +100,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
           {form.unavailableDescription}
         </p>
         <p className="mt-8 border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
-          No message is transmitted or stored by this website.
+          {t(locale, "No message is transmitted or stored by this website.")}
         </p>
       </div>
     );
@@ -109,7 +124,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const nextErrors = validate(values);
+    const nextErrors = validate(values, locale);
     setErrors(nextErrors);
 
     const firstInvalidField = (Object.keys(nextErrors) as ContactField[])[0];
@@ -129,8 +144,8 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
     }
 
     const body = [
-      `Name: ${values.name.trim()}`,
-      `Email: ${values.email.trim()}`,
+      `${t(locale, "Name")}: ${values.name.trim()}`,
+      `${t(locale, "Email")}: ${values.email.trim()}`,
       "",
       values.message.trim(),
     ].join("\n");
@@ -145,7 +160,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
 
   return (
     <div className="liquid-surface border border-white/70 p-5 pt-7 sm:p-9 lg:p-10">
-      <p className="eyebrow">ENQUIRY</p>
+      <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
       <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}
       </h2>
@@ -188,7 +203,11 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               className={fieldClassName}
               onChange={handleChange}
             />
-            <ErrorMessage id={`${idPrefix}-name-error`} message={errors.name} />
+            <ErrorMessage
+              id={`${idPrefix}-name-error`}
+              message={errors.name}
+              locale={locale}
+            />
           </div>
 
           <div>
@@ -219,6 +238,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
             <ErrorMessage
               id={`${idPrefix}-email-error`}
               message={errors.email}
+              locale={locale}
             />
           </div>
 
@@ -248,6 +268,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
             <ErrorMessage
               id={`${idPrefix}-subject-error`}
               message={errors.subject}
+              locale={locale}
             />
           </div>
 
@@ -277,6 +298,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
             <ErrorMessage
               id={`${idPrefix}-message-error`}
               message={errors.message}
+              locale={locale}
             />
           </div>
         </div>
@@ -300,7 +322,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
                 : "border-line-strong text-muted"
             }`}
           >
-            {status?.message ?? "No message has been sent."}
+            {status?.message ?? t(locale, "No message has been sent.")}
           </p>
         </div>
       </form>

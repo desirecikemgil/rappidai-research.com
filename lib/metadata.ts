@@ -2,20 +2,41 @@ import type { Metadata } from "next";
 import { getPageMetadata } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import type { SiteRoute } from "@/content/types";
+import { localizeContent, localizePath, type Locale } from "@/lib/i18n";
 
-export function metadataFor(route: SiteRoute): Metadata {
-  const page = getPageMetadata(route);
+export function metadataFor(route: SiteRoute, locale: Locale = "en"): Metadata {
+  const page = localizeContent(getPageMetadata(route), locale);
+  const localizedRoute = localizePath(route, locale);
   const canonical = siteConfig.canonicalUrl
-    ? new URL(route, siteConfig.canonicalUrl).toString()
+    ? new URL(localizedRoute, siteConfig.canonicalUrl).toString()
+    : undefined;
+  const englishUrl = siteConfig.canonicalUrl
+    ? new URL(localizePath(route, "en"), siteConfig.canonicalUrl).toString()
+    : undefined;
+  const germanUrl = siteConfig.canonicalUrl
+    ? new URL(localizePath(route, "de"), siteConfig.canonicalUrl).toString()
     : undefined;
 
   return {
     title: page.title,
     description: page.description,
-    alternates: canonical ? { canonical } : undefined,
+    alternates: canonical
+      ? {
+          canonical,
+          languages:
+            englishUrl && germanUrl
+              ? {
+                  en: englishUrl,
+                  de: germanUrl,
+                  "x-default": englishUrl,
+                }
+              : undefined,
+        }
+      : undefined,
     openGraph: {
       type: "website",
-      locale: "en_US",
+      locale: locale === "de" ? "de_DE" : "en_US",
+      alternateLocale: locale === "de" ? ["en_US"] : ["de_DE"],
       siteName: siteConfig.name,
       title: page.title,
       description: page.description,

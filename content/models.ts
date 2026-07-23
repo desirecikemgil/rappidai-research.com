@@ -5,6 +5,7 @@ import type {
   ModelSlug,
 } from "./types";
 import { publicModelUrls, publicResearchUrls } from "./site";
+import { localizeContent, type Locale } from "@/lib/i18n";
 
 const unstatedPublicModelLicense =
   "No model license is currently stated in the public repository. Downloadability does not by itself define reuse rights.";
@@ -324,27 +325,45 @@ export function isModelSlug(value: string): value is ModelSlug {
   return models.some((model) => model.slug === value);
 }
 
-export function getModelBySlug(slug: string): Model | undefined {
-  return models.find((model) => model.slug === slug);
+export function getModelBySlug(
+  slug: string,
+  locale: Locale = "en",
+): Model | undefined {
+  const model = models.find((entry) => entry.slug === slug);
+  return model ? localizeContent(model, locale) : undefined;
 }
 
-export function getFeaturedModel(): Model {
+export function getFeaturedModel(locale: Locale = "en"): Model {
   const featuredModel = models.find((model) => model.featured);
 
   if (!featuredModel) {
     throw new Error("A featured model has not been configured.");
   }
 
-  return featuredModel;
+  return localizeContent(featuredModel, locale);
 }
 
-export function getModelsByFilter(filter: ModelFilterId): readonly Model[] {
+export function getModelsByFilter(
+  filter: ModelFilterId,
+  locale: Locale = "en",
+): readonly Model[] {
+  let filteredModels: readonly Model[];
+
   switch (filter) {
     case "all":
-      return models;
+      filteredModels = models;
+      break;
     case "available":
-      return models.filter((model) => model.availability === "available");
+      filteredModels = models.filter(
+        (model) => model.availability === "available",
+      );
+      break;
     case "in-development":
-      return models.filter((model) => model.status === "in-development");
+      filteredModels = models.filter(
+        (model) => model.status === "in-development",
+      );
+      break;
   }
+
+  return localizeContent(filteredModels, locale);
 }

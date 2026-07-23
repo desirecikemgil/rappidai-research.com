@@ -9,11 +9,13 @@ import {
 import { PageIntro } from "@/components/ui/page-intro";
 import { resourceReview, statusContent } from "@/content/resources";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/resources/status");
 
-export default function StatusPage() {
-  const content = statusContent;
+export function LocalizedStatusPage({ locale }: { locale: Locale }) {
+  const content = localizeContent(statusContent, locale);
+  const review = localizeContent(resourceReview, locale);
 
   return (
     <>
@@ -21,10 +23,11 @@ export default function StatusPage() {
 
       <section className="page-shell pb-[var(--section-space)]">
         <ReviewStamp
-          label={resourceReview.label}
-          reference={resourceReview.evidenceReference}
-          explanation={resourceReview.explanation}
-          url={resourceReview.evidenceUrl}
+          label={review.label}
+          reference={review.evidenceReference}
+          explanation={review.explanation}
+          url={review.evidenceUrl}
+          locale={locale}
         />
 
         <div className="mt-12 space-y-4">
@@ -35,7 +38,7 @@ export default function StatusPage() {
               className="liquid-row grid gap-7 rounded-[1.3rem] border-y border-line py-8 lg:grid-cols-[0.65fr_1.35fr]"
             >
               <div>
-                <EvidenceBadge status={model.status} />
+                <EvidenceBadge status={model.status} locale={locale} />
                 <h2 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
                   <Link href={model.href} className="hover:text-accent">
                     {model.name}
@@ -54,9 +57,9 @@ export default function StatusPage() {
 
         <div className="mt-[clamp(4rem,8vw,8rem)]">
           <Reveal>
-            <p className="eyebrow">OPEN PUBLICATION ITEMS</p>
+            <p className="eyebrow">{t(locale, "OPEN PUBLICATION ITEMS")}</p>
             <h2 className="display-section mt-7 text-ink">
-              Gaps remain part of the record.
+              {t(locale, "Gaps remain part of the record.")}
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -66,7 +69,7 @@ export default function StatusPage() {
                 delay={(index % 2) * 0.04}
                 className="liquid-card p-7 sm:p-8"
               >
-                <EvidenceBadge status={item.status} />
+                <EvidenceBadge status={item.status} locale={locale} />
                 <h3 className="mt-6 text-xl font-medium tracking-[-0.03em] text-ink">
                   {item.title}
                 </h3>
@@ -78,9 +81,9 @@ export default function StatusPage() {
 
         <Reveal className="liquid-surface mt-[clamp(4rem,8vw,8rem)] grid gap-8 p-7 sm:p-9 lg:grid-cols-[0.6fr_1.4fr]">
           <div>
-            <p className="eyebrow">DOCUMENTATION ROADMAP</p>
+            <p className="eyebrow">{t(locale, "DOCUMENTATION ROADMAP")}</p>
             <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
-              Evidence before claims.
+              {t(locale, "Evidence before claims.")}
             </h2>
           </div>
           <ol className="space-y-4">
@@ -99,11 +102,15 @@ export default function StatusPage() {
         </Reveal>
 
         <Reveal className="mt-10">
-          <SourceLinks sources={content.sources} />
+          <SourceLinks sources={content.sources} locale={locale} />
         </Reveal>
       </section>
 
-      <ResourceDirectory current="status" />
+      <ResourceDirectory current="status" locale={locale} />
     </>
   );
+}
+
+export default function StatusPage() {
+  return <LocalizedStatusPage locale="en" />;
 }

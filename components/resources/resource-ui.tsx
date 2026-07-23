@@ -7,13 +7,16 @@ import type {
   ResourceId,
   ResourceSource,
 } from "@/content/types";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export function EvidenceBadge({
   status,
   onDark = false,
+  locale = "en",
 }: {
   status: EvidenceStatus;
   onDark?: boolean;
+  locale?: Locale;
 }) {
   const published = status === "Published";
   const partial = status === "Partial evidence";
@@ -42,7 +45,7 @@ export function EvidenceBadge({
                 : "bg-muted/55"
         }`}
       />
-      {status}
+      {t(locale, status)}
     </span>
   );
 }
@@ -50,14 +53,16 @@ export function EvidenceBadge({
 export function SourceLinks({
   sources,
   label = "Primary sources",
+  locale = "en",
 }: {
   sources: readonly ResourceSource[];
   label?: string;
+  locale?: Locale;
 }) {
   return (
     <div>
       <p className="font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase">
-        {label}
+        {t(locale, label)}
       </p>
       <div className="mt-4 flex flex-wrap gap-3">
         {sources.map((source) => (
@@ -76,10 +81,17 @@ export function SourceLinks({
   );
 }
 
-export function ResourceDirectory({ current }: { current?: ResourceId }) {
+export function ResourceDirectory({
+  current,
+  locale = "en",
+}: {
+  current?: ResourceId;
+  locale?: Locale;
+}) {
+  const localizedResources = localizeContent(resourceCards, locale);
   const entries = current
-    ? resourceCards.filter((resource) => resource.id !== current)
-    : resourceCards;
+    ? localizedResources.filter((resource) => resource.id !== current)
+    : localizedResources;
 
   return (
     <section
@@ -89,19 +101,21 @@ export function ResourceDirectory({ current }: { current?: ResourceId }) {
       <div className="page-shell section-space-sm">
         <Reveal className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="eyebrow">DOCUMENTATION DIRECTORY</p>
+            <p className="eyebrow">{t(locale, "DOCUMENTATION DIRECTORY")}</p>
             <h2
               id="resource-directory-heading"
               className="display-section mt-7 text-ink"
             >
               {current
-                ? "Continue through the evidence."
-                : "Documentation by topic."}
+                ? t(locale, "Continue through the evidence.")
+                : t(locale, "Documentation by topic.")}
             </h2>
           </div>
           <p className="max-w-md text-sm leading-6 text-muted">
-            Every section keeps public evidence, configured targets and missing
-            information visibly separate.
+            {t(
+              locale,
+              "Every section keeps public evidence, configured targets and missing information visibly separate.",
+            )}
           </p>
         </Reveal>
 
@@ -120,7 +134,7 @@ export function ResourceDirectory({ current }: { current?: ResourceId }) {
                   <p className="font-mono text-[0.64rem] tracking-[0.13em] text-accent uppercase">
                     {resource.eyebrow}
                   </p>
-                  <EvidenceBadge status={resource.status} />
+                  <EvidenceBadge status={resource.status} locale={locale} />
                 </div>
                 <h3 className="mt-7 text-2xl font-medium tracking-[-0.035em] text-ink">
                   {resource.title}
@@ -129,7 +143,7 @@ export function ResourceDirectory({ current }: { current?: ResourceId }) {
                   {resource.description}
                 </p>
                 <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors group-hover:text-accent">
-                  Open resource
+                  {t(locale, "Open resource")}
                   <ArrowRight aria-hidden="true" className="size-4" />
                 </span>
               </Link>
@@ -146,16 +160,18 @@ export function ReviewStamp({
   reference,
   explanation,
   url,
+  locale = "en",
 }: {
   label: string;
   reference: string;
   explanation: string;
   url: string;
+  locale?: Locale;
 }) {
   return (
     <Reveal className="liquid-surface grid gap-7 border-accent/20 p-7 sm:p-9 lg:grid-cols-[0.6fr_1.4fr]">
       <div>
-        <p className="eyebrow">LAST REVIEWED</p>
+        <p className="eyebrow">{t(locale, "LAST REVIEWED")}</p>
         <p className="mt-4 text-2xl font-medium tracking-[-0.035em] text-ink">
           {label}
         </p>
@@ -171,7 +187,7 @@ export function ReviewStamp({
           rel="noreferrer"
           className="mt-5 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
         >
-          Inspect pinned snapshot
+          {t(locale, "Inspect pinned snapshot")}
         </a>
       </div>
     </Reveal>
