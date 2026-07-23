@@ -13,3 +13,11 @@ When implementing from a selected generated mock, treat that image as the source
 - Use highly transparent liquid-glass surfaces with layered highlights, soft blue refraction, generous blur, and subtle depth while preserving legibility.
 - Keep motion accessible with `prefers-reduced-motion`, and verify new effects at desktop and mobile breakpoints.
 - Prefer fine glass edges, controlled radii, and smaller lens-like background forms over large coarse bubbles; carry the complete glass language through mobile layouts and touch states.
+
+## Durable research-publication direction
+
+- Treat “Documented clearly” as an evidence rule: connect public claims to committed reports, configurations, manifests, checksums or model cards.
+- Keep configuration, preflight, smoke-test, production-run and trained-model evidence visibly separate.
+- Present Echelon Base and Echelon Chat as stages or variants within `quantum-1-echelon`, never as separate model families.
+- Show missing evidence directly with `Not published`, `Not measured`, `Not yet available`, `Partial evidence` or `Maintainer input required`.
+- Never upgrade configured targets, estimated architecture properties or smoke-test totals into claims about completed Echelon training or production data.

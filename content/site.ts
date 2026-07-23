@@ -26,6 +26,7 @@ const lumenQuantumReviewedSource = `${lumenQuantumRepository}/blob/${lumenQuantu
 
 export const publicResearchUrls = {
   repository: lumenQuantumRepository,
+  evidenceSnapshot: `${lumenQuantumRepository}/tree/${lumenQuantumReviewedRevision}`,
   quantum1ModelCard: `${publicModelUrls["quantum-1-pilot"]}/blob/${reviewedModelRevisions["quantum-1-pilot"]}/README.md`,
   quantum16ModelCard: `${publicModelUrls["quantum-1-6-pilot"]}/blob/${reviewedModelRevisions["quantum-1-6-pilot"]}/README.md`,
   trainingDocumentation: `${lumenQuantumReviewedSource}/docs/quantum_1_6_pilot.md`,
@@ -40,12 +41,18 @@ export const publicResearchUrls = {
   quantum16Checksum: `${publicModelUrls["quantum-1-6-pilot"]}/blob/${reviewedModelRevisions["quantum-1-6-pilot"]}/SHA256SUMS.txt`,
   quantum1Manifest: `${publicModelUrls["quantum-1-pilot"]}/blob/${reviewedModelRevisions["quantum-1-pilot"]}/manifest.json`,
   quantum16Manifest: `${publicModelUrls["quantum-1-6-pilot"]}/blob/${reviewedModelRevisions["quantum-1-6-pilot"]}/manifest.json`,
+  echelonDirectory: `${lumenQuantumRepository}/tree/${lumenQuantumReviewedRevision}/reports/quantum-1-echelon`,
   echelonArchitectureConfiguration: `${lumenQuantumReviewedSource}/configs/echelon/quantum-1-echelon-base.yaml`,
   echelonArchitecturePreflight: `${lumenQuantumReviewedSource}/reports/quantum-1-echelon/quantum-1-echelon-base-preflight.json`,
   echelonTokenizerConfiguration: `${lumenQuantumReviewedSource}/configs/echelon/tokenizer.yaml`,
   echelonTokenizerValidation: `${lumenQuantumReviewedSource}/reports/quantum-1-echelon/tokenizer_validation.json`,
+  echelonTokenizerQuality: `${lumenQuantumReviewedSource}/reports/quantum-1-echelon/tokenizer_quality.json`,
+  echelonTokenizerChecksums: `${lumenQuantumReviewedSource}/reports/quantum-1-echelon/tokenizer_SHA256SUMS.txt`,
+  echelonGardenPlan: `${lumenQuantumReviewedSource}/docs/echelon/GARDEN_PIPELINE_PLAN.md`,
   echelonGardenConfiguration: `${lumenQuantumReviewedSource}/configs/echelon/garden_production.yaml`,
   echelonGardenReport: `${lumenQuantumReviewedSource}/reports/quantum-1-echelon/garden_phase3_report.md`,
+  echelonSourceMetadata: `${lumenQuantumReviewedSource}/reports/quantum-1-echelon/source_metadata_analysis.json`,
+  echelonPaths: `${lumenQuantumReviewedSource}/configs/echelon/paths.yaml`,
 } as const;
 
 /**

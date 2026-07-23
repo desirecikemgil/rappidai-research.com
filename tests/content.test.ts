@@ -52,10 +52,15 @@ describe("model content helpers", () => {
   it("does not present the Echelon preflight as a released model", () => {
     const echelon = getModelBySlug("quantum-1-echelon");
 
-    expect(echelon?.parameterCount?.value).toBe(506_333_440);
+    expect(echelon?.parameterCount).toBeNull();
     expect(echelon?.availability).toBe("not-released");
-    expect(echelon?.links).toHaveLength(0);
-    expect(echelon?.releaseStatus).toContain("no trained checkpoint");
+    expect(echelon?.links).toEqual([
+      expect.objectContaining({
+        kind: "github",
+        url: publicResearchUrls.repository,
+      }),
+    ]);
+    expect(echelon?.releaseStatus).toContain("No trained Echelon weights");
   });
 });
 

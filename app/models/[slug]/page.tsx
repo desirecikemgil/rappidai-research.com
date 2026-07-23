@@ -9,7 +9,7 @@ import { getModelBySlug, modelSlugs } from "@/content/models";
 import { modelsPageContent } from "@/content/pages";
 import { getResearchNoteById } from "@/content/research";
 import { siteConfig } from "@/content/site";
-import type { SiteRoute } from "@/content/types";
+import type { ModelLink, SiteRoute } from "@/content/types";
 import { metadataFor } from "@/lib/metadata";
 
 type ModelPageProps = {
@@ -33,6 +33,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
   const { slug } = await params;
   const model = getModelBySlug(slug);
   if (!model) notFound();
+  const modelLinks = model.links as readonly ModelLink[];
 
   const relatedNotes = model.relatedResearchNoteIds
     .map((id) => getResearchNoteById(id))
@@ -86,15 +87,15 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
               <p className="eyebrow">Summary</p>
               <p className="body-lg mt-6">{model.summary}</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                {model.links.length === 0 ? (
+                {modelLinks.length === 0 ? (
                   <PendingAction>
                     {modelsPageContent.missingLinksLabel}
                   </PendingAction>
                 ) : (
-                  model.links.map((link) =>
+                  modelLinks.map((link) =>
                     link.url ? (
                       <ActionLink
-                        key={link.kind}
+                        key={`${link.kind}-${link.label}`}
                         href={link.url}
                         external
                         variant="secondary"
@@ -102,7 +103,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                         {link.label}
                       </ActionLink>
                     ) : (
-                      <PendingAction key={link.kind}>
+                      <PendingAction key={`${link.kind}-${link.label}`}>
                         {link.pendingLabel}
                       </PendingAction>
                     ),

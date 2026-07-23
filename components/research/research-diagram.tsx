@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useReducedEffects } from "@/components/motion/use-reduced-effects";
 
 type DiagramKind = "pipeline" | "inference" | "evaluation";
 
@@ -8,7 +9,7 @@ const viewport = { once: true, amount: 0.45 } as const;
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedEffects();
 
   if (kind === "pipeline") {
     return (

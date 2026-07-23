@@ -11,6 +11,9 @@ export function InteractiveAtmosphere() {
     const finePointer = window.matchMedia(
       "(hover: hover) and (pointer: fine)",
     ).matches;
+    const reducedEffects = window.matchMedia(
+      "(hover: none), (pointer: coarse), (max-width: 700px)",
+    ).matches;
     let pointerFrame = 0;
     let scrollFrame = 0;
     let targetX = window.innerWidth / 2;
@@ -67,12 +70,14 @@ export function InteractiveAtmosphere() {
     if (finePointer && !reducedMotion) {
       window.addEventListener("pointermove", updatePointer, { passive: true });
     }
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    updateScroll();
+    if (!reducedEffects) {
+      window.addEventListener("scroll", updateScroll, { passive: true });
+      updateScroll();
+    }
 
     return () => {
       window.removeEventListener("pointermove", updatePointer);
-      window.removeEventListener("scroll", updateScroll);
+      if (!reducedEffects) window.removeEventListener("scroll", updateScroll);
       if (pointerFrame) cancelAnimationFrame(pointerFrame);
       if (scrollFrame) cancelAnimationFrame(scrollFrame);
     };

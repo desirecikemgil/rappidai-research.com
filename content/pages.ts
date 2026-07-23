@@ -11,7 +11,7 @@ export const homePageContent = {
     eyebrow: "INDEPENDENT AI RESEARCH",
     headlineLines: ["Smaller models.", "Focused intelligence."],
     description:
-      "rappidAI documents compact German-language model experiments, public GGUF releases and the in-development quantum-1-echelon training pipeline. The two public Quantum pilots are experimental base-completion models.",
+      "rappidAI documents compact German-language model experiments, GGUF releases and local-inference workflows. The two public Quantum pilots are experimental base-completion models; Echelon is the current strategic model line and remains at pipeline and preflight stage.",
     supportingText:
       "The work is intended for developers, researchers, students and builders investigating small-model training, documented evaluation and local deployment with limited compute. The current pilots are research artifacts, not chat assistants or production systems.",
     primaryAction: {
@@ -22,7 +22,8 @@ export const homePageContent = {
       label: "View on Hugging Face",
       linkKey: "huggingFace",
     } satisfies ExternalCallToAction,
-    status: "Current focus: the quantum-1-echelon data and training pipeline.",
+    status:
+      "Current focus: Echelon data-pipeline validation, reproducibility and transparent evidence boundaries.",
   },
   thesis: {
     eyebrow: "RESEARCH THESIS",
@@ -82,9 +83,9 @@ export const modelsPageContent = {
 export const researchPageContent = {
   introduction: {
     eyebrow: "RESEARCH",
-    title: "Research behind the Quantum pilots.",
+    title: "Documented clearly, artifact by artifact.",
     description:
-      "A source-linked account of the questions, controlled variables, public results, observed limitations and open questions behind quantum-1-pilot and quantum-1.6-pilot.",
+      "A source-linked evidence ledger for the released Quantum pilots and the current Echelon pipeline, including findings, negative results, reproducibility status and visible publication gaps.",
   } satisfies PageIntroduction,
 } as const;
 
@@ -129,8 +130,8 @@ export const aboutPageContent = {
   },
   currentDirection: {
     eyebrow: "CURRENT DIRECTION",
-    title: "The quantum-1-echelon pipeline.",
-    text: "Public work currently includes a 506.3M-parameter base-architecture preflight, tokenizer validation and a Garden data-pipeline smoke test. The full production data run and model training have not been reported as started.",
+    title: "The Echelon model line.",
+    text: "The current public work covers Echelon architecture preflight, tokenizer validation and Garden data-pipeline smoke tests. Echelon Base and a later Echelon Chat stage belong to one model line; no trained Echelon model is public.",
   },
   experimentalNotice: {
     eyebrow: "EXPERIMENTAL OUTPUTS",
@@ -238,7 +239,7 @@ export const pageMetadata = {
   "/models": {
     title: "Models — rappidAI Research",
     description:
-      "Explore rappidAI's experimental pilot releases and the in-development quantum-1-echelon pipeline.",
+      "Explore two released Quantum pilot models and the evidence-backed pipeline status of the untrained Echelon model line.",
   },
   "/models/quantum-1-pilot": {
     title: "quantum-1-pilot — rappidAI Research",
@@ -253,12 +254,12 @@ export const pageMetadata = {
   "/models/quantum-1-echelon": {
     title: "quantum-1-echelon — rappidAI Research",
     description:
-      "Public architecture, tokenizer and data-pipeline status for the in-development quantum-1-echelon model line.",
+      "Evidence-backed pipeline, tokenizer and architecture-preflight status for the untrained quantum-1-echelon model line.",
   },
   "/research": {
     title: "Research — rappidAI Research",
     description:
-      "Source-linked research questions, experiment design, results, limitations and reproducibility artifacts for the Quantum pilot models.",
+      "An artifact-level evidence ledger covering Quantum pilot results, Echelon pipeline status, negative findings, gaps and reproducibility.",
   },
   "/about": {
     title: "About — rappidAI Research",
