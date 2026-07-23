@@ -28,12 +28,16 @@ pnpm format:check
 pnpm typecheck
 pnpm lint
 pnpm test
+pnpm links:internal
 pnpm build
+pnpm test:e2e
+pnpm links:external
 ```
 
-`pnpm check` runs the complete validation sequence after dependencies are
-installed. Add the real result of every check to the release notes; do not
-describe an unrun check as passing.
+`pnpm check` runs the format, lint, type-check, unit, relative-link, and build
+sequence after dependencies are installed. Browser tests require the
+repository-pinned Chromium runtime. Add the real result of every check to the
+release notes; do not describe an unrun check as passing.
 
 Also verify:
 

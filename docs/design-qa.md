@@ -36,12 +36,16 @@ do not establish the result of those checks for the current commit.
 The source contains responsive styles, semantic markup, focus states,
 accessibility attributes, reduced-motion handling, client-side form validation,
 and local image references. Focused automated tests cover selected content and
-JSON-LD behavior, and the build can detect some broken application states.
+JSON-LD behavior. Playwright checks every public route in Chromium, runs axe
+against serious and critical findings, exercises required-field contact
+validation, checks reduced-motion mobile overflow, verifies internal navigation,
+and checks the sitemap and robots endpoints.
 
-Source inspection and a successful build are not substitutes for browser-level
-visual or accessibility evidence. The repository currently does not retain the
-historical reference images, screenshots, comparison thresholds, browser
-versions, assistive-technology results, or a versioned end-to-end visual test.
+Automated browser checks and a successful build are not substitutes for
+human visual or accessibility review. The repository still does not retain the
+historical reference images, visual-comparison thresholds, or manual
+assistive-technology results. CI retains Playwright screenshots and traces when
+a browser check fails.
 
 ## Reproducible review procedure
 
@@ -57,8 +61,8 @@ For a future design-QA claim:
    review artifact location and record a SHA-256 for each input.
 5. Capture full-page and focused screenshots for desktop, tablet, mobile,
    keyboard-focus, menu-open, validation-error, and reduced-motion states.
-6. Run keyboard navigation, automated accessibility checks, and targeted manual
-   screen-reader checks; retain tool versions and raw output.
+6. Run `pnpm test:e2e`, keyboard navigation, and targeted manual screen-reader
+   checks; retain tool versions and raw output.
 7. Record console errors, network failures, broken images, horizontal overflow,
    and unexpected external requests.
 8. Attach screenshots and reports to the pull request or release artifact, with
@@ -83,5 +87,6 @@ For a future design-QA claim:
 | Findings               | Severity, reproduction, owner, and resolution           |
 | Decision               | Pass / conditional / fail with explicit approver        |
 
-Until such a record is attached to a specific commit, the defensible status is:
-historical manual review noted, current browser QA unverified.
+Without a commit-specific manual acceptance record, the defensible status is:
+automated browser coverage present; historical visual review noted; current
+manual visual and assistive-technology acceptance unverified.

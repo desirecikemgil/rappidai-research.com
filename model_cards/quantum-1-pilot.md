@@ -92,6 +92,9 @@ and reproducibility notes.
 - Use that assumes the model is aligned, unbiased, private, or robust against
   prompt manipulation.
 
+The project-wide publication and use boundary is recorded in
+[Responsible AI and research limitations](../docs/responsible-ai.md).
+
 ## Evaluation and limitations
 
 The public model card says that project-specific evaluation was run, but no

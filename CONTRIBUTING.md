@@ -63,6 +63,7 @@ pnpm format:check
 pnpm typecheck
 pnpm lint
 pnpm test
+pnpm links:internal
 pnpm build
 ```
 
@@ -70,8 +71,11 @@ pnpm build
 unless you ran them and report their actual results. If a check cannot run,
 explain why in the pull request.
 
-For visible changes, also inspect affected pages at desktop and mobile widths,
-keyboard navigation, focus states, and reduced-motion behavior.
+For visible changes, install the repository-pinned Chromium runtime once with
+`pnpm exec playwright install chromium`, then run `pnpm test:e2e`. Also inspect
+affected pages manually at desktop and mobile widths, including keyboard
+navigation, focus states, and reduced-motion behavior. Use
+`pnpm links:external` when changing public evidence or artifact links.
 
 ## Licensing and provenance
 

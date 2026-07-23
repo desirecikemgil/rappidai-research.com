@@ -56,15 +56,18 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Commands
 
-| Command             | Purpose                                                |
-| ------------------- | ------------------------------------------------------ |
-| `pnpm dev`          | Start the local development server.                    |
-| `pnpm format:check` | Verify formatting without changing files.              |
-| `pnpm lint`         | Run ESLint.                                            |
-| `pnpm typecheck`    | Run TypeScript without emitting files.                 |
-| `pnpm test`         | Run the CPU-only unit tests once.                      |
-| `pnpm build`        | Build the production site and prerender public routes. |
-| `pnpm check`        | Run the complete local validation sequence.            |
+| Command               | Purpose                                                    |
+| --------------------- | ---------------------------------------------------------- |
+| `pnpm dev`            | Start the local development server.                        |
+| `pnpm format:check`   | Verify formatting without changing files.                  |
+| `pnpm lint`           | Run ESLint.                                                |
+| `pnpm typecheck`      | Run TypeScript without emitting files.                     |
+| `pnpm test`           | Run the CPU-only unit tests once.                          |
+| `pnpm test:e2e`       | Build the site and run Chromium route/accessibility tests. |
+| `pnpm links:internal` | Verify relative links in tracked Markdown files.           |
+| `pnpm links:external` | Verify public HTTP links with retries and timeouts.        |
+| `pnpm build`          | Build the production site and prerender public routes.     |
+| `pnpm check`          | Run the complete local validation sequence.                |
 
 No GPU, model download, API key or external service is required to build and test this website.
 
@@ -155,6 +158,11 @@ See [docs/licensing.md](docs/licensing.md) for the full scope and unresolved ite
 The public pilot models can produce false, repetitive, incomplete or incoherent text. They are not instruction-tuned, are limited to a 512-token context and have no published standardized downstream benchmarks. Do not use them for medical, legal, financial, safety-critical or other high-stakes decisions.
 
 Model files, checkpoints and dataset samples are untrusted inputs. Verify checksums, prefer non-executable formats, avoid unsafe deserialization, do not enable remote code without review and run unfamiliar training or inference code in an isolated environment.
+
+The shared publication and use boundary is documented in
+[Responsible AI and research limitations](docs/responsible-ai.md). This record
+does not claim that the pilot models have completed a comprehensive safety
+evaluation.
 
 ## Roadmap and contributing
 

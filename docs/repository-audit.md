@@ -1,8 +1,8 @@
 # Repository audit
 
-- **Audit date:** 2026-07-22
+- **Audit date:** 2026-07-23
 - **Website baseline:** `rappidai-research.com` commit
-  `3ddc3a2d6a974e891dbe51b7f7a67ba0bf391301`
+  `72bf760f9b1a512ab5de36190bb863403753bc39`
 - **Research reference:** `lumen-quantum` commit
   `f7eda1fb0ae153f0f9cc3477ead997cbdb462b39`
 
@@ -16,18 +16,18 @@ remote model execution; they are research-claim provenance, component-specific
 licensing, dependency maintenance, publication configuration, and the risk of
 manual QA being described without durable evidence.
 
-The candidate preparation worktree adds documentation, community/release
-materials, focused tests, CI, exact direct dependency versions, security
-headers, and safer JSON-LD serialization in parallel changes. Those additions
-are not evidence of a published state until committed, reviewed, and run in CI.
-This audit deliberately identifies the baseline separately from candidate
-remediation.
+The reviewed default-branch baseline contains the documentation,
+community/release materials, focused tests, CI, exact direct dependency
+versions, security headers, and safer JSON-LD serialization described below.
+The subsequent readiness pass adds browser/accessibility, link-integrity, and
+CodeQL automation; those additions become release evidence only after they are
+committed, reviewed, and pass CI at the exact resulting commit.
 
 ## Scope and method
 
 The review covered:
 
-- the complete tracked website baseline and its seven-commit history;
+- the complete tracked website baseline and its 16-commit history;
 - route, component, content, asset, package, lockfile, and configuration files;
 - high-confidence secret-pattern and absolute-local-path searches;
 - tracked file sizes and model-artifact extension searches;
@@ -42,7 +42,7 @@ independent reproduction of reported evaluation metrics.
 
 ## Repository inventory
 
-The baseline contains 54 tracked files totaling approximately 3.2 MiB. Its
+The readiness candidate contains 98 tracked files totaling approximately 3.3 MiB. Its
 largest tracked file is the 868,858-byte ambient brand PNG. Generated dependency
 and build directories are ignored and are not part of the Git distribution.
 
@@ -74,10 +74,13 @@ Detailed evidence and limitations are recorded in the files under
 
 ## Security and privacy review
 
-### Positive controls in the candidate worktree
+### Positive controls in the reviewed repository
 
 - CI uses read-only default repository permissions, a frozen lockfile, a fixed
   Node version, and SHA-pinned third-party actions.
+- Secret scanning, push protection, Dependabot alerts/security updates, Private
+  Vulnerability Reporting, and `main` branch protection are enabled.
+- CodeQL analyzes JavaScript and TypeScript on changes and on a weekly schedule.
 - Direct package versions are exact, and monthly dependency update checks are
   configured for npm and GitHub Actions.
 - The JSON-LD helper escapes `<`, `>`, `&`, U+2028, and U+2029 before inline
@@ -100,8 +103,8 @@ Detailed evidence and limitations are recorded in the files under
   pointed to unavailable evidence. The replacement historical QA record removes
   those paths. Existing Git history still retains old text unless history is
   deliberately rewritten; no rewrite is recommended solely for these paths.
-- The production dependency audit run against the candidate lockfile on
-  2026-07-22 returned “No known vulnerabilities found.” Advisory databases and
+- The production dependency audit run against the reviewed lockfile on
+  2026-07-23 returned “No known vulnerabilities found.” Advisory databases and
   dependency graphs change, so CI and release-day review remain necessary.
 
 ### Remaining security follow-ups
@@ -109,15 +112,17 @@ Detailed evidence and limitations are recorded in the files under
 - There is no Content Security Policy. Adding one is defense in depth, but Next
   inline scripts and framework behavior require a tested nonce or hash strategy;
   do not paste a restrictive policy into production without route testing.
-- Current automated tests are focused unit/content checks rather than browser,
-  accessibility, or end-to-end security tests.
+- Browser automation covers every public route, serious and critical automated
+  accessibility findings, internal navigation, contact validation,
+  reduced-motion mobile overflow, and public metadata endpoints. Manual visual,
+  keyboard, and assistive-technology review remains necessary.
 - External links transfer visitors to separate services. Re-check link targets
   and external-service terms during release review.
 
 ## Supply-chain and dependency review
 
 The lockfile contains registry-resolved packages with integrity hashes and no
-reviewed direct Git, file, or arbitrary URL dependency. The candidate CI installs
+reviewed direct Git, file, or arbitrary URL dependency. CI installs
 with `--frozen-lockfile` and pins workflow actions to full commit SHAs. These
 controls improve repeatability but do not establish that dependencies are free
 of malicious code or future vulnerabilities.
@@ -143,7 +148,7 @@ Licenses must remain component-specific:
 
 | Component                           | Audit state                                                                                                                                                |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Original website code/documentation | Candidate root `LICENSE` and `NOTICE` identify Apache-2.0 scope for material the contributors have rights to.                                              |
+| Original website code/documentation | Root `LICENSE` and `NOTICE` identify Apache-2.0 scope for material the contributors have rights to.                                                        |
 | Brand and model-card PNGs           | Provenance is incomplete; they are explicitly excluded from the Apache grant pending creator/source/permission records. No reuse license is claimed.       |
 | Pilot weights/tokenizers            | Publicly downloadable, but no explicit artifact license was found in the reviewed Hugging Face metadata. Do not label them open source or freely reusable. |
 | FineWeb2-HQ / source text           | ODC-By 1.0 plus Common Crawl terms and underlying source rights; privacy and rights risks remain.                                                          |
@@ -154,13 +159,13 @@ The records are maintenance guidance, not legal advice.
 
 ## Documentation and QA review
 
-The baseline design-QA file asserted a pass and referred to screenshots stored
+The historical design-QA file asserted a pass and referred to screenshots stored
 outside the repository. A reviewer or CI job could not reproduce those claims.
-The replacement [Historical design QA record](design-qa.md):
+The current [Historical design QA record](design-qa.md):
 
 - labels the review as a historical manual exercise;
 - removes local absolute paths and unavailable artifact claims;
-- does not certify current route, browser, console, or accessibility status; and
+- distinguishes automated browser coverage from manual acceptance; and
 - provides a repeatable checklist for attaching evidence to a future PR or
   release.
 
@@ -177,7 +182,7 @@ test environment and retained output.
 | High     | Neither pilot has a final public run manifest                                                           | Link immutable data, tokenizer, config, code, checkpoints/logs, evaluation, export, and checksum evidence |
 | High     | Echelon production data and training have not started                                                   | Preserve “preflight/smoke only” wording until completed artifacts exist                                   |
 | Medium   | Public legal identity still requires owner-supplied verification where the site marks values incomplete | Confirm before treating the imprint or launch record as complete                                          |
-| Medium   | No browser-level accessibility/end-to-end suite                                                         | Add reproducible route, form, keyboard, responsive, and automated accessibility checks                    |
+| Medium   | No commit-specific manual visual or assistive-technology acceptance record                              | Retain licensed references, environments, screenshots, keyboard and screen-reader evidence for releases   |
 | Medium   | No CSP                                                                                                  | Design and test a deployment-compatible policy with reporting before enforcement                          |
 | Medium   | No final SBOM / distribution-specific third-party notice                                                | Generate as part of a release when the distribution method requires it                                    |
 | Low      | Historical local paths remain in Git history                                                            | Accept as non-secret history or rewrite only after explicit maintainer risk review                        |

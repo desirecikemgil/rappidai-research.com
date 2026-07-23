@@ -311,7 +311,7 @@ export default function ResearchPage() {
 
       <section className="border-y border-line bg-ink py-10 text-white">
         <div className="page-shell flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="eyebrow text-[#79aaff]">COMPLETED PILOT STUDY</p>
+          <p className="eyebrow eyebrow-on-dark">COMPLETED PILOT STUDY</p>
           <p className="max-w-[45rem] text-sm leading-6 text-[#c8d6e9] sm:text-right">
             The sections below document the released quantum-1-pilot and
             quantum-1.6-pilot experiment separately from the untrained Echelon
@@ -884,7 +884,11 @@ export default function ResearchPage() {
           <Reveal className="mt-12 min-w-0">
             <p className="eyebrow">LLAMA.CPP REFERENCE</p>
             <div className="liquid-surface mt-6 min-w-0 p-6 sm:p-8">
-              <pre className="max-w-full overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7]">
+              <pre
+                aria-label="Scrollable llama.cpp reference command"
+                tabIndex={0}
+                className="max-w-full overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+              >
                 <code>{research.reproducibility.command}</code>
               </pre>
               <p className="mt-5 text-sm leading-6 text-muted">
@@ -909,28 +913,30 @@ export default function ResearchPage() {
               {research.openQuestions.title}
             </h2>
           </Reveal>
-          <ol className="space-y-3 border-t border-line sm:space-y-4 lg:col-span-7 lg:col-start-6">
-            {research.openQuestions.items.map((question, index) => (
-              <li key={question}>
-                <Reveal
-                  delay={index * 0.035}
-                  className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[3rem_1fr]"
-                >
-                  <span className="technical-number text-xs text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-lg leading-7 tracking-[-0.02em] text-ink">
-                    {question}
-                  </p>
-                </Reveal>
-              </li>
-            ))}
+          <div className="lg:col-span-7 lg:col-start-6">
+            <ol className="space-y-3 border-t border-line sm:space-y-4">
+              {research.openQuestions.items.map((question, index) => (
+                <li key={question}>
+                  <Reveal
+                    delay={index * 0.035}
+                    className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[3rem_1fr]"
+                  >
+                    <span className="technical-number text-xs text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-lg leading-7 tracking-[-0.02em] text-ink">
+                      {question}
+                    </p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
             <Reveal className="mt-8">
               <p className="border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
                 {research.openQuestions.qualification}
               </p>
             </Reveal>
-          </ol>
+          </div>
         </div>
       </section>
     </>

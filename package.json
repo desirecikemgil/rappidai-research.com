@@ -18,11 +18,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm links:internal && pnpm build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "links:external": "node scripts/check-links.mjs --external",
+    "links:internal": "node scripts/check-links.mjs --internal",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:e2e": "pnpm build && playwright test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -34,6 +37,8 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "26.1.1",
     "@types/react": "19.2.17",

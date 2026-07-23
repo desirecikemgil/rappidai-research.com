@@ -12,6 +12,13 @@ release dates. Priorities may change as evidence and maintainer capacity change.
   requirements.
 - Maintain focused tests for content contracts, canonical URL handling,
   metadata, structured data, and other stable website behavior.
+- Maintain Chromium coverage for public routes, internal navigation, contact
+  validation, reduced-motion mobile overflow, and serious or critical automated
+  accessibility findings.
+- Verify relative documentation links in pull requests and public HTTP links on
+  a weekly schedule.
+- Run CodeQL analysis for JavaScript and TypeScript changes and scheduled
+  security review.
 - Keep the website's licensing scope separate from brand assets, model-card
   images, model weights, tokenizers, datasets, and external repositories.
 - Replace ambiguous model claims with sourced facts, explicit unknowns, and
@@ -21,10 +28,10 @@ release dates. Priorities may change as evidence and maintainer capacity change.
 
 ## Next
 
-- Extend focused coverage to sitemap behavior, link integrity, and client-side
-  contact behavior where those checks can remain deterministic.
-- Introduce link and accessibility checks appropriate for a static research
-  website.
+- Extend manual accessibility evidence to representative screen readers and
+  retain a commit-specific acceptance record for releases.
+- Evaluate deterministic visual-regression coverage after the project can retain
+  licensed reference images and documented comparison thresholds.
 - Publish canonical, versioned model cards with release revisions, checksums,
   evaluation provenance, data attribution, and model-specific licenses.
 - Publish the missing final run manifests and evaluation artifacts needed to

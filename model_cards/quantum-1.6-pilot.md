@@ -110,6 +110,9 @@ particular downstream task.
 - Any use that assumes alignment, comprehensive safety evaluation, privacy, or
   robustness.
 
+The project-wide publication and use boundary is recorded in
+[Responsible AI and research limitations](../docs/responsible-ai.md).
+
 ## Limitations
 
 The release card warns that outputs remain factually unreliable and may be
