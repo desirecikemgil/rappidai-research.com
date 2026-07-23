@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-type DiagramKind = "adaptation" | "inference" | "evaluation";
+type DiagramKind = "pipeline" | "inference" | "evaluation";
 
 const viewport = { once: true, amount: 0.45 } as const;
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -10,7 +10,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
   const reduceMotion = useReducedMotion();
 
-  if (kind === "adaptation") {
+  if (kind === "pipeline") {
     return (
       <motion.svg
         viewBox="0 0 320 180"
@@ -64,7 +64,11 @@ export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
           cy="90"
           r="4"
           fill="#126BFF"
-          animate={reduceMotion ? undefined : { scale: [1, 1.55, 1], opacity: [0.62, 1, 0.62] }}
+          animate={
+            reduceMotion
+              ? undefined
+              : { scale: [1, 1.55, 1], opacity: [0.62, 1, 0.62] }
+          }
           transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
           style={{ transformOrigin: "250px 90px" }}
         />
@@ -118,7 +122,9 @@ export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
             y2={76 + index * 10}
             stroke="#7EA8E8"
             initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-            whileInView={reduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
+            whileInView={
+              reduceMotion ? undefined : { pathLength: 1, opacity: 1 }
+            }
             viewport={viewport}
             transition={{ duration: 0.5, delay: 0.3 + index * 0.06, ease }}
           />
@@ -138,7 +144,11 @@ export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
           cy="90"
           r="13"
           stroke="#126BFF"
-          animate={reduceMotion ? undefined : { scale: [1, 1.08, 1], opacity: [0.68, 1, 0.68] }}
+          animate={
+            reduceMotion
+              ? undefined
+              : { scale: [1, 1.08, 1], opacity: [0.68, 1, 0.68] }
+          }
           transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
           style={{ transformOrigin: "210px 90px" }}
         />
@@ -182,7 +192,9 @@ export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
         strokeWidth="1.2"
         strokeDasharray="4 5"
         initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-        whileInView={reduceMotion ? undefined : { pathLength: 1, opacity: 0.72 }}
+        whileInView={
+          reduceMotion ? undefined : { pathLength: 1, opacity: 0.72 }
+        }
         viewport={viewport}
         transition={{ duration: 1.15, delay: 0.28, ease }}
       />
@@ -197,7 +209,9 @@ export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
           whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
           viewport={viewport}
           transition={{ duration: 0.5, delay: 0.46 + index * 0.08, ease }}
-          style={{ transformOrigin: `${x}px ${[102, 108, 76, 68, 48][index]}px` }}
+          style={{
+            transformOrigin: `${x}px ${[102, 108, 76, 68, 48][index]}px`,
+          }}
         />
       ))}
     </motion.svg>

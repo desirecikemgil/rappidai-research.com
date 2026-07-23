@@ -1,0 +1,130 @@
+name: Bug report
+description: Report a reproducible defect in the website or repository tooling.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the project. For security vulnerabilities, use the private reporting guidance in `SECURITY.md` instead of a public issue.
+
+        Remove passwords, API keys, access tokens, private URLs, personal data, unpublished model artifacts, and confidential information from every field and attachment.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checks
+      options:
+        - label: I searched existing issues for the same problem.
+          required: true
+        - label: I removed secrets, personal data, and confidential information from this report.
+          required: true
+
+  - type: input
+    id: affected-area
+    attributes:
+      label: Affected page or component
+      description: Provide a public URL, route, command, or component name.
+      placeholder: "Example: /research or pnpm build"
+    validations:
+      required: true
+
+  - type: input
+    id: revision
+    attributes:
+      label: Version, branch, or commit
+      description: Identify the exact revision or deployment where the issue occurs.
+      placeholder: "Example: main at abc1234"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "Example: macOS 15.5, Ubuntu 24.04, Windows 11"
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js and package-manager versions
+      placeholder: "Example: Node.js 22.13.0, pnpm 11.9.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware
+      description: Include CPU or architecture and memory. State whether this is local, virtualized, or containerized.
+      placeholder: "Example: Apple M3 Pro, arm64, 18 GB RAM, local"
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU
+      description: Include vendor, model, and driver version, or state "None / not applicable".
+      placeholder: "Example: NVIDIA RTX 4090, driver 575.57.08"
+    validations:
+      required: true
+
+  - type: input
+    id: cuda
+    attributes:
+      label: CUDA or accelerator runtime
+      description: Include CUDA, ROCm, Metal, or other runtime versions, or state "Not applicable".
+      placeholder: "Example: CUDA 12.8"
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Relevant configuration
+      description: Include only the minimal configuration needed to reproduce the issue. Redact all credentials and private values.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide a minimal, numbered sequence that reliably triggers the problem.
+      placeholder: |
+        1. Check out commit ...
+        2. Run ...
+        3. Open ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste the smallest useful excerpt or attach an image. Remove secrets, personal data, private paths, and confidential model or dataset information first.
+      render: shell
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Include frequency, regression range, workarounds, or other relevant details.

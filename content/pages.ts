@@ -11,9 +11,9 @@ export const homePageContent = {
     eyebrow: "INDEPENDENT AI RESEARCH",
     headlineLines: ["Smaller models.", "Focused intelligence."],
     description:
-      "rappidAI develops compact language models and specialized open-weight systems for local, private and resource-efficient AI.",
+      "rappidAI documents compact German-language model experiments, public GGUF releases and the in-development quantum-1-echelon training pipeline. The two public Quantum pilots are experimental base-completion models.",
     supportingText:
-      "Built primarily for developers and researchers, the work explores how capable language systems can become more accessible without relying exclusively on increasingly large models or permanent cloud infrastructure.",
+      "The work is intended for developers, researchers, students and builders investigating small-model training, documented evaluation and local deployment with limited compute. The current pilots are research artifacts, not chat assistants or production systems.",
     primaryAction: {
       label: "Explore our models",
       href: "/models",
@@ -22,8 +22,7 @@ export const homePageContent = {
       label: "View on Hugging Face",
       linkKey: "huggingFace",
     } satisfies ExternalCallToAction,
-    status:
-      "Current focus: efficient German-language fine-tuning and local inference.",
+    status: "Current focus: the quantum-1-echelon data and training pipeline.",
   },
   thesis: {
     eyebrow: "RESEARCH THESIS",
@@ -36,7 +35,7 @@ export const homePageContent = {
   },
   modelEvolution: {
     eyebrow: "MODEL EVOLUTION",
-    title: "From small-scale pretraining to focused adaptation.",
+    title: "From 49.3M pilot releases to the quantum-1-echelon pipeline.",
   },
   currentResearch: {
     eyebrow: "CURRENT RESEARCH",
@@ -45,7 +44,7 @@ export const homePageContent = {
   openResearch: {
     eyebrow: "OPEN RESEARCH",
     headline: "Open publication is part of the research process.",
-    text: "Where licensing and safety constraints allow, rappidAI publishes model artifacts, documentation, evaluation notes and implementation details so that experiments can be inspected and reproduced.",
+    text: "Where licensing and safety constraints allow, rappidAI publishes model artifacts, documentation, evaluation notes and implementation details so that work can be inspected and, when all required artifacts are available, reproduced.",
     actions: [
       { label: "Hugging Face", linkKey: "huggingFace" },
       { label: "GitHub", linkKey: "github" },
@@ -71,53 +70,22 @@ export const modelsPageContent = {
     eyebrow: "MODELS",
     title: "Compact model experiments, documented clearly.",
     description:
-      "Explore rappidAI's experimental pilots and the next research phase in focused open-weight adaptation.",
+      "Explore two public experimental pilot releases and the source-linked, in-development quantum-1-echelon pipeline.",
   } satisfies PageIntroduction,
   filterLabel: "Filter models",
   missingParameterLabel: "Final parameter size not yet defined",
-  missingLicenseLabel: "Licensing information has not been supplied.",
+  missingLicenseLabel:
+    "No public model release exists, so no model license applies.",
   missingLinksLabel: "No public model release link is available.",
 } as const;
 
 export const researchPageContent = {
   introduction: {
     eyebrow: "RESEARCH",
-    title: "Research shaped by practical constraints.",
+    title: "Research behind the Quantum pilots.",
     description:
-      "rappidAI investigates compact architectures, targeted adaptation, efficient inference and transparent evaluation.",
+      "A source-linked account of the questions, controlled variables, public results, observed limitations and open questions behind quantum-1-pilot and quantum-1.6-pilot.",
   } satisfies PageIntroduction,
-  direction: {
-    eyebrow: "CURRENT DIRECTION",
-    title: "From pretraining experiments to focused adaptation.",
-    text: "The current direction focuses on adapting compact open-weight foundation models for narrower, measurable use cases and efficient German-language use.",
-  },
-  philosophy: {
-    eyebrow: "DEVELOPMENT PHILOSOPHY",
-    title: "Useful systems should be judged by more than scale.",
-    text: "The goal is not to imitate frontier-scale laboratories, but to investigate where smaller systems can be genuinely useful, local and transparent about their limits.",
-  },
-  methodology: {
-    eyebrow: "METHODOLOGY",
-    title: "A repeatable path from question to limitation.",
-  },
-  experimentLogs: {
-    eyebrow: "EXPERIMENT LOGS",
-    title: "Model development without invented milestones.",
-    noDatesNotice: "No publication dates have been supplied.",
-  },
-  notes: {
-    eyebrow: "RESEARCH NOTES",
-    title: "Questions for documented investigation.",
-  },
-  roadmap: {
-    eyebrow: "ROADMAP",
-    title: "An undated progression of research work.",
-    noDatesNotice: "No target dates have been supplied.",
-  },
-  evaluation: {
-    eyebrow: "HONEST EVALUATION",
-    title: "Limitations belong in the result.",
-  },
 } as const;
 
 export const aboutPageContent = {
@@ -125,12 +93,12 @@ export const aboutPageContent = {
     eyebrow: "ABOUT",
     title: "An independent research initiative at an early stage.",
     description:
-      "rappidAI is an early-stage independent AI research initiative developing compact and specialized language-model systems. Its work combines experimentation, open-weight adaptation, local deployment and transparent documentation.",
+      "rappidAI is an early-stage independent AI research initiative developing compact language-model experiments and documented training, evaluation and local-inference workflows.",
   } satisfies PageIntroduction,
   whatItIs: {
     eyebrow: "WHAT RAPPIDAI IS",
     title: "Learning through real model development.",
-    text: "rappidAI develops compact language-model experiments and investigates focused adaptation, efficient inference and practical local deployment.",
+    text: "rappidAI develops compact language-model experiments and investigates training pipelines, evaluation, efficient inference and practical local deployment.",
   },
   whatItIsNot: {
     eyebrow: "WHAT RAPPIDAI IS NOT",
@@ -140,12 +108,29 @@ export const aboutPageContent = {
   whyCompactModelsMatter: {
     eyebrow: "WHY COMPACT MODELS",
     title: "Capability should be considered alongside resources.",
-    text: "Compact systems can support research into private, offline and resource-efficient inference without relying exclusively on permanent cloud infrastructure.",
+    text: "Local inference can reduce dependence on external services and may keep prompts on the user’s device. Actual privacy depends on the application, configuration and surrounding infrastructure.",
   },
-  openWeightDirection: {
+  projectStructure: {
+    eyebrow: "PROJECT STRUCTURE",
+    title: "One initiative, one development project, one model series.",
+    text: "rappidAI is the research initiative. Lumen is the experimental development project for training and local-inference workflows. Quantum is the model series produced within that work.",
+  },
+  publishedWork: {
+    eyebrow: "PUBLISHED WORK",
+    title: "Two public experimental pilots.",
+    paragraphs: [
+      "rappidAI currently publishes two experimental German base-completion models: quantum-1-pilot and quantum-1.6-pilot. Both contain 49,295,872 parameters and are available as F16 GGUF files for local experimentation. The accompanying public repository documents the training, evaluation and GGUF-export workflow.",
+      "The public releases and source repository document the artifacts and intended workflow, but final run manifests and complete training logs are not linked. The releases do not demonstrate production readiness, reliable factual answering or competitiveness with larger general-purpose models.",
+    ],
+    action: {
+      label: "View public models",
+      href: "/models",
+    } satisfies InternalCallToAction,
+  },
+  currentDirection: {
     eyebrow: "CURRENT DIRECTION",
-    title: "Focused open-weight adaptation.",
-    text: "The next research phase investigates targeted adaptation of stronger open-weight foundations for efficient German-language use.",
+    title: "The quantum-1-echelon pipeline.",
+    text: "Public work currently includes a 506.3M-parameter base-architecture preflight, tokenizer validation and a Garden data-pipeline smoke test. The full production data run and model training have not been reported as started.",
   },
   experimentalNotice: {
     eyebrow: "EXPERIMENTAL OUTPUTS",
@@ -159,23 +144,23 @@ export const contactPageContent = {
     eyebrow: "CONTACT",
     title: "Interested in the research?",
     description:
-      "For technical discussions, collaboration enquiries or questions about the models, contact rappidAI directly.",
+      "For technical questions, model feedback, open-source collaboration or project enquiries, contact rappidAI by email.",
   } satisfies PageIntroduction,
   methodsHeading: "Contact and research profiles",
-  emailMissingLabel: "Business email has not yet been supplied.",
+  emailMissingLabel: "Email contact is unavailable.",
   enquiryTypes: [
     "Technical questions",
     "Open-source collaboration",
     "Model feedback",
-    "Project partnerships",
+    "Project enquiries",
   ],
   form: {
     heading: "Send an enquiry",
     description:
-      "Complete the fields below. If a business email is configured, the form opens your email application; it does not claim that a message was sent.",
-    unavailableHeading: "Direct email contact is being prepared.",
+      "Complete the fields below to prepare an email in your own email application. Nothing is transmitted or stored by this website.",
+    unavailableHeading: "Direct email contact is unavailable.",
     unavailableDescription:
-      "The public business email has not yet been supplied, so the enquiry form remains inactive. Until it is configured, use the linked research profiles for public project context.",
+      "No recipient is configured for the email draft. Use the linked research profiles for public project context.",
     fields: {
       name: { label: "Name", requiredMessage: "Enter your name." },
       email: {
@@ -187,7 +172,8 @@ export const contactPageContent = {
       message: { label: "Message", requiredMessage: "Enter a message." },
     },
     submitLabel: "Continue in email app",
-    openingEmailLabel: "Opening your email application. Your message has not been sent yet.",
+    openingEmailLabel:
+      "Opening your email application. Your message has not been sent yet.",
     unavailableMessage:
       "Message sending is not configured. Your message has not been sent.",
   },
@@ -198,7 +184,7 @@ export const imprintPageContent = {
     eyebrow: "IMPRINT",
     title: "Provider information",
     description:
-      "This page is reserved for the legally required provider information for rappidAI research.",
+      "Provider information for rappidAI research, an independent initiative operated by Jonas Désiré Cikemgil.",
   } satisfies PageIntroduction,
   identityLabel: "Project identity",
   locationLabel: "General location",
@@ -218,17 +204,17 @@ export const privacyPageContent = {
     {
       id: "controller",
       title: "Controller information",
-      text: "Jonas Désiré Cikemgil is identified as the responsible operator. A service address and public business email still need to be supplied before publication.",
+      text: "Jonas Désiré Cikemgil is the controller for this website. A complete service address has not been verified in the project and remains an open required detail.",
     },
     {
       id: "hosting",
       title: "Hosting",
-      text: "A hosting provider has not been supplied. Hosting and server-log information must be added when deployment is configured.",
+      text: "The live website is hosted on Vercel. Processing location, server-log categories, purposes, legal bases and retention periods still require a verified, deployment-specific privacy review.",
     },
     {
       id: "contact",
       title: "Contact form",
-      text: "The website does not claim to submit the contact form to a server. When a business email is configured, the form opens the visitor's email application through a mailto link.",
+      text: "The contact form has no server endpoint. It validates entries locally and opens the visitor’s email application through a mailto link. The website itself does not transmit or store the entered message.",
     },
     {
       id: "analytics",
@@ -247,12 +233,12 @@ export const pageMetadata = {
   "/": {
     title: "rappidAI Research — Compact and Local AI Models",
     description:
-      "Independent AI research focused on compact language models, open-weight adaptation, efficient inference and local deployment.",
+      "Independent AI research on compact language models, documented training workflows and local inference.",
   },
   "/models": {
     title: "Models — rappidAI Research",
     description:
-      "Explore rappidAI's experimental compact language models and in-development open-weight adaptation research.",
+      "Explore rappidAI's experimental pilot releases and the in-development quantum-1-echelon pipeline.",
   },
   "/models/quantum-1-pilot": {
     title: "quantum-1-pilot — rappidAI Research",
@@ -267,12 +253,12 @@ export const pageMetadata = {
   "/models/quantum-1-echelon": {
     title: "quantum-1-echelon — rappidAI Research",
     description:
-      "The in-development rappidAI research phase focused on efficient German-language open-weight adaptation.",
+      "Public architecture, tokenizer and data-pipeline status for the in-development quantum-1-echelon model line.",
   },
   "/research": {
     title: "Research — rappidAI Research",
     description:
-      "Research directions, methodology, experiment logs and evaluation principles for rappidAI's compact-model work.",
+      "Source-linked research questions, experiment design, results, limitations and reproducibility artifacts for the Quantum pilot models.",
   },
   "/about": {
     title: "About — rappidAI Research",
@@ -290,8 +276,7 @@ export const pageMetadata = {
   },
   "/privacy": {
     title: "Privacy — rappidAI Research",
-    description:
-      "Privacy information for the rappidAI research website.",
+    description: "Privacy information for the rappidAI research website.",
   },
 } as const satisfies Readonly<Record<SiteRoute, PageMetadata>>;
 

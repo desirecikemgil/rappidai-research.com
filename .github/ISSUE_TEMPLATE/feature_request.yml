@@ -1,0 +1,90 @@
+name: Feature request
+description: Propose a focused improvement to the website or its tooling.
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the user problem before the implementation. A proposal does not imply a commitment or delivery date.
+
+        Remove secrets, personal data, private links, unpublished artifacts, and confidential information before submitting.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight checks
+      options:
+        - label: I searched existing issues and discussions for a similar request.
+          required: true
+        - label: I removed secrets, personal data, and confidential information.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: Who is affected, what are they trying to do, and why is the current experience insufficient?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the desired outcome and the smallest useful scope.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include current workarounds or simpler approaches.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Primary area
+      options:
+        - Website content or navigation
+        - User interface or accessibility
+        - Research visualization
+        - Build, testing, or developer experience
+        - Metadata, discoverability, or integration
+        - Other repository maintenance
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and success criteria
+      description: Provide examples, measurements, references, or observable acceptance criteria. Do not invent research results.
+    validations:
+      required: true
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and operational impact
+      description: Note browser, device, deployment, configuration, model, tokenizer, data-format, or migration implications. Write "Not applicable" when none apply.
+    validations:
+      required: true
+
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Third-party material and provenance
+      description: Identify any proposed media, data, model artifacts, source code, or copied text, with source and license or permission. Write "None" if not applicable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: security-privacy
+    attributes:
+      label: Security, privacy, and misuse considerations
+      description: Describe relevant risks and mitigations. Do not disclose an unpatched vulnerability here; follow `SECURITY.md`.
+    validations:
+      required: true

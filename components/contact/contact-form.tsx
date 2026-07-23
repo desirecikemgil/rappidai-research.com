@@ -8,9 +8,10 @@ import { contactPageContent } from "@/content/pages";
 type ContactField = "name" | "email" | "subject" | "message";
 type ContactValues = Record<ContactField, string>;
 type ContactErrors = Partial<Record<ContactField, string>>;
-type SubmissionStatus =
-  | { kind: "opening" | "unavailable"; message: string }
-  | null;
+type SubmissionStatus = {
+  kind: "opening" | "unavailable";
+  message: string;
+} | null;
 
 type ContactFormProps = {
   businessEmail: string | null;
@@ -140,7 +141,7 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
   };
 
   const fieldClassName =
-    "liquid-field mt-2 w-full border border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
+    "liquid-field mt-2 min-h-[3.25rem] w-full border border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
 
   return (
     <div className="liquid-surface border border-white/70 p-5 pt-7 sm:p-9 lg:p-10">
@@ -148,18 +149,21 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
       <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}
       </h2>
-      <p id={`${idPrefix}-description`} className="body-copy mt-5 max-w-[35rem]">
+      <p
+        id={`${idPrefix}-description`}
+        className="body-copy mt-5 max-w-[35rem]"
+      >
         {form.description}
       </p>
 
       <form
         ref={formRef}
-        className="mt-10"
+        className="mt-8 sm:mt-10"
         noValidate
         aria-describedby={`${idPrefix}-description ${idPrefix}-status`}
         onSubmit={handleSubmit}
       >
-        <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
+        <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 sm:gap-y-7">
           <div>
             <label
               htmlFor={`${idPrefix}-name`}
@@ -178,7 +182,9 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.name}
               aria-invalid={Boolean(errors.name)}
-              aria-describedby={errors.name ? `${idPrefix}-name-error` : undefined}
+              aria-describedby={
+                errors.name ? `${idPrefix}-name-error` : undefined
+              }
               className={fieldClassName}
               onChange={handleChange}
             />
@@ -204,11 +210,16 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.email}
               aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? `${idPrefix}-email-error` : undefined}
+              aria-describedby={
+                errors.email ? `${idPrefix}-email-error` : undefined
+              }
               className={fieldClassName}
               onChange={handleChange}
             />
-            <ErrorMessage id={`${idPrefix}-email-error`} message={errors.email} />
+            <ErrorMessage
+              id={`${idPrefix}-email-error`}
+              message={errors.email}
+            />
           </div>
 
           <div className="sm:col-span-2">
@@ -228,11 +239,16 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.subject}
               aria-invalid={Boolean(errors.subject)}
-              aria-describedby={errors.subject ? `${idPrefix}-subject-error` : undefined}
+              aria-describedby={
+                errors.subject ? `${idPrefix}-subject-error` : undefined
+              }
               className={fieldClassName}
               onChange={handleChange}
             />
-            <ErrorMessage id={`${idPrefix}-subject-error`} message={errors.subject} />
+            <ErrorMessage
+              id={`${idPrefix}-subject-error`}
+              message={errors.subject}
+            />
           </div>
 
           <div className="sm:col-span-2">
@@ -252,18 +268,23 @@ export function ContactForm({ businessEmail }: ContactFormProps) {
               required
               value={values.message}
               aria-invalid={Boolean(errors.message)}
-              aria-describedby={errors.message ? `${idPrefix}-message-error` : undefined}
-              className={`${fieldClassName} min-h-40 resize-y`}
+              aria-describedby={
+                errors.message ? `${idPrefix}-message-error` : undefined
+              }
+              className={`${fieldClassName} min-h-36 resize-y sm:min-h-40`}
               onChange={handleChange}
             />
-            <ErrorMessage id={`${idPrefix}-message-error`} message={errors.message} />
+            <ErrorMessage
+              id={`${idPrefix}-message-error`}
+              message={errors.message}
+            />
           </div>
         </div>
 
         <div className="mt-9 flex flex-col items-start gap-5">
           <button
             type="submit"
-            className="link-arrow liquid-button inline-flex min-h-12 items-center justify-center gap-2.5 border border-ink bg-ink px-5 text-[0.88rem] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:border-accent hover:bg-accent focus-visible:border-accent focus-visible:bg-accent"
+            className="link-arrow liquid-button inline-flex min-h-12 w-full items-center justify-center gap-2.5 border border-ink bg-ink px-5 text-[0.88rem] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:border-accent hover:bg-accent focus-visible:border-accent focus-visible:bg-accent sm:w-auto"
           >
             {form.submitLabel}
             <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />

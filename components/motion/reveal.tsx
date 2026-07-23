@@ -13,7 +13,7 @@ type RevealProps = HTMLMotionProps<"div"> & {
 export function Reveal({
   children,
   delay = 0,
-  distance = 20,
+  distance = 16,
   className,
   ...props
 }: RevealProps) {
@@ -24,15 +24,15 @@ export function Reveal({
       initial={
         reduceMotion
           ? false
-          : { opacity: 0, y: distance, scale: 0.992, filter: "blur(8px)" }
+          : { opacity: 0, y: distance, scale: 0.994, filter: "blur(6px)" }
       }
       whileInView={
         reduceMotion
           ? undefined
           : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
       }
-      viewport={{ once: true, amount: 0.2, margin: "0px 0px -7% 0px" }}
-      transition={{ duration: 0.86, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, amount: 0.16, margin: "0px 0px -5% 0px" }}
+      transition={{ duration: 0.72, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
       {...props}
     >

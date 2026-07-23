@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { InteractiveAtmosphere } from "@/components/effects/interactive-atmosphere";
 import { siteConfig } from "@/content/site";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: {
@@ -16,14 +17,18 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   category: "technology",
-  metadataBase: siteConfig.canonicalUrl ? new URL(siteConfig.canonicalUrl) : undefined,
+  metadataBase: siteConfig.canonicalUrl
+    ? new URL(siteConfig.canonicalUrl)
+    : undefined,
   robots: {
     index: true,
     follow: true,
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -34,7 +39,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   };
 
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+    >
       <body>
         <InteractiveAtmosphere />
         <a
@@ -52,7 +61,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </MotionProvider>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }}
         />
       </body>
     </html>

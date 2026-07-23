@@ -1,0 +1,30 @@
+rappidAI Research Website
+Copyright 2026 rappidAI contributors
+
+This distribution includes original website source code and original project
+documentation made available under the Apache License, Version 2.0. See
+LICENSE for the complete terms.
+
+The Apache-2.0 grant is limited to material for which rappidAI contributors
+hold the necessary rights. It does not grant rights in:
+
+- brand, logo, icon, ambient-artwork, or model-card PNG files, including files
+  under public/brand/, public/models/, app/icon.png, and app/apple-icon.png;
+- model weights, tokenizers, model manifests, or other artifacts hosted on
+  Hugging Face;
+- training or evaluation datasets, including FineWeb2-HQ or source material
+  obtained through Common Crawl;
+- the separate lumen-quantum repository or code obtained from it; or
+- third-party packages, fonts, icons, and other dependencies.
+
+Those materials retain their own copyright, trademark, license, attribution,
+and usage terms. Their presence, use, or linkage does not relicense them under
+Apache-2.0. The project name and brand marks are not licensed for trademark use
+by the Apache License.
+
+CODE_OF_CONDUCT.md is adapted from Contributor Covenant version 2.1 and retains
+the attribution stated in that file. Contributor Covenant is made available
+under the Creative Commons Attribution 4.0 International license.
+
+See docs/licensing.md for the current component-by-component record. This
+NOTICE is informational and does not modify the Apache License.

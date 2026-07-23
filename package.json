@@ -1,19 +1,35 @@
 {
   "name": "rappidai-website",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
+  "description": "The public website for the rappidAI independent AI research initiative.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonascikemgil07-hue/rappidai-research.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonascikemgil07-hue/rappidai-research.com/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "framer-motion": "12.42.2",
     "geist": "1.7.2",
     "lucide-react": "1.25.0",
-    "next": "16.2.10",
+    "next": "16.2.11",
     "react": "19.2.7",
     "react-dom": "19.2.7"
   },
@@ -23,9 +39,11 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.2.10",
+    "eslint-config-next": "16.2.11",
+    "prettier": "3.9.6",
     "tailwindcss": "4.3.3",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
   },
   "packageManager": "pnpm@11.9.0"
 }

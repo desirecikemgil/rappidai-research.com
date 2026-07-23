@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: >-
+  If you use or discuss this website source, please cite it using this metadata.
+  Model artifacts and research outputs require their own model-card citations.
+title: rappidAI Research Website
+type: software
+authors:
+  - family-names: Cikemgil
+    given-names: Jonas Désiré
+    email: cikemgil@rappidai-research.com
+abstract: >-
+  Source code and documentation for the rappidAI Research public website, an
+  early-stage independent AI research initiative focused on compact language
+  models, efficient inference, and transparent documentation.
+repository-code: https://github.com/jonascikemgil07-hue/rappidai-research.com
+url: https://www.rappidai-research.com
+keywords:
+  - artificial intelligence
+  - language models
+  - local inference
+  - research website

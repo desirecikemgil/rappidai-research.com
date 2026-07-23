@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,7 +9,9 @@ import { siteConfig } from "@/content/site";
 import { BrandLockup } from "@/components/ui/brand-lockup";
 
 function isCurrentRoute(pathname: string, href: string) {
-  return href === "/" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
+  return href === "/"
+    ? pathname === href
+    : pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export function SiteHeader() {
@@ -34,6 +36,15 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
   return (
     <header
       data-scrolled={isScrolled || menuOpen}
@@ -43,7 +54,10 @@ export function SiteHeader() {
       <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-8">
         <BrandLockup priority />
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
+        <nav
+          aria-label="Primary navigation"
+          className="hidden items-center gap-8 lg:flex"
+        >
           <div className="flex items-center gap-7">
             {siteConfig.navigation.map((item) => {
               const active = isCurrentRoute(pathname, item.href);
@@ -79,7 +93,11 @@ export function SiteHeader() {
           onClick={() => setMenuOpen((current) => !current)}
           className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-ink lg:hidden"
         >
-          {menuOpen ? <X aria-hidden="true" size={20} strokeWidth={1.7} /> : <Menu aria-hidden="true" size={20} strokeWidth={1.7} />}
+          {menuOpen ? (
+            <X aria-hidden="true" size={20} strokeWidth={1.7} />
+          ) : (
+            <Menu aria-hidden="true" size={20} strokeWidth={1.7} />
+          )}
         </button>
       </div>
 
@@ -87,9 +105,11 @@ export function SiteHeader() {
         {menuOpen ? (
           <motion.div
             id="mobile-navigation"
-            className="liquid-mobile-menu origin-top border-t border-line lg:hidden"
+            className="liquid-mobile-menu max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line lg:hidden"
             initial={reduceMotion ? false : { opacity: 0, height: 0, y: -8 }}
-            animate={reduceMotion ? undefined : { opacity: 1, height: "auto", y: 0 }}
+            animate={
+              reduceMotion ? undefined : { opacity: 1, height: "auto", y: 0 }
+            }
             exit={reduceMotion ? undefined : { opacity: 0, height: 0, y: -6 }}
             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -102,7 +122,11 @@ export function SiteHeader() {
                       key={item.href}
                       initial={reduceMotion ? false : { opacity: 0, x: -8 }}
                       animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 0.04 + index * 0.035, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.04 + index * 0.035,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
                     >
                       <Link
                         href={item.href}
@@ -111,9 +135,17 @@ export function SiteHeader() {
                         className="flex min-h-14 items-center justify-between text-base text-ink"
                       >
                         {item.label}
-                        <span className={`font-mono text-xs ${active ? "text-accent" : "text-muted"}`}>
-                          {active ? "ACTIVE" : "↗"}
-                        </span>
+                        {active ? (
+                          <span className="font-mono text-[0.65rem] tracking-[0.12em] text-accent">
+                            ACTIVE
+                          </span>
+                        ) : (
+                          <ArrowUpRight
+                            aria-hidden="true"
+                            className="size-4 text-muted"
+                            strokeWidth={1.6}
+                          />
+                        )}
                       </Link>
                     </motion.div>
                   );

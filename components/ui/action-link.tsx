@@ -26,7 +26,11 @@ export function ActionLink({
   className = "",
 }: ActionLinkProps) {
   const classes = `link-arrow liquid-button inline-flex min-h-12 items-center justify-center gap-2.5 border px-5 text-[0.88rem] font-medium tracking-[-0.01em] transition-colors duration-200 ${variantClasses[variant]} ${className}`;
-  const icon = external ? <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} /> : <ArrowRight aria-hidden="true" size={16} strokeWidth={1.8} />;
+  const icon = external ? (
+    <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
+  ) : (
+    <ArrowRight aria-hidden="true" size={16} strokeWidth={1.8} />
+  );
 
   if (external) {
     return (
