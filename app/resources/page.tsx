@@ -7,24 +7,30 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { resourcesPageContent } from "@/content/pages";
 import { resourceReview, resourceUtilityLinks } from "@/content/resources";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/resources");
 
-export default function ResourcesPage() {
+export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
+  const page = localizeContent(resourcesPageContent, locale);
+  const review = localizeContent(resourceReview, locale);
+  const utilityLinks = localizeContent(resourceUtilityLinks, locale);
+
   return (
     <>
-      <PageIntro {...resourcesPageContent.introduction} />
+      <PageIntro {...page.introduction} />
 
       <section className="page-shell pb-[var(--section-space)]">
         <ReviewStamp
-          label={resourceReview.label}
-          reference={resourceReview.evidenceReference}
-          explanation={resourceReview.explanation}
-          url={resourceReview.evidenceUrl}
+          label={review.label}
+          reference={review.evidenceReference}
+          explanation={review.explanation}
+          url={review.evidenceUrl}
+          locale={locale}
         />
 
         <Reveal className="mt-8 grid gap-4 md:grid-cols-3">
-          {resourceUtilityLinks.map((item) => (
+          {utilityLinks.map((item) => (
             <a
               key={item.label}
               href={item.url}
@@ -33,7 +39,7 @@ export default function ResourcesPage() {
               className="liquid-card min-h-[10rem] p-6 transition-transform duration-300 hover:-translate-y-1"
             >
               <p className="font-mono text-[0.64rem] tracking-[0.13em] text-accent uppercase">
-                OPEN SOURCE
+                {t(locale, "OPEN SOURCE")}
               </p>
               <h2 className="mt-5 text-xl font-medium tracking-[-0.03em] text-ink">
                 {item.label}
@@ -44,7 +50,11 @@ export default function ResourcesPage() {
         </Reveal>
       </section>
 
-      <ResourceDirectory />
+      <ResourceDirectory locale={locale} />
     </>
   );
+}
+
+export default function ResourcesPage() {
+  return <LocalizedResourcesPage locale="en" />;
 }

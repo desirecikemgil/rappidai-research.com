@@ -4,6 +4,7 @@ import { privacyPageContent } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import type { PrivacyConfiguration } from "@/content/types";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/privacy");
 
@@ -26,10 +27,12 @@ function SectionBody({
   section,
   privacy,
   businessEmail,
+  locale,
 }: {
   section: PrivacySectionRecord;
   privacy: PrivacyConfiguration;
   businessEmail: string;
+  locale: Locale;
 }) {
   if (section.id === "controller") {
     return (
@@ -37,12 +40,21 @@ function SectionBody({
         <p>{section.text}</p>
         <dl className="mt-6 border-b border-line">
           {privacy.controllerName ? (
-            <Detail label="Controller" value={privacy.controllerName} />
+            <Detail
+              label={t(locale, "Controller")}
+              value={privacy.controllerName}
+            />
           ) : null}
           {privacy.controllerEmail ? (
-            <Detail label="Email" value={privacy.controllerEmail} />
+            <Detail
+              label={t(locale, "Email")}
+              value={privacy.controllerEmail}
+            />
           ) : null}
-          <Detail label="Address" value={privacy.controllerAddress} />
+          <Detail
+            label={t(locale, "Address")}
+            value={privacy.controllerAddress}
+          />
         </dl>
       </>
     );
@@ -51,12 +63,15 @@ function SectionBody({
   if (section.id === "hosting") {
     return privacy.hostingProvider ? (
       <>
-        <p>The configured hosting provider is {privacy.hostingProvider}.</p>
         <p>
-          Server-log categories, processing purpose, legal basis and retention
-          period remain subject to deployment-specific verification and legal
-          review. This notice does not infer provider behavior that has not been
-          confirmed for the production deployment.
+          {t(locale, "The configured hosting provider is")}{" "}
+          {privacy.hostingProvider}.
+        </p>
+        <p>
+          {t(
+            locale,
+            "Server-log categories, processing purpose, legal basis and retention period remain subject to deployment-specific verification and legal review. This notice does not infer provider behavior that has not been confirmed for the production deployment.",
+          )}
         </p>
       </>
     ) : (
@@ -69,8 +84,11 @@ function SectionBody({
       <>
         <p>{section.text}</p>
         <p>
-          The configured recipient is {businessEmail}. The visitor chooses
-          whether to send the prepared email in their own email application.
+          {t(locale, "The configured recipient is")} {businessEmail}.{" "}
+          {t(
+            locale,
+            "The visitor chooses whether to send the prepared email in their own email application.",
+          )}
         </p>
       </>
     );
@@ -83,10 +101,10 @@ function SectionBody({
 
     return (
       <p>
-        The site configuration indicates that analytics or marketing cookies are
-        enabled. Providers, purposes, legal bases, retention periods and any
-        required consent controls must be documented before those features are
-        enabled.
+        {t(
+          locale,
+          "The site configuration indicates that analytics or marketing cookies are enabled. Providers, purposes, legal bases, retention periods and any required consent controls must be documented before those features are enabled.",
+        )}
       </p>
     );
   }
@@ -99,11 +117,13 @@ function PrivacySection({
   index,
   privacy,
   businessEmail,
+  locale,
 }: {
   section: PrivacySectionRecord;
   index: number;
   privacy: PrivacyConfiguration;
   businessEmail: string;
+  locale: Locale;
 }) {
   return (
     <Reveal delay={Math.min(index * 0.035, 0.12)}>
@@ -125,6 +145,7 @@ function PrivacySection({
             section={section}
             privacy={privacy}
             businessEmail={businessEmail}
+            locale={locale}
           />
         </div>
       </section>
@@ -132,13 +153,17 @@ function PrivacySection({
   );
 }
 
-export default function PrivacyPage() {
-  const privacy: PrivacyConfiguration = siteConfig.privacy;
+export function LocalizedPrivacyPage({ locale }: { locale: Locale }) {
+  const page = localizeContent(privacyPageContent, locale);
+  const privacy: PrivacyConfiguration = localizeContent(
+    siteConfig.privacy,
+    locale,
+  );
   const businessEmail = siteConfig.businessEmail;
 
   return (
     <>
-      <PageIntro {...privacyPageContent.introduction} />
+      <PageIntro {...page.introduction} />
 
       <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
         <DrawRule />
@@ -146,33 +171,40 @@ export default function PrivacyPage() {
         {privacy.hostingProvider === null ? (
           <Reveal className="mt-8">
             <p className="max-w-[48rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
-              The hosting provider remains unverified. Deployment-specific
-              server-log details, retention periods, purposes and legal bases
-              therefore remain open required information.
+              {t(
+                locale,
+                "The hosting provider remains unverified. Deployment-specific server-log details, retention periods, purposes and legal bases therefore remain open required information.",
+              )}
             </p>
           </Reveal>
         ) : null}
 
         <Reveal className="mt-8">
           <p className="max-w-[52rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
-            Last reviewed 23 July 2026. Hosting-specific log categories,
-            processing purposes, legal bases and retention periods remain
-            verification and legal-review items.
+            {t(
+              locale,
+              "Last reviewed 23 July 2026. Hosting-specific log categories, processing purposes, legal bases and retention periods remain verification and legal-review items.",
+            )}
           </p>
         </Reveal>
 
         <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
-          {privacyPageContent.sections.map((section, index) => (
+          {page.sections.map((section, index) => (
             <PrivacySection
               key={section.id}
               section={section}
               index={index}
               privacy={privacy}
               businessEmail={businessEmail}
+              locale={locale}
             />
           ))}
         </div>
       </div>
     </>
   );
+}
+
+export default function PrivacyPage() {
+  return <LocalizedPrivacyPage locale="en" />;
 }

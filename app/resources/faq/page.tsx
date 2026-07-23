@@ -3,21 +3,30 @@ import { ResourceDirectory } from "@/components/resources/resource-ui";
 import { PageIntro } from "@/components/ui/page-intro";
 import { faqEntries } from "@/content/resources";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/resources/faq");
 
-export default function FaqPage() {
+export function LocalizedFaqPage({ locale }: { locale: Locale }) {
+  const entries = localizeContent(faqEntries, locale);
+
   return (
     <>
       <PageIntro
         eyebrow="FAQ"
-        title="Straight answers about an early-stage research project."
-        description="The most common questions about model type, local inference, Echelon, evidence status, privacy, licensing and reporting."
+        title={t(
+          locale,
+          "Straight answers about an early-stage research project.",
+        )}
+        description={t(
+          locale,
+          "The most common questions about model type, local inference, Echelon, evidence status, privacy, licensing and reporting.",
+        )}
       />
 
       <section className="page-shell pb-[var(--section-space)]">
         <div className="space-y-4">
-          {faqEntries.map((entry, index) => (
+          {entries.map((entry, index) => (
             <Reveal
               key={entry.question}
               delay={Math.min(index * 0.025, 0.12)}
@@ -37,7 +46,11 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <ResourceDirectory current="faq" />
+      <ResourceDirectory current="faq" locale={locale} />
     </>
   );
+}
+
+export default function FaqPage() {
+  return <LocalizedFaqPage locale="en" />;
 }

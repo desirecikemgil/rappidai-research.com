@@ -1,46 +1,46 @@
 import type { MetadataRoute } from "next";
-import { modelSlugs } from "@/content/models";
+import { siteRoutes } from "@/content/routes";
 import { siteConfig } from "@/content/site";
-
-const staticRoutes = [
-  "",
-  "/models",
-  "/research",
-  "/resources",
-  "/resources/publications",
-  "/resources/publications/from-100m-to-600m-german-tokens",
-  "/resources/reproducibility",
-  "/resources/data-and-training",
-  "/resources/responsible-use",
-  "/resources/licensing",
-  "/resources/status",
-  "/resources/faq",
-  "/about",
-  "/contact",
-  "/imprint",
-  "/privacy",
-] as const;
+import { localizePath, type Locale } from "@/lib/i18n";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!siteConfig.canonicalUrl) return [];
 
-  const routes = [
-    ...staticRoutes,
-    ...modelSlugs.map((slug) => `/models/${slug}`),
-  ];
+  return siteRoutes.flatMap((route) =>
+    (["en", "de"] as const).map((locale: Locale) => {
+      const localizedRoute = localizePath(route, locale);
+      const englishUrl = new URL(
+        localizePath(route, "en"),
+        siteConfig.canonicalUrl!,
+      ).toString();
+      const germanUrl = new URL(
+        localizePath(route, "de"),
+        siteConfig.canonicalUrl!,
+      ).toString();
 
-  return routes.map((route) => ({
-    url: new URL(route, siteConfig.canonicalUrl!).toString(),
-    changeFrequency:
-      route.startsWith("/models/") ||
-      route.startsWith("/resources/publications/")
-        ? "monthly"
-        : "weekly",
-    priority:
-      route === ""
-        ? 1
-        : route === "/models" || route === "/research" || route === "/resources"
-          ? 0.8
-          : 0.6,
-  }));
+      return {
+        url: new URL(localizedRoute, siteConfig.canonicalUrl!).toString(),
+        alternates: {
+          languages: {
+            en: englishUrl,
+            de: germanUrl,
+            "x-default": englishUrl,
+          },
+        },
+        changeFrequency:
+          route.startsWith("/models/") ||
+          route.startsWith("/resources/publications/")
+            ? ("monthly" as const)
+            : ("weekly" as const),
+        priority:
+          route === "/"
+            ? 1
+            : route === "/models" ||
+                route === "/research" ||
+                route === "/resources"
+              ? 0.8
+              : 0.6,
+      };
+    }),
+  );
 }

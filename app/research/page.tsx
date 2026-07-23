@@ -7,6 +7,7 @@ import {
   researchPublication,
 } from "@/content/research";
 import { metadataFor } from "@/lib/metadata";
+import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/research");
 
@@ -15,10 +16,16 @@ type ResearchSource = {
   readonly url: string;
 };
 
-function SourceLine({ sources }: { sources: readonly ResearchSource[] }) {
+function SourceLine({
+  sources,
+  locale,
+}: {
+  sources: readonly ResearchSource[];
+  locale: Locale;
+}) {
   return (
     <p className="mt-8 flex flex-wrap gap-x-2 gap-y-1 text-sm leading-6 text-muted">
-      <span>Primary sources:</span>
+      <span>{t(locale, "Primary sources")}:</span>
       {sources.map((source, index) => (
         <span key={source.url}>
           <a
@@ -36,9 +43,10 @@ function SourceLine({ sources }: { sources: readonly ResearchSource[] }) {
   );
 }
 
-function EvidenceStatus({ label }: { label: string }) {
-  const published = label === "Published";
-  const partial = label === "Partial evidence";
+function EvidenceStatus({ label, locale }: { label: string; locale: Locale }) {
+  const published = label === "Published" || label === t(locale, "Published");
+  const partial =
+    label === "Partial evidence" || label === t(locale, "Partial evidence");
 
   return (
     <span
@@ -56,18 +64,19 @@ function EvidenceStatus({ label }: { label: string }) {
           published ? "bg-accent" : partial ? "bg-[#79aaff]" : "bg-muted/55"
         }`}
       />
-      {label}
+      {t(locale, label)}
     </span>
   );
 }
 
-export default function ResearchPage() {
-  const research = quantumExperimentResearch;
-  const publication = researchPublication;
+export function LocalizedResearchPage({ locale }: { locale: Locale }) {
+  const page = localizeContent(researchPageContent, locale);
+  const research = localizeContent(quantumExperimentResearch, locale);
+  const publication = localizeContent(researchPublication, locale);
 
   return (
     <>
-      <PageIntro {...researchPageContent.introduction} />
+      <PageIntro {...page.introduction} />
 
       <section
         aria-labelledby="evidence-ledger-heading"
@@ -75,12 +84,12 @@ export default function ResearchPage() {
       >
         <Reveal className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
           <div>
-            <p className="eyebrow">EVIDENCE LEDGER</p>
+            <p className="eyebrow">{t(locale, "EVIDENCE LEDGER")}</p>
             <h2
               id="evidence-ledger-heading"
               className="display-section mt-7 text-ink"
             >
-              Claims mapped to public artifacts.
+              {t(locale, "Claims mapped to public artifacts.")}
             </h2>
           </div>
           <div className="liquid-surface p-6 sm:p-8">
@@ -99,7 +108,7 @@ export default function ResearchPage() {
               rel="noreferrer"
               className="link-arrow mt-5 inline-flex text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:text-accent"
             >
-              Inspect pinned snapshot
+              {t(locale, "Inspect pinned snapshot")}
             </a>
           </div>
         </Reveal>
@@ -111,7 +120,7 @@ export default function ResearchPage() {
               delay={(index % 3) * 0.03}
               className="liquid-card p-5 sm:p-6"
             >
-              <EvidenceStatus label={item.label} />
+              <EvidenceStatus label={item.label} locale={locale} />
               <p className="mt-4 text-sm leading-6 text-muted">
                 {item.meaning}
               </p>
@@ -122,14 +131,16 @@ export default function ResearchPage() {
         <Reveal className="liquid-surface mt-8 max-w-full">
           <div
             role="region"
-            aria-label="Scrollable research evidence ledger"
+            aria-label={t(locale, "Scrollable research evidence ledger")}
             tabIndex={0}
             className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
           >
             <table className="w-full min-w-[72rem] border-collapse text-left">
               <caption className="sr-only">
-                Public evidence and claim boundaries for Quantum and Echelon
-                artifacts
+                {t(
+                  locale,
+                  "Public evidence and claim boundaries for Quantum and Echelon artifacts",
+                )}
               </caption>
               <thead>
                 <tr>
@@ -145,7 +156,7 @@ export default function ResearchPage() {
                       scope="col"
                       className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
                     >
-                      {column}
+                      {t(locale, column)}
                     </th>
                   ))}
                 </tr>
@@ -170,7 +181,7 @@ export default function ResearchPage() {
                       {item.scope}
                     </td>
                     <td className="border-b border-line px-6 py-6 align-top">
-                      <EvidenceStatus label={item.status} />
+                      <EvidenceStatus label={item.status} locale={locale} />
                     </td>
                     <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
                       {item.evidence}
@@ -220,13 +231,13 @@ export default function ResearchPage() {
                       <h3 className="text-xl font-medium tracking-[-0.025em] text-ink">
                         {stage.name}
                       </h3>
-                      <EvidenceStatus label={stage.status} />
+                      <EvidenceStatus label={stage.status} locale={locale} />
                     </div>
                     <p className="body-copy mt-3 max-w-[42rem]">
                       {stage.detail}
                     </p>
                     <p className="mt-4 font-mono text-[0.64rem] leading-5 tracking-[0.09em] text-muted uppercase">
-                      Boundary · {stage.boundary}
+                      {t(locale, "Boundary")} · {stage.boundary}
                     </p>
                     <a
                       href={stage.url}
@@ -234,7 +245,7 @@ export default function ResearchPage() {
                       rel="noreferrer"
                       className="mt-4 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
                     >
-                      Inspect evidence
+                      {t(locale, "Inspect evidence")}
                     </a>
                   </div>
                 </Reveal>
@@ -244,7 +255,7 @@ export default function ResearchPage() {
 
           <Reveal className="liquid-surface mt-12 grid gap-7 border-accent/20 p-7 sm:p-9 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="eyebrow">PLANNED, NOT ACHIEVED</p>
+              <p className="eyebrow">{t(locale, "PLANNED, NOT ACHIEVED")}</p>
               <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
                 {publication.echelon.plannedTargets.title}
               </h3>
@@ -262,7 +273,7 @@ export default function ResearchPage() {
                 rel="noreferrer"
                 className="mt-5 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
               >
-                Inspect production configuration
+                {t(locale, "Inspect production configuration")}
               </a>
             </div>
           </Reveal>
@@ -274,9 +285,12 @@ export default function ResearchPage() {
         className="page-shell section-space"
       >
         <Reveal className="max-w-[58rem]">
-          <p className="eyebrow">FINDINGS AND LESSONS</p>
+          <p className="eyebrow">{t(locale, "FINDINGS AND LESSONS")}</p>
           <h2 id="findings-heading" className="display-section mt-7 text-ink">
-            Positive checks and negative results, with boundaries.
+            {t(
+              locale,
+              "Positive checks and negative results, with boundaries.",
+            )}
           </h2>
         </Reveal>
         <div className="mt-12 grid gap-4 lg:grid-cols-2">
@@ -302,7 +316,7 @@ export default function ResearchPage() {
                 rel="noreferrer"
                 className="mt-6 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
               >
-                Inspect source
+                {t(locale, "Inspect source")}
               </a>
             </Reveal>
           ))}
@@ -311,11 +325,14 @@ export default function ResearchPage() {
 
       <section className="border-y border-line bg-ink py-10 text-white">
         <div className="page-shell flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="eyebrow eyebrow-on-dark">COMPLETED PILOT STUDY</p>
+          <p className="eyebrow eyebrow-on-dark">
+            {t(locale, "COMPLETED PILOT STUDY")}
+          </p>
           <p className="max-w-[45rem] text-sm leading-6 text-[#c8d6e9] sm:text-right">
-            The sections below document the released quantum-1-pilot and
-            quantum-1.6-pilot experiment separately from the untrained Echelon
-            line.
+            {t(
+              locale,
+              "The sections below document the released quantum-1-pilot and quantum-1.6-pilot experiment separately from the untrained Echelon line.",
+            )}
           </p>
         </div>
       </section>
@@ -357,7 +374,10 @@ export default function ResearchPage() {
               <p className="border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
                 {research.questions.qualification}
               </p>
-              <SourceLine sources={research.questions.sources} />
+              <SourceLine
+                sources={research.questions.sources}
+                locale={locale}
+              />
             </Reveal>
           </div>
         </div>
@@ -380,7 +400,7 @@ export default function ResearchPage() {
               <p className="body-lg mt-7 max-w-[39rem]">
                 {research.design.text}
               </p>
-              <SourceLine sources={research.design.sources} />
+              <SourceLine sources={research.design.sources} locale={locale} />
             </Reveal>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:col-span-6 lg:col-start-7">
@@ -423,7 +443,7 @@ export default function ResearchPage() {
         <div className="mt-12 grid gap-4 lg:grid-cols-2">
           <Reveal className="liquid-card p-7 sm:p-10">
             <p className="font-mono text-[0.68rem] tracking-[0.15em] text-accent uppercase">
-              Hypothesis · research expectation
+              {t(locale, "Hypothesis")} · {t(locale, "research expectation")}
             </p>
             <p className="body-lg mt-7 max-w-[39rem]">
               {research.hypothesisAndObservation.hypothesis}
@@ -434,7 +454,7 @@ export default function ResearchPage() {
             className="liquid-card border-accent/25 p-7 sm:p-10"
           >
             <p className="font-mono text-[0.68rem] tracking-[0.15em] text-accent uppercase">
-              Observation · public release record
+              {t(locale, "Observation")} · {t(locale, "public release record")}
             </p>
             <p className="body-lg mt-7 max-w-[39rem]">
               {research.hypothesisAndObservation.observation}
@@ -446,7 +466,10 @@ export default function ResearchPage() {
           <p className="body-copy max-w-[52rem]">
             {research.hypothesisAndObservation.metricQualification}
           </p>
-          <SourceLine sources={research.hypothesisAndObservation.sources} />
+          <SourceLine
+            sources={research.hypothesisAndObservation.sources}
+            locale={locale}
+          />
         </Reveal>
       </section>
 
@@ -468,13 +491,16 @@ export default function ResearchPage() {
           <Reveal className="liquid-surface mt-12 max-w-full">
             <div
               role="region"
-              aria-label="Scrollable model comparison"
+              aria-label={t(locale, "Scrollable model comparison")}
               tabIndex={0}
               className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
             >
               <table className="w-full min-w-[48rem] border-collapse text-left">
                 <caption className="sr-only">
-                  Comparison of quantum-1-pilot and quantum-1.6-pilot
+                  {t(
+                    locale,
+                    "Comparison of quantum-1-pilot and quantum-1.6-pilot",
+                  )}
                 </caption>
                 <thead>
                   <tr>
@@ -495,7 +521,7 @@ export default function ResearchPage() {
                       {row.map((value, index) =>
                         index === 0 ? (
                           <th
-                            key={value}
+                            key={`${index}-${value}`}
                             scope="row"
                             className="border-b border-line px-6 py-5 text-sm font-medium text-ink"
                           >
@@ -503,7 +529,7 @@ export default function ResearchPage() {
                           </th>
                         ) : (
                           <td
-                            key={value}
+                            key={`${index}-${value}`}
                             className="border-b border-line px-6 py-5 text-sm leading-6 text-ink-soft"
                           >
                             {value}
@@ -521,7 +547,7 @@ export default function ResearchPage() {
             <p className="border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
               {research.comparison.note}
             </p>
-            <SourceLine sources={research.comparison.sources} />
+            <SourceLine sources={research.comparison.sources} locale={locale} />
           </Reveal>
         </div>
       </section>
@@ -547,7 +573,7 @@ export default function ResearchPage() {
             </p>
             <div className="liquid-surface mt-8 border-l-2 border-accent p-6 sm:p-8">
               <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
-                Documented limitation
+                {t(locale, "Documented limitation")}
               </p>
               <p className="mt-4 text-lg leading-7 tracking-[-0.015em] text-ink">
                 {research.dataPipeline.limitation}
@@ -556,7 +582,10 @@ export default function ResearchPage() {
             <p className="body-copy mt-7 max-w-[46rem]">
               {research.dataPipeline.status}
             </p>
-            <SourceLine sources={research.dataPipeline.sources} />
+            <SourceLine
+              sources={research.dataPipeline.sources}
+              locale={locale}
+            />
           </Reveal>
         </div>
       </section>
@@ -598,7 +627,10 @@ export default function ResearchPage() {
                 <p className="border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
                   {research.evaluation.limitation}
                 </p>
-                <SourceLine sources={research.evaluation.sources} />
+                <SourceLine
+                  sources={research.evaluation.sources}
+                  locale={locale}
+                />
               </Reveal>
             </div>
           </div>
@@ -622,7 +654,7 @@ export default function ResearchPage() {
           <Reveal className="lg:col-span-7 lg:col-start-6">
             <div className="liquid-surface p-7 sm:p-10">
               <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
-                Evidence status
+                {t(locale, "Evidence status")}
               </p>
               <p className="body-lg mt-6 max-w-[44rem]">
                 {research.observedBehavior.unavailable}
@@ -631,7 +663,10 @@ export default function ResearchPage() {
                 {research.observedBehavior.explanation}
               </p>
             </div>
-            <SourceLine sources={research.observedBehavior.sources} />
+            <SourceLine
+              sources={research.observedBehavior.sources}
+              locale={locale}
+            />
           </Reveal>
         </div>
       </section>
@@ -671,7 +706,10 @@ export default function ResearchPage() {
             <p className="max-w-[54rem] border-l-2 border-accent pl-5 text-lg leading-7 text-ink">
               {research.failureModes.conclusion}
             </p>
-            <SourceLine sources={research.failureModes.sources} />
+            <SourceLine
+              sources={research.failureModes.sources}
+              locale={locale}
+            />
           </Reveal>
         </div>
       </section>
@@ -693,7 +731,7 @@ export default function ResearchPage() {
           <Reveal className="lg:col-span-7 lg:col-start-6">
             <div className="liquid-card border-accent/25 p-7 sm:p-9">
               <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
-                Demonstrated by the released artifacts
+                {t(locale, "Demonstrated by the released artifacts")}
               </p>
               <p className="body-lg mt-6">
                 {research.conclusions.demonstrated}
@@ -709,7 +747,10 @@ export default function ResearchPage() {
                 </p>
               ))}
             </div>
-            <SourceLine sources={research.conclusions.sources} />
+            <SourceLine
+              sources={research.conclusions.sources}
+              locale={locale}
+            />
           </Reveal>
         </div>
       </section>
@@ -735,14 +776,16 @@ export default function ResearchPage() {
           <Reveal className="liquid-surface mt-12 max-w-full">
             <div
               role="region"
-              aria-label="Scrollable reproducibility status matrix"
+              aria-label={t(locale, "Scrollable reproducibility status matrix")}
               tabIndex={0}
               className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
             >
               <table className="w-full min-w-[68rem] border-collapse text-left">
                 <caption className="sr-only">
-                  Reproducibility evidence and missing artifacts by research
-                  area
+                  {t(
+                    locale,
+                    "Reproducibility evidence and missing artifacts by research area",
+                  )}
                 </caption>
                 <thead>
                   <tr>
@@ -757,7 +800,7 @@ export default function ResearchPage() {
                         scope="col"
                         className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
                       >
-                        {column}
+                        {t(locale, column)}
                       </th>
                     ))}
                   </tr>
@@ -779,7 +822,7 @@ export default function ResearchPage() {
                         </a>
                       </th>
                       <td className="border-b border-line px-6 py-6 align-top">
-                        <EvidenceStatus label={item.status} />
+                        <EvidenceStatus label={item.status} locale={locale} />
                       </td>
                       <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
                         {item.evidence}
@@ -796,9 +839,10 @@ export default function ResearchPage() {
 
           <Reveal className="mt-8">
             <p className="border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
-              Missing items are shown as publication gaps. A configuration
-              target, smoke result or preflight does not upgrade a research area
-              to complete reproducibility.
+              {t(
+                locale,
+                "Missing items are shown as publication gaps. A configuration target, smoke result or preflight does not upgrade a research area to complete reproducibility.",
+              )}
             </p>
           </Reveal>
 
@@ -810,7 +854,7 @@ export default function ResearchPage() {
                 className="liquid-card min-w-0 p-7 sm:p-8"
               >
                 <p className="font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
-                  Public documentation
+                  {t(locale, "Public documentation")}
                 </p>
                 <h3 className="mt-5 text-xl font-medium tracking-[-0.025em] text-ink">
                   {artifact.label}
@@ -824,7 +868,7 @@ export default function ResearchPage() {
                   rel="noreferrer"
                   className="link-arrow mt-6 inline-flex text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:text-accent"
                 >
-                  Inspect source
+                  {t(locale, "Inspect source")}
                 </a>
               </Reveal>
             ))}
@@ -836,14 +880,14 @@ export default function ResearchPage() {
                 key={release.model}
                 className="liquid-surface min-w-0 p-7 sm:p-9"
               >
-                <p className="eyebrow">PUBLIC F16 GGUF</p>
+                <p className="eyebrow">{t(locale, "PUBLIC F16 GGUF")}</p>
                 <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
                   {release.model}
                 </h3>
                 <dl className="mt-7 border-b border-line">
                   <div className="grid gap-2 border-t border-line py-5 sm:grid-cols-[7rem_1fr] sm:gap-6">
                     <dt className="font-mono text-[0.65rem] tracking-[0.13em] text-muted uppercase">
-                      File
+                      {t(locale, "File")}
                     </dt>
                     <dd className="min-w-0 break-all text-sm leading-6 text-ink-soft">
                       {release.filename}
@@ -860,21 +904,21 @@ export default function ResearchPage() {
                 </dl>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <ActionLink href={release.ggufUrl} external>
-                    GGUF file
+                    {t(locale, "GGUF file")}
                   </ActionLink>
                   <ActionLink
                     href={release.checksumUrl}
                     external
                     variant="secondary"
                   >
-                    Checksum
+                    {t(locale, "Checksum")}
                   </ActionLink>
                   <ActionLink
                     href={release.manifestUrl}
                     external
                     variant="secondary"
                   >
-                    Manifest
+                    {t(locale, "Manifest")}
                   </ActionLink>
                 </div>
               </Reveal>
@@ -882,10 +926,10 @@ export default function ResearchPage() {
           </div>
 
           <Reveal className="mt-12 min-w-0">
-            <p className="eyebrow">LLAMA.CPP REFERENCE</p>
+            <p className="eyebrow">{t(locale, "LLAMA.CPP REFERENCE")}</p>
             <div className="liquid-surface mt-6 min-w-0 p-6 sm:p-8">
               <pre
-                aria-label="Scrollable llama.cpp reference command"
+                aria-label={t(locale, "Scrollable llama.cpp reference command")}
                 tabIndex={0}
                 className="max-w-full overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
               >
@@ -943,19 +987,26 @@ export default function ResearchPage() {
       <section className="page-shell pb-[var(--section-space)]">
         <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <p className="eyebrow">DETAILED RECORDS</p>
+            <p className="eyebrow">{t(locale, "DETAILED RECORDS")}</p>
             <h2 className="display-section mt-7 text-ink">
-              Continue through the resources hub.
+              {t(locale, "Continue through the resources hub.")}
             </h2>
             <p className="body-lg mt-6 max-w-[48rem]">
-              Inspect the publication, reproducibility record, data provenance,
-              responsible-use guidance, licensing boundaries and current
-              evidence status.
+              {t(
+                locale,
+                "Inspect the publication, reproducibility record, data provenance, responsible-use guidance, licensing boundaries and current evidence status.",
+              )}
             </p>
           </div>
-          <ActionLink href="/resources">Explore resources</ActionLink>
+          <ActionLink href={localizePath("/resources", locale)}>
+            {t(locale, "Explore resources")}
+          </ActionLink>
         </Reveal>
       </section>
     </>
   );
+}
+
+export default function ResearchPage() {
+  return <LocalizedResearchPage locale="en" />;
 }

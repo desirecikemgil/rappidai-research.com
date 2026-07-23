@@ -19,6 +19,8 @@ export type SiteRoute =
   | "/imprint"
   | "/privacy";
 
+export type SiteLocale = "en" | "de";
+
 export interface NavigationItem {
   readonly label: string;
   readonly href: SiteRoute;

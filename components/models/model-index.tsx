@@ -7,10 +7,18 @@ import { useMemo, useState } from "react";
 import { useReducedEffects } from "@/components/motion/use-reduced-effects";
 import { getModelsByFilter, modelFilters } from "@/content/models";
 import type { ModelFilterId } from "@/content/types";
+import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 
-export function ModelIndex() {
+export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
   const [filter, setFilter] = useState<ModelFilterId>("all");
-  const visibleModels = useMemo(() => getModelsByFilter(filter), [filter]);
+  const visibleModels = useMemo(
+    () => getModelsByFilter(filter, locale),
+    [filter, locale],
+  );
+  const filters = useMemo(
+    () => localizeContent(modelFilters, locale),
+    [locale],
+  );
   const reduceMotion = useReducedEffects();
 
   return (
@@ -19,18 +27,18 @@ export function ModelIndex() {
       aria-labelledby="models-list-heading"
     >
       <h2 id="models-list-heading" className="sr-only">
-        Model index
+        {t(locale, "Model index")}
       </h2>
       <div className="flex flex-col gap-5 border-y border-line py-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-mono text-[0.69rem] tracking-[0.16em] text-muted uppercase">
-          Filter models
+          {t(locale, "Filter models")}
         </p>
         <div
           className="flex flex-wrap gap-2"
           role="group"
-          aria-label="Filter models"
+          aria-label={t(locale, "Filter models")}
         >
-          {modelFilters.map((item) => {
+          {filters.map((item) => {
             const active = item.id === filter;
             return (
               <button
@@ -64,7 +72,7 @@ export function ModelIndex() {
               className="liquid-row group rounded-[1.35rem] border-y border-line py-8 sm:py-10"
             >
               <Link
-                href={`/models/${model.slug}`}
+                href={localizePath(`/models/${model.slug}`, locale)}
                 className="grid gap-8 lg:grid-cols-[1.05fr_0.7fr_0.2fr] lg:items-start"
               >
                 <div>
@@ -78,7 +86,7 @@ export function ModelIndex() {
                     </span>
                     <span className="text-xs text-muted">
                       {model.parameterCount?.label ??
-                        "Parameter size not yet defined"}
+                        t(locale, "Parameter size not yet defined")}
                     </span>
                   </div>
                   <h3 className="mt-5 text-[clamp(2rem,4vw,4.25rem)] font-[510] tracking-[-0.052em] text-ink transition-colors group-hover:text-accent">
@@ -92,10 +100,10 @@ export function ModelIndex() {
                     <div key={fact} className="border-l border-line pl-4">
                       <dt className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
                         {factIndex === 0
-                          ? "Status"
+                          ? t(locale, "Status")
                           : factIndex === 1
-                            ? "Model"
-                            : "Use"}
+                            ? t(locale, "Model")
+                            : t(locale, "Use")}
                       </dt>
                       <dd className="mt-1.5 leading-6 text-ink-soft">{fact}</dd>
                     </div>
