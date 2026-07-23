@@ -68,16 +68,16 @@ project.
 - Dependabot alerts, security updates, automated security fixes, and grouped
   dependency updates are enabled.
 - Private Vulnerability Reporting is enabled.
-- `main` requires the current `Verify` check, requires conversation resolution,
-  and blocks force pushes and branch deletion. Admin bypass remains available
-  for the single maintainer.
+- `main` requires `Verify`, `Browser and accessibility`, and the GitHub Advanced
+  Security `CodeQL` result; it also requires conversation resolution and blocks
+  force pushes and branch deletion. Admin bypass remains available for the
+  single maintainer.
 - Merged branches are deleted automatically.
 
 ## Verification results
 
-The following results were obtained from the candidate working tree on
-2026-07-23. They are local evidence; the new GitHub Actions and CodeQL workflows
-must still complete on the published pull-request commit.
+The following results were obtained from the candidate working tree and the
+published draft pull request on 2026-07-23.
 
 | Check                                  | Result                                                                |
 | -------------------------------------- | --------------------------------------------------------------------- |
@@ -96,7 +96,7 @@ must still complete on the published pull-request commit.
 | Large/model artifact scan              | No tracked model/checkpoint/dataset binary; largest file is 868,858 B |
 | Git diff whitespace check              | Passed                                                                |
 | Existing default-branch CI at baseline | Passed                                                                |
-| Candidate pull-request CI and CodeQL   | Pending publication and remote execution                              |
+| Candidate pull-request CI and CodeQL   | Passed on draft pull request #7                                       |
 
 Automated checks do not replace legal review, penetration testing, manual
 screen-reader testing, model-artifact malware analysis, dataset inspection, or
