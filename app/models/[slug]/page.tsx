@@ -268,7 +268,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
             <p className="eyebrow">Limitations</p>
             <h2 className="display-section mt-6">Read the limits first.</h2>
           </Reveal>
-          <div className="border-t border-line">
+          <div className="space-y-3 border-t border-line sm:space-y-4">
             {model.limitations.map((limitation, index) => (
               <Reveal key={limitation} delay={index * 0.035}>
                 <div className="liquid-row grid grid-cols-[3rem_1fr] gap-4 rounded-[1.15rem] border-y border-line py-5 sm:grid-cols-[5rem_1fr] sm:py-6">
@@ -295,7 +295,7 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
         <section className="liquid-section border-y border-line bg-pale-soft/40">
           <div className="page-shell section-space-sm">
             <p className="eyebrow">Related research note</p>
-            <div className="mt-10 border-b border-line">
+            <div className="mt-10 space-y-3 border-b border-line sm:space-y-4">
               {relatedNotes.map((note) => (
                 <div
                   key={note.id}

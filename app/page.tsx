@@ -287,7 +287,7 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        <div className="mt-16 border-b border-line">
+        <div className="mt-16 space-y-3 border-b border-line sm:space-y-4">
           {researchAreas.map((area, index) => (
             <Reveal key={area.id} delay={index * 0.04}>
               <article className="liquid-row grid gap-8 rounded-[1.35rem] border-y border-line py-8 lg:grid-cols-[0.15fr_0.55fr_0.6fr] lg:items-center lg:py-10">

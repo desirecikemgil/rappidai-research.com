@@ -205,7 +205,7 @@ export default function ResearchPage() {
               </p>
             </Reveal>
 
-            <div className="border-t border-line lg:col-span-6 lg:col-start-7">
+            <div className="space-y-3 border-t border-line sm:space-y-4 lg:col-span-6 lg:col-start-7">
               {publication.echelon.stages.map((stage, index) => (
                 <Reveal
                   key={stage.name}
@@ -336,7 +336,7 @@ export default function ResearchPage() {
           </Reveal>
 
           <div className="border-t border-line lg:col-span-7 lg:col-start-6">
-            <ol>
+            <ol className="space-y-3 sm:space-y-4">
               {research.questions.items.map((question, index) => (
                 <li key={question}>
                   <Reveal
@@ -576,7 +576,7 @@ export default function ResearchPage() {
                 {research.evaluation.title}
               </h2>
             </Reveal>
-            <div className="border-t border-line lg:col-span-7 lg:col-start-6">
+            <div className="space-y-3 border-t border-line sm:space-y-4 lg:col-span-7 lg:col-start-6">
               {research.evaluation.items.map((item, index) => (
                 <Reveal
                   key={item.title}
@@ -699,7 +699,7 @@ export default function ResearchPage() {
                 {research.conclusions.demonstrated}
               </p>
             </div>
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-3 sm:space-y-4">
               {research.conclusions.notDemonstrated.map((statement) => (
                 <p
                   key={statement}
@@ -909,7 +909,7 @@ export default function ResearchPage() {
               {research.openQuestions.title}
             </h2>
           </Reveal>
-          <ol className="border-t border-line lg:col-span-7 lg:col-start-6">
+          <ol className="space-y-3 border-t border-line sm:space-y-4 lg:col-span-7 lg:col-start-6">
             {research.openQuestions.items.map((question, index) => (
               <li key={question}>
                 <Reveal
