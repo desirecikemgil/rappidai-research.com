@@ -20,7 +20,10 @@ Link the issue or discussion, if one exists.
 - [ ] `pnpm typecheck`
 - [ ] `pnpm lint`
 - [ ] `pnpm test`
+- [ ] `pnpm links:internal`
 - [ ] `pnpm build`
+- [ ] `pnpm test:e2e` for visible or route changes
+- [ ] `pnpm links:external` for public source or artifact-link changes
 - [ ] Manual checks relevant to this change
 
 If a check was not run or did not pass, explain why:

@@ -97,6 +97,8 @@ direction, not demonstrated capability.
 
 No model is presently available for inference. There are therefore no supported
 downstream uses, benchmark claims, safety claims, or deployment recommendations.
+The project-wide publication and use boundary is recorded in
+[Responsible AI and research limitations](../docs/responsible-ai.md).
 
 ## Risks and open questions
 

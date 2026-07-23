@@ -197,7 +197,11 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
                     <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
                       Reference completion command
                     </p>
-                    <pre className="mt-5 overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7]">
+                    <pre
+                      aria-label="Scrollable reference completion command"
+                      tabIndex={0}
+                      className="mt-5 overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+                    >
                       <code>{model.usageExample}</code>
                     </pre>
                     <p className="mt-4 text-sm leading-6 text-muted">

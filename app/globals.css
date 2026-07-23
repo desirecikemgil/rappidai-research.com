@@ -306,6 +306,10 @@ button:disabled {
   text-transform: uppercase;
 }
 
+.eyebrow-on-dark {
+  color: #79aaff;
+}
+
 .display-hero {
   max-width: 12ch;
   font-size: clamp(3.55rem, 7.3vw, 7.75rem);

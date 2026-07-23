@@ -20,9 +20,9 @@ backport.
 
 Do not open a public issue for a suspected vulnerability or exposed secret.
 
-1. If the repository's **Report a vulnerability** option is available under
-   the Security tab, use GitHub Private Vulnerability Reporting.
-2. Otherwise, email
+1. Use the repository's **Report a vulnerability** option under the Security
+   tab. Private Vulnerability Reporting is enabled for this repository.
+2. If GitHub's private reporting flow is unavailable, email
    [cikemgil@rappidai-research.com](mailto:cikemgil@rappidai-research.com) with
    the subject `[SECURITY] rappidAI website`.
 
@@ -59,6 +59,23 @@ Examples within this website repository include:
 General model-quality complaints, hallucinations, benchmark disagreements,
 content policy questions, and ordinary availability problems are not website
 security vulnerabilities. Use the appropriate public issue form for those.
+
+## Automated repository controls
+
+The public repository uses:
+
+- secret scanning and push protection;
+- Dependabot alerts, security updates, and grouped version updates;
+- SHA-pinned GitHub Actions with least-privilege workflow permissions;
+- CodeQL analysis for JavaScript and TypeScript;
+- frozen-lockfile installation, linting, type checking, focused tests, and a
+  production build;
+- Chromium route and automated accessibility checks; and
+- protected `main` status checks with force-push and deletion protection.
+
+These controls reduce risk but do not prove that the website, dependencies, or
+linked artifacts are vulnerability-free. Review current results at the exact
+release commit and report suspected gaps privately.
 
 ## Compromised secrets
 

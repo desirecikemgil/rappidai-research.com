@@ -17,8 +17,13 @@ versioned releases are introduced.
 - GitHub ownership, pull-request guidance, and structured issue forms.
 - CPU-only continuous integration, focused content and metadata tests, and
   monthly dependency updates with grouped minor and patch changes.
+- Chromium route, contact-form, responsive-overflow, and automated
+  accessibility checks with failure artifacts retained by CI.
+- Relative-link validation on pull requests, scheduled public-link validation,
+  and CodeQL analysis for JavaScript and TypeScript.
 - Evidence-bounded model cards, data/training and architecture documentation,
-  a dated repository audit, a future run template, and asset provenance records.
+  responsible-AI guidance, a dated repository audit, a future run template, and
+  asset provenance records.
 
 ### Changed
 

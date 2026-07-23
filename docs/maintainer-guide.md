@@ -48,10 +48,22 @@ pnpm format:check
 pnpm typecheck
 pnpm lint
 pnpm test
+pnpm links:internal
 pnpm build
 ```
 
 `pnpm check` runs that complete sequence.
+
+For public route, form, responsive, and automated accessibility coverage, run:
+
+```bash
+pnpm exec playwright install chromium
+pnpm test:e2e
+```
+
+Use `pnpm links:external` before a release or after changing public evidence
+links. External availability changes independently of the repository, so this
+check runs on a schedule rather than blocking every pull request.
 
 Reproduce a failure from a clean install with the committed lockfile. Separate
 environment failures from code failures and record exact tool versions. Do not
@@ -77,6 +89,28 @@ met.
 - Inspect production bundles when a dependency changes fonts, icons, native
   binaries, telemetry, networking, or server behavior.
 - Update third-party notices when the shipped dependency set changes.
+
+## Codex-assisted maintenance
+
+Codex can support recurring repository work without becoming the authority for
+research, licensing, security, or release decisions. Suitable tasks include:
+
+- triaging issues into website, model, data, documentation, or security scope;
+- reviewing pull requests for naming, source links, tests, and documentation
+  drift;
+- reproducing CI failures and proposing focused tests or refactors;
+- checking model-card claims against pinned manifests, configurations, and
+  reports;
+- preparing dependency updates and summarizing relevant compatibility or
+  license changes;
+- checking relative links, release notes, and changelog consistency; and
+- preparing release checklists and evidence inventories.
+
+A maintainer must still verify every factual claim, approve license and
+provenance decisions, review security-sensitive changes, run or inspect the
+recorded checks, and make the final merge or release decision. Generated text,
+tests, and code are review inputs, not evidence that a model run occurred or
+that an artifact is lawful, safe, or reproducible.
 
 ## Documentation and claim synchronization
 

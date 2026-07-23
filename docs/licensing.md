@@ -35,7 +35,8 @@ dependencies currently include material under several licenses:
 - Next.js, React, React DOM, Motion, Tailwind CSS, and ESLint: MIT;
 - Lucide: ISC;
 - Geist fonts: SIL Open Font License; and
-- TypeScript: Apache-2.0.
+- TypeScript and Playwright: Apache-2.0; and
+- `@axe-core/playwright`: Mozilla Public License 2.0.
 
 Transitive packages introduce additional licenses. Dependency files are not
 relicensed under the website's Apache-2.0 license. Preserve license and
