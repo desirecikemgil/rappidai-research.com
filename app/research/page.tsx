@@ -2,7 +2,10 @@ import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { researchPageContent } from "@/content/pages";
-import { quantumExperimentResearch } from "@/content/research";
+import {
+  quantumExperimentResearch,
+  researchPublication,
+} from "@/content/research";
 import { metadataFor } from "@/lib/metadata";
 
 export const metadata = metadataFor("/research");
@@ -33,16 +36,293 @@ function SourceLine({ sources }: { sources: readonly ResearchSource[] }) {
   );
 }
 
+function EvidenceStatus({ label }: { label: string }) {
+  const published = label === "Published";
+  const partial = label === "Partial evidence";
+
+  return (
+    <span
+      className={`inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 font-mono text-[0.62rem] font-medium tracking-[0.1em] uppercase ${
+        published
+          ? "border-accent/25 bg-accent/8 text-accent"
+          : partial
+            ? "border-[#8cb7ff]/35 bg-pale/70 text-ink-soft"
+            : "border-line-strong bg-white/55 text-muted"
+      }`}
+    >
+      <span
+        aria-hidden="true"
+        className={`mr-2 size-1.5 rounded-full ${
+          published ? "bg-accent" : partial ? "bg-[#79aaff]" : "bg-muted/55"
+        }`}
+      />
+      {label}
+    </span>
+  );
+}
+
 export default function ResearchPage() {
   const research = quantumExperimentResearch;
+  const publication = researchPublication;
 
   return (
     <>
       <PageIntro {...researchPageContent.introduction} />
 
       <section
-        aria-labelledby="research-questions-heading"
+        aria-labelledby="evidence-ledger-heading"
         className="page-shell pb-[var(--section-space)]"
+      >
+        <Reveal className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+          <div>
+            <p className="eyebrow">EVIDENCE LEDGER</p>
+            <h2
+              id="evidence-ledger-heading"
+              className="display-section mt-7 text-ink"
+            >
+              Claims mapped to public artifacts.
+            </h2>
+          </div>
+          <div className="liquid-surface p-6 sm:p-8">
+            <p className="font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
+              {publication.evidenceSnapshot.label}
+            </p>
+            <p className="mt-4 break-all font-mono text-[0.72rem] leading-6 text-ink-soft">
+              {publication.evidenceSnapshot.reference}
+            </p>
+            <p className="body-copy mt-4">
+              {publication.evidenceSnapshot.explanation}
+            </p>
+            <a
+              href={publication.evidenceSnapshot.url}
+              target="_blank"
+              rel="noreferrer"
+              className="link-arrow mt-5 inline-flex text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:text-accent"
+            >
+              Inspect pinned snapshot
+            </a>
+          </div>
+        </Reveal>
+
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {publication.statusVocabulary.map((item, index) => (
+            <Reveal
+              key={item.label}
+              delay={(index % 3) * 0.03}
+              className="liquid-card p-5 sm:p-6"
+            >
+              <EvidenceStatus label={item.label} />
+              <p className="mt-4 text-sm leading-6 text-muted">
+                {item.meaning}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="liquid-surface mt-8 max-w-full">
+          <div
+            role="region"
+            aria-label="Scrollable research evidence ledger"
+            tabIndex={0}
+            className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+          >
+            <table className="w-full min-w-[72rem] border-collapse text-left">
+              <caption className="sr-only">
+                Public evidence and claim boundaries for Quantum and Echelon
+                artifacts
+              </caption>
+              <thead>
+                <tr>
+                  {[
+                    "Artifact",
+                    "Scope",
+                    "Status",
+                    "Public evidence",
+                    "Claim boundary",
+                  ].map((column) => (
+                    <th
+                      key={column}
+                      scope="col"
+                      className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
+                    >
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {publication.ledger.map((item) => (
+                  <tr key={item.artifact}>
+                    <th
+                      scope="row"
+                      className="border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
+                    >
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
+                      >
+                        {item.artifact}
+                      </a>
+                    </th>
+                    <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                      {item.scope}
+                    </td>
+                    <td className="border-b border-line px-6 py-6 align-top">
+                      <EvidenceStatus label={item.status} />
+                    </td>
+                    <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                      {item.evidence}
+                    </td>
+                    <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted">
+                      {item.boundary}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+      </section>
+
+      <section
+        aria-labelledby="echelon-status-heading"
+        className="liquid-section border-y border-line bg-pale-soft/35"
+      >
+        <div className="page-shell section-space">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+            <Reveal className="lg:col-span-5">
+              <p className="eyebrow">{publication.echelon.eyebrow}</p>
+              <h2
+                id="echelon-status-heading"
+                className="display-section mt-7 text-ink"
+              >
+                {publication.echelon.title}
+              </h2>
+              <p className="body-lg mt-7 max-w-[42rem]">
+                {publication.echelon.introduction}
+              </p>
+            </Reveal>
+
+            <div className="border-t border-line lg:col-span-6 lg:col-start-7">
+              {publication.echelon.stages.map((stage, index) => (
+                <Reveal
+                  key={stage.name}
+                  delay={index * 0.03}
+                  className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-7 sm:grid-cols-[3rem_1fr]"
+                >
+                  <span className="technical-number text-xs text-accent">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-xl font-medium tracking-[-0.025em] text-ink">
+                        {stage.name}
+                      </h3>
+                      <EvidenceStatus label={stage.status} />
+                    </div>
+                    <p className="body-copy mt-3 max-w-[42rem]">
+                      {stage.detail}
+                    </p>
+                    <p className="mt-4 font-mono text-[0.64rem] leading-5 tracking-[0.09em] text-muted uppercase">
+                      Boundary · {stage.boundary}
+                    </p>
+                    <a
+                      href={stage.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
+                    >
+                      Inspect evidence
+                    </a>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal className="liquid-surface mt-12 grid gap-7 border-accent/20 p-7 sm:p-9 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <p className="eyebrow">PLANNED, NOT ACHIEVED</p>
+              <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
+                {publication.echelon.plannedTargets.title}
+              </h3>
+            </div>
+            <div>
+              <p className="body-lg">
+                {publication.echelon.plannedTargets.text}
+              </p>
+              <p className="body-copy mt-5">
+                {publication.echelon.plannedTargets.qualification}
+              </p>
+              <a
+                href={publication.echelon.plannedTargets.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
+              >
+                Inspect production configuration
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="findings-heading"
+        className="page-shell section-space"
+      >
+        <Reveal className="max-w-[58rem]">
+          <p className="eyebrow">FINDINGS AND LESSONS</p>
+          <h2 id="findings-heading" className="display-section mt-7 text-ink">
+            Positive checks and negative results, with boundaries.
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid gap-4 lg:grid-cols-2">
+          {publication.findings.map((item, index) => (
+            <Reveal
+              key={item.title}
+              delay={(index % 2) * 0.04}
+              className="liquid-card p-7 sm:p-9"
+            >
+              <p className="font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
+                {item.kind}
+              </p>
+              <h3 className="mt-6 text-[clamp(1.45rem,2.4vw,2rem)] font-medium leading-[1.1] tracking-[-0.035em] text-ink">
+                {item.title}
+              </h3>
+              <p className="body-copy mt-5">{item.finding}</p>
+              <p className="mt-6 border-l-2 border-accent pl-4 text-sm leading-6 text-muted">
+                {item.boundary}
+              </p>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
+              >
+                Inspect source
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-line bg-ink py-10 text-white">
+        <div className="page-shell flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="eyebrow text-[#79aaff]">COMPLETED PILOT STUDY</p>
+          <p className="max-w-[45rem] text-sm leading-6 text-[#c8d6e9] sm:text-right">
+            The sections below document the released quantum-1-pilot and
+            quantum-1.6-pilot experiment separately from the untrained Echelon
+            line.
+          </p>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="research-questions-heading"
+        className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-4">
@@ -449,6 +729,76 @@ export default function ResearchPage() {
             </h2>
             <p className="body-lg mt-7">
               {research.reproducibility.introduction}
+            </p>
+          </Reveal>
+
+          <Reveal className="liquid-surface mt-12 max-w-full">
+            <div
+              role="region"
+              aria-label="Scrollable reproducibility status matrix"
+              tabIndex={0}
+              className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+            >
+              <table className="w-full min-w-[68rem] border-collapse text-left">
+                <caption className="sr-only">
+                  Reproducibility evidence and missing artifacts by research
+                  area
+                </caption>
+                <thead>
+                  <tr>
+                    {[
+                      "Area",
+                      "Status",
+                      "Available evidence",
+                      "Still missing",
+                    ].map((column) => (
+                      <th
+                        key={column}
+                        scope="col"
+                        className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
+                      >
+                        {column}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {publication.reproducibilityMatrix.map((item) => (
+                    <tr key={item.area}>
+                      <th
+                        scope="row"
+                        className="border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
+                      >
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
+                        >
+                          {item.area}
+                        </a>
+                      </th>
+                      <td className="border-b border-line px-6 py-6 align-top">
+                        <EvidenceStatus label={item.status} />
+                      </td>
+                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                        {item.evidence}
+                      </td>
+                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted">
+                        {item.missing}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+
+          <Reveal className="mt-8">
+            <p className="border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
+              Missing items are shown as publication gaps. A configuration
+              target, smoke result or preflight does not upgrade a research area
+              to complete reproducibility.
             </p>
           </Reveal>
 

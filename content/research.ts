@@ -81,8 +81,8 @@ export const experimentLogs = [
     modelSlug: "quantum-1-echelon",
     title: "quantum-1-echelon",
     description:
-      "Public 506.3M-parameter base-architecture preflight, tokenizer validation and Garden pipeline smoke test; no trained model release.",
-    statusLabel: "Pipeline in development — no model release",
+      "Public base-architecture preflight, validated tokenizer and Garden pipeline smoke test; no trained model release.",
+    statusLabel: "Pipeline and preflight stage — no trained model",
     publicationDate: null,
   },
 ] as const satisfies readonly ExperimentLogEntry[];
@@ -103,6 +103,273 @@ export const researchNotes = [
     publicationDate: null,
   },
 ] as const satisfies readonly ResearchNote[];
+
+export const researchPublication = {
+  evidenceSnapshot: {
+    label: "Pinned implementation snapshot",
+    reference: "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39",
+    url: publicResearchUrls.evidenceSnapshot,
+    explanation:
+      "Echelon claims on this page are linked to one immutable lumen-quantum commit so that later repository changes do not silently alter the cited evidence.",
+  },
+  statusVocabulary: [
+    {
+      label: "Published",
+      meaning: "A public artifact directly supports the statement.",
+    },
+    {
+      label: "Partial evidence",
+      meaning:
+        "A configuration, preflight or smoke artifact exists, but it does not establish completion of the full experiment.",
+    },
+    {
+      label: "Not published",
+      meaning:
+        "The result may exist privately, but no public artifact supports it.",
+    },
+    {
+      label: "Not measured",
+      meaning: "No committed measurement is available.",
+    },
+    {
+      label: "Not yet available",
+      meaning: "The relevant run or artifact is explicitly not complete.",
+    },
+    {
+      label: "Maintainer input required",
+      meaning:
+        "A publication decision or verified project detail is still required.",
+    },
+  ],
+  ledger: [
+    {
+      artifact: "quantum-1-pilot release",
+      scope: "Released model artifact",
+      status: "Published",
+      evidence:
+        "Public F16 GGUF, model card, release manifest and SHA-256 checksum.",
+      boundary:
+        "No standardized benchmark results and no stated model license.",
+      url: publicModelUrls["quantum-1-pilot"],
+    },
+    {
+      artifact: "quantum-1.6-pilot release",
+      scope: "Released continued-pretraining artifact",
+      status: "Published",
+      evidence:
+        "Public F16 GGUF, model card, manifest, checksum and held-out validation metrics.",
+      boundary:
+        "No standardized downstream benchmark and no raw public generation record.",
+      url: publicModelUrls["quantum-1-6-pilot"],
+    },
+    {
+      artifact: "Echelon Base architecture",
+      scope: "Configuration preflight",
+      status: "Partial evidence",
+      evidence:
+        "The committed preflight computes 506,333,440 parameters for the proposed configuration.",
+      boundary:
+        "This is a configuration result, not a trained model, checkpoint or capability result.",
+      url: publicResearchUrls.echelonArchitecturePreflight,
+    },
+    {
+      artifact: "Echelon tokenizer",
+      scope: "Tokenizer artifact",
+      status: "Published",
+      evidence:
+        "Committed configuration, checksums, quality summary and 23-case round-trip validation with 0 failures.",
+      boundary: "Tokenizer validation does not establish model quality.",
+      url: publicResearchUrls.echelonTokenizerValidation,
+    },
+    {
+      artifact: "Echelon Garden pipeline",
+      scope: "Data-pipeline smoke and resilience tests",
+      status: "Partial evidence",
+      evidence:
+        "The Phase 3 report records 5,001 documents seen, 1,559 accepted and 1,380,886 tokens produced in the final smoke test.",
+      boundary:
+        "The same report states that the full production run had not started.",
+      url: publicResearchUrls.echelonGardenReport,
+    },
+    {
+      artifact: "Echelon production dataset",
+      scope: "Production manifest and final split totals",
+      status: "Not yet available",
+      evidence: "A production configuration and targets are committed.",
+      boundary:
+        "No completed production manifest or final dataset totals are published.",
+      url: publicResearchUrls.echelonGardenConfiguration,
+    },
+    {
+      artifact: "Echelon model training",
+      scope: "Training run, checkpoints and weights",
+      status: "Not yet available",
+      evidence:
+        "No completed training artifact is present in the public sources.",
+      boundary:
+        "No Echelon loss curve, checkpoint, weight file, GGUF or model output is claimed.",
+      url: publicResearchUrls.echelonDirectory,
+    },
+  ],
+  echelon: {
+    eyebrow: "CURRENT MODEL LINE",
+    title: "What exists for quantum-1-echelon—and what does not.",
+    introduction:
+      "quantum-1-echelon is the current strategic model line. Echelon Base is the planned base-training stage and Echelon Chat is a later stage or variant within that same line. They are not separate model families.",
+    stages: [
+      {
+        name: "Architecture preflight",
+        status: "Published",
+        detail:
+          "The proposed Echelon Base configuration is machine-checked at 506,333,440 parameters within its configured target range.",
+        boundary: "Configuration only · no trained weights",
+        url: publicResearchUrls.echelonArchitecturePreflight,
+      },
+      {
+        name: "Tokenizer",
+        status: "Published",
+        detail:
+          "A 32,768-token SentencePiece BPE configuration, checksum list, quality summary and round-trip validation report are committed.",
+        boundary: "Tokenizer artifact · not model evaluation",
+        url: publicResearchUrls.echelonTokenizerChecksums,
+      },
+      {
+        name: "Garden data pipeline",
+        status: "Partial evidence",
+        detail:
+          "Smoke, integrity, interruption, resume and shutdown behavior are documented. The final smoke produced 1,380,886 tokens.",
+        boundary: "Production data run not started",
+        url: publicResearchUrls.echelonGardenReport,
+      },
+      {
+        name: "Echelon Base training",
+        status: "Not yet available",
+        detail:
+          "No public training log, checkpoint, weights, evaluation record or model output exists.",
+        boundary: "No completion or capability claim",
+        url: publicResearchUrls.echelonDirectory,
+      },
+      {
+        name: "Echelon Chat stage",
+        status: "Not yet available",
+        detail:
+          "The repository reserves a chat-stage path within the Echelon family, but no trained chat artifact is published.",
+        boundary: "Stage within Echelon · not a separate family",
+        url: publicResearchUrls.echelonPaths,
+      },
+    ],
+    plannedTargets: {
+      title: "Configured production targets",
+      text: "The Garden production configuration targets 8,000,000,000 training tokens plus 10,000,000 validation and 10,000,000 test tokens at a 2,048-token context length.",
+      qualification:
+        "These are configuration targets, not completed dataset totals. The website will not present them as achieved until a final public manifest exists.",
+      url: publicResearchUrls.echelonGardenConfiguration,
+    },
+  },
+  findings: [
+    {
+      kind: "Negative result",
+      title: "More pilot training did not establish reliable generation.",
+      finding:
+        "quantum-1.6-pilot completed the documented training, evaluation and GGUF path, while the public diagnosis still records factual unreliability and frequent repetition.",
+      boundary:
+        "Held-out loss and perplexity are not evidence of factual accuracy or downstream capability.",
+      url: publicResearchUrls.diagnosisDocumentation,
+    },
+    {
+      kind: "Pipeline finding",
+      title: "The final Garden smoke accepted 31.17% of seen documents.",
+      finding:
+        "The committed Phase 3 report records 5,001 documents seen and 1,559 accepted under the configured language, quality and structural filters.",
+      boundary:
+        "This is a smoke-test acceptance rate, not the yield of the unstarted production run.",
+      url: publicResearchUrls.echelonGardenReport,
+    },
+    {
+      kind: "Engineering lesson",
+      title: "Recovery behavior was validated before production scale.",
+      finding:
+        "The Garden implementation documents atomic checkpoints, safe partial-shard handling, dataset-state resume, a deterministic skip fallback and controlled shutdown behavior.",
+      boundary:
+        "This establishes pipeline resilience tests, not successful production-data completion.",
+      url: publicResearchUrls.echelonGardenReport,
+    },
+    {
+      kind: "Validation result",
+      title: "The Echelon tokenizer passed its committed round-trip suite.",
+      finding:
+        "The public tokenizer report contains 23 prescribed cases and records 0 failed exact round trips, including German umlauts, Unicode, code, JSON and chat-control tokens.",
+      boundary:
+        "The suite is a tokenizer integrity check, not a language-model benchmark.",
+      url: publicResearchUrls.echelonTokenizerValidation,
+    },
+  ],
+  reproducibilityMatrix: [
+    {
+      area: "Pilot release integrity",
+      status: "Published",
+      evidence: "GGUF files, manifests and SHA-256 checksums are public.",
+      missing: "Model licenses remain unstated.",
+      url: publicResearchUrls.quantum16Manifest,
+    },
+    {
+      area: "Pilot method and configuration",
+      status: "Partial evidence",
+      evidence: "Training, data and diagnosis configurations are public.",
+      missing:
+        "Complete raw run logs and quoted generation records are not public.",
+      url: publicResearchUrls.trainingConfiguration,
+    },
+    {
+      area: "Echelon architecture",
+      status: "Partial evidence",
+      evidence: "Configuration and parameter-count preflight are public.",
+      missing: "No trained checkpoint or empirical model measurement exists.",
+      url: publicResearchUrls.echelonArchitecturePreflight,
+    },
+    {
+      area: "Echelon tokenizer",
+      status: "Published",
+      evidence:
+        "Configuration, checksums, quality summary and validation report are public.",
+      missing: "No claim is made beyond the committed validation suite.",
+      url: publicResearchUrls.echelonTokenizerQuality,
+    },
+    {
+      area: "Echelon production data",
+      status: "Not yet available",
+      evidence: "Smoke evidence and production configuration are public.",
+      missing:
+        "Final manifest, realized split totals and production hashes are not published.",
+      url: publicResearchUrls.echelonGardenReport,
+    },
+    {
+      area: "Echelon training and evaluation",
+      status: "Not yet available",
+      evidence: "No completed training evidence is public.",
+      missing:
+        "Weights, logs, loss curves, outputs and benchmarks are unavailable.",
+      url: publicResearchUrls.echelonDirectory,
+    },
+    {
+      area: "Resource measurements",
+      status: "Not measured",
+      evidence: "No committed measurement report is public.",
+      missing:
+        "Hardware use, runtime, cost, energy use and realized memory use remain unreported.",
+      url: publicResearchUrls.echelonDirectory,
+    },
+    {
+      area: "Release and dataset licensing",
+      status: "Maintainer input required",
+      evidence:
+        "Source and revision fields are present in the Garden configuration.",
+      missing:
+        "No Echelon model license exists because no model is released; final dataset publication terms are not documented.",
+      url: publicResearchUrls.echelonGardenConfiguration,
+    },
+  ],
+} as const;
 
 export const quantumExperimentResearch = {
   questions: {

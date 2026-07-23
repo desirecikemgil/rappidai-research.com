@@ -1,16 +1,17 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { useReducedEffects } from "@/components/motion/use-reduced-effects";
 import { getModelsByFilter, modelFilters } from "@/content/models";
 import type { ModelFilterId } from "@/content/types";
 
 export function ModelIndex() {
   const [filter, setFilter] = useState<ModelFilterId>("all");
   const visibleModels = useMemo(() => getModelsByFilter(filter), [filter]);
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedEffects();
 
   return (
     <section

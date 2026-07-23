@@ -203,85 +203,108 @@ export const models = [
     slug: "quantum-1-echelon",
     name: "quantum-1-echelon",
     status: "in-development",
-    statusLabel: "Pipeline in development — no model release",
+    statusLabel: "Pipeline and preflight stage — no trained model",
     availability: "not-released",
     summary:
-      "The strategic next Quantum model line. A public base-architecture preflight, tokenizer validation and data-pipeline smoke test exist; the production data run and model training have not been reported as started.",
-    parameterCount: {
-      value: 506_333_440,
-      shortLabel: "506.3M",
-      label: "506,333,440 parameters in the public base-architecture preflight",
-    },
-    modelType:
-      "Configured Llama-style causal decoder; not publicly trained or released",
+      "The current strategic Quantum model line. Public evidence covers an architecture preflight, a validated tokenizer and Garden data-pipeline smoke tests; no Echelon model has been trained or released.",
+    parameterCount: null,
+    modelType: "In-development German-language model line",
     intendedUse: [
-      "Research into a larger German-language base-model pipeline",
-      "Validation of architecture, tokenizer and data-preparation workflows before training",
+      "Reproducible German-language base-model research",
+      "A later chat stage within the same Echelon model line",
     ],
     languages: ["German-language focus; the production corpus is not complete"],
     lineage:
-      "A separate Quantum model line. Public path configuration treats quantum-1-echelon-base and quantum-1-echelon-chat as stages or variants of quantum-1-echelon and forbids reuse of the pilot models, tokenizers and data.",
+      "Public path configuration treats quantum-1-echelon-base and quantum-1-echelon-chat as stages or variants within the same quantum-1-echelon model line and forbids reuse of the pilot models, tokenizers and data.",
     releaseStatus:
-      "Architecture and pipeline development are public; no trained checkpoint or model release is available.",
+      "No trained Echelon weights, checkpoints, GGUF files or Hugging Face model repository are publicly available.",
     license:
       "No model weights have been released. A license for any future quantum-1-echelon weights has not been documented.",
-    links: [],
+    links: [
+      {
+        kind: "github",
+        label: "Inspect implementation repository",
+        url: publicResearchUrls.repository,
+        pendingLabel: "Implementation repository unavailable",
+      },
+    ],
     technicalFacts: [
       {
-        label: "Architecture preflight",
+        label: "Architecture status",
         value:
-          "506,333,440 parameters; hidden size 1,280; intermediate size 3,584; 26 layers; 20 attention heads; 5 KV heads; tied embeddings",
+          "Configuration preflight only. The committed report computes 506,333,440 trainable parameters for the proposed Echelon Base architecture; it is not evidence of trained weights.",
       },
-      { label: "Configured context", value: "2,048 tokens" },
+      {
+        label: "Configured context",
+        value:
+          "2,048 tokens in the architecture and Garden pipeline configurations; not validated on a trained Echelon model.",
+      },
       {
         label: "Tokenizer",
         value:
-          "SentencePiece BPE with a 32,768-token vocabulary; 23 published validation cases report zero failures",
+          "SentencePiece BPE with a configured 32,768-token vocabulary. The committed validation report records 23 round-trip cases and 0 failures.",
       },
       {
         label: "Garden smoke test",
         value:
-          "5,001 documents seen; 1,559 accepted; 1,380,886 tokens produced",
+          "5,001 documents seen, 1,559 accepted and 1,380,886 tokens produced. These are smoke-test results, not production-dataset totals.",
       },
       {
-        label: "Production status",
+        label: "Production data run",
         value:
-          "The public Garden report states that the full production data run has not started",
+          "Not yet available. The committed Phase 3 report states that the full production run had not started.",
       },
       {
-        label: "Model evaluation",
-        value: "Not available because no trained model has been released",
+        label: "Model training",
+        value: "Not yet available. No completed Echelon training is claimed.",
+      },
+      {
+        label: "Evaluation",
+        value:
+          "Not yet available. No Echelon model outputs, loss curves or benchmark results are published.",
       },
     ],
     sources: [
       {
-        label: "Base-architecture preflight",
+        label: "Architecture configuration",
+        url: publicResearchUrls.echelonArchitectureConfiguration,
+      },
+      {
+        label: "Architecture preflight report",
         url: publicResearchUrls.echelonArchitecturePreflight,
       },
       {
-        label: "Tokenizer validation",
+        label: "Tokenizer validation report",
         url: publicResearchUrls.echelonTokenizerValidation,
       },
       {
-        label: "Garden pipeline report",
+        label: "Garden Phase 3 report",
         url: publicResearchUrls.echelonGardenReport,
+      },
+      {
+        label: "Model-line path configuration",
+        url: publicResearchUrls.echelonPaths,
       },
     ],
     inferenceSoftware: [],
     usageExample: null,
-    researchContext: null,
+    researchContext:
+      "The published work currently establishes pipeline readiness, artifact integrity and configuration boundaries. Echelon Base is the base-training stage; Echelon Chat is a later stage or variant in the same line. Neither is a separate released model family, and neither has public trained weights.",
     limitations: [
-      "The architecture has only been preflighted; no public checkpoint exists",
-      "The full production data run and model training have not been reported as started",
-      "Capabilities, model-quality results, hardware requirements and release timing are not established",
-      "Not available for inference or production use",
+      "The proposed architecture has passed a configuration preflight only",
+      "The full Garden production-data run has not been published as completed",
+      "No Echelon model training logs, checkpoints or weights are public",
+      "No Echelon model outputs or benchmark results are available",
+      "Training hardware, runtime, cost and energy use are not published",
+      "A model license is not yet available because no model release exists",
+      "Not available for production use",
     ],
     relatedResearchNoteIds: [],
     indexFacts: [
-      "506.3M-parameter base preflight",
-      "Pipeline in development — no model release",
-      "2,048-token configured context",
-      "German-language training pipeline",
+      "Configuration preflight only",
+      "No trained public model",
+      "Tokenizer and data-pipeline evidence",
+      "Echelon Base → later Chat stage",
     ],
     featured: false,
   },

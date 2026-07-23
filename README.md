@@ -96,6 +96,20 @@ Most public facts are centralized outside component logic:
 
 Keep claims source-linked. Do not add benchmark scores, release status, people, partners, hardware results or licensing statements unless a public artifact supports them.
 
+## Evidence publication policy
+
+“Documented clearly” is implemented as a content rule:
+
+- Research claims link to public model cards, configurations, reports, manifests or checksums.
+- Echelon evidence is pinned to an immutable `lumen-quantum` commit in `content/site.ts`.
+- A configuration, preflight or smoke test is not presented as a completed training or production-data run.
+- Echelon Base and Echelon Chat are stages within the `quantum-1-echelon` line, not separate model families.
+- Missing evidence is displayed explicitly as `Not published`, `Not measured`, `Not yet available`, `Partial evidence` or `Maintainer input required`.
+- Planned token totals and architecture targets remain labelled as targets until final public manifests or trained artifacts exist.
+- Model outputs, benchmarks, hardware use, runtime, cost, energy use, licenses and release dates are never inferred.
+
+The `/research` route contains the public evidence ledger, findings, negative results, engineering lessons and reproducibility matrix. The Echelon model page derives its status from the same centralized source records.
+
 ## Training, inference and evaluation
 
 This website has no training, evaluation or generation CLI. The external `lumen-quantum` repository contains the current Python scripts and YAML configurations. Its public planning documents and code are useful implementation references, but its repository has no explicit top-level license and the published `quantum-1.6-pilot` release is not accompanied by a final public run manifest or complete training log.

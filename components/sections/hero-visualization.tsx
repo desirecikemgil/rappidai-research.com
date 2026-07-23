@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useReducedEffects } from "@/components/motion/use-reduced-effects";
 
 const paths = [
   "M32 468C122 468 140 244 246 244C346 244 346 404 446 404C544 404 566 182 650 182",
@@ -20,7 +21,7 @@ const nodes = [
 ];
 
 export function HeroVisualization() {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedEffects();
 
   return (
     <div

@@ -106,12 +106,14 @@ export function SiteHeader() {
           <motion.div
             id="mobile-navigation"
             className="liquid-mobile-menu max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line lg:hidden"
-            initial={reduceMotion ? false : { opacity: 0, height: 0, y: -8 }}
-            animate={
-              reduceMotion ? undefined : { opacity: 1, height: "auto", y: 0 }
+            initial={
+              reduceMotion ? false : { opacity: 0, y: -8, scaleY: 0.985 }
             }
-            exit={reduceMotion ? undefined : { opacity: 0, height: 0, y: -6 }}
-            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0, scaleY: 1 }}
+            exit={
+              reduceMotion ? undefined : { opacity: 0, y: -6, scaleY: 0.99 }
+            }
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <nav aria-label="Mobile navigation" className="page-shell py-5">
               <div className="divide-y divide-line border-y border-line">
