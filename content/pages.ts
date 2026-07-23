@@ -89,6 +89,15 @@ export const researchPageContent = {
   } satisfies PageIntroduction,
 } as const;
 
+export const resourcesPageContent = {
+  introduction: {
+    eyebrow: "RESOURCES",
+    title: "Inspect the evidence, not just the claims.",
+    description:
+      "Publications, reproducibility records, data provenance, responsible-use guidance, licensing boundaries and current project status in one evidence-bounded documentation hub.",
+  } satisfies PageIntroduction,
+} as const;
+
 export const aboutPageContent = {
   introduction: {
     eyebrow: "ABOUT",
@@ -205,12 +214,12 @@ export const privacyPageContent = {
     {
       id: "controller",
       title: "Controller information",
-      text: "Jonas Désiré Cikemgil is the controller for this website. A complete service address has not been verified in the project and remains an open required detail.",
+      text: "Jonas Désiré Cikemgil is the controller for this website. The controller address is recorded below.",
     },
     {
       id: "hosting",
       title: "Hosting",
-      text: "The live website is hosted on Vercel. Processing location, server-log categories, purposes, legal bases and retention periods still require a verified, deployment-specific privacy review.",
+      text: "The live website is hosted on Vercel. Processing location, server-log categories, purposes, legal bases and retention periods still require a verified, deployment-specific privacy and legal review.",
     },
     {
       id: "contact",
@@ -260,6 +269,51 @@ export const pageMetadata = {
     title: "Research — rappidAI Research",
     description:
       "An artifact-level evidence ledger covering Quantum pilot results, Echelon pipeline status, negative findings, gaps and reproducibility.",
+  },
+  "/resources": {
+    title: "Resources — rappidAI Research",
+    description:
+      "Evidence-bounded publications, reproducibility records, data documentation, responsible-use guidance, licensing status and project updates.",
+  },
+  "/resources/publications": {
+    title: "Publications — rappidAI Research",
+    description:
+      "Research notes and publication records from rappidAI, including negative results, evidence boundaries and primary sources.",
+  },
+  "/resources/publications/from-100m-to-600m-german-tokens": {
+    title: "From 100M to 600M German Tokens — rappidAI Research",
+    description:
+      "A source-linked research note on the documented quantum-1.6-pilot continued-pretraining experiment and its unresolved limitations.",
+  },
+  "/resources/reproducibility": {
+    title: "Reproducibility — rappidAI Research",
+    description:
+      "Pinned source revisions, release checksums, reference commands and explicit reproducibility gaps for Quantum and Echelon artifacts.",
+  },
+  "/resources/data-and-training": {
+    title: "Data & Training — rappidAI Research",
+    description:
+      "Dataset provenance, configured targets, pipeline evidence and known data and training gaps for the Quantum model series.",
+  },
+  "/resources/responsible-use": {
+    title: "Responsible Use — rappidAI Research",
+    description:
+      "Known limitations, unmeasured risks, prohibited high-stakes uses and reporting channels for rappidAI research artifacts.",
+  },
+  "/resources/licensing": {
+    title: "Licensing — rappidAI Research",
+    description:
+      "The verified license boundary for website code, model artifacts, tokenizers, datasets, repositories and visual assets.",
+  },
+  "/resources/status": {
+    title: "Project Status — rappidAI Research",
+    description:
+      "Current model-line status, reviewed evidence snapshot, publication gaps and research roadmap.",
+  },
+  "/resources/faq": {
+    title: "FAQ — rappidAI Research",
+    description:
+      "Answers about base-completion models, GGUF, local inference, Echelon stages, evidence status, privacy and licensing.",
   },
   "/about": {
     title: "About — rappidAI Research",

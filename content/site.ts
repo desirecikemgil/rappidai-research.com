@@ -9,6 +9,23 @@ export const publicProfiles = {
   github: "https://github.com/jonascikemgil07-hue/lumen-quantum",
 } as const;
 
+const websiteRepository =
+  "https://github.com/jonascikemgil07-hue/rappidai-research.com";
+
+export const publicProjectUrls = {
+  websiteRepository,
+  citation: `${websiteRepository}/blob/main/CITATION.cff`,
+  contributing: `${websiteRepository}/blob/main/CONTRIBUTING.md`,
+  security: `${websiteRepository}/blob/main/SECURITY.md`,
+  roadmap: `${websiteRepository}/blob/main/ROADMAP.md`,
+  licensingRecord: `${websiteRepository}/blob/main/docs/licensing.md`,
+  dataAndTrainingRecord: `${websiteRepository}/blob/main/docs/data-and-training.md`,
+  trainingRunTemplate: `${websiteRepository}/blob/main/docs/training-run-template.md`,
+  fineWebDataset: "https://huggingface.co/datasets/epfml/FineWeb2-HQ",
+  odcByLicense: "https://opendatacommons.org/licenses/by/1-0/",
+  commonCrawlTerms: "https://commoncrawl.org/terms-of-use",
+} as const;
+
 export const publicModelUrls = {
   "quantum-1-pilot": `${publicProfiles.huggingFace}/quantum-1-pilot`,
   "quantum-1-6-pilot": `${publicProfiles.huggingFace}/quantum-1.6-pilot`,
@@ -66,11 +83,13 @@ export const siteConfig = {
   description:
     "Independent AI research on compact language models and documented training, evaluation and local-inference workflows.",
   location: "Berlin, Germany",
+  lastReviewed: "2026-07-23",
   businessEmail: publicContact.businessEmail,
   canonicalUrl: "https://www.rappidai-research.com",
   navigation: [
     { label: "Models", href: "/models" },
     { label: "Research", href: "/research" },
+    { label: "Resources", href: "/resources" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
@@ -114,19 +133,17 @@ export const siteConfig = {
     generalLocation: "Berlin, Germany",
     legalName: "Jonas Désiré Cikemgil",
     legalForm: "Private individual / independent initiative",
-    serviceAddress: null,
+    serviceAddress: "Almutstraße 3, 13467 Berlin, Germany",
     vatId: null,
     registrationNumber: null,
     registrationCourt: null,
     telephone: null,
     legalRepresentative: "Jonas Désiré Cikemgil",
     responsibleForContent: "Jonas Désiré Cikemgil",
-    missingInformationNotice:
-      "A complete service address remains unverified. The imprint must not be treated as complete until that address has been confirmed.",
   },
   privacy: {
     controllerName: "Jonas Désiré Cikemgil",
-    controllerAddress: null,
+    controllerAddress: "Almutstraße 3, 13467 Berlin, Germany",
     controllerEmail: publicContact.businessEmail,
     hostingProvider: "Vercel",
     analyticsEnabled: false,
@@ -138,8 +155,18 @@ export const footerNavigation = {
   explore: [
     { label: "Models", href: "/models" },
     { label: "Research", href: "/research" },
+    { label: "Resources", href: "/resources" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
+  ],
+  resources: [
+    { label: "Publications", href: "/resources/publications" },
+    { label: "Reproducibility", href: "/resources/reproducibility" },
+    { label: "Data & training", href: "/resources/data-and-training" },
+    { label: "Responsible use", href: "/resources/responsible-use" },
+    { label: "Licensing", href: "/resources/licensing" },
+    { label: "Status", href: "/resources/status" },
+    { label: "FAQ", href: "/resources/faq" },
   ],
   legal: [
     { label: "Imprint", href: "/imprint" },
