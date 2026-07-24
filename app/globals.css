@@ -1295,6 +1295,91 @@ button:disabled {
   );
 }
 
+.evidence-cell {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  min-height: 5.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.85rem;
+  background: rgb(255 255 255 / 0.55);
+  transition:
+    border-color 260ms var(--ease-soft),
+    background-color 260ms var(--ease-soft);
+}
+
+.evidence-cell.is-published {
+  border-color: rgb(18 107 255 / 0.28);
+  background: rgb(18 107 255 / 0.06);
+}
+
+.evidence-cell.is-partial {
+  border-color: rgb(140 183 255 / 0.4);
+  background: rgb(234 242 255 / 0.55);
+}
+
+.evidence-cell.is-pending {
+  border-style: dashed;
+  background: transparent;
+}
+
+.evidence-cell-dot {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.32rem;
+  border-radius: 9999px;
+}
+
+.evidence-cell.is-published .evidence-cell-dot {
+  background: var(--color-accent);
+}
+
+.evidence-cell.is-partial .evidence-cell-dot {
+  background: #79aaff;
+}
+
+.evidence-cell.is-pending .evidence-cell-dot {
+  border: 1px dashed var(--color-muted);
+}
+
+.evidence-cell-label {
+  color: var(--color-ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.evidence-cell.is-pending .evidence-cell-label {
+  color: var(--color-muted);
+}
+
+.evidence-key {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.evidence-key::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+}
+
+.evidence-key.is-published::before {
+  background: var(--color-accent);
+}
+
+.evidence-key.is-partial::before {
+  background: #79aaff;
+}
+
+.evidence-key.is-pending::before {
+  border: 1px dashed var(--color-muted);
+}
+
 .section-signature {
   width: clamp(4.5rem, 8vw, 7rem);
   height: auto;
@@ -1361,9 +1446,27 @@ button:disabled {
   background: var(--color-dark-bg);
 }
 
-.model-card-visual {
+.model-card-visual,
+.model-hero {
   position: relative;
   isolation: isolate;
+}
+
+.model-grid {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgb(6 30 70 / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(6 30 70 / 0.03) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  mask-image: radial-gradient(
+    110% 90% at 8% 96%,
+    #000,
+    rgb(0 0 0 / 0.3) 48%,
+    transparent 80%
+  );
 }
 
 .model-card-grid {

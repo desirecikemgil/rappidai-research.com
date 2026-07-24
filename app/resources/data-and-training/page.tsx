@@ -17,7 +17,7 @@ export function LocalizedDataAndTrainingPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...content.introduction} />
+      <PageIntro {...content.introduction} signature="data" />
 
       <section className="page-shell pb-[var(--section-space)]">
         <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.65fr_1.35fr]">

@@ -60,6 +60,59 @@ export function usePointerGlow<T extends HTMLElement>() {
   return { ref, enabled, onPointerMove, onPointerEnter, onPointerLeave };
 }
 
+/**
+ * Same effect as `usePointerGlow`, but reading the element off the event
+ * instead of a ref — one hook call can then serve a whole list of items.
+ */
+export function usePointerGlowHandlers<T extends HTMLElement>() {
+  const frame = useRef(0);
+  const enabled = useMotionTier() === "full";
+
+  const onPointerMove = useCallback(
+    (event: ReactPointerEvent<T>) => {
+      if (!enabled || frame.current) return;
+      const node = event.currentTarget;
+      const { clientX, clientY } = event;
+
+      frame.current = requestAnimationFrame(() => {
+        frame.current = 0;
+        const rect = node.getBoundingClientRect();
+        node.style.setProperty(
+          "--mx",
+          `${((clientX - rect.left) / rect.width) * 100}%`,
+        );
+        node.style.setProperty(
+          "--my",
+          `${((clientY - rect.top) / rect.height) * 100}%`,
+        );
+      });
+    },
+    [enabled],
+  );
+
+  const onPointerEnter = useCallback(
+    (event: ReactPointerEvent<T>) => {
+      if (!enabled) return;
+      event.currentTarget.style.setProperty("--glow", "1");
+    },
+    [enabled],
+  );
+
+  const onPointerLeave = useCallback(
+    (event: ReactPointerEvent<T>) => {
+      if (!enabled) return;
+      event.currentTarget.style.setProperty("--glow", "0");
+      if (frame.current) {
+        cancelAnimationFrame(frame.current);
+        frame.current = 0;
+      }
+    },
+    [enabled],
+  );
+
+  return { onPointerMove, onPointerEnter, onPointerLeave };
+}
+
 type GlowCardProps = {
   children: ReactNode;
   className?: string;

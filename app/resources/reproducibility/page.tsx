@@ -22,7 +22,7 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...content.introduction} />
+      <PageIntro {...content.introduction} signature="reproducibility" />
 
       <section className="page-shell pb-[var(--section-space)]">
         <div className="grid gap-4 lg:grid-cols-2">

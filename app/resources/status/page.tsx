@@ -19,7 +19,7 @@ export function LocalizedStatusPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...content.introduction} />
+      <PageIntro {...content.introduction} signature="status" />
 
       <section className="page-shell pb-[var(--section-space)]">
         <ReviewStamp

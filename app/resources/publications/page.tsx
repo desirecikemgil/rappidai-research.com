@@ -24,6 +24,7 @@ export function LocalizedPublicationsPage({ locale }: { locale: Locale }) {
           locale,
           "Project publications summarize public artifacts, negative results and unresolved questions. They are not presented as peer-reviewed academic papers.",
         )}
+        signature="publications"
       />
 
       <section className="page-shell pb-[var(--section-space)]">

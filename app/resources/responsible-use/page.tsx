@@ -15,7 +15,7 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...content.introduction} />
+      <PageIntro {...content.introduction} signature="responsible" />
 
       <section className="page-shell pb-[var(--section-space)]">
         <Reveal className="border border-accent/25 bg-ink p-7 text-white sm:p-10">
