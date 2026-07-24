@@ -614,7 +614,9 @@ button:disabled {
 .liquid-section {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  /* `clip`, not `hidden`: hidden establishes a scroll container and silently
+     breaks `position: sticky` for everything inside the band. */
+  overflow: clip;
   background:
     radial-gradient(
       circle at 88% 8%,
@@ -1070,6 +1072,90 @@ button:disabled {
     rgb(121 170 255 / 0.5) 42%,
     transparent 80%
   );
+}
+
+/* Fixed in the left gutter rather than placed in the flow: the page's
+   full-bleed bands are the point, and a column would have to break them.
+   Only shown once the gutter is genuinely wide enough to hold it. */
+/* Long documents pair a short heading column with a much longer body column.
+   Pinning the heading keeps the two together instead of leaving a column of
+   empty page beside every extended passage. */
+@media (min-width: 1024px) {
+  .research-aside {
+    position: sticky;
+    top: calc(var(--header-height) + 3.25rem);
+    align-self: start;
+  }
+}
+
+.section-rail {
+  display: none;
+}
+
+@media (min-width: 1720px) {
+  .section-rail {
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    left: 2rem;
+    display: block;
+    width: 11.5rem;
+    max-height: calc(100svh - var(--header-height) - 6rem);
+    overflow-y: auto;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--color-line);
+    transform: translateY(-50%);
+    scrollbar-width: none;
+  }
+}
+
+.section-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.section-rail-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.55rem;
+  color: #7c8ba4;
+  font-size: 0.78rem;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color 240ms var(--ease-soft);
+}
+
+.section-rail-link:hover {
+  color: var(--color-ink);
+}
+
+.section-rail-link[aria-current="true"] {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.section-rail-marker {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.55rem;
+  background: rgb(18 107 255 / 0.07);
+}
+
+.section-rail-marker::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  left: -0.76rem;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--color-accent);
+}
+
+.section-rail-label {
+  position: relative;
+  z-index: 1;
 }
 
 .brand-inverted {
