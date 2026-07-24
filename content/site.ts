@@ -126,6 +126,8 @@ export const siteConfig = {
     wordmark: "/brand/rappidai-wordmark.png",
     symbol: "/brand/rappidai-symbol.png",
     ambientReference: "/brand/rappidai-research-ambient.png",
+    // Retained for the asset record only. The model card is rendered from
+    // content/models.ts now; see public/models/README.md.
     modelCardReference: "/models/quantum-1-6-pilot-model-card-web.png",
   },
   legal: {

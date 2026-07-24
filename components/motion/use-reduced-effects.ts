@@ -1,25 +1,11 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useAmbientEffects } from "@/components/motion/use-motion-tier";
 
-const reducedEffectsQuery =
-  "(prefers-reduced-motion: reduce), (hover: none), (pointer: coarse), (max-width: 700px)";
-
-function subscribe(callback: () => void) {
-  const mediaQuery = window.matchMedia(reducedEffectsQuery);
-  mediaQuery.addEventListener("change", callback);
-
-  return () => mediaQuery.removeEventListener("change", callback);
-}
-
-function getSnapshot() {
-  return window.matchMedia(reducedEffectsQuery).matches;
-}
-
-function getServerSnapshot() {
-  return true;
-}
-
+/**
+ * Legacy switch: true when ambient, continuously running effects are off.
+ * Prefer `useMotionTier` in new code so `lite` devices keep their entrances.
+ */
 export function useReducedEffects() {
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  return !useAmbientEffects();
 }

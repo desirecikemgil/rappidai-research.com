@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { ArchitectureStack } from "@/components/graphics/architecture-stack";
+import { ModelCardVisual } from "@/components/graphics/model-card-visual";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { getModelBySlug, modelSlugs } from "@/content/models";
 import { modelsPageContent } from "@/content/pages";
@@ -35,6 +36,19 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
   return <LocalizedModelDetailPage slug={slug} locale="en" />;
 }
 
+/**
+ * Only quantum-1.6-pilot publishes its layer count, hidden size and head
+ * count, so only that model gets a stack figure. Echelon's public evidence is
+ * a parameter total and a context length; drawing a stack for it would invent
+ * architecture properties the repository has never stated.
+ */
+function architectureFor(slug: string) {
+  if (slug === "quantum-1-6-pilot") {
+    return { layers: 12, hiddenSize: 512, heads: 8, configured: false };
+  }
+  return null;
+}
+
 export function LocalizedModelDetailPage({
   slug,
   locale,
@@ -44,6 +58,7 @@ export function LocalizedModelDetailPage({
 }) {
   const model = getModelBySlug(slug, locale);
   if (!model) notFound();
+  const architecture = architectureFor(slug);
   const page = localizeContent(modelsPageContent, locale);
   const config = localizeContent(siteConfig, locale);
   const modelLinks = model.links as readonly ModelLink[];
@@ -86,31 +101,64 @@ export function LocalizedModelDetailPage({
           </Link>
         </Reveal>
 
-        <div className="liquid-surface mt-10 grid gap-10 p-7 sm:mt-14 sm:p-10 lg:mt-16 lg:grid-cols-[1fr_0.33fr] lg:items-end lg:p-12">
-          <div>
+        <div className="model-hero liquid-surface mt-10 grid gap-10 p-7 sm:mt-14 sm:p-10 lg:mt-16 lg:grid-cols-[1fr_0.42fr] lg:items-end lg:p-12">
+          <div className="model-grid" aria-hidden="true" />
+          <div className="relative">
             <Reveal>
               <p className="eyebrow">
                 {t(locale, "Model card")} · {model.statusLabel}
               </p>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="mt-7 max-w-[14ch] text-[clamp(3.15rem,7vw,7rem)] font-[520] leading-[0.92] tracking-[-0.063em] text-ink">
+              <h1 className="mt-7 max-w-[14ch] text-[clamp(3.15rem,7vw,7rem)] leading-[0.92] font-[520] tracking-[-0.063em] text-ink">
                 {model.name}
               </h1>
             </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-8 flex items-baseline gap-3">
+                <span className="display-mega text-accent">
+                  {model.parameterCount?.shortLabel ?? "—"}
+                </span>
+                <span className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+                  {t(locale, "Parameter size")}
+                </span>
+              </p>
+              <p className="mt-3 max-w-[30rem] text-sm text-muted">
+                {model.parameterCount?.label ?? page.missingParameterLabel}
+              </p>
+            </Reveal>
           </div>
 
-          <Reveal delay={0.12} className="lg:border-l lg:border-line lg:pl-8">
-            <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
-              {t(locale, "Parameter size")}
-            </p>
-            <p className="technical-number mt-4 text-[clamp(2.4rem,5vw,4.7rem)] leading-none tracking-[-0.06em] text-accent">
-              {model.parameterCount?.shortLabel ?? "—"}
-            </p>
-            <p className="mt-3 text-sm text-muted">
-              {model.parameterCount?.label ?? page.missingParameterLabel}
-            </p>
-          </Reveal>
+          {architecture ? (
+            <Reveal
+              delay={0.18}
+              variant="scale"
+              className="relative lg:border-l lg:border-line lg:pl-9"
+            >
+              <p className="font-mono text-[0.63rem] tracking-[0.14em] text-muted uppercase">
+                {architecture.configured
+                  ? t(locale, "Configured architecture")
+                  : t(locale, "Published architecture")}
+              </p>
+              <div className="mt-6">
+                <ArchitectureStack
+                  layers={architecture.layers}
+                  hiddenSize={architecture.hiddenSize}
+                  heads={architecture.heads}
+                  configured={architecture.configured}
+                  locale={locale}
+                />
+              </div>
+              {architecture.configured ? (
+                <p className="mt-4 text-[0.75rem] leading-5 text-muted">
+                  {t(
+                    locale,
+                    "Drawn from the committed preflight report. No Echelon model has been trained.",
+                  )}
+                </p>
+              ) : null}
+            </Reveal>
+          ) : null}
         </div>
         <DrawRule className="mt-10 sm:mt-14 lg:mt-16" />
       </section>
@@ -301,19 +349,15 @@ export function LocalizedModelDetailPage({
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="liquid-frame overflow-hidden border border-line bg-white/30 p-2 sm:p-3">
-                <Image
-                  src={config.brandAssets.modelCardReference}
-                  alt={t(
-                    locale,
-                    "quantum-1.6-pilot model-card graphic showing approximately 50M parameters and research and local experimentation as the primary use",
-                  )}
-                  width={1600}
-                  height={1006}
-                  sizes="(max-width: 1024px) 92vw, 62vw"
-                  className="h-auto w-full"
-                />
-              </div>
+              <ModelCardVisual
+                name={model.name}
+                parametersMillions={49.3}
+                primaryUse={model.intendedUse[0]}
+                modelType={model.modelType}
+                contextTokens={512}
+                vocabulary={16384}
+                locale={locale}
+              />
             </Reveal>
           </div>
         </section>

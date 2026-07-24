@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { usePointerGlowHandlers } from "@/components/motion/interactive";
 import { useReducedEffects } from "@/components/motion/use-reduced-effects";
 import { getModelsByFilter, modelFilters } from "@/content/models";
 import type { ModelFilterId } from "@/content/types";
@@ -20,6 +21,8 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
     [locale],
   );
   const reduceMotion = useReducedEffects();
+  const { onPointerEnter, onPointerMove, onPointerLeave } =
+    usePointerGlowHandlers<HTMLElement>();
 
   return (
     <section
@@ -69,7 +72,10 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
               transition={{ duration: 0.35, delay: index * 0.035 }}
-              className="liquid-row group rounded-[1.35rem] border-y border-line py-8 sm:py-10"
+              className="glow-surface liquid-row group rounded-[1.35rem] border-y border-line py-8 sm:py-10"
+              onPointerEnter={onPointerEnter}
+              onPointerMove={onPointerMove}
+              onPointerLeave={onPointerLeave}
             >
               <Link
                 href={localizePath(`/models/${model.slug}`, locale)}

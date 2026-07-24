@@ -20,28 +20,26 @@ export function SiteFooter() {
   const utilities = localizeContent(resourceUtilityLinks, locale);
 
   return (
-    <footer className="liquid-section border-t border-line bg-white/35 backdrop-blur-xl">
-      <div className="page-shell section-space-sm">
+    <footer className="dark-band site-footer border-t border-line">
+      <div className="page-shell section-space-sm relative">
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-14 lg:grid-cols-[1.3fr_0.62fr_0.75fr_0.75fr_0.55fr]">
           <div>
             <BrandLockup
-              priority
+              inverted
               href={localizePath("/", locale)}
               homeLabel={t(locale, "rappidAI research home")}
             />
-            <p className="body-copy mt-7 max-w-md">{config.description}</p>
-            <p className="mt-6 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
+            <p className="mt-7 max-w-md leading-7 text-[var(--color-dark-body)]">
+              {config.description}
+            </p>
+            <p className="mt-6 font-mono text-[0.68rem] tracking-[0.14em] text-[var(--color-dark-muted)] uppercase">
               {t(locale, "Based in")} {config.location}
             </p>
           </div>
 
           <FooterColumn title={t(locale, "Explore")}>
             {navigation.explore.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="transition-colors hover:text-accent"
-              >
+              <Link key={item.href} href={item.href} className="footer-link">
                 {item.label}
               </Link>
             ))}
@@ -49,11 +47,7 @@ export function SiteFooter() {
 
           <FooterColumn title={t(locale, "Resources")}>
             {navigation.resources.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="transition-colors hover:text-accent"
-              >
+              <Link key={item.href} href={item.href} className="footer-link">
                 {item.label}
               </Link>
             ))}
@@ -67,14 +61,14 @@ export function SiteFooter() {
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="transition-colors hover:text-accent"
+                  className="footer-link"
                 >
                   {item.label}
                 </a>
               ) : (
                 <span
                   key={item.label}
-                  className="text-muted"
+                  className="text-[var(--color-dark-muted)]"
                   title={t(locale, "External link not configured")}
                 >
                   {item.pendingLabel}
@@ -87,7 +81,7 @@ export function SiteFooter() {
                 href={item.url}
                 target="_blank"
                 rel="noreferrer"
-                className="transition-colors hover:text-accent"
+                className="footer-link"
               >
                 {item.label}
               </a>
@@ -96,30 +90,31 @@ export function SiteFooter() {
 
           <FooterColumn title={t(locale, "Legal")}>
             {navigation.legal.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="transition-colors hover:text-accent"
-              >
+              <Link key={item.href} href={item.href} className="footer-link">
                 {item.label}
               </Link>
             ))}
             <Link
               href={localizePath("/resources/licensing", locale)}
-              className="transition-colors hover:text-accent"
+              className="footer-link"
             >
               {t(locale, "Licensing")}
             </Link>
           </FooterColumn>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-[0.78rem] text-muted sm:mt-20 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-[var(--color-dark-line)] pt-6 text-[0.78rem] text-[var(--color-dark-muted)] sm:mt-20 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {config.name}
           </p>
           <p>{t(locale, "Independent AI research · Berlin, Germany")}</p>
         </div>
       </div>
+
+      {/* Oversized mark bled off the bottom edge, closing the page. */}
+      <span className="footer-ghost" aria-hidden="true">
+        rappidAI
+      </span>
     </footer>
   );
 }
@@ -133,12 +128,10 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="font-mono text-[0.68rem] font-medium tracking-[0.14em] text-muted uppercase">
+      <h2 className="font-mono text-[0.68rem] font-medium tracking-[0.14em] text-[var(--color-dark-muted)] uppercase">
         {title}
       </h2>
-      <div className="mt-5 flex flex-col gap-3 text-sm text-ink">
-        {children}
-      </div>
+      <div className="mt-5 flex flex-col gap-3 text-sm">{children}</div>
     </div>
   );
 }

@@ -22,6 +22,7 @@ export function LocalizedFaqPage({ locale }: { locale: Locale }) {
           locale,
           "The most common questions about model type, local inference, Echelon, evidence status, privacy, licensing and reporting.",
         )}
+        signature="faq"
       />
 
       <section className="page-shell pb-[var(--section-space)]">

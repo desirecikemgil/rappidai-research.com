@@ -85,11 +85,13 @@ export function InteractiveAtmosphere() {
 
   return (
     <div className="interactive-atmosphere" aria-hidden="true">
-      <div className="atmosphere-orb atmosphere-orb-a" />
-      <div className="atmosphere-orb atmosphere-orb-b" />
-      <div className="atmosphere-orb atmosphere-orb-c" />
+      <div className="atmosphere-wash atmosphere-wash-a" />
+      <div className="atmosphere-wash atmosphere-wash-b" />
       <div className="atmosphere-lens atmosphere-lens-a" />
       <div className="atmosphere-lens atmosphere-lens-b" />
+      <div className="atmosphere-lens atmosphere-lens-c" />
+      <div className="atmosphere-lens atmosphere-lens-d" />
+      <div className="atmosphere-lens atmosphere-lens-e" />
       <svg
         className="atmosphere-flow"
         viewBox="0 0 1440 900"

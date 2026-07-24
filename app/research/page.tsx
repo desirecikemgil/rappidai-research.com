@@ -1,4 +1,6 @@
 import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { SectionRail } from "@/components/research/section-rail";
+import { TokenScaleVisual } from "@/components/graphics/token-scale-visual";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { researchPageContent } from "@/content/pages";
@@ -69,13 +71,84 @@ function EvidenceStatus({ label, locale }: { label: string; locale: Locale }) {
   );
 }
 
+/**
+ * A single figure on a dark band. `pending` marks values that are configured
+ * rather than measured, so the two can never be read as the same kind of fact.
+ */
+function StatFigure({
+  value,
+  label,
+  note,
+  pending = false,
+}: {
+  value: string;
+  label: string;
+  note: string;
+  pending?: boolean;
+}) {
+  return (
+    <div>
+      <dt className="sr-only">{label}</dt>
+      <dd className="m-0">
+        <span
+          className={`technical-number block text-[clamp(2.4rem,4vw,3.4rem)] leading-none tracking-[-0.06em] ${
+            pending
+              ? "text-[var(--color-dark-muted)]"
+              : "text-[var(--color-dark-accent)]"
+          }`}
+        >
+          {value}
+        </span>
+        <span className="mt-4 block text-sm leading-6 text-[var(--color-dark-body)]">
+          {label}
+        </span>
+        <span className="mt-2 flex items-center gap-2 font-mono text-[0.6rem] tracking-[0.12em] text-[var(--color-dark-muted)] uppercase">
+          <span
+            aria-hidden="true"
+            className={`size-1.5 rounded-full ${
+              pending
+                ? "border border-[var(--color-dark-muted)]"
+                : "bg-[var(--color-dark-accent)]"
+            }`}
+          />
+          {note}
+        </span>
+      </dd>
+    </div>
+  );
+}
+
 export function LocalizedResearchPage({ locale }: { locale: Locale }) {
   const page = localizeContent(researchPageContent, locale);
   const research = localizeContent(quantumExperimentResearch, locale);
   const publication = localizeContent(researchPublication, locale);
 
+  const railItems = [
+    { id: "evidence-ledger-heading", label: t(locale, "EVIDENCE LEDGER") },
+    { id: "echelon-status-heading", label: publication.echelon.eyebrow },
+    { id: "findings-heading", label: t(locale, "FINDINGS AND LESSONS") },
+    {
+      id: "research-questions-heading",
+      label: t(locale, "RESEARCH QUESTIONS"),
+    },
+    { id: "experiment-design-heading", label: t(locale, "EXPERIMENT DESIGN") },
+    {
+      id: "hypothesis-observation-heading",
+      label: t(locale, "HYPOTHESIS AND OBSERVATION"),
+    },
+    { id: "model-comparison-heading", label: t(locale, "MODEL COMPARISON") },
+    { id: "data-pipeline-heading", label: t(locale, "DATA PIPELINE") },
+    { id: "evaluation-method-heading", label: t(locale, "EVALUATION METHOD") },
+    { id: "observed-behavior-heading", label: t(locale, "OBSERVED BEHAVIOR") },
+    { id: "failure-modes-heading", label: t(locale, "FAILURE MODES") },
+    { id: "conclusions-heading", label: t(locale, "CONCLUSIONS") },
+    { id: "reproducibility-heading", label: t(locale, "REPRODUCIBILITY") },
+    { id: "open-questions-heading", label: t(locale, "OPEN QUESTIONS") },
+  ];
+
   return (
     <>
+      <SectionRail items={railItems} />
       <PageIntro {...page.introduction} />
 
       <section
@@ -203,7 +276,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
       >
         <div className="page-shell section-space">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-            <Reveal className="lg:col-span-5">
+            <Reveal className="research-aside lg:col-span-5">
               <p className="eyebrow">{publication.echelon.eyebrow}</p>
               <h2
                 id="echelon-status-heading"
@@ -323,17 +396,43 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="border-y border-line bg-ink py-10 text-white">
-        <div className="page-shell flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="eyebrow eyebrow-on-dark">
-            {t(locale, "COMPLETED PILOT STUDY")}
-          </p>
-          <p className="max-w-[45rem] text-sm leading-6 text-[#c8d6e9] sm:text-right">
-            {t(
-              locale,
-              "The sections below document the released quantum-1-pilot and quantum-1.6-pilot experiment separately from the untrained Echelon line.",
-            )}
-          </p>
+      <section className="dark-band border-y border-line">
+        <div className="page-shell section-space-sm relative grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          <Reveal>
+            <p className="eyebrow eyebrow-on-dark">
+              {t(locale, "COMPLETED PILOT STUDY")}
+            </p>
+            <h2 className="display-section mt-7 text-[var(--color-dark-title)]">
+              {t(locale, "Two released pilots. One untrained line.")}
+            </h2>
+            <p className="mt-7 max-w-[38rem] leading-7 text-[var(--color-dark-body)]">
+              {t(
+                locale,
+                "The sections below document the released quantum-1-pilot and quantum-1.6-pilot experiment separately from the untrained Echelon line.",
+              )}
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08} className="lg:pt-4">
+            <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-3">
+              <StatFigure
+                value="49.3M"
+                label={t(locale, "Released parameters")}
+                note={t(locale, "Measured")}
+              />
+              <StatFigure
+                value="506M"
+                label={t(locale, "Configured Echelon target")}
+                note={t(locale, "Configured, not trained")}
+                pending
+              />
+              <StatFigure
+                value="512"
+                label={t(locale, "Context window")}
+                note={t(locale, "Measured")}
+              />
+            </dl>
+          </Reveal>
         </div>
       </section>
 
@@ -342,7 +441,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{research.questions.eyebrow}</p>
             <h2
               id="research-questions-heading"
@@ -389,7 +488,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
       >
         <div className="page-shell section-space">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-            <Reveal className="lg:col-span-5">
+            <Reveal className="research-aside lg:col-span-5">
               <p className="eyebrow">{research.design.eyebrow}</p>
               <h2
                 id="experiment-design-heading"
@@ -557,7 +656,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{research.dataPipeline.eyebrow}</p>
             <h2
               id="data-pipeline-heading"
@@ -571,6 +670,49 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
             <p className="body-lg mt-8 max-w-[46rem]">
               {research.dataPipeline.text}
             </p>
+
+            <div className="liquid-surface mt-8 p-6 sm:p-8">
+              <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+                {t(locale, "German-token corpus scale")}
+              </p>
+              <div className="mt-7">
+                <TokenScaleVisual
+                  locale={locale}
+                  steps={[
+                    {
+                      label: "quantum-1-pilot",
+                      tokens: 100,
+                      note: t(
+                        locale,
+                        "Reported base-model pretraining corpus.",
+                      ),
+                    },
+                    {
+                      label: "quantum-1.6-pilot",
+                      tokens: 500,
+                      note: t(
+                        locale,
+                        "Reported additional German tokens in the continued-pretraining stage.",
+                      ),
+                    },
+                    {
+                      label: "quantum-1-echelon",
+                      tokens: 600,
+                      configured: true,
+                      note: t(
+                        locale,
+                        "Configured production target. No Echelon corpus is complete and no Echelon model has been trained.",
+                      ),
+                    },
+                  ]}
+                  caption={t(
+                    locale,
+                    "Hatched bars mark configured targets, not measured runs.",
+                  )}
+                />
+              </div>
+            </div>
+
             <div className="liquid-surface mt-8 border-l-2 border-accent p-6 sm:p-8">
               <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
                 {t(locale, "Documented limitation")}
@@ -596,7 +738,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
       >
         <div className="page-shell section-space">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-            <Reveal className="lg:col-span-4">
+            <Reveal className="research-aside lg:col-span-4">
               <p className="eyebrow">{research.evaluation.eyebrow}</p>
               <h2
                 id="evaluation-method-heading"
@@ -642,7 +784,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{research.observedBehavior.eyebrow}</p>
             <h2
               id="observed-behavior-heading"
@@ -719,7 +861,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{research.conclusions.eyebrow}</p>
             <h2
               id="conclusions-heading"
@@ -948,7 +1090,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{research.openQuestions.eyebrow}</p>
             <h2
               id="open-questions-heading"

@@ -55,7 +55,7 @@ function LegalGroup({
         aria-labelledby={id}
         className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]"
       >
-        <div>
+        <div className="research-aside">
           <p className="eyebrow">{eyebrow}</p>
           <h2
             id={id}

@@ -6,6 +6,12 @@ type BrandLockupProps = {
   priority?: boolean;
   href?: string;
   homeLabel?: string;
+  /**
+   * Renders the lockup in white for dark surfaces. The source asset is navy,
+   * so it is knocked out rather than recoloured — the brand PNGs are
+   * provenance-tracked and must not be edited or replaced.
+   */
+  inverted?: boolean;
 };
 
 export function BrandLockup({
@@ -13,6 +19,7 @@ export function BrandLockup({
   priority = false,
   href = "/",
   homeLabel = "rappidAI research home",
+  inverted = false,
 }: BrandLockupProps) {
   const image = (
     <Image
@@ -23,7 +30,7 @@ export function BrandLockup({
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
       sizes="(max-width: 640px) 180px, 220px"
-      className={`h-auto w-full ${className}`}
+      className={`h-auto w-full ${inverted ? "brand-inverted" : ""} ${className}`}
     />
   );
 

@@ -64,8 +64,11 @@ function ErrorMessage({
 }) {
   if (!message) return null;
 
+  // Kept as a plain element rather than an AnimatePresence child: the e2e
+  // suite counts [role="alert"] nodes, and an exit animation would leave
+  // them in the tree after they stop applying.
   return (
-    <p id={id} role="alert" className="mt-2 text-sm leading-6 text-ink">
+    <p id={id} role="alert" className="field-error mt-2 text-sm leading-6">
       <span className="mr-1 font-semibold text-accent">
         {t(locale, "Error:")}
       </span>

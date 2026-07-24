@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { DrawRule, Reveal } from "@/components/motion/reveal";
+import {
+  DrawRule,
+  Reveal,
+  Stagger,
+  StaggerItem,
+} from "@/components/motion/reveal";
+import { RevealText } from "@/components/motion/reveal-text";
+import { Parallax } from "@/components/motion/parallax";
+import { GlowCard, Magnetic } from "@/components/motion/interactive";
 import { HeroVisualization } from "@/components/sections/hero-visualization";
-import { ParameterGrid } from "@/components/sections/parameter-grid";
+import { ArchitectureStack } from "@/components/graphics/architecture-stack";
+import { ModelCardVisual } from "@/components/graphics/model-card-visual";
+import { TrainingTimeline } from "@/components/graphics/training-timeline";
 import { ResearchDiagram } from "@/components/research/research-diagram";
 import { EvidenceBadge } from "@/components/resources/resource-ui";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
@@ -51,30 +60,28 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               <p className="eyebrow">{page.hero.eyebrow}</p>
             </Reveal>
             <h1 className="display-hero mt-7 text-ink sm:mt-8">
-              {page.hero.headlineLines.map((line, index) => (
-                <Reveal key={line} delay={0.05 + index * 0.08} distance={24}>
-                  <span className="block">{line}</span>
-                </Reveal>
-              ))}
+              <RevealText lines={page.hero.headlineLines} delay={0.05} />
             </h1>
-            <Reveal delay={0.24}>
-              <p className="body-lg mt-7 max-w-[40rem] sm:mt-9">
-                {page.hero.description}
-              </p>
+            <Reveal delay={0.24} variant="blur">
+              <p className="lede mt-7 sm:mt-9">{page.hero.description}</p>
             </Reveal>
             <Reveal delay={0.3}>
               <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
-                <ActionLink href={page.hero.primaryAction.href}>
-                  {page.hero.primaryAction.label}
-                </ActionLink>
-                {heroExternal.url ? (
-                  <ActionLink
-                    href={heroExternal.url}
-                    external
-                    variant="secondary"
-                  >
-                    {page.hero.externalAction.label}
+                <Magnetic>
+                  <ActionLink href={page.hero.primaryAction.href}>
+                    {page.hero.primaryAction.label}
                   </ActionLink>
+                </Magnetic>
+                {heroExternal.url ? (
+                  <Magnetic>
+                    <ActionLink
+                      href={heroExternal.url}
+                      external
+                      variant="secondary"
+                    >
+                      {page.hero.externalAction.label}
+                    </ActionLink>
+                  </Magnetic>
                 ) : (
                   <PendingAction>
                     {page.hero.externalAction.label} ·{" "}
@@ -89,7 +96,7 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               </p>
             </Reveal>
             <Reveal delay={0.42}>
-              <p className="mt-6 max-w-xl border-l border-accent pl-4 font-mono text-[0.68rem] leading-5 tracking-[0.08em] text-muted uppercase sm:mt-9">
+              <p className="hero-status mt-6 max-w-xl sm:mt-9">
                 {page.hero.status}
               </p>
             </Reveal>
@@ -98,9 +105,12 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
           <Reveal
             delay={0.12}
             distance={10}
+            variant="scale"
             className="relative -mr-[8%] hidden lg:block"
           >
-            <HeroVisualization locale={locale} />
+            <Parallax distance={-34}>
+              <HeroVisualization locale={locale} />
+            </Parallax>
           </Reveal>
         </div>
       </section>
@@ -117,23 +127,29 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
         </div>
 
         <DrawRule className="mt-[clamp(4rem,8vw,7rem)]" />
-        <div className="mt-5 grid gap-4 lg:grid-cols-3">
-          {principles.map((principle, index) => (
-            <Reveal
-              key={principle.number}
-              delay={index * 0.06}
-              className="liquid-card p-7 py-9 lg:min-h-[18rem] lg:p-9 lg:py-11"
-            >
-              <p className="font-mono text-xs tracking-[0.15em] text-accent">
-                {principle.number}
-              </p>
-              <h3 className="mt-14 text-[clamp(1.55rem,2.3vw,2.2rem)] font-[520] tracking-[-0.04em] text-ink">
-                {principle.title}
-              </h3>
-              <p className="body-copy mt-4 max-w-sm">{principle.description}</p>
-            </Reveal>
+        <Stagger className="mt-5 grid gap-4 lg:grid-cols-3" step={0.08}>
+          {principles.map((principle) => (
+            <StaggerItem key={principle.number} as="article" distance={22}>
+              <GlowCard
+                tilt
+                className="liquid-card principle-card h-full p-7 py-9 lg:min-h-[19rem] lg:p-9 lg:py-11"
+              >
+                <span className="principle-ghost" aria-hidden="true">
+                  {principle.number}
+                </span>
+                <p className="font-mono text-xs tracking-[0.15em] text-accent">
+                  {principle.number}
+                </p>
+                <h3 className="mt-14 text-[clamp(1.55rem,2.3vw,2.2rem)] font-[520] tracking-[-0.04em] text-ink">
+                  {principle.title}
+                </h3>
+                <p className="body-copy mt-4 max-w-sm">
+                  {principle.description}
+                </p>
+              </GlowCard>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
         <DrawRule />
       </section>
 
@@ -158,35 +174,23 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
           </div>
 
           <DrawRule className="mt-12" />
-          <div className="liquid-surface mt-8 grid gap-12 p-7 py-12 sm:p-10 lg:grid-cols-[0.45fr_0.55fr] lg:gap-20 lg:p-14 lg:py-16">
-            <Reveal>
-              <p className="font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase">
-                {t(locale, "Parameter size")}
-              </p>
-              <div className="mt-5 flex items-end gap-4">
-                <span className="technical-number text-[clamp(4.75rem,10vw,9rem)] leading-none tracking-[-0.08em] text-accent">
-                  {featuredModel.parameterCount?.shortLabel}
-                </span>
-                <span className="mb-4 text-lg text-ink">
-                  {t(locale, "parameters")}
-                </span>
-              </div>
-              <div className="mt-10 max-w-md">
-                <ParameterGrid />
-              </div>
-            </Reveal>
 
-            <Reveal delay={0.08}>
+          <Reveal className="mt-8" distance={22}>
+            <ModelCardVisual
+              name={featuredModel.name}
+              parametersMillions={49.3}
+              primaryUse={featuredModel.intendedUse[0]}
+              modelType={featuredModel.modelType}
+              contextTokens={512}
+              vocabulary={16384}
+              locale={locale}
+            />
+          </Reveal>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-[0.55fr_0.45fr]">
+            <Reveal className="liquid-surface p-7 py-10 sm:p-10 lg:p-12">
               <p className="body-lg max-w-2xl">{featuredModel.summary}</p>
-              <dl className="mt-10 border-t border-line">
-                <FeaturedFact
-                  label={t(locale, "Model type")}
-                  value={featuredModel.modelType}
-                />
-                <FeaturedFact
-                  label={t(locale, "Primary use")}
-                  value={featuredModel.intendedUse[0]}
-                />
+              <dl className="mt-9 border-t border-line">
                 <FeaturedFact
                   label={t(locale, "Languages")}
                   value={t(locale, "German-language experimentation")}
@@ -200,20 +204,24 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 {page.featuredModel.productionNotice}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <ActionLink
-                  href={localizePath(`/models/${featuredModel.slug}`, locale)}
-                  variant="primary"
-                >
-                  {t(locale, "Model card")}
-                </ActionLink>
-                {featuredHuggingFaceLink?.url ? (
+                <Magnetic>
                   <ActionLink
-                    href={featuredHuggingFaceLink.url}
-                    external
-                    variant="secondary"
+                    href={localizePath(`/models/${featuredModel.slug}`, locale)}
+                    variant="primary"
                   >
-                    {t(locale, "View on Hugging Face")}
+                    {t(locale, "Model card")}
                   </ActionLink>
+                </Magnetic>
+                {featuredHuggingFaceLink?.url ? (
+                  <Magnetic>
+                    <ActionLink
+                      href={featuredHuggingFaceLink.url}
+                      external
+                      variant="secondary"
+                    >
+                      {t(locale, "View on Hugging Face")}
+                    </ActionLink>
+                  </Magnetic>
                 ) : (
                   <PendingAction>
                     {t(locale, "Hugging Face link pending")}
@@ -221,28 +229,26 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 )}
               </div>
             </Reveal>
-          </div>
 
-          <Reveal>
-            <div className="liquid-frame overflow-hidden border border-line bg-white/35 p-2 sm:p-3">
-              <Image
-                src={config.brandAssets.modelCardReference}
-                alt={t(
-                  locale,
-                  "quantum-1.6-pilot model-card graphic showing approximately 50M parameters and research and local experimentation as the primary use",
-                )}
-                width={1600}
-                height={1006}
-                sizes="(max-width: 1400px) 92vw, 1280px"
-                className="h-auto w-full"
-              />
-            </div>
-          </Reveal>
+            <Reveal delay={0.08} className="liquid-surface p-7 py-10 sm:p-10">
+              <p className="font-mono text-[0.63rem] tracking-[0.16em] text-muted uppercase">
+                {t(locale, "Published architecture")}
+              </p>
+              <div className="mt-8">
+                <ArchitectureStack
+                  layers={12}
+                  hiddenSize={512}
+                  heads={8}
+                  locale={locale}
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      <section className="bg-ink text-white">
-        <div className="page-shell section-space">
+      <section className="dark-band text-white">
+        <div className="page-shell section-space relative">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <Reveal>
               <p className="eyebrow eyebrow-on-dark">
@@ -250,42 +256,23 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               </p>
             </Reveal>
             <Reveal delay={0.06}>
-              <h2 className="display-section text-white">
+              <h2 className="display-section text-[var(--color-dark-title)]">
                 {page.modelEvolution.title}
               </h2>
             </Reveal>
           </div>
 
-          <div className="relative mt-16 grid gap-4 lg:grid-cols-3">
-            <div
-              aria-hidden="true"
-              className="absolute left-0 right-0 top-[4.68rem] hidden h-px bg-white/20 lg:block"
+          <div className="mt-16">
+            <TrainingTimeline
+              stages={logs.map((entry, index) => ({
+                id: entry.modelSlug,
+                index: `0${index + 1}`,
+                status: entry.statusLabel,
+                title: entry.title,
+                description: entry.description,
+                reached: entry.modelSlug !== "quantum-1-echelon",
+              }))}
             />
-            {logs.map((entry, index) => (
-              <Reveal
-                key={entry.modelSlug}
-                delay={index * 0.07}
-                className="liquid-card-dark relative border p-7 py-9 lg:min-h-[21rem] lg:p-9 lg:py-10"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="technical-number text-xs text-[#79aaff]">
-                    0{index + 1}
-                  </span>
-                  <span
-                    className={`relative z-10 size-2.5 rounded-full ${entry.modelSlug === "quantum-1-echelon" ? "border border-[#79aaff] bg-ink" : "bg-[#79aaff]"}`}
-                  />
-                </div>
-                <p className="mt-14 font-mono text-[0.64rem] tracking-[0.12em] text-[#9fb2cf] uppercase">
-                  {entry.statusLabel}
-                </p>
-                <h3 className="mt-5 text-[clamp(1.7rem,3vw,2.8rem)] font-[510] tracking-[-0.045em] text-white">
-                  {entry.title}
-                </h3>
-                <p className="mt-5 max-w-sm leading-7 text-[#b9c7dc]">
-                  {entry.description}
-                </p>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
@@ -300,26 +287,29 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
           </Reveal>
         </div>
 
-        <div className="mt-16 space-y-3 border-b border-line sm:space-y-4">
+        <Stagger
+          className="mt-16 space-y-3 border-b border-line sm:space-y-4"
+          step={0.09}
+        >
           {areas.map((area, index) => (
-            <Reveal key={area.id} delay={index * 0.04}>
-              <article className="liquid-row grid gap-8 rounded-[1.35rem] border-y border-line py-8 lg:grid-cols-[0.15fr_0.55fr_0.6fr] lg:items-center lg:py-10">
+            <StaggerItem key={area.id} as="article" distance={20}>
+              <div className="liquid-row grid gap-8 rounded-[1.35rem] border-y border-line py-8 lg:grid-cols-[0.13fr_0.52fr_0.65fr] lg:items-center lg:py-11">
                 <p className="technical-number text-xs text-accent">
                   0{index + 1}
                 </p>
                 <div>
-                  <h3 className="text-[clamp(1.7rem,3vw,2.65rem)] font-[515] tracking-[-0.045em] text-ink">
+                  <h3 className="text-[clamp(1.7rem,3vw,2.65rem)] leading-[1.04] font-[515] tracking-[-0.045em] text-ink">
                     {area.title}
                   </h3>
                   <p className="body-copy mt-4 max-w-xl">{area.description}</p>
                 </div>
-                <div className="max-w-[23rem] lg:justify-self-end">
+                <div className="max-w-[26rem] lg:justify-self-end">
                   <ResearchDiagram kind={diagramKinds[index]} />
                 </div>
-              </article>
-            </Reveal>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       <section className="liquid-section border-y border-line bg-pale-soft/35">
@@ -346,28 +336,26 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-4 lg:grid-cols-3">
-            {resources.slice(0, 3).map((resource, index) => (
-              <Reveal
-                key={resource.id}
-                delay={index * 0.04}
-                className="liquid-card p-7 sm:p-8"
-              >
-                <EvidenceBadge status={resource.status} locale={locale} />
-                <h3 className="mt-6 text-2xl font-medium tracking-[-0.035em] text-ink">
-                  {resource.title}
-                </h3>
-                <p className="mt-4 text-sm leading-6 text-muted">
-                  {resource.description}
-                </p>
-                <div className="mt-7">
-                  <ActionLink href={resource.href} variant="text">
-                    {t(locale, "Open resource")}
-                  </ActionLink>
-                </div>
-              </Reveal>
+          <Stagger className="mt-12 grid gap-4 lg:grid-cols-3">
+            {resources.slice(0, 3).map((resource) => (
+              <StaggerItem key={resource.id} as="article">
+                <GlowCard className="liquid-card flex h-full flex-col p-7 sm:p-8">
+                  <EvidenceBadge status={resource.status} locale={locale} />
+                  <h3 className="mt-6 text-2xl font-medium tracking-[-0.035em] text-ink">
+                    {resource.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-6 text-muted">
+                    {resource.description}
+                  </p>
+                  <div className="mt-7 pt-1">
+                    <ActionLink href={resource.href} variant="text">
+                      {t(locale, "Open resource")}
+                    </ActionLink>
+                  </div>
+                </GlowCard>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -406,10 +394,13 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
 
       <section className="page-shell section-space">
         <div className="grid gap-14 lg:grid-cols-[0.68fr_1.32fr] lg:items-center">
-          <Reveal>
-            <div className="liquid-surface mx-auto max-w-[20rem] p-10 lg:mx-0">
-              <BrandSymbol />
-            </div>
+          <Reveal variant="scale">
+            <Parallax distance={-24}>
+              <div className="founder-mark liquid-surface mx-auto max-w-[20rem] p-10 lg:mx-0">
+                <div className="founder-mark-halo" aria-hidden="true" />
+                <BrandSymbol className="relative z-10" />
+              </div>
+            </Parallax>
           </Reveal>
           <Reveal delay={0.08}>
             <p className="eyebrow">{page.founder.eyebrow}</p>
@@ -426,8 +417,8 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
       </section>
 
       <section className="page-shell pb-[var(--section-space)]">
-        <div className="liquid-surface px-7 py-[clamp(4rem,8vw,7.5rem)] sm:px-10 lg:px-14">
-          <Reveal className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div className="closing-panel liquid-surface px-7 py-[clamp(4rem,8vw,7.5rem)] sm:px-10 lg:px-14">
+          <Reveal className="relative grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="eyebrow">{page.contact.eyebrow}</p>
               <h2 className="display-section mt-7">{page.contact.headline}</h2>
@@ -436,9 +427,11 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 {config.businessEmail}
               </p>
             </div>
-            <ActionLink href={page.contact.action.href}>
-              {page.contact.action.label}
-            </ActionLink>
+            <Magnetic strength={5}>
+              <ActionLink href={page.contact.action.href}>
+                {page.contact.action.label}
+              </ActionLink>
+            </Magnetic>
           </Reveal>
         </div>
       </section>
