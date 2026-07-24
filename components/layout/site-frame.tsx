@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { PageTransition } from "@/components/motion/page-transition";
 import { localeFromPathname, t } from "@/lib/i18n";
 
 export function SiteFrame({ children }: { children: React.ReactNode }) {
@@ -23,7 +24,9 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
         {t(locale, "Skip to content")}
       </a>
       <SiteHeader />
-      <main id="main-content">{children}</main>
+      <main id="main-content">
+        <PageTransition routeKey={pathname}>{children}</PageTransition>
+      </main>
       <SiteFooter />
     </div>
   );

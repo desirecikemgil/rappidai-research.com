@@ -1,220 +1,325 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useReducedEffects } from "@/components/motion/use-reduced-effects";
+import { useMotionTier } from "@/components/motion/use-motion-tier";
 
 type DiagramKind = "pipeline" | "inference" | "evaluation";
 
-const viewport = { once: true, amount: 0.45 } as const;
+const viewport = { once: true, amount: 0.4 } as const;
 const ease = [0.16, 1, 0.3, 1] as const;
 
+const INK = "#0B2D60";
+const ACCENT = "#126BFF";
+const LINE = "#AFC4E0";
+
+/**
+ * One figure per research area. All three share a 340×200 frame, the same
+ * stroke weights and the same corner ticks so they read as a set.
+ *
+ * The previous versions used hairline strokes at low opacity and all but
+ * disappeared against the glass surfaces they sit on; these carry real weight.
+ */
 export function ResearchDiagram({ kind }: { kind: DiagramKind }) {
-  const reduceMotion = useReducedEffects();
+  const tier = useMotionTier();
+  const still = tier === "off";
+  const ambient = tier === "full";
 
-  if (kind === "pipeline") {
-    return (
-      <motion.svg
-        viewBox="0 0 320 180"
-        className="research-diagram h-auto w-full"
-        fill="none"
-        aria-hidden="true"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        whileInView={reduceMotion ? undefined : { opacity: 1 }}
-        viewport={viewport}
-        transition={{ duration: 0.7 }}
-      >
-        <motion.g
-          stroke="#C8D6E9"
-          strokeWidth="1"
-          initial={reduceMotion ? false : { opacity: 0, y: 5 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={viewport}
-          transition={{ duration: 0.8, ease }}
-        >
-          {[42, 88, 134, 180, 226].map((x) => (
-            <line key={x} x1={x} x2={x} y1="44" y2="136" />
-          ))}
-        </motion.g>
-        {[48, 76, 104, 132].map((y, index) => (
-          <motion.rect
-            key={y}
-            x="34"
-            y={y}
-            width={156 + index * 22}
-            height="9"
-            fill={index === 2 ? "#126BFF" : "#EAF2FF"}
-            initial={reduceMotion ? false : { opacity: 0, scaleX: 0.12 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, scaleX: 1 }}
-            viewport={viewport}
-            transition={{ duration: 0.85, delay: 0.12 + index * 0.08, ease }}
-            style={{ transformOrigin: "34px center" }}
-          />
-        ))}
-        <motion.path
-          d="M245 48C278 64 278 116 245 132"
-          stroke="#126BFF"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-          whileInView={reduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
-          viewport={viewport}
-          transition={{ duration: 1.1, delay: 0.36, ease }}
-        />
-        <motion.circle
-          cx="250"
-          cy="90"
-          r="4"
-          fill="#126BFF"
-          animate={
-            reduceMotion
-              ? undefined
-              : { scale: [1, 1.55, 1], opacity: [0.62, 1, 0.62] }
-          }
-          transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: "250px 90px" }}
-        />
-      </motion.svg>
-    );
-  }
-
-  if (kind === "inference") {
-    return (
-      <motion.svg
-        viewBox="0 0 320 180"
-        className="research-diagram h-auto w-full"
-        fill="none"
-        aria-hidden="true"
-        initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }}
-        whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-        viewport={viewport}
-        transition={{ duration: 0.85, ease }}
-      >
-        <rect x="56" y="42" width="208" height="96" stroke="#BFD0E7" />
-        <motion.rect
-          x="76"
-          y="62"
-          width="68"
-          height="56"
-          fill="#EAF2FF"
-          stroke="#C8D6E9"
-          initial={reduceMotion ? false : { opacity: 0, x: -10 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-          viewport={viewport}
-          transition={{ duration: 0.7, delay: 0.12, ease }}
-        />
-        <motion.rect
-          x="176"
-          y="62"
-          width="68"
-          height="56"
-          fill="#FFFFFF"
-          stroke="#126BFF"
-          initial={reduceMotion ? false : { opacity: 0, x: 10 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-          viewport={viewport}
-          transition={{ duration: 0.7, delay: 0.24, ease }}
-        />
-        {[0, 1, 2, 3].map((index) => (
-          <motion.line
-            key={index}
-            x1={92}
-            x2={128}
-            y1={76 + index * 10}
-            y2={76 + index * 10}
-            stroke="#7EA8E8"
-            initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-            whileInView={
-              reduceMotion ? undefined : { pathLength: 1, opacity: 1 }
-            }
-            viewport={viewport}
-            transition={{ duration: 0.5, delay: 0.3 + index * 0.06, ease }}
-          />
-        ))}
-        <motion.path
-          d="M145 90H174"
-          stroke="#126BFF"
-          strokeWidth="1.5"
-          strokeDasharray="3 4"
-          initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-          whileInView={reduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
-          viewport={viewport}
-          transition={{ duration: 0.65, delay: 0.52, ease }}
-        />
-        <motion.circle
-          cx="210"
-          cy="90"
-          r="13"
-          stroke="#126BFF"
-          animate={
-            reduceMotion
-              ? undefined
-              : { scale: [1, 1.08, 1], opacity: [0.68, 1, 0.68] }
-          }
-          transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: "210px 90px" }}
-        />
-        <circle cx="210" cy="90" r="3" fill="#126BFF" />
-      </motion.svg>
-    );
-  }
+  const draw = (delay: number, duration = 1) => ({
+    initial: still ? false : ({ pathLength: 0, opacity: 0 } as const),
+    whileInView: still ? undefined : ({ pathLength: 1, opacity: 1 } as const),
+    viewport,
+    transition: { duration, delay, ease },
+  });
 
   return (
-    <motion.svg
-      viewBox="0 0 320 180"
+    <svg
+      viewBox="0 0 340 200"
       className="research-diagram h-auto w-full"
       fill="none"
       aria-hidden="true"
-      initial={reduceMotion ? false : { opacity: 0 }}
-      whileInView={reduceMotion ? undefined : { opacity: 1 }}
-      viewport={viewport}
-      transition={{ duration: 0.7 }}
     >
-      <motion.g
-        initial={reduceMotion ? false : { opacity: 0 }}
-        whileInView={reduceMotion ? undefined : { opacity: 1 }}
-        viewport={viewport}
-        transition={{ duration: 0.6 }}
-      >
-        <line x1="48" x2="272" y1="132" y2="132" stroke="#BFD0E7" />
-        <line x1="48" x2="48" y1="42" y2="132" stroke="#BFD0E7" />
-      </motion.g>
+      <defs>
+        <linearGradient id={`rd-fill-${kind}`} x1="0" y1="0" x2="1" y2="1">
+          <stop stopColor={ACCENT} stopOpacity="0.9" />
+          <stop offset="1" stopColor={INK} stopOpacity="0.9" />
+        </linearGradient>
+      </defs>
+
+      {/* Shared frame ticks. */}
+      <g stroke={LINE} strokeWidth="1.2">
+        {[
+          [14, 14, 1, 1],
+          [326, 14, -1, 1],
+          [14, 186, 1, -1],
+          [326, 186, -1, -1],
+        ].map(([x, y, dx, dy]) => (
+          <g key={`${x}-${y}`}>
+            <line x1={x} y1={y} x2={x + dx * 12} y2={y} />
+            <line x1={x} y1={y} x2={x} y2={y + dy * 12} />
+          </g>
+        ))}
+      </g>
+
+      {kind === "pipeline" ? (
+        <Pipeline kind={kind} draw={draw} still={still} ambient={ambient} />
+      ) : kind === "inference" ? (
+        <Inference kind={kind} draw={draw} still={still} ambient={ambient} />
+      ) : (
+        <Evaluation draw={draw} still={still} ambient={ambient} />
+      )}
+    </svg>
+  );
+}
+
+type PartProps = {
+  kind?: DiagramKind;
+  draw: (delay: number, duration?: number) => Record<string, unknown>;
+  still: boolean;
+  ambient: boolean;
+};
+
+/** Versioned stages feeding a single tokenizer gate. */
+function Pipeline({ kind, draw, still, ambient }: PartProps) {
+  const stages = [0, 1, 2, 3];
+
+  return (
+    <>
+      {stages.map((i) => {
+        const y = 46 + i * 30;
+        const width = 104 + i * 30;
+        return (
+          <g key={i}>
+            <motion.rect
+              x="38"
+              y={y}
+              width={width}
+              height="14"
+              rx="3"
+              fill={`url(#rd-fill-${kind})`}
+              fillOpacity={0.18 + i * 0.24}
+              initial={still ? false : { opacity: 0, scaleX: 0.15 }}
+              whileInView={still ? undefined : { opacity: 1, scaleX: 1 }}
+              viewport={viewport}
+              transition={{ duration: 0.75, delay: 0.1 + i * 0.09, ease }}
+              style={{ transformOrigin: "38px center" }}
+            />
+            <motion.line
+              x1={38 + width + 6}
+              x2="242"
+              y1={y + 7}
+              y2={y + 7}
+              stroke={LINE}
+              strokeWidth="1"
+              strokeDasharray="2 4"
+              {...draw(0.35 + i * 0.08, 0.6)}
+            />
+          </g>
+        );
+      })}
+
+      {/* Tokenizer gate. */}
       <motion.path
-        d="M48 112L94 102L138 108L182 76L226 68L272 48"
-        stroke="#126BFF"
-        strokeWidth="1.6"
-        initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-        whileInView={reduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
-        viewport={viewport}
-        transition={{ duration: 1.25, delay: 0.12, ease }}
+        d="M250 44C284 66 284 134 250 156"
+        stroke={ACCENT}
+        strokeWidth="2"
+        strokeLinecap="round"
+        {...draw(0.5, 1.1)}
       />
-      <motion.path
-        d="M48 92L94 86L138 90L182 88L226 81L272 86"
-        stroke="#061E46"
-        strokeWidth="1.2"
-        strokeDasharray="4 5"
-        initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-        whileInView={
-          reduceMotion ? undefined : { pathLength: 1, opacity: 0.72 }
+      <motion.circle
+        cx="258"
+        cy="100"
+        r="6"
+        fill={ACCENT}
+        animate={
+          ambient ? { scale: [1, 1.35, 1], opacity: [0.7, 1, 0.7] } : undefined
         }
-        viewport={viewport}
-        transition={{ duration: 1.15, delay: 0.28, ease }}
+        transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transformOrigin: "258px 100px" }}
       />
-      {[94, 138, 182, 226, 272].map((x, index) => (
+      <motion.line
+        x1="266"
+        x2="302"
+        y1="100"
+        y2="100"
+        stroke={ACCENT}
+        strokeWidth="2"
+        strokeLinecap="round"
+        {...draw(0.95, 0.6)}
+      />
+    </>
+  );
+}
+
+/** Weights on the left, a quantised runtime on the right. */
+function Inference({ kind, draw, still, ambient }: PartProps) {
+  return (
+    <>
+      <rect
+        x="30"
+        y="38"
+        width="280"
+        height="124"
+        rx="6"
+        stroke={LINE}
+        strokeWidth="1.2"
+      />
+
+      <motion.rect
+        x="52"
+        y="60"
+        width="86"
+        height="80"
+        rx="4"
+        fill={`url(#rd-fill-${kind})`}
+        fillOpacity="0.12"
+        stroke={LINE}
+        strokeWidth="1.2"
+        initial={still ? false : { opacity: 0, x: -12 }}
+        whileInView={still ? undefined : { opacity: 1, x: 0 }}
+        viewport={viewport}
+        transition={{ duration: 0.65, delay: 0.1, ease }}
+      />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <motion.line
+          key={i}
+          x1="66"
+          x2="124"
+          y1={74 + i * 13}
+          y2={74 + i * 13}
+          stroke={ACCENT}
+          strokeOpacity={0.75 - i * 0.1}
+          strokeWidth="3"
+          strokeLinecap="round"
+          {...draw(0.25 + i * 0.06, 0.5)}
+        />
+      ))}
+
+      <motion.path
+        d="M144 100h48"
+        stroke={ACCENT}
+        strokeWidth="2"
+        strokeDasharray="4 4"
+        strokeLinecap="round"
+        {...draw(0.55, 0.6)}
+      />
+      {ambient ? (
         <motion.circle
-          key={x}
-          cx={x}
-          cy={[102, 108, 76, 68, 48][index]}
-          r="3.2"
-          fill="#126BFF"
-          initial={reduceMotion ? false : { opacity: 0, scale: 0 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+          r="3"
+          cy="100"
+          fill={ACCENT}
+          animate={{ cx: [146, 190], opacity: [0, 1, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 0.9 }}
+        />
+      ) : null}
+
+      <motion.rect
+        x="198"
+        y="60"
+        width="86"
+        height="80"
+        rx="4"
+        fill="#FFFFFF"
+        stroke={ACCENT}
+        strokeWidth="1.6"
+        initial={still ? false : { opacity: 0, x: 12 }}
+        whileInView={still ? undefined : { opacity: 1, x: 0 }}
+        viewport={viewport}
+        transition={{ duration: 0.65, delay: 0.28, ease }}
+      />
+      {/* Quantised grid: fewer, coarser cells than the source weights. */}
+      {Array.from({ length: 12 }, (_, i) => (
+        <motion.rect
+          key={i}
+          x={212 + (i % 4) * 17}
+          y={74 + Math.floor(i / 4) * 17}
+          width="12"
+          height="12"
+          rx="2"
+          fill={ACCENT}
+          fillOpacity={i % 3 === 0 ? 0.75 : 0.22}
+          initial={still ? false : { opacity: 0, scale: 0.3 }}
+          whileInView={still ? undefined : { opacity: 1, scale: 1 }}
           viewport={viewport}
-          transition={{ duration: 0.5, delay: 0.46 + index * 0.08, ease }}
+          transition={{ duration: 0.4, delay: 0.5 + i * 0.03, ease }}
           style={{
-            transformOrigin: `${x}px ${[102, 108, 76, 68, 48][index]}px`,
+            transformOrigin: `${218 + (i % 4) * 17}px ${80 + Math.floor(i / 4) * 17}px`,
           }}
         />
       ))}
-    </motion.svg>
+    </>
+  );
+}
+
+/** A measured curve against a flat reference — no axis labels claimed. */
+function Evaluation({ draw, still, ambient }: PartProps) {
+  const points: Array<[number, number]> = [
+    [40, 150],
+    [90, 138],
+    [140, 142],
+    [190, 106],
+    [240, 92],
+    [296, 62],
+  ];
+
+  return (
+    <>
+      <g stroke={LINE} strokeWidth="1.2">
+        <line x1="40" x2="304" y1="164" y2="164" />
+        <line x1="40" x2="40" y1="40" y2="164" />
+      </g>
+      {/* Gridlines give the curve something to be measured against. */}
+      <g stroke={LINE} strokeWidth="1" strokeOpacity="0.45">
+        {[70, 100, 130].map((y) => (
+          <line key={y} x1="40" x2="304" y1={y} y2={y} strokeDasharray="2 5" />
+        ))}
+      </g>
+
+      <motion.path
+        d={`M${points.map(([x, y]) => `${x} ${y}`).join("L")}`}
+        stroke={ACCENT}
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...draw(0.1, 1.3)}
+      />
+      <motion.path
+        d="M40 122L90 118L140 121L190 119L240 114L296 117"
+        stroke={INK}
+        strokeOpacity="0.45"
+        strokeWidth="1.6"
+        strokeDasharray="5 5"
+        {...draw(0.3, 1.2)}
+      />
+
+      {points.slice(1).map(([x, y], index) => (
+        <motion.circle
+          key={x}
+          cx={x}
+          cy={y}
+          r="4"
+          fill="#FFFFFF"
+          stroke={ACCENT}
+          strokeWidth="2"
+          initial={still ? false : { opacity: 0, scale: 0 }}
+          whileInView={still ? undefined : { opacity: 1, scale: 1 }}
+          viewport={viewport}
+          transition={{ duration: 0.45, delay: 0.55 + index * 0.08, ease }}
+          style={{ transformOrigin: `${x}px ${y}px` }}
+        />
+      ))}
+
+      {ambient ? (
+        <motion.circle
+          cx="296"
+          cy="62"
+          r="7"
+          stroke={ACCENT}
+          strokeWidth="1.4"
+          animate={{ scale: [1, 1.7], opacity: [0.7, 0] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut" }}
+          style={{ transformOrigin: "296px 62px" }}
+        />
+      ) : null}
+    </>
   );
 }

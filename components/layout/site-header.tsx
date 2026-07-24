@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/content/site";
 import { BrandLockup } from "@/components/ui/brand-lockup";
+import { Magnetic } from "@/components/motion/interactive";
 import {
   alternateLocale,
   languageName,
@@ -124,7 +125,7 @@ export function SiteHeader() {
           aria-label="Primary navigation"
           className="hidden items-center gap-8 lg:flex"
         >
-          <div className="flex items-center gap-7">
+          <div className="flex items-center gap-1">
             {config.navigation.map((item) => {
               const active = isCurrentRoute(pathname, item.href);
               return (
@@ -132,24 +133,36 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className="group relative py-2 text-[0.86rem] font-medium text-muted transition-colors hover:text-ink aria-[current=page]:text-ink"
+                  className="nav-item relative rounded-full px-3.5 py-2 text-[0.86rem] font-medium text-muted transition-colors duration-300 hover:text-ink aria-[current=page]:text-ink"
                 >
-                  {item.label}
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 -bottom-1 h-px origin-left scale-x-0 bg-accent transition-transform duration-200 group-hover:scale-x-100 group-aria-[current=page]:scale-x-100"
-                  />
+                  {/* A single pill slides between items instead of each one
+                      growing its own underline. */}
+                  {active ? (
+                    <motion.span
+                      aria-hidden="true"
+                      layoutId="nav-indicator"
+                      className="nav-indicator absolute inset-0 rounded-full"
+                      transition={
+                        reduceMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 380, damping: 32 }
+                      }
+                    />
+                  ) : null}
+                  <span className="relative z-10">{item.label}</span>
                 </Link>
               );
             })}
           </div>
           <LanguageSwitcher locale={locale} pathname={pathname} />
-          <Link
-            href={config.primaryNavigationAction.href}
-            className="liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
-          >
-            {config.primaryNavigationAction.label}
-          </Link>
+          <Magnetic>
+            <Link
+              href={config.primaryNavigationAction.href}
+              className="liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
+            >
+              {config.primaryNavigationAction.label}
+            </Link>
+          </Magnetic>
         </nav>
 
         <button

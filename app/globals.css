@@ -11,6 +11,18 @@
   --color-muted: #66738a;
   --color-line: #dde5f0;
   --color-line-strong: #c5d2e4;
+
+  /* Editorial dark bands: the palette used on bg-ink sections. */
+  --color-dark-bg: #061e46;
+  --color-dark-deep: #04152f;
+  --color-dark-line: rgb(255 255 255 / 0.14);
+  --color-dark-line-soft: rgb(255 255 255 / 0.08);
+  --color-dark-title: #f2f7ff;
+  --color-dark-body: #b9c7dc;
+  --color-dark-muted: #8ea3c1;
+  --color-dark-accent: #79aaff;
+  --color-dark-accent-soft: #a9c9ff;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --shadow-hairline: 0 0 0 1px rgb(6 30 70 / 0.06);
@@ -34,6 +46,26 @@
   --liquid-shadow: 0 22px 58px rgb(6 30 70 / 0.085);
   --liquid-radius: 1.15rem;
   --liquid-blur: 28px;
+
+  /* Motion. One vocabulary, used everywhere instead of inline beziers. */
+  --ease-glide: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-base: 340ms;
+  --dur-slow: 620ms;
+  --dur-drift: 900ms;
+
+  /* Elevation. Layered so surfaces read as glass, not as drop shadows. */
+  --elev-1: 0 1px 2px rgb(6 30 70 / 0.04), 0 6px 16px rgb(6 30 70 / 0.045);
+  --elev-2: 0 2px 4px rgb(6 30 70 / 0.045), 0 12px 32px rgb(6 30 70 / 0.06);
+  --elev-3: 0 4px 8px rgb(6 30 70 / 0.05), 0 22px 58px rgb(6 30 70 / 0.085);
+  --elev-4: 0 8px 16px rgb(6 30 70 / 0.06), 0 34px 88px rgb(6 30 70 / 0.12);
+
+  /* Pointer position inside a hovered surface, written by usePointerGlow. */
+  --mx: 50%;
+  --my: 50%;
+  --glow: 0;
 }
 
 * {
@@ -60,8 +92,11 @@ body {
     #ffffff;
   color: #061e46;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  font-variant-ligatures: common-ligatures contextual;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .site-frame {
@@ -131,88 +166,114 @@ body {
   animation-delay: -3.4s;
 }
 
-.atmosphere-lens {
+/* Soft colour wash. Borderless and heavily blurred, so it reads as light in
+   the room rather than as an object floating in front of the page. */
+.atmosphere-wash {
   position: absolute;
-  border: 1px solid rgb(255 255 255 / 0.72);
   border-radius: 50%;
-  background:
-    radial-gradient(
-      circle at 30% 24%,
-      rgb(255 255 255 / 0.68),
-      transparent 22%
-    ),
-    linear-gradient(145deg, rgb(255 255 255 / 0.13), rgb(146 191 255 / 0.055));
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.9),
-    inset 0 -8px 18px rgb(18 107 255 / 0.035),
-    0 18px 45px rgb(6 30 70 / 0.045);
-  backdrop-filter: blur(18px) saturate(170%);
-  -webkit-backdrop-filter: blur(18px) saturate(170%);
-}
-
-.atmosphere-lens-a {
-  top: 21%;
-  left: 7%;
-  width: clamp(5rem, 8vw, 8.5rem);
-  aspect-ratio: 1;
-  opacity: 0.64;
-  animation: lens-orbit-a 17s ease-in-out infinite;
-}
-
-.atmosphere-lens-b {
-  right: 13%;
-  bottom: 14%;
-  width: clamp(3.2rem, 5vw, 5.5rem);
-  aspect-ratio: 1;
-  opacity: 0.52;
-  animation: lens-orbit-b 14s ease-in-out infinite;
-}
-
-.atmosphere-orb {
-  position: absolute;
-  border: 1px solid rgb(255 255 255 / 0.7);
-  border-radius: 9999px;
-  background:
-    radial-gradient(
-      circle at 28% 20%,
-      rgb(255 255 255 / 0.82),
-      transparent 19%
-    ),
-    radial-gradient(circle at 76% 74%, rgb(18 107 255 / 0.1), transparent 48%),
-    linear-gradient(145deg, rgb(255 255 255 / 0.2), rgb(192 218 255 / 0.075));
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.92),
-    inset 0 -12px 28px rgb(18 107 255 / 0.045),
-    0 24px 64px rgb(23 73 146 / 0.07);
-  backdrop-filter: blur(26px) saturate(165%);
-  -webkit-backdrop-filter: blur(26px) saturate(165%);
+  filter: blur(60px);
   will-change: transform;
 }
 
-.atmosphere-orb-a {
-  top: 7vh;
-  right: -7rem;
-  width: clamp(18rem, 31vw, 35rem);
+.atmosphere-wash-a {
+  top: -14vh;
+  right: -12vw;
+  width: clamp(26rem, 46vw, 52rem);
   aspect-ratio: 1;
-  animation: liquid-float-a 21s ease-in-out infinite;
+  background: radial-gradient(
+    circle,
+    rgb(18 107 255 / 0.075),
+    rgb(146 191 255 / 0.045) 42%,
+    transparent 68%
+  );
+  animation: liquid-float-a 27s ease-in-out infinite;
 }
 
-.atmosphere-orb-b {
-  bottom: 3vh;
-  left: -10rem;
-  width: clamp(20rem, 36vw, 41rem);
+.atmosphere-wash-b {
+  bottom: -18vh;
+  left: -14vw;
+  width: clamp(24rem, 42vw, 48rem);
   aspect-ratio: 1;
-  opacity: 0.72;
-  animation: liquid-float-b 26s ease-in-out infinite;
+  background: radial-gradient(
+    circle,
+    rgb(97 156 255 / 0.06),
+    rgb(214 232 255 / 0.05) 46%,
+    transparent 70%
+  );
+  animation: liquid-float-b 33s ease-in-out infinite;
 }
 
-.atmosphere-orb-c {
-  top: 43vh;
-  left: 47vw;
-  width: clamp(8rem, 13vw, 15rem);
+/* Lenses: small, crisp-edged glass discs. These carry the refraction, so they
+   stay sharp and stay small — a big blurred disc just looks like a smudge. */
+.atmosphere-lens {
+  position: absolute;
+  border: 1px solid rgb(255 255 255 / 0.74);
+  border-radius: 50%;
   aspect-ratio: 1;
-  opacity: 0.46;
-  animation: liquid-float-c 18s ease-in-out infinite;
+  background:
+    radial-gradient(
+      circle at 30% 24%,
+      rgb(255 255 255 / 0.62),
+      transparent 26%
+    ),
+    linear-gradient(145deg, rgb(255 255 255 / 0.12), rgb(146 191 255 / 0.05));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    inset 0 -8px 18px rgb(18 107 255 / 0.035),
+    var(--elev-2);
+  backdrop-filter: blur(16px) saturate(172%);
+  -webkit-backdrop-filter: blur(16px) saturate(172%);
+  /* Each lens drifts with the pointer at its own depth, which is what makes
+     the layer read as parallax instead of as decoration. */
+  translate: calc(var(--pointer-shift-x) * var(--depth, 1))
+    calc(var(--pointer-shift-y) * var(--depth, 1));
+  transition: translate 1200ms var(--ease-soft);
+  will-change: transform, translate;
+}
+
+.atmosphere-lens-a {
+  top: 19%;
+  left: 6%;
+  width: clamp(4.5rem, 7vw, 7.5rem);
+  opacity: 0.6;
+  --depth: 1.35;
+  animation: lens-orbit-a 19s ease-in-out infinite;
+}
+
+.atmosphere-lens-b {
+  right: 11%;
+  bottom: 15%;
+  width: clamp(3rem, 4.6vw, 5rem);
+  opacity: 0.5;
+  --depth: 1.9;
+  animation: lens-orbit-b 16s ease-in-out infinite;
+}
+
+.atmosphere-lens-c {
+  top: 62%;
+  left: 18%;
+  width: clamp(2rem, 3vw, 3.2rem);
+  opacity: 0.44;
+  --depth: 2.6;
+  animation: lens-orbit-b 22s ease-in-out infinite reverse;
+}
+
+.atmosphere-lens-d {
+  top: 12%;
+  right: 27%;
+  width: clamp(2.4rem, 3.6vw, 4rem);
+  opacity: 0.42;
+  --depth: 0.85;
+  animation: lens-orbit-a 25s ease-in-out infinite reverse;
+}
+
+.atmosphere-lens-e {
+  top: 44%;
+  right: 5%;
+  width: clamp(5.5rem, 9vw, 10rem);
+  opacity: 0.3;
+  --depth: 0.55;
+  animation: lens-orbit-a 31s ease-in-out infinite;
 }
 
 .pointer-aura {
@@ -259,9 +320,22 @@ button {
   outline: none;
 }
 
+/* Two-part focus ring: a solid accent contour for contrast, sitting on a soft
+   halo so it stays legible over both white and the dark editorial bands. */
 :where(a, button, input, textarea, select):focus-visible {
   outline: 2px solid #126bff;
-  outline-offset: 4px;
+  outline-offset: 3px;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 0 6px rgb(18 107 255 / 0.14);
+  transition:
+    outline-offset 140ms var(--ease-glide),
+    box-shadow 140ms var(--ease-glide);
+}
+
+.bg-ink :where(a, button, input, textarea, select):focus-visible,
+.liquid-card-dark :where(a, button):focus-visible {
+  outline-color: var(--color-dark-accent);
+  box-shadow: 0 0 0 6px rgb(121 170 255 / 0.2);
 }
 
 button,
@@ -316,6 +390,7 @@ button:disabled {
   font-weight: 520;
   letter-spacing: -0.067em;
   line-height: 0.91;
+  text-wrap: balance;
 }
 
 .display-page {
@@ -324,6 +399,7 @@ button:disabled {
   font-weight: 520;
   letter-spacing: -0.06em;
   line-height: 0.94;
+  text-wrap: balance;
 }
 
 .display-section {
@@ -332,6 +408,28 @@ button:disabled {
   font-weight: 510;
   letter-spacing: -0.055em;
   line-height: 0.98;
+  text-wrap: balance;
+}
+
+/* Anchor figures: the one number a section is built around.
+   Set in the sans face — at this size the mono period carries a full tabular
+   advance and tears the decimal off the number. */
+.display-mega {
+  display: block;
+  font-size: clamp(3.75rem, 8.5vw, 7.75rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 530;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+}
+
+.lede {
+  max-width: 46rem;
+  color: #2c3f5c;
+  font-size: clamp(1.2rem, 1.85vw, 1.6rem);
+  letter-spacing: -0.024em;
+  line-height: 1.48;
+  text-wrap: pretty;
 }
 
 .body-lg {
@@ -339,6 +437,7 @@ button:disabled {
   font-size: clamp(1.08rem, 1.45vw, 1.34rem);
   letter-spacing: -0.018em;
   line-height: 1.58;
+  text-wrap: pretty;
 }
 
 .body-copy {
@@ -346,6 +445,7 @@ button:disabled {
   font-size: 1rem;
   letter-spacing: -0.012em;
   line-height: 1.7;
+  text-wrap: pretty;
 }
 
 .fine-rule {
@@ -371,12 +471,61 @@ button:disabled {
 }
 
 .link-arrow svg {
-  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 380ms var(--ease-glide);
 }
 
 .link-arrow:hover svg,
 .link-arrow:focus-visible svg {
   transform: translate(0.18rem, -0.18rem);
+}
+
+/* Line-wise headline reveal. The mask has to clip, so each line is its own
+   block-level overflow container and the inner span does the travelling. */
+.reveal-text {
+  display: block;
+}
+
+.reveal-text-mask {
+  display: block;
+  overflow: hidden;
+  /* Descenders would otherwise be shaved off by the clip. */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.reveal-text-line {
+  display: block;
+  will-change: transform;
+}
+
+/* Cursor-tracking highlight, driven by --mx/--my/--glow from usePointerGlow. */
+.glow-surface {
+  position: relative;
+  isolation: isolate;
+  transform-style: preserve-3d;
+}
+
+.glow-surface::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    22rem circle at var(--mx) var(--my),
+    rgb(255 255 255 / 0.5),
+    rgb(126 177 255 / 0.11) 34%,
+    transparent 64%
+  );
+  opacity: var(--glow);
+  transition: opacity 480ms var(--ease-soft);
+  mix-blend-mode: soft-light;
+}
+
+.glow-surface > * {
+  position: relative;
+  z-index: 2;
 }
 
 .ambient-grid {
@@ -420,6 +569,32 @@ button:disabled {
     0 10px 30px rgb(6 30 70 / 0.03);
   backdrop-filter: blur(34px) saturate(185%);
   -webkit-backdrop-filter: blur(34px) saturate(185%);
+}
+
+.nav-indicator {
+  border: 1px solid rgb(255 255 255 / 0.8);
+  background: linear-gradient(
+    145deg,
+    rgb(255 255 255 / 0.62),
+    rgb(226 239 255 / 0.4)
+  );
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    var(--elev-1);
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(18 107 255 / 0.055);
+  opacity: 0;
+  transition: opacity 260ms var(--ease-soft);
+}
+
+.nav-item:hover::before {
+  opacity: 1;
 }
 
 .liquid-header[data-scrolled="true"] {
@@ -580,7 +755,7 @@ button:disabled {
     border-color: rgb(255 255 255 / 0.9);
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.95),
-      0 26px 64px rgb(6 30 70 / 0.12),
+      var(--elev-4),
       0 0 0 1px rgb(18 107 255 / 0.08);
   }
 
@@ -588,7 +763,7 @@ button:disabled {
     transform: translate3d(3px, -1px, 0);
     border-color: rgb(255 255 255 / 0.86);
     background-color: rgb(255 255 255 / 0.18);
-    box-shadow: 0 18px 46px rgb(6 30 70 / 0.075);
+    box-shadow: var(--elev-3);
   }
 
   .liquid-card:active,
@@ -603,6 +778,27 @@ button:disabled {
   .liquid-frame:hover::before,
   .liquid-button:hover::before {
     transform: translate3d(52%, 0, 0) rotate(4deg);
+  }
+}
+
+/* Touch devices get their own press feedback. Previously every state above
+   sat behind a hover query, so tapping a card produced nothing at all. */
+@media (hover: none), (pointer: coarse) {
+  .liquid-card:active,
+  .liquid-frame:active,
+  .liquid-row:active,
+  .liquid-surface:active {
+    transform: scale(0.985);
+    border-color: rgb(255 255 255 / 0.92);
+    background-color: rgb(255 255 255 / 0.3);
+    transition-duration: 120ms;
+  }
+
+  .liquid-button:active,
+  .liquid-pill:active,
+  .liquid-icon-button:active {
+    transform: scale(0.96);
+    transition-duration: 120ms;
   }
 }
 
@@ -818,9 +1014,318 @@ button:disabled {
   }
 }
 
+.hero-visual {
+  --liquid-blur: 22px;
+}
+
+/* Editorial dark band. Not a flat fill: a deep base with a soft accent lift
+   and a fine grid, so it holds up at full-bleed height. */
+.dark-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      120% 90% at 78% -10%,
+      rgb(18 107 255 / 0.22),
+      transparent 62%
+    ),
+    linear-gradient(
+      168deg,
+      var(--color-dark-bg),
+      var(--color-dark-deep) 68%,
+      var(--color-dark-bg)
+    );
+}
+
+.dark-band::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  mask-image: radial-gradient(
+    100% 80% at 50% 0%,
+    #000,
+    rgb(0 0 0 / 0.25) 58%,
+    transparent 88%
+  );
+}
+
+.dark-band::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(121 170 255 / 0.5) 42%,
+    transparent 80%
+  );
+}
+
+.brand-inverted {
+  filter: brightness(0) invert(1);
+  opacity: 0.94;
+}
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-link {
+  color: var(--color-dark-title);
+  text-decoration: none;
+  transition: color 220ms var(--ease-soft);
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: var(--color-dark-accent);
+}
+
+/* Oversized wordmark bled off the bottom edge. Purely typographic, cropped
+   hard, and low enough in contrast that it never competes with the links. */
+.footer-ghost {
+  position: absolute;
+  right: 0;
+  bottom: -0.22em;
+  left: 0;
+  color: rgb(255 255 255 / 0.035);
+  font-size: clamp(6rem, 19vw, 19rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  pointer-events: none;
+  text-align: center;
+  user-select: none;
+}
+
+.hero-status {
+  position: relative;
+  padding-left: 1.1rem;
+  color: #66738a;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.hero-status::before {
+  content: "";
+  position: absolute;
+  top: 0.15em;
+  bottom: 0.15em;
+  left: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #126bff, rgb(18 107 255 / 0.15));
+}
+
+.principle-card {
+  overflow: hidden;
+}
+
+/* Oversized index figure bled into the corner: gives each card a distinct
+   silhouette without adding another element to read. */
+.principle-ghost {
+  position: absolute;
+  z-index: 0;
+  right: -0.6rem;
+  bottom: -2.4rem;
+  color: rgb(18 107 255 / 0.06);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11rem;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  pointer-events: none;
+  transition: transform 700ms var(--ease-glide);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .principle-card:hover .principle-ghost {
+    transform: translate3d(-0.4rem, -0.4rem, 0);
+  }
+}
+
+.founder-mark {
+  position: relative;
+  isolation: isolate;
+}
+
+.founder-mark-halo {
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(18 107 255 / 0.16),
+    rgb(234 242 255 / 0.4) 46%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  animation: ambient-shift 17s ease-in-out infinite;
+}
+
+.closing-panel {
+  position: relative;
+  isolation: isolate;
+}
+
+.closing-panel::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      36rem 20rem at 88% 110%,
+      rgb(18 107 255 / 0.08),
+      transparent 70%
+    ),
+    linear-gradient(to right, rgb(6 30 70 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(6 30 70 / 0.035) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    4.5rem 4.5rem,
+    4.5rem 4.5rem;
+  mask-image: radial-gradient(
+    110% 100% at 92% 100%,
+    #000,
+    rgb(0 0 0 / 0.3) 52%,
+    transparent 82%
+  );
+}
+
+.section-signature {
+  width: clamp(4.5rem, 8vw, 7rem);
+  height: auto;
+  filter: drop-shadow(0 8px 18px rgb(18 107 255 / 0.08));
+}
+
+.architecture-stack {
+  overflow: visible;
+  filter: drop-shadow(0 12px 26px rgb(6 30 70 / 0.05));
+}
+
+.token-scale-track {
+  overflow: hidden;
+  height: 0.7rem;
+  border: 1px solid var(--color-line);
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.5);
+}
+
+.token-scale-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #0759db, #126bff 62%, #79aaff);
+  transform-origin: left center;
+}
+
+/* Configured, not measured: hatched instead of filled. */
+.token-scale-fill.is-configured {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgb(18 107 255 / 0.42) 0 3px,
+      transparent 3px 8px
+    ),
+    rgb(18 107 255 / 0.07);
+  box-shadow: inset 0 0 0 1px rgb(18 107 255 / 0.32);
+}
+
+.training-timeline-progress {
+  background: linear-gradient(
+    90deg,
+    var(--color-dark-accent),
+    rgb(121 170 255 / 0.35)
+  );
+  box-shadow: 0 0 14px rgb(121 170 255 / 0.35);
+}
+
+.training-timeline-node {
+  display: block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 9999px;
+  justify-self: start;
+}
+
+.training-timeline-node.is-reached {
+  background: var(--color-dark-accent);
+  box-shadow: 0 0 0 5px rgb(121 170 255 / 0.14);
+}
+
+/* The open stage stays hollow: no Echelon model has been trained. */
+.training-timeline-node.is-open {
+  border: 1.5px dashed var(--color-dark-accent);
+  background: var(--color-dark-bg);
+}
+
+.model-card-visual {
+  position: relative;
+  isolation: isolate;
+}
+
+.model-card-grid {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgb(6 30 70 / 0.032) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(6 30 70 / 0.032) 1px, transparent 1px);
+  background-size: 3.25rem 3.25rem;
+  mask-image: radial-gradient(
+    120% 90% at 82% 8%,
+    #000 0%,
+    rgb(0 0 0 / 0.35) 46%,
+    transparent 78%
+  );
+}
+
+.hero-visual-bloom {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(18 107 255 / 0.14),
+    rgb(234 242 255 / 0.22) 44%,
+    transparent 72%
+  );
+  filter: blur(38px);
+  animation: ambient-shift 19s ease-in-out infinite;
+}
+
+.hero-visual-caption {
+  position: absolute;
+  right: 8.5%;
+  bottom: 5.5%;
+  left: 8.5%;
+  color: #8494ab;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
 .technical-number {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums slashed-zero;
 }
 
 .parameter-node-active {
