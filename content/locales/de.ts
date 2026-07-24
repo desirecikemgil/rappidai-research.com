@@ -498,4 +498,41 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Related research note": "Zugehörige Forschungsnotiz",
   "No public article is available yet.":
     "Es ist noch kein öffentlicher Artikel verfügbar.",
+
+  // Rendered figures: model card, architecture stack, token scale, evidence map.
+  "MODEL CARD": "MODELLKARTE",
+  "Published architecture": "Veröffentlichte Architektur",
+  "Configured architecture": "Konfigurierte Architektur",
+  "Transformer stack diagram showing the configured layer count, hidden size and attention heads":
+    "Transformer-Stack-Diagramm mit konfigurierter Layer-Anzahl, verborgener Dimension und Attention-Heads",
+  "Drawn from the committed preflight report. No Echelon model has been trained.":
+    "Gezeichnet nach dem eingecheckten Preflight-Bericht. Es wurde kein Echelon-Modell trainiert.",
+  "quantum-1.6-pilot · published architecture":
+    "quantum-1.6-pilot · veröffentlichte Architektur",
+  "49.3M released parameters against the 506M configured Echelon target.":
+    "49,3 Mio. veröffentlichte Parameter gegenüber dem konfigurierten Echelon-Ziel von 506 Mio.",
+
+  "German-token corpus scale": "Korpusgröße in deutschen Tokens",
+  "Reported base-model pretraining corpus.":
+    "Berichteter Vortrainings-Korpus des Basismodells.",
+  "Reported additional German tokens in the continued-pretraining stage.":
+    "Berichtete zusätzliche deutsche Tokens in der Phase des fortgesetzten Vortrainings.",
+  "Configured production target. No Echelon corpus is complete and no Echelon model has been trained.":
+    "Konfiguriertes Produktionsziel. Kein Echelon-Korpus ist vollständig und es wurde kein Echelon-Modell trainiert.",
+  "Hatched bars mark configured targets, not measured runs.":
+    "Schraffierte Balken kennzeichnen konfigurierte Ziele, keine gemessenen Läufe.",
+
+  "Two released pilots. One untrained line.":
+    "Zwei veröffentlichte Piloten. Eine untrainierte Linie.",
+  "Released parameters": "Veröffentlichte Parameter",
+  "Configured Echelon target": "Konfiguriertes Echelon-Ziel",
+  "Context window": "Kontextfenster",
+  Measured: "Gemessen",
+  "Configured, not trained": "Konfiguriert, nicht trainiert",
+
+  "EVIDENCE MAP": "EVIDENZKARTE",
+  "Every resource area with its current documentation status. Dashed cells are open gaps, not omissions.":
+    "Jeder Ressourcenbereich mit seinem aktuellen Dokumentationsstand. Gestrichelte Felder sind offene Lücken, keine Auslassungen.",
+
+  CONCLUSIONS: "SCHLUSSFOLGERUNGEN",
 };

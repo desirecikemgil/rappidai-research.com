@@ -40,7 +40,9 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
     locale,
   ).map((card) => ({
     label: card.title,
-    state: evidenceState(resourceCards.find((raw) => raw.id === card.id)?.status),
+    state: evidenceState(
+      resourceCards.find((raw) => raw.id === card.id)?.status,
+    ),
   }));
 
   return (

@@ -32,7 +32,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
       >
         <DrawRule />
         <div className="grid min-h-[34rem] gap-12 py-[clamp(4rem,7vw,7rem)] lg:grid-cols-12 lg:items-center lg:gap-10">
-          <Reveal className="lg:col-span-6">
+          <Reveal className="research-aside lg:col-span-6">
             <p className="eyebrow">{page.whatItIs.eyebrow}</p>
             <h2
               id="what-rappidai-is-heading"
@@ -45,16 +45,14 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
 
           <Reveal
             delay={0.1}
-            className="liquid-surface relative flex min-h-[20rem] items-center justify-center overflow-hidden lg:col-span-5 lg:col-start-8 lg:min-h-[27rem]"
+            variant="scale"
+            className="founder-mark liquid-surface relative flex min-h-[20rem] items-center justify-center overflow-hidden lg:col-span-5 lg:col-start-8 lg:min-h-[27rem]"
           >
             <div
               aria-hidden="true"
-              className="absolute inset-0 ambient-grid opacity-65"
+              className="ambient-grid absolute inset-0 opacity-65"
             />
-            <div
-              aria-hidden="true"
-              className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-pale blur-3xl"
-            />
+            <div className="founder-mark-halo" aria-hidden="true" />
             <BrandSymbol className="relative z-10 w-[clamp(9rem,18vw,15rem)] opacity-95" />
           </Reveal>
         </div>
@@ -65,7 +63,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
         className="liquid-section border-y border-line bg-pale-soft/35"
       >
         <div className="page-shell section-space-sm grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{page.projectStructure.eyebrow}</p>
             <h2
               id="project-structure-heading"
@@ -91,7 +89,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
       >
         <div className="page-shell section-space-sm">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-            <Reveal className="lg:col-span-4">
+            <Reveal className="research-aside lg:col-span-4">
               <p className="eyebrow">{page.whatItIsNot.eyebrow}</p>
               <h2
                 id="what-rappidai-is-not-heading"
@@ -134,7 +132,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{page.publishedWork.eyebrow}</p>
             <h2
               id="published-work-heading"
@@ -164,7 +162,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-6">
+          <Reveal className="research-aside lg:col-span-6">
             <p className="eyebrow">{page.whyCompactModelsMatter.eyebrow}</p>
             <h2
               id="why-compact-models-heading"
@@ -194,7 +192,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
       >
         <div className="page-shell section-space-sm">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
-            <Reveal className="lg:col-span-5">
+            <Reveal className="research-aside lg:col-span-5">
               <p className="eyebrow">{page.currentDirection.eyebrow}</p>
               <h2
                 id="current-direction-heading"
@@ -229,7 +227,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
         className="page-shell section-space"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className="research-aside lg:col-span-4">
             <p className="eyebrow">{page.experimentalNotice.eyebrow}</p>
             <h2
               id="experimental-outputs-heading"

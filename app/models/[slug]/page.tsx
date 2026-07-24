@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { ArchitectureStack } from "@/components/graphics/architecture-stack";
+import { ModelCardVisual } from "@/components/graphics/model-card-visual";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { getModelBySlug, modelSlugs } from "@/content/models";
 import { modelsPageContent } from "@/content/pages";
@@ -349,19 +349,15 @@ export function LocalizedModelDetailPage({
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="liquid-frame overflow-hidden border border-line bg-white/30 p-2 sm:p-3">
-                <Image
-                  src={config.brandAssets.modelCardReference}
-                  alt={t(
-                    locale,
-                    "quantum-1.6-pilot model-card graphic showing approximately 50M parameters and research and local experimentation as the primary use",
-                  )}
-                  width={1600}
-                  height={1006}
-                  sizes="(max-width: 1024px) 92vw, 62vw"
-                  className="h-auto w-full"
-                />
-              </div>
+              <ModelCardVisual
+                name={model.name}
+                parametersMillions={49.3}
+                primaryUse={model.intendedUse[0]}
+                modelType={model.modelType}
+                contextTokens={512}
+                vocabulary={16384}
+                locale={locale}
+              />
             </Reveal>
           </div>
         </section>

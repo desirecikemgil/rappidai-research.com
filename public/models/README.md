@@ -8,8 +8,15 @@ manifests, benchmark evidence, or authoritative sources for technical claims.
 
 | File                                   | Technical properties              | Current repository role                                 | SHA-256                                                            |
 | -------------------------------------- | --------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------ |
-| `quantum-1-6-pilot-model-card-web.png` | 1,600 × 1,006, RGB, 401,942 bytes | Website-referenced model-card image                     | `9e014de9fd8214f2194958a563fcf2f02c6d7b07d8dbfc421530acf85263108d` |
+| `quantum-1-6-pilot-model-card-web.png` | 1,600 × 1,006, RGB, 401,942 bytes | Retained variant; no longer rendered by the website     | `9e014de9fd8214f2194958a563fcf2f02c6d7b07d8dbfc421530acf85263108d` |
 | `quantum-1-6-pilot-model-card.png`     | 2,480 × 1,560, RGB, 724,138 bytes | Larger retained variant; no direct code reference found | `3a7bf05600967a3d6bbe1348d37cc1b06985d4c838d640a9d053c91b5c9e5de2` |
+
+Neither file is rendered by the site any more. The home page and the model
+detail pages now draw the model card from `content/models.ts` through
+`components/graphics/model-card-visual.tsx`, so the visible values are read
+from the same records as the rest of the site instead of being baked into a
+raster. Both files are retained unchanged because their provenance review is
+still open; nothing here authorises deleting or replacing them.
 
 The filenames and dimensions suggest a web-sized and a larger variant, but the
 repository does not retain a source record or transformation recipe that proves

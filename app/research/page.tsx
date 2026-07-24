@@ -127,7 +127,10 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
     { id: "evidence-ledger-heading", label: t(locale, "EVIDENCE LEDGER") },
     { id: "echelon-status-heading", label: publication.echelon.eyebrow },
     { id: "findings-heading", label: t(locale, "FINDINGS AND LESSONS") },
-    { id: "research-questions-heading", label: t(locale, "RESEARCH QUESTIONS") },
+    {
+      id: "research-questions-heading",
+      label: t(locale, "RESEARCH QUESTIONS"),
+    },
     { id: "experiment-design-heading", label: t(locale, "EXPERIMENT DESIGN") },
     {
       id: "hypothesis-observation-heading",

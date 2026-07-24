@@ -131,7 +131,7 @@ function PrivacySection({
         aria-labelledby={`privacy-${section.id}`}
         className="grid gap-7 lg:grid-cols-[0.72fr_1.28fr]"
       >
-        <div>
+        <div className="research-aside">
           <p className="eyebrow">{String(index + 1).padStart(2, "0")}</p>
           <h2
             id={`privacy-${section.id}`}
