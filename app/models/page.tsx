@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ModelComparisonSuite } from "@/components/graphics/model-comparison-suite";
 import { ModelIndex } from "@/components/models/model-index";
 import { PageIntro } from "@/components/ui/page-intro";
 import { modelsPageContent } from "@/content/pages";
@@ -14,6 +15,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
     <>
       <PageIntro {...content.introduction} />
       <ModelIndex locale={locale} />
+      <ModelComparisonSuite locale={locale} />
     </>
   );
 }
