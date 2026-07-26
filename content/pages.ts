@@ -9,7 +9,7 @@ import type {
 export const homePageContent = {
   hero: {
     eyebrow: "INDEPENDENT AI RESEARCH",
-    headlineLines: ["Smaller models.", "Focused intelligence."],
+    headlineLines: ["Smaller Models.", "Focused Intelligence."],
     description:
       "rappidAI documents compact German-language model experiments, GGUF releases and local-inference workflows. The two public Quantum pilots are experimental base-completion models; Echelon is the current strategic model line and remains at pipeline and preflight stage.",
     supportingText:

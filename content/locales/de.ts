@@ -42,8 +42,8 @@ export const deTranslations: Readonly<Record<string, string>> = {
   Imprint: "Impressum",
   Privacy: "Datenschutz",
   "INDEPENDENT AI RESEARCH": "UNABHÄNGIGE KI-FORSCHUNG",
-  "Smaller models.": "Kleinere Modelle.",
-  "Focused intelligence.": "Gezielte Intelligenz.",
+  "Smaller Models.": "Kleinere Modelle.",
+  "Focused Intelligence.": "Gezielte Intelligenz.",
   "rappidAI documents compact German-language model experiments, GGUF releases and local-inference workflows. The two public Quantum pilots are experimental base-completion models; Echelon is the current strategic model line and remains at pipeline and preflight stage.":
     "rappidAI dokumentiert kompakte deutschsprachige Modellexperimente, GGUF-Veröffentlichungen und Abläufe für lokale Inferenz. Die beiden öffentlichen Quantum-Piloten sind experimentelle Base-Completion-Modelle; Echelon ist die aktuelle strategische Modelllinie und befindet sich weiterhin in der Pipeline- und Preflight-Phase.",
   "The work is intended for developers, researchers, students and builders investigating small-model training, documented evaluation and local deployment with limited compute. The current pilots are research artifacts, not chat assistants or production systems.":

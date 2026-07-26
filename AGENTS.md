@@ -13,6 +13,7 @@ When implementing from a selected generated mock, treat that image as the source
 - Use highly transparent liquid-glass surfaces with layered highlights, soft blue refraction, generous blur, and subtle depth while preserving legibility.
 - Keep motion accessible with `prefers-reduced-motion`, and verify new effects at desktop and mobile breakpoints.
 - Prefer fine glass edges, controlled radii, and smaller lens-like background forms over large coarse bubbles; carry the complete glass language through mobile layouts and touch states.
+- Keep the home hero editorial and wide: the “Smaller Models. / Focused Intelligence.” statement stays on exactly two lines without a separate right-hand model graphic; use a subtle interactive neural-grid backdrop instead.
 
 ## Durable research-publication direction
 
