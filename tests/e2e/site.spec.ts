@@ -127,6 +127,63 @@ test("German contact form reports localized validation messages", async ({
   );
 });
 
+test("home hero uses a two-line interactive network composition", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const heroLines = page.locator(".home-hero-title .reveal-text-line");
+  await expect(heroLines).toHaveCount(2);
+  await expect(heroLines).toHaveText([
+    "Smaller Models.",
+    "Focused Intelligence.",
+  ]);
+  await expect(page.locator(".hero-network")).toHaveCount(1);
+  await expect(page.locator(".hero-visual")).toHaveCount(0);
+
+  await page.mouse.move(1200, 220);
+  await expect
+    .poll(() =>
+      page
+        .locator(".hero-network")
+        .evaluate((element) =>
+          element.style.getPropertyValue("--hero-pointer-x"),
+        ),
+    )
+    .not.toBe("72%");
+});
+
+test("home hero keeps both headline lines complete on mobile", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const measurements = await page.evaluate(() => ({
+    overflow:
+      document.documentElement.scrollWidth -
+      document.documentElement.clientWidth,
+    lines: [
+      ...document.querySelectorAll(".home-hero-title .reveal-text-line"),
+    ].map((element) => ({
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+      text: element.textContent?.trim(),
+    })),
+  }));
+
+  expect(measurements.overflow).toBeLessThanOrEqual(0);
+  expect(measurements.lines).toHaveLength(2);
+  expect(measurements.lines.map(({ text }) => text)).toEqual([
+    "Smaller Models.",
+    "Focused Intelligence.",
+  ]);
+  for (const line of measurements.lines) {
+    expect(line.scrollWidth).toBeLessThanOrEqual(line.clientWidth);
+  }
+});
+
 test("model comparison switches between all three visual views", async ({
   page,
 }) => {

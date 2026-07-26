@@ -8,7 +8,7 @@ import {
 import { RevealText } from "@/components/motion/reveal-text";
 import { Parallax } from "@/components/motion/parallax";
 import { GlowCard, Magnetic } from "@/components/motion/interactive";
-import { HeroVisualization } from "@/components/sections/hero-visualization";
+import { HeroNetworkBackdrop } from "@/components/sections/hero-network-backdrop";
 import { ArchitectureStack } from "@/components/graphics/architecture-stack";
 import { ModelCardVisual } from "@/components/graphics/model-card-visual";
 import { TrainingTimeline } from "@/components/graphics/training-timeline";
@@ -49,17 +49,18 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <section className="liquid-hero relative overflow-hidden border-b border-line">
+      <section className="liquid-hero home-hero relative overflow-hidden border-b border-line">
+        <HeroNetworkBackdrop />
         <div
           aria-hidden="true"
           className="ambient-shift pointer-events-none absolute -right-[18rem] -top-[20rem] size-[52rem] rounded-full bg-[radial-gradient(circle,rgba(18,107,255,0.12),rgba(234,242,255,0.25)_45%,transparent_72%)] blur-3xl"
         />
-        <div className="page-shell-wide grid min-h-[calc(100svh-var(--header-height))] items-center gap-4 py-[clamp(4.5rem,8vw,7.5rem)] lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="liquid-hero-copy relative z-10 max-w-[47rem]">
+        <div className="home-hero-shell page-shell-wide flex min-h-[calc(100svh-var(--header-height))] items-center py-[clamp(4.5rem,8vw,7.5rem)]">
+          <div className="liquid-hero-copy home-hero-copy relative z-10 w-full max-w-[82rem]">
             <Reveal>
               <p className="eyebrow">{page.hero.eyebrow}</p>
             </Reveal>
-            <h1 className="display-hero mt-7 text-ink sm:mt-8">
+            <h1 className="display-hero home-hero-title mt-7 text-ink sm:mt-8">
               <RevealText lines={page.hero.headlineLines} delay={0.05} />
             </h1>
             <Reveal delay={0.24} variant="blur">
@@ -101,17 +102,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               </p>
             </Reveal>
           </div>
-
-          <Reveal
-            delay={0.12}
-            distance={10}
-            variant="scale"
-            className="relative -mr-[8%] hidden lg:block"
-          >
-            <Parallax distance={-34}>
-              <HeroVisualization locale={locale} />
-            </Parallax>
-          </Reveal>
         </div>
       </section>
 
