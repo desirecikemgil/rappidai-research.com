@@ -50,11 +50,14 @@ const links = [
 
 export function HeroNetworkBackdrop() {
   const layerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const layer = layerRef.current;
+    const canvas = canvasRef.current;
     const hero = layer?.parentElement;
-    if (!layer || !hero) return;
+    const context = canvas?.getContext("2d");
+    if (!layer || !canvas || !hero || !context) return;
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -62,48 +65,159 @@ export function HeroNetworkBackdrop() {
     const finePointer = window.matchMedia(
       "(hover: hover) and (pointer: fine)",
     ).matches;
-    if (reducedMotion || !finePointer) return;
+    const interactive = !reducedMotion && finePointer;
 
     let frame = 0;
+    let width = 0;
+    let height = 0;
     let pointerX = 0.72;
     let pointerY = 0.32;
+    let targetX = pointerX;
+    let targetY = pointerY;
+    let strength = 0;
+    let targetStrength = 0;
+
+    const warpPoint = (x: number, y: number) => {
+      if (!interactive || strength < 0.002) return [x, y] as const;
+
+      const cursorX = pointerX * width;
+      const cursorY = pointerY * height;
+      const dx = cursorX - x;
+      const dy = cursorY - y;
+      const distance = Math.hypot(dx, dy);
+      const radius = Math.min(350, Math.max(220, width * 0.24));
+
+      if (distance >= radius) return [x, y] as const;
+
+      const normalized = 1 - distance / radius;
+      const influence =
+        normalized * normalized * (3 - 2 * normalized) * strength;
+      const pull = 0.34 * influence;
+      const curl = Math.sin(normalized * Math.PI) * influence * 8;
+      const denominator = Math.max(distance, 1);
+
+      return [
+        x + dx * pull - (dy / denominator) * curl,
+        y + dy * pull + (dx / denominator) * curl,
+      ] as const;
+    };
+
+    const drawGrid = () => {
+      context.clearRect(0, 0, width, height);
+      if (!width || !height) return;
+
+      const spacing = width < 700 ? 52 : 72;
+      const sample = width < 700 ? 20 : 18;
+      const offsetX = ((width / 2) % spacing) - spacing;
+      const offsetY = ((height / 2) % spacing) - spacing;
+
+      context.beginPath();
+
+      for (let x = offsetX; x <= width + spacing; x += spacing) {
+        for (let y = -sample; y <= height + sample; y += sample) {
+          const [warpedX, warpedY] = warpPoint(x, y);
+          if (y === -sample) context.moveTo(warpedX, warpedY);
+          else context.lineTo(warpedX, warpedY);
+        }
+      }
+
+      for (let y = offsetY; y <= height + spacing; y += spacing) {
+        for (let x = -sample; x <= width + sample; x += sample) {
+          const [warpedX, warpedY] = warpPoint(x, y);
+          if (x === -sample) context.moveTo(warpedX, warpedY);
+          else context.lineTo(warpedX, warpedY);
+        }
+      }
+
+      context.lineWidth = width < 700 ? 0.7 : 0.9;
+      context.strokeStyle = "rgba(12, 62, 138, 0.17)";
+      context.stroke();
+    };
 
     const render = () => {
+      pointerX += (targetX - pointerX) * 0.18;
+      pointerY += (targetY - pointerY) * 0.18;
+      strength += (targetStrength - strength) * 0.16;
+
       layer.style.setProperty("--hero-pointer-x", `${pointerX * 100}%`);
       layer.style.setProperty("--hero-pointer-y", `${pointerY * 100}%`);
-      layer.style.setProperty("--hero-network-x", `${(pointerX - 0.5) * 18}px`);
-      layer.style.setProperty("--hero-network-y", `${(pointerY - 0.5) * 12}px`);
-      layer.style.setProperty("--hero-grid-x", `${(pointerX - 0.5) * -10}px`);
-      layer.style.setProperty("--hero-grid-y", `${(pointerY - 0.5) * -8}px`);
-      frame = 0;
+      layer.style.setProperty("--hero-network-x", `${(pointerX - 0.5) * 28}px`);
+      layer.style.setProperty("--hero-network-y", `${(pointerY - 0.5) * 20}px`);
+      layer.style.setProperty("--hero-grid-x", `${(pointerX - 0.5) * -22}px`);
+      layer.style.setProperty("--hero-grid-y", `${(pointerY - 0.5) * -16}px`);
+      layer.style.setProperty(
+        "--hero-grid-tilt-x",
+        `${(0.5 - pointerY) * 2.4}deg`,
+      );
+      layer.style.setProperty(
+        "--hero-grid-tilt-y",
+        `${(pointerX - 0.5) * 3.2}deg`,
+      );
+      drawGrid();
+
+      const unsettled =
+        Math.abs(targetX - pointerX) > 0.001 ||
+        Math.abs(targetY - pointerY) > 0.001 ||
+        Math.abs(targetStrength - strength) > 0.004;
+
+      frame = unsettled ? requestAnimationFrame(render) : 0;
     };
 
     const update = (event: PointerEvent) => {
       const bounds = hero.getBoundingClientRect();
-      pointerX = Math.min(
+      targetX = Math.min(
         Math.max((event.clientX - bounds.left) / bounds.width, 0),
         1,
       );
-      pointerY = Math.min(
+      targetY = Math.min(
         Math.max((event.clientY - bounds.top) / bounds.height, 0),
         1,
       );
+      targetStrength = 1;
+      layer.dataset.warp = "active";
       if (!frame) frame = requestAnimationFrame(render);
     };
 
     const reset = () => {
-      pointerX = 0.72;
-      pointerY = 0.32;
+      targetX = 0.72;
+      targetY = 0.32;
+      targetStrength = 0;
+      layer.dataset.warp = "idle";
       if (!frame) frame = requestAnimationFrame(render);
     };
 
-    hero.addEventListener("pointermove", update, { passive: true });
-    hero.addEventListener("pointerleave", reset, { passive: true });
+    const resize = () => {
+      const bounds = hero.getBoundingClientRect();
+      width = Math.max(1, Math.round(bounds.width));
+      height = Math.max(1, Math.round(bounds.height));
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+
+      canvas.width = Math.round(width * pixelRatio);
+      canvas.height = Math.round(height * pixelRatio);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      drawGrid();
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(hero);
+    resize();
+
+    if (interactive) {
+      hero.addEventListener("pointermove", update, { passive: true });
+      hero.addEventListener("pointerleave", reset, { passive: true });
+    }
+
+    layer.dataset.warp = "idle";
     render();
 
     return () => {
-      hero.removeEventListener("pointermove", update);
-      hero.removeEventListener("pointerleave", reset);
+      resizeObserver.disconnect();
+      if (interactive) {
+        hero.removeEventListener("pointermove", update);
+        hero.removeEventListener("pointerleave", reset);
+      }
       if (frame) cancelAnimationFrame(frame);
     };
   }, []);
@@ -111,6 +225,7 @@ export function HeroNetworkBackdrop() {
   return (
     <div ref={layerRef} className="hero-network" aria-hidden="true">
       <div className="hero-network-grid" />
+      <canvas ref={canvasRef} className="hero-network-warp-grid" />
       <svg
         className="hero-network-map"
         viewBox="0 0 1440 700"
@@ -138,7 +253,6 @@ export function HeroNetworkBackdrop() {
           ))}
         </g>
       </svg>
-      <div className="hero-network-focus" />
       <div className="hero-network-vignette" />
     </div>
   );

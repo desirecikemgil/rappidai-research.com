@@ -22,3 +22,7 @@ When implementing from a selected generated mock, treat that image as the source
 - Present Echelon Base and Echelon Chat as stages or variants within `quantum-1-echelon`, never as separate model families.
 - Show missing evidence directly with `Not published`, `Not measured`, `Not yet available`, `Partial evidence` or `Maintainer input required`.
 - Never upgrade configured targets, estimated architecture properties or smoke-test totals into claims about completed Echelon training or production data.
+
+## Delivery workflow
+
+- After a requested change is complete and verified, commit it and push it to GitHub immediately; do not leave finished website changes only in the local worktree.
