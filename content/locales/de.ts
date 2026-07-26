@@ -1,8 +1,10 @@
+import { deComparisonTranslations } from "./de-comparisons";
 import { deMetadataTranslations } from "./de-metadata";
 import { deResourceTranslations } from "./de-resources";
 import { deResearchTranslations } from "./de-research";
 
 export const deTranslations: Readonly<Record<string, string>> = {
+  ...deComparisonTranslations,
   ...deMetadataTranslations,
   ...deResourceTranslations,
   ...deResearchTranslations,
@@ -308,8 +310,8 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Architecture preflight report": "Architektur-Preflight-Bericht",
   "Tokenizer validation report": "Tokenizer-Validierungsbericht",
   "Model-line path configuration": "Pfadkonfiguration der Modelllinie",
-  "Configuration preflight only. The committed report computes 506,333,440 trainable parameters for the proposed Echelon Base architecture; it is not evidence of trained weights.":
-    "Nur Konfigurations-Preflight. Der eingecheckte Bericht berechnet 506.333.440 trainierbare Parameter für die vorgeschlagene Echelon-Base-Architektur; dies ist kein Nachweis trainierter Gewichte.",
+  "Configuration preflight only. The proposed Echelon Base configuration specifies 26 layers, hidden size 1,280, intermediate size 3,584, 20 attention heads and 5 KV heads. The committed preflight computes 506,333,440 trainable parameters; none of this is evidence of trained weights.":
+    "Nur Konfigurations-Preflight. Die vorgeschlagene Echelon-Base-Konfiguration legt 26 Schichten, eine Hidden Size von 1.280, eine Intermediate Size von 3.584, 20 Attention-Heads und 5 KV-Heads fest. Der eingecheckte Preflight berechnet 506.333.440 trainierbare Parameter; nichts davon ist ein Nachweis trainierter Gewichte.",
   "Configured context": "Konfigurierter Kontext",
   "2,048 tokens in the architecture and Garden pipeline configurations; not validated on a trained Echelon model.":
     "2.048 Token in den Architektur- und Garden-Pipeline-Konfigurationen; nicht an einem trainierten Echelon-Modell validiert.",
@@ -515,12 +517,12 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "German-token corpus scale": "Korpusgröße in deutschen Tokens",
   "Reported base-model pretraining corpus.":
     "Berichteter Vortrainings-Korpus des Basismodells.",
-  "Reported additional German tokens in the continued-pretraining stage.":
-    "Berichtete zusätzliche deutsche Tokens in der Phase des fortgesetzten Vortrainings.",
-  "Configured production target. No Echelon corpus is complete and no Echelon model has been trained.":
-    "Konfiguriertes Produktionsziel. Kein Echelon-Korpus ist vollständig und es wurde kein Echelon-Modell trainiert.",
-  "Hatched bars mark configured targets, not measured runs.":
-    "Schraffierte Balken kennzeichnen konfigurierte Ziele, keine gemessenen Läufe.",
+  "Reported cumulative scope: approximately 100M base tokens plus 500M additional German tokens.":
+    "Berichteter kumulierter Umfang: ungefähr 100 Mio. Basis-Token plus 500 Mio. zusätzliche deutsche Token.",
+  "Configured 8B training-token target. The production run has not started and no Echelon model has been trained.":
+    "Konfiguriertes Ziel von 8 Mrd. Trainings-Token. Der Produktionslauf wurde nicht gestartet und kein Echelon-Modell wurde trainiert.",
+  "Linear scale. Hatched bars mark configured targets, not measured runs.":
+    "Lineare Skala. Schraffierte Balken markieren konfigurierte Ziele, keine gemessenen Läufe.",
 
   "Two released pilots. One untrained line.":
     "Zwei veröffentlichte Piloten. Eine untrainierte Linie.",

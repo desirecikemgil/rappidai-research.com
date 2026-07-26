@@ -1,7 +1,11 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const port = process.env.PLAYWRIGHT_PORT ?? "3000";
+const baseURL = `http://127.0.0.1:${port}`;
+
 export default defineConfig({
   testDir: "./tests/e2e",
+  timeout: 60_000,
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
@@ -11,7 +15,7 @@ export default defineConfig({
     ["html", { open: "never", outputFolder: "playwright-report" }],
   ],
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL,
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
   },
@@ -22,8 +26,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm start --hostname 127.0.0.1 --port 3000",
-    url: "http://127.0.0.1:3000",
+    command: `pnpm start --hostname 127.0.0.1 --port ${port}`,
+    url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

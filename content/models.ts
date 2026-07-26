@@ -233,7 +233,7 @@ export const models = [
       {
         label: "Architecture status",
         value:
-          "Configuration preflight only. The committed report computes 506,333,440 trainable parameters for the proposed Echelon Base architecture; it is not evidence of trained weights.",
+          "Configuration preflight only. The proposed Echelon Base configuration specifies 26 layers, hidden size 1,280, intermediate size 3,584, 20 attention heads and 5 KV heads. The committed preflight computes 506,333,440 trainable parameters; none of this is evidence of trained weights.",
       },
       {
         label: "Configured context",

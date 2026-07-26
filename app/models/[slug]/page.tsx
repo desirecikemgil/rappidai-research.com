@@ -9,7 +9,6 @@ import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { getModelBySlug, modelSlugs } from "@/content/models";
 import { modelsPageContent } from "@/content/pages";
 import { getResearchNoteById } from "@/content/research";
-import { siteConfig } from "@/content/site";
 import type { ModelLink, SiteRoute } from "@/content/types";
 import { metadataFor } from "@/lib/metadata";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
@@ -37,14 +36,15 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
 }
 
 /**
- * Only quantum-1.6-pilot publishes its layer count, hidden size and head
- * count, so only that model gets a stack figure. Echelon's public evidence is
- * a parameter total and a context length; drawing a stack for it would invent
- * architecture properties the repository has never stated.
+ * Draw only dimensions stated by pinned public sources. Echelon stays hollow
+ * because its stack is a committed configuration, not a trained model.
  */
 function architectureFor(slug: string) {
   if (slug === "quantum-1-6-pilot") {
     return { layers: 12, hiddenSize: 512, heads: 8, configured: false };
+  }
+  if (slug === "quantum-1-echelon") {
+    return { layers: 26, hiddenSize: 1280, heads: 20, configured: true };
   }
   return null;
 }
@@ -60,7 +60,6 @@ export function LocalizedModelDetailPage({
   if (!model) notFound();
   const architecture = architectureFor(slug);
   const page = localizeContent(modelsPageContent, locale);
-  const config = localizeContent(siteConfig, locale);
   const modelLinks = model.links as readonly ModelLink[];
 
   const relatedNotes = localizeContent(

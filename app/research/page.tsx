@@ -689,25 +689,25 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                     },
                     {
                       label: "quantum-1.6-pilot",
-                      tokens: 500,
+                      tokens: 600,
                       note: t(
                         locale,
-                        "Reported additional German tokens in the continued-pretraining stage.",
+                        "Reported cumulative scope: approximately 100M base tokens plus 500M additional German tokens.",
                       ),
                     },
                     {
                       label: "quantum-1-echelon",
-                      tokens: 600,
+                      tokens: 8000,
                       configured: true,
                       note: t(
                         locale,
-                        "Configured production target. No Echelon corpus is complete and no Echelon model has been trained.",
+                        "Configured 8B training-token target. The production run has not started and no Echelon model has been trained.",
                       ),
                     },
                   ]}
                   caption={t(
                     locale,
-                    "Hatched bars mark configured targets, not measured runs.",
+                    "Linear scale. Hatched bars mark configured targets, not measured runs.",
                   )}
                 />
               </div>

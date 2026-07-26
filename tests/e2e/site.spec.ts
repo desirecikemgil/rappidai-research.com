@@ -127,6 +127,55 @@ test("German contact form reports localized validation messages", async ({
   );
 });
 
+test("model comparison switches between all three visual views", async ({
+  page,
+}) => {
+  await page.goto("/models");
+
+  const architectureTab = page.getByRole("tab", { name: "Architecture" });
+  const tokenizerTab = page.getByRole("tab", { name: "Tokenizer" });
+  const pipelineTab = page.getByRole("tab", { name: "Data pipeline" });
+
+  await expect(architectureTab).toHaveAttribute("aria-selected", "true");
+  await expect(
+    page.getByRole("tabpanel").locator(".comparison-model-card"),
+  ).toHaveCount(3);
+
+  await tokenizerTab.click();
+  await expect(tokenizerTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "One frozen pilot tokenizer",
+  );
+
+  await pipelineTab.click();
+  await expect(pipelineTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "8B configured training-token target",
+  );
+});
+
+test("German model comparison is translated and keyboard operable", async ({
+  page,
+}) => {
+  await page.goto("/de/models");
+
+  const architectureTab = page.getByRole("tab", { name: "Architektur" });
+  await architectureTab.focus();
+  await architectureTab.press("ArrowRight");
+
+  const tokenizerTab = page.getByRole("tab", { name: "Tokenizer" });
+  await expect(tokenizerTab).toBeFocused();
+  await expect(tokenizerTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "Ein eingefrorener Pilot-Tokenizer",
+  );
+
+  await page.getByRole("tab", { name: "Datenpipeline" }).click();
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "8 Mrd. Trainings-Token",
+  );
+});
+
 test("reduced-motion rendering avoids horizontal overflow", async ({
   page,
 }) => {
@@ -141,6 +190,31 @@ test("reduced-motion rendering avoids horizontal overflow", async ({
 
   expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
 });
+
+for (const route of ["/models", "/de/models"] as const) {
+  test(`${route} comparison fits a reduced-motion mobile viewport`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(route);
+
+    const pipelineName = route.startsWith("/de")
+      ? "Datenpipeline"
+      : "Data pipeline";
+    await page.getByRole("tab", { name: pipelineName }).click();
+
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+    await expect(
+      page.getByRole("tabpanel").locator(".comparison-model-card"),
+    ).toHaveCount(3);
+  });
+}
 
 for (const route of [
   "/resources",
