@@ -139,9 +139,21 @@ test("home hero uses a two-line interactive network composition", async ({
     "Focused Intelligence.",
   ]);
   await expect(page.locator(".hero-network")).toHaveCount(1);
+  await expect(page.locator(".hero-network-warp-grid")).toHaveCount(1);
   await expect(page.locator(".hero-visual")).toHaveCount(0);
 
   await page.mouse.move(1200, 220);
+  await expect(page.locator(".hero-network")).toHaveAttribute(
+    "data-warp",
+    "active",
+  );
+  await expect
+    .poll(() =>
+      page
+        .locator(".hero-network-warp-grid")
+        .evaluate((canvas) => (canvas as HTMLCanvasElement).width),
+    )
+    .toBeGreaterThan(0);
   await expect
     .poll(() =>
       page
@@ -151,6 +163,15 @@ test("home hero uses a two-line interactive network composition", async ({
         ),
     )
     .not.toBe("72%");
+  await expect
+    .poll(() =>
+      page
+        .locator(".hero-network")
+        .evaluate((element) =>
+          element.style.getPropertyValue("--hero-grid-tilt-y"),
+        ),
+    )
+    .not.toBe("");
 });
 
 test("home hero keeps both headline lines complete on mobile", async ({
