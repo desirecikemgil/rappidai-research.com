@@ -68,23 +68,31 @@ or freely reusable.
 
 ## Model weights and tokenizers
 
-The website links to public Hugging Face repositories for
-`quantum-1-pilot` and `quantum-1.6-pilot`. At the time this record was prepared,
-their public model metadata did not state a model license. Downloadability does
-not establish permission to modify or redistribute the weights or tokenizers.
+The website links to public Hugging Face repositories for `quantum-1-pilot` and
+`quantum-1.6-pilot`. On 24 July 2026, the maintainer published a deliberate
+license decision for both pilot releases: their weights, GGUF artifacts and
+trained tokenizers are **all rights reserved**. No public reuse license is
+granted, and the artifacts must not be described as open weight. [1]
 
-Each model repository needs its own deliberate license decision and a model
-card that identifies:
+| Artifact scope                     | Exact reviewed model revision              | Current reuse position                       |
+| ---------------------------------- | ------------------------------------------ | -------------------------------------------- |
+| `quantum-1-pilot` weights / GGUF   | `7daf415ef09fc131d7440af8514a93fd8cf3f2a1` | All rights reserved; no public reuse license |
+| `quantum-1.6-pilot` weights / GGUF | `507662c095b5ba6e14f24d3fc7f0a5e29d76b7f3` | All rights reserved; no public reuse license |
+| Pilot trained tokenizer binaries   | Public artifact revision not confirmed     | All rights reserved; no public reuse license |
 
-- the exact files and repository revision covered;
-- whether weights, tokenizer files, configuration, examples, and documentation
-  share a license or use different licenses;
-- all dataset, software, and third-party attribution obligations;
-- the intended-use and safety limitations; and
-- checksums and release provenance.
+Accordingly, redistribution, modification and commercial use of these pilot
+artifacts are not granted. Their availability for download does not itself grant
+permission to copy, modify or redistribute them. The Apache-2.0 license of this
+website and the Apache-2.0 license of the source repository do not apply to
+these model artifacts. [1] [2]
 
-Do not describe a model as open source or open weight solely because a file can
-be downloaded. Do not use the website's Apache-2.0 license as the model license.
+The decision is deliberately reversible: an explicit reuse license may be
+published later. Until a new, versioned decision is published, this record and
+the model-license registry define the public reuse boundary. [1]
+
+Each release record should continue to identify the exact covered files and
+revision, dataset and third-party obligations, intended-use limits, checksums
+and provenance. This documentation is a maintenance record, not legal advice.
 
 ## Training data
 
@@ -109,10 +117,12 @@ Apache-2.0 license.
 ## External research repository and tools
 
 The separate repository at
-<https://github.com/jonascikemgil07-hue/lumen-quantum> contains training and
-evaluation code referenced by this website. It is a separate work and is not
-covered by this repository's license. It requires its own provenance review and
-license before it can be represented as reusable open-source software.
+<https://github.com/rappidAI-Research/lumen-quantum> contains the training and
+evaluation source material referenced by this website. Its top-level Apache-2.0
+license covers the repository's source code, configurations, tests and original
+documentation, not pilot weights, GGUF artifacts or trained tokenizer binaries.
+It remains a separate work and is not covered by this website repository's
+license. [1] [2]
 
 External tools such as `llama.cpp`, PyTorch, Transformers, SentencePiece, and
 their dependencies retain their upstream licenses. Linking to, invoking, or
@@ -129,10 +139,18 @@ recorded in the pull request.
 
 - Confirm the rights holder for the original website code and documentation.
 - Complete a per-file provenance record for all brand and model-card images.
-- Choose and publish explicit licenses for each model's weights and tokenizer.
+- Maintain the published all-rights-reserved decision for pilot artifacts; publish
+  an explicit reuse license only if the policy changes.
+- Confirm and pin the public revision of each trained tokenizer binary before
+  any future licensing or distribution change.
 - Review the dataset and source-content obligations before any model release.
-- License the `lumen-quantum` repository independently after reviewing its
-  code, dependencies, and external tool references.
+- Reassess the `lumen-quantum` source license and its dependency obligations
+  whenever its scope or distribution changes.
 - Generate distribution-specific third-party notices for production bundles.
 - Revisit this file whenever a new asset, dependency, dataset, model, or
   external repository is added.
+
+## References
+
+[1]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
+[2]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/LICENSE "lumen-quantum Apache License 2.0"

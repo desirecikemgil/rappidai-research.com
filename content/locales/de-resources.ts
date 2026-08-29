@@ -1,5 +1,6 @@
 export const deResourceTranslations: Readonly<Record<string, string>> = {
   "23 July 2026": "23. Juli 2026",
+  "24 July 2026": "24. Juli 2026",
   "Research statements are reviewed against this immutable lumen-quantum snapshot and the pinned Hugging Face model revisions linked from each record.":
     "Forschungsaussagen werden anhand dieses unveränderlichen lumen-quantum-Snapshots und der in jedem Eintrag verlinkten, fixierten Hugging-Face-Modellrevisionen geprüft.",
   "RESEARCH OUTPUTS": "FORSCHUNGSERGEBNISSE",
@@ -83,8 +84,8 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
   "Pilot GGUF integrity": "Integrität der Pilot-GGUFs",
   "Pinned files, manifests, sizes and SHA-256 checksums.":
     "Fixierte Dateien, Manifeste, Größen und SHA-256-Prüfsummen.",
-  "Artifact licenses remain unstated.":
-    "Die Artefaktlizenzen bleiben ungenannt.",
+  "Pilot artifacts are all rights reserved; no reuse license is granted.":
+    "Pilot-Artefakte unterliegen dem Vorbehalt aller Rechte; es wird keine Wiederverwendungslizenz erteilt.",
   "Pilot training method": "Trainingsmethode der Piloten",
   "Code, documentation and YAML configurations.":
     "Code, Dokumentation und YAML-Konfigurationen.",
@@ -233,14 +234,14 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
     "Keine separate öffentliche Wiederverwendungserlaubnis",
   "Creator, provenance, permission and trademark treatment remain to be recorded.":
     "Urheber, Herkunft, Erlaubnis und markenrechtliche Behandlung müssen noch dokumentiert werden.",
-  "quantum-1-pilot weights and tokenizer":
-    "Gewichte und Tokenizer von quantum-1-pilot",
-  "No explicit artifact license found":
-    "Keine ausdrückliche Artefaktlizenz gefunden",
-  "Downloadability does not establish permission to modify or redistribute.":
-    "Die Möglichkeit zum Herunterladen begründet keine Erlaubnis zur Änderung oder Weiterverteilung.",
-  "quantum-1.6-pilot weights and tokenizer":
-    "Gewichte und Tokenizer von quantum-1.6-pilot",
+  "quantum-1-pilot weights, GGUF artifacts and tokenizer":
+    "Gewichte, GGUF-Artefakte und Tokenizer von quantum-1-pilot",
+  "All rights reserved; no public reuse license":
+    "Alle Rechte vorbehalten; keine öffentliche Wiederverwendungslizenz",
+  "Redistribution, modification and commercial use are not granted. Do not describe the artifact as open weight.":
+    "Weiterverteilung, Änderung und kommerzielle Nutzung werden nicht gestattet. Das Artefakt darf nicht als Open Weight bezeichnet werden.",
+  "quantum-1.6-pilot weights, GGUF artifacts and tokenizer":
+    "Gewichte, GGUF-Artefakte und Tokenizer von quantum-1.6-pilot",
   "Future Echelon artifacts": "Zukünftige Echelon-Artefakte",
   "No model release and no artifact license":
     "Keine Modellveröffentlichung und keine Artefaktlizenz",
@@ -251,11 +252,11 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
     "ODC-By 1.0 und Bedingungen von Common Crawl ausgewiesen",
   "Database terms do not clear every right in source pages or license resulting model artifacts.":
     "Datenbankbedingungen klären nicht jedes Recht an Quellseiten und lizenzieren keine daraus entstehenden Modellartefakte.",
-  "lumen-quantum repository": "lumen-quantum-Repository",
-  "No explicit top-level license found in the reviewed snapshot":
-    "Keine ausdrückliche Top-Level-Lizenz im geprüften Snapshot gefunden",
-  "It is a separate work and is not licensed by the website repository.":
-    "Es handelt sich um ein separates Werk, das nicht durch das Website-Repository lizenziert wird.",
+  "lumen-quantum source repository": "lumen-quantum-Quellrepository",
+  "Apache License 2.0 for source code, configurations, tests and original documentation":
+    "Apache-Lizenz 2.0 für Quellcode, Konfigurationen, Tests und Originaldokumentation",
+  "The source license does not cover model weights, GGUF artifacts or trained tokenizer binaries; it is separate from the website repository.":
+    "Die Quelllizenz umfasst weder Modellgewichte noch GGUF-Artefakte oder trainierte Tokenizer-Binärdateien; sie ist von der Website-Repository-Lizenz getrennt.",
   "Full licensing and provenance record":
     "Vollständige Lizenz- und Herkunftsdokumentation",
   "PROJECT STATUS": "PROJEKTSTATUS",
@@ -265,12 +266,12 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
     "Eine kompakte Übersicht darüber, was für jede Modelllinie öffentlich ist, was unvollständig bleibt und welche Dokumentationsarbeit als Nächstes ansteht.",
   "Public 49.3M-parameter experimental F16 GGUF release.":
     "Öffentliche experimentelle F16-GGUF-Veröffentlichung mit 49,3 Mio. Parametern.",
-  "No standardized benchmark, final run manifest or explicit model license.":
-    "Kein standardisierter Benchmark, kein abschließendes Run-Manifest und keine ausdrückliche Modelllizenz.",
+  "No standardized benchmark or final run manifest. Pilot weights, GGUF artifacts and tokenizers are all rights reserved; no public reuse license is granted.":
+    "Kein standardisierter Benchmark und kein abschließendes Run-Manifest. Für Pilotgewichte, GGUF-Artefakte und Tokenizer gelten alle Rechte vorbehalten; es wird keine öffentliche Wiederverwendungslizenz erteilt.",
   "Public 49.3M-parameter F16 GGUF release with reported continued pretraining and held-out metrics.":
     "Öffentliche F16-GGUF-Veröffentlichung mit 49,3 Mio. Parametern, berichtetem Continued Pretraining und Hold-out-Metriken.",
-  "No raw evaluation record, complete run log or explicit model license.":
-    "Keine rohe Evaluationsdokumentation, kein vollständiges Run-Protokoll und keine ausdrückliche Modelllizenz.",
+  "No raw evaluation record or complete run log. Pilot weights, GGUF artifacts and tokenizers are all rights reserved; no public reuse license is granted.":
+    "Keine rohe Evaluationsdokumentation und kein vollständiges Run-Protokoll. Für Pilotgewichte, GGUF-Artefakte und Tokenizer gelten alle Rechte vorbehalten; es wird keine öffentliche Wiederverwendungslizenz erteilt.",
   "Architecture preflight, tokenizer validation and Garden pipeline smoke evidence.":
     "Architektur-Preflight, Tokenizer-Validierung und Smoke-Evidenz der Garden-Pipeline.",
   "No production dataset, trained model, checkpoint, output or benchmark.":
@@ -283,16 +284,15 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
     "Versionierte Prompts, Ausgaben, Decodierungseinstellungen, Metrikbefehle und Fehlerkennzeichnungen.",
   "Inference memory and throughput plus training hardware, runtime, cost and energy use.":
     "Inferenzspeicher und -durchsatz sowie Trainingshardware, Laufzeit, Kosten und Energieverbrauch.",
-  "Artifact licensing and visual provenance":
-    "Artefaktlizenzierung und visuelle Herkunft",
-  "Explicit terms for model weights, tokenizers, external research code and project images.":
-    "Ausdrückliche Bedingungen für Modellgewichte, Tokenizer, externen Forschungscode und Projektbilder.",
+  "Visual-asset provenance": "Herkunft visueller Assets",
+  "Creator, source, permission, transformation and trademark records for project images and brand marks.":
+    "Nachweise zu Urheber, Quelle, Erlaubnis, Bearbeitung und Markenrecht für Projektbilder und Markenzeichen.",
   "Echelon production and model artifacts":
     "Echelon-Produktions- und Modellartefakte",
   "Final corpus manifest, training logs, checkpoints, weights, outputs and evaluation.":
     "Abschließendes Korpusmanifest, Trainingsprotokolle, Checkpoints, Gewichte, Ausgaben und Evaluation.",
-  "Publish canonical model-specific licenses and immutable release records.":
-    "Kanonische modellspezifische Lizenzen und unveränderliche Veröffentlichungsnachweise publizieren.",
+  "Maintain the published all-rights-reserved pilot-artifact decision; attach an explicit reuse license only if the policy changes.":
+    "Die veröffentlichte Entscheidung zum Vorbehalt aller Rechte für Pilot-Artefakte fortführen; eine ausdrückliche Wiederverwendungslizenz nur bei einer Richtlinienänderung ergänzen.",
   "Attach raw, versioned pilot evaluation artifacts before making broader capability claims.":
     "Rohe, versionierte Evaluationsartefakte der Piloten beifügen, bevor weitergehende Fähigkeitsaussagen getroffen werden.",
   "Complete the Echelon production-data workflow before any dataset-total claim.":
@@ -330,8 +330,8 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
   "No. Local execution may keep prompts on a device, but privacy depends on the application, logs, operating system, model source and surrounding infrastructure.":
     "Nein. Lokale Ausführung kann Prompts auf einem Gerät halten, der Datenschutz hängt jedoch von Anwendung, Protokollen, Betriebssystem, Modellquelle und umgebender Infrastruktur ab.",
   "Are the model weights open source?": "Sind die Modellgewichte Open Source?",
-  "The public pilot files are downloadable, but their Hugging Face repositories do not state an explicit model and tokenizer license in the reviewed revisions. The website therefore does not describe them as open source or freely reusable.":
-    "Die öffentlichen Pilotdateien können heruntergeladen werden, ihre Hugging-Face-Repositories nennen in den geprüften Revisionen jedoch keine ausdrückliche Modell- und Tokenizer-Lizenz. Die Website bezeichnet sie daher weder als Open Source noch als frei wiederverwendbar.",
+  "No. The maintainer's published registry keeps the pilot weights, GGUF artifacts and tokenizers all rights reserved. No public reuse license is granted, and redistribution, modification and commercial use are not granted. Downloadability does not make the artifacts open source, open weight or freely reusable.":
+    "Nein. Das veröffentlichte Register des Maintainers hält die Pilotgewichte, GGUF-Artefakte und Tokenizer unter Vorbehalt aller Rechte. Es wird keine öffentliche Wiederverwendungslizenz erteilt; Weiterverteilung, Änderung und kommerzielle Nutzung werden nicht gestattet. Die Möglichkeit zum Herunterladen macht die Artefakte weder zu Open Source noch zu Open Weight oder frei wiederverwendbar.",
   "Is the research peer-reviewed?": "Ist die Forschung peer-reviewed?",
   "No academic peer-review or DOI is claimed. Publications on this website are project research notes linked to public artifacts and explicit evidence boundaries.":
     "Es wird weder ein akademisches Peer-Review noch eine DOI beansprucht. Publikationen auf dieser Website sind Forschungsnotizen des Projekts, die mit öffentlichen Artefakten und ausdrücklichen Evidenzgrenzen verknüpft sind.",

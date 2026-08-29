@@ -219,7 +219,8 @@ export const reproducibilityContent = {
       area: "Pilot GGUF integrity",
       status: "Published",
       available: "Pinned files, manifests, sizes and SHA-256 checksums.",
-      missing: "Artifact licenses remain unstated.",
+      missing:
+        "Pilot artifacts are all rights reserved; no reuse license is granted.",
     },
     {
       area: "Pilot training method",
@@ -463,20 +464,20 @@ export const licensingContent = {
       url: publicProjectUrls.licensingRecord,
     },
     {
-      material: "quantum-1-pilot weights and tokenizer",
-      status: "Not published",
-      terms: "No explicit artifact license found",
+      material: "quantum-1-pilot weights, GGUF artifacts and tokenizer",
+      status: "Published",
+      terms: "All rights reserved; no public reuse license",
       boundary:
-        "Downloadability does not establish permission to modify or redistribute.",
-      url: publicModelUrls["quantum-1-pilot"],
+        "Redistribution, modification and commercial use are not granted. Do not describe the artifact as open weight.",
+      url: publicResearchUrls.modelLicenseRegistry,
     },
     {
-      material: "quantum-1.6-pilot weights and tokenizer",
-      status: "Not published",
-      terms: "No explicit artifact license found",
+      material: "quantum-1.6-pilot weights, GGUF artifacts and tokenizer",
+      status: "Published",
+      terms: "All rights reserved; no public reuse license",
       boundary:
-        "Downloadability does not establish permission to modify or redistribute.",
-      url: publicModelUrls["quantum-1-6-pilot"],
+        "Redistribution, modification and commercial use are not granted. Do not describe the artifact as open weight.",
+      url: publicResearchUrls.modelLicenseRegistry,
     },
     {
       material: "Future Echelon artifacts",
@@ -495,12 +496,13 @@ export const licensingContent = {
       url: publicProjectUrls.fineWebDataset,
     },
     {
-      material: "lumen-quantum repository",
-      status: "Not published",
-      terms: "No explicit top-level license found in the reviewed snapshot",
+      material: "lumen-quantum source repository",
+      status: "Published",
+      terms:
+        "Apache License 2.0 for source code, configurations, tests and original documentation",
       boundary:
-        "It is a separate work and is not licensed by the website repository.",
-      url: publicResearchUrls.repository,
+        "The source license does not cover model weights, GGUF artifacts or trained tokenizer binaries; it is separate from the website repository.",
+      url: publicResearchUrls.sourceLicense,
     },
   ] satisfies readonly {
     material: string;
@@ -528,7 +530,7 @@ export const statusContent = {
       status: "Published",
       state: "Public 49.3M-parameter experimental F16 GGUF release.",
       boundary:
-        "No standardized benchmark, final run manifest or explicit model license.",
+        "No standardized benchmark or final run manifest. Pilot weights, GGUF artifacts and tokenizers are all rights reserved; no public reuse license is granted.",
       href: "/models/quantum-1-pilot",
     },
     {
@@ -537,7 +539,7 @@ export const statusContent = {
       state:
         "Public 49.3M-parameter F16 GGUF release with reported continued pretraining and held-out metrics.",
       boundary:
-        "No raw evaluation record, complete run log or explicit model license.",
+        "No raw evaluation record or complete run log. Pilot weights, GGUF artifacts and tokenizers are all rights reserved; no public reuse license is granted.",
       href: "/models/quantum-1-6-pilot",
     },
     {
@@ -574,8 +576,8 @@ export const statusContent = {
     },
     {
       status: "Maintainer input required",
-      title: "Artifact licensing and visual provenance",
-      text: "Explicit terms for model weights, tokenizers, external research code and project images.",
+      title: "Visual-asset provenance",
+      text: "Creator, source, permission, transformation and trademark records for project images and brand marks.",
     },
     {
       status: "Not yet available",
@@ -588,7 +590,7 @@ export const statusContent = {
     text: string;
   }[],
   roadmap: [
-    "Publish canonical model-specific licenses and immutable release records.",
+    "Maintain the published all-rights-reserved pilot-artifact decision; attach an explicit reuse license only if the policy changes.",
     "Attach raw, versioned pilot evaluation artifacts before making broader capability claims.",
     "Complete the Echelon production-data workflow before any dataset-total claim.",
     "Measure local inference requirements and performance using a documented environment.",
@@ -645,7 +647,7 @@ export const faqEntries = [
   {
     question: "Are the model weights open source?",
     answer:
-      "The public pilot files are downloadable, but their Hugging Face repositories do not state an explicit model and tokenizer license in the reviewed revisions. The website therefore does not describe them as open source or freely reusable.",
+      "No. The maintainer's published registry keeps the pilot weights, GGUF artifacts and tokenizers all rights reserved. No public reuse license is granted, and redistribution, modification and commercial use are not granted. Downloadability does not make the artifacts open source, open weight or freely reusable.",
   },
   {
     question: "Is the research peer-reviewed?",

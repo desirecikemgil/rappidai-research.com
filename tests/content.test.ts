@@ -126,7 +126,7 @@ describe("resource content contracts", () => {
   });
 
   it("records the reviewed evidence date and exact legal address", () => {
-    expect(resourceReview.isoDate).toBe("2026-07-23");
+    expect(resourceReview.isoDate).toBe("2026-07-24");
     expect(siteConfig.lastReviewed).toBe(resourceReview.isoDate);
     expect(siteConfig.legal.serviceAddress).toBe(
       "Almutstraße 3, 13467 Berlin, Germany",

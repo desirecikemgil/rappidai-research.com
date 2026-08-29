@@ -7,8 +7,8 @@ import type {
 import { publicModelUrls, publicResearchUrls } from "./site";
 import { localizeContent, type Locale } from "@/lib/i18n";
 
-const unstatedPublicModelLicense =
-  "No model license is currently stated in the public repository. Downloadability does not by itself define reuse rights.";
+const pilotArtifactLicense =
+  "All rights reserved: no public reuse license is granted for the pilot weights, GGUF artifacts or tokenizers. Redistribution, modification and commercial use are not granted; do not describe these artifacts as open weight. Downloadability does not change this boundary.";
 
 const pilotLimitations = [
   "Semantically weak and factually unreliable output",
@@ -41,8 +41,14 @@ export const models = [
       "Baseline release in the Quantum series and predecessor to quantum-1.6-pilot. Its public manifest uses the historical model ID quantum-1-base.",
     releaseStatus:
       "Publicly available as an experimental F16 GGUF release on Hugging Face.",
-    license: unstatedPublicModelLicense,
+    license: pilotArtifactLicense,
     links: [
+      {
+        kind: "model-card",
+        label: "License registry",
+        url: publicResearchUrls.modelLicenseRegistry,
+        pendingLabel: "License registry unavailable",
+      },
       {
         kind: "huggingFace",
         label: "View on Hugging Face",
@@ -63,6 +69,10 @@ export const models = [
       {
         label: "Hugging Face model card",
         url: publicResearchUrls.quantum1ModelCard,
+      },
+      {
+        label: "Model and tokenizer license registry",
+        url: publicResearchUrls.modelLicenseRegistry,
       },
     ],
     inferenceSoftware: [
@@ -104,8 +114,14 @@ export const models = [
       "The release card reports continued pretraining from Quantum 1 Base. The public configuration specifies weights-only initialization, a fresh optimizer, scheduler and step counter, and a frozen quantum-1 tokenizer; no final public run manifest verifies every configured detail.",
     releaseStatus:
       "Publicly available as an experimental F16 GGUF release; the public artifact is 98,990,560 bytes.",
-    license: unstatedPublicModelLicense,
+    license: pilotArtifactLicense,
     links: [
+      {
+        kind: "model-card",
+        label: "License registry",
+        url: publicResearchUrls.modelLicenseRegistry,
+        pendingLabel: "License registry unavailable",
+      },
       {
         kind: "huggingFace",
         label: "View on Hugging Face",
@@ -170,6 +186,10 @@ export const models = [
       {
         label: "Hugging Face model card",
         url: publicResearchUrls.quantum16ModelCard,
+      },
+      {
+        label: "Model and tokenizer license registry",
+        url: publicResearchUrls.modelLicenseRegistry,
       },
       {
         label: "Training documentation",
