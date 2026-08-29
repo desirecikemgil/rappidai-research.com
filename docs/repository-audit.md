@@ -146,13 +146,13 @@ Before release:
 
 Licenses must remain component-specific:
 
-| Component                           | Audit state                                                                                                                                                |
-| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Original website code/documentation | Root `LICENSE` and `NOTICE` identify Apache-2.0 scope for material the contributors have rights to.                                                        |
-| Brand and model-card PNGs           | Provenance is incomplete; they are explicitly excluded from the Apache grant pending creator/source/permission records. No reuse license is claimed.       |
-| Pilot weights/tokenizers            | Publicly downloadable, but no explicit artifact license was found in the reviewed Hugging Face metadata. Do not label them open source or freely reusable. |
-| FineWeb2-HQ / source text           | ODC-By 1.0 plus Common Crawl terms and underlying source rights; privacy and rights risks remain.                                                          |
-| `lumen-quantum` code                | Separate work requiring its own explicit license and provenance review. It is not licensed by this website repository.                                     |
+| Component                                            | Audit state                                                                                                                                                                                                                                                   |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Original website code/documentation                  | Root `LICENSE` and `NOTICE` identify Apache-2.0 scope for material the contributors have rights to.                                                                                                                                                           |
+| Brand and model-card PNGs                            | Provenance is incomplete; they are explicitly excluded from the Apache grant pending creator/source/permission records. No reuse license is claimed.                                                                                                          |
+| Pilot weights, GGUF artifacts and trained tokenizers | A 24 July 2026 maintainer registry deliberately keeps all pilot artifacts **all rights reserved**. No public reuse license is granted; redistribution, modification and commercial use are not granted. Do not label them open weight or freely reusable. [1] |
+| FineWeb2-HQ / source text                            | ODC-By 1.0 plus Common Crawl terms and underlying source rights; privacy and rights risks remain.                                                                                                                                                             |
+| `lumen-quantum` source                               | A separate work. Its top-level Apache-2.0 license covers source code, configurations, tests and original documentation, not model artifacts or trained tokenizer binaries. [1] [2]                                                                            |
 
 See [Licensing and provenance](licensing.md) and the asset-directory READMEs.
 The records are maintenance guidance, not legal advice.
@@ -177,7 +177,7 @@ test environment and retained output.
 
 | Priority | Finding                                                                                                 | Required action                                                                                           |
 | -------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| High     | Pilot weights/tokenizers lack an explicit reviewed artifact license                                     | Publish exact per-artifact terms before any open-weight or reuse claim                                    |
+| High     | Pilot artifacts are deliberately all rights reserved with no public reuse license                       | Prevent open-weight or reuse claims; publish an explicit reuse license only if the policy changes         |
 | High     | Brand/model-card asset provenance and reuse rights are incomplete                                       | Record creator, source, date, permission/license, and transformations per file                            |
 | High     | Neither pilot has a final public run manifest                                                           | Link immutable data, tokenizer, config, code, checkpoints/logs, evaluation, export, and checksum evidence |
 | High     | Echelon production data and training have not started                                                   | Preserve “preflight/smoke only” wording until completed artifacts exist                                   |
@@ -197,6 +197,11 @@ open research or licensing item. Before a public release, the maintainer should:
 - obtain a clean CI result from the exact commit;
 - verify production configuration and legal owner-supplied fields;
 - keep model claims within the evidence table above;
-- publish or explicitly defer component licenses and provenance; and
+- preserve the published pilot-artifact license boundary and update it only through a new versioned decision; and
 - attach current visual, accessibility, and route evidence if claiming those
   qualities were tested.
+
+## References
+
+[1]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
+[2]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/LICENSE "lumen-quantum Apache License 2.0"

@@ -6,7 +6,7 @@ export const publicContact = {
 
 export const publicProfiles = {
   huggingFace: "https://huggingface.co/rappidAI",
-  github: "https://github.com/jonascikemgil07-hue/lumen-quantum",
+  github: "https://github.com/rappidAI-Research/lumen-quantum",
 } as const;
 
 const websiteRepository =
@@ -37,13 +37,18 @@ const reviewedModelRevisions = {
 } as const;
 
 const lumenQuantumRepository =
-  "https://github.com/jonascikemgil07-hue/lumen-quantum";
+  "https://github.com/rappidAI-Research/lumen-quantum";
 const lumenQuantumReviewedRevision = "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39";
+const lumenQuantumLicenseDecisionRevision =
+  "f79c395c1da82827a63706ea9b55c913c073bd91";
 const lumenQuantumReviewedSource = `${lumenQuantumRepository}/blob/${lumenQuantumReviewedRevision}`;
+const lumenQuantumLicenseDecisionSource = `${lumenQuantumRepository}/blob/${lumenQuantumLicenseDecisionRevision}`;
 
 export const publicResearchUrls = {
   repository: lumenQuantumRepository,
   evidenceSnapshot: `${lumenQuantumRepository}/tree/${lumenQuantumReviewedRevision}`,
+  modelLicenseRegistry: `${lumenQuantumLicenseDecisionSource}/MODEL_LICENSES.md`,
+  sourceLicense: `${lumenQuantumLicenseDecisionSource}/LICENSE`,
   quantum1ModelCard: `${publicModelUrls["quantum-1-pilot"]}/blob/${reviewedModelRevisions["quantum-1-pilot"]}/README.md`,
   quantum16ModelCard: `${publicModelUrls["quantum-1-6-pilot"]}/blob/${reviewedModelRevisions["quantum-1-6-pilot"]}/README.md`,
   trainingDocumentation: `${lumenQuantumReviewedSource}/docs/quantum_1_6_pilot.md`,
@@ -83,7 +88,7 @@ export const siteConfig = {
   description:
     "Independent AI research on compact language models and documented training, evaluation and local-inference workflows.",
   location: "Berlin, Germany",
-  lastReviewed: "2026-07-23",
+  lastReviewed: "2026-07-24",
   businessEmail: publicContact.businessEmail,
   canonicalUrl: "https://www.rappidai-research.com",
   navigation: [

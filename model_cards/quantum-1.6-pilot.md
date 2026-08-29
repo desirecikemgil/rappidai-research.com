@@ -125,12 +125,12 @@ instruction tuning, chat alignment, retrieval, citation, or fact checking.
 
 Licensing must be evaluated per component:
 
-| Component                      | Current evidence                                                                                                                                                                                |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website code and documentation | Governed only by the top-level `LICENSE` and `NOTICE` in this website repository, within their stated scope.                                                                                    |
-| Model weights and tokenizer    | No explicit weights or tokenizer license was found in the public Hugging Face metadata reviewed for this card. An explicit license remains required before making reuse claims.                 |
-| Training data                  | FineWeb2-HQ is published under ODC-By 1.0 and is also subject to the Common Crawl terms and rights in source documents. Those terms do not automatically license model weights or website code. |
-| Brand and model-card images    | No reusable-asset license is claimed; see the READMEs under `public/brand` and `public/models`.                                                                                                 |
+| Component                                 | Current evidence                                                                                                                                                                                                                                              |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Website code and documentation            | Governed only by the top-level `LICENSE` and `NOTICE` in this website repository, within their stated scope.                                                                                                                                                  |
+| Model weights, GGUF and trained tokenizer | The maintainer's 24 July 2026 registry deliberately keeps these pilot artifacts **all rights reserved**. No public reuse license is granted; redistribution, modification and commercial use are not granted. Do not describe the release as open weight. [1] |
+| Training data                             | FineWeb2-HQ is published under ODC-By 1.0 and is also subject to the Common Crawl terms and rights in source documents. Those terms do not automatically license model weights or website code.                                                               |
+| Brand and model-card images               | No reusable-asset license is claimed; see the READMEs under `public/brand` and `public/models`.                                                                                                                                                               |
 
 This section is a provenance record, not legal advice.
 
@@ -143,14 +143,19 @@ Before treating this release as fully reproducible, publish or pin:
 - actual step, document, and token counts rather than configured targets;
 - optimizer and scheduler state plus training and validation logs;
 - raw evaluation prompts, decoding settings, outputs, and metric code; and
-- an explicit license for the model artifacts.
+- a future explicit reuse license only if the all-rights-reserved policy changes, plus the public artifact revision for the trained tokenizer.
 
 ## Sources
 
 - [Hugging Face model repository](https://huggingface.co/rappidAI/quantum-1.6-pilot)
 - [Release manifest](https://huggingface.co/rappidAI/quantum-1.6-pilot/blob/507662c095b5ba6e14f24d3fc7f0a5e29d76b7f3/manifest.json)
 - [Published checksums](https://huggingface.co/rappidAI/quantum-1.6-pilot/blob/507662c095b5ba6e14f24d3fc7f0a5e29d76b7f3/SHA256SUMS.txt)
-- [Continued-pretraining documentation](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/docs/quantum_1_6_pilot.md)
-- [Data configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
-- [Training configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
+- [Model and tokenizer license registry](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md)
+- [Continued-pretraining documentation](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/docs/quantum_1_6_pilot.md)
+- [Data configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
+- [Training configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
 - [FineWeb2-HQ dataset card](https://huggingface.co/datasets/epfml/FineWeb2-HQ)
+
+## References
+
+[1]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
