@@ -29,22 +29,22 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "framer-motion": "12.42.2",
+    "framer-motion": "12.43.0",
     "geist": "1.7.2",
-    "lucide-react": "1.25.0",
-    "next": "16.2.11",
+    "lucide-react": "1.27.0",
+    "next": "16.2.12",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.12.1",
-    "@playwright/test": "1.61.1",
+    "@playwright/test": "1.62.0",
     "@tailwindcss/postcss": "4.3.3",
-    "@types/node": "26.1.1",
+    "@types/node": "26.1.2",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.2.11",
+    "eslint-config-next": "16.2.12",
     "prettier": "3.9.6",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3",
