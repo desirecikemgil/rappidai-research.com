@@ -79,6 +79,15 @@ export function SiteHeader() {
   const pathname = usePathname();
   const locale = localeFromPathname(pathname);
   const config = localizeContent(siteConfig, locale);
+  const toolNavigationItem = {
+    label: "Tools",
+    href: localizePath("/tools", locale),
+  };
+  const navigation = [
+    ...config.navigation.slice(0, 2),
+    toolNavigationItem,
+    ...config.navigation.slice(2),
+  ];
   const reduceMotion = useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -126,7 +135,7 @@ export function SiteHeader() {
           className="hidden items-center gap-8 lg:flex"
         >
           <div className="flex items-center gap-1">
-            {config.navigation.map((item) => {
+            {navigation.map((item) => {
               const active = isCurrentRoute(pathname, item.href);
               return (
                 <Link
@@ -135,8 +144,6 @@ export function SiteHeader() {
                   aria-current={active ? "page" : undefined}
                   className="nav-item relative rounded-full px-3.5 py-2 text-[0.86rem] font-medium text-muted transition-colors duration-300 hover:text-ink aria-[current=page]:text-ink"
                 >
-                  {/* A single pill slides between items instead of each one
-                      growing its own underline. */}
                   {active ? (
                     <motion.span
                       aria-hidden="true"
@@ -204,7 +211,7 @@ export function SiteHeader() {
               className="page-shell py-5"
             >
               <div className="divide-y divide-line border-y border-line">
-                {config.navigation.map((item, index) => {
+                {navigation.map((item, index) => {
                   const active = isCurrentRoute(pathname, item.href);
                   return (
                     <motion.div
