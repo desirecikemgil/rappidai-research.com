@@ -1,10 +1,13 @@
+import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
-import { metadataFor } from "@/lib/metadata";
-import { localizePath, type Locale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
-export const metadata = metadataFor("/tools");
+export const metadata: Metadata = {
+  title: "Tools — rappidAI Research",
+  description: "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
+};
 
 const copy = {
   en: {
@@ -90,6 +93,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
           {tools.map((tool, index) => {
             const isGhost = tool.name === "Ghost";
             const facts = isGhost ? c.ghostFacts : c.replayFacts;
+            const href = locale === "de" ? `/de${tool.href}` : tool.href;
             return (
               <Reveal key={tool.name} delay={index * 0.05} className="liquid-card p-7 sm:p-9">
                 <p className="font-mono text-[0.66rem] tracking-[0.14em] text-accent uppercase">{tool.accent}</p>
@@ -100,7 +104,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                   {facts.map((fact) => <li key={fact}>— {fact}</li>)}
                 </ul>
                 <div className="mt-9 flex flex-wrap gap-3">
-                  <ActionLink href={localizePath(tool.href, locale)} variant="primary">{c.learn}</ActionLink>
+                  <ActionLink href={href} variant="primary">{c.learn}</ActionLink>
                   <ActionLink href={tool.repo} external variant="secondary">{c.inspect}</ActionLink>
                 </div>
               </Reveal>
