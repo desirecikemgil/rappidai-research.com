@@ -270,6 +270,21 @@ export const pageMetadata = {
     description:
       "An artifact-level evidence ledger covering Quantum pilot results, Echelon pipeline status, negative findings, gaps and reproducibility.",
   },
+  "/tools": {
+    title: "Tools — rappidAI Research",
+    description:
+      "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
+  },
+  "/tools/ghost": {
+    title: "Ghost — rappidAI Research",
+    description:
+      "A deception-aware security runtime for autonomous AI agents with deterministic ALLOW, DENY and SHADOW policy outcomes.",
+  },
+  "/tools/replay": {
+    title: "Replay — rappidAI Research",
+    description:
+      "Local-first infrastructure for recording, verifying, restoring, branching, rerunning and diffing AI-agent executions.",
+  },
   "/resources": {
     title: "Resources — rappidAI Research",
     description:

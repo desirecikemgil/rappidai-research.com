@@ -10,7 +10,7 @@ export const publicProfiles = {
 } as const;
 
 const websiteRepository =
-  "https://github.com/jonascikemgil07-hue/rappidai-research.com";
+  "https://github.com/rappidAI-Research/rappidai-research.com";
 
 export const publicProjectUrls = {
   websiteRepository,
@@ -86,7 +86,7 @@ export const siteConfig = {
   name: "rappidAI research",
   shortName: "rappidAI",
   description:
-    "Independent AI research on compact language models and documented training, evaluation and local-inference workflows.",
+    "Independent AI research on compact language models and open infrastructure for controllable, reproducible AI-agent execution.",
   location: "Berlin, Germany",
   lastReviewed: "2026-07-24",
   businessEmail: publicContact.businessEmail,
@@ -94,6 +94,7 @@ export const siteConfig = {
   navigation: [
     { label: "Models", href: "/models" },
     { label: "Research", href: "/research" },
+    { label: "Tools", href: "/tools" },
     { label: "Resources", href: "/resources" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
@@ -106,11 +107,11 @@ export const siteConfig = {
     name: "Jonas Désiré Cikemgil",
     role: "Founder & Independent AI Research Developer",
     biography:
-      "Jonas Désiré Cikemgil is a Berlin-based independent AI developer focused on compact language models, documented training pipelines, GGUF deployment and local inference.",
+      "Jonas Désiré Cikemgil is a Berlin-based independent AI developer focused on compact language models, documented training pipelines, agent infrastructure and local inference.",
     focusAreas: [
       "Compact language models",
       "Documented training pipelines",
-      "GGUF deployment",
+      "Agent infrastructure",
       "Local inference",
     ],
   },
@@ -162,6 +163,7 @@ export const footerNavigation = {
   explore: [
     { label: "Models", href: "/models" },
     { label: "Research", href: "/research" },
+    { label: "Tools", href: "/tools" },
     { label: "Resources", href: "/resources" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },

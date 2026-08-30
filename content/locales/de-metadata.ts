@@ -20,6 +20,15 @@ export const deMetadataTranslations: Readonly<Record<string, string>> = {
   "Research — rappidAI Research": "Forschung — rappidAI Research",
   "An artifact-level evidence ledger covering Quantum pilot results, Echelon pipeline status, negative findings, gaps and reproducibility.":
     "Ein Evidenzregister auf Artefaktebene zu Ergebnissen der Quantum-Piloten, Status der Echelon-Pipeline, negativen Erkenntnissen, Lücken und Reproduzierbarkeit.",
+  "Tools — rappidAI Research": "Tools — rappidAI Research",
+  "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.":
+    "Ghost und Replay: Open-Source-Infrastruktur für kontrollierbare und reproduzierbare KI-Agenten-Ausführung.",
+  "Ghost — rappidAI Research": "Ghost — rappidAI Research",
+  "A deception-aware security runtime for autonomous AI agents with deterministic ALLOW, DENY and SHADOW policy outcomes.":
+    "Ein deception-aware Security Runtime für autonome KI-Agenten mit deterministischen ALLOW-, DENY- und SHADOW-Entscheidungen.",
+  "Replay — rappidAI Research": "Replay — rappidAI Research",
+  "Local-first infrastructure for recording, verifying, restoring, branching, rerunning and diffing AI-agent executions.":
+    "Local-first Infrastruktur zum Aufzeichnen, Verifizieren, Wiederherstellen, Verzweigen, erneuten Ausführen und Vergleichen von KI-Agenten-Ausführungen.",
   "Resources — rappidAI Research": "Ressourcen — rappidAI Research",
   "Evidence-bounded publications, reproducibility records, data documentation, responsible-use guidance, licensing status and project updates.":
     "Evidenzgebundene Publikationen, Reproduzierbarkeitsnachweise, Datendokumentation, Hinweise zur verantwortungsvollen Nutzung, Lizenzstatus und Projektaktualisierungen.",
