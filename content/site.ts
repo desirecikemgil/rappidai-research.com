@@ -6,7 +6,7 @@ export const publicContact = {
 
 export const publicProfiles = {
   huggingFace: "https://huggingface.co/rappidAI",
-  github: "https://github.com/rappidAI-Research",
+  github: "https://github.com/rappidAI-Research/lumen-quantum",
 } as const;
 
 const websiteRepository =
@@ -88,7 +88,7 @@ export const siteConfig = {
   description:
     "Independent AI research on compact language models and open infrastructure for controllable, reproducible AI-agent execution.",
   location: "Berlin, Germany",
-  lastReviewed: "2026-08-30",
+  lastReviewed: "2026-07-24",
   businessEmail: publicContact.businessEmail,
   canonicalUrl: "https://www.rappidai-research.com",
   navigation: [
