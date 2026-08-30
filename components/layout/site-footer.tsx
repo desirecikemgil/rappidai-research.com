@@ -18,6 +18,11 @@ export function SiteFooter() {
   const config = localizeContent(siteConfig, locale);
   const navigation = localizeContent(footerNavigation, locale);
   const utilities = localizeContent(resourceUtilityLinks, locale);
+  const exploreLinks = [
+    ...navigation.explore.slice(0, 2),
+    { label: "Tools", href: localizePath("/tools", locale) },
+    ...navigation.explore.slice(2),
+  ];
 
   return (
     <footer className="dark-band site-footer border-t border-line">
@@ -38,7 +43,7 @@ export function SiteFooter() {
           </div>
 
           <FooterColumn title={t(locale, "Explore")}>
-            {navigation.explore.map((item) => (
+            {exploreLinks.map((item) => (
               <Link key={item.href} href={item.href} className="footer-link">
                 {item.label}
               </Link>
@@ -111,7 +116,6 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Oversized mark bled off the bottom edge, closing the page. */}
       <span className="footer-ghost" aria-hidden="true">
         rappidAI
       </span>
