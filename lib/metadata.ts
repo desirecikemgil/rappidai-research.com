@@ -2,12 +2,19 @@ import type { Metadata } from "next";
 import { getPageMetadata } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import type { SiteRoute } from "@/content/types";
-import { localizeContent, localizePath, type Locale } from "@/lib/i18n";
+import {
+  localizeContent,
+  localizePath,
+  type Locale,
+} from "@/lib/i18n";
 
 type ToolRoute = "/tools" | "/tools/ghost" | "/tools/replay";
 type MetadataRoute = SiteRoute | ToolRoute;
 
-const toolMetadata: Record<ToolRoute, { title: string; description: string }> = {
+const toolMetadata: Record<
+  ToolRoute,
+  { title: string; description: string }
+> = {
   "/tools": {
     title: "Tools — rappidAI Research",
     description:
