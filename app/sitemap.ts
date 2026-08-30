@@ -3,10 +3,14 @@ import { siteRoutes } from "@/content/routes";
 import { siteConfig } from "@/content/site";
 import { localizePath, type Locale } from "@/lib/i18n";
 
+const toolRoutes = ["/tools", "/tools/ghost", "/tools/replay"] as const;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!siteConfig.canonicalUrl) return [];
 
-  return siteRoutes.flatMap((route) =>
+  const routes = [...siteRoutes, ...toolRoutes];
+
+  return routes.flatMap((route) =>
     (["en", "de"] as const).map((locale: Locale) => {
       const localizedRoute = localizePath(route, locale);
       const englishUrl = new URL(
@@ -29,7 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         changeFrequency:
           route.startsWith("/models/") ||
-          route.startsWith("/resources/publications/")
+          route.startsWith("/resources/publications/") ||
+          route.startsWith("/tools/")
             ? ("monthly" as const)
             : ("weekly" as const),
         priority:
@@ -37,7 +42,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             ? 1
             : route === "/models" ||
                 route === "/research" ||
-                route === "/resources"
+                route === "/resources" ||
+                route === "/tools"
               ? 0.8
               : 0.6,
       };
