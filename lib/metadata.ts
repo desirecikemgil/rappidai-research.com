@@ -2,35 +2,29 @@ import type { Metadata } from "next";
 import { getPageMetadata } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import type { SiteRoute } from "@/content/types";
-import {
-  localizeContent,
-  localizePath,
-  type Locale,
-} from "@/lib/i18n";
+import { localizeContent, localizePath, type Locale } from "@/lib/i18n";
 
 type ToolRoute = "/tools" | "/tools/ghost" | "/tools/replay";
 type MetadataRoute = SiteRoute | ToolRoute;
 
-const toolMetadata: Record<
-  ToolRoute,
-  { title: string; description: string }
-> = {
-  "/tools": {
-    title: "Tools — rappidAI Research",
-    description:
-      "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
-  },
-  "/tools/ghost": {
-    title: "Ghost — rappidAI Research",
-    description:
-      "A deception-aware security runtime for autonomous AI agents with deterministic ALLOW, DENY and SHADOW policy outcomes.",
-  },
-  "/tools/replay": {
-    title: "Replay — rappidAI Research",
-    description:
-      "Local-first infrastructure for recording, verifying, restoring, branching, rerunning and diffing AI-agent executions.",
-  },
-};
+const toolMetadata: Record<ToolRoute, { title: string; description: string }> =
+  {
+    "/tools": {
+      title: "Tools — rappidAI Research",
+      description:
+        "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
+    },
+    "/tools/ghost": {
+      title: "Ghost — rappidAI Research",
+      description:
+        "A deception-aware security runtime for autonomous AI agents with deterministic ALLOW, DENY and SHADOW policy outcomes.",
+    },
+    "/tools/replay": {
+      title: "Replay — rappidAI Research",
+      description:
+        "Local-first infrastructure for recording, verifying, restoring, branching, rerunning and diffing AI-agent executions.",
+    },
+  };
 
 function metadataRecord(route: MetadataRoute) {
   return route in toolMetadata
