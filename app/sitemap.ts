@@ -3,14 +3,10 @@ import { siteRoutes } from "@/content/routes";
 import { siteConfig } from "@/content/site";
 import { localizePath, type Locale } from "@/lib/i18n";
 
-const toolRoutes = ["/tools", "/tools/ghost", "/tools/replay"] as const;
-
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!siteConfig.canonicalUrl) return [];
 
-  const routes = [...siteRoutes, ...toolRoutes];
-
-  return routes.flatMap((route) =>
+  return siteRoutes.flatMap((route) =>
     (["en", "de"] as const).map((locale: Locale) => {
       const localizedRoute = localizePath(route, locale);
       const englishUrl = new URL(
