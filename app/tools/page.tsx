@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
+import { metadataFor } from "@/lib/metadata";
 import type { Locale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Tools — rappidAI Research",
-  description:
-    "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
-};
+export const metadata = metadataFor("/tools");
 
 const copy = {
   en: {
