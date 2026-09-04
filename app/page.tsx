@@ -16,6 +16,7 @@ import { ResearchDiagram } from "@/components/research/research-diagram";
 import { EvidenceBadge } from "@/components/resources/resource-ui";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { BrandSymbol } from "@/components/ui/brand-lockup";
+import { SectionNavigator } from "@/components/ui/section-navigator";
 import { getFeaturedModel } from "@/content/models";
 import { homePageContent } from "@/content/pages";
 import {
@@ -102,6 +103,65 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               </p>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      <section className="dark-band home-research-index text-white">
+        <div className="page-shell section-space-sm">
+          <Reveal className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-20">
+            <div>
+              <p className="page-context">{t(locale, "Research index")}</p>
+              <h2 className="mt-6 max-w-[13ch] text-[clamp(2.5rem,5vw,5.5rem)] font-[510] leading-[0.98] tracking-[-0.06em] text-[var(--color-dark-title)]">
+                {t(locale, "Start with the question you want to answer.")}
+              </h2>
+            </div>
+            <p className="max-w-[42rem] text-[clamp(1.05rem,1.4vw,1.25rem)] leading-8 text-[var(--color-dark-body)]">
+              {t(
+                locale,
+                "The site separates model releases, research evidence, agent infrastructure and supporting documentation so each area can be understood on its own.",
+              )}
+            </p>
+          </Reveal>
+          <Reveal delay={0.1} className="mt-12 lg:mt-16">
+            <SectionNavigator
+              onDark
+              label={t(locale, "Explore the research")}
+              items={[
+                {
+                  href: localizePath("/research", locale),
+                  label: t(locale, "Research"),
+                  description: t(
+                    locale,
+                    "Evidence, findings, methods and open questions.",
+                  ),
+                },
+                {
+                  href: localizePath("/models", locale),
+                  label: t(locale, "Models"),
+                  description: t(
+                    locale,
+                    "Released pilots and the current Echelon pipeline.",
+                  ),
+                },
+                {
+                  href: localizePath("/tools", locale),
+                  label: t(locale, "Tools"),
+                  description: t(
+                    locale,
+                    "Ghost and Replay for controlled agent execution.",
+                  ),
+                },
+                {
+                  href: localizePath("/resources", locale),
+                  label: t(locale, "Resources"),
+                  description: t(
+                    locale,
+                    "Source-linked records for reproducibility and reuse.",
+                  ),
+                },
+              ]}
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -407,7 +467,7 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
       </section>
 
       <section className="page-shell pb-[var(--section-space)]">
-        <div className="closing-panel liquid-surface px-7 py-[clamp(4rem,8vw,7.5rem)] sm:px-10 lg:px-14">
+        <div className="closing-panel closing-panel-dark dark-band px-7 py-[clamp(4rem,8vw,7.5rem)] sm:px-10 lg:px-14">
           <Reveal className="relative grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="eyebrow">{page.contact.eyebrow}</p>
@@ -418,7 +478,10 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               </p>
             </div>
             <Magnetic strength={5}>
-              <ActionLink href={page.contact.action.href}>
+              <ActionLink
+                href={page.contact.action.href}
+                className="border-accent bg-accent hover:border-white hover:bg-white hover:text-ink"
+              >
                 {page.contact.action.label}
               </ActionLink>
             </Magnetic>

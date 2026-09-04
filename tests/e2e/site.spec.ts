@@ -8,6 +8,9 @@ const publicRoutes = [
   "/models/quantum-1-6-pilot",
   "/models/quantum-1-echelon",
   "/research",
+  "/tools",
+  "/tools/ghost",
+  "/tools/replay",
   "/resources",
   "/resources/publications",
   "/resources/publications/from-100m-to-600m-german-tokens",
@@ -100,6 +103,42 @@ test("language switch preserves the current deep route", async ({ page }) => {
     .click();
   await expect(page).toHaveURL("/resources/licensing");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
+});
+
+test("German navigation marks only the current primary area", async ({
+  page,
+}) => {
+  await page.goto("/de/research");
+
+  const currentLinks = page
+    .getByRole("navigation", { name: "Primary navigation" })
+    .locator('a[aria-current="page"]');
+
+  await expect(currentLinks).toHaveCount(1);
+  await expect(currentLinks).toHaveText("Forschung");
+});
+
+test("mobile research index stays contained and exposes every topic", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/research");
+
+  const index = page.getByRole("navigation", { name: "Explore this page" });
+  await expect(index.getByRole("link")).toHaveCount(5);
+
+  const measurements = await page.evaluate(() => ({
+    pageOverflow:
+      document.documentElement.scrollWidth -
+      document.documentElement.clientWidth,
+    indexOverflow:
+      (document.querySelector(".section-navigator-list")?.scrollWidth ?? 0) -
+      (document.querySelector(".section-navigator-list")?.clientWidth ?? 0),
+  }));
+
+  expect(measurements.pageOverflow).toBeLessThanOrEqual(0);
+  expect(measurements.indexOverflow).toBeGreaterThan(0);
 });
 
 test("contact form reports required fields without claiming a send", async ({

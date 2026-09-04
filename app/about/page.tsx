@@ -24,7 +24,36 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...page.introduction} />
+      <PageIntro
+        {...page.introduction}
+        indexLabel={t(locale, "Explore this page")}
+        topics={[
+          {
+            href: "#what-rappidai-is-heading",
+            label: t(locale, "What rappidAI is"),
+            description: t(
+              locale,
+              "Understand the initiative, its structure and its research scope.",
+            ),
+          },
+          {
+            href: "#published-work-heading",
+            label: t(locale, "Published work"),
+            description: t(
+              locale,
+              "Review the public pilot models and their evidence boundaries.",
+            ),
+          },
+          {
+            href: "#current-direction-heading",
+            label: t(locale, "Current direction"),
+            description: t(
+              locale,
+              "Follow the Echelon architecture, tokenizer and data-pipeline work.",
+            ),
+          },
+        ]}
+      />
 
       <section
         aria-labelledby="what-rappidai-is-heading"

@@ -14,6 +14,10 @@ When implementing from a selected generated mock, treat that image as the source
 - Keep motion accessible with `prefers-reduced-motion`, and verify new effects at desktop and mobile breakpoints.
 - Prefer fine glass edges, controlled radii, and smaller lens-like background forms over large coarse bubbles; carry the complete glass language through mobile layouts and touch states.
 - Keep the home hero editorial and wide: the “Smaller Models. / Focused Intelligence.” statement stays on exactly two lines without a separate right-hand model graphic; use a subtle interactive neural-grid backdrop instead.
+- Preserve the established white, research-blue and deep-navy identity while using the deep navy more deliberately for full-width orientation, comparison and closing sections.
+- Keep every page easy to scan: lead with a concise purpose statement, expose a short set of meaningful topics or jump targets, and reveal detailed evidence through graphics, tables or focused text only after the overview.
+- Treat navigation as an information hierarchy rather than a flat link list: keep the main research areas immediately visible, make the current section unmistakable, and separate contact from the primary content taxonomy.
+- Reduce equal-weight card density and decorative labels. Use larger calm surfaces, fewer simultaneous choices and stronger light/dark rhythm so content-heavy pages do not feel crowded.
 
 ## Durable research-publication direction
 
@@ -26,3 +30,13 @@ When implementing from a selected generated mock, treat that image as the source
 ## Delivery workflow
 
 - After a requested change is complete and verified, commit it and push it to GitHub immediately; do not leave finished website changes only in the local worktree.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

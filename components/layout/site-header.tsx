@@ -19,7 +19,7 @@ import {
 } from "@/lib/i18n";
 
 function isCurrentRoute(pathname: string, href: string) {
-  return href === "/"
+  return href === "/" || href === "/de"
     ? pathname === href
     : pathname === href || pathname.startsWith(`${href}/`);
 }
@@ -52,7 +52,6 @@ function LanguageSwitcher({
             href={localizePath(pathname, item)}
             hrefLang={item}
             lang={item}
-            aria-current={active ? "page" : undefined}
             aria-label={
               active
                 ? `${languageName(item)} · ${t(locale, "current language")}`
@@ -114,7 +113,7 @@ export function SiteHeader() {
       className="liquid-header sticky top-0 z-50 border-b border-transparent transition-all duration-500"
     >
       <div className="scroll-progress-line" aria-hidden="true" />
-      <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-8">
+      <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-5">
         <BrandLockup
           priority
           href={localizePath("/", locale)}
@@ -123,9 +122,9 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary navigation"
-          className="hidden items-center gap-8 lg:flex"
+          className="site-primary-navigation hidden items-center gap-4 xl:flex"
         >
-          <div className="flex items-center gap-1">
+          <div className="nav-links flex items-center gap-0.5">
             {config.navigation.map((item) => {
               const active = isCurrentRoute(pathname, item.href);
               return (
@@ -133,7 +132,7 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className="nav-item relative rounded-full px-3.5 py-2 text-[0.86rem] font-medium text-muted transition-colors duration-300 hover:text-ink aria-[current=page]:text-ink"
+                  className="nav-item relative rounded-full px-3 py-2 text-[0.83rem] font-medium text-muted transition-colors duration-300 hover:text-ink aria-[current=page]:text-white"
                 >
                   {/* A single pill slides between items instead of each one
                       growing its own underline. */}
@@ -158,7 +157,7 @@ export function SiteHeader() {
           <Magnetic>
             <Link
               href={config.primaryNavigationAction.href}
-              className="liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
+              className="nav-contact-action liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
             >
               {config.primaryNavigationAction.label}
             </Link>
@@ -175,7 +174,7 @@ export function SiteHeader() {
               : t(locale, "Open navigation")
           }
           onClick={() => setMenuOpen((current) => !current)}
-          className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-ink lg:hidden"
+          className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-ink xl:hidden"
         >
           {menuOpen ? (
             <X aria-hidden="true" size={20} strokeWidth={1.7} />
@@ -189,7 +188,7 @@ export function SiteHeader() {
         {menuOpen ? (
           <motion.div
             id="mobile-navigation"
-            className="liquid-mobile-menu max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line lg:hidden"
+            className="liquid-mobile-menu max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line xl:hidden"
             initial={
               reduceMotion ? false : { opacity: 0, y: -8, scaleY: 0.985 }
             }

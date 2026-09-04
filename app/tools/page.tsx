@@ -2,7 +2,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { metadataFor } from "@/lib/metadata";
-import type { Locale } from "@/lib/i18n";
+import { t, type Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/tools");
 
@@ -108,8 +108,48 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   return (
     <>
-      <PageIntro {...c.intro} />
-      <section className="page-shell pb-[var(--section-space)]">
+      <PageIntro
+        {...c.intro}
+        indexLabel={t(locale, "Explore this page")}
+        topics={[
+          {
+            href: "#tools-overview",
+            label: t(locale, "Tool overview"),
+            description: t(
+              locale,
+              "Understand the different jobs of Ghost and Replay before diving in.",
+            ),
+          },
+          {
+            href: "#ghost",
+            label: "Ghost",
+            description: t(
+              locale,
+              "Control what an agent may access and detect contact with decoys.",
+            ),
+          },
+          {
+            href: "#replay",
+            label: "Replay",
+            description: t(
+              locale,
+              "Record, restore, branch and compare technical execution state.",
+            ),
+          },
+          {
+            href: "#tool-evidence",
+            label: t(locale, "Source evidence"),
+            description: t(
+              locale,
+              "Trace implementation claims to reviewed source revisions.",
+            ),
+          },
+        ]}
+      />
+      <section
+        id="tools-overview"
+        className="page-shell scroll-mt-32 pb-[var(--section-space)] pt-[clamp(4rem,7vw,6rem)]"
+      >
         <Reveal className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
             <p className="eyebrow">{c.thesis}</p>
@@ -137,7 +177,9 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                   {tool.accent}
                 </p>
                 <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-ink sm:text-5xl">
-                  rappidAI {tool.name}
+                  <span id={tool.name.toLowerCase()} className="scroll-mt-32">
+                    rappidAI {tool.name}
+                  </span>
                 </h2>
                 <p className="body-lg mt-5">
                   {isGhost ? c.ghostSummary : c.replaySummary}
@@ -161,7 +203,10 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
           })}
         </div>
 
-        <Reveal className="dark-band mt-16 overflow-hidden rounded-[2rem] p-8 sm:p-12">
+        <Reveal
+          id="tool-evidence"
+          className="dark-band mt-16 scroll-mt-32 overflow-hidden rounded-[2rem] p-8 sm:p-12"
+        >
           <p className="eyebrow text-[var(--color-dark-muted)]">
             EVIDENCE BOUNDARY
           </p>

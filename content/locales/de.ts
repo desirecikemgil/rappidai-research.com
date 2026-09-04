@@ -13,11 +13,85 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Berlin, Germany": "Berlin, Deutschland",
   "Almutstraße 3, 13467 Berlin, Germany":
     "Almutstraße 3, 13467 Berlin, Deutschland",
+  Home: "Startseite",
   Models: "Modelle",
   Research: "Forschung",
+  Tools: "Werkzeuge",
   Resources: "Ressourcen",
   About: "Über uns",
   Contact: "Kontakt",
+  "Explore this page": "Diese Seite erkunden",
+  Overview: "Überblick",
+  "Model releases": "Modellveröffentlichungen",
+  "Evidence and findings": "Evidenz und Erkenntnisse",
+  "Methods and limits": "Methoden und Grenzen",
+  "Open questions": "Offene Fragen",
+  "Evidence map": "Evidenzübersicht",
+  "Documentation directory": "Dokumentationsverzeichnis",
+  "Research profiles": "Forschungsprofile",
+  "Tool overview": "Werkzeugübersicht",
+  "Source evidence": "Quellenevidenz",
+  "What rappidAI is": "Was rappidAI ist",
+  "Published work": "Veröffentlichte Arbeit",
+  "Current direction": "Aktuelle Ausrichtung",
+  "Contact options": "Kontaktmöglichkeiten",
+  "Prepare an email": "E-Mail vorbereiten",
+  "System comparison": "Systemvergleich",
+  "Current Echelon line": "Aktuelle Echelon-Linie",
+  "Reporting channels": "Meldewege",
+  "Browse the released pilots and the in-development Echelon pipeline.":
+    "Veröffentlichte Piloten und die Echelon-Pipeline in Entwicklung ansehen.",
+  "Compare architecture, tokenizer and data evidence on one scale.":
+    "Architektur-, Tokenizer- und Datenevidenz auf einer gemeinsamen Skala vergleichen.",
+  "See what is published, partial or still unavailable.":
+    "Erkennen, was veröffentlicht, teilweise belegt oder noch nicht verfügbar ist.",
+  "Separate architecture, tokenizer and pipeline evidence from training.":
+    "Architektur-, Tokenizer- und Pipeline-Evidenz klar vom Training trennen.",
+  "Understand the experiment design, evaluation and known failures.":
+    "Versuchsaufbau, Evaluation und bekannte Fehlermuster verstehen.",
+  "Inspect artifacts, checksums and the remaining publication gaps.":
+    "Artefakte, Prüfsummen und verbleibende Veröffentlichungslücken prüfen.",
+  "Continue with the questions that define the next research phase.":
+    "Mit den Fragen fortfahren, die die nächste Forschungsphase bestimmen.",
+  "Read the documentation status of every research area at a glance.":
+    "Den Dokumentationsstand aller Forschungsbereiche auf einen Blick erfassen.",
+  "Open the source repositories and public model releases.":
+    "Quell-Repositories und öffentliche Modellveröffentlichungen öffnen.",
+  "Choose a focused record for methods, licensing, status or reuse.":
+    "Einen fokussierten Nachweis zu Methoden, Lizenzierung, Status oder Wiederverwendung wählen.",
+  "Understand the initiative, its structure and its research scope.":
+    "Initiative, Struktur und Forschungsumfang verstehen.",
+  "Review the public pilot models and their evidence boundaries.":
+    "Öffentliche Pilotmodelle und ihre Evidenzgrenzen prüfen.",
+  "Follow the Echelon architecture, tokenizer and data-pipeline work.":
+    "Die Arbeit an Echelon-Architektur, Tokenizer und Datenpipeline verfolgen.",
+  "Choose email, Hugging Face or GitHub for the right context.":
+    "Je nach Anliegen E-Mail, Hugging Face oder GitHub wählen.",
+  "Create a local email draft without sending data through the website.":
+    "Einen lokalen E-Mail-Entwurf erstellen, ohne Daten über die Website zu senden.",
+  "Route public feedback, security reports and sensitive concerns correctly.":
+    "Öffentliches Feedback, Sicherheitsmeldungen und sensible Anliegen richtig zuordnen.",
+  "Understand the different jobs of Ghost and Replay before diving in.":
+    "Vor dem Einstieg die unterschiedlichen Aufgaben von Ghost und Replay verstehen.",
+  "Control what an agent may access and detect contact with decoys.":
+    "Steuern, worauf ein Agent zugreifen darf, und Kontakt mit Ködern erkennen.",
+  "Record, restore, branch and compare technical execution state.":
+    "Technische Ausführungszustände aufzeichnen, wiederherstellen, verzweigen und vergleichen.",
+  "Trace implementation claims to reviewed source revisions.":
+    "Implementierungsaussagen bis zu geprüften Quellrevisionen zurückverfolgen.",
+  "Research index": "Forschungsübersicht",
+  "Start with the question you want to answer.":
+    "Beginnen Sie mit der Frage, die Sie beantworten möchten.",
+  "The site separates model releases, research evidence, agent infrastructure and supporting documentation so each area can be understood on its own.":
+    "Die Website trennt Modellveröffentlichungen, Forschungsevidenz, Agenten-Infrastruktur und begleitende Dokumentation, damit jeder Bereich für sich verständlich bleibt.",
+  "Evidence, findings, methods and open questions.":
+    "Evidenz, Erkenntnisse, Methoden und offene Fragen.",
+  "Released pilots and the current Echelon pipeline.":
+    "Veröffentlichte Piloten und die aktuelle Echelon-Pipeline.",
+  "Ghost and Replay for controlled agent execution.":
+    "Ghost und Replay für kontrollierte Agentenausführung.",
+  "Source-linked records for reproducibility and reuse.":
+    "Quellenverknüpfte Nachweise zu Reproduzierbarkeit und Wiederverwendung.",
   "Explore models": "Modelle entdecken",
   "Founder & Independent AI Research Developer":
     "Gründer & unabhängiger KI-Forschungsentwickler",

@@ -47,9 +47,42 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...page.introduction} signature="directory" />
+      <PageIntro
+        {...page.introduction}
+        signature="directory"
+        indexLabel={t(locale, "Explore this page")}
+        topics={[
+          {
+            href: "#resources-evidence-map",
+            label: t(locale, "Evidence map"),
+            description: t(
+              locale,
+              "Read the documentation status of every research area at a glance.",
+            ),
+          },
+          {
+            href: "#research-profiles",
+            label: t(locale, "Research profiles"),
+            description: t(
+              locale,
+              "Open the source repositories and public model releases.",
+            ),
+          },
+          {
+            href: "#resource-directory-heading",
+            label: t(locale, "Documentation directory"),
+            description: t(
+              locale,
+              "Choose a focused record for methods, licensing, status or reuse.",
+            ),
+          },
+        ]}
+      />
 
-      <section className="page-shell pb-[var(--section-space)]">
+      <section
+        id="resources-evidence-map"
+        className="page-shell scroll-mt-32 pb-[var(--section-space)] pt-[clamp(4rem,7vw,6rem)]"
+      >
         <ReviewStamp
           label={review.label}
           reference={review.evidenceReference}
@@ -73,7 +106,10 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
           </div>
         </Reveal>
 
-        <Stagger className="mt-4 grid gap-4 md:grid-cols-3">
+        <Stagger
+          id="research-profiles"
+          className="mt-4 grid scroll-mt-32 gap-4 md:grid-cols-3"
+        >
           {utilityLinks.map((item) => (
             <StaggerItem key={item.label}>
               <a

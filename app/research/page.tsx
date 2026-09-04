@@ -124,32 +124,65 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
   const publication = localizeContent(researchPublication, locale);
 
   const railItems = [
-    { id: "evidence-ledger-heading", label: t(locale, "EVIDENCE LEDGER") },
-    { id: "echelon-status-heading", label: publication.echelon.eyebrow },
-    { id: "findings-heading", label: t(locale, "FINDINGS AND LESSONS") },
     {
-      id: "research-questions-heading",
-      label: t(locale, "RESEARCH QUESTIONS"),
+      id: "evidence-ledger-heading",
+      label: t(locale, "Evidence and findings"),
     },
-    { id: "experiment-design-heading", label: t(locale, "EXPERIMENT DESIGN") },
-    {
-      id: "hypothesis-observation-heading",
-      label: t(locale, "HYPOTHESIS AND OBSERVATION"),
-    },
-    { id: "model-comparison-heading", label: t(locale, "MODEL COMPARISON") },
-    { id: "data-pipeline-heading", label: t(locale, "DATA PIPELINE") },
-    { id: "evaluation-method-heading", label: t(locale, "EVALUATION METHOD") },
-    { id: "observed-behavior-heading", label: t(locale, "OBSERVED BEHAVIOR") },
-    { id: "failure-modes-heading", label: t(locale, "FAILURE MODES") },
-    { id: "conclusions-heading", label: t(locale, "CONCLUSIONS") },
-    { id: "reproducibility-heading", label: t(locale, "REPRODUCIBILITY") },
-    { id: "open-questions-heading", label: t(locale, "OPEN QUESTIONS") },
+    { id: "echelon-status-heading", label: t(locale, "Current Echelon line") },
+    { id: "experiment-design-heading", label: t(locale, "Methods and limits") },
+    { id: "reproducibility-heading", label: t(locale, "Reproducibility") },
+    { id: "open-questions-heading", label: t(locale, "Open questions") },
   ];
 
   return (
     <>
       <SectionRail items={railItems} />
-      <PageIntro {...page.introduction} />
+      <PageIntro
+        {...page.introduction}
+        indexLabel={t(locale, "Explore this page")}
+        topics={[
+          {
+            href: "#evidence-ledger-heading",
+            label: t(locale, "Evidence and findings"),
+            description: t(
+              locale,
+              "See what is published, partial or still unavailable.",
+            ),
+          },
+          {
+            href: "#echelon-status-heading",
+            label: t(locale, "Current Echelon line"),
+            description: t(
+              locale,
+              "Separate architecture, tokenizer and pipeline evidence from training.",
+            ),
+          },
+          {
+            href: "#experiment-design-heading",
+            label: t(locale, "Methods and limits"),
+            description: t(
+              locale,
+              "Understand the experiment design, evaluation and known failures.",
+            ),
+          },
+          {
+            href: "#reproducibility-heading",
+            label: t(locale, "Reproducibility"),
+            description: t(
+              locale,
+              "Inspect artifacts, checksums and the remaining publication gaps.",
+            ),
+          },
+          {
+            href: "#open-questions-heading",
+            label: t(locale, "Open questions"),
+            description: t(
+              locale,
+              "Continue with the questions that define the next research phase.",
+            ),
+          },
+        ]}
+      />
 
       <section
         aria-labelledby="evidence-ledger-heading"

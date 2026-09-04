@@ -55,9 +55,41 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...page.introduction} />
+      <PageIntro
+        {...page.introduction}
+        indexLabel={t(locale, "Explore this page")}
+        topics={[
+          {
+            href: "#contact-options",
+            label: t(locale, "Contact options"),
+            description: t(
+              locale,
+              "Choose email, Hugging Face or GitHub for the right context.",
+            ),
+          },
+          {
+            href: "#prepare-email",
+            label: t(locale, "Prepare an email"),
+            description: t(
+              locale,
+              "Create a local email draft without sending data through the website.",
+            ),
+          },
+          {
+            href: "#reporting-channels",
+            label: t(locale, "Reporting channels"),
+            description: t(
+              locale,
+              "Route public feedback, security reports and sensitive concerns correctly.",
+            ),
+          },
+        ]}
+      />
 
-      <section className="page-shell pb-[clamp(5rem,9vw,9rem)]">
+      <section
+        id="contact-options"
+        className="page-shell scroll-mt-32 pb-[clamp(5rem,9vw,9rem)] pt-[clamp(4rem,7vw,6rem)]"
+      >
         <DrawRule />
         <div className="grid gap-[clamp(2.5rem,6vw,6rem)] pt-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
           <Reveal className="liquid-surface h-fit p-6 sm:p-9">
@@ -117,12 +149,15 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal id="prepare-email" delay={0.08} className="scroll-mt-32">
             <ContactForm businessEmail={businessEmail} locale={locale} />
           </Reveal>
         </div>
 
-        <Reveal className="mt-[clamp(4rem,8vw,7rem)]">
+        <Reveal
+          id="reporting-channels"
+          className="mt-[clamp(4rem,8vw,7rem)] scroll-mt-32"
+        >
           <p className="eyebrow">{t(locale, "REPORTING CHANNELS")}</p>
           <h2 className="display-section mt-7 text-ink">
             {t(

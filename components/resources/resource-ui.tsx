@@ -96,22 +96,24 @@ export function ResourceDirectory({
   return (
     <section
       aria-labelledby="resource-directory-heading"
-      className="liquid-section border-y border-line bg-pale-soft/35"
+      className="dark-band resource-directory-section border-y border-white/10 text-white"
     >
       <div className="page-shell section-space-sm">
         <Reveal className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="eyebrow">{t(locale, "DOCUMENTATION DIRECTORY")}</p>
+            <p className="page-context">
+              {t(locale, "DOCUMENTATION DIRECTORY")}
+            </p>
             <h2
               id="resource-directory-heading"
-              className="display-section mt-7 text-ink"
+              className="display-section mt-7 text-[var(--color-dark-title)]"
             >
               {current
                 ? t(locale, "Continue through the evidence.")
                 : t(locale, "Documentation by topic.")}
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-6 text-muted">
+          <p className="max-w-md text-sm leading-6 text-[var(--color-dark-body)]">
             {t(
               locale,
               "Every section keeps public evidence, configured targets and missing information visibly separate.",
@@ -119,32 +121,31 @@ export function ResourceDirectory({
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="resource-directory-list mt-12 border-t border-white/15">
           {entries.map((resource, index) => (
-            <Reveal
-              key={resource.id}
-              delay={(index % 3) * 0.035}
-              className="h-full"
-            >
+            <Reveal key={resource.id} delay={(index % 4) * 0.025}>
               <Link
                 href={resource.href}
-                className="liquid-card group flex h-full min-h-[16rem] flex-col p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-8"
+                className="resource-directory-row group grid gap-5 border-b border-white/15 py-7 sm:grid-cols-[10rem_minmax(0,1fr)_2.75rem] sm:items-center sm:gap-8 lg:py-8"
               >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="font-mono text-[0.64rem] tracking-[0.13em] text-accent uppercase">
-                    {resource.eyebrow}
-                  </p>
-                  <EvidenceBadge status={resource.status} locale={locale} />
+                <div>
+                  <EvidenceBadge
+                    status={resource.status}
+                    locale={locale}
+                    onDark
+                  />
                 </div>
-                <h3 className="mt-7 text-2xl font-medium tracking-[-0.035em] text-ink">
-                  {resource.title}
-                </h3>
-                <p className="mt-4 flex-1 text-sm leading-6 text-muted">
-                  {resource.description}
-                </p>
-                <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors group-hover:text-accent">
-                  {t(locale, "Open resource")}
+                <div>
+                  <h3 className="text-[clamp(1.4rem,2.4vw,2.1rem)] font-medium tracking-[-0.035em] text-[var(--color-dark-title)] transition-colors group-hover:text-white">
+                    {resource.title}
+                  </h3>
+                  <p className="mt-2 max-w-[48rem] text-sm leading-6 text-[var(--color-dark-body)]">
+                    {resource.description}
+                  </p>
+                </div>
+                <span className="flex size-11 items-center justify-center rounded-full border border-white/20 text-[var(--color-dark-accent)] transition-all group-hover:border-[var(--color-dark-accent)] group-hover:bg-white/10 group-hover:text-white sm:justify-self-end">
                   <ArrowRight aria-hidden="true" className="size-4" />
+                  <span className="sr-only">{t(locale, "Open resource")}</span>
                 </span>
               </Link>
             </Reveal>

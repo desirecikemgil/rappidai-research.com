@@ -92,16 +92,16 @@ export const siteConfig = {
   businessEmail: publicContact.businessEmail,
   canonicalUrl: "https://www.rappidai-research.com",
   navigation: [
-    { label: "Models", href: "/models" },
+    { label: "Home", href: "/" },
     { label: "Research", href: "/research" },
+    { label: "Models", href: "/models" },
     { label: "Tools", href: "/tools" },
     { label: "Resources", href: "/resources" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
   ],
   primaryNavigationAction: {
-    label: "Explore models",
-    href: "/models",
+    label: "Contact",
+    href: "/contact",
   },
   founder: {
     name: "Jonas Désiré Cikemgil",

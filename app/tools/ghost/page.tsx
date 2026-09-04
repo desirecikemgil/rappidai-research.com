@@ -14,7 +14,8 @@ const copy = {
   en: {
     intro: {
       eyebrow: "TOOL · GHOST",
-      title: "Deterministic containment and deception for autonomous AI agents.",
+      title:
+        "Deterministic containment and deception for autonomous AI agents.",
       description:
         "Ghost is an experimental open-source security runtime that executes agent commands inside Docker and applies deterministic ALLOW, DENY and SHADOW policies. SHADOW can expose controlled synthetic resources while the corresponding real host resource stays isolated.",
     },
@@ -26,8 +27,14 @@ const copy = {
       "The current main revision reports a successful v0.1.0 GitHub Actions release gate. GhostBench completed all ten required scenarios with PASS: 10, FAIL: 0, SKIP: 0. This validates the documented test properties; it is not a claim that Ghost prevents every attack.",
     triadTitle: "Three deterministic policy outcomes.",
     triad: [
-      { k: "ALLOW", v: "Expose a permitted real resource or permitted network destination." },
-      { k: "DENY", v: "Refuse access and keep the protected resource unavailable." },
+      {
+        k: "ALLOW",
+        v: "Expose a permitted real resource or permitted network destination.",
+      },
+      {
+        k: "DENY",
+        v: "Refuse access and keep the protected resource unavailable.",
+      },
       {
         k: "SHADOW",
         v: "Expose a controlled synthetic resource while the corresponding real host resource remains isolated.",
@@ -104,7 +111,8 @@ const copy = {
   de: {
     intro: {
       eyebrow: "TOOL · GHOST",
-      title: "Deterministisches Containment und Deception für autonome KI-Agenten.",
+      title:
+        "Deterministisches Containment und Deception für autonome KI-Agenten.",
       description:
         "Ghost ist ein experimentelles Open-Source-Security-Runtime, das Agenten-Befehle in Docker ausführt und deterministische ALLOW-, DENY- und SHADOW-Regeln anwendet. SHADOW kann kontrollierte synthetische Ressourcen bereitstellen, während die entsprechende reale Host-Ressource isoliert bleibt.",
     },
@@ -116,8 +124,14 @@ const copy = {
       "Der aktuelle main-Stand dokumentiert einen erfolgreichen GitHub-Actions-Release-Gate für v0.1.0. GhostBench hat alle zehn geforderten Szenarien mit PASS: 10, FAIL: 0, SKIP: 0 abgeschlossen. Das validiert die dokumentierten Testeigenschaften, ist aber keine Behauptung, dass Ghost jeden Angriff verhindert.",
     triadTitle: "Drei deterministische Policy-Ergebnisse.",
     triad: [
-      { k: "ALLOW", v: "Eine erlaubte reale Ressource oder ein erlaubtes Netzwerkziel bereitstellen." },
-      { k: "DENY", v: "Zugriff verweigern und die geschützte Ressource unzugänglich halten." },
+      {
+        k: "ALLOW",
+        v: "Eine erlaubte reale Ressource oder ein erlaubtes Netzwerkziel bereitstellen.",
+      },
+      {
+        k: "DENY",
+        v: "Zugriff verweigern und die geschützte Ressource unzugänglich halten.",
+      },
       {
         k: "SHADOW",
         v: "Eine kontrollierte synthetische Ressource bereitstellen, während die entsprechende reale Host-Ressource isoliert bleibt.",
@@ -210,10 +224,18 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
             <ActionLink href={repo} external variant="primary">
               GitHub
             </ActionLink>
-            <ActionLink href={`${source}/README.md`} external variant="secondary">
+            <ActionLink
+              href={`${source}/README.md`}
+              external
+              variant="secondary"
+            >
               README
             </ActionLink>
-            <ActionLink href={`${repo}/tree/${GHOST_SHA}`} external variant="secondary">
+            <ActionLink
+              href={`${repo}/tree/${GHOST_SHA}`}
+              external
+              variant="secondary"
+            >
               Reviewed commit
             </ActionLink>
           </div>
@@ -224,7 +246,9 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {c.triad.map((x) => (
               <div key={x.k} className="liquid-card p-7">
-                <p className="font-mono text-sm tracking-[0.14em] text-accent">{x.k}</p>
+                <p className="font-mono text-sm tracking-[0.14em] text-accent">
+                  {x.k}
+                </p>
                 <p className="body-copy mt-4">{x.v}</p>
               </div>
             ))}
@@ -234,11 +258,15 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
         <Reveal className="mt-16 grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
             <p className="eyebrow">CURRENT · V0.1.0</p>
-            <h2 className="display-section mt-6 text-ink">{c.capabilitiesTitle}</h2>
+            <h2 className="display-section mt-6 text-ink">
+              {c.capabilitiesTitle}
+            </h2>
           </div>
           <ul className="liquid-surface space-y-4 p-7 sm:p-9">
             {c.capabilities.map((x) => (
-              <li key={x} className="body-copy">— {x}</li>
+              <li key={x} className="body-copy">
+                — {x}
+              </li>
             ))}
           </ul>
         </Reveal>
@@ -246,7 +274,9 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
           <Reveal className="liquid-card p-7 sm:p-9">
             <p className="eyebrow">INSTALL</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">{c.installTitle}</h2>
+            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+              {c.installTitle}
+            </h2>
             <p className="body-copy mt-4">{c.installText}</p>
             <pre className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white">
               <code>{c.installCode}</code>
@@ -254,9 +284,13 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           </Reveal>
           <Reveal className="liquid-card p-7 sm:p-9">
             <p className="eyebrow">USAGE</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">{c.quickTitle}</h2>
+            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+              {c.quickTitle}
+            </h2>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-muted">
-              {c.quickSteps.map((x) => <li key={x}>— {x}</li>)}
+              {c.quickSteps.map((x) => (
+                <li key={x}>— {x}</li>
+              ))}
             </ul>
             <pre className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white">
               <code>{c.quickCode}</code>
@@ -267,20 +301,28 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
           <Reveal className="liquid-card p-7 sm:p-9">
             <p className="eyebrow">EXAMPLE</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">{c.exampleTitle}</h2>
+            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+              {c.exampleTitle}
+            </h2>
             <p className="body-copy mt-4">{c.exampleText}</p>
           </Reveal>
           <Reveal className="liquid-card p-7 sm:p-9">
             <p className="eyebrow">NETWORK</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">{c.networkTitle}</h2>
+            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+              {c.networkTitle}
+            </h2>
             <p className="body-copy mt-4">{c.networkText}</p>
           </Reveal>
         </div>
 
         <Reveal className="dark-band mt-16 rounded-[2rem] p-8 sm:p-12">
-          <p className="eyebrow text-[var(--color-dark-muted)]">GHOSTBENCH · RELEASE GATE</p>
+          <p className="eyebrow text-[var(--color-dark-muted)]">
+            GHOSTBENCH · RELEASE GATE
+          </p>
           <h2 className="display-section mt-6 text-white">{c.benchTitle}</h2>
-          <p className="mt-6 max-w-4xl text-sm leading-7 text-[var(--color-dark-body)]">{c.benchText}</p>
+          <p className="mt-6 max-w-4xl text-sm leading-7 text-[var(--color-dark-body)]">
+            {c.benchText}
+          </p>
           <div className="mt-7 inline-flex rounded-full border border-white/15 px-4 py-2 font-mono text-xs text-white">
             PASS: 10 · FAIL: 0 · SKIP: 0
           </div>
@@ -292,16 +334,24 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
           <Reveal className="liquid-card p-7 sm:p-9">
             <p className="eyebrow">VALUE</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">{c.valueTitle}</h2>
+            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+              {c.valueTitle}
+            </h2>
             <ul className="mt-6 space-y-3 text-sm leading-6 text-muted">
-              {c.value.map((x) => <li key={x}>— {x}</li>)}
+              {c.value.map((x) => (
+                <li key={x}>— {x}</li>
+              ))}
             </ul>
           </Reveal>
           <Reveal className="liquid-card p-7 sm:p-9">
             <p className="eyebrow">AUDIENCE</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">{c.audienceTitle}</h2>
+            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+              {c.audienceTitle}
+            </h2>
             <ul className="mt-6 space-y-3 text-sm leading-6 text-muted">
-              {c.audience.map((x) => <li key={x}>— {x}</li>)}
+              {c.audience.map((x) => (
+                <li key={x}>— {x}</li>
+              ))}
             </ul>
           </Reveal>
         </div>
@@ -309,11 +359,15 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
         <Reveal className="mt-16 grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
             <p className="eyebrow">BOUNDARIES</p>
-            <h2 className="display-section mt-6 text-ink">{c.boundariesTitle}</h2>
+            <h2 className="display-section mt-6 text-ink">
+              {c.boundariesTitle}
+            </h2>
           </div>
           <ul className="liquid-surface space-y-4 p-7 sm:p-9">
             {c.boundaries.map((x) => (
-              <li key={x} className="body-copy">— {x}</li>
+              <li key={x} className="body-copy">
+                — {x}
+              </li>
             ))}
           </ul>
         </Reveal>
@@ -323,17 +377,79 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           <h2 className="display-section mt-6 text-ink">{c.evidenceTitle}</h2>
           <p className="body-copy mt-5 max-w-4xl">{c.evidenceText}</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <ActionLink href={`${source}/README.md`} external variant="primary">README</ActionLink>
-            <ActionLink href={`${source}/ghost.example.yaml`} external variant="secondary">Example config</ActionLink>
-            <ActionLink href={`${source}/docs/security-model.md`} external variant="secondary">Security model</ActionLink>
-            <ActionLink href={`${source}/docs/threat-model.md`} external variant="secondary">Threat model</ActionLink>
-            <ActionLink href={`${source}/docs/network-security.md`} external variant="secondary">Network security</ActionLink>
-            <ActionLink href={`${source}/docs/provenance.md`} external variant="secondary">Provenance</ActionLink>
-            <ActionLink href={`${source}/docs/incidents.md`} external variant="secondary">Incidents</ActionLink>
-            <ActionLink href={`${source}/docs/benchmarks.md`} external variant="secondary">GhostBench methodology</ActionLink>
-            <ActionLink href={`${repo}/tree/${GHOST_SHA}/examples`} external variant="secondary">Examples</ActionLink>
-            <ActionLink href={`${source}/SECURITY.md`} external variant="secondary">Security reporting</ActionLink>
-            <ActionLink href={`${source}/CONTRIBUTING.md`} external variant="secondary">Contributing</ActionLink>
+            <ActionLink href={`${source}/README.md`} external variant="primary">
+              README
+            </ActionLink>
+            <ActionLink
+              href={`${source}/ghost.example.yaml`}
+              external
+              variant="secondary"
+            >
+              Example config
+            </ActionLink>
+            <ActionLink
+              href={`${source}/docs/security-model.md`}
+              external
+              variant="secondary"
+            >
+              Security model
+            </ActionLink>
+            <ActionLink
+              href={`${source}/docs/threat-model.md`}
+              external
+              variant="secondary"
+            >
+              Threat model
+            </ActionLink>
+            <ActionLink
+              href={`${source}/docs/network-security.md`}
+              external
+              variant="secondary"
+            >
+              Network security
+            </ActionLink>
+            <ActionLink
+              href={`${source}/docs/provenance.md`}
+              external
+              variant="secondary"
+            >
+              Provenance
+            </ActionLink>
+            <ActionLink
+              href={`${source}/docs/incidents.md`}
+              external
+              variant="secondary"
+            >
+              Incidents
+            </ActionLink>
+            <ActionLink
+              href={`${source}/docs/benchmarks.md`}
+              external
+              variant="secondary"
+            >
+              GhostBench methodology
+            </ActionLink>
+            <ActionLink
+              href={`${repo}/tree/${GHOST_SHA}/examples`}
+              external
+              variant="secondary"
+            >
+              Examples
+            </ActionLink>
+            <ActionLink
+              href={`${source}/SECURITY.md`}
+              external
+              variant="secondary"
+            >
+              Security reporting
+            </ActionLink>
+            <ActionLink
+              href={`${source}/CONTRIBUTING.md`}
+              external
+              variant="secondary"
+            >
+              Contributing
+            </ActionLink>
           </div>
         </Reveal>
       </section>
