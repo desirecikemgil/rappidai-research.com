@@ -129,11 +129,7 @@ export function ResourceDirectory({
                 className="resource-directory-row group grid gap-5 border-b border-white/15 py-7 sm:grid-cols-[10rem_minmax(0,1fr)_2.75rem] sm:items-center sm:gap-8 lg:py-8"
               >
                 <div>
-                  <EvidenceBadge
-                    status={resource.status}
-                    locale={locale}
-                    onDark
-                  />
+                  <EvidenceBadge status={resource.status} locale={locale} />
                 </div>
                 <div>
                   <h3 className="text-[clamp(1.4rem,2.4vw,2.1rem)] font-medium tracking-[-0.035em] text-[var(--color-dark-title)] transition-colors group-hover:text-white">

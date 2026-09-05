@@ -14,7 +14,7 @@ const copy = {
   en: {
     intro: {
       eyebrow: "TOOL · REPLAY",
-      title: "Open infrastructure for reproducible AI-agent execution.",
+      title: "rappidAI Replay. Understand every run.",
       description:
         "Replay is a local-first execution recorder and state engine for AI-agent runs. Its deterministic core works without AI and is designed to make technical execution inspectable, restorable, branchable and comparable.",
     },
@@ -82,7 +82,7 @@ const copy = {
   de: {
     intro: {
       eyebrow: "TOOL · REPLAY",
-      title: "Offene Infrastruktur für reproduzierbare KI-Agenten-Ausführung.",
+      title: "rappidAI Replay. Verstehe jeden Run.",
       description:
         "Replay ist ein Local-first Execution Recorder und State Engine für KI-Agenten-Runs. Der deterministische Kern funktioniert ohne KI und soll technische Ausführungen untersuchbar, wiederherstellbar, verzweigbar und vergleichbar machen.",
     },
@@ -154,7 +154,33 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   return (
     <>
-      <PageIntro {...c.intro} />
+      <PageIntro
+        {...c.intro}
+        artwork="replay"
+        indexLabel={locale === "de" ? "Auf dieser Seite" : "On this page"}
+        topics={[
+          {
+            href: "#replay-current",
+            label: locale === "de" ? "Funktionen" : "Capabilities",
+            description: c.currentTitle,
+          },
+          {
+            href: "#replay-principles",
+            label: locale === "de" ? "Prinzipien" : "Principles",
+            description: c.principlesTitle,
+          },
+          {
+            href: "#replay-reproducibility",
+            label: locale === "de" ? "Reproduzierbarkeit" : "Reproducibility",
+            description: c.ladderTitle,
+          },
+          {
+            href: "#replay-architecture",
+            label: locale === "de" ? "Architektur" : "Architecture",
+            description: c.architectureTitle,
+          },
+        ]}
+      />
       <section className="page-shell pb-[var(--section-space)]">
         <Reveal className="liquid-surface p-7 sm:p-9">
           <p className="font-mono text-xs tracking-[0.14em] text-accent uppercase">
@@ -181,7 +207,10 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
           </div>
         </Reveal>
 
-        <Reveal className="mt-16 grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+        <Reveal
+          id="replay-current"
+          className="mt-16 grid gap-10 lg:grid-cols-[0.75fr_1.25fr]"
+        >
           <div>
             <p className="eyebrow">CURRENT</p>
             <h2 className="display-section mt-6 text-ink">{c.currentTitle}</h2>
@@ -195,7 +224,7 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
           </ul>
         </Reveal>
 
-        <Reveal className="mt-16">
+        <Reveal id="replay-principles" className="mt-16">
           <p className="eyebrow">DESIGN LAW</p>
           <h2 className="display-section mt-6 text-ink">{c.principlesTitle}</h2>
           <div className="mt-8 grid gap-4 lg:grid-cols-2">
@@ -207,7 +236,10 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
           </div>
         </Reveal>
 
-        <Reveal className="dark-band mt-16 rounded-[2rem] p-8 sm:p-12">
+        <Reveal
+          id="replay-reproducibility"
+          className="dark-band mt-16 rounded-[2rem] p-8 sm:p-12"
+        >
           <p className="eyebrow text-[var(--color-dark-muted)]">
             REPRODUCIBILITY LADDER
           </p>
@@ -232,7 +264,7 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
           </p>
         </Reveal>
 
-        <Reveal className="mt-16">
+        <Reveal id="replay-architecture" className="mt-16">
           <p className="eyebrow">ARCHITECTURE</p>
           <h2 className="display-section mt-6 text-ink">
             {c.architectureTitle}

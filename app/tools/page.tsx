@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/reveal";
+import { SignalArt } from "@/components/graphics/signal-art";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { metadataFor } from "@/lib/metadata";
@@ -10,10 +11,9 @@ const copy = {
   en: {
     intro: {
       eyebrow: "TOOLS",
-      title:
-        "Open infrastructure for controllable, reproducible AI-agent execution.",
+      title: "Your agents. Your environment. Your evidence.",
       description:
-        "Ghost and Replay are two independent open-source research tools around autonomous-agent infrastructure: Ghost constrains what an agent can reach and can expose controlled synthetic resources; Replay records execution so technical state can be inspected, restored, branched and compared.",
+        "Two open-source tools for agent infrastructure. Ghost controls access to the environment. Replay records execution and preserves inspectable technical state.",
     },
     thesis: "TWO DIFFERENT QUESTIONS",
     thesisTitle: "Control the environment. Preserve the evidence.",
@@ -50,10 +50,9 @@ const copy = {
   de: {
     intro: {
       eyebrow: "TOOLS",
-      title:
-        "Offene Infrastruktur für kontrollierbare und reproduzierbare KI-Agenten-Ausführung.",
+      title: "Deine Agenten. Deine Umgebung. Deine Evidenz.",
       description:
-        "Ghost und Replay sind zwei unabhängige Open-Source-Forschungswerkzeuge rund um autonome Agenten-Infrastruktur: Ghost begrenzt, worauf ein Agent zugreifen kann, und kann kontrollierte synthetische Ressourcen bereitstellen; Replay zeichnet Ausführungen auf, damit technische Zustände untersucht, wiederhergestellt, verzweigt und verglichen werden können.",
+        "Zwei Open-Source-Werkzeuge für Agenten-Infrastruktur. Ghost kontrolliert Zugriffe auf die Umgebung. Replay zeichnet Ausführungen auf und bewahrt nachvollziehbare technische Zustände.",
     },
     thesis: "ZWEI UNTERSCHIEDLICHE FRAGEN",
     thesisTitle: "Umgebung kontrollieren. Evidenz bewahren.",
@@ -162,7 +161,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
+        <div className="tool-showcase">
           {tools.map((tool, index) => {
             const isGhost = tool.name === "Ghost";
             const facts = isGhost ? c.ghostFacts : c.replayFacts;
@@ -171,32 +170,37 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
               <Reveal
                 key={tool.name}
                 delay={index * 0.05}
-                className="liquid-card p-7 sm:p-9"
+                className="tool-showcase-card"
               >
-                <p className="font-mono text-[0.66rem] tracking-[0.14em] text-accent uppercase">
-                  {tool.accent}
-                </p>
-                <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-ink sm:text-5xl">
-                  <span id={tool.name.toLowerCase()} className="scroll-mt-32">
-                    rappidAI {tool.name}
-                  </span>
-                </h2>
-                <p className="body-lg mt-5">
-                  {isGhost ? c.ghostSummary : c.replaySummary}
-                </p>
-                <p className="eyebrow mt-9">{c.current}</p>
-                <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
-                  {facts.map((fact) => (
-                    <li key={fact}>— {fact}</li>
-                  ))}
-                </ul>
-                <div className="mt-9 flex flex-wrap gap-3">
-                  <ActionLink href={href} variant="primary">
-                    {c.learn}
-                  </ActionLink>
-                  <ActionLink href={tool.repo} external variant="secondary">
-                    {c.inspect}
-                  </ActionLink>
+                <SignalArt kind={isGhost ? "ghost" : "replay"} />
+                <div className="tool-showcase-body">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-accent uppercase">
+                    {tool.accent}
+                  </p>
+                  <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-ink sm:text-5xl">
+                    <span id={tool.name.toLowerCase()} className="scroll-mt-32">
+                      rappidAI {tool.name}
+                    </span>
+                  </h2>
+                  <p className="body-lg mt-5">
+                    {isGhost ? c.ghostSummary : c.replaySummary}
+                  </p>
+                  <details>
+                    <summary>{c.current}</summary>
+                    <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
+                      {facts.map((fact) => (
+                        <li key={fact}>— {fact}</li>
+                      ))}
+                    </ul>
+                  </details>
+                  <div className="mt-9 flex flex-wrap gap-3">
+                    <ActionLink href={href} variant="primary">
+                      {c.learn}
+                    </ActionLink>
+                    <ActionLink href={tool.repo} external variant="secondary">
+                      {c.inspect}
+                    </ActionLink>
+                  </div>
                 </div>
               </Reveal>
             );

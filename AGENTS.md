@@ -8,12 +8,15 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable visual direction
 
+- September 2026 redesign: give rappidAI a confident, product-led presence, with a deep-navy opening, generous typography, concise introductions and distinct Quantum, Ghost and Replay compositions. The latest brief authorizes reworking the overall layout and supersedes the earlier liquid-glass emphasis.
+- Use lightweight signal-line SVG illustrations and sparse, slow CSS transform/opacity motion. Pause passive effects outside the viewport, on hidden tabs and for reduced-motion preferences. Keep evidence and current implementation limits intact.
+
 - Favor premium, restrained passive motion and polished active hover/focus responses.
 - Use fluid, layered scroll reveals and subtle scroll-linked depth; motion should guide hierarchy rather than compete with content.
-- Use highly transparent liquid-glass surfaces with layered highlights, soft blue refraction, generous blur, and subtle depth while preserving legibility.
+- Use calm paper and ice-blue reading surfaces, deep-navy product stages, restrained borders and controlled radii. Reserve refraction for the signal illustrations; avoid broad backdrop blur.
 - Keep motion accessible with `prefers-reduced-motion`, and verify new effects at desktop and mobile breakpoints.
-- Prefer fine glass edges, controlled radii, and smaller lens-like background forms over large coarse bubbles; carry the complete glass language through mobile layouts and touch states.
-- Keep the home hero editorial and wide: the “Smaller Models. / Focused Intelligence.” statement stays on exactly two lines without a separate right-hand model graphic; use a subtle interactive neural-grid backdrop instead.
+- Carry the typography, surface hierarchy and clear interaction states consistently through mobile layouts.
+- Keep the home hero editorial and wide: the “Smaller Models. / Focused Intelligence.” statement stays on exactly two lines over a full-width signal-line composition.
 - Preserve the established white, research-blue and deep-navy identity while using the deep navy more deliberately for full-width orientation, comparison and closing sections.
 - Keep every page easy to scan: lead with a concise purpose statement, expose a short set of meaningful topics or jump targets, and reveal detailed evidence through graphics, tables or focused text only after the overview.
 - Treat navigation as an information hierarchy rather than a flat link list: keep the main research areas immediately visible, make the current section unmistakable, and separate contact from the primary content taxonomy.

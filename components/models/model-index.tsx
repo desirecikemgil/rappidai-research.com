@@ -22,7 +22,7 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
       className="page-shell pb-[var(--section-space)]"
       aria-labelledby="models-list-heading"
     >
-      <h2 id="models-list-heading" className="sr-only">
+      <h2 id="models-list-heading" className="display-section mb-8">
         {t(locale, "Model index")}
       </h2>
       <div className="flex flex-col gap-5 border-y border-line py-5 sm:flex-row sm:items-center sm:justify-between">
@@ -55,7 +55,7 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
         </div>
       </div>
 
-      <div className="mt-14 space-y-3 sm:space-y-4">
+      <div className="model-catalog mt-8" aria-live="polite">
         {visibleModels.map((model) => (
           <article
             key={model.slug}
@@ -63,7 +63,7 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
           >
             <Link
               href={localizePath(`/models/${model.slug}`, locale)}
-              className="grid gap-8 lg:grid-cols-[1.05fr_0.7fr_0.2fr] lg:items-start"
+              className="model-catalog-link"
             >
               <div>
                 <div className="flex flex-wrap items-center gap-3">
@@ -79,7 +79,7 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
                       t(locale, "Parameter size not yet defined")}
                   </span>
                 </div>
-                <h3 className="mt-5 text-[clamp(2rem,4vw,4.25rem)] font-[510] tracking-[-0.052em] text-ink transition-colors group-hover:text-accent">
+                <h3 className="mt-5 font-[510] tracking-[-0.052em] text-ink transition-colors group-hover:text-accent">
                   {model.name}
                 </h3>
                 <p className="body-copy mt-5 max-w-xl">{model.summary}</p>

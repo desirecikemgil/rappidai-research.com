@@ -1,9 +1,7 @@
 import { Reveal } from "@/components/motion/reveal";
 import { RevealText } from "@/components/motion/reveal-text";
-import {
-  SectionSignature,
-  type SignatureKind,
-} from "@/components/graphics/section-signature";
+import type { SignatureKind } from "@/components/graphics/section-signature";
+import { SignalArt, type SignalKind } from "@/components/graphics/signal-art";
 import {
   SectionNavigator,
   type SectionNavigatorItem,
@@ -18,6 +16,7 @@ type PageIntroProps = {
    * a distinct drawing per page is what stops them reading as the same page.
    */
   signature?: SignatureKind;
+  artwork?: SignalKind;
   indexLabel?: string;
   topics?: readonly SectionNavigatorItem[];
 };
@@ -27,16 +26,24 @@ export function PageIntro({
   title,
   description,
   signature,
+  artwork,
   indexLabel,
   topics,
 }: PageIntroProps) {
   return (
     <section className="page-intro-liquid dark-band text-white">
+      <SignalArt
+        kind={artwork ?? (signature === "directory" ? "replay" : "quantum")}
+        className="page-intro-art"
+      />
       <div className="page-shell page-intro-shell">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.58fr)] lg:items-end lg:gap-20">
+        <div className="page-intro-main">
           <div className="min-w-0">
             <Reveal>
-              <p className="page-context">{eyebrow}</p>
+              <p className="page-intro-context">
+                rappidAI <span aria-hidden="true" />
+                {eyebrow}
+              </p>
             </Reveal>
             <h1 className="display-page mt-7 text-[var(--color-dark-title)]">
               <RevealText lines={[title]} delay={0.06} />
@@ -46,17 +53,8 @@ export function PageIntro({
             <p className="page-intro-description">{description}</p>
           </Reveal>
         </div>
-        {signature ? (
-          <Reveal
-            delay={0.14}
-            variant="scale"
-            className="page-intro-signature hidden sm:block"
-          >
-            <SectionSignature kind={signature} />
-          </Reveal>
-        ) : null}
         {topics?.length && indexLabel ? (
-          <Reveal delay={0.18} className="mt-12 lg:mt-16">
+          <Reveal delay={0.18} className="intro-index">
             <SectionNavigator label={indexLabel} items={topics} onDark />
           </Reveal>
         ) : null}

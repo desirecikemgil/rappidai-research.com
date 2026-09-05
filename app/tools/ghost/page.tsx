@@ -14,8 +14,7 @@ const copy = {
   en: {
     intro: {
       eyebrow: "TOOL · GHOST",
-      title:
-        "Deterministic containment and deception for autonomous AI agents.",
+      title: "rappidAI Ghost. Set the boundaries.",
       description:
         "Ghost is an experimental open-source security runtime that executes agent commands inside Docker and applies deterministic ALLOW, DENY and SHADOW policies. SHADOW can expose controlled synthetic resources while the corresponding real host resource stays isolated.",
     },
@@ -111,8 +110,7 @@ const copy = {
   de: {
     intro: {
       eyebrow: "TOOL · GHOST",
-      title:
-        "Deterministisches Containment und Deception für autonome KI-Agenten.",
+      title: "rappidAI Ghost. Setze die Grenzen.",
       description:
         "Ghost ist ein experimentelles Open-Source-Security-Runtime, das Agenten-Befehle in Docker ausführt und deterministische ALLOW-, DENY- und SHADOW-Regeln anwendet. SHADOW kann kontrollierte synthetische Ressourcen bereitstellen, während die entsprechende reale Host-Ressource isoliert bleibt.",
     },
@@ -211,9 +209,35 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   return (
     <>
-      <PageIntro {...c.intro} />
+      <PageIntro
+        {...c.intro}
+        artwork="ghost"
+        indexLabel={locale === "de" ? "Auf dieser Seite" : "On this page"}
+        topics={[
+          {
+            href: "#ghost-overview",
+            label: locale === "de" ? "Überblick" : "Overview",
+            description: c.overviewTitle,
+          },
+          {
+            href: "#ghost-policies",
+            label: "Allow / Deny / Shadow",
+            description: c.triadTitle,
+          },
+          {
+            href: "#ghost-setup",
+            label: locale === "de" ? "Installation" : "Get started",
+            description: c.installTitle,
+          },
+          {
+            href: "#ghost-bench",
+            label: "GhostBench",
+            description: c.benchTitle,
+          },
+        ]}
+      />
       <section className="page-shell pb-[var(--section-space)]">
-        <Reveal className="liquid-surface p-7 sm:p-9">
+        <Reveal id="ghost-overview" className="liquid-surface p-7 sm:p-9">
           <p className="font-mono text-xs tracking-[0.14em] text-accent uppercase">
             {c.status}
           </p>
@@ -241,7 +265,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           </div>
         </Reveal>
 
-        <Reveal className="mt-16">
+        <Reveal id="ghost-policies" className="mt-16">
           <h2 className="display-section text-ink">{c.triadTitle}</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {c.triad.map((x) => (
@@ -271,7 +295,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           </ul>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
+        <div id="ghost-setup" className="mt-16 grid gap-6 lg:grid-cols-2">
           <Reveal className="liquid-card p-7 sm:p-9">
             <p className="eyebrow">INSTALL</p>
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
@@ -315,7 +339,10 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           </Reveal>
         </div>
 
-        <Reveal className="dark-band mt-16 rounded-[2rem] p-8 sm:p-12">
+        <Reveal
+          id="ghost-bench"
+          className="dark-band mt-16 rounded-[2rem] p-8 sm:p-12"
+        >
           <p className="eyebrow text-[var(--color-dark-muted)]">
             GHOSTBENCH · RELEASE GATE
           </p>

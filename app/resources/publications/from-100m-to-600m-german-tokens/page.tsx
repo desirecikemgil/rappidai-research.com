@@ -46,7 +46,7 @@ export function LocalizedPilotResearchNotePage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <article>
+      <article className="studio-article">
         <header className="page-shell pt-[clamp(4.25rem,7vw,7rem)] pb-[clamp(3.5rem,6vw,6rem)]">
           <Reveal>
             <ActionLink

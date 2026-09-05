@@ -138,7 +138,50 @@ test("mobile research index stays contained and exposes every topic", async ({
   }));
 
   expect(measurements.pageOverflow).toBeLessThanOrEqual(0);
-  expect(measurements.indexOverflow).toBeGreaterThan(0);
+  expect(measurements.indexOverflow).toBeLessThanOrEqual(0);
+  for (const link of await index.getByRole("link").all()) {
+    await expect(link).toBeVisible();
+  }
+});
+
+test("mobile menu remains legible and closes after a deep-route language switch", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/tools/ghost");
+  await page
+    .getByRole("button", { name: "Open navigation", exact: true })
+    .click();
+  const violations = (
+    await new AxeBuilder({ page }).include("header.liquid-header").analyze()
+  ).violations.filter(({ impact }) =>
+    ["serious", "critical"].includes(impact ?? ""),
+  );
+  expect(violations).toEqual([]);
+  await page
+    .getByRole("link", { name: "Switch to Deutsch", exact: true })
+    .click();
+  await expect(page).toHaveURL("/de/tools/ghost");
+  await expect(
+    page.getByRole("button", { name: "Navigation öffnen", exact: true }),
+  ).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+});
+
+test("tool implementation details can be expanded with the keyboard", async ({
+  page,
+}) => {
+  await page.goto("/tools");
+  const summary = page.locator(".tool-showcase-card summary").first();
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(
+    page.getByText("— Docker-isolated sessions", { exact: true }),
+  ).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(
+    page.getByText("— Docker-isolated sessions", { exact: true }),
+  ).not.toBeVisible();
 });
 
 test("contact form reports required fields without claiming a send", async ({
@@ -166,7 +209,7 @@ test("German contact form reports localized validation messages", async ({
   );
 });
 
-test("home hero uses a two-line lightweight network composition", async ({
+test("home presents the product family and pauses offscreen decorative motion", async ({
   page,
 }) => {
   await page.goto("/");
@@ -177,31 +220,21 @@ test("home hero uses a two-line lightweight network composition", async ({
     "Smaller Models.",
     "Focused Intelligence.",
   ]);
-  await expect(page.locator(".hero-network")).toHaveCount(1);
-  await expect(page.locator(".hero-network-warp-grid")).toHaveCount(0);
   await expect(page.locator(".home-hero canvas")).toHaveCount(0);
-  await expect(page.locator(".hero-visual")).toHaveCount(0);
-
-  await page.mouse.move(1200, 220);
-  const performanceStyles = await page.evaluate(() => ({
-    networkX: getComputedStyle(
-      document.querySelector(".hero-network") as HTMLElement,
-    ).getPropertyValue("--hero-network-x"),
-    networkAnimation: getComputedStyle(
-      document.querySelector(".hero-network-link") as SVGElement,
-    ).animationName,
-    atmosphereAnimation: getComputedStyle(
-      document.querySelector(".atmosphere-wash") as HTMLElement,
-    ).animationName,
-    cardBackdrop: getComputedStyle(
-      document.querySelector(".liquid-card") as HTMLElement,
-    ).backdropFilter,
-  }));
-
-  expect(performanceStyles.networkX.trim()).toBe("2px");
-  expect(performanceStyles.networkAnimation).toBe("none");
-  expect(performanceStyles.atmosphereAnimation).toBe("none");
-  expect(performanceStyles.cardBackdrop).toBe("none");
+  const heroScene = page.locator(".brand-hero-art");
+  await expect(heroScene).toHaveAttribute("data-running", "true");
+  await expect(
+    page.getByRole("link", { name: "Explore rappidAI Ghost", exact: true }),
+  ).toHaveAttribute("href", "/tools/ghost");
+  await page.locator(".journal-layout").scrollIntoViewIfNeeded();
+  await expect(heroScene).toHaveAttribute("data-running", "false");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.locator(".home-hero-title").scrollIntoViewIfNeeded();
+  await expect(heroScene).toHaveAttribute("data-running", "false");
+  const animation = await heroScene
+    .locator(".signal-sculpture")
+    .evaluate((element) => getComputedStyle(element).animationName);
+  expect(animation).toBe("none");
 });
 
 test("home hero keeps both headline lines complete on mobile", async ({

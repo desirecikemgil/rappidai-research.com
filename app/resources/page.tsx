@@ -53,6 +53,14 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
         indexLabel={t(locale, "Explore this page")}
         topics={[
           {
+            href: "#resource-directory-heading",
+            label: t(locale, "Documentation directory"),
+            description: t(
+              locale,
+              "Choose a focused record for methods, licensing, status or reuse.",
+            ),
+          },
+          {
             href: "#resources-evidence-map",
             label: t(locale, "Evidence map"),
             description: t(
@@ -68,16 +76,10 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
               "Open the source repositories and public model releases.",
             ),
           },
-          {
-            href: "#resource-directory-heading",
-            label: t(locale, "Documentation directory"),
-            description: t(
-              locale,
-              "Choose a focused record for methods, licensing, status or reuse.",
-            ),
-          },
         ]}
       />
+
+      <ResourceDirectory locale={locale} />
 
       <section
         id="resources-evidence-map"
@@ -132,8 +134,6 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
           ))}
         </Stagger>
       </section>
-
-      <ResourceDirectory locale={locale} />
     </>
   );
 }

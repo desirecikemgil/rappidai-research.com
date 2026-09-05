@@ -145,6 +145,7 @@ export function SiteHeader() {
       <div className="scroll-progress-line" aria-hidden="true" />
       <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-5">
         <BrandLockup
+          inverted
           priority
           href={localizePath("/", locale)}
           homeLabel={t(locale, "rappidAI research home")}

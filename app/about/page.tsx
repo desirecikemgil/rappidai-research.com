@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { ResearchDiagram } from "@/components/research/research-diagram";
 import { BrandSymbol } from "@/components/ui/brand-lockup";
+import { SignalArt } from "@/components/graphics/signal-art";
 import { PageIntro } from "@/components/ui/page-intro";
 import { ActionLink } from "@/components/ui/action-link";
 import { aboutPageContent } from "@/content/pages";
@@ -26,6 +27,11 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
     <>
       <PageIntro
         {...page.introduction}
+        title={
+          locale === "de"
+            ? "Unabhängig denken. Nachvollziehbar entwickeln."
+            : "Independent thinking. Inspectable work."
+        }
         indexLabel={t(locale, "Explore this page")}
         topics={[
           {
@@ -77,11 +83,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
             variant="scale"
             className="founder-mark liquid-surface relative flex min-h-[20rem] items-center justify-center overflow-hidden lg:col-span-5 lg:col-start-8 lg:min-h-[27rem]"
           >
-            <div
-              aria-hidden="true"
-              className="ambient-grid absolute inset-0 opacity-65"
-            />
-            <div className="founder-mark-halo" aria-hidden="true" />
+            <SignalArt className="absolute inset-0" />
             <BrandSymbol className="relative z-10 w-[clamp(9rem,18vw,15rem)] opacity-95" />
           </Reveal>
         </div>

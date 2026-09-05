@@ -89,7 +89,7 @@ export function LocalizedModelDetailPage({
 
   return (
     <>
-      <section className="page-shell pt-[clamp(5rem,10vw,8rem)] pb-[clamp(2.75rem,6vw,5.5rem)]">
+      <section className="model-detail-opening page-shell pt-[clamp(5rem,10vw,8rem)] pb-[clamp(2.75rem,6vw,5.5rem)]">
         <Reveal>
           <Link
             href={localizePath("/models", locale)}

@@ -33,16 +33,21 @@ export function LocalizedPublicationsPage({ locale }: { locale: Locale }) {
             <Reveal key={publication.slug}>
               <Link
                 href={publication.href}
-                className="liquid-card group grid gap-8 p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-10 lg:grid-cols-[0.72fr_1.28fr]"
+                className="publication-cover group grid gap-8 lg:grid-cols-[0.8fr_1.2fr]"
               >
-                <div>
+                <div className="publication-cover-art">
+                  <div className="research-token-figure" aria-hidden="true">
+                    <span>100M</span>
+                    <div />
+                    <span>600M</span>
+                  </div>
                   <p className="eyebrow">{publication.kindLabel}</p>
                   <p className="mt-5 font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase">
                     {t(locale, "23 July 2026")} · {publication.peerReviewStatus}{" "}
                     · {t(locale, "No DOI")}
                   </p>
                 </div>
-                <div>
+                <div className="publication-cover-copy">
                   <div className="flex flex-wrap items-center gap-3">
                     <EvidenceBadge status="Published" locale={locale} />
                   </div>

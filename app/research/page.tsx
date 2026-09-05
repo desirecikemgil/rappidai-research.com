@@ -188,6 +188,35 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         aria-labelledby="evidence-ledger-heading"
         className="page-shell pb-[var(--section-space)]"
       >
+        <div className="research-feature-lead">
+          <div>
+            <p className="studio-kicker">
+              {locale === "de" ? "Aus der Forschung" : "From the research"}
+            </p>
+            <h2>
+              {locale === "de"
+                ? "Was verändert mehr Pretraining?"
+                : "What changes with more pretraining?"}
+            </h2>
+            <p>
+              {locale === "de"
+                ? "Die öffentliche Forschungsnotiz zu quantum-1.6-pilot verbindet die Modellversuche mit Methoden, Beobachtungen und offenen Fragen."
+                : "The public quantum-1.6-pilot research note connects the model experiments to methods, observations and open questions."}
+            </p>
+            <ActionLink
+              href={localizePath(
+                "/resources/publications/from-100m-to-600m-german-tokens",
+                locale,
+              )}
+            >
+              {t(locale, "Read research note")}
+            </ActionLink>
+          </div>
+          <div className="research-token-figure" aria-hidden="true">
+            <span>100M</span>
+            <div /> <span>600M</span>
+          </div>
+        </div>
         <Reveal className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
           <div>
             <p className="eyebrow">{t(locale, "EVIDENCE LEDGER")}</p>
@@ -219,20 +248,27 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {publication.statusVocabulary.map((item, index) => (
-            <Reveal
-              key={item.label}
-              delay={(index % 3) * 0.03}
-              className="liquid-card p-5 sm:p-6"
-            >
-              <EvidenceStatus label={item.label} locale={locale} />
-              <p className="mt-4 text-sm leading-6 text-muted">
-                {item.meaning}
-              </p>
-            </Reveal>
-          ))}
-        </div>
+        <details className="evidence-legend mt-8">
+          <summary>
+            {locale === "de"
+              ? "So liest du die Evidenzstatus"
+              : "How to read the evidence statuses"}
+          </summary>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {publication.statusVocabulary.map((item, index) => (
+              <Reveal
+                key={item.label}
+                delay={(index % 3) * 0.03}
+                className="liquid-card p-5 sm:p-6"
+              >
+                <EvidenceStatus label={item.label} locale={locale} />
+                <p className="mt-4 text-sm leading-6 text-muted">
+                  {item.meaning}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </details>
 
         <Reveal className="liquid-surface mt-8 max-w-full">
           <div
