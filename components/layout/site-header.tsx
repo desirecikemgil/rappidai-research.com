@@ -1,13 +1,11 @@
 "use client";
 
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, type ComponentProps } from "react";
 import { siteConfig } from "@/content/site";
 import { BrandLockup } from "@/components/ui/brand-lockup";
-import { Magnetic } from "@/components/motion/interactive";
 import {
   alternateLocale,
   languageName,
@@ -22,6 +20,23 @@ function isCurrentRoute(pathname: string, href: string) {
   return href === "/" || href === "/de"
     ? pathname === href
     : pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function IntentLink({ href, ...props }: ComponentProps<typeof Link>) {
+  const router = useRouter();
+  const warmRoute = () => {
+    if (typeof href === "string") router.prefetch(href);
+  };
+
+  return (
+    <Link
+      {...props}
+      href={href}
+      prefetch={false}
+      onPointerEnter={warmRoute}
+      onFocus={warmRoute}
+    />
+  );
 }
 
 function LanguageSwitcher({
@@ -47,7 +62,7 @@ function LanguageSwitcher({
       {(["en", "de"] as const).map((item) => {
         const active = item === locale;
         return (
-          <Link
+          <IntentLink
             key={item}
             href={localizePath(pathname, item)}
             hrefLang={item}
@@ -64,7 +79,7 @@ function LanguageSwitcher({
             } ${compact ? "flex-1" : ""}`}
           >
             {item.toUpperCase()}
-          </Link>
+          </IntentLink>
         );
       })}
       <span className="sr-only">
@@ -78,15 +93,30 @@ export function SiteHeader() {
   const pathname = usePathname();
   const locale = localeFromPathname(pathname);
   const config = localizeContent(siteConfig, locale);
-  const reduceMotion = useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 12);
+    let frame = 0;
+    let lastValue = false;
+
+    const handleScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const nextValue = window.scrollY > 12;
+        if (nextValue === lastValue) return;
+        lastValue = nextValue;
+        setIsScrolled(nextValue);
+      });
+    };
+
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
@@ -110,7 +140,7 @@ export function SiteHeader() {
   return (
     <header
       data-scrolled={isScrolled || menuOpen}
-      className="liquid-header sticky top-0 z-50 border-b border-transparent transition-all duration-500"
+      className="liquid-header sticky top-0 z-50 border-b border-transparent"
     >
       <div className="scroll-progress-line" aria-hidden="true" />
       <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-5">
@@ -128,40 +158,30 @@ export function SiteHeader() {
             {config.navigation.map((item) => {
               const active = isCurrentRoute(pathname, item.href);
               return (
-                <Link
+                <IntentLink
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className="nav-item relative rounded-full px-3 py-2 text-[0.83rem] font-medium text-muted transition-colors duration-300 hover:text-ink aria-[current=page]:text-white"
                 >
-                  {/* A single pill slides between items instead of each one
-                      growing its own underline. */}
                   {active ? (
-                    <motion.span
+                    <span
                       aria-hidden="true"
-                      layoutId="nav-indicator"
                       className="nav-indicator absolute inset-0 rounded-full"
-                      transition={
-                        reduceMotion
-                          ? { duration: 0 }
-                          : { type: "spring", stiffness: 380, damping: 32 }
-                      }
                     />
                   ) : null}
                   <span className="relative z-10">{item.label}</span>
-                </Link>
+                </IntentLink>
               );
             })}
           </div>
           <LanguageSwitcher locale={locale} pathname={pathname} />
-          <Magnetic>
-            <Link
-              href={config.primaryNavigationAction.href}
-              className="nav-contact-action liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
-            >
-              {config.primaryNavigationAction.label}
-            </Link>
-          </Magnetic>
+          <IntentLink
+            href={config.primaryNavigationAction.href}
+            className="nav-contact-action liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
+          >
+            {config.primaryNavigationAction.label}
+          </IntentLink>
         </nav>
 
         <button
@@ -184,75 +204,56 @@ export function SiteHeader() {
         </button>
       </div>
 
-      <AnimatePresence initial={false}>
-        {menuOpen ? (
-          <motion.div
-            id="mobile-navigation"
-            className="liquid-mobile-menu max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line xl:hidden"
-            initial={
-              reduceMotion ? false : { opacity: 0, y: -8, scaleY: 0.985 }
-            }
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0, scaleY: 1 }}
-            exit={
-              reduceMotion ? undefined : { opacity: 0, y: -6, scaleY: 0.99 }
-            }
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      {menuOpen ? (
+        <div
+          id="mobile-navigation"
+          className="liquid-mobile-menu mobile-navigation-enter max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line xl:hidden"
+        >
+          <nav
+            aria-label={t(locale, "Mobile navigation")}
+            className="page-shell py-5"
           >
-            <nav
-              aria-label={t(locale, "Mobile navigation")}
-              className="page-shell py-5"
-            >
-              <div className="divide-y divide-line border-y border-line">
-                {config.navigation.map((item, index) => {
-                  const active = isCurrentRoute(pathname, item.href);
-                  return (
-                    <motion.div
-                      key={item.href}
-                      initial={reduceMotion ? false : { opacity: 0, x: -8 }}
-                      animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.04 + index * 0.035,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
+            <div className="divide-y divide-line border-y border-line">
+              {config.navigation.map((item) => {
+                const active = isCurrentRoute(pathname, item.href);
+                return (
+                  <div key={item.href}>
+                    <IntentLink
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      onClick={() => setMenuOpen(false)}
+                      className="flex min-h-14 items-center justify-between text-base text-ink"
                     >
-                      <Link
-                        href={item.href}
-                        aria-current={active ? "page" : undefined}
-                        onClick={() => setMenuOpen(false)}
-                        className="flex min-h-14 items-center justify-between text-base text-ink"
-                      >
-                        {item.label}
-                        {active ? (
-                          <span className="font-mono text-[0.65rem] tracking-[0.12em] text-accent">
-                            {t(locale, "ACTIVE")}
-                          </span>
-                        ) : (
-                          <ArrowUpRight
-                            aria-hidden="true"
-                            className="size-4 text-muted"
-                            strokeWidth={1.6}
-                          />
-                        )}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-              </div>
-              <div className="mt-5">
-                <LanguageSwitcher locale={locale} pathname={pathname} compact />
-              </div>
-              <Link
-                href={config.primaryNavigationAction.href}
-                onClick={() => setMenuOpen(false)}
-                className="liquid-button mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
-              >
-                {config.primaryNavigationAction.label}
-              </Link>
-            </nav>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+                      {item.label}
+                      {active ? (
+                        <span className="font-mono text-[0.65rem] tracking-[0.12em] text-accent">
+                          {t(locale, "ACTIVE")}
+                        </span>
+                      ) : (
+                        <ArrowUpRight
+                          aria-hidden="true"
+                          className="size-4 text-muted"
+                          strokeWidth={1.6}
+                        />
+                      )}
+                    </IntentLink>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-5">
+              <LanguageSwitcher locale={locale} pathname={pathname} compact />
+            </div>
+            <IntentLink
+              href={config.primaryNavigationAction.href}
+              onClick={() => setMenuOpen(false)}
+              className="liquid-button mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
+            >
+              {config.primaryNavigationAction.label}
+            </IntentLink>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }

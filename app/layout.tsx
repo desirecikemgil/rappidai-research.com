@@ -3,7 +3,6 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { SiteFrame } from "@/components/layout/site-frame";
-import { MotionProvider } from "@/components/motion/motion-provider";
 import { InteractiveAtmosphere } from "@/components/effects/interactive-atmosphere";
 import { siteConfig } from "@/content/site";
 import { serializeJsonLd } from "@/lib/json-ld";
@@ -60,9 +59,7 @@ export default function RootLayout({
     >
       <body>
         <InteractiveAtmosphere />
-        <MotionProvider>
-          <SiteFrame>{children}</SiteFrame>
-        </MotionProvider>
+        <SiteFrame>{children}</SiteFrame>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }}

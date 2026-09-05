@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useMotionTier } from "@/components/motion/use-motion-tier";
 
 export type RailItem = {
   /** The id of the section heading this entry points at. */
@@ -18,7 +16,6 @@ export type RailItem = {
  * viewports it would cost more width than it returns.
  */
 export function SectionRail({ items }: { items: RailItem[] }) {
-  const tier = useMotionTier();
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
 
   useEffect(() => {
@@ -58,16 +55,7 @@ export function SectionRail({ items }: { items: RailItem[] }) {
                 className="section-rail-link"
               >
                 {active ? (
-                  <motion.span
-                    aria-hidden="true"
-                    layoutId="section-rail-marker"
-                    className="section-rail-marker"
-                    transition={
-                      tier === "off"
-                        ? { duration: 0 }
-                        : { type: "spring", stiffness: 420, damping: 36 }
-                    }
-                  />
+                  <span aria-hidden="true" className="section-rail-marker" />
                 ) : null}
                 <span className="section-rail-label">{item.label}</span>
               </a>

@@ -166,7 +166,7 @@ test("German contact form reports localized validation messages", async ({
   );
 });
 
-test("home hero uses a two-line interactive network composition", async ({
+test("home hero uses a two-line lightweight network composition", async ({
   page,
 }) => {
   await page.goto("/");
@@ -178,39 +178,30 @@ test("home hero uses a two-line interactive network composition", async ({
     "Focused Intelligence.",
   ]);
   await expect(page.locator(".hero-network")).toHaveCount(1);
-  await expect(page.locator(".hero-network-warp-grid")).toHaveCount(1);
+  await expect(page.locator(".hero-network-warp-grid")).toHaveCount(0);
+  await expect(page.locator(".home-hero canvas")).toHaveCount(0);
   await expect(page.locator(".hero-visual")).toHaveCount(0);
 
   await page.mouse.move(1200, 220);
-  await expect(page.locator(".hero-network")).toHaveAttribute(
-    "data-warp",
-    "active",
-  );
-  await expect
-    .poll(() =>
-      page
-        .locator(".hero-network-warp-grid")
-        .evaluate((canvas) => (canvas as HTMLCanvasElement).width),
-    )
-    .toBeGreaterThan(0);
-  await expect
-    .poll(() =>
-      page
-        .locator(".hero-network")
-        .evaluate((element) =>
-          element.style.getPropertyValue("--hero-pointer-x"),
-        ),
-    )
-    .not.toBe("72%");
-  await expect
-    .poll(() =>
-      page
-        .locator(".hero-network")
-        .evaluate((element) =>
-          element.style.getPropertyValue("--hero-grid-tilt-y"),
-        ),
-    )
-    .not.toBe("");
+  const performanceStyles = await page.evaluate(() => ({
+    networkX: getComputedStyle(
+      document.querySelector(".hero-network") as HTMLElement,
+    ).getPropertyValue("--hero-network-x"),
+    networkAnimation: getComputedStyle(
+      document.querySelector(".hero-network-link") as SVGElement,
+    ).animationName,
+    atmosphereAnimation: getComputedStyle(
+      document.querySelector(".atmosphere-wash") as HTMLElement,
+    ).animationName,
+    cardBackdrop: getComputedStyle(
+      document.querySelector(".liquid-card") as HTMLElement,
+    ).backdropFilter,
+  }));
+
+  expect(performanceStyles.networkX.trim()).toBe("2px");
+  expect(performanceStyles.networkAnimation).toBe("none");
+  expect(performanceStyles.atmosphereAnimation).toBe("none");
+  expect(performanceStyles.cardBackdrop).toBe("none");
 });
 
 test("home hero keeps both headline lines complete on mobile", async ({

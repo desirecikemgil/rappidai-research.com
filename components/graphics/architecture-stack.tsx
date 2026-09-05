@@ -1,10 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { useMotionTier } from "@/components/motion/use-motion-tier";
 import { t, type Locale } from "@/lib/i18n";
-
-const glide = [0.16, 1, 0.3, 1] as const;
 
 type ArchitectureStackProps = {
   layers: number;
@@ -28,9 +22,6 @@ export function ArchitectureStack({
   locale = "en",
   configured = false,
 }: ArchitectureStackProps) {
-  const tier = useMotionTier();
-  const still = tier === "off";
-
   const width = 300;
   const rowHeight = 13;
   const gap = 4;
@@ -59,18 +50,13 @@ export function ArchitectureStack({
         {Array.from({ length: heads }, (_, i) => {
           const cx = 60 + i * ((width - 120) / Math.max(heads - 1, 1));
           return (
-            <motion.circle
+            <circle
               key={i}
               cx={cx}
               cy="24"
               r="3.6"
               fill="#126BFF"
               fillOpacity={configured ? 0.35 : 0.85}
-              initial={still ? false : { opacity: 0, scale: 0 }}
-              whileInView={still ? undefined : { opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.42, delay: i * 0.04, ease: glide }}
-              style={{ transformOrigin: `${cx}px 24px` }}
             />
           );
         })}
@@ -98,7 +84,7 @@ export function ArchitectureStack({
       {Array.from({ length: layers }, (_, i) => {
         const y = top + i * (rowHeight + gap);
         return (
-          <motion.rect
+          <rect
             key={i}
             x="46"
             y={y}
@@ -110,15 +96,6 @@ export function ArchitectureStack({
             stroke="#126BFF"
             strokeOpacity={configured ? 0.4 : 0.18}
             strokeDasharray={configured ? "3 3" : undefined}
-            initial={still ? false : { opacity: 0, scaleX: 0.35 }}
-            whileInView={still ? undefined : { opacity: 1, scaleX: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.55,
-              delay: 0.1 + i * 0.035,
-              ease: glide,
-            }}
-            style={{ transformOrigin: `${width / 2}px center` }}
           />
         );
       })}

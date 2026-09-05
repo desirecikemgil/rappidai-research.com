@@ -5,9 +5,9 @@ import { useSyncExternalStore } from "react";
 /**
  * Three motion tiers instead of the previous on/off switch.
  *
- * - `full`  desktop pointer devices: parallax, ambient loops, pointer effects
- * - `lite`  touch and narrow viewports: entrance reveals and press states stay,
- *           but nothing loops forever and nothing tracks scroll per frame
+ * - `full`  reserved for explicitly enabled, effect-heavy experiences
+ * - `lite`  the site default: entrances and press states stay, but nothing
+ *           loops forever or tracks pointer/scroll position per frame
  * - `off`   the visitor asked for reduced motion
  *
  * The old behaviour collapsed `lite` into `off`, which left phones with a
@@ -16,25 +16,19 @@ import { useSyncExternalStore } from "react";
 export type MotionTier = "full" | "lite" | "off";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
-const liteQuery = "(hover: none), (pointer: coarse), (max-width: 700px)";
-
 function subscribe(callback: () => void) {
   const reduced = window.matchMedia(reducedMotionQuery);
-  const lite = window.matchMedia(liteQuery);
 
   reduced.addEventListener("change", callback);
-  lite.addEventListener("change", callback);
 
   return () => {
     reduced.removeEventListener("change", callback);
-    lite.removeEventListener("change", callback);
   };
 }
 
 function getSnapshot(): MotionTier {
   if (window.matchMedia(reducedMotionQuery).matches) return "off";
-  if (window.matchMedia(liteQuery).matches) return "lite";
-  return "full";
+  return "lite";
 }
 
 /**

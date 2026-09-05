@@ -18,6 +18,8 @@ When implementing from a selected generated mock, treat that image as the source
 - Keep every page easy to scan: lead with a concise purpose statement, expose a short set of meaningful topics or jump targets, and reveal detailed evidence through graphics, tables or focused text only after the overview.
 - Treat navigation as an information hierarchy rather than a flat link list: keep the main research areas immediately visible, make the current section unmistakable, and separate contact from the primary content taxonomy.
 - Reduce equal-weight card density and decorative labels. Use larger calm surfaces, fewer simultaneous choices and stronger light/dark rhythm so content-heavy pages do not feel crowded.
+- Treat interaction performance as a visual requirement: scrolling, filtering, navigation and pointer feedback must remain fluid before adding passive motion or refraction effects.
+- Avoid permanent pointer/scroll subscriptions, per-frame canvas redraws, widespread backdrop blur and decorative infinite loops. Prefer static server-rendered graphics, short CSS transform/opacity responses and native progressive enhancement.
 
 ## Durable research-publication direction
 
