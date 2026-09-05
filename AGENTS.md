@@ -12,6 +12,7 @@ When implementing from a selected generated mock, treat that image as the source
 - Use lightweight signal-line SVG illustrations and sparse, slow CSS transform/opacity motion. Pause passive effects outside the viewport, on hidden tabs and for reduced-motion preferences. Keep evidence and current implementation limits intact.
 
 - Favor premium, restrained passive motion and polished active hover/focus responses.
+- Use a single observer for sparse, one-time scroll entrances (10px / 420ms) and a short incoming-introduction transition on route changes (4px / 220ms). Never delay navigation or hide content pending JavaScript; cancel motion for reduced-motion preferences and hidden tabs.
 - Use fluid, layered scroll reveals and subtle scroll-linked depth; motion should guide hierarchy rather than compete with content.
 - Use calm paper and ice-blue reading surfaces, deep-navy product stages, restrained borders and controlled radii. Reserve refraction for the signal illustrations; avoid broad backdrop blur.
 - Keep motion accessible with `prefers-reduced-motion`, and verify new effects at desktop and mobile breakpoints.
