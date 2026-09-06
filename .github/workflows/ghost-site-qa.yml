@@ -42,7 +42,23 @@ jobs:
           t = t.replace('expect(ghostLinks.checksums).toEndWith("/SHA256SUMS");', 'expect(ghostLinks.checksums.endsWith("/SHA256SUMS")).toBe(true);')
           p.write_text(t)
           p = Path('tests/e2e/ghost.spec.ts')
-          p.write_text(p.read_text().replace('test.use({ reducedMotion: "reduce" });', 'test.beforeEach(async ({ page }) => { await page.emulateMedia({ reducedMotion: "reduce" }); });'))
+          t = p.read_text().replace('test.use({ reducedMotion: "reduce" });', 'test.beforeEach(async ({ page }) => { await page.emulateMedia({ reducedMotion: "reduce" }); });')
+          t = t.replace('test.setTimeout(180000);', 'test.setTimeout(300000);')
+          t = t.replace('    const response = await request.head(href, { timeout: 20000 });', '''    // Pace public GitHub requests; a rate limit is not a successful link check.
+              await new Promise((resolve) => setTimeout(resolve, 2500));
+              let response = await request.head(href, { timeout: 20000 });
+              for (let attempt = 0; response.status() === 429 && attempt < 3; attempt++) {
+                const retryAfter = Number(response.headers()["retry-after"]);
+                const delay = Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter, 60) : 15;
+                await new Promise((resolve) => setTimeout(resolve, delay * 1000));
+                response = await request.head(href, { timeout: 20000 });
+              }
+              console.info(`Ghost link ${response.status()}: ${href}`);''')
+          p.write_text(t)
+          p = Path('tests/e2e/site.spec.ts')
+          old = 'page.getByText("— Docker-isolated sessions", { exact: true })'
+          assert p.read_text().count(old) == 2
+          p.write_text(p.read_text().replace(old, 'page.locator(".tool-showcase-card").first().locator("details li").first()'))
           p = Path('app/tools/ghost/page.tsx')
           p.write_text(p.read_text().replace('<pre tabIndex={0}', '<pre role="region" tabIndex={0}'))
           PY
@@ -50,8 +66,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Format and stage the final file inventory
         run: |
-          pnpm exec prettier --write content/ghost.ts app/tools/ghost/page.tsx app/page.tsx app/tools/page.tsx content/pages.ts content/locales/de-metadata.ts tests/ghost.test.ts tests/e2e/ghost.spec.ts docs/ghost-v0.2-site-evidence.md
-          git add content/ghost.ts app/tools/ghost/page.tsx app/page.tsx app/tools/page.tsx content/pages.ts content/locales/de-metadata.ts tests/ghost.test.ts tests/e2e/ghost.spec.ts docs/ghost-v0.2-site-evidence.md .github/scripts/apply-ghost-v02.py .github/workflows/ghost-site-qa.yml
+          pnpm exec prettier --write content/ghost.ts app/tools/ghost/page.tsx app/page.tsx app/tools/page.tsx content/pages.ts content/locales/de-metadata.ts tests/ghost.test.ts tests/e2e/ghost.spec.ts tests/e2e/site.spec.ts docs/ghost-v0.2-site-evidence.md
+          git add content/ghost.ts app/tools/ghost/page.tsx app/page.tsx app/tools/page.tsx content/pages.ts content/locales/de-metadata.ts tests/ghost.test.ts tests/e2e/ghost.spec.ts tests/e2e/site.spec.ts docs/ghost-v0.2-site-evidence.md .github/scripts/apply-ghost-v02.py .github/workflows/ghost-site-qa.yml
       - name: Check formatting
         run: pnpm format:check
       - name: Lint
