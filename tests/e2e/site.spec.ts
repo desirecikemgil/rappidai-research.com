@@ -176,11 +176,11 @@ test("tool implementation details can be expanded with the keyboard", async ({
   await summary.focus();
   await page.keyboard.press("Enter");
   await expect(
-    page.getByText("— Docker-isolated sessions", { exact: true }),
+    page.locator(".tool-showcase-card").first().locator("details li").first(),
   ).toBeVisible();
   await page.keyboard.press("Enter");
   await expect(
-    page.getByText("— Docker-isolated sessions", { exact: true }),
+    page.locator(".tool-showcase-card").first().locator("details li").first(),
   ).not.toBeVisible();
 });
 

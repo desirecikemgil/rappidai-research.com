@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ghostRelease } from "@/content/ghost";
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { SignalArt } from "@/components/graphics/signal-art";
 import { ActionLink } from "@/components/ui/action-link";
@@ -26,11 +27,12 @@ const copy = {
     quantumStatus: "Two public pilots · Echelon in development",
     ghost: "Set the boundaries.",
     ghostText:
-      "A security runtime for agent execution. Allow, deny or expose controlled decoys, with inspectable policy decisions.",
+      "A deception-aware runtime for agents. Deterministic ALLOW, DENY and SHADOW rules, with hardened network boundaries, isolated sessions and inspectable evidence.",
     replay: "Understand every run.",
     replayText:
       "Record execution, restore technical state and compare branches. Local-first infrastructure for reproducible agent research.",
     toolStatus: "Experimental · Open source",
+    ghostStatus: "Security hardening · Experimental",
     open: "Explore",
     approach: "Our approach",
     approachTitle: "Built to be understood.",
@@ -86,11 +88,12 @@ const copy = {
     quantumStatus: "Zwei öffentliche Piloten · Echelon in Entwicklung",
     ghost: "Setze die Grenzen.",
     ghostText:
-      "Eine Security-Runtime für Agenten. Zugriffe erlauben, ablehnen oder kontrollierte Köder bereitstellen – mit nachvollziehbaren Entscheidungen.",
+      "Eine deception-aware Runtime für Agenten. Deterministische ALLOW-, DENY- und SHADOW-Regeln mit gehärteten Netzwerkgrenzen, isolierten Sessions und nachvollziehbaren Nachweisen.",
     replay: "Verstehe jeden Run.",
     replayText:
       "Ausführungen aufzeichnen, technische Zustände wiederherstellen und Branches vergleichen. Lokale Infrastruktur für reproduzierbare Agentenforschung.",
     toolStatus: "Experimentell · Open Source",
+    ghostStatus: "Sicherheitshärtung · Experimentell",
     open: "Entdecken",
     approach: "Unser Ansatz",
     approachTitle: "Entwickelt, um verstanden zu werden.",
@@ -200,7 +203,11 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 <h3>{c[kind]}</h3>
                 <p>{kind === "ghost" ? c.ghostText : c.replayText}</p>
                 <div className="product-bottom">
-                  <span className="product-status">{c.toolStatus}</span>
+                  <span className="product-status">
+                    {kind === "ghost"
+                      ? `${ghostRelease.version} · ${c.ghostStatus}`
+                      : c.toolStatus}
+                  </span>
                   <Link
                     href={path(`/tools/${kind}`)}
                     className="product-open"

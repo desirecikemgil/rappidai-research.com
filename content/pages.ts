@@ -276,9 +276,9 @@ export const pageMetadata = {
       "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
   },
   "/tools/ghost": {
-    title: "Ghost — rappidAI Research",
+    title: "Ghost v0.2.0 — rappidAI Research",
     description:
-      "A deception-aware security runtime for autonomous AI agents with deterministic ALLOW, DENY and SHADOW policy outcomes.",
+      "Ghost v0.2.0: a security-hardening release for autonomous AI agents. Explore ALLOW, DENY, SHADOW, installation, fifteen GhostBench scenarios and documented limits.",
   },
   "/tools/replay": {
     title: "Replay — rappidAI Research",
