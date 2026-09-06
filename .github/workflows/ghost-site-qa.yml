@@ -41,6 +41,10 @@ jobs:
           t = p.read_text().replace('expect(ghostLinks.release).toEndWith("/releases/tag/v0.2.0");', 'expect(ghostLinks.release.endsWith("/releases/tag/v0.2.0")).toBe(true);')
           t = t.replace('expect(ghostLinks.checksums).toEndWith("/SHA256SUMS");', 'expect(ghostLinks.checksums.endsWith("/SHA256SUMS")).toBe(true);')
           p.write_text(t)
+          p = Path('tests/e2e/ghost.spec.ts')
+          p.write_text(p.read_text().replace('test.use({ reducedMotion: "reduce" });', 'test.beforeEach(async ({ page }) => { await page.emulateMedia({ reducedMotion: "reduce" }); });'))
+          p = Path('app/tools/ghost/page.tsx')
+          p.write_text(p.read_text().replace('<pre tabIndex={0}', '<pre role="region" tabIndex={0}'))
           PY
           rm .github/scripts/apply-ghost-v02.py .github/workflows/ghost-site-qa.yml
       - run: pnpm install --frozen-lockfile
