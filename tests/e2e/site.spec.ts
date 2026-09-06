@@ -427,3 +427,42 @@ test("robots and sitemap endpoints are public", async ({ request }) => {
     );
   }
 });
+
+for (const route of ["/tools/ghost", "/de/tools/ghost"] as const) {
+  test(`${route} exposes v0.2.0 evidence and fits mobile and desktop`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(route);
+    await expect(page.locator("main")).toContainText(
+      "PASS: 15 · FAIL: 0 · SKIP: 0",
+    );
+    await expect(page.locator("main")).not.toContainText("v0.1.0");
+    await expect(
+      page.getByRole("link", { name: "v0.2.0 Release", exact: true }),
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/rappidAI-Research/rappid-ghost/releases/tag/v0.2.0",
+    );
+    await page.locator("#ghost-bench summary").press("Enter");
+    await expect(
+      page.getByText("interrupted-session-recovery", { exact: true }),
+    ).toBeVisible();
+    for (const width of [360, 768, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      const layout = await page.evaluate(() => ({
+        overflow:
+          document.documentElement.scrollWidth -
+          document.documentElement.clientWidth,
+        brokenAnchors: [...document.querySelectorAll('main a[href^="#"]')]
+          .map((link) => link.getAttribute("href")!.slice(1))
+          .filter((id) => !document.getElementById(id)),
+      }));
+      expect(
+        layout.overflow,
+        `Page overflow at ${width}px`,
+      ).toBeLessThanOrEqual(0);
+      expect(layout.brokenAnchors).toEqual([]);
+    }
+  });
+}

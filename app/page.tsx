@@ -26,7 +26,7 @@ const copy = {
     quantumStatus: "Two public pilots · Echelon in development",
     ghost: "Set the boundaries.",
     ghostText:
-      "A security runtime for agent execution. Allow, deny or expose controlled decoys, with inspectable policy decisions.",
+      "A deception-aware security runtime for autonomous agents. Deterministic ALLOW, DENY and SHADOW, with hardened isolation, network controls and inspectable evidence.",
     replay: "Understand every run.",
     replayText:
       "Record execution, restore technical state and compare branches. Local-first infrastructure for reproducible agent research.",
@@ -86,7 +86,7 @@ const copy = {
     quantumStatus: "Zwei öffentliche Piloten · Echelon in Entwicklung",
     ghost: "Setze die Grenzen.",
     ghostText:
-      "Eine Security-Runtime für Agenten. Zugriffe erlauben, ablehnen oder kontrollierte Köder bereitstellen – mit nachvollziehbaren Entscheidungen.",
+      "Eine deception-aware Sicherheits-Runtime für autonome Agenten. Deterministisches ALLOW, DENY und SHADOW mit verstärkter Isolation, Netzwerkkontrolle und prüfbarer Evidenz.",
     replay: "Verstehe jeden Run.",
     replayText:
       "Ausführungen aufzeichnen, technische Zustände wiederherstellen und Branches vergleichen. Lokale Infrastruktur für reproduzierbare Agentenforschung.",
@@ -200,7 +200,13 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 <h3>{c[kind]}</h3>
                 <p>{kind === "ghost" ? c.ghostText : c.replayText}</p>
                 <div className="product-bottom">
-                  <span className="product-status">{c.toolStatus}</span>
+                  <span className="product-status">
+                    {kind === "ghost"
+                      ? locale === "de"
+                        ? "v0.2.0 · Security-Hardening · Experimentell"
+                        : "v0.2.0 · Security hardening · Experimental"
+                      : c.toolStatus}
+                  </span>
                   <Link
                     href={path(`/tools/${kind}`)}
                     className="product-open"

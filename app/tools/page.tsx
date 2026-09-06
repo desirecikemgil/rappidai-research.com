@@ -23,16 +23,17 @@ const copy = {
       "What happened during the run — and can the technical state be reconstructed?",
     note: "Ghost and Replay are complementary research directions, not presented here as a single integrated product. Their current implementations remain separate repositories with separate guarantees.",
     ghostSummary:
-      "A deception-aware security runtime with deterministic ALLOW, DENY and SHADOW policy outcomes.",
+      "Ghost v0.2.0: a security-hardening release of the deception-aware runtime. Deterministic ALLOW, DENY and SHADOW, without an LLM in enforcement.",
     replaySummary:
       "Local-first infrastructure for recording, restoring, branching, rerunning and diffing AI-agent executions.",
     current: "CURRENT IMPLEMENTATION",
     ghostFacts: [
       "Docker-isolated sessions",
       "Synthetic agent home and decoy resources",
-      "Controlled HTTP/HTTPS egress",
+      "Exact-host HTTP/HTTPS egress with resolved IPv4 validation",
       "Evidence-based decoy-access events",
-      "Dynamic network containment",
+      "Token-scoped containment and interrupted-session recovery",
+      "GhostBench: PASS: 15 · FAIL: 0 · SKIP: 0",
     ],
     replayFacts: [
       "Generic execution recorder",
@@ -62,16 +63,17 @@ const copy = {
       "Was ist während des Runs passiert – und lässt sich der technische Zustand rekonstruieren?",
     note: "Ghost und Replay sind komplementäre Forschungsrichtungen, werden hier aber nicht als bereits integriertes Gesamtprodukt dargestellt. Die aktuellen Implementierungen bleiben getrennte Repositories mit getrennten Garantien.",
     ghostSummary:
-      "Ein deception-aware Security Runtime mit deterministischen ALLOW-, DENY- und SHADOW-Entscheidungen.",
+      "Ghost v0.2.0: ein Security-Hardening-Release der deception-aware Sicherheits-Runtime. Deterministisches ALLOW, DENY und SHADOW ohne LLM als Sicherheitsinstanz.",
     replaySummary:
       "Local-first Infrastruktur zum Aufzeichnen, Wiederherstellen, Verzweigen, erneuten Ausführen und Vergleichen von KI-Agenten-Runs.",
     current: "AKTUELLE IMPLEMENTIERUNG",
     ghostFacts: [
       "Docker-isolierte Sessions",
       "Synthetisches Agenten-Home und Decoy-Ressourcen",
-      "Kontrollierter HTTP/HTTPS-Egress",
+      "Exakter HTTP/HTTPS-Hostname-Egress mit IPv4-Zielprüfung",
       "Evidenzbasierte Decoy-Access-Events",
-      "Dynamische Netzwerk-Containment",
+      "Token-scoped Containment und Recovery unterbrochener Sessions",
+      "GhostBench: PASS: 15 · FAIL: 0 · SKIP: 0",
     ],
     replayFacts: [
       "Generischer Execution Recorder",

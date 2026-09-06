@@ -6,24 +6,26 @@ import type { Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/tools/ghost");
 
-const GHOST_SHA = "83974c3115f103a1982bb445c3f2aef6a8f528ea";
+const GHOST_SHA = "001d0baa953301f9fc94443e0e45b28d9f93fac0";
 const repo = "https://github.com/rappidAI-Research/rappid-ghost";
+const release = `${repo}/releases/tag/v0.2.0`;
+const releaseGate = `${repo}/actions/runs/34052802282/job/101539306267`;
 const source = `${repo}/blob/${GHOST_SHA}`;
 
 const copy = {
   en: {
     intro: {
-      eyebrow: "TOOL · GHOST",
+      eyebrow: "GHOST V0.2.0 · SECURITY HARDENING",
       title: "rappidAI Ghost. Set the boundaries.",
       description:
-        "Ghost is an experimental open-source security runtime that executes agent commands inside Docker and applies deterministic ALLOW, DENY and SHADOW policies. SHADOW can expose controlled synthetic resources while the corresponding real host resource stays isolated.",
+        "A deception-aware security runtime for autonomous AI agents. Ghost isolates command execution and applies deterministic ALLOW, DENY and SHADOW policies. Security enforcement never calls an LLM. v0.2.0 hardens the runtime’s existing security boundaries.",
     },
-    status: "EXPERIMENTAL · GHOST V0.1.0 · MAIN REVIEWED 2026-08-31",
+    status: "RELEASED · GHOST V0.2.0 · 2026-09-06 · EXPERIMENTAL",
     overviewTitle: "What Ghost is — in plain language.",
     overview:
       "An autonomous agent may read files, call tools or make network requests. Ghost places a controlled runtime boundary around that execution. Instead of giving the process unrestricted access to the host environment, Ghost can allow a supported resource, deny it, or substitute a synthetic decoy and record what happened.",
     releaseNote:
-      "The current main revision reports a successful v0.1.0 GitHub Actions release gate. GhostBench completed all ten required scenarios with PASS: 10, FAIL: 0, SKIP: 0. This validates the documented test properties; it is not a claim that Ghost prevents every attack.",
+      "v0.2.0 is a security-hardening release. The published release job completed all 15 GhostBench scenarios: PASS: 15, FAIL: 0, SKIP: 0. These results validate the named properties in that run, not protection against every attack.",
     triadTitle: "Three deterministic policy outcomes.",
     triad: [
       {
@@ -39,41 +41,38 @@ const copy = {
         v: "Expose a controlled synthetic resource while the corresponding real host resource remains isolated.",
       },
     ],
-    capabilitiesTitle: "What v0.1.0 currently provides.",
+    capabilitiesTitle: "Security hardening in v0.2.0.",
     capabilities: [
-      "Ephemeral Docker-based command execution with the project mounted at /workspace.",
-      "A private synthetic home at /home/ghost instead of the host user's real home.",
-      "Synthetic AWS credentials, an intentionally nonfunctional SSH-key-shaped file and a generic .env decoy.",
-      "Deterministic SHADOW or DENY policy for the supported home resources.",
-      "Decoy open/access observation through a separate inotify sentinel.",
-      "SQLite persistence for sessions, events and decoy state.",
-      "Network deny by default, or exact-hostname HTTP/HTTPS allowlisting through a per-session gateway.",
-      "An internal Docker network that prevents the agent from bypassing the gateway with direct external routes.",
-      "Optional dynamic network containment after a decoy access.",
-      "Session inspection plus deterministic provenance graphs and incident reconstruction.",
-      "GhostBench with ten explicit security-property scenarios and evidence references.",
+      "Network destinations: reject local-use names and prohibited IPv4 answer sets; connect only to the validated numeric address. Raw IPs and IPv6 upstream destinations remain denied.",
+      "Container confinement: private IPC/cgroup namespaces and disabled core dumps strengthen the shared non-root profile, dropped capabilities, no-new-privileges, read-only roots and bounded writable paths.",
+      "Host environment: a positive allowlist supplies fixed HOME/PATH and Ghost-owned proxy variables only. Unknown or custom host secrets are not forwarded.",
+      "Containment: token-scoped containment fencing replaces the timing-based recheck. The sentinel publishes containment before access evidence; a missing acknowledgement denies the request.",
+      "Session state and recovery: a per-project run lock serializes runs. The next run finalizes interrupted sessions as failed, preserves containment and removes only exactly identified Ghost-owned Docker resources. Ambiguous ownership or cleanup failure aborts the new run.",
+      "Supply chain: Alpine 3.22.5 is pinned to an immutable multi-platform index digest; GitHub Actions use full commit SHAs. CI verifies Go modules and tidy state; Linux release binaries include a verified SHA256SUMS manifest.",
+      "Validation: five additional GhostBench scenarios exercise private-destination denial, unknown-environment exclusion, guest-visible confinement, concurrent containment and interrupted-session recovery.",
     ],
     installTitle: "Installation and requirements.",
     installText:
-      "The release-qualified target is Linux with Docker Engine. Building from source requires Go 1.26 or newer, a working Docker CLI and daemon, and a non-root host account with a numeric UID/GID. Docker Desktop on macOS may work but is not covered by the v0.1.0 release gate; native Windows execution is unsupported.",
-    installCode: `git clone https://github.com/rappidAI-Research/rappid-ghost.git\ncd rappid-ghost\nmake build\n./bin/ghost version`,
+      "Linux with Docker Engine is the release-qualified target. Use a non-root host account with non-zero numeric UID and GID. Download the Linux amd64 or arm64 binary from the release and verify it against SHA256SUMS, or build the tagged source below with Go 1.26+ and make. Docker Desktop on macOS is not release-qualified; native Windows is unsupported.",
+    installCode:
+      'git clone --branch v0.2.0 --depth 1 https://github.com/rappidAI-Research/rappid-ghost.git\ncd rappid-ghost\nmake build\n./bin/ghost version\nexport PATH="$PWD/bin:$PATH"',
     quickTitle: "Start using Ghost.",
     quickSteps: [
-      "Run ghost init in the project you want to expose. This creates ghost.yaml and local .ghost state.",
-      "Run commands through ghost run -- <command>. Ghost never falls back to executing the controlled command directly on the host if Docker setup fails.",
-      "Use ghost inspect latest to inspect decisions, decoys, incidents and the event timeline.",
-      "Use ghost graph latest or ghost incidents latest for deterministic reconstruction from persisted evidence.",
+      "After the build above, the current shell can find ghost. Change to the project you intend to expose, then run ghost init to create ghost.yaml and local .ghost state.",
+      "Review ghost.yaml: networking defaults to deny; the workspace defaults to read-write. Use workspace.mode: read-only when project writes are unnecessary. Files deliberately placed in the workspace remain accessible.",
+      "Run commands with ghost run -- <command>. The pinned minimal Alpine image must contain that command; setup or execution failure never falls back to running it on the host.",
+      "Inspect the session, then reconstruct its graph and incidents from persisted evidence.",
     ],
     quickCode: `ghost init\nghost run -- echo "hello from ghost"\nghost run -- sh -c 'cat ~/.aws/credentials'\nghost inspect latest\nghost graph latest\nghost incidents latest`,
     exampleTitle: "Concrete example: a Shadow credential.",
     exampleText:
-      "With the default SHADOW home policy, reading ~/.aws/credentials returns credentials generated for that Ghost session, not the host user's AWS credentials. If the decoy is accessed, Ghost can record DECOY_ACCESS evidence and, when configured, activate network containment. The synthetic values cannot authenticate to a real service.",
+      "An agent asks for ~/.aws/credentials. Ghost never reads or mounts the host user’s credential file. With the default SHADOW home policy, it exposes independently generated synthetic credentials inside /home/ghost. Unlike refusal alone, this gives the agent an observable resource: the separate inotify sentinel can record DECOY_ACCESS when the decoy inode is opened or accessed. With on_decoy_access.network: deny, containment then denies subsequent gateway requests whose fence follows that observation, even to an allowlisted host. The synthetic credentials cannot authenticate to a real service. The event proves access, not intent or exfiltration.",
     networkTitle: "Controlled network access.",
     networkText:
-      "Networking is denied by default. In allowlist mode, Ghost accepts exact hostnames for HTTP on port 80 and HTTPS CONNECT on port 443. Wildcards, raw IP allowlist entries, arbitrary TCP/UDP and TLS content inspection are outside v0.1.0. The gateway records destination-level allow/deny evidence without storing request headers or bodies.",
+      "Deny mode uses Docker network mode none. Allowlist mode places the agent on a per-session internal network with no direct external route; the gateway accepts exact hostnames for HTTP :80 and HTTPS CONNECT :443. It rejects local-use names and every answer set containing prohibited IPv4 addresses: private, loopback, link-local (including metadata endpoint 169.254.169.254), shared, benchmark, multicast and reserved ranges. It connects to the validated numeric address without a second hostname lookup. DNS failure, mixed safe/prohibited answers, raw IPs and IPv6-only destinations fail closed. The internal bridge remains a reachable local link; this is a gateway destination boundary, not a universal host-network firewall.",
     benchTitle: "How the release is tested.",
     benchText:
-      "GhostBench checks ten separately reported properties: host-home isolation, Shadow credential evidence, sensitive-resource denial, network denial, exact-host allowlisting, direct-egress bypass resistance, dynamic containment, session isolation, failure closure and a safe no-incident baseline. --require-all fails on either FAIL or SKIP.",
+      "GhostBench is a reproducible local security-property validation suite using the production runtime, synthetic resources and isolated Docker HTTP fixtures. Its 15 scenarios cover home isolation, Shadow evidence, sensitive-resource denial, network deny/allowlist, direct-egress bypass, containment, session isolation, failure closure and a safe baseline, plus the five new v0.2.0 checks below. PASS means every required observation occurred; FAIL means an assertion or execution failed; SKIP means a required dependency was unavailable. --require-all fails on FAIL or SKIP. No real credentials, external judging service or security score are used.",
     benchCode: `ghost bench\nghost bench --json\nghost bench --require-all\nghost bench --scenario dynamic-containment`,
     valueTitle: "Why this is useful.",
     value: [
@@ -90,36 +89,33 @@ const copy = {
       "Security engineers exploring deterministic containment and deception patterns for agent runtimes.",
       "Open-source builders who need a small, inspectable reference implementation rather than a cloud control plane.",
     ],
-    boundariesTitle: "Important limits of v0.1.0.",
+    boundariesTitle: "Important limits of v0.2.0.",
     boundaries: [
-      "Ghost is experimental and is not a general firewall, attack detector or hardened replacement for Docker.",
-      "It does not detect prompt injection.",
-      "It does not virtualize arbitrary filesystem paths; deception is limited to the explicitly supported synthetic home resources.",
-      "It does not inspect TLS payloads, HTTP request bodies or headers, or general TCP/UDP traffic.",
-      "It does not intercept MCP or track semantic data flow.",
-      "A DECOY_ACCESS event proves an observed open/access event for the decoy inode; it does not prove credential exfiltration or causal intent.",
-      "The provenance graph records observed and derived ordering relationships; derived FOLLOWED_BY edges are not causal claims.",
-      "Read-write workspace mode intentionally allows the guest to modify project files.",
-      "Ghost inherits risks from Docker, the daemon, container images, the host kernel and the local user account.",
-      "The default alpine:3.22.5 image is patch-tag pinned but not digest pinned.",
+      "Ghost is experimental. Its guarantees apply to ghost run commands and depend on Docker, its daemon, the OCI runtime, pinned image, host kernel and invoking local account. It cannot guarantee protection against every container escape or network attack.",
+      "Ghost does not detect prompt injection, understand or prove model intent, trace semantic data flow, intercept MCP, or virtualize arbitrary filesystem paths.",
+      "DECOY_ACCESS proves an observed open/access event for a decoy inode, not credential exfiltration. Provenance and incident reconstruction are read-only views; derived FOLLOWED_BY edges express ordering, not causation.",
+      "Containment does not revoke already authorized and established HTTP responses or CONNECT tunnels. A concurrent request whose barrier is ordered before the decoy event can still be allowed.",
+      "No TLS interception, request-content inspection or general TCP/UDP proxying. Approved endpoints can relay data, CONNECT can carry non-TLS bytes, and Ghost does not eliminate every DNS-rebinding technique.",
+      "The mounted workspace is deliberately accessible and writable by default. Rootless Docker or user-namespace remapping requires daemon-level configuration. Recovery occurs on the next run in the owning project, not through a global background cleanup service.",
+      "SHA256 checksums detect corruption; the release does not publish signed binaries, attestations or an SBOM. GhostBench is evidence for its named scenarios and platform, not a universal security proof.",
     ],
     evidenceTitle: "Direct access to source, methodology and examples.",
     evidenceText:
-      "The links below point to the exact main revision reviewed for this page so implementation claims can be checked directly against source and documentation.",
+      "Implementation and documentation links are pinned to the exact v0.2.0 release commit, 001d0ba. The release job links to the completed validation run. Current main was identical when reviewed on 2026-09-06.",
   },
   de: {
     intro: {
-      eyebrow: "TOOL · GHOST",
+      eyebrow: "GHOST V0.2.0 · SECURITY HARDENING",
       title: "rappidAI Ghost. Setze die Grenzen.",
       description:
-        "Ghost ist ein experimentelles Open-Source-Security-Runtime, das Agenten-Befehle in Docker ausführt und deterministische ALLOW-, DENY- und SHADOW-Regeln anwendet. SHADOW kann kontrollierte synthetische Ressourcen bereitstellen, während die entsprechende reale Host-Ressource isoliert bleibt.",
+        "Eine deception-aware Sicherheits-Runtime für autonome KI-Agenten. Ghost isoliert Befehlsausführung und setzt deterministische ALLOW-, DENY- und SHADOW-Regeln durch – ohne LLM als Sicherheitsinstanz. v0.2.0 verstärkt die bestehenden Sicherheitsgrenzen.",
     },
-    status: "EXPERIMENTELL · GHOST V0.1.0 · MAIN GEPRÜFT AM 31.08.2026",
+    status: "VERÖFFENTLICHT · GHOST V0.2.0 · 06.09.2026 · EXPERIMENTELL",
     overviewTitle: "Was Ghost einfach erklärt ist.",
     overview:
       "Ein autonomer Agent kann Dateien lesen, Tools aufrufen oder Netzwerkanfragen ausführen. Ghost legt eine kontrollierte Runtime-Grenze um diese Ausführung. Statt dem Prozess unbeschränkten Zugriff auf die Host-Umgebung zu geben, kann Ghost eine unterstützte Ressource erlauben, blockieren oder durch einen synthetischen Köder ersetzen und die relevanten Ereignisse protokollieren.",
     releaseNote:
-      "Der aktuelle main-Stand dokumentiert einen erfolgreichen GitHub-Actions-Release-Gate für v0.1.0. GhostBench hat alle zehn geforderten Szenarien mit PASS: 10, FAIL: 0, SKIP: 0 abgeschlossen. Das validiert die dokumentierten Testeigenschaften, ist aber keine Behauptung, dass Ghost jeden Angriff verhindert.",
+      "v0.2.0 ist ein Security-Hardening-Release. Der veröffentlichte Release-Job hat alle 15 GhostBench-Szenarien abgeschlossen: PASS: 15, FAIL: 0, SKIP: 0. Das validiert die benannten Eigenschaften in diesem Lauf, keinen Schutz gegen jeden Angriff.",
     triadTitle: "Drei deterministische Policy-Ergebnisse.",
     triad: [
       {
@@ -135,41 +131,38 @@ const copy = {
         v: "Eine kontrollierte synthetische Ressource bereitstellen, während die entsprechende reale Host-Ressource isoliert bleibt.",
       },
     ],
-    capabilitiesTitle: "Was v0.1.0 aktuell bereitstellt.",
+    capabilitiesTitle: "Security-Hardening in v0.2.0.",
     capabilities: [
-      "Kurzlebige Docker-basierte Befehlsausführung mit dem Projekt unter /workspace.",
-      "Ein privates synthetisches Home unter /home/ghost statt des realen Home-Verzeichnisses des Host-Nutzers.",
-      "Synthetische AWS-Credentials, eine absichtlich funktionslose SSH-Key-förmige Datei und einen generischen .env-Decoy.",
-      "Deterministische SHADOW- oder DENY-Policy für die unterstützten Home-Ressourcen.",
-      "Beobachtung von Decoy-Open/Access-Ereignissen über einen separaten inotify-Sentinel.",
-      "SQLite-Persistenz für Sessions, Events und Decoy-Zustand.",
-      "Netzwerk standardmäßig DENY oder exakte HTTP/HTTPS-Hostname-Allowlist über ein Gateway pro Session.",
-      "Ein internes Docker-Netz, das direkte externe Routen des Agenten am Gateway vorbei verhindert.",
-      "Optionales dynamisches Netzwerk-Containment nach einem Decoy-Zugriff.",
-      "Session-Inspection sowie deterministische Provenance-Graphen und Incident-Rekonstruktion.",
-      "GhostBench mit zehn expliziten Security-Property-Szenarien und Evidenzreferenzen.",
+      "Netzwerkziele: lokale Hostnamen und verbotene IPv4-Antwortmengen werden abgelehnt; Verbindungen nutzen nur die validierte numerische Adresse. Raw-IP- und IPv6-Upstream-Ziele bleiben blockiert.",
+      "Container-Confinement: private IPC-/cgroup-Namespaces und deaktivierte Core-Dumps verstärken das gemeinsame Non-Root-Profil mit entfernten Capabilities, no-new-privileges, schreibgeschützten Root-Dateisystemen und begrenzten Schreibpfaden.",
+      "Host-Umgebung: Eine positive Allowlist setzt nur feste HOME-/PATH-Werte und Ghost-eigene Proxy-Variablen. Unbekannte oder benutzerdefinierte Host-Secrets werden nicht weitergereicht.",
+      "Containment: Token-scoped containment fencing ersetzt die zeitbasierte Nachprüfung. Der Sentinel veröffentlicht Containment vor der Zugriffsevidenz; fehlt die Bestätigung, wird die Anfrage abgelehnt.",
+      "Session-Zustand und Recovery: Ein Run-Lock pro Projekt serialisiert Ausführungen. Der nächste Lauf markiert unterbrochene Sessions als failed, erhält ihren Containment-Zustand und entfernt nur eindeutig identifizierte Ghost-eigene Docker-Ressourcen. Unklare Eigentümerschaft oder fehlgeschlagenes Aufräumen bricht den neuen Lauf ab.",
+      "Supply Chain: Alpine 3.22.5 ist auf einen unveränderlichen Multi-Platform-Index-Digest gepinnt; GitHub Actions auf vollständige Commit-SHAs. CI prüft Go-Module und den Tidy-Zustand; Linux-Release-Binaries enthalten ein geprüftes SHA256SUMS-Manifest.",
+      "Validierung: Fünf zusätzliche GhostBench-Szenarien prüfen private Netzwerkziele, unbekannte Umgebungsvariablen, im Gast sichtbares Confinement, paralleles Containment und Recovery unterbrochener Sessions.",
     ],
     installTitle: "Installation und Voraussetzungen.",
     installText:
-      "Das release-qualifizierte Ziel ist Linux mit Docker Engine. Für den Build aus dem Quellcode werden Go 1.26 oder neuer, eine funktionierende Docker-CLI mit Daemon sowie ein Nicht-Root-Hostkonto mit numerischer UID/GID benötigt. Docker Desktop auf macOS kann funktionieren, ist aber nicht Teil des v0.1.0-Release-Gates; native Windows-Ausführung wird nicht unterstützt.",
-    installCode: `git clone https://github.com/rappidAI-Research/rappid-ghost.git\ncd rappid-ghost\nmake build\n./bin/ghost version`,
+      "Linux mit Docker Engine ist das release-qualifizierte Ziel. Erforderlich ist ein Nicht-Root-Hostkonto mit numerischer UID und GID ungleich null. Lade die Linux-amd64- oder arm64-Binary aus dem Release und prüfe sie gegen SHA256SUMS, oder baue den getaggten Quellcode mit Go 1.26+ und make wie unten. Docker Desktop auf macOS ist nicht release-qualifiziert; natives Windows wird nicht unterstützt.",
+    installCode:
+      'git clone --branch v0.2.0 --depth 1 https://github.com/rappidAI-Research/rappid-ghost.git\ncd rappid-ghost\nmake build\n./bin/ghost version\nexport PATH="$PWD/bin:$PATH"',
     quickTitle: "Ghost verwenden.",
     quickSteps: [
-      "Führe ghost init in dem Projekt aus, das du dem Agenten bereitstellen willst. Dadurch entstehen ghost.yaml und der lokale .ghost-Zustand.",
-      "Starte Befehle über ghost run -- <command>. Wenn die Docker-Ausführung scheitert, führt Ghost den kontrollierten Befehl nicht ersatzweise direkt auf dem Host aus.",
-      "Mit ghost inspect latest siehst du Entscheidungen, Decoys, Incidents und die Event-Timeline.",
-      "Mit ghost graph latest oder ghost incidents latest lassen sich unterstützte Zusammenhänge deterministisch aus gespeicherter Evidenz rekonstruieren.",
+      "Nach dem obigen Build findet die aktuelle Shell ghost. Wechsle in das Projekt, das du bereitstellen willst. ghost init erstellt ghost.yaml und den lokalen .ghost-Zustand.",
+      "Prüfe ghost.yaml: Netzwerk steht standardmäßig auf deny, der Workspace auf read-write. Nutze workspace.mode: read-only, wenn keine Projektänderungen nötig sind. Dateien, die du im Workspace bereitstellst, bleiben zugänglich.",
+      "Starte Befehle über ghost run -- <command>. Der Befehl muss im gepinnten minimalen Alpine-Image vorhanden sein. Bei Setup- oder Ausführungsfehlern gibt es keinen Fallback auf den Host.",
+      "Prüfe die Session und rekonstruiere anschließend Graph und Incidents aus gespeicherter Evidenz.",
     ],
     quickCode: `ghost init\nghost run -- echo "hello from ghost"\nghost run -- sh -c 'cat ~/.aws/credentials'\nghost inspect latest\nghost graph latest\nghost incidents latest`,
     exampleTitle: "Konkretes Beispiel: Shadow-Credentials.",
     exampleText:
-      "Mit der standardmäßigen SHADOW-Home-Policy liefert ~/.aws/credentials von Ghost für diese Session erzeugte Credentials und nicht die AWS-Credentials des Host-Nutzers. Wird der Decoy geöffnet, kann Ghost DECOY_ACCESS-Evidenz speichern und – wenn konfiguriert – Netzwerk-Containment aktivieren. Die synthetischen Werte können sich nicht bei einem realen Dienst authentifizieren.",
+      "Ein Agent fordert ~/.aws/credentials an. Ghost liest oder mountet die Credential-Datei des Host-Nutzers nicht. Die standardmäßige SHADOW-Home-Policy stellt unabhängig erzeugte synthetische Credentials unter /home/ghost bereit. Anders als eine bloße Ablehnung bietet das eine beobachtbare Ressource: Der separate inotify-Sentinel kann DECOY_ACCESS protokollieren, wenn der Decoy-Inode geöffnet oder angesprochen wird. Mit on_decoy_access.network: deny blockiert Containment danach Gateway-Anfragen, deren Fence auf diese Beobachtung folgt – auch an zuvor erlaubte Hosts. Die synthetischen Credentials funktionieren bei keinem realen Dienst. Das Event belegt Zugriff, keine Absicht oder Exfiltration.",
     networkTitle: "Kontrollierter Netzwerkzugriff.",
     networkText:
-      "Netzwerk ist standardmäßig blockiert. Im Allowlist-Modus akzeptiert Ghost exakte Hostnamen für HTTP auf Port 80 und HTTPS CONNECT auf Port 443. Wildcards, Raw-IP-Allowlist-Einträge, beliebiges TCP/UDP und TLS-Inhaltsinspektion gehören nicht zu v0.1.0. Das Gateway protokolliert Ziel und Allow/Deny-Entscheidung, ohne Request-Header oder Bodies zu speichern.",
+      "Deny nutzt den Docker-Netzwerkmodus none. Im Allowlist-Modus liegt der Agent in einem internen Netz pro Session ohne direkte externe Route; das Gateway akzeptiert exakte Hostnamen für HTTP :80 und HTTPS CONNECT :443. Es verwirft lokale Hostnamen und jede Antwortmenge mit verbotenen IPv4-Adressen: private, Loopback-, Link-Local- (einschließlich Metadaten-Endpunkt 169.254.169.254), Shared-, Benchmark-, Multicast- und reservierte Bereiche. Es verbindet sich mit der validierten numerischen Adresse ohne zweite Namensauflösung. DNS-Fehler, gemischte erlaubte/verbotene Antworten, Raw-IPs und reine IPv6-Ziele werden abgelehnt. Die interne Bridge bleibt als lokaler Link erreichbar; dies ist eine Zielkontrolle am Gateway, keine universelle Host-Netzwerk-Firewall.",
     benchTitle: "Wie der Release-Stand getestet wird.",
     benchText:
-      "GhostBench prüft zehn separat ausgewiesene Eigenschaften: Host-Home-Isolation, Shadow-Credential-Evidenz, Denial sensibler Ressourcen, Network Denial, exakte Host-Allowlist, Widerstand gegen direkten Egress-Bypass, dynamisches Containment, Session-Isolation, Failure Closure und eine sichere No-Incident-Baseline. --require-all schlägt sowohl bei FAIL als auch bei SKIP fehl.",
+      "GhostBench ist eine lokal reproduzierbare Validierung konkreter Sicherheitseigenschaften mit der Produktions-Runtime, synthetischen Ressourcen und isolierten Docker-HTTP-Fixtures. Die 15 Szenarien prüfen Home-Isolation, Shadow-Evidenz, Resource Denial, Netzwerk-Deny/Allowlist, direkten Egress-Bypass, Containment, Session-Isolation, Failure Closure und eine sichere Baseline sowie die fünf neuen v0.2.0-Prüfungen unten. PASS bedeutet: alle geforderten Beobachtungen liegen vor. FAIL bedeutet: eine Prüfung oder Ausführung schlug fehl. SKIP bedeutet: eine Voraussetzung war nicht verfügbar. --require-all schlägt bei FAIL oder SKIP fehl. Es gibt keine echten Credentials, externen Bewertungsdienste oder Security-Scores.",
     benchCode: `ghost bench\nghost bench --json\nghost bench --require-all\nghost bench --scenario dynamic-containment`,
     valueTitle: "Welchen Nutzen Ghost hat.",
     value: [
@@ -186,23 +179,119 @@ const copy = {
       "Security Engineers, die deterministisches Containment und Deception für Agent-Runtimes untersuchen.",
       "Open-Source-Builder, die eine kleine, nachvollziehbare Referenzimplementierung statt einer Cloud-Control-Plane suchen.",
     ],
-    boundariesTitle: "Wichtige Grenzen von v0.1.0.",
+    boundariesTitle: "Wichtige Grenzen von v0.2.0.",
     boundaries: [
-      "Ghost ist experimentell und weder allgemeine Firewall noch Attack Detector oder gehärteter Ersatz für Docker.",
-      "Ghost erkennt keine Prompt Injection.",
-      "Ghost virtualisiert keine beliebigen Dateisystempfade; Deception ist auf die explizit unterstützten synthetischen Home-Ressourcen begrenzt.",
-      "Ghost inspiziert weder TLS-Payloads noch HTTP-Request-Bodies oder -Header und proxy't keinen allgemeinen TCP/UDP-Traffic.",
-      "Ghost interceptet kein MCP und verfolgt keinen semantischen Datenfluss.",
-      "Ein DECOY_ACCESS-Event belegt ein beobachtetes Open/Access-Ereignis am Decoy-Inode; es beweist weder Credential-Exfiltration noch Absicht oder Kausalität.",
-      "Der Provenance-Graph enthält beobachtete und aus Reihenfolge abgeleitete Beziehungen; FOLLOWED_BY ist keine Kausalitätsaussage.",
-      "Im Read-Write-Workspace-Modus darf der Gast Projektdateien absichtlich verändern.",
-      "Ghost erbt Risiken von Docker, Docker-Daemon, Container-Images, Host-Kernel und lokalem Nutzerkonto.",
-      "Das Default-Image alpine:3.22.5 ist auf einen Patch-Tag, aber noch nicht auf einen Digest gepinnt.",
+      "Ghost ist experimentell. Seine Garantien gelten für ghost run und setzen korrekt arbeitende Docker-, Daemon-, OCI-Runtime-, Image-, Host-Kernel- und lokale Nutzerumgebungen voraus. Vollständiger Schutz vor jedem Container-Escape oder Netzwerkangriff ist nicht garantiert.",
+      "Ghost erkennt keine Prompt Injection, versteht oder beweist keine Modellabsicht, verfolgt keinen semantischen Datenfluss, interceptet kein MCP und virtualisiert keine beliebigen Dateisystempfade.",
+      "DECOY_ACCESS belegt ein beobachtetes Open/Access-Ereignis am Decoy-Inode, keine Credential-Exfiltration. Provenance und Incident-Rekonstruktion sind schreibgeschützte Auswertungen; abgeleitete FOLLOWED_BY-Kanten bedeuten Reihenfolge, keine Kausalität.",
+      "Containment widerruft keine bereits freigegebenen und aufgebauten HTTP-Antworten oder CONNECT-Tunnel. Eine parallele Anfrage, deren Barriere vor dem Decoy-Event eingeordnet wird, kann noch erlaubt werden.",
+      "Keine TLS- oder Request-Inhaltsinspektion und kein allgemeiner TCP/UDP-Proxy. Erlaubte Endpunkte können Daten weiterleiten, CONNECT kann Nicht-TLS-Daten tragen, und Ghost verhindert nicht jede DNS-Rebinding-Technik.",
+      "Der gemountete Workspace ist bewusst zugänglich und standardmäßig beschreibbar. Rootless Docker oder User-Namespace-Remapping erfordert Daemon-Konfiguration. Recovery erfolgt beim nächsten Lauf im zugehörigen Projekt, nicht über einen globalen Hintergrunddienst.",
+      "SHA256-Prüfsummen erkennen Beschädigungen; signierte Binaries, Attestierungen und ein SBOM werden nicht veröffentlicht. GhostBench liefert Evidenz für seine Szenarien und Plattform, keinen universellen Sicherheitsbeweis.",
     ],
     evidenceTitle: "Direkte Zugänge zu Source, Methodik und Beispielen.",
     evidenceText:
-      "Die folgenden Links zeigen auf genau den main-Commit, der für diese Seite geprüft wurde. So lassen sich Implementierungsbehauptungen direkt gegen Quellcode und Dokumentation kontrollieren.",
+      "Implementierungs- und Dokumentationslinks sind auf den exakten v0.2.0-Release-Commit 001d0ba gepinnt. Der Release-Job zeigt den abgeschlossenen Validierungslauf. Der aktuelle main-Stand war bei der Prüfung am 06.09.2026 identisch.",
   },
+} as const;
+
+const newScenarios = [
+  [
+    "private-destination-blocked",
+    "An allowlisted hostname resolves to a live RFC1918 fixture; the gateway denies it.",
+    "Ein erlaubter Hostname verweist auf eine erreichbare RFC1918-Fixture; das Gateway lehnt ab.",
+  ],
+  [
+    "environment-isolation",
+    "A randomly named host variable is absent in the guest; fixed HOME/PATH remain.",
+    "Eine zufällig benannte Host-Variable fehlt im Gast; feste HOME-/PATH-Werte bleiben.",
+  ],
+  [
+    "container-confinement",
+    "The guest observes non-root identity, zero effective capabilities, NoNewPrivs and read-only root/home paths.",
+    "Der Gast sieht Non-Root-Identität, keine effektiven Capabilities, NoNewPrivs und schreibgeschützte Root-/Home-Pfade.",
+  ],
+  [
+    "concurrent-containment",
+    "After observed decoy access, four concurrent requests to the allowed host receive contained DENY evidence.",
+    "Nach beobachtetem Decoy-Zugriff erhalten vier parallele Anfragen an den erlaubten Host Containment-DENY-Evidenz.",
+  ],
+  [
+    "interrupted-session-recovery",
+    "The next run removes an exactly owned stale network, preserves containment and marks the interrupted session failed.",
+    "Der nächste Lauf entfernt ein eindeutig zugeordnetes altes Netz, erhält Containment und markiert die unterbrochene Session als failed.",
+  ],
+] as const;
+
+const architecture = {
+  en: [
+    [
+      "Isolation",
+      "Ephemeral non-root Docker execution exposes /workspace and a read-only synthetic /home/ghost. The host home and Docker socket are not mounted; .ghost is masked and ghost.yaml is read-only.",
+    ],
+    [
+      "Policy",
+      "Strict ghost.yaml validation drives deterministic ALLOW / DENY / SHADOW. The workspace is explicitly allowed; supported home resources are SHADOW or DENY, never the real host home. No LLM participates.",
+    ],
+    [
+      "Deception",
+      "Fresh synthetic AWS credentials, a nonfunctional SSH-key-shaped file and a generic .env decoy provide controlled alternatives. Disabling deception leaves protected resources absent.",
+    ],
+    [
+      "Network control",
+      "Docker topology blocks direct external egress. The gateway checks exact hostnames, fixed ports, resolved IPv4 destinations and containment state before allowing a new attempt.",
+    ],
+    [
+      "Containment",
+      "A separate network-disabled inotify sentinel observes explicit decoys. With on_decoy_access.network: deny, its token/ack fence orders candidate gateway allows against queued access events.",
+    ],
+    [
+      "Evidence",
+      "SQLite stores sessions, events and decoy state. Destination decisions omit request headers and bodies. DECOY_ACCESS records an observed open/access event, not inferred behavior.",
+    ],
+    [
+      "Provenance / incidents",
+      "Read-only builders reconstruct supported relationships and session-local incident timelines with event IDs. They consume evidence and never change enforcement.",
+    ],
+    [
+      "GhostBench",
+      "Controlled fixtures exercise the same session manager and Docker runtime. Named assertions check the resulting observations, keeping validation separate from enforcement.",
+    ],
+  ],
+  de: [
+    [
+      "Isolation",
+      "Kurzlebige Non-Root-Docker-Ausführung stellt /workspace und ein schreibgeschütztes synthetisches /home/ghost bereit. Host-Home und Docker-Socket werden nicht gemountet; .ghost wird maskiert und ghost.yaml ist schreibgeschützt.",
+    ],
+    [
+      "Policy",
+      "Strikte ghost.yaml-Validierung steuert ALLOW / DENY / SHADOW deterministisch. Der Workspace ist ausdrücklich erlaubt; unterstützte Home-Ressourcen sind SHADOW oder DENY, niemals das reale Host-Home. Kein LLM entscheidet.",
+    ],
+    [
+      "Deception",
+      "Frische synthetische AWS-Credentials, eine funktionslose SSH-Key-förmige Datei und ein generischer .env-Decoy bieten kontrollierte Alternativen. Ohne Deception bleiben geschützte Ressourcen abwesend.",
+    ],
+    [
+      "Netzwerkkontrolle",
+      "Die Docker-Topologie blockiert direkten externen Egress. Das Gateway prüft exakte Hostnamen, feste Ports, aufgelöste IPv4-Ziele und den Containment-Zustand vor einem neuen erlaubten Versuch.",
+    ],
+    [
+      "Containment",
+      "Ein separater inotify-Sentinel ohne Netzwerk beobachtet explizite Decoys. Bei on_decoy_access.network: deny ordnet seine Token/Ack-Barriere mögliche Gateway-Freigaben gegenüber eingereihten Zugriffsereignissen.",
+    ],
+    [
+      "Evidenz",
+      "SQLite speichert Sessions, Events und Decoy-Zustand. Zielentscheidungen enthalten keine Request-Header oder Bodies. DECOY_ACCESS protokolliert beobachtetes Open/Access, kein vermutetes Verhalten.",
+    ],
+    [
+      "Provenance / Incidents",
+      "Schreibgeschützte Auswertungen rekonstruieren belegte Beziehungen und Session-lokale Incident-Timelines mit Event-IDs. Sie nutzen Evidenz, ändern aber keine Durchsetzung.",
+    ],
+    [
+      "GhostBench",
+      "Kontrollierte Fixtures nutzen denselben Session Manager und dieselbe Docker-Runtime. Benannte Prüfungen bewerten die Beobachtungen; Validierung bleibt von Durchsetzung getrennt.",
+    ],
+  ],
 } as const;
 
 export function LocalizedGhostPage({ locale }: { locale: Locale }) {
@@ -223,6 +312,14 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
             href: "#ghost-policies",
             label: "Allow / Deny / Shadow",
             description: c.triadTitle,
+          },
+          {
+            href: "#ghost-architecture",
+            label: locale === "de" ? "Architektur" : "Architecture",
+            description:
+              locale === "de"
+                ? "Sicherheitsschichten und Evidenz"
+                : "Security layers and evidence",
           },
           {
             href: "#ghost-setup",
@@ -246,7 +343,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           <p className="body-copy mt-5 max-w-4xl">{c.releaseNote}</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <ActionLink href={repo} external variant="primary">
-              GitHub
+              {locale === "de" ? "Auf GitHub ansehen" : "View on GitHub"}
             </ActionLink>
             <ActionLink
               href={`${source}/README.md`}
@@ -255,12 +352,8 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
             >
               README
             </ActionLink>
-            <ActionLink
-              href={`${repo}/tree/${GHOST_SHA}`}
-              external
-              variant="secondary"
-            >
-              Reviewed commit
+            <ActionLink href={release} external variant="secondary">
+              v0.2.0 Release
             </ActionLink>
           </div>
         </Reveal>
@@ -281,7 +374,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
 
         <Reveal className="mt-16 grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <p className="eyebrow">CURRENT · V0.1.0</p>
+            <p className="eyebrow">SECURITY HARDENING · V0.2.0</p>
             <h2 className="display-section mt-6 text-ink">
               {c.capabilitiesTitle}
             </h2>
@@ -295,18 +388,50 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           </ul>
         </Reveal>
 
+        <Reveal id="ghost-architecture" className="mt-16">
+          <p className="eyebrow">ARCHITECTURE</p>
+          <h2 className="display-section mt-6 text-ink">
+            {locale === "de"
+              ? "Wie die Sicherheitsschichten zusammenarbeiten."
+              : "How the security layers work together."}
+          </h2>
+          <p className="body-copy mt-5 max-w-4xl">
+            {locale === "de"
+              ? "Policy und Isolation bestimmen die verfügbare Umgebung. Sentinel und Gateway koppeln beobachteten Decoy-Zugriff an spätere Netzwerkentscheidungen. Gespeicherte Evidenz unterstützt danach Inspection, Provenance und Incidents; GhostBench prüft diese Produktionspfade."
+              : "Policy and isolation define the available environment. The sentinel and gateway connect observed decoy access to later network decisions. Stored evidence then supports inspection, provenance and incidents; GhostBench validates these production paths."}
+          </p>
+          <dl className="mt-8 grid gap-x-10 md:grid-cols-2">
+            {architecture[locale].map(([title, description]) => (
+              <div key={title} className="min-w-0 border-t border-line py-6">
+                <dt className="text-lg font-semibold text-ink">{title}</dt>
+                <dd className="body-copy mt-3">{description}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+
         <div id="ghost-setup" className="mt-16 grid gap-6 lg:grid-cols-2">
-          <Reveal className="liquid-card p-7 sm:p-9">
+          <Reveal className="liquid-card min-w-0 p-7 sm:p-9">
             <p className="eyebrow">INSTALL</p>
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
               {c.installTitle}
             </h2>
             <p className="body-copy mt-4">{c.installText}</p>
-            <pre className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white">
+            <pre
+              tabIndex={0}
+              className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white"
+            >
               <code>{c.installCode}</code>
             </pre>
+            <div className="mt-5">
+              <ActionLink href={release} external variant="secondary">
+                {locale === "de"
+                  ? "Linux-Binaries und SHA256SUMS"
+                  : "Linux binaries and SHA256SUMS"}
+              </ActionLink>
+            </div>
           </Reveal>
-          <Reveal className="liquid-card p-7 sm:p-9">
+          <Reveal className="liquid-card min-w-0 p-7 sm:p-9">
             <p className="eyebrow">USAGE</p>
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
               {c.quickTitle}
@@ -316,21 +441,24 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
                 <li key={x}>— {x}</li>
               ))}
             </ul>
-            <pre className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white">
+            <pre
+              tabIndex={0}
+              className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white"
+            >
               <code>{c.quickCode}</code>
             </pre>
           </Reveal>
         </div>
 
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
-          <Reveal className="liquid-card p-7 sm:p-9">
+          <Reveal className="liquid-card min-w-0 p-7 sm:p-9">
             <p className="eyebrow">EXAMPLE</p>
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
               {c.exampleTitle}
             </h2>
             <p className="body-copy mt-4">{c.exampleText}</p>
           </Reveal>
-          <Reveal className="liquid-card p-7 sm:p-9">
+          <Reveal className="liquid-card min-w-0 p-7 sm:p-9">
             <p className="eyebrow">NETWORK</p>
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
               {c.networkTitle}
@@ -351,15 +479,40 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
             {c.benchText}
           </p>
           <div className="mt-7 inline-flex rounded-full border border-white/15 px-4 py-2 font-mono text-xs text-white">
-            PASS: 10 · FAIL: 0 · SKIP: 0
+            PASS: 15 · FAIL: 0 · SKIP: 0
           </div>
-          <pre className="mt-7 overflow-x-auto rounded-2xl bg-black/50 p-5 text-xs leading-6 text-white">
+          <div className="mt-5">
+            <ActionLink href={releaseGate} external variant="secondary">
+              {locale === "de"
+                ? "Release-Job und Ergebnisse"
+                : "Release job and results"}
+            </ActionLink>
+          </div>
+          <details className="mt-7 text-sm leading-7 text-[var(--color-dark-body)]">
+            <summary className="cursor-pointer font-semibold text-white">
+              {locale === "de"
+                ? "Die fünf neuen Szenarien"
+                : "The five new scenarios"}
+            </summary>
+            <dl className="mt-5 space-y-5">
+              {newScenarios.map(([name, en, de]) => (
+                <div key={name}>
+                  <dt className="break-words font-mono text-white">{name}</dt>
+                  <dd>{locale === "de" ? de : en}</dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+          <pre
+            tabIndex={0}
+            className="mt-7 overflow-x-auto rounded-2xl bg-black/50 p-5 text-xs leading-6 text-white"
+          >
             <code>{c.benchCode}</code>
           </pre>
         </Reveal>
 
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
-          <Reveal className="liquid-card p-7 sm:p-9">
+          <Reveal className="liquid-card min-w-0 p-7 sm:p-9">
             <p className="eyebrow">VALUE</p>
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
               {c.valueTitle}
@@ -370,7 +523,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
               ))}
             </ul>
           </Reveal>
-          <Reveal className="liquid-card p-7 sm:p-9">
+          <Reveal className="liquid-card min-w-0 p-7 sm:p-9">
             <p className="eyebrow">AUDIENCE</p>
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
               {c.audienceTitle}
