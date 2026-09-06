@@ -60,7 +60,9 @@ jobs:
           assert p.read_text().count(old) == 2
           p.write_text(p.read_text().replace(old, 'page.locator(".tool-showcase-card").first().locator("details li").first()'))
           p = Path('app/tools/ghost/page.tsx')
-          p.write_text(p.read_text().replace('<pre tabIndex={0}', '<pre role="region" tabIndex={0}'))
+          t = p.read_text().replace('<pre tabIndex={0}', '<pre role="region" tabIndex={0}')
+          t = t.replace('<ActionLink href={ghostLinks.benchmarks} external variant="secondary">', '<ActionLink href={ghostLinks.benchmarks} external className="on-navy-primary">')
+          p.write_text(t)
           PY
           rm .github/scripts/apply-ghost-v02.py .github/workflows/ghost-site-qa.yml
       - run: pnpm install --frozen-lockfile
