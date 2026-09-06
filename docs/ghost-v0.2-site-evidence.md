@@ -38,3 +38,5 @@ Security language deliberately excludes universal escape/exfiltration prevention
 ## Regression checks
 
 `tests/ghost.test.ts` checks release/source pins, bilingual metadata, supported commands, scenario identities and stale Ghost presentation. `tests/e2e/ghost.spec.ts` checks both locales at 375, 768, 1280 and 1440 pixels, anchors, page overflow, release CTAs and serious/critical accessibility violations. External Ghost links are checked when `GHOST_CHECK_EXTERNAL_LINKS=1` is set. The existing whole-site checks remain unchanged.
+
+The concurrent main update `2cd66423f339c94798c9b353fb9124e9b6b3c9d9` was reconciled before final validation. Its development launcher and additional browser assertions are preserved. The existing keyboard test now uses structural selectors instead of obsolete copy. External GitHub links are paced and HTTP 429 responses are retried; a rate limit never counts as a successful link check.
