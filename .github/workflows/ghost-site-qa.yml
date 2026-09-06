@@ -8,46 +8,87 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ghost-site-review
+  cancel-in-progress: true
+
 jobs:
-  inspect:
+  validate:
+    if: github.ref == 'refs/heads/ghost-v0.2-site-update'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    permissions:
+      contents: write
     env:
+      CI: true
       NEXT_TELEMETRY_DISABLED: 1
+      GHOST_CHECK_EXTERNAL_LINKS: 1
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          persist-credentials: false
+          ref: ${{ github.sha }}
       - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: 22.13.0
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - name: Export formatting tool and installed framework guidance
+      - name: Apply scoped overview and test updates
         run: |
-          mkdir -p /tmp/ghost-review
-          tar -czf /tmp/ghost-review/prettier.tar.gz -C "$(readlink -f node_modules/prettier)/.." prettier
-          if test -d node_modules/next/dist/docs; then
-            cp -R node_modules/next/dist/docs /tmp/ghost-review/next-docs
-          fi
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
-        with:
-          name: ghost-review-tools
-          path: /tmp/ghost-review/
-          retention-days: 3
-      - name: Baseline formatting
-        continue-on-error: true
+          python3 .github/scripts/apply-ghost-v02.py
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('tests/ghost.test.ts')
+          t = p.read_text().replace('expect(ghostLinks.release).toEndWith("/releases/tag/v0.2.0");', 'expect(ghostLinks.release.endsWith("/releases/tag/v0.2.0")).toBe(true);')
+          t = t.replace('expect(ghostLinks.checksums).toEndWith("/SHA256SUMS");', 'expect(ghostLinks.checksums.endsWith("/SHA256SUMS")).toBe(true);')
+          p.write_text(t)
+          PY
+          rm .github/scripts/apply-ghost-v02.py .github/workflows/ghost-site-qa.yml
+      - run: pnpm install --frozen-lockfile
+      - name: Format changed presentation and test files
+        run: pnpm exec prettier --write content/ghost.ts app/tools/ghost/page.tsx app/page.tsx app/tools/page.tsx content/pages.ts content/locales/de-metadata.ts tests/ghost.test.ts tests/e2e/ghost.spec.ts docs/ghost-v0.2-site-evidence.md
+      - name: Check formatting
         run: pnpm format:check
-      - name: Baseline lint
-        continue-on-error: true
+      - name: Lint
         run: pnpm lint
-      - name: Baseline typecheck
-        continue-on-error: true
+      - name: Type-check
         run: pnpm typecheck
-      - name: Baseline tests
-        continue-on-error: true
+      - name: Unit tests
         run: pnpm test
-      - name: Baseline build
-        continue-on-error: true
+      - name: Internal links
+        run: pnpm links:internal
+      - name: Production build
         run: pnpm build
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Browser accessibility responsive and Ghost external-link tests
+        run: pnpm test:e2e
+      - name: Verify no unrelated website changes
+        run: |
+          git diff --exit-code -- package.json pnpm-lock.yaml app/globals.css app/studio.css app/tools/replay/page.tsx components
+          git diff --check
+          git diff --stat
+      - name: Commit verified source only to review branch
+        run: |
+          test "$GITHUB_REF" = refs/heads/ghost-v0.2-site-update
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/ghost.ts app/tools/ghost/page.tsx app/page.tsx app/tools/page.tsx content/pages.ts content/locales/de-metadata.ts tests/ghost.test.ts tests/e2e/ghost.spec.ts docs/ghost-v0.2-site-evidence.md .github/scripts/apply-ghost-v02.py .github/workflows/ghost-site-qa.yml
+          git commit -m 'feat: update Ghost site for v0.2.0'
+          git push origin HEAD:refs/heads/ghost-v0.2-site-update
+          git rev-parse HEAD
+      - name: Package final source and diff for review
+        if: always()
+        run: |
+          mkdir -p /tmp/ghost-final-review
+          tar --exclude=.git --exclude=node_modules --exclude=.next --exclude=test-results --exclude=playwright-report -czf /tmp/ghost-final-review/website-source.tar.gz .
+          git diff > /tmp/ghost-final-review/uncommitted.patch
+          git status --short > /tmp/ghost-final-review/status.txt
+          git rev-parse HEAD > /tmp/ghost-final-review/revision.txt
+          if test -d test-results; then cp -R test-results /tmp/ghost-final-review/; fi
+      - name: Export source and screenshots
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ghost-site-final-review
+          path: /tmp/ghost-final-review/
+          retention-days: 3
