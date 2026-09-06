@@ -1,0 +1,50 @@
+name: Ghost site review
+
+on:
+  push:
+    branches:
+      - ghost-v0.2-site-update
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out website
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: website
+          persist-credentials: false
+      - name: Check out released Ghost source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: rappidAI-Research/rappid-ghost
+          ref: v0.2.0
+          path: ghost-source
+          persist-credentials: false
+      - name: Inspect complete repository and Ghost references
+        run: |
+          echo 'WEBSITE REVISION'
+          git -C website rev-parse HEAD
+          echo 'RELEASE REVISION'
+          git -C ghost-source rev-parse HEAD
+          echo 'COMPLETE WEBSITE FILE INVENTORY'
+          git -C website ls-files
+          echo 'ALL GHOST REFERENCES'
+          git -C website grep -in -e ghost -- ':!pnpm-lock.yaml' ':!.github/workflows/ghost-site-qa.yml' || true
+          echo 'RELEASE DOCUMENT INVENTORY'
+          find ghost-source/docs -type f | sort
+      - name: Package source for offline inspection
+        run: |
+          mkdir -p inspection
+          tar --exclude=.git -czf inspection/website-source.tar.gz website
+          tar --exclude=.git -czf inspection/ghost-source.tar.gz ghost-source
+      - name: Export inspection source
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ghost-site-inspection
+          path: inspection/
+          retention-days: 3
