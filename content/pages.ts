@@ -278,7 +278,7 @@ export const pageMetadata = {
   "/tools/ghost": {
     title: "Ghost v0.2.0 — rappidAI Research",
     description:
-      "Ghost v0.2.0: security hardening for a deception-aware AI-agent runtime with deterministic ALLOW, DENY and SHADOW, verified GhostBench results and explicit limits.",
+      "Ghost v0.2.0: a security-hardening release for autonomous AI agents. Explore ALLOW, DENY, SHADOW, installation, fifteen GhostBench scenarios and documented limits.",
   },
   "/tools/replay": {
     title: "Replay — rappidAI Research",

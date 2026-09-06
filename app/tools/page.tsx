@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/reveal";
+import { ghostLinks, ghostRelease } from "@/content/ghost";
 import { SignalArt } from "@/components/graphics/signal-art";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -23,17 +24,19 @@ const copy = {
       "What happened during the run — and can the technical state be reconstructed?",
     note: "Ghost and Replay are complementary research directions, not presented here as a single integrated product. Their current implementations remain separate repositories with separate guarantees.",
     ghostSummary:
-      "Ghost v0.2.0: a security-hardening release of the deception-aware runtime. Deterministic ALLOW, DENY and SHADOW, without an LLM in enforcement.",
+      "A deception-aware security runtime for autonomous agents. Deterministic ALLOW, DENY and SHADOW outcomes, with hardened isolation, controlled synthetic resources and inspectable evidence—not an LLM-based attack detector.",
     replaySummary:
       "Local-first infrastructure for recording, restoring, branching, rerunning and diffing AI-agent executions.",
     current: "CURRENT IMPLEMENTATION",
+    ghostStatus: "Security-hardening release · Experimental",
+    release: "v0.2.0 Release",
     ghostFacts: [
-      "Docker-isolated sessions",
-      "Synthetic agent home and decoy resources",
-      "Exact-host HTTP/HTTPS egress with resolved IPv4 validation",
-      "Evidence-based decoy-access events",
-      "Token-scoped containment and interrupted-session recovery",
-      "GhostBench: PASS: 15 · FAIL: 0 · SKIP: 0",
+      "Non-root Docker confinement and a positive guest-environment allowlist",
+      "Exact-hostname HTTP/HTTPS egress with validated IPv4 destinations",
+      "Synthetic home resources and observed DECOY_ACCESS evidence",
+      "Token/ack containment fence for new gateway decisions—not existing connections",
+      "Per-project session locking and Ghost-owned resource recovery",
+      "Digest-pinned image and fifteen-scenario GhostBench release gate",
     ],
     replayFacts: [
       "Generic execution recorder",
@@ -63,17 +66,19 @@ const copy = {
       "Was ist während des Runs passiert – und lässt sich der technische Zustand rekonstruieren?",
     note: "Ghost und Replay sind komplementäre Forschungsrichtungen, werden hier aber nicht als bereits integriertes Gesamtprodukt dargestellt. Die aktuellen Implementierungen bleiben getrennte Repositories mit getrennten Garantien.",
     ghostSummary:
-      "Ghost v0.2.0: ein Security-Hardening-Release der deception-aware Sicherheits-Runtime. Deterministisches ALLOW, DENY und SHADOW ohne LLM als Sicherheitsinstanz.",
+      "Eine deception-aware Security-Runtime für autonome Agenten. Deterministische ALLOW-, DENY- und SHADOW-Entscheidungen mit gehärteter Isolation, kontrollierten synthetischen Ressourcen und prüfbaren Nachweisen – kein LLM-basierter Angriffserkenner.",
     replaySummary:
       "Local-first Infrastruktur zum Aufzeichnen, Wiederherstellen, Verzweigen, erneuten Ausführen und Vergleichen von KI-Agenten-Runs.",
     current: "AKTUELLE IMPLEMENTIERUNG",
+    ghostStatus: "Release zur Sicherheitshärtung · Experimentell",
+    release: "v0.2.0 Release",
     ghostFacts: [
-      "Docker-isolierte Sessions",
-      "Synthetisches Agenten-Home und Decoy-Ressourcen",
-      "Exakter HTTP/HTTPS-Hostname-Egress mit IPv4-Zielprüfung",
-      "Evidenzbasierte Decoy-Access-Events",
-      "Token-scoped Containment und Recovery unterbrochener Sessions",
-      "GhostBench: PASS: 15 · FAIL: 0 · SKIP: 0",
+      "Nicht-Root-Docker-Isolation und positive Allowlist für die Gastumgebung",
+      "HTTP/HTTPS-Egress für exakte Hostnamen mit validierten IPv4-Zielen",
+      "Synthetische Home-Ressourcen und beobachtete DECOY_ACCESS-Nachweise",
+      "Token/Ack-Containment-Fence für neue Gateway-Entscheidungen, nicht bestehende Verbindungen",
+      "Session-Sperren pro Projekt und Bereinigung Ghost-eigener Ressourcen",
+      "Digest-fixiertes Image und GhostBench-Release-Gate mit fünfzehn Szenarien",
     ],
     replayFacts: [
       "Generischer Execution Recorder",
@@ -94,7 +99,7 @@ const tools = [
   {
     name: "Ghost",
     href: "/tools/ghost" as const,
-    repo: "https://github.com/rappidAI-Research/rappid-ghost",
+    repo: ghostLinks.repository,
     accent: "ALLOW · DENY · SHADOW",
   },
   {
@@ -187,6 +192,11 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                   <p className="body-lg mt-5">
                     {isGhost ? c.ghostSummary : c.replaySummary}
                   </p>
+                  {isGhost && (
+                    <p className="mt-5 text-sm font-medium text-accent">
+                      {ghostRelease.version} · {c.ghostStatus}
+                    </p>
+                  )}
                   <details>
                     <summary>{c.current}</summary>
                     <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
@@ -202,6 +212,15 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                     <ActionLink href={tool.repo} external variant="secondary">
                       {c.inspect}
                     </ActionLink>
+                    {isGhost && (
+                      <ActionLink
+                        href={ghostLinks.release}
+                        external
+                        variant="secondary"
+                      >
+                        {c.release}
+                      </ActionLink>
+                    )}
                   </div>
                 </div>
               </Reveal>

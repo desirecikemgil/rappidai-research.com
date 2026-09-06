@@ -176,11 +176,11 @@ test("tool implementation details can be expanded with the keyboard", async ({
   await summary.focus();
   await page.keyboard.press("Enter");
   await expect(
-    page.getByText("— Docker-isolated sessions", { exact: true }),
+    page.locator(".tool-showcase-card").first().locator("details li").first(),
   ).toBeVisible();
   await page.keyboard.press("Enter");
   await expect(
-    page.getByText("— Docker-isolated sessions", { exact: true }),
+    page.locator(".tool-showcase-card").first().locator("details li").first(),
   ).not.toBeVisible();
 });
 
@@ -439,7 +439,7 @@ for (const route of ["/tools/ghost", "/de/tools/ghost"] as const) {
     );
     await expect(page.locator("main")).not.toContainText("v0.1.0");
     await expect(
-      page.getByRole("link", { name: "v0.2.0 Release", exact: true }),
+      page.getByRole("link", { name: "v0.2.0 Release", exact: true }).first(),
     ).toHaveAttribute(
       "href",
       "https://github.com/rappidAI-Research/rappid-ghost/releases/tag/v0.2.0",
