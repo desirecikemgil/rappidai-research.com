@@ -1,8 +1,6 @@
 export const deMetadataTranslations: Readonly<Record<string, string>> = {
   "rappidAI Research — Compact and Local AI Models":
     "rappidAI Research — Kompakte und lokale KI-Modelle",
-  "Independent AI research on compact language models, documented training workflows and local inference.":
-    "Unabhängige KI-Forschung zu kompakten Sprachmodellen, dokumentierten Trainingsabläufen und lokaler Inferenz.",
   "Models — rappidAI Research": "Modelle — rappidAI Research",
   "Explore two released Quantum pilot models and the evidence-backed pipeline status of the untrained Echelon model line.":
     "Entdecken Sie zwei veröffentlichte Quantum-Pilotmodelle und den evidenzgestützten Pipeline-Status der untrainierten Echelon-Modelllinie.",
@@ -60,8 +58,6 @@ export const deMetadataTranslations: Readonly<Record<string, string>> = {
   "Answers about base-completion models, GGUF, local inference, Echelon stages, evidence status, privacy and licensing.":
     "Antworten zu Base-Completion-Modellen, GGUF, lokaler Inferenz, Echelon-Phasen, Evidenzstatus, Datenschutz und Lizenzierung.",
   "About — rappidAI Research": "Über uns — rappidAI Research",
-  "Learn about rappidAI, an early-stage independent AI research initiative based in Berlin.":
-    "Erfahren Sie mehr über rappidAI, eine unabhängige KI-Forschungsinitiative in einer frühen Phase mit Sitz in Berlin.",
   "Contact — rappidAI Research": "Kontakt — rappidAI Research",
   "Contact rappidAI about technical discussions, collaboration enquiries or model questions.":
     "Kontaktieren Sie rappidAI für technische Gespräche, Kooperationsanfragen oder Fragen zu den Modellen.",

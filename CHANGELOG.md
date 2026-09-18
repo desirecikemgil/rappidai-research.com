@@ -8,6 +8,13 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Readiness pass — 18 September 2026
+
+- Aligned English/German identity, metadata, contact and Echelon stages with current project evidence; added the compute plan without asserting training or credit approval.
+- Corrected canonical GitHub links, source-license drift, Ghost release/development wording and Replay live-rerun examples.
+- Excluded test fixtures by path from public-link validation and added resolved content-module URL checks with regression coverage.
+- Patched vulnerable transitive dependencies within their existing release lines.
+
 ### Added
 
 - A public Resources hub covering publications, reproducibility, data and

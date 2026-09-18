@@ -2,6 +2,13 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
+import {
+  collectExternalUrls,
+  isPublicLinkSource,
+  linkModules,
+  loadLinkModule,
+} from "./link-sources.mjs";
+
 const args = new Set(process.argv.slice(2));
 const checkInternal = args.size === 0 || args.has("--internal");
 const checkExternal = args.size === 0 || args.has("--external");
@@ -22,7 +29,7 @@ const trackedFiles = execFileSync("git", ["ls-files", "-z"])
   .split("\0")
   .filter(Boolean);
 
-const textFiles = trackedFiles.flatMap((file) => {
+const textFiles = trackedFiles.filter(isPublicLinkSource).flatMap((file) => {
   const contents = readFileSync(file);
   return contents.includes(0) ? [] : [[file, contents.toString("utf8")]];
 });
@@ -57,29 +64,6 @@ function findBrokenRelativeLinks() {
   }
 
   return failures;
-}
-
-function collectExternalUrls() {
-  const urls = new Set();
-  const urlPattern = /https?:\/\/[^\s<>"'`)\]}]+/g;
-
-  for (const [, contents] of textFiles) {
-    for (const match of contents.matchAll(urlPattern)) {
-      const value = match[0].replace(/[.,;:]+$/g, "");
-      if (value.includes("${")) continue;
-
-      try {
-        const url = new URL(value);
-        if (!["localhost", "127.0.0.1"].includes(url.hostname)) {
-          urls.add(url.toString());
-        }
-      } catch {
-        // Malformed examples are handled by their owning syntax or unit tests.
-      }
-    }
-  }
-
-  return [...urls].sort();
 }
 
 async function fetchStatus(url) {
@@ -128,11 +112,11 @@ async function checkExternalUrls(urls) {
 
   async function worker() {
     while (nextIndex < urls.length) {
-      const url = urls[nextIndex];
+      const { url, files } = urls[nextIndex];
       nextIndex += 1;
 
       const result = await fetchStatus(url);
-      if (!result.ok) failures.push({ url, error: result.error });
+      if (!result.ok) failures.push({ url, files, error: result.error });
     }
   }
 
@@ -159,14 +143,19 @@ if (checkInternal) {
 }
 
 if (checkExternal) {
-  const urls = collectExternalUrls();
+  const resolvedModules = await Promise.all(
+    linkModules.map(async (file) => [file, await loadLinkModule(file)]),
+  );
+  const urls = collectExternalUrls(textFiles, resolvedModules);
   const failures = await checkExternalUrls(urls);
 
   if (failures.length > 0) {
     failed = true;
     console.error("Unreachable external links:");
     for (const failure of failures) {
-      console.error(`- ${failure.url}: ${failure.error}`);
+      console.error(
+        `- ${failure.url}: ${failure.error} (${failure.files.join(", ")})`,
+      );
     }
   } else {
     console.log(`External links: passed (${urls.length} checked)`);

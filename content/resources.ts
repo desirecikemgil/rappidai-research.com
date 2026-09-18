@@ -14,11 +14,11 @@ import {
 
 export const resourceReview = {
   isoDate: siteConfig.lastReviewed,
-  label: "23 July 2026",
+  label: "18 September 2026",
   evidenceReference: "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39",
   evidenceUrl: publicResearchUrls.evidenceSnapshot,
   explanation:
-    "Research statements are reviewed against this immutable lumen-quantum snapshot and the pinned Hugging Face model revisions linked from each record.",
+    "Research results retain the historical evidence snapshot and pinned model revisions. Project identity, license decisions and compute planning were checked separately on 18 September 2026; their links identify the relevant revisions.",
 } as const;
 
 export const resourceCards = [
@@ -597,6 +597,7 @@ export const statusContent = {
     "Keep every website claim tied to an immutable artifact or an explicit missing-evidence label.",
   ],
   sources: [
+    { label: "Echelon compute plan", url: publicResearchUrls.computePlan },
     {
       label: "Repository roadmap",
       url: publicProjectUrls.roadmap,

@@ -26,8 +26,37 @@ const publicRoutes = [
   "/privacy",
 ] as const;
 
+for (const route of ["/tools/replay", "/de/tools/replay"]) {
+  test(`${route} command examples can be scrolled with the keyboard`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(route);
+    const commands = page.locator("pre");
+    await expect(commands).toContainText(
+      "--mode live --confirm-execution <state-id>",
+    );
+    await commands.focus();
+    await expect(commands).toBeFocused();
+    await commands.press("ArrowRight");
+    await expect
+      .poll(() => commands.evaluate((element) => element.scrollLeft))
+      .toBeGreaterThan(0);
+    const violations = (
+      await new AxeBuilder({ page }).analyze()
+    ).violations.filter(({ impact }) =>
+      ["serious", "critical"].includes(impact ?? ""),
+    );
+    expect(violations).toEqual([]);
+  });
+}
+
 for (const route of publicRoutes) {
   test(`${route} renders one accessible page heading`, async ({ page }) => {
+    // Audit resting colors, not partially transparent scroll-reveal frames.
+    // Motion and responsive behavior have separate interaction coverage below.
+    await page.emulateMedia({ reducedMotion: "reduce" });
     const response = await page.goto(route);
 
     expect(response?.status()).toBe(200);

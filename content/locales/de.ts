@@ -3,11 +3,14 @@ import { deMetadataTranslations } from "./de-metadata";
 import { deResourceTranslations } from "./de-resources";
 import { deResearchTranslations } from "./de-research";
 
+import { deReadinessTranslations } from "./de-readiness";
+
 export const deTranslations: Readonly<Record<string, string>> = {
   ...deComparisonTranslations,
   ...deMetadataTranslations,
   ...deResourceTranslations,
   ...deResearchTranslations,
+  ...deReadinessTranslations,
   "Independent AI research on compact language models and documented training, evaluation and local-inference workflows.":
     "Unabhängige KI-Forschung zu kompakten Sprachmodellen sowie dokumentierten Trainings-, Evaluations- und lokalen Inferenzabläufen.",
   "Berlin, Germany": "Berlin, Deutschland",
@@ -170,8 +173,6 @@ export const deTranslations: Readonly<Record<string, string>> = {
     "Publikationen, Reproduzierbarkeitsnachweise, Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und aktueller Projektstatus in einem evidenzgebundenen Dokumentationsbereich.",
   "An independent research initiative at an early stage.":
     "Eine unabhängige Forschungsinitiative in einer frühen Phase.",
-  "rappidAI is an early-stage independent AI research initiative developing compact language-model experiments and documented training, evaluation and local-inference workflows.":
-    "rappidAI ist eine unabhängige KI-Forschungsinitiative in einer frühen Phase, die kompakte Sprachmodellexperimente und dokumentierte Abläufe für Training, Evaluation und lokale Inferenz entwickelt.",
   "WHAT RAPPIDAI IS": "WAS RAPPIDAI IST",
   "Learning through real model development.":
     "Lernen durch reale Modellentwicklung.",
@@ -188,10 +189,6 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Local inference can reduce dependence on external services and may keep prompts on the user’s device. Actual privacy depends on the application, configuration and surrounding infrastructure.":
     "Lokale Inferenz kann die Abhängigkeit von externen Diensten verringern und Eingaben möglicherweise auf dem Gerät des Nutzers halten. Der tatsächliche Datenschutz hängt von Anwendung, Konfiguration und umgebender Infrastruktur ab.",
   "PROJECT STRUCTURE": "PROJEKTSTRUKTUR",
-  "One initiative, one development project, one model series.":
-    "Eine Initiative, ein Entwicklungsprojekt, eine Modellreihe.",
-  "rappidAI is the research initiative. Lumen is the experimental development project for training and local-inference workflows. Quantum is the model series produced within that work.":
-    "rappidAI ist die Forschungsinitiative. Lumen ist das experimentelle Entwicklungsprojekt für Trainings- und lokale Inferenzabläufe. Quantum ist die innerhalb dieser Arbeit entstandene Modellreihe.",
   "PUBLISHED WORK": "VERÖFFENTLICHTE ARBEIT",
   "Two public experimental pilots.": "Zwei öffentliche experimentelle Piloten.",
   "rappidAI currently publishes two experimental German base-completion models: quantum-1-pilot and quantum-1.6-pilot. Both contain 49,295,872 parameters and are available as F16 GGUF files for local experimentation. The accompanying public repository documents the training, evaluation and GGUF-export workflow.":
@@ -201,15 +198,11 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "View public models": "Öffentliche Modelle ansehen",
   "CURRENT DIRECTION": "AKTUELLE AUSRICHTUNG",
   "The Echelon model line.": "Die Echelon-Modelllinie.",
-  "The current public work covers Echelon architecture preflight, tokenizer validation and Garden data-pipeline smoke tests. Echelon Base and a later Echelon Chat stage belong to one model line; no trained Echelon model is public.":
-    "Die aktuelle öffentliche Arbeit umfasst den Echelon-Architektur-Preflight, die Tokenizer-Validierung und Smoke-Tests der Garden-Datenpipeline. Echelon Base und eine spätere Echelon-Chat-Phase gehören zu derselben Modelllinie; es ist kein trainiertes Echelon-Modell öffentlich.",
   "EXPERIMENTAL OUTPUTS": "EXPERIMENTELLE AUSGABEN",
   "Limitations are communicated directly.":
     "Einschränkungen werden direkt benannt.",
   "Research outputs may be limited, repetitive, factually unreliable and inconsistent. They should be inspected as experiments, not treated as production systems.":
     "Forschungsausgaben können begrenzt, repetitiv, faktisch unzuverlässig und inkonsistent sein. Sie sollten als Experimente geprüft und nicht als Produktivsysteme behandelt werden.",
-  "For technical questions, model feedback, open-source collaboration or project enquiries, contact rappidAI by email.":
-    "Kontaktieren Sie rappidAI per E-Mail bei technischen Fragen, Modellfeedback, Open-Source-Zusammenarbeit oder Projektanfragen.",
   "Contact and research profiles": "Kontakt und Forschungsprofile",
   "Email contact is unavailable.": "E-Mail-Kontakt ist nicht verfügbar.",
   "Technical questions": "Technische Fragen",

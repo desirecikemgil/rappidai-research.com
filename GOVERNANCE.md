@@ -7,7 +7,7 @@ steering committee, or larger team.
 ## Maintainer responsibility
 
 The repository is currently maintained by
-[@jonascikemgil07-hue](https://github.com/jonascikemgil07-hue). The maintainer
+[@desirecikemgil](https://github.com/desirecikemgil). The maintainer
 sets repository scope, reviews contributions, manages releases and community
 spaces, and makes the final merge decision.
 

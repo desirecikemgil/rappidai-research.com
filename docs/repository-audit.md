@@ -127,11 +127,9 @@ with `--frozen-lockfile` and pins workflow actions to full commit SHAs. These
 controls improve repeatability but do not establish that dependencies are free
 of malicious code or future vulnerabilities.
 
-In the separate research repository, `tools/llama.cpp` is a mode-`160000` Git
-link at the reviewed commit, but no `.gitmodules` file is present. The exact
-linked tool revision therefore cannot be initialized through the normal
-submodule workflow from that public checkout; this is an external research
-reproducibility and supply-chain gap, not a website runtime dependency.
+The historical research snapshot had an uninitializable llama.cpp Git link.
+As rechecked on 2026-09-18, Quantum documents a separate checkout and pinned
+revision in [docs/gguf-export.md](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md). This setup correction does not supply missing historical model-run evidence.
 
 Before release:
 

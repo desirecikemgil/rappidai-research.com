@@ -103,7 +103,7 @@ export const aboutPageContent = {
     eyebrow: "ABOUT",
     title: "An independent research initiative at an early stage.",
     description:
-      "rappidAI is an early-stage independent AI research initiative developing compact language-model experiments and documented training, evaluation and local-inference workflows.",
+      "rappidAI is a self-funded, founder-led, early-stage AI research and development initiative based in Berlin.",
   } satisfies PageIntroduction,
   whatItIs: {
     eyebrow: "WHAT RAPPIDAI IS",
@@ -122,8 +122,8 @@ export const aboutPageContent = {
   },
   projectStructure: {
     eyebrow: "PROJECT STRUCTURE",
-    title: "One initiative, one development project, one model series.",
-    text: "rappidAI is the research initiative. Lumen is the experimental development project for training and local-inference workflows. Quantum is the model series produced within that work.",
+    title: "An initiative, a model project and agent infrastructure.",
+    text: "rappidAI is the initiative. rappidAI Quantum is its model-development project; Lumen is an earlier name retained in repository paths. Ghost and Replay are supporting open-source projects for agent security and execution reproducibility.",
   },
   publishedWork: {
     eyebrow: "PUBLISHED WORK",
@@ -140,7 +140,7 @@ export const aboutPageContent = {
   currentDirection: {
     eyebrow: "CURRENT DIRECTION",
     title: "The Echelon model line.",
-    text: "The current public work covers Echelon architecture preflight, tokenizer validation and Garden data-pipeline smoke tests. Echelon Base and a later Echelon Chat stage belong to one model line; no trained Echelon model is public.",
+    text: "Echelon has architecture preflight, tokenizer validation and Garden smoke evidence. The next milestone is production data preparation, followed by a validated training recipe, base training and evaluation. Compute and storage are constraints; the compute plan documents the gates. No Echelon checkpoint is published.",
   },
   experimentalNotice: {
     eyebrow: "EXPERIMENTAL OUTPUTS",
@@ -154,7 +154,7 @@ export const contactPageContent = {
     eyebrow: "CONTACT",
     title: "Interested in the research?",
     description:
-      "For technical questions, model feedback, open-source collaboration or project enquiries, contact rappidAI by email.",
+      "Contact founder Jonas Désiré Cikemgil at the project’s business-domain email for technical questions, model feedback, open-source collaboration or project enquiries.",
   } satisfies PageIntroduction,
   methodsHeading: "Contact and research profiles",
   emailMissingLabel: "Email contact is unavailable.",
@@ -243,7 +243,7 @@ export const pageMetadata = {
   "/": {
     title: "rappidAI Research — Compact and Local AI Models",
     description:
-      "Independent AI research on compact language models, documented training workflows and local inference.",
+      "Self-funded, founder-led AI research and development in Berlin: compact language models, documented experiments and open agent infrastructure.",
   },
   "/models": {
     title: "Models — rappidAI Research",
@@ -333,7 +333,7 @@ export const pageMetadata = {
   "/about": {
     title: "About — rappidAI Research",
     description:
-      "Learn about rappidAI, an early-stage independent AI research initiative based in Berlin.",
+      "Learn about rappidAI, a self-funded, founder-led, early-stage AI research and development initiative in Berlin.",
   },
   "/contact": {
     title: "Contact — rappidAI Research",

@@ -6,10 +6,10 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonascikemgil07-hue/rappidai-research.com.git"
+    "url": "git+https://github.com/desirecikemgil/rappidai-research.com.git"
   },
   "bugs": {
-    "url": "https://github.com/jonascikemgil07-hue/rappidai-research.com/issues"
+    "url": "https://github.com/desirecikemgil/rappidai-research.com/issues"
   },
   "engines": {
     "node": ">=22.13.0"

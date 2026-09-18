@@ -13,6 +13,7 @@ const source = `${ghostRelease.repository}/blob/${ghostRelease.commit}`;
 export const ghostLinks = {
   repository: ghostRelease.repository,
   release: `${ghostRelease.repository}/releases/tag/${ghostRelease.version}`,
+  development: `${ghostRelease.repository}/blob/b5815b5757e562ec749250795d1fdf9551bfdd61/CHANGELOG.md`,
   readme: `${source}/README.md`,
   changelog: `${source}/CHANGELOG.md`,
   architecture: `${source}/docs/architecture.md`,
@@ -274,7 +275,7 @@ export const ghostCopy = {
     ],
     sourcesTitle: "Inspect the source. Try the release.",
     sourcesText:
-      "Technical documentation below is pinned to the reviewed release commit. The v0.2.0 tag and current main matched this revision when checked. Ghost remains experimental; read the security model before relying on it.",
+      "The documentation and fifteen-scenario result below are pinned to released v0.2.0. Current main contains unreleased v0.3 work on bounded prompt-injection detection and trust context; those capabilities are not part of v0.2.0. Ghost remains experimental.",
     readme: "Documentation / README",
     security: "Security model",
     moreSources: "Architecture, policy and evidence references",
@@ -490,7 +491,7 @@ export const ghostCopy = {
     ],
     sourcesTitle: "Quellcode prüfen. Release ausprobieren.",
     sourcesText:
-      "Die technische Dokumentation unten ist an den geprüften Release-Commit gebunden. v0.2.0-Tag und aktueller main entsprachen bei der Prüfung dieser Revision. Ghost bleibt experimentell; lies das Sicherheitsmodell, bevor du dich darauf verlässt.",
+      "Die Dokumentation und das Ergebnis der fünfzehn Szenarien unten sind an das veröffentlichte v0.2.0 gebunden. Aktueller main enthält unveröffentlichte v0.3-Arbeit an begrenzter Prompt-Injection-Erkennung und Trust Context; diese Funktionen gehören nicht zu v0.2.0. Ghost bleibt experimentell.",
     readme: "Dokumentation / README",
     security: "Sicherheitsmodell",
     moreSources: "Architektur, Regeln und Nachweisreferenzen",
