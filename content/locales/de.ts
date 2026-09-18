@@ -269,6 +269,8 @@ export const deTranslations: Readonly<Record<string, string>> = {
     "Basisveröffentlichung der Quantum-Reihe und Vorgänger von quantum-1.6-pilot. Das öffentliche Manifest verwendet die historische Modell-ID quantum-1-base.",
   "Publicly available as an experimental F16 GGUF release on Hugging Face.":
     "Öffentlich als experimentelle F16-GGUF-Veröffentlichung auf Hugging Face verfügbar.",
+  "All rights reserved: no public reuse license is granted for the pilot weights, GGUF artifacts or tokenizers. Redistribution, modification and commercial use are not granted; do not describe these artifacts as open weight. Downloadability does not change this boundary.":
+    "Alle Rechte vorbehalten: Für Pilotgewichte, GGUF-Artefakte und Tokenizer wird keine öffentliche Wiederverwendungslizenz erteilt. Rechte zur Weiterverbreitung, Veränderung und kommerziellen Nutzung werden nicht eingeräumt; diese Artefakte dürfen nicht als Open Weight bezeichnet werden. Die Downloadmöglichkeit ändert diese Grenze nicht.",
   "No model license is currently stated in the public repository. Downloadability does not by itself define reuse rights.":
     "Im öffentlichen Repository ist derzeit keine Modelllizenz angegeben. Die Möglichkeit zum Herunterladen definiert für sich allein keine Wiederverwendungsrechte.",
   "Hugging Face model link pending": "Hugging-Face-Modelllink ausstehend",
