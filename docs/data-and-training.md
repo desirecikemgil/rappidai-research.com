@@ -15,7 +15,7 @@ silently become a training claim. Statements use four evidence levels:
 
 The website is a publication and presentation repository. Training and data
 preparation live in the separate
-[`lumen-quantum`](https://github.com/jonascikemgil07-hue/lumen-quantum)
+[`lumen-quantum`](https://github.com/rappidAI-Research/lumen-quantum)
 research repository. This review used its public commit
 `f7eda1fb0ae153f0f9cc3477ead997cbdb462b39` plus the public Hugging Face model
 repositories. Future changes to those sources should be recorded with a new
@@ -195,18 +195,22 @@ the release record should link:
   smoke test; production data and model training have not started.
 - Explicit model-weight and tokenizer licensing was not found in the reviewed
   Hugging Face metadata.
-- The reviewed research commit stores `tools/llama.cpp` as a Git link but has no
-  `.gitmodules` entry, so its exact tool revision cannot be initialized through
-  the normal submodule workflow from that checkout.
+- The historical research snapshot had a llama.cpp Git-link setup gap. Current
+  Quantum records the external revision and checkout instructions in
+  [docs/gguf-export.md](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md); historical run provenance remains incomplete.
+
+## Next execution milestone
+
+The [compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) separates configured token targets from completed data and training. It adds resource calculations and acceptance gates without starting production preparation, training or a cloud workload.
 
 ## Primary sources
 
 - [`quantum-1-pilot` Hugging Face repository](https://huggingface.co/rappidAI/quantum-1-pilot)
 - [`quantum-1.6-pilot` Hugging Face repository](https://huggingface.co/rappidAI/quantum-1.6-pilot)
 - [FineWeb2-HQ dataset card](https://huggingface.co/datasets/epfml/FineWeb2-HQ)
-- [`quantum-1.6-pilot` data configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
-- [`quantum-1.6-pilot` training configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
-- [Echelon base configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/quantum-1-echelon-base.yaml)
-- [Echelon tokenizer validation](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/tokenizer_validation.json)
-- [Echelon Garden configuration](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/garden_production.yaml)
-- [Echelon Garden Phase 3 report](https://github.com/jonascikemgil07-hue/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/garden_phase3_report.md)
+- [`quantum-1.6-pilot` data configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
+- [`quantum-1.6-pilot` training configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
+- [Echelon base configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/quantum-1-echelon-base.yaml)
+- [Echelon tokenizer validation](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/tokenizer_validation.json)
+- [Echelon Garden configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/garden_production.yaml)
+- [Echelon Garden Phase 3 report](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/garden_phase3_report.md)

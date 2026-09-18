@@ -1,6 +1,6 @@
 export const deResearchTranslations: Readonly<Record<string, string>> = {
-  "Echelon claims on this page are linked to one immutable lumen-quantum commit so that later repository changes do not silently alter the cited evidence.":
-    "Echelon-Aussagen auf dieser Seite sind mit einem unveränderlichen lumen-quantum-Commit verknüpft, damit spätere Repository-Änderungen die zitierte Evidenz nicht unbemerkt verändern.",
+  "Echelon architecture, tokenizer and Garden results retain this immutable evidence snapshot. The later compute plan has its own pinned revision and remains planning evidence.":
+    "Echelon-Ergebnisse zu Architektur, Tokenizer und Garden behalten diesen unveränderlichen Evidenzstand. Der spätere Compute-Plan hat eine eigene fixierte Revision und bleibt Planungsevidenz.",
   "We do not believe every useful AI system needs to be enormous.":
     "Wir glauben nicht, dass jedes nützliche KI-System enorm groß sein muss.",
   "Our work focuses on compact architectures, documented training workflows, efficient inference and transparent evaluation. The goal is not to imitate frontier-scale laboratories, but to investigate where smaller systems can be genuinely useful.":

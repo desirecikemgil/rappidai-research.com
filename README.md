@@ -1,11 +1,11 @@
 # rappidAI Research
 
-[![CI](https://github.com/jonascikemgil07-hue/rappidai-research.com/actions/workflows/ci.yml/badge.svg)](https://github.com/jonascikemgil07-hue/rappidai-research.com/actions/workflows/ci.yml)
+[![CI](https://github.com/desirecikemgil/rappidai-research.com/actions/workflows/ci.yml/badge.svg)](https://github.com/desirecikemgil/rappidai-research.com/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 
-rappidAI is an independent, early-stage AI research project developing compact language-model experiments and documented training, evaluation and local-inference workflows for developers, researchers, students and builders working with limited compute.
+rappidAI is a self-funded, founder-led, early-stage AI research and development initiative based in Berlin. Its public legal status remains private individual / independent initiative.
 
-This repository contains the source for the [public rappidAI research website](https://www.rappidai-research.com) and its source-linked research documentation. It does **not** contain model training code, datasets, tokenizers, checkpoints or an inference runtime. Those implementation files currently live in the separate [`lumen-quantum`](https://github.com/jonascikemgil07-hue/lumen-quantum) research repository.
+This repository contains the source for the [public rappidAI research website](https://www.rappidai-research.com) and its source-linked research documentation. It does **not** contain model training code, datasets, tokenizers, checkpoints or an inference runtime. Those implementation files currently live in the separate [`lumen-quantum`](https://github.com/rappidAI-Research/lumen-quantum) research repository.
 
 ## Project status
 
@@ -45,7 +45,7 @@ Requirements:
 - pnpm 11.9.x (the repository pins `pnpm@11.9.0`)
 
 ```bash
-git clone https://github.com/jonascikemgil07-hue/rappidai-research.com.git
+git clone https://github.com/desirecikemgil/rappidai-research.com.git
 cd rappidai-research.com
 npm install --global pnpm@11.9.0
 pnpm install --frozen-lockfile
@@ -116,7 +116,7 @@ The `/research` route contains the public evidence ledger, findings, negative re
 
 ## Training, inference and evaluation
 
-This website has no training, evaluation or generation CLI. The external `lumen-quantum` repository contains the current Python scripts and YAML configurations. Its public planning documents and code are useful implementation references, but its repository has no explicit top-level license and the published `quantum-1.6-pilot` release is not accompanied by a final public run manifest or complete training log.
+This website has no training, evaluation or generation CLI. The external `lumen-quantum` repository contains the current Python scripts and YAML configurations. Its source, configurations, tests and original documentation are Apache-2.0 licensed, with [maintainer approval recorded](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). Model weights, trained tokenizers, datasets and third-party material remain separate. The published `quantum-1.6-pilot` release is not accompanied by a final public run manifest or complete training log.
 
 The model cards distinguish among:
 
@@ -133,9 +133,13 @@ The website build is controlled by an exact pnpm lockfile and is checked with fo
 
 The model workflows are only partially reproducible from public materials. Code and configurations are available externally, while several run-specific inputs remain incomplete or unverified. Current gaps include final data manifests, complete environment locks, run logs, hardware details and raw evaluation outputs. See [Data and training](docs/data-and-training.md) and use the [training-run template](docs/training-run-template.md) for future releases.
 
-The reviewed `lumen-quantum` commit also records `tools/llama.cpp` as a Git link
-without a `.gitmodules` entry, so that exact external tool revision cannot be
-initialized through the normal submodule workflow from the public checkout.
+The historical research snapshot had an uninitializable llama.cpp Git link.
+Current Quantum documents an external checkout with an explicit revision in
+[`docs/gguf-export.md`](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md). This corrects tool setup, but does not fill the missing pilot run records.
+
+## Echelon milestone
+
+rappidAI Quantum is the current model-development project identity; Lumen is a historical name retained in repository paths. The [compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) connects the 506,333,440-parameter preflight, tokenizer checks and Garden smoke results to production data preparation, a complete training recipe, full-context optimizer preflight, training and evaluation. No Echelon checkpoint, cloud deployment or credit award is claimed.
 
 ## Hardware requirements
 
@@ -148,7 +152,7 @@ initialized through the normal submodule workflow from the public checkout.
 
 - Website source code and original repository documentation: [Apache License 2.0](LICENSE).
 - Brand and model-card images: no separate public license grant is currently documented.
-- Model weights and tokenizers: the public Hugging Face repositories do not currently state a license.
+- Pilot weights, GGUFs and tokenizers: the maintainer recorded an all-rights-reserved decision; no reuse license is granted. Explicit hosting notices and tokenizer revision verification remain open.
 - Training data: upstream dataset and source-content terms apply independently.
 - Dependencies and external repositories: governed by their own licenses; they are not relicensed here.
 
@@ -177,9 +181,13 @@ Use [`CITATION.cff`](CITATION.cff) for this website repository. Model releases s
 
 ## Maintainer and contact
 
-- Maintainer: Jonas Désiré Cikemgil (`@jonascikemgil07-hue`)
+- Maintainer: Jonas Désiré Cikemgil (`@desirecikemgil`)
 - Public contact: [cikemgil@rappidai-research.com](mailto:cikemgil@rappidai-research.com)
 - Hugging Face: [rappidAI](https://huggingface.co/rappidAI)
-- Research implementation: [`lumen-quantum`](https://github.com/jonascikemgil07-hue/lumen-quantum)
+- Research implementation: [`lumen-quantum`](https://github.com/rappidAI-Research/lumen-quantum)
 
 The imprint and privacy pages contain the maintainer-confirmed service address. Deployment-specific hosting details still require privacy and legal review. This repository does not present legal documentation as legal advice.
+
+## Public link validation
+
+`pnpm links:external` excludes test and fixture paths, while those tests still run in Vitest. It also resolves exported URLs from the self-contained `content/site.ts`, `content/ghost.ts` and `content/replay.ts` modules so interpolated repository/revision paths are checked in full. Keep new derived public links in these registries (or register another self-contained module in `scripts/link-sources.mjs`). Failures retain their owning source paths; GitHub failures are not broadly ignored.

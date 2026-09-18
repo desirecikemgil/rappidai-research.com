@@ -1,3 +1,4 @@
+import { replayLinks } from "@/content/replay";
 import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -5,10 +6,6 @@ import { metadataFor } from "@/lib/metadata";
 import type { Locale } from "@/lib/i18n";
 
 export const metadata = metadataFor("/tools/replay");
-
-const REPLAY_SHA = "8a1b5978e1fd6b51cfe19c8e2746609a6839c801";
-const repo = "https://github.com/rappidAI-Research/rappid-replay";
-const source = `${repo}/blob/${REPLAY_SHA}`;
 
 const copy = {
   en: {
@@ -25,7 +22,7 @@ const copy = {
       "Verification of recorded state.",
       "Verified restore into a staged tree.",
       "Branch creation from historical state with explicit live-rerun consent.",
-      "Controlled rerun workflows.",
+      "Live reruns with explicit execution consent. Recorded, controlled and hybrid modes are not implemented.",
       "Deterministic multi-dimensional replay diff.",
     ],
     principlesTitle: "The architecture separates evidence from interpretation.",
@@ -93,7 +90,7 @@ const copy = {
       "Verifikation aufgezeichneter Zustände.",
       "Verifizierte Wiederherstellung in einen gestagten Tree.",
       "Branches aus historischen Zuständen mit expliziter Zustimmung zu Live-Reruns.",
-      "Kontrollierte Rerun-Workflows.",
+      "Live-Reruns mit ausdrücklicher Ausführungsfreigabe. Recorded-, Controlled- und Hybrid-Modi sind nicht implementiert.",
       "Deterministischer multidimensionaler Replay-Diff.",
     ],
     principlesTitle: "Die Architektur trennt Evidenz von Interpretation.",
@@ -187,18 +184,22 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
             {c.status}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <ActionLink href={repo} external variant="primary">
+            <ActionLink
+              href={replayLinks.repository}
+              external
+              variant="primary"
+            >
               GitHub
             </ActionLink>
             <ActionLink
-              href={`${source}/docs/adr/README.md`}
+              href={replayLinks.architecture}
               external
               variant="secondary"
             >
               ADR index
             </ActionLink>
             <ActionLink
-              href={`${repo}/tree/${REPLAY_SHA}`}
+              href={replayLinks.snapshot}
               external
               variant="secondary"
             >
@@ -312,8 +313,13 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
             <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
               {c.usageTitle}
             </h2>
-            <pre className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white">
-              <code>{`rappid replay record -- <command>\nrappid replay verify <session>\nrappid replay restore <session>\nrappid replay branch <session>\nrappid replay rerun <session>\nrappid replay diff <left> <right>`}</code>
+            <pre
+              role="region"
+              tabIndex={0}
+              aria-label={c.usageTitle}
+              className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+            >
+              <code>{`rappid replay record -- <command>\nrappid replay verify <state-id>\nrappid replay restore <state-id>\nrappid replay branch <state-id>\nrappid replay rerun --mode live --confirm-execution <state-id> -- <command>\nrappid replay diff <left-session-id> <right-session-id>`}</code>
             </pre>
           </div>
           <div className="liquid-surface p-7 sm:p-9">
@@ -328,32 +334,16 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
         <Reveal className="mt-16">
           <p className="eyebrow">{c.sourceTitle}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <ActionLink
-              href={`${source}/README.md`}
-              external
-              variant="secondary"
-            >
+            <ActionLink href={replayLinks.readme} external variant="secondary">
               Pinned README
             </ActionLink>
-            <ActionLink
-              href={`${source}/docs/adr/ADR-028-verified-staged-restore.md`}
-              external
-              variant="secondary"
-            >
+            <ActionLink href={replayLinks.restore} external variant="secondary">
               Restore ADR
             </ActionLink>
-            <ActionLink
-              href={`${source}/docs/adr/ADR-029-exact-branch-live-rerun.md`}
-              external
-              variant="secondary"
-            >
+            <ActionLink href={replayLinks.rerun} external variant="secondary">
               Branch/Rerun ADR
             </ActionLink>
-            <ActionLink
-              href={`${source}/docs/adr/ADR-030-deterministic-multidimensional-diff.md`}
-              external
-              variant="secondary"
-            >
+            <ActionLink href={replayLinks.diff} external variant="secondary">
               Diff ADR
             </ActionLink>
           </div>

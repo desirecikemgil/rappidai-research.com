@@ -106,7 +106,7 @@ export const researchPublication = {
     reference: "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39",
     url: publicResearchUrls.evidenceSnapshot,
     explanation:
-      "Echelon claims on this page are linked to one immutable lumen-quantum commit so that later repository changes do not silently alter the cited evidence.",
+      "Echelon architecture, tokenizer and Garden results retain this immutable evidence snapshot. The later compute plan has its own pinned revision and remains planning evidence.",
   },
   statusVocabulary: [
     {
@@ -230,12 +230,28 @@ export const researchPublication = {
         url: publicResearchUrls.echelonTokenizerChecksums,
       },
       {
-        name: "Garden data pipeline",
+        name: "Garden smoke test",
         status: "Partial evidence",
         detail:
           "Smoke, integrity, interruption, resume and shutdown behavior are documented. The final smoke produced 1,380,886 tokens.",
         boundary: "Production data run not started",
         url: publicResearchUrls.echelonGardenReport,
+      },
+      {
+        name: "Production data preparation",
+        status: "Not yet available",
+        detail:
+          "The pinned German FineWeb2-HQ configuration requests 8B training tokens plus 10M validation and 10M test tokens. No final production manifest exists.",
+        boundary: "Configured targets · not completed data",
+        url: publicResearchUrls.echelonGardenConfiguration,
+      },
+      {
+        name: "Compute and training readiness",
+        status: "Published",
+        detail:
+          "The compute plan separates CPU data preparation, a full-context optimizer preflight, training, checkpoints and evaluation. A complete training recipe and measured hardware fit remain prerequisites.",
+        boundary: "Planning only · no cloud run or credit award",
+        url: publicResearchUrls.computePlan,
       },
       {
         name: "Echelon Base training",
@@ -244,6 +260,14 @@ export const researchPublication = {
           "No public training log, checkpoint, weights, evaluation record or model output exists.",
         boundary: "No completion or capability claim",
         url: publicResearchUrls.echelonDirectory,
+      },
+      {
+        name: "Echelon evaluation and release",
+        status: "Not yet available",
+        detail:
+          "No raw model evaluation or released Echelon artifact is available. Evaluation, export checks, artifact licenses and a final manifest are separate release gates.",
+        boundary: "No benchmark or production-readiness claim",
+        url: publicResearchUrls.computePlan,
       },
       {
         name: "Echelon Chat stage",

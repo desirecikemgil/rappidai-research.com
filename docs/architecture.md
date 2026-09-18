@@ -8,7 +8,7 @@ training pipeline, model checkpoints, GGUF files, datasets, an inference
 service, an application API, or a database.
 
 Training and data-preparation code live in the separate public
-[`lumen-quantum`](https://github.com/jonascikemgil07-hue/lumen-quantum)
+[`lumen-quantum`](https://github.com/rappidAI-Research/lumen-quantum)
 repository. Released pilot weights live in separate Hugging Face repositories.
 Keeping these boundaries explicit prevents website copy, a configuration file,
 and an actual model artifact from being treated as equivalent evidence.

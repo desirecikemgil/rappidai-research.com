@@ -13,7 +13,7 @@ const copy = {
   en: {
     intro: "Independent AI research. Berlin.",
     description:
-      "We build compact language models and open tools for AI systems you can inspect, understand and control.",
+      "Self-funded and founder-led, we develop compact language-model experiments and open tools for inspectable AI systems.",
     explore: "Explore our models",
     research: "Inside the research",
     discover: "Discover rappidAI",
@@ -68,13 +68,13 @@ const copy = {
       "Find the model artifacts, source repositories and documentation behind the work.",
     about: "Independent. Focused. Berlin.",
     aboutText:
-      "rappidAI is an independent research initiative exploring compact intelligence and the infrastructure around it.",
+      "rappidAI is an early-stage, self-funded research and development initiative building compact intelligence and the infrastructure around it.",
     aboutLink: "Meet rappidAI",
   },
   de: {
     intro: "Unabhängige KI-Forschung. Berlin.",
     description:
-      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für KI-Systeme, die sich untersuchen, verstehen und kontrollieren lassen.",
+      "Eigenfinanziert und gründergeführt entwickeln wir kompakte Sprachmodellexperimente und offene Werkzeuge für nachvollziehbare KI-Systeme.",
     explore: "Modelle entdecken",
     research: "Einblick in die Forschung",
     discover: "rappidAI entdecken",
@@ -129,7 +129,7 @@ const copy = {
       "Modellartefakte, Quellcode und Dokumentation hinter unserer Arbeit.",
     about: "Unabhängig. Fokussiert. Berlin.",
     aboutText:
-      "rappidAI ist eine unabhängige Forschungsinitiative für kompakte Intelligenz und die Infrastruktur darum herum.",
+      "rappidAI ist eine eigenfinanzierte Forschungs- und Entwicklungsinitiative in einer frühen Phase für kompakte Intelligenz und die Infrastruktur darum herum.",
     aboutLink: "Über rappidAI",
   },
 } as const;

@@ -1,9 +1,14 @@
 # Open-source readiness report
 
+## Status correction — 18 September 2026
+
+This is a historical 23 July assessment, not a current AWS eligibility decision.
+Quantum now has Apache-2.0 source licensing and [recorded maintainer approval](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). Pilot artifacts are deliberately all rights reserved, without a reuse grant. The [Echelon compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) adds planning evidence; production data, training and evaluation remain incomplete. The original test results and scores below are historical and have not been promoted to current measurements.
+
 - **Assessment date:** 2026-07-23
 - **Pre-remediation website baseline:**
   `72bf760f9b1a512ab5de36190bb863403753bc39`
-- **Scope:** `jonascikemgil07-hue/rappidai-research.com` plus read-only
+- **Scope:** `desirecikemgil/rappidai-research.com` plus read-only
   verification of public licensing and adoption signals for linked research and
   model artifacts
 
@@ -16,7 +21,7 @@ accessibility, and maintainer workflows.
 
 It is not yet a strong standalone application artifact for an open-source AI
 maintainer program. The implementation of the model research lives in the
-separate `lumen-quantum` repository, which has no explicit top-level license.
+separate `lumen-quantum` repository, whose source-license gap has since been resolved with Apache-2.0.
 The public pilot weights and tokenizers also have no explicit artifact license,
 and neither pilot has a complete final run record. Genuine community adoption
 and external maintenance activity remain limited.
@@ -106,8 +111,8 @@ independent reproduction of a training run.
 
 ### Blocking for a strong open-source AI claim
 
-1. The separate `lumen-quantum` implementation repository has no explicit
-   top-level license.
+1. The former source-license gap is resolved: Quantum source is Apache-2.0,
+   with the maintainer decision recorded on 2026-07-24.
 2. `quantum-1-pilot` and `quantum-1.6-pilot` weights and tokenizers have no
    explicit artifact license in their public Hugging Face metadata.
 3. Neither pilot has a final immutable run record linking source data,
@@ -143,10 +148,9 @@ independent reproduction of a training run.
 
 ## High-priority manual actions
 
-1. Audit ownership and third-party code in `lumen-quantum`, then add an explicit
-   code license there.
-2. Choose and publish explicit per-artifact licenses for both pilots' weights
-   and tokenizers.
+1. Retain the recorded Quantum source approval and check rights for new contributions.
+2. Verify hosting notices and tokenizer revisions against the deliberate
+   all-rights-reserved pilot decision; publish reuse terms only if that policy changes.
 3. Publish a final release/run record for at least one pilot using
    `docs/training-run-template.md`.
 4. Record creator, source, date, transformations, permission, and reuse terms
@@ -157,7 +161,7 @@ independent reproduction of a training run.
 7. Apply with `lumen-quantum` as the primary implementation repository and this
    site as its documentation/evidence companion.
 
-## Readiness scores
+## Historical readiness scores — 23 July 2026
 
 These scores evaluate the wider claim made by the website, not only whether the
 Next.js build is polished.
@@ -200,7 +204,7 @@ typescript
 
 ## Suggested pinned repositories
 
-1. **`lumen-quantum`** — pin first after adding a valid license; it contains the
+1. **`lumen-quantum`** — its source license is now Apache-2.0; it contains the
    actual data, tokenizer, training, evaluation, and export implementation.
 2. **`rappidai-research.com`** — pin as the public evidence, model-card,
    responsible-AI, and contribution portal.
@@ -212,6 +216,6 @@ make the project appear larger.
 
 Submitting an accurate application is permitted, but the expected selection
 case is currently weak. The next material improvement is not more marketing
-copy. It is an explicitly licensed implementation repository, explicitly
-licensed model artifacts, one complete run/release record, and authentic
-maintenance or adoption evidence.
+copy. Source licensing is now resolved. Remaining evidence includes explicit
+artifact notices, one complete run/release record, and authentic maintenance
+or adoption evidence. No artifact reuse grant or AWS eligibility is inferred.

@@ -1,8 +1,6 @@
 export const deResourceTranslations: Readonly<Record<string, string>> = {
   "23 July 2026": "23. Juli 2026",
   "24 July 2026": "24. Juli 2026",
-  "Research statements are reviewed against this immutable lumen-quantum snapshot and the pinned Hugging Face model revisions linked from each record.":
-    "Forschungsaussagen werden anhand dieses unveränderlichen lumen-quantum-Snapshots und der in jedem Eintrag verlinkten, fixierten Hugging-Face-Modellrevisionen geprüft.",
   "RESEARCH OUTPUTS": "FORSCHUNGSERGEBNISSE",
   "Source-linked research notes that separate observations, negative results and open questions.":
     "Quellenverknüpfte Forschungsnotizen, die Beobachtungen, negative Ergebnisse und offene Fragen voneinander trennen.",

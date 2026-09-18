@@ -10,7 +10,7 @@ export const publicProfiles = {
 } as const;
 
 const websiteRepository =
-  "https://github.com/rappidAI-Research/rappidai-research.com";
+  "https://github.com/desirecikemgil/rappidai-research.com";
 
 export const publicProjectUrls = {
   websiteRepository,
@@ -44,7 +44,12 @@ const lumenQuantumLicenseDecisionRevision =
 const lumenQuantumReviewedSource = `${lumenQuantumRepository}/blob/${lumenQuantumReviewedRevision}`;
 const lumenQuantumLicenseDecisionSource = `${lumenQuantumRepository}/blob/${lumenQuantumLicenseDecisionRevision}`;
 
+const readinessSource = `${lumenQuantumRepository}/blob/22ad246b7a2850ae7544aa6169d851485a1a1960`;
+
 export const publicResearchUrls = {
+  computePlan: `${readinessSource}/docs/compute-plan.md`,
+  applicationReadiness: `${readinessSource}/docs/applications/aws-activate-readiness.md`,
+  sourceLicenseApproval: `${lumenQuantumLicenseDecisionSource}/docs/maintainer-source-license-approval.md`,
   repository: lumenQuantumRepository,
   evidenceSnapshot: `${lumenQuantumRepository}/tree/${lumenQuantumReviewedRevision}`,
   modelLicenseRegistry: `${lumenQuantumLicenseDecisionSource}/MODEL_LICENSES.md`,
@@ -86,9 +91,9 @@ export const siteConfig = {
   name: "rappidAI research",
   shortName: "rappidAI",
   description:
-    "Independent AI research on compact language models and open infrastructure for controllable, reproducible AI-agent execution.",
+    "Self-funded, founder-led AI research and development in Berlin, building compact language-model experiments and open agent infrastructure.",
   location: "Berlin, Germany",
-  lastReviewed: "2026-07-24",
+  lastReviewed: "2026-09-18",
   businessEmail: publicContact.businessEmail,
   canonicalUrl: "https://www.rappidai-research.com",
   navigation: [
