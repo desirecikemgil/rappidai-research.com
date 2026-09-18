@@ -98,11 +98,12 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Explore models": "Modelle entdecken",
   "Founder & Independent AI Research Developer":
     "Gründer & unabhängiger KI-Forschungsentwickler",
-  "Jonas Désiré Cikemgil is a Berlin-based independent AI developer focused on compact language models, documented training pipelines, GGUF deployment and local inference.":
-    "Jonas Désiré Cikemgil ist ein unabhängiger KI-Entwickler aus Berlin. Sein Schwerpunkt liegt auf kompakten Sprachmodellen, dokumentierten Trainingspipelines, GGUF-Bereitstellung und lokaler Inferenz.",
+  "Jonas Désiré Cikemgil is a Berlin-based independent AI developer focused on compact language models, documented training pipelines, agent infrastructure and local inference.":
+    "Jonas Désiré Cikemgil ist ein unabhängiger KI-Entwickler aus Berlin. Sein Schwerpunkt liegt auf kompakten Sprachmodellen, dokumentierten Trainingspipelines, Agenten-Infrastruktur und lokaler Inferenz.",
   "Compact language models": "Kompakte Sprachmodelle",
   "Documented training pipelines": "Dokumentierte Trainingspipelines",
   "GGUF deployment": "GGUF-Bereitstellung",
+  "Agent infrastructure": "Agenten-Infrastruktur",
   "Local inference": "Lokale Inferenz",
   "Hugging Face link pending": "Hugging-Face-Link ausstehend",
   "GitHub link pending": "GitHub-Link ausstehend",
