@@ -100,7 +100,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
 
         <Reveal id="ghost-policies" className="mt-20 scroll-mt-32">
           <h2 className="display-section text-ink">{c.policyTitle}</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {c.policies.map(({ name, description }) => (
               <div key={name} className="liquid-card min-w-0 p-6 sm:p-8">
                 <h3 className="font-mono text-base tracking-wider text-accent">
@@ -338,8 +338,8 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           <p className="body-copy mt-6 max-w-4xl">{c.sourcesText}</p>
           <ActionLink href={ghostLinks.development} external variant="text">
             {locale === "de"
-              ? "Unveröffentlichte v0.3-Entwicklung"
-              : "Unreleased v0.3 development"}
+              ? "v0.3.0 Release Notes"
+              : "v0.3.0 release notes"}
           </ActionLink>
           <p className="mt-4 break-all font-mono text-xs leading-6 text-muted">
             {ghostRelease.version} · {ghostRelease.commit}
