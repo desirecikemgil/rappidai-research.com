@@ -1,19 +1,19 @@
-// Release facts verified against the annotated v0.2.0 tag and its release job.
+// Release facts verified against the annotated v0.3.0 tag and its release gate.
 // Keep product copy, commands and evidence tied to this snapshot, not moving main.
 export const ghostRelease = {
-  version: "v0.2.0",
-  date: "2026-09-06",
-  commit: "001d0baa953301f9fc94443e0e45b28d9f93fac0",
+  version: "v0.3.0",
+  date: "2026-09-21",
+  commit: "2184a0e87b7dca161267f5fe596a2dd5d56d189d",
   repository: "https://github.com/rappidAI-Research/rappid-ghost",
-  gate: "https://github.com/rappidAI-Research/rappid-ghost/actions/runs/34052802282",
-  bench: { passed: 15, failed: 0, skipped: 0 },
+  gate: "https://github.com/rappidAI-Research/rappid-ghost/actions/runs/35648771011",
+  bench: { passed: 25, failed: 0, skipped: 0 },
 } as const;
 
 const source = `${ghostRelease.repository}/blob/${ghostRelease.commit}`;
 export const ghostLinks = {
   repository: ghostRelease.repository,
   release: `${ghostRelease.repository}/releases/tag/${ghostRelease.version}`,
-  development: `${ghostRelease.repository}/blob/b5815b5757e562ec749250795d1fdf9551bfdd61/CHANGELOG.md`,
+  development: `${source}/docs/releases/v0.3.0.md`,
   readme: `${source}/README.md`,
   changelog: `${source}/CHANGELOG.md`,
   architecture: `${source}/docs/architecture.md`,
@@ -23,6 +23,9 @@ export const ghostLinks = {
   benchmarks: `${source}/docs/benchmarks.md`,
   provenance: `${source}/docs/provenance.md`,
   incidents: `${source}/docs/incidents.md`,
+  promptguard: `${source}/docs/prompt-injection-guard.md`,
+  approvals: `${source}/docs/approvals.md`,
+  runtimeResources: `${source}/docs/runtime-resources.md`,
   configuration: `${source}/ghost.example.yaml`,
   examples: `${ghostRelease.repository}/tree/${ghostRelease.commit}/examples`,
   reporting: `${source}/SECURITY.md`,
@@ -30,8 +33,8 @@ export const ghostLinks = {
   license: `${source}/LICENSE`,
   revision: `${ghostRelease.repository}/tree/${ghostRelease.commit}`,
   gate: ghostRelease.gate,
-  amd64: `${ghostRelease.repository}/releases/download/${ghostRelease.version}/ghost_0.2.0_linux_amd64`,
-  arm64: `${ghostRelease.repository}/releases/download/${ghostRelease.version}/ghost_0.2.0_linux_arm64`,
+  amd64: `${ghostRelease.repository}/releases/download/${ghostRelease.version}/ghost_0.3.0_linux_amd64`,
+  arm64: `${ghostRelease.repository}/releases/download/${ghostRelease.version}/ghost_0.3.0_linux_arm64`,
   checksums: `${ghostRelease.repository}/releases/download/${ghostRelease.version}/SHA256SUMS`,
 } as const;
 
@@ -51,10 +54,20 @@ export const ghostBenchScenarios = [
   "container-confinement",
   "concurrent-containment",
   "interrupted-session-recovery",
+  "prompt-injection-detected",
+  "prompt-guard-false-positive",
+  "untrusted-content-provenance",
+  "prompt-shadow-context",
+  "approval-unavailable",
+  "approval-once",
+  "approval-containment-precedence",
+  "concurrent-approval-once",
+  "cross-session-security-isolation",
+  "session-timeout",
 ] as const;
 
 export const ghostCommands = {
-  install: `git clone --branch v0.2.0 --depth 1 https://github.com/rappidAI-Research/rappid-ghost.git
+  install: `git clone --branch v0.3.0 --depth 1 https://github.com/rappidAI-Research/rappid-ghost.git
 cd rappid-ghost
 go build -o bin/ghost ./cmd/ghost
 export PATH="$PWD/bin:$PATH"
@@ -74,48 +87,54 @@ ghost bench --scenario dynamic-containment`,
   mode: allowlist
   allow:
     - github.com
-    - api.github.com`,
+  ask:
+    - api.example.com`,
 } as const;
 
 export const ghostCopy = {
   en: {
     intro: {
-      eyebrow: "GHOST v0.2.0 · SECURITY HARDENING",
-      title: "rappidAI Ghost. Set the boundaries.",
+      eyebrow: "GHOST v0.3.0 · INTEGRATED AGENT SECURITY",
+      title: "rappidAI Ghost. Security, under the hood.",
       description:
-        "A deception-aware security runtime for autonomous AI agents. Run commands in an isolated environment, set deterministic access rules and inspect evidence when a process touches a synthetic decoy.",
+        "An integrated security runtime for autonomous AI agents. Ghost combines isolation, deception, prompt-injection signals, scoped approvals, runtime limits and evidence behind one simple execution flow.",
     },
     index: "Explore Ghost",
-    nav: ["Overview", "What changed", "Get started", "GhostBench"],
+    nav: ["Overview", "What changed in v0.3.0", "Get started", "GhostBench"],
     status: "Released · Experimental · Apache-2.0",
     github: "View on GitHub",
-    release: "v0.2.0 Release",
+    release: "v0.3.0 Release",
     getStarted: "Get started",
-    overviewTitle: "Useful access. Deliberate limits.",
+    overviewTitle: "One command. Multiple security layers.",
     overview:
-      "An agent that can execute commands can also try to read credentials or contact unexpected destinations. Ghost limits the environment exposed to commands launched through ghost run. Your project is available at /workspace; your real home is not mounted, and host environment variables are not forwarded.",
+      "Ghost wraps agent execution in one controlled runtime. It preflights the environment, isolates the process, keeps protected host resources out of reach, inspects selected untrusted instruction surfaces, enforces network and resource boundaries, and records evidence for later inspection.",
     purpose:
-      "For agent developers, security engineers and researchers who need controlled experiments, reproducible boundary checks and an inspectable event trail—not unrestricted access to a development machine. Ghost adds policy, decoys, network decisions and evidence handling to Docker isolation; it does not replace Docker's security boundary.",
-    policyTitle: "ALLOW. DENY. SHADOW.",
+      "For developers, security engineers and researchers who want autonomous agents to stay useful without silently inheriting broad trust. Most complexity stays underneath ghost run; advanced evidence remains available through inspect, graph and incidents when needed.",
+    policyTitle: "ALLOW. DENY. SHADOW. ASK.",
     policies: [
       {
         name: "ALLOW",
         description:
-          "The permitted real resource is available—for example, the configured project workspace or an approved network destination.",
+          "The permitted real resource or exact destination is available under the active policy.",
       },
       {
         name: "DENY",
         description:
-          "Access is refused. A denied supported home resource remains absent; disabling deception never mounts the real home.",
+          "Access is refused. Hard runtime, host and containment boundaries remain non-approvable.",
       },
       {
         name: "SHADOW",
         description:
-          "Ghost exposes a controlled synthetic resource instead of the corresponding real resource, which remains isolated.",
+          "Ghost exposes controlled synthetic material while the corresponding protected host resource remains isolated.",
+      },
+      {
+        name: "ASK",
+        description:
+          "For explicitly configured destinations only, Ghost can pause one exact operation for a narrow user decision. Unavailable or malformed interaction becomes DENY.",
       },
     ],
     policyScope:
-      "These are deterministic rules, not an AI classifier. Security enforcement never calls an LLM or a cloud control plane. SHADOW currently covers exactly three supported home paths, not arbitrary file access.",
+      "Runtime enforcement is deterministic and never delegates authorization to an LLM. The Prompt-Injection Guard contributes bounded security signals and trust context, but a detector result can never make a forbidden operation safe or disable isolation.",
     shadowTitle: "Why a decoy can tell you more than a refusal.",
     shadowText:
       "Suppose a process tries to open ~/.aws/credentials. With the default Shadow Home policy, it receives a fresh synthetic credential file inside /home/ghost—not the host user's credentials. Ghost does not check, copy or derive values from the real file. Synthetic AWS values, the nonfunctional SSH-key-shaped file and the generic .env decoy cannot authenticate to real services.",
@@ -139,77 +158,85 @@ export const ghostCopy = {
     ],
     shadowLimit:
       "A decoy access is evidence of a file event, not proof of malicious intent or credential exfiltration. Containment does not revoke already-authorized, established connections.",
-    changesTitle: "v0.2.0 hardens the existing boundary.",
+    changesTitle: "v0.3.0 turns Ghost into an integrated agent-security runtime.",
     changesIntro:
-      "This is a security-hardening release: narrower destinations, tighter confinement, ordered containment and more reliable recovery—not a general firewall or a new attack detector.",
+      "The release keeps the same two-command workflow while adding context, approval, runtime protection and stronger evidence underneath it. The existing v0.2 isolation and network boundary remain authoritative.",
     changes: [
       {
-        title: "Validated network destinations",
-        text: "After an exact hostname match, the gateway performs one IPv4 lookup, validates every A record and connects to the selected validated numeric address. Any prohibited answer denies the whole request. Private, loopback and link-local ranges—including metadata address 169.254.169.254—are blocked as upstream destinations.",
-        link: "network",
+        title: "Integrated Prompt-Injection Guard",
+        text: "Before PROCESS_START, Ghost inspects bounded agent-facing workspace surfaces such as AGENTS.md, documentation and selected scripts. Findings are minimized rule/category/hash signals, not copied document bodies, and both false positives and false negatives remain possible.",
+        link: "promptguard",
       },
       {
-        title: "Stronger container confinement",
-        text: "All Ghost-owned containers use non-zero numeric UID/GID, dropped capabilities, no-new-privileges and read-only roots. v0.2 adds explicit private IPC/cgroup namespaces, disabled core dumps and a bounded .ghost tmpfs mask, alongside isolated PID namespaces and process limits.",
-        link: "security",
+        title: "Trust context without invented causality",
+        text: "Selected workspace sources are classified deterministically and linked into provenance as observed or derived context. Ghost can reconstruct that suspicious instructions preceded later activity without claiming that the content caused the agent to act.",
+        link: "provenance",
       },
       {
-        title: "Positive environment allowlist",
-        text: "Ghost supplies fixed HOME and PATH values and, for allowlist sessions, its own proxy variables. Arbitrary and unknown host variables are excluded by construction, not by guessing secret names. Secrets you deliberately place in the mounted workspace are still exposed.",
-        link: "security",
+        title: "ALLOW / DENY / SHADOW / ASK",
+        text: "Exact configured HTTP/HTTPS destinations may require ALLOW_ONCE, ALLOW_SESSION or DENY. Approval is session-local and exact to scheme, host, port and method; containment and hard-forbidden destinations always take precedence.",
+        link: "approvals",
       },
       {
-        title: "Token/ack containment fence",
-        text: "A session-private marker is published before access evidence. Each candidate gateway allow waits for a matching token acknowledgement through the sentinel's ordered inotify queue, then rechecks the marker. A missing or timed-out acknowledgement denies the request.",
-        link: "network",
+        title: "Integrated runtime resource protection",
+        text: "The agent and descendants run with mandatory memory, CPU, PID, temporary-storage and session-time ceilings. v0.3 defaults to 2 GiB RAM, one CPU, 256 processes/threads, 64 MiB /tmp and a one-hour deadline with bounded termination and cleanup.",
+        link: "runtimeResources",
       },
       {
-        title: "Session locking and recovery",
-        text: "Runs are serialized per project. On the next run, interrupted sessions are finalized as failed; only Ghost-owned Docker resources with matching durable session identity, component labels and exact expected names are removed. Ambiguous ownership or cleanup failure aborts the new run.",
-        link: "security",
+        title: "Automatic secure preflight and summaries",
+        text: "ghost run verifies Docker, identity, policy, workspace and session-owned state before PROCESS_START. Successful checks stay quiet; security-relevant sessions end with concise summaries derived from persisted evidence.",
+        link: "architecture",
       },
       {
-        title: "Pinned supply chain, broader checks",
-        text: "Alpine 3.22.5 is now pinned by an immutable image-index digest. Actions use full commit SHAs; CI verifies Go modules and the release source. Linux binaries include SHA256SUMS. GhostBench adds five scenarios for a total of fifteen. Checksums are not signatures or a guarantee of upstream integrity.",
-        link: "changelog",
+        title: "Adversarially validated release",
+        text: "The final audit fixed approval, containment, HTTP framing, evidence-finalization, recovery and rapid child-OOM edge cases. GhostBench now contains 25 named scenarios and the release gate recorded 25 PASS, 0 FAIL and 0 SKIP.",
+        link: "benchmarks",
       },
     ],
     sourceLink: "Read the implementation boundary",
-    architectureTitle: "One runtime. Distinct security layers.",
+    architectureTitle: "One runtime. Integrated security context.",
     architectureIntro:
-      "Policy configures the runtime. The sentinel observes decoys; the gateway enforces destination and containment decisions. Stored evidence feeds read-only analysis. GhostBench exercises these production paths, rather than a second enforcement implementation.",
+      "Ghost routes workspace observations, policy decisions, runtime enforcement and evidence through one session lifecycle. Prompt findings enrich context; policy and hard runtime boundaries remain authoritative; stored events feed provenance, incidents and summaries.",
     layers: [
       [
         "Isolation",
-        "Ephemeral Docker sessions expose the selected workspace and a read-only synthetic home, not the real home, Docker socket or Ghost database.",
+        "Ephemeral Docker sessions expose the selected workspace and synthetic home, not the real home, Docker socket or Ghost database.",
+      ],
+      [
+        "Prompt & trust context",
+        "A bounded pre-run guard inspects supported instruction surfaces and records content-minimized findings plus deterministic trust context. It is a signal layer, not an authorization authority.",
       ],
       [
         "Policy",
-        "Strict ghost.yaml validation applies deterministic ALLOW, DENY and SHADOW outcomes. Invalid setup never falls back to host execution.",
+        "Strict ghost.yaml validation applies deterministic ALLOW, DENY, SHADOW and intentionally scoped ASK decisions. Containment and hard forbidden targets override approval.",
       ],
       [
         "Deception",
-        "Fresh synthetic AWS, SSH and .env resources provide observable alternatives without using real credentials.",
+        "Fresh synthetic AWS, SSH and .env resources provide observable alternatives without reading or deriving values from real credentials.",
       ],
       [
-        "Network control",
-        "Deny by default. Optional exact-hostname HTTP/HTTPS gateway on an internal agent network, with resolved-address validation.",
+        "Network & containment",
+        "Exact-hostname HTTP/HTTPS egress runs through a session gateway with resolved-address validation and live containment rechecks before authorization.",
       ],
       [
-        "Containment",
-        "The sentinel marker and token/ack fence order new gateway decisions against queued decoy-access events within the session.",
+        "Runtime protection",
+        "Mandatory cgroup-backed memory, CPU and PID ceilings, bounded /tmp, read-only roots and a session deadline constrain the agent and descendants.",
       ],
       [
         "Evidence",
-        "SQLite retains session state and supported events. Network decisions omit headers, bodies, query strings and tunnel contents.",
+        "SQLite retains minimized session events and security state. Required evidence failures fail closed rather than silently weakening the boundary.",
       ],
       [
         "Provenance / incidents",
-        "Deterministic, secret-minimized text or JSON views reference stored event IDs. They explain observed order, not model intent or causation.",
+        "Deterministic reconstruction distinguishes observations, derived relationships and temporal ordering without inventing model intent or causality.",
+      ],
+      [
+        "Human approval",
+        "Explicitly configured ASK destinations may pause for a narrow user decision; non-interactive, malformed or timed-out approval becomes DENY.",
       ],
       [
         "GhostBench",
-        "Reproducible local fixtures test named security properties and report PASS, FAIL or honest environment-dependent SKIP results.",
+        "Twenty-five release-gated scenarios exercise isolated properties and integrated prompt/SHADOW/network, approval, timeout and session-isolation chains.",
       ],
     ],
     networkTitle: "A hostname is not enough.",
@@ -224,10 +251,10 @@ export const ghostCopy = {
       "Optional: replace only the network section in ghost.yaml. Keep deny unless limited egress is needed.",
     installTitle: "Start with a controlled local run.",
     requirements:
-      "Release-qualified target: Linux with Docker Engine, a working local Docker CLI/daemon and both host UID and GID non-zero. Source builds need Git and Go 1.26 or newer. Docker Desktop on macOS is not release-qualified; native Windows execution is unsupported.",
+      "Runtime-tested release target: Linux amd64 with Docker Engine, a working local Docker CLI/daemon and non-zero numeric host UID/GID. Linux arm64 binaries are cross-built and checksum-verified. Source builds need Git and Go 1.26.8 or a newer supported patch release. Docker Desktop on macOS is not release-qualified; native Windows execution is unsupported.",
     buildTitle: "1. Build the released source",
     buildNote:
-      "The tag selects v0.2.0 rather than moving main. PATH is set for this terminal so the ghost commands below resolve to the binary you just built. The reviewed source revision is linked below.",
+      "The tag selects released v0.3.0 rather than moving main. PATH is set for this terminal so the commands below resolve to the binary you just built. The reviewed release revision is linked below.",
     binaryNote:
       "Already have Linux? The release also provides amd64 and arm64 binaries, so Go is not required for that route. Verify the downloaded binary against SHA256SUMS before execution.",
     startTitle: "2. Initialize a clean demo project",
@@ -237,45 +264,45 @@ export const ghostCopy = {
     exampleNote:
       "Run this in the demo directory. The cat command returns synthetic content. inspect shows the session timeline; graph and incidents reconstruct supported relationships. Both also accept --json. The -- separator for run is required.",
     practicalLimit:
-      "Ghost's pinned Alpine image is minimal: host-installed Python, Node or agent packages do not automatically exist inside it. Missing commands fail; there is no host fallback. Do not place real secrets in the demo workspace or command-line arguments—argv is persisted in local session storage.",
-    benchTitle: "Fifteen scenarios. Explicit evidence.",
+      "Ghost's pinned Alpine image is intentionally minimal: host-installed Python, Node or agent packages do not automatically exist inside it. Missing commands fail and never fall back to the host. The mounted workspace is intentionally visible to the agent, and attached program output is not sanitized, so do not place secrets there unless the agent is meant to access them.",
+    benchTitle: "Twenty-five scenarios. Integrated security chains.",
     benchText:
-      "GhostBench is a reproducible security validation suite, not a security score. The v0.2.0 release job ran all fifteen scenarios successfully on Linux with Docker. This is the recorded release result, not a promise that every local environment or attack will pass.",
-    benchLabel: "Recorded v0.2.0 release result · 6 September 2026",
-    benchResult: "PASS: 15 · FAIL: 0 · SKIP: 0",
+      "GhostBench is a reproducible security-property suite, not a security score. The v0.3.0 release gate ran all twenty-five required scenarios successfully on Linux amd64 with Docker, including integrated prompt/SHADOW/network, approval/containment, runtime-timeout and cross-session chains.",
+    benchLabel: "Recorded v0.3.0 release result · 21 September 2026",
+    benchResult: "PASS: 25 · FAIL: 0 · SKIP: 0",
     benchExamples:
-      "The added scenarios demonstrate rejection of an allowlisted name resolving to RFC1918 space, exclusion of an unknown host variable, guest-visible confinement, concurrent post-decoy containment and recovery of an interrupted contained session's exactly owned stale network.",
+      "v0.3 coverage includes hostile prompt signals with SHADOW access and later network denial, defensive-document false-positive control, non-interactive ASK failure closure, one-use and concurrent approval isolation, containment overriding cached approval, runtime timeout cleanup and integrated cross-session isolation.",
     benchNote:
       "--require-all exits unsuccessfully on either FAIL or SKIP. Without Docker, Docker-dependent cases are SKIP, not PASS. The dynamic-containment demo uses a harmless local Docker HTTP fixture; it does not send credentials to an external service.",
-    allScenarios: "All fifteen scenario identifiers",
+    allScenarios: "All twenty-five scenario identifiers",
     gate: "Release CI evidence",
     methodology: "GhostBench methodology",
     limitsTitle: "What Ghost does not guarantee.",
     limits: [
       [
         "Docker is still trusted",
-        "Docker, its daemon, the OCI runtime, pinned image, host kernel and invoking account remain the trusted computing base. Ghost does not guarantee protection against container escapes or every network attack. Separate user namespaces require rootless Docker or daemon-level userns-remap.",
+        "Docker, its daemon, the OCI runtime, pinned image and host kernel remain part of the trusted computing base. Ghost does not guarantee protection from every container escape or kernel vulnerability.",
       ],
       [
-        "No intent or injection detector",
-        "Ghost does not detect prompt injection, understand model intent, trace semantic data flow or prove exfiltration. DECOY_ACCESS is an observed file event; derived FOLLOWED_BY graph edges and incident sequences are not evidence of causation.",
+        "Prompt findings are heuristic",
+        "The integrated guard can miss attacks or flag benign text. It does not understand model intent and never authorizes access by declaring content safe.",
       ],
       [
-        "A deliberately narrow network boundary",
-        "No TLS interception or request-content inspection, general TCP/UDP proxying, MCP interception or supported IPv6 upstream egress. CONNECT can carry non-TLS bytes. Approved endpoints can relay data; already-established traffic cannot be revoked by containment.",
+        "Evidence is not causality",
+        "Provenance distinguishes observed events, derived exposure and temporal FOLLOWED_BY relationships. Ghost does not prove that suspicious content caused later behavior or that data was exfiltrated.",
       ],
       [
-        "Only the exposed environment is controlled",
-        "Read-write workspace mode intentionally permits file changes; use workspace.mode: read-only when appropriate. Workspace secrets and secrets in command arguments are not automatically removed. Commands outside Ghost are outside its control.",
+        "Network and resource controls are deliberately bounded",
+        "Ghost does not inspect TLS content, proxy general TCP/UDP, support IPv6 upstream egress, impose a byte quota on the workspace/evidence store, or provide aggregate host admission control. Established connections are not revoked retroactively.",
       ],
       [
-        "Recovery and supply-chain limits",
-        "A hard crash can leave resources until the next successful project recovery; terminal-session cleanup failures are visible but not automatically retried by that path. There are no signed binaries, attestations or SBOM yet. Fifteen passing scenarios are not a universal security proof.",
+        "Host and output boundaries still matter",
+        "Read-write mode intentionally permits workspace modification, and attached program output is not sanitized. Hard host/daemon failure can interrupt cleanup or evidence collection. Twenty-five passing scenarios demonstrate named properties, not universal attack prevention.",
       ],
     ],
     sourcesTitle: "Inspect the source. Try the release.",
     sourcesText:
-      "The documentation and fifteen-scenario result below are pinned to released v0.2.0. Current main contains unreleased v0.3 work on bounded prompt-injection detection and trust context; those capabilities are not part of v0.2.0. Ghost remains experimental.",
+      "The documentation, binaries, checksums and twenty-five-scenario result below are pinned to released v0.3.0 at the audited release commit. Ghost remains experimental, and the linked security/threat documentation defines the precise boundary.",
     readme: "Documentation / README",
     security: "Security model",
     moreSources: "Architecture, policy and evidence references",
@@ -296,42 +323,47 @@ export const ghostCopy = {
   },
   de: {
     intro: {
-      eyebrow: "GHOST v0.2.0 · SICHERHEITSHÄRTUNG",
-      title: "rappidAI Ghost. Setze die Grenzen.",
+      eyebrow: "GHOST v0.3.0 · INTEGRIERTE AGENTEN-SICHERHEIT",
+      title: "rappidAI Ghost. Sicherheit im Hintergrund.",
       description:
-        "Eine deception-aware Security-Runtime für autonome KI-Agenten. Führe Befehle in einer isolierten Umgebung aus, lege deterministische Zugriffsregeln fest und prüfe die Nachweise, wenn ein Prozess auf einen synthetischen Köder zugreift.",
+        "Eine integrierte Security-Runtime für autonome KI-Agenten. Ghost verbindet Isolation, Deception, Prompt-Injection-Signale, eng begrenzte Freigaben, Runtime-Limits und nachvollziehbare Evidenz in einem einfachen Ablauf.",
     },
     index: "Ghost entdecken",
-    nav: ["Überblick", "Neu in v0.2.0", "Einstieg", "GhostBench"],
+    nav: ["Überblick", "Neu in v0.3.0", "Einstieg", "GhostBench"],
     status: "Veröffentlicht · Experimentell · Apache-2.0",
     github: "Auf GitHub ansehen",
-    release: "v0.2.0 Release",
+    release: "v0.3.0 Release",
     getStarted: "Loslegen",
-    overviewTitle: "Nützlicher Zugriff. Bewusste Grenzen.",
+    overviewTitle: "Ein Befehl. Mehrere Sicherheitsebenen.",
     overview:
-      "Ein Agent, der Befehle ausführen kann, kann auch versuchen, Zugangsdaten zu lesen oder unerwartete Netzwerkziele zu kontaktieren. Ghost begrenzt die Umgebung für Befehle, die über ghost run gestartet werden. Dein Projekt ist unter /workspace verfügbar; dein echtes Home-Verzeichnis wird nicht eingebunden und Host-Umgebungsvariablen werden nicht weitergereicht.",
+      "Ghost führt Agenten in einer kontrollierten Runtime aus. Vor dem Start prüft es die Umgebung, isoliert den Prozess, hält geschützte Host-Ressourcen fern, untersucht ausgewählte nicht vertrauenswürdige Instruktionsflächen, setzt Netzwerk- und Ressourcenlimits durch und speichert Evidenz für die spätere Analyse.",
     purpose:
-      "Für Agenten-Entwickler, Security Engineers und Forschende, die kontrollierte Experimente, reproduzierbare Grenzprüfungen und nachvollziehbare Ereignisse brauchen – statt unbeschränkten Zugriff auf den Entwicklungsrechner. Ghost ergänzt Docker-Isolation um Regeln, Köder, Netzwerkentscheidungen und Nachweise. Es ersetzt Dockers Sicherheitsgrenze nicht.",
-    policyTitle: "ALLOW. DENY. SHADOW.",
+      "Für Entwickler, Security Engineers und Forschende, die autonome Agenten nützlich einsetzen wollen, ohne ihnen stillschweigend zu viel Vertrauen zu geben. Die Komplexität bleibt weitgehend unter ghost run; detaillierte Evidenz ist bei Bedarf über inspect, graph und incidents verfügbar.",
+    policyTitle: "ALLOW. DENY. SHADOW. ASK.",
     policies: [
       {
         name: "ALLOW",
         description:
-          "Die erlaubte reale Ressource ist verfügbar – etwa der konfigurierte Projekt-Workspace oder ein freigegebenes Netzwerkziel.",
+          "Die erlaubte reale Ressource oder das exakte Ziel steht unter der aktiven Policy zur Verfügung.",
       },
       {
         name: "DENY",
         description:
-          "Der Zugriff wird verweigert. Eine gesperrte unterstützte Home-Ressource bleibt abwesend; deaktivierte Deception bindet niemals das echte Home ein.",
+          "Der Zugriff wird verweigert. Harte Runtime-, Host- und Containment-Grenzen bleiben nicht freigabefähig.",
       },
       {
         name: "SHADOW",
         description:
-          "Ghost stellt eine kontrollierte synthetische Ressource statt der entsprechenden echten Ressource bereit. Die echte Ressource bleibt isoliert.",
+          "Ghost stellt kontrolliertes synthetisches Material bereit, während die entsprechende geschützte Host-Ressource isoliert bleibt.",
+      },
+      {
+        name: "ASK",
+        description:
+          "Nur für explizit konfigurierte Ziele kann Ghost eine einzelne Operation pausieren und eine eng begrenzte Nutzerentscheidung anfordern. Fehlende oder ungültige Interaktion wird zu DENY.",
       },
     ],
     policyScope:
-      "Das sind deterministische Regeln, kein KI-Klassifikator. Die Sicherheitsdurchsetzung verwendet weder ein LLM noch eine Cloud-Control-Plane. SHADOW umfasst aktuell genau drei unterstützte Home-Pfade, nicht beliebige Dateizugriffe.",
+      "Die Durchsetzung bleibt deterministisch und delegiert Autorisierung niemals an ein LLM. Der Prompt-Injection Guard liefert begrenzte Sicherheitssignale und Trust Context, kann aber weder verbotene Zugriffe sicher machen noch Isolation deaktivieren.",
     shadowTitle: "Warum ein Köder mehr zeigen kann als eine Ablehnung.",
     shadowText:
       "Ein Prozess versucht beispielsweise, ~/.aws/credentials zu öffnen. Mit der standardmäßigen Shadow-Home-Policy erhält er eine frisch erzeugte synthetische Datei in /home/ghost – nicht die Zugangsdaten des Host-Nutzers. Ghost prüft oder kopiert die echte Datei nicht und leitet daraus keine Werte ab. Die synthetischen AWS-Werte, die funktionslose SSH-Key-förmige Datei und der generische .env-Köder können sich nicht bei echten Diensten authentifizieren.",
@@ -355,77 +387,85 @@ export const ghostCopy = {
     ],
     shadowLimit:
       "Ein Köderzugriff belegt ein Dateiereignis, nicht eine böswillige Absicht oder den Abfluss von Zugangsdaten. Containment widerruft keine bereits freigegebenen, aufgebauten Verbindungen.",
-    changesTitle: "v0.2.0 härtet die bestehende Grenze.",
+    changesTitle: "v0.3.0 macht Ghost zu einer integrierten Agenten-Security-Runtime.",
     changesIntro:
-      "Dieser Release verbessert die Sicherheit: enger begrenzte Ziele, stärkere Isolation, geordnetes Containment und zuverlässigere Wiederherstellung. Ghost wird dadurch weder zu einer allgemeinen Firewall noch zu einem Angriffserkenner.",
+      "Der Release behält denselben einfachen Ablauf, integriert darunter aber Kontext, eng begrenzte Freigaben, Runtime-Schutz und stärkere Evidenz. Die Sicherheitsgrenzen aus v0.2 bleiben maßgeblich.",
     changes: [
       {
-        title: "Validierte Netzwerkziele",
-        text: "Nach dem exakten Hostnamen-Abgleich führt das Gateway eine IPv4-Auflösung aus, prüft jeden A-Record und verbindet sich mit der ausgewählten validierten numerischen Adresse. Schon eine verbotene Antwort sperrt die gesamte Anfrage. Private, Loopback- und Link-Local-Bereiche einschließlich der Metadatenadresse 169.254.169.254 sind als Upstream-Ziele blockiert.",
-        link: "network",
+        title: "Integrierter Prompt-Injection Guard",
+        text: "Vor PROCESS_START untersucht Ghost begrenzte agentenrelevante Workspace-Flächen wie AGENTS.md, Dokumentation und ausgewählte Skripte. Findings speichern nur minimierte Regel-, Kategorie- und Hash-Daten; False Positives und False Negatives bleiben möglich.",
+        link: "promptguard",
       },
       {
-        title: "Stärkere Container-Isolation",
-        text: "Alle Ghost-Container verwenden numerische UID/GID ungleich null, entfernte Capabilities, no-new-privileges und schreibgeschützte Root-Dateisysteme. v0.2 ergänzt explizit private IPC-/cgroup-Namespaces, deaktivierte Core-Dumps und eine begrenzte .ghost-tmpfs-Maske; isolierte PID-Namespaces und Prozesslimits bleiben erhalten.",
-        link: "security",
+        title: "Trust Context ohne erfundene Kausalität",
+        text: "Ausgewählte Workspace-Quellen werden deterministisch klassifiziert und in der Provenance als beobachteter oder abgeleiteter Kontext verknüpft. Ghost kann zeitliche Zusammenhänge zeigen, ohne zu behaupten, dass ein Text spätere Aktionen verursacht hat.",
+        link: "provenance",
       },
       {
-        title: "Positive Umgebungs-Allowlist",
-        text: "Ghost übergibt feste HOME- und PATH-Werte und im Allowlist-Modus seine eigenen Proxy-Variablen. Auch beliebige unbekannte Host-Variablen werden grundsätzlich nicht weitergereicht – statt nur bekannte Secret-Namen herauszufiltern. Secrets, die du bewusst im eingebundenen Workspace ablegst, bleiben zugänglich.",
-        link: "security",
+        title: "ALLOW / DENY / SHADOW / ASK",
+        text: "Für exakt konfigurierte HTTP/HTTPS-Ziele sind ALLOW_ONCE, ALLOW_SESSION oder DENY möglich. Freigaben gelten nur für die laufende Session und das exakte Schema, Ziel, den Port und die Methode; Containment und harte Sperren haben immer Vorrang.",
+        link: "approvals",
       },
       {
-        title: "Token/Ack-Containment-Fence",
-        text: "Ein session-privater Marker wird vor dem Zugriffsnachweis gesetzt. Jede mögliche Gateway-Freigabe wartet auf die passende Token-Bestätigung aus der geordneten inotify-Warteschlange des Sentinels und prüft den Marker erneut. Fehlende oder verspätete Bestätigung führt zu DENY.",
-        link: "network",
+        title: "Integrierter Runtime-Ressourcenschutz",
+        text: "Agent und Kindprozesse laufen mit verpflichtenden Grenzen für RAM, CPU, Prozesse, temporären Speicher und Laufzeit. Die Standardwerte sind 2 GiB RAM, eine CPU, 256 Prozesse/Threads, 64 MiB /tmp und eine Stunde Laufzeit mit begrenzter Terminierung und Bereinigung.",
+        link: "runtimeResources",
       },
       {
-        title: "Session-Sperre und Wiederherstellung",
-        text: "Runs eines Projekts werden serialisiert. Beim nächsten Run werden unterbrochene Sessions als fehlgeschlagen abgeschlossen. Entfernt werden ausschließlich Ghost-eigene Docker-Ressourcen mit passender gespeicherter Session-Identität, Komponenten-Labels und exakten erwarteten Namen. Unklare Zuordnung oder fehlgeschlagene Bereinigung brechen den neuen Run ab.",
-        link: "security",
+        title: "Automatischer Security-Preflight und Zusammenfassungen",
+        text: "ghost run prüft Docker, Identität, Policy, Workspace und session-eigenen Zustand vor PROCESS_START. Erfolgreiche Checks bleiben leise; sicherheitsrelevante Sessions enden mit kurzen, aus gespeicherter Evidenz abgeleiteten Zusammenfassungen.",
+        link: "architecture",
       },
       {
-        title: "Fixierte Lieferkette, breitere Tests",
-        text: "Alpine 3.22.5 ist jetzt durch einen unveränderlichen Image-Index-Digest fixiert. Actions nutzen vollständige Commit-SHAs; CI prüft Go-Module und Release-Quelle. Linux-Binärdateien enthalten SHA256SUMS. Fünf neue GhostBench-Szenarien erhöhen den Umfang auf fünfzehn. Prüfsummen sind keine Signaturen und garantieren keine Integrität der vorgelagerten Quellen.",
-        link: "changelog",
+        title: "Adversarial validierter Release",
+        text: "Der finale Audit behob Edge Cases bei Approval, Containment, HTTP-Framing, Evidence-Finalisierung, Recovery und schnellen Child-OOMs. GhostBench umfasst jetzt 25 benannte Szenarien; das Release-Gate protokollierte 25 PASS, 0 FAIL und 0 SKIP.",
+        link: "benchmarks",
       },
     ],
     sourceLink: "Implementierte Grenze nachlesen",
-    architectureTitle: "Eine Runtime. Getrennte Sicherheitsebenen.",
+    architectureTitle: "Eine Runtime. Integrierter Sicherheitskontext.",
     architectureIntro:
-      "Die Policy konfiguriert die Runtime. Der Sentinel beobachtet Köder, das Gateway setzt Ziel- und Containment-Entscheidungen durch. Gespeicherte Nachweise dienen anschließend der rein lesenden Analyse. GhostBench prüft diese produktiven Codepfade statt einer zweiten Sicherheitsimplementierung.",
+      "Ghost führt Workspace-Beobachtungen, Policy-Entscheidungen, Runtime-Durchsetzung und Evidenz durch einen gemeinsamen Session-Lebenszyklus. Prompt-Findings erweitern den Kontext; Policy und harte Runtime-Grenzen bleiben maßgeblich; gespeicherte Events speisen Provenance, Incidents und Zusammenfassungen.",
     layers: [
       [
         "Isolation",
-        "Kurzlebige Docker-Sessions stellen den gewählten Workspace und ein schreibgeschütztes synthetisches Home bereit, nicht das echte Home, den Docker-Socket oder die Ghost-Datenbank.",
+        "Kurzlebige Docker-Sessions stellen den gewählten Workspace und das synthetische Home bereit, nicht das echte Home, den Docker-Socket oder die Ghost-Datenbank.",
+      ],
+      [
+        "Prompt- und Trust-Kontext",
+        "Ein begrenzter Pre-Run-Guard untersucht unterstützte Instruktionsflächen und speichert content-minimierte Findings sowie deterministischen Trust Context. Das ist eine Signallage, keine Autorisierungsinstanz.",
       ],
       [
         "Policy",
-        "Strikte ghost.yaml-Validierung setzt deterministische ALLOW-, DENY- und SHADOW-Regeln um. Ungültiger Aufbau führt nie zu ersatzweiser Host-Ausführung.",
+        "Strikte ghost.yaml-Validierung setzt ALLOW, DENY, SHADOW und bewusst eng begrenztes ASK deterministisch um. Containment und harte Sperren haben Vorrang vor Freigaben.",
       ],
       [
         "Deception",
-        "Frische synthetische AWS-, SSH- und .env-Ressourcen liefern beobachtbare Alternativen ohne echte Zugangsdaten.",
+        "Frische synthetische AWS-, SSH- und .env-Ressourcen liefern beobachtbare Alternativen, ohne echte Zugangsdaten zu lesen oder daraus Werte abzuleiten.",
       ],
       [
-        "Netzwerkkontrolle",
-        "Standardmäßig DENY. Optional ein HTTP/HTTPS-Gateway für exakte Hostnamen mit Adressprüfung und internem Agenten-Netz.",
+        "Netzwerk und Containment",
+        "HTTP/HTTPS-Egress für exakte Hostnamen läuft über ein session-eigenes Gateway mit validierter Zieladresse und erneuter Containment-Prüfung vor der Freigabe.",
       ],
       [
-        "Containment",
-        "Sentinel-Marker und Token/Ack-Fence ordnen neue Gateway-Entscheidungen gegenüber bereits eingereihten Köderereignissen derselben Session.",
+        "Runtime-Schutz",
+        "Verpflichtende cgroup-basierte Grenzen für RAM, CPU und PIDs, begrenztes /tmp, schreibgeschützte Root-Dateisysteme und ein Session-Timeout begrenzen Agent und Kindprozesse.",
       ],
       [
-        "Nachweise",
-        "SQLite speichert Session-Zustand und unterstützte Ereignisse. Netzwerkentscheidungen enthalten keine Header, Bodies, Query-Strings oder Tunnelinhalte.",
+        "Evidenz",
+        "SQLite speichert minimierte Session-Events und Sicherheitszustand. Fehlende verpflichtende Evidenz führt fail-closed statt zu einer stillen Abschwächung.",
       ],
       [
         "Provenance / Incidents",
-        "Deterministische, secret-minimierte Text- oder JSON-Ansichten verweisen auf gespeicherte Ereignis-IDs. Sie erklären beobachtete Reihenfolgen, nicht Modellabsichten oder Kausalität.",
+        "Deterministische Rekonstruktion trennt Beobachtungen, abgeleitete Beziehungen und zeitliche Reihenfolge, ohne Modellabsicht oder Kausalität zu erfinden.",
+      ],
+      [
+        "Nutzerfreigabe",
+        "Explizit konfigurierte ASK-Ziele können eine eng begrenzte Entscheidung anfordern; nicht-interaktive, ungültige oder abgelaufene Freigaben werden zu DENY.",
       ],
       [
         "GhostBench",
-        "Reproduzierbare lokale Testumgebungen prüfen benannte Sicherheitseigenschaften und melden PASS, FAIL oder ein ehrliches umgebungsabhängiges SKIP.",
+        "25 release-gegatete Szenarien prüfen einzelne Eigenschaften und integrierte Prompt/SHADOW/Netzwerk-, Approval-, Timeout- und Session-Isolationsketten.",
       ],
     ],
     networkTitle: "Ein Hostname allein reicht nicht.",
@@ -440,10 +480,10 @@ export const ghostCopy = {
       "Optional: Nur den network-Abschnitt in ghost.yaml ersetzen. Behalte deny bei, solange kein begrenzter ausgehender Zugriff nötig ist.",
     installTitle: "Mit einem kontrollierten lokalen Run starten.",
     requirements:
-      "Release-qualifiziertes Ziel: Linux mit Docker Engine, funktionierender lokaler Docker-CLI samt Daemon und Host-UID sowie -GID jeweils ungleich null. Der Quellcode-Build benötigt Git und Go 1.26 oder neuer. Docker Desktop auf macOS ist nicht release-qualifiziert; native Windows-Ausführung wird nicht unterstützt.",
+      "Runtime-getestetes Release-Ziel: Linux amd64 mit Docker Engine, funktionierender lokaler Docker-CLI samt Daemon und numerischer Host-UID sowie -GID ungleich null. Linux-arm64-Binaries werden cross-built und per Prüfsumme verifiziert. Source-Builds benötigen Git und Go 1.26.8 oder einen neueren unterstützten Patch-Release. Docker Desktop auf macOS ist nicht release-qualifiziert; native Windows-Ausführung wird nicht unterstützt.",
     buildTitle: "1. Den veröffentlichten Quellcode bauen",
     buildNote:
-      "Der Tag wählt v0.2.0 statt des veränderlichen main. PATH gilt für dieses Terminal, damit die folgenden ghost-Befehle die gerade gebaute Binärdatei finden. Die geprüfte Quellcode-Revision ist unten verlinkt.",
+      "Der Tag wählt das veröffentlichte v0.3.0 statt des veränderlichen main. PATH gilt für dieses Terminal, damit die folgenden Befehle die gerade gebaute Binärdatei finden. Die geprüfte Release-Revision ist unten verlinkt.",
     binaryNote:
       "Der Release enthält auch Linux-Binärdateien für amd64 und arm64. Dafür ist kein Go nötig. Prüfe die heruntergeladene Datei vor der Ausführung gegen SHA256SUMS.",
     startTitle: "2. Ein sauberes Demo-Projekt initialisieren",
@@ -453,45 +493,45 @@ export const ghostCopy = {
     exampleNote:
       "Im Demo-Verzeichnis ausführen. cat liefert synthetischen Inhalt. inspect zeigt die Session-Timeline; graph und incidents rekonstruieren belegte Zusammenhänge. Beide unterstützen auch --json. Der Trenner -- ist für run erforderlich.",
     practicalLimit:
-      "Ghosts fixiertes Alpine-Image ist minimal: Auf dem Host installierte Python-, Node- oder Agenten-Pakete sind darin nicht automatisch verfügbar. Fehlende Befehle schlagen fehl; es gibt keine ersatzweise Host-Ausführung. Lege keine echten Secrets im Demo-Workspace oder in Befehlsargumenten ab – argv wird im lokalen Session-Speicher festgehalten.",
-    benchTitle: "Fünfzehn Szenarien. Konkrete Nachweise.",
+      "Ghosts fixiertes Alpine-Image ist bewusst minimal: Auf dem Host installierte Python-, Node- oder Agenten-Pakete sind darin nicht automatisch verfügbar. Fehlende Befehle schlagen fehl und werden nie ersatzweise auf dem Host ausgeführt. Der eingebundene Workspace ist für den Agenten sichtbar und angehängte Programmausgabe wird nicht bereinigt; lege dort nur Secrets ab, auf die der Agent tatsächlich zugreifen soll.",
+    benchTitle: "25 Szenarien. Integrierte Sicherheitsketten.",
     benchText:
-      "GhostBench ist eine reproduzierbare Sicherheits-Testsuite, kein Security-Score. Der v0.2.0-Release-Job hat alle fünfzehn Szenarien unter Linux mit Docker erfolgreich ausgeführt. Das ist das protokollierte Release-Ergebnis, keine Zusage für jede lokale Umgebung oder jeden Angriff.",
-    benchLabel: "Protokolliertes v0.2.0-Release-Ergebnis · 6. September 2026",
-    benchResult: "PASS: 15 · FAIL: 0 · SKIP: 0",
+      "GhostBench ist eine reproduzierbare Suite für benannte Sicherheitseigenschaften, kein Security-Score. Das v0.3.0-Release-Gate führte alle 25 verpflichtenden Szenarien unter Linux amd64 mit Docker erfolgreich aus, einschließlich integrierter Prompt/SHADOW/Netzwerk-, Approval/Containment-, Runtime-Timeout- und Cross-Session-Ketten.",
+    benchLabel: "Protokolliertes v0.3.0-Release-Ergebnis · 21. September 2026",
+    benchResult: "PASS: 25 · FAIL: 0 · SKIP: 0",
     benchExamples:
-      "Die neuen Szenarien zeigen die Sperre eines erlaubten Namens mit RFC1918-Zieladresse, den Ausschluss einer unbekannten Host-Variablen, im Gast sichtbare Container-Isolation, gleichzeitige Anfragen nach Köderzugriff sowie die Bereinigung des exakt zugeordneten alten Netzwerks einer unterbrochenen eingedämmten Session.",
+      "v0.3 prüft unter anderem feindliche Prompt-Signale mit späterem SHADOW-Zugriff und Network-DENY, False-Positive-Kontrollen für defensive Dokumentation, fail-closed ASK ohne Interaktion, One-Use- und parallele Approval-Isolation, Containment vor gecachter Freigabe, Timeout-Cleanup und integrierte Cross-Session-Isolation.",
     benchNote:
       "--require-all endet sowohl bei FAIL als auch bei SKIP mit einem Fehlerstatus. Ohne Docker sind Docker-abhängige Fälle SKIP, nicht PASS. Die dynamic-containment-Demo nutzt einen harmlosen lokalen Docker-HTTP-Testdienst; sie sendet keine Zugangsdaten an externe Dienste.",
-    allScenarios: "Alle fünfzehn Szenario-IDs",
+    allScenarios: "Alle 25 Szenario-IDs",
     gate: "Release-CI-Nachweis",
     methodology: "GhostBench-Methodik",
     limitsTitle: "Was Ghost nicht garantiert.",
     limits: [
       [
-        "Docker bleibt vertrauenswürdig vorausgesetzt",
-        "Docker, Daemon, OCI-Runtime, fixiertes Image, Host-Kernel und ausführendes Konto bleiben die Trusted Computing Base. Ghost garantiert keinen Schutz vor Container-Escapes oder jedem Netzwerkangriff. Separate User-Namespaces erfordern Rootless Docker oder daemonweites userns-remap.",
+        "Docker bleibt Teil der Vertrauensbasis",
+        "Docker, Daemon, OCI-Runtime, fixiertes Image und Host-Kernel bleiben Teil der Trusted Computing Base. Ghost garantiert keinen Schutz vor jedem Container-Escape oder jeder Kernel-Schwachstelle.",
       ],
       [
-        "Keine Absichts- oder Injection-Erkennung",
-        "Ghost erkennt keine Prompt Injection, versteht keine Modellabsicht, verfolgt keinen semantischen Datenfluss und beweist keine Exfiltration. DECOY_ACCESS ist ein beobachtetes Dateiereignis; abgeleitete FOLLOWED_BY-Kanten und Incident-Folgen belegen keine Kausalität.",
+        "Prompt-Findings sind heuristisch",
+        "Der integrierte Guard kann Angriffe übersehen oder gutartige Texte markieren. Er versteht keine Modellabsicht und darf Zugriffe nie dadurch erlauben, dass Inhalt als sicher eingestuft wird.",
       ],
       [
-        "Bewusst enge Netzwerkgrenze",
-        "Keine TLS- oder Request-Inhaltsinspektion, kein allgemeines TCP/UDP-Proxying, keine MCP-Interception und kein unterstützter IPv6-Upstream. CONNECT kann Nicht-TLS-Daten transportieren. Erlaubte Server können Daten weiterleiten; bereits aufgebaute Verbindungen lassen sich durch Containment nicht widerrufen.",
+        "Evidenz ist keine Kausalität",
+        "Provenance trennt beobachtete Events, abgeleitete Exposition und zeitliche FOLLOWED_BY-Beziehungen. Ghost beweist weder, dass verdächtiger Inhalt spätere Aktionen verursacht hat, noch dass Daten exfiltriert wurden.",
       ],
       [
-        "Kontrolle nur über die bereitgestellte Umgebung",
-        "Read-write erlaubt bewusst Änderungen an Projektdateien; nutze gegebenenfalls workspace.mode: read-only. Workspace-Secrets und Secrets in Befehlsargumenten werden nicht automatisch entfernt. Befehle außerhalb von Ghost liegen außerhalb seiner Kontrolle.",
+        "Netzwerk- und Ressourcenlimits sind bewusst begrenzt",
+        "Ghost inspiziert keine TLS-Inhalte, proxyt kein allgemeines TCP/UDP, unterstützt keinen IPv6-Upstream, setzt kein Byte-Limit für Workspace/Evidenz und bietet keine globale Host-Ressourcenreservierung. Bereits aufgebaute Verbindungen werden nicht rückwirkend beendet.",
       ],
       [
-        "Grenzen von Recovery und Lieferkette",
-        "Nach einem harten Absturz können Ressourcen bis zur nächsten erfolgreichen Projekt-Wiederherstellung bleiben. Bereinigungsfehler bereits beendeter Sessions sind sichtbar, werden über diesen Pfad aber nicht automatisch erneut bearbeitet. Signierte Binärdateien, Attestierungen und SBOM fehlen bisher. Fünfzehn bestandene Szenarien sind kein universeller Sicherheitsbeweis.",
+        "Host- und Output-Grenzen bleiben relevant",
+        "Read-write erlaubt bewusst Änderungen am Workspace, und angehängte Programmausgabe wird nicht sanitisiert. Harte Host-/Daemon-Ausfälle können Cleanup oder Evidenzsammlung unterbrechen. 25 bestandene Szenarien belegen benannte Eigenschaften, keinen universellen Angriffsschutz.",
       ],
     ],
     sourcesTitle: "Quellcode prüfen. Release ausprobieren.",
     sourcesText:
-      "Die Dokumentation und das Ergebnis der fünfzehn Szenarien unten sind an das veröffentlichte v0.2.0 gebunden. Aktueller main enthält unveröffentlichte v0.3-Arbeit an begrenzter Prompt-Injection-Erkennung und Trust Context; diese Funktionen gehören nicht zu v0.2.0. Ghost bleibt experimentell.",
+      "Dokumentation, Binärdateien, Prüfsummen und das Ergebnis der 25 Szenarien unten sind an das veröffentlichte v0.3.0 und den auditierten Release-Commit gebunden. Ghost bleibt experimentell; Sicherheits- und Bedrohungsmodell beschreiben die genaue Grenze.",
     readme: "Dokumentation / README",
     security: "Sicherheitsmodell",
     moreSources: "Architektur, Regeln und Nachweisreferenzen",

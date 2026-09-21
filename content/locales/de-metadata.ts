@@ -21,9 +21,9 @@ export const deMetadataTranslations: Readonly<Record<string, string>> = {
   "Tools — rappidAI Research": "Tools — rappidAI Research",
   "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.":
     "Ghost und Replay: Open-Source-Infrastruktur für kontrollierbare und reproduzierbare KI-Agenten-Ausführung.",
-  "Ghost v0.2.0 — rappidAI Research": "Ghost v0.2.0 — rappidAI Research",
-  "Ghost v0.2.0: a security-hardening release for autonomous AI agents. Explore ALLOW, DENY, SHADOW, installation, fifteen GhostBench scenarios and documented limits.":
-    "Ghost v0.2.0: Sicherheitshärtung für autonome KI-Agenten. ALLOW, DENY, SHADOW, Installation, fünfzehn GhostBench-Szenarien und dokumentierte Grenzen.",
+  "Ghost v0.3.0 — rappidAI Research": "Ghost v0.3.0 — rappidAI Research",
+  "Ghost v0.3.0: integrated agent security with Prompt-Injection Guard, ALLOW/DENY/SHADOW/ASK, runtime protection, evidence and 25 GhostBench scenarios.":
+    "Ghost v0.3.0: integrierte Agenten-Sicherheit mit Prompt-Injection Guard, ALLOW/DENY/SHADOW/ASK, Runtime-Schutz, Evidenz und 25 GhostBench-Szenarien.",
   "Replay — rappidAI Research": "Replay — rappidAI Research",
   "Local-first infrastructure for recording, verifying, restoring, branching, rerunning and diffing AI-agent executions.":
     "Local-first Infrastruktur zum Aufzeichnen, Verifizieren, Wiederherstellen, Verzweigen, erneuten Ausführen und Vergleichen von KI-Agenten-Ausführungen.",

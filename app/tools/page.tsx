@@ -19,24 +19,24 @@ const copy = {
     thesis: "TWO DIFFERENT QUESTIONS",
     thesisTitle: "Control the environment. Preserve the evidence.",
     ghostQuestion:
-      "What may the agent access — and what happens when it touches a decoy?",
+      "What may the agent access — and how should suspicious input, sensitive actions and runtime risk be handled?",
     replayQuestion:
       "What happened during the run — and can the technical state be reconstructed?",
     note: "Ghost and Replay are complementary research directions, not presented here as a single integrated product. Their current implementations remain separate repositories with separate guarantees.",
     ghostSummary:
-      "A deception-aware security runtime for autonomous agents. Deterministic ALLOW, DENY and SHADOW outcomes, with hardened isolation, controlled synthetic resources and inspectable evidence—not an LLM-based attack detector.",
+      "An integrated security runtime for autonomous agents. Isolation, SHADOW deception, prompt-injection signals, scoped ASK decisions, runtime limits and evidence work together behind the same ghost run flow.",
     replaySummary:
       "Local-first infrastructure for recording, restoring, branching, rerunning and diffing AI-agent executions.",
     current: "CURRENT IMPLEMENTATION",
-    ghostStatus: "Security-hardening release · Experimental",
-    release: "v0.2.0 Release",
+    ghostStatus: "Integrated agent security · Experimental",
+    release: "v0.3.0 Release",
     ghostFacts: [
-      "Non-root Docker confinement and a positive guest-environment allowlist",
-      "Exact-hostname HTTP/HTTPS egress with validated IPv4 destinations",
-      "Synthetic home resources and observed DECOY_ACCESS evidence",
-      "Token/ack containment fence for new gateway decisions—not existing connections",
-      "Per-project session locking and Ghost-owned resource recovery",
-      "Digest-pinned image and fifteen-scenario GhostBench release gate",
+      "Bounded Prompt-Injection Guard and deterministic trust context",
+      "ALLOW / DENY / SHADOW / ASK with exact session-scoped approval",
+      "Non-root Docker isolation plus memory, CPU, PID, tmpfs and runtime limits",
+      "Exact-hostname HTTP/HTTPS egress with containment taking precedence over approval",
+      "Evidence-based summaries, provenance, incidents and crash recovery",
+      "25-scenario adversarial GhostBench release gate: 25 PASS / 0 FAIL / 0 SKIP",
     ],
     replayFacts: [
       "Generic execution recorder",
@@ -61,24 +61,24 @@ const copy = {
     thesis: "ZWEI UNTERSCHIEDLICHE FRAGEN",
     thesisTitle: "Umgebung kontrollieren. Evidenz bewahren.",
     ghostQuestion:
-      "Worauf darf der Agent zugreifen – und was passiert, wenn er einen Köder berührt?",
+      "Worauf darf der Agent zugreifen – und wie werden verdächtige Eingaben, sensible Aktionen und Runtime-Risiken behandelt?",
     replayQuestion:
       "Was ist während des Runs passiert – und lässt sich der technische Zustand rekonstruieren?",
     note: "Ghost und Replay sind komplementäre Forschungsrichtungen, werden hier aber nicht als bereits integriertes Gesamtprodukt dargestellt. Die aktuellen Implementierungen bleiben getrennte Repositories mit getrennten Garantien.",
     ghostSummary:
-      "Eine deception-aware Security-Runtime für autonome Agenten. Deterministische ALLOW-, DENY- und SHADOW-Entscheidungen mit gehärteter Isolation, kontrollierten synthetischen Ressourcen und prüfbaren Nachweisen – kein LLM-basierter Angriffserkenner.",
+      "Eine integrierte Security-Runtime für autonome Agenten. Isolation, SHADOW-Deception, Prompt-Injection-Signale, eng begrenzte ASK-Entscheidungen, Runtime-Limits und Evidenz arbeiten unter demselben ghost-run-Ablauf zusammen.",
     replaySummary:
       "Local-first Infrastruktur zum Aufzeichnen, Wiederherstellen, Verzweigen, erneuten Ausführen und Vergleichen von KI-Agenten-Runs.",
     current: "AKTUELLE IMPLEMENTIERUNG",
-    ghostStatus: "Release zur Sicherheitshärtung · Experimentell",
-    release: "v0.2.0 Release",
+    ghostStatus: "Integrierte Agenten-Sicherheit · Experimentell",
+    release: "v0.3.0 Release",
     ghostFacts: [
-      "Nicht-Root-Docker-Isolation und positive Allowlist für die Gastumgebung",
-      "HTTP/HTTPS-Egress für exakte Hostnamen mit validierten IPv4-Zielen",
-      "Synthetische Home-Ressourcen und beobachtete DECOY_ACCESS-Nachweise",
-      "Token/Ack-Containment-Fence für neue Gateway-Entscheidungen, nicht bestehende Verbindungen",
-      "Session-Sperren pro Projekt und Bereinigung Ghost-eigener Ressourcen",
-      "Digest-fixiertes Image und GhostBench-Release-Gate mit fünfzehn Szenarien",
+      "Begrenzter Prompt-Injection Guard und deterministischer Trust Context",
+      "ALLOW / DENY / SHADOW / ASK mit exakt session-begrenzter Freigabe",
+      "Nicht-Root-Docker-Isolation plus RAM-, CPU-, PID-, tmpfs- und Laufzeitlimits",
+      "HTTP/HTTPS-Egress für exakte Hostnamen; Containment hat Vorrang vor Approval",
+      "Evidenzbasierte Zusammenfassungen, Provenance, Incidents und Crash-Recovery",
+      "Adversarial GhostBench mit 25 Szenarien: 25 PASS / 0 FAIL / 0 SKIP",
     ],
     replayFacts: [
       "Generischer Execution Recorder",
@@ -100,7 +100,7 @@ const tools = [
     name: "Ghost",
     href: "/tools/ghost" as const,
     repo: ghostLinks.repository,
-    accent: "ALLOW · DENY · SHADOW",
+    accent: "ALLOW · DENY · SHADOW · ASK",
   },
   {
     name: "Replay",
@@ -131,7 +131,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
             label: "Ghost",
             description: t(
               locale,
-              "Control what an agent may access and detect contact with decoys.",
+              "Control agent access with isolation, deception, prompt signals and evidence.",
             ),
           },
           {
