@@ -19,7 +19,7 @@ const copy = {
     thesis: "TWO DIFFERENT QUESTIONS",
     thesisTitle: "Control the environment. Preserve the evidence.",
     ghostQuestion:
-      "What may the agent access — and what happens when it touches a decoy?",
+      "What may the agent access — and how should suspicious input, sensitive actions and runtime risk be handled?",
     replayQuestion:
       "What happened during the run — and can the technical state be reconstructed?",
     note: "Ghost and Replay are complementary research directions, not presented here as a single integrated product. Their current implementations remain separate repositories with separate guarantees.",
@@ -61,7 +61,7 @@ const copy = {
     thesis: "ZWEI UNTERSCHIEDLICHE FRAGEN",
     thesisTitle: "Umgebung kontrollieren. Evidenz bewahren.",
     ghostQuestion:
-      "Worauf darf der Agent zugreifen – und was passiert, wenn er einen Köder berührt?",
+      "Worauf darf der Agent zugreifen – und wie werden verdächtige Eingaben, sensible Aktionen und Runtime-Risiken behandelt?",
     replayQuestion:
       "Was ist während des Runs passiert – und lässt sich der technische Zustand rekonstruieren?",
     note: "Ghost und Replay sind komplementäre Forschungsrichtungen, werden hier aber nicht als bereits integriertes Gesamtprodukt dargestellt. Die aktuellen Implementierungen bleiben getrennte Repositories mit getrennten Garantien.",
