@@ -19,9 +19,9 @@ for (const locale of ["en", "de"] as const) {
       await expect(page.locator(".page-intro-context")).toContainText(
         ghostRelease.version,
       );
-      await expect(page).toHaveTitle(/Ghost v0\.2\.0/);
+      await expect(page).toHaveTitle(/Ghost v0\.3\.0/);
       await expect(page.getByTestId("ghost-bench-result")).toHaveText(
-        "PASS: 15 · FAIL: 0 · SKIP: 0",
+        "PASS: 25 · FAIL: 0 · SKIP: 0",
       );
       await expect(
         page.locator(`a[href="${ghostLinks.repository}"]`).first(),
