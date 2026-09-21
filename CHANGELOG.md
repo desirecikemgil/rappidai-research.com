@@ -14,7 +14,6 @@ versioned releases are introduced.
 - Replaced v0.2 release pins, binaries and benchmark claims with the audited v0.3.0 release commit, release assets and 25 PASS / 0 FAIL / 0 SKIP GhostBench gate.
 - Documented the integrated Prompt-Injection Guard, trust context, ALLOW/DENY/SHADOW/ASK approval, runtime resource protection, automatic preflight, evidence summaries and current limitations.
 
-
 ### Readiness pass — 18 September 2026
 
 - Aligned English/German identity, metadata, contact and Echelon stages with current project evidence; added the compute plan without asserting training or credit approval.
