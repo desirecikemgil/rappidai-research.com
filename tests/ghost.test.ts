@@ -18,7 +18,7 @@ describe("Ghost released source and site-wide consistency", () => {
     expect(ghostLinks.gate).toContain("/actions/runs/35648771011");
     expect(ghostRelease.bench).toEqual({ passed: 25, failed: 0, skipped: 0 });
     expect(ghostBenchScenarios).toHaveLength(25);
-    expect(new Set(ghostBenchScenarios).size).toBe(15);
+    expect(new Set(ghostBenchScenarios).size).toBe(25);
     expect(ghostBenchScenarios.slice(-5)).toEqual([
       "approval-once",
       "approval-containment-precedence",
@@ -48,7 +48,9 @@ describe("Ghost released source and site-wide consistency", () => {
         locale === "de" ? "Prompt-Injection Guard" : "Prompt-Injection Guard",
       );
       expect(copy.policyScope).toContain("LLM");
-      expect(copy.practicalLimit).toContain(locale === "de" ? "Programmausgabe" : "program output");
+      expect(copy.practicalLimit).toContain(
+        locale === "de" ? "Programmausgabe" : "program output",
+      );
       expect(copy.fenceDetail).toContain(
         locale === "de" ? "Paketebene" : "packet-level",
       );

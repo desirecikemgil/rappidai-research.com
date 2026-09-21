@@ -337,9 +337,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
           </h2>
           <p className="body-copy mt-6 max-w-4xl">{c.sourcesText}</p>
           <ActionLink href={ghostLinks.development} external variant="text">
-            {locale === "de"
-              ? "v0.3.0 Release Notes"
-              : "v0.3.0 release notes"}
+            {locale === "de" ? "v0.3.0 Release Notes" : "v0.3.0 release notes"}
           </ActionLink>
           <p className="mt-4 break-all font-mono text-xs leading-6 text-muted">
             {ghostRelease.version} · {ghostRelease.commit}

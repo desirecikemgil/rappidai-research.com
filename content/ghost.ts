@@ -158,7 +158,8 @@ export const ghostCopy = {
     ],
     shadowLimit:
       "A decoy access is evidence of a file event, not proof of malicious intent or credential exfiltration. Containment does not revoke already-authorized, established connections.",
-    changesTitle: "v0.3.0 turns Ghost into an integrated agent-security runtime.",
+    changesTitle:
+      "v0.3.0 turns Ghost into an integrated agent-security runtime.",
     changesIntro:
       "The release keeps the same two-command workflow while adding context, approval, runtime protection and stronger evidence underneath it. The existing v0.2 isolation and network boundary remain authoritative.",
     changes: [
@@ -387,7 +388,8 @@ export const ghostCopy = {
     ],
     shadowLimit:
       "Ein Köderzugriff belegt ein Dateiereignis, nicht eine böswillige Absicht oder den Abfluss von Zugangsdaten. Containment widerruft keine bereits freigegebenen, aufgebauten Verbindungen.",
-    changesTitle: "v0.3.0 macht Ghost zu einer integrierten Agenten-Security-Runtime.",
+    changesTitle:
+      "v0.3.0 macht Ghost zu einer integrierten Agenten-Security-Runtime.",
     changesIntro:
       "Der Release behält denselben einfachen Ablauf, integriert darunter aber Kontext, eng begrenzte Freigaben, Runtime-Schutz und stärkere Evidenz. Die Sicherheitsgrenzen aus v0.2 bleiben maßgeblich.",
     changes: [
