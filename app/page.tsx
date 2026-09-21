@@ -27,12 +27,12 @@ const copy = {
     quantumStatus: "Two public pilots · Echelon in development",
     ghost: "Set the boundaries.",
     ghostText:
-      "A deception-aware runtime for agents. Deterministic ALLOW, DENY and SHADOW rules, with hardened network boundaries, isolated sessions and inspectable evidence.",
+      "An integrated security runtime for autonomous agents: isolation, SHADOW deception, prompt-injection signals, scoped approvals, runtime limits and evidence behind one simple flow.",
     replay: "Understand every run.",
     replayText:
       "Record execution, restore technical state and compare branches. Local-first infrastructure for reproducible agent research.",
     toolStatus: "Experimental · Open source",
-    ghostStatus: "Security hardening · Experimental",
+    ghostStatus: "Integrated agent security · Experimental",
     open: "Explore",
     approach: "Our approach",
     approachTitle: "Built to be understood.",
@@ -88,12 +88,12 @@ const copy = {
     quantumStatus: "Zwei öffentliche Piloten · Echelon in Entwicklung",
     ghost: "Setze die Grenzen.",
     ghostText:
-      "Eine deception-aware Runtime für Agenten. Deterministische ALLOW-, DENY- und SHADOW-Regeln mit gehärteten Netzwerkgrenzen, isolierten Sessions und nachvollziehbaren Nachweisen.",
+      "Eine integrierte Security-Runtime für autonome Agenten: Isolation, SHADOW-Deception, Prompt-Injection-Signale, eng begrenzte Freigaben, Runtime-Limits und Evidenz in einem einfachen Ablauf.",
     replay: "Verstehe jeden Run.",
     replayText:
       "Ausführungen aufzeichnen, technische Zustände wiederherstellen und Branches vergleichen. Lokale Infrastruktur für reproduzierbare Agentenforschung.",
     toolStatus: "Experimentell · Open Source",
-    ghostStatus: "Sicherheitshärtung · Experimentell",
+    ghostStatus: "Integrierte Agenten-Sicherheit · Experimentell",
     open: "Entdecken",
     approach: "Unser Ansatz",
     approachTitle: "Entwickelt, um verstanden zu werden.",
