@@ -20,7 +20,7 @@
     "start": "next start",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm links:internal && pnpm build",
     "format": "prettier --write .",
-    "format:check": "prettier --write . && git diff --no-ext-diff -- app/tools/ghost/page.tsx CHANGELOG.md content/ghost.ts tests/ghost.test.ts",
+    "format:check": "prettier --check .",
     "links:external": "node scripts/check-links.mjs --external",
     "links:internal": "node scripts/check-links.mjs --internal",
     "lint": "eslint .",
