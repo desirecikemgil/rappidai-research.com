@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState, type KeyboardEvent } from "react";
 import { useMotionTier } from "@/components/motion/use-motion-tier";
@@ -8,7 +9,7 @@ import {
   type ComparisonEvidenceTone,
   type ComparisonViewId,
 } from "@/content/comparisons";
-import { localizeContent, t, type Locale } from "@/lib/i18n";
+import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 
 const glide = [0.16, 1, 0.3, 1] as const;
 const viewIds: ComparisonViewId[] = ["architecture", "tokenizer", "pipeline"];
@@ -60,9 +61,15 @@ export function ModelComparisonSuite({ locale = "en" }: { locale?: Locale }) {
               {content.introduction.title}
             </h2>
           </div>
-          <p className="body-lg max-w-[47rem]">
-            {content.introduction.description}
-          </p>
+          <div className="max-w-[47rem]">
+            <p className="body-lg">{content.introduction.description}</p>
+            <Link
+              className="quiet-link mt-5 underline underline-offset-4"
+              href={localizePath("/models/quantum-1-echelon", locale)}
+            >
+              {t(locale, "View current 1B targets")}
+            </Link>
+          </div>
         </div>
 
         <div className="comparison-console liquid-surface mt-12 overflow-hidden">

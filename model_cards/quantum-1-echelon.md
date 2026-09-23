@@ -1,24 +1,51 @@
-# quantum-1-echelon research card
+# Quantum 1 Echelon — 1B research preview
 
-## Status: no model release
+## Coming Soon / In Development
 
-`quantum-1-echelon` currently names a research family and pipeline, not a
-trained public model. The public evidence consists of:
+Quantum 1 Echelon is an upcoming German-first language model being developed
+from scratch by rappidAI Research. English coverage is planned alongside the
+German focus. Base pretraining comes first; the evaluated Chat stage is the
+planned final user-facing product. Base and Chat are stages of one model line.
 
-- a base-architecture configuration and parameter-count preflight;
-- tokenizer configuration and validation;
-- a small Garden data-pipeline smoke test; and
-- production-data and model-training plans.
+Reviewed on 23 September 2026 against the immutable Quantum repository revision
+[`c78300c`](https://github.com/rappidAI-Research/lumen-quantum/tree/c78300cdc76e68917c7122cf0c76df88badff174).
+The repository's newer 1B execution contract supersedes the earlier 506M plan.
 
-The production Garden run has explicitly **not started**, no production corpus
-manifest is public, model training has not started, and no Echelon model weights
-or model evaluation results exist in the reviewed public artifacts.
+## Planned specifications
 
-`quantum-1-echelon-base` and `quantum-1-echelon-chat` are planned variants or
-stages under the `quantum-1-echelon` family. They must not be counted as two
-released model families. Only the base architecture has a public preflight;
-the chat stage has no public training specification or artifact in the reviewed
-repository.
+| Item             | Development target / plan                            |
+| ---------------- | ---------------------------------------------------- |
+| Public name      | Quantum 1 Echelon                                    |
+| Variant          | 1B, planned                                          |
+| Parameter target | Approximately 1.0–1.02 billion                       |
+| Training         | From scratch, planned                                |
+| Language focus   | German-first, with English coverage planned          |
+| Base context     | 4,096 tokens, target                                 |
+| Precision        | BF16 training, planned                               |
+| Tokenizer        | Under evaluation: 32K and 48K vocabulary candidates  |
+| Base pretraining | 40B high-quality tokens, target                      |
+| Stages           | Base → SFT → Preference Optimization → Chat, planned |
+
+These are targets, not completed-model specifications or measured results.
+Architecture and tokenizer selection are in progress. No production Base,
+SFT or preference-trained checkpoint is available. No benchmark numbers,
+release date, future-model license or weights availability are claimed.
+
+Public source records:
+
+- [1B execution contract](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
+- [Development status](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/STATUS.md)
+- [32K candidate](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/model-32k.yaml)
+- [48K candidate](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/model-48k.yaml)
+- [Base training plan](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/train-base.yaml)
+
+## Historical evidence boundary
+
+The remaining sections retain the earlier 506M preflight, tokenizer and Garden
+records. Their 2,048-token context and 8B-token target are historical and do not
+describe the current 1B plan. Pipeline checks do not establish model capability.
+References to missing training specifications below describe that earlier
+reviewed snapshot, not the newer 1B execution contract above.
 
 ## Architecture preflight
 

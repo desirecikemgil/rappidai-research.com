@@ -29,11 +29,11 @@ The project does not claim frontier-model capability, benchmark competitiveness,
 
 ## Models
 
-| Model line          | Public status                             | Verified public facts                                                                                                      | Local documentation                            |
-| ------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| `quantum-1-pilot`   | Experimental F16 GGUF release             | 49,295,872 parameters; 512-token context; 98,990,560-byte artifact                                                         | [Model card](model_cards/quantum-1-pilot.md)   |
-| `quantum-1.6-pilot` | Experimental F16 GGUF release             | Same 49.3M architecture; public card reports 500M additional tokens, validation loss 3.348852 and perplexity 28.4700       | [Model card](model_cards/quantum-1.6-pilot.md) |
-| `quantum-1-echelon` | Pipeline in development; no model release | 506,333,440-parameter base-architecture preflight; 2,048-token configured context; tokenizer and Garden smoke-test reports | [Model card](model_cards/quantum-1-echelon.md) |
+| Model line          | Public status                        | Verified public facts                                                                                                         | Local documentation                            |
+| ------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `quantum-1-pilot`   | Experimental F16 GGUF release        | 49,295,872 parameters; 512-token context; 98,990,560-byte artifact                                                            | [Model card](model_cards/quantum-1-pilot.md)   |
+| `quantum-1.6-pilot` | Experimental F16 GGUF release        | Same 49.3M architecture; public card reports 500M additional tokens, validation loss 3.348852 and perplexity 28.4700          | [Model card](model_cards/quantum-1.6-pilot.md) |
+| `quantum-1-echelon` | Coming Soon; 1B model in development | Targets: ~1.0–1.02B parameters, 4,096-token Base context, BF16 and 40B pretraining tokens; 32K/48K tokenizer under evaluation | [Model card](model_cards/quantum-1-echelon.md) |
 
 Historical display names such as `Quantum 1 Base` refer to the `quantum-1-pilot` baseline release. `quantum-1-echelon-base` and `quantum-1-echelon-chat` are stages or variants within the `quantum-1-echelon` line, not separate model families.
 
@@ -139,7 +139,18 @@ Current Quantum documents an external checkout with an explicit revision in
 
 ## Echelon milestone
 
-rappidAI Quantum is the current model-development project identity; Lumen is a historical name retained in repository paths. The [compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) connects the 506,333,440-parameter preflight, tokenizer checks and Garden smoke results to production data preparation, a complete training recipe, full-context optimizer preflight, training and evaluation. No Echelon checkpoint, cloud deployment or credit award is claimed.
+Quantum 1 Echelon is the current major model project and the homepage launch
+preview. The [1B execution contract](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
+sets a German-first, from-scratch ~1.0–1.02B parameter target, 4,096-token Base
+context, BF16 and 40B Base pretraining tokens. English coverage is planned;
+32K/48K tokenizer selection remains open. Base → SFT → Preference Optimization
+→ Chat is a planned development path, not a list of completed milestones.
+
+The earlier 506M preflight and 8B data configuration remain historical evidence
+in the comparison section. They do not describe the current 1B target. No
+trained Echelon checkpoint, benchmark results, release date or model license
+are announced by this preview. The EN/DE model routes share the same target
+content and use the existing metadata/canonical system.
 
 ## Hardware requirements
 

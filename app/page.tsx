@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ghostRelease } from "@/content/ghost";
-import { ArrowUpRight, ArrowDown } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { EchelonHero } from "@/components/models/echelon-hero";
+import styles from "@/components/models/echelon.module.css";
 import { SignalArt } from "@/components/graphics/signal-art";
 import { ActionLink } from "@/components/ui/action-link";
 import { localizePath, type Locale } from "@/lib/i18n";
@@ -13,10 +15,9 @@ const copy = {
   en: {
     intro: "Independent AI research. Berlin.",
     description:
-      "Self-funded and founder-led, we develop compact language-model experiments and open tools for inspectable AI systems.",
+      "We build compact language models and open tools for inspectable AI systems. Independent, founder-led research from Berlin, with Quantum 1 Echelon as our current major model project.",
     explore: "Explore our models",
     research: "Inside the research",
-    discover: "Discover rappidAI",
     work: "The work",
     workTitle: "Intelligence. Under your control.",
     workText:
@@ -62,7 +63,7 @@ const copy = {
     read: "Read the research note",
     echelon: "The next model line.",
     echelonText:
-      "Follow Echelon’s architecture, tokenizer and data pipeline. Currently at pipeline and preflight stage; no trained model release.",
+      "Explore the 1B development target and the planned path from Base to Chat. Specifications are provisional; no trained model has been released.",
     sources: "Open by design.",
     sourcesText:
       "Find the model artifacts, source repositories and documentation behind the work.",
@@ -74,10 +75,9 @@ const copy = {
   de: {
     intro: "Unabhängige KI-Forschung. Berlin.",
     description:
-      "Eigenfinanziert und gründergeführt entwickeln wir kompakte Sprachmodellexperimente und offene Werkzeuge für nachvollziehbare KI-Systeme.",
+      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. Unabhängige, gründergeführte Forschung aus Berlin – mit Quantum 1 Echelon als unserem aktuellen Modellschwerpunkt.",
     explore: "Modelle entdecken",
     research: "Einblick in die Forschung",
-    discover: "rappidAI entdecken",
     work: "Unsere Arbeit",
     workTitle: "Intelligenz. Unter deiner Kontrolle.",
     workText:
@@ -123,7 +123,7 @@ const copy = {
     read: "Forschungsnotiz lesen",
     echelon: "Die nächste Modelllinie.",
     echelonText:
-      "Verfolge Echelons Architektur, Tokenizer und Datenpipeline. Aktuell in der Pipeline- und Preflight-Phase; noch kein trainiertes Modell veröffentlicht.",
+      "Entdecke das 1B-Entwicklungsziel und den geplanten Weg von Base zu Chat. Die Spezifikationen sind vorläufig; noch kein trainiertes Modell veröffentlicht.",
     sources: "Offen entwickelt.",
     sourcesText:
       "Modellartefakte, Quellcode und Dokumentation hinter unserer Arbeit.",
@@ -139,35 +139,22 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
   const path = (href: string) => localizePath(href, locale);
   return (
     <>
-      <section className="brand-hero home-hero">
-        <SignalArt className="brand-hero-art" />
-        <div className="page-shell-wide brand-hero-shell">
-          <p className="brand-origin">
-            <span />
-            {c.intro}
-          </p>
-          <h1 className="home-hero-title brand-headline">
-            <span className="reveal-text-line">Smaller Models.</span>
-            <span className="reveal-text-line">Focused Intelligence.</span>
-          </h1>
-          <div className="brand-hero-bottom">
-            <div className="brand-hero-description">
-              <p>{c.description}</p>
-              <div className="brand-actions">
-                <ActionLink href={path("/models")} className="on-navy-primary">
-                  {c.explore}
-                </ActionLink>
-                <Link className="quiet-link" href={path("/research")}>
-                  {c.research}
-                  <ArrowUpRight size={17} />
-                </Link>
-              </div>
-            </div>
-            <a className="hero-discover" href="#work">
-              <ArrowDown size={18} />
-              {c.discover}
-            </a>
-          </div>
+      <EchelonHero locale={locale} />
+      <section
+        id="introduction"
+        className={`page-shell ${styles.introduction}`}
+        aria-labelledby="introduction-title"
+      >
+        <div>
+          <p className="studio-kicker">rappidAI Research</p>
+          <h2 id="introduction-title">{c.intro}</h2>
+        </div>
+        <div>
+          <p>{c.description}</p>
+          <Link className="quiet-link" href={path("/about")}>
+            {c.aboutLink}
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
         </div>
       </section>
       <section id="work" className="page-shell studio-section work-section">

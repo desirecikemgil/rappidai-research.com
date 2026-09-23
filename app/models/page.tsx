@@ -27,7 +27,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
           },
           {
             href: "#model-system-comparison-heading",
-            label: t(locale, "System comparison"),
+            label: t(locale, "Historical preflight comparison"),
             description: t(
               locale,
               "Compare architecture, tokenizer and data evidence on one scale.",

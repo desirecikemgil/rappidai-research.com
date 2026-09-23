@@ -1,5 +1,6 @@
 "use client";
 
+import { EchelonCard } from "./echelon-card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -10,7 +11,12 @@ import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
   const [filter, setFilter] = useState<ModelFilterId>("all");
   const visibleModels = useMemo(
-    () => getModelsByFilter(filter, locale),
+    () =>
+      [...getModelsByFilter(filter, locale)].sort(
+        (a, b) =>
+          Number(b.slug === "quantum-1-echelon") -
+          Number(a.slug === "quantum-1-echelon"),
+      ),
     [filter, locale],
   );
   const filters = useMemo(
@@ -56,56 +62,60 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
       </div>
 
       <div className="model-catalog mt-8" aria-live="polite">
-        {visibleModels.map((model) => (
-          <article
-            key={model.slug}
-            className="liquid-row model-index-row group rounded-[1.35rem] border-y border-line py-8 sm:py-10"
-          >
-            <Link
-              href={localizePath(`/models/${model.slug}`, locale)}
-              className="model-catalog-link"
+        {visibleModels.map((model) =>
+          model.slug === "quantum-1-echelon" ? (
+            <EchelonCard key={model.slug} locale={locale} />
+          ) : (
+            <article
+              key={model.slug}
+              className="liquid-row model-index-row group rounded-[1.35rem] border-y border-line py-8 sm:py-10"
             >
-              <div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
-                    <span
-                      className="size-1.5 rounded-full bg-accent"
-                      aria-hidden="true"
-                    />
-                    {model.statusLabel}
-                  </span>
-                  <span className="text-xs text-muted">
-                    {model.parameterCount?.label ??
-                      t(locale, "Parameter size not yet defined")}
-                  </span>
-                </div>
-                <h3 className="mt-5 font-[510] tracking-[-0.052em] text-ink transition-colors group-hover:text-accent">
-                  {model.name}
-                </h3>
-                <p className="body-copy mt-5 max-w-xl">{model.summary}</p>
-              </div>
-
-              <dl className="grid grid-cols-1 gap-x-6 gap-y-5 text-sm sm:grid-cols-2 lg:grid-cols-1">
-                {model.indexFacts.slice(1).map((fact, factIndex) => (
-                  <div key={fact} className="border-l border-line pl-4">
-                    <dt className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
-                      {factIndex === 0
-                        ? t(locale, "Status")
-                        : factIndex === 1
-                          ? t(locale, "Model")
-                          : t(locale, "Use")}
-                    </dt>
-                    <dd className="mt-1.5 leading-6 text-ink-soft">{fact}</dd>
+              <Link
+                href={localizePath(`/models/${model.slug}`, locale)}
+                className="model-catalog-link"
+              >
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="inline-flex items-center gap-2 font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
+                      <span
+                        className="size-1.5 rounded-full bg-accent"
+                        aria-hidden="true"
+                      />
+                      {model.statusLabel}
+                    </span>
+                    <span className="text-xs text-muted">
+                      {model.parameterCount?.label ??
+                        t(locale, "Parameter size not yet defined")}
+                    </span>
                   </div>
-                ))}
-              </dl>
+                  <h3 className="mt-5 font-[510] tracking-[-0.052em] text-ink transition-colors group-hover:text-accent">
+                    {model.name}
+                  </h3>
+                  <p className="body-copy mt-5 max-w-xl">{model.summary}</p>
+                </div>
 
-              <span className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-all duration-300 group-hover:scale-105 group-hover:border-accent group-hover:bg-accent group-hover:text-white lg:justify-self-end">
-                <ArrowRight aria-hidden="true" size={18} strokeWidth={1.6} />
-              </span>
-            </Link>
-          </article>
-        ))}
+                <dl className="grid grid-cols-1 gap-x-6 gap-y-5 text-sm sm:grid-cols-2 lg:grid-cols-1">
+                  {model.indexFacts.slice(1).map((fact, factIndex) => (
+                    <div key={fact} className="border-l border-line pl-4">
+                      <dt className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
+                        {factIndex === 0
+                          ? t(locale, "Status")
+                          : factIndex === 1
+                            ? t(locale, "Model")
+                            : t(locale, "Use")}
+                      </dt>
+                      <dd className="mt-1.5 leading-6 text-ink-soft">{fact}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <span className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-all duration-300 group-hover:scale-105 group-hover:border-accent group-hover:bg-accent group-hover:text-white lg:justify-self-end">
+                  <ArrowRight aria-hidden="true" size={18} strokeWidth={1.6} />
+                </span>
+              </Link>
+            </article>
+          ),
+        )}
       </div>
     </section>
   );

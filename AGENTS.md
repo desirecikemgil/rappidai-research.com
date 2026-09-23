@@ -17,7 +17,7 @@ When implementing from a selected generated mock, treat that image as the source
 - Use calm paper and ice-blue reading surfaces, deep-navy product stages, restrained borders and controlled radii. Reserve refraction for the signal illustrations; avoid broad backdrop blur.
 - Keep motion accessible with `prefers-reduced-motion`, and verify new effects at desktop and mobile breakpoints.
 - Carry the typography, surface hierarchy and clear interaction states consistently through mobile layouts.
-- Keep the home hero editorial and wide: the “Smaller Models. / Focused Intelligence.” statement stays on exactly two lines over a full-width signal-line composition.
+- September 2026 Echelon launch preview: Quantum 1 Echelon takes priority in a centered, spacious first-viewport hero. Keep the navy/research-blue/white identity, restrained web-native aura and subtle desktop pointer light. The prior “Smaller Models.” hero is superseded. Preserve both historical pilots, EN/DE routing and existing product/research sections. All 1B specifications remain explicitly planned targets; no benchmark, release-date, license or weights-availability claims.
 - Preserve the established white, research-blue and deep-navy identity while using the deep navy more deliberately for full-width orientation, comparison and closing sections.
 - Keep every page easy to scan: lead with a concise purpose statement, expose a short set of meaningful topics or jump targets, and reveal detailed evidence through graphics, tables or focused text only after the overview.
 - Treat navigation as an information hierarchy rather than a flat link list: keep the main research areas immediately visible, make the current section unmistakable, and separate contact from the primary content taxonomy.

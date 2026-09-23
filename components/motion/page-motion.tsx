@@ -10,6 +10,7 @@ const targets = [
   ".journal-aside article",
   ".tool-showcase-card",
   ".model-index-row",
+  ".model-index-featured",
   ".resource-directory-row",
   ".css-reveal",
 ].join(",");
@@ -41,7 +42,7 @@ export function PageMotion({ pathname }: { pathname: string }) {
 
     // Only the incoming introduction moves. Navigation never waits for an exit.
     const intro = main.querySelector(
-      ".page-intro-main, .brand-hero-shell, .model-hero, .studio-article > header",
+      ".page-intro-main, .echelon-hero-content, .model-hero, .studio-article > header",
     );
     if (changed && intro) animate(intro, 4, 220);
 

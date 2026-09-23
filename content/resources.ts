@@ -320,7 +320,7 @@ export const dataAndTrainingContent = {
       status: "Partial evidence",
       sourceRevision: "c0c06e94fd3a44ae9e802b2b0fc533817601eb5e",
       target:
-        "8B training, 10M validation and 10M test tokens at 2,048-token context.",
+        "Historical configuration: 8B training, 10M validation and 10M test tokens at 2,048-token context. The newer 1B plan targets 40B Base pretraining tokens and 4,096-token context.",
       observed:
         "A smoke run saw 5,001 documents, accepted 1,559 and produced 1,380,886 packed tokens. The production run had not started.",
     },
