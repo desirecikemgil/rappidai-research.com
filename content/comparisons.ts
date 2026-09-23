@@ -5,10 +5,10 @@ export type ComparisonEvidenceTone = "released" | "published" | "configured";
 
 export const modelComparisonContent = {
   introduction: {
-    eyebrow: "MODEL SYSTEM COMPARISON",
-    title: "Three model stages, compared on the same evidence scale.",
+    eyebrow: "Historical preflight comparison",
+    title: "Earlier evidence. Preserved for context.",
     description:
-      "Architecture, tokenizer and data-pipeline differences are shown separately so released artifacts, published validation and configured Echelon targets cannot be mistaken for the same kind of evidence.",
+      "This comparison preserves the earlier 506M Echelon preflight, tokenizer validation and 8B-token configuration. These are historical pipeline records, not the current 1B development targets or model capability measurements.",
   },
   tabs: [
     { id: "architecture", label: "Architecture" },
@@ -53,9 +53,9 @@ export const modelComparisonContent = {
       },
       {
         id: "quantum-1-echelon",
-        name: "quantum-1-echelon",
+        name: "Echelon · historical preflight",
         tone: "configured",
-        evidenceLabel: "Configuration preflight only",
+        evidenceLabel: "Historical configuration",
         parameters: 506_333_440,
         parameterLabel: "506.3M configured parameters",
         contextTokens: 2048,
@@ -116,9 +116,9 @@ export const modelComparisonContent = {
       },
       {
         id: "quantum-1-echelon",
-        name: "quantum-1-echelon",
+        name: "Echelon · historical preflight",
         tone: "published",
-        evidenceLabel: "Published tokenizer artifact",
+        evidenceLabel: "Historical tokenizer artifact",
         vocabulary: 32_768,
         tokenizerLabel: "SentencePiece BPE",
         relationship: "New tokenizer; pilot assets are not reused",
@@ -181,9 +181,9 @@ export const modelComparisonContent = {
       },
       {
         id: "quantum-1-echelon",
-        name: "quantum-1-echelon",
+        name: "Echelon · historical preflight",
         tone: "configured",
-        evidenceLabel: "Configured target",
+        evidenceLabel: "Historical configuration",
         tokenScopeMillions: 8000,
         multiplier: "×80",
         scopeLabel: "8B configured training-token target",

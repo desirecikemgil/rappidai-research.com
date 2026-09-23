@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { EchelonPreview } from "@/components/models/echelon-preview";
 import { ArchitectureStack } from "@/components/graphics/architecture-stack";
 import { ModelCardVisual } from "@/components/graphics/model-card-visual";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
@@ -36,15 +37,11 @@ export default async function ModelDetailPage({ params }: ModelPageProps) {
 }
 
 /**
- * Draw only dimensions stated by pinned public sources. Echelon stays hollow
- * because its stack is a committed configuration, not a trained model.
+ * Draw only dimensions stated by pinned public sources.
  */
 function architectureFor(slug: string) {
   if (slug === "quantum-1-6-pilot") {
     return { layers: 12, hiddenSize: 512, heads: 8, configured: false };
-  }
-  if (slug === "quantum-1-echelon") {
-    return { layers: 26, hiddenSize: 1280, heads: 20, configured: true };
   }
   return null;
 }
@@ -58,6 +55,8 @@ export function LocalizedModelDetailPage({
 }) {
   const model = getModelBySlug(slug, locale);
   if (!model) notFound();
+  if (model.slug === "quantum-1-echelon")
+    return <EchelonPreview locale={locale} />;
   const architecture = architectureFor(slug);
   const page = localizeContent(modelsPageContent, locale);
   const modelLinks = model.links as readonly ModelLink[];

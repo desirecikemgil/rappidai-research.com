@@ -46,7 +46,14 @@ const lumenQuantumLicenseDecisionSource = `${lumenQuantumRepository}/blob/${lume
 
 const readinessSource = `${lumenQuantumRepository}/blob/22ad246b7a2850ae7544aa6169d851485a1a1960`;
 
+const echelon1bSource = `${lumenQuantumRepository}/blob/c78300cdc76e68917c7122cf0c76df88badff174`;
+
 export const publicResearchUrls = {
+  echelon1bPlan: `${echelon1bSource}/docs/echelon/1b/README.md`,
+  echelon1bStatus: `${echelon1bSource}/docs/echelon/1b/STATUS.md`,
+  echelon1b32k: `${echelon1bSource}/configs/echelon/1b/model-32k.yaml`,
+  echelon1b48k: `${echelon1bSource}/configs/echelon/1b/model-48k.yaml`,
+  echelon1bTraining: `${echelon1bSource}/configs/echelon/1b/train-base.yaml`,
   computePlan: `${readinessSource}/docs/compute-plan.md`,
   applicationReadiness: `${readinessSource}/docs/applications/aws-activate-readiness.md`,
   sourceLicenseApproval: `${lumenQuantumLicenseDecisionSource}/docs/maintainer-source-license-approval.md`,

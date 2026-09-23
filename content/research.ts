@@ -81,8 +81,8 @@ export const experimentLogs = [
     modelSlug: "quantum-1-echelon",
     title: "quantum-1-echelon",
     description:
-      "Public base-architecture preflight, validated tokenizer and Garden pipeline smoke test; no trained model release.",
-    statusLabel: "Pipeline and preflight stage — no trained model",
+      "Upcoming German-first 1B model. Earlier preflight and pipeline records remain historical evidence; no trained model is released.",
+    statusLabel: "In development · Coming Soon",
     publicationDate: null,
   },
 ] as const satisfies readonly ExperimentLogEntry[];
@@ -106,7 +106,7 @@ export const researchPublication = {
     reference: "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39",
     url: publicResearchUrls.evidenceSnapshot,
     explanation:
-      "Echelon architecture, tokenizer and Garden results retain this immutable evidence snapshot. The later compute plan has its own pinned revision and remains planning evidence.",
+      "The Echelon architecture, tokenizer and Garden records below preserve an earlier immutable snapshot. Its 506M architecture and 8B data target are historical; the current 1B preview has separately pinned sources.",
   },
   statusVocabulary: [
     {
@@ -208,10 +208,10 @@ export const researchPublication = {
     },
   ],
   echelon: {
-    eyebrow: "CURRENT MODEL LINE",
-    title: "What exists for quantum-1-echelon—and what does not.",
+    eyebrow: "ECHELON RESEARCH RECORD",
+    title: "Earlier evidence. Current direction.",
     introduction:
-      "quantum-1-echelon is the current strategic model line. Echelon Base is the planned base-training stage and Echelon Chat is a later stage or variant within that same line. They are not separate model families.",
+      "Quantum 1 Echelon now targets approximately 1B parameters. The records below preserve the earlier 506M preflight and pipeline work, not the current specifications. Base and Chat remain stages of the same model line.",
     stages: [
       {
         name: "Architecture preflight",
@@ -279,10 +279,10 @@ export const researchPublication = {
       },
     ],
     plannedTargets: {
-      title: "Configured production targets",
+      title: "Earlier production configuration",
       text: "The Garden production configuration targets 8,000,000,000 training tokens plus 10,000,000 validation and 10,000,000 test tokens at a 2,048-token context length.",
       qualification:
-        "These are configuration targets, not completed dataset totals. The website will not present them as achieved until a final public manifest exists.",
+        "These historical configuration targets were not achieved dataset totals. The current 1B plan targets 40B Base pretraining tokens and a 4,096-token context; see the model preview for its provisional specifications.",
       url: publicResearchUrls.echelonGardenConfiguration,
     },
   },
@@ -706,7 +706,7 @@ export const quantumExperimentResearch = {
     eyebrow: "OPEN QUESTIONS",
     title: "Questions for the next research phase.",
     items: [
-      "How will the preflighted 506.3M-parameter quantum-1-echelon base architecture behave if the full data and training runs are completed?",
+      "How will the planned German-first 1B Echelon model behave after controlled pretraining and evaluation?",
       "Which quantization levels preserve useful completion behavior while reducing memory requirements?",
       "Which evaluation tasks are appropriate for small German base-completion models without overstating their capabilities?",
       "How much improvement comes from additional training data compared with changes in architecture, tokenizer or dataset quality?",

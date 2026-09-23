@@ -43,10 +43,8 @@ describe("German content", () => {
 
     const model = getModelBySlug("quantum-1-echelon", "de");
     expect(model?.status).toBe("in-development");
-    expect(model?.statusLabel).toBe(
-      "Pipeline- und Preflight-Phase – kein trainiertes Modell",
-    );
-    expect(model?.summary).toContain("strategische Quantum-Modelllinie");
+    expect(model?.statusLabel).toBe("In Entwicklung · Demnächst");
+    expect(model?.summary).toContain("Unser nächstes Sprachmodell");
   });
 
   it("localizes legal presentation without changing the English source", () => {

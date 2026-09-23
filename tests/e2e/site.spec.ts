@@ -238,65 +238,6 @@ test("German contact form reports localized validation messages", async ({
   );
 });
 
-test("home presents the product family and pauses offscreen decorative motion", async ({
-  page,
-}) => {
-  await page.goto("/");
-
-  const heroLines = page.locator(".home-hero-title .reveal-text-line");
-  await expect(heroLines).toHaveCount(2);
-  await expect(heroLines).toHaveText([
-    "Smaller Models.",
-    "Focused Intelligence.",
-  ]);
-  await expect(page.locator(".home-hero canvas")).toHaveCount(0);
-  const heroScene = page.locator(".brand-hero-art");
-  await expect(heroScene).toHaveAttribute("data-running", "true");
-  await expect(
-    page.getByRole("link", { name: "Explore rappidAI Ghost", exact: true }),
-  ).toHaveAttribute("href", "/tools/ghost");
-  await page.locator(".journal-layout").scrollIntoViewIfNeeded();
-  await expect(heroScene).toHaveAttribute("data-running", "false");
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.locator(".home-hero-title").scrollIntoViewIfNeeded();
-  await expect(heroScene).toHaveAttribute("data-running", "false");
-  const animation = await heroScene
-    .locator(".signal-sculpture")
-    .evaluate((element) => getComputedStyle(element).animationName);
-  expect(animation).toBe("none");
-});
-
-test("home hero keeps both headline lines complete on mobile", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
-
-  const measurements = await page.evaluate(() => ({
-    overflow:
-      document.documentElement.scrollWidth -
-      document.documentElement.clientWidth,
-    lines: [
-      ...document.querySelectorAll(".home-hero-title .reveal-text-line"),
-    ].map((element) => ({
-      clientWidth: element.clientWidth,
-      scrollWidth: element.scrollWidth,
-      text: element.textContent?.trim(),
-    })),
-  }));
-
-  expect(measurements.overflow).toBeLessThanOrEqual(0);
-  expect(measurements.lines).toHaveLength(2);
-  expect(measurements.lines.map(({ text }) => text)).toEqual([
-    "Smaller Models.",
-    "Focused Intelligence.",
-  ]);
-  for (const line of measurements.lines) {
-    expect(line.scrollWidth).toBeLessThanOrEqual(line.clientWidth);
-  }
-});
-
 test("model comparison switches between all three visual views", async ({
   page,
 }) => {

@@ -1,3 +1,4 @@
+import { echelonPreview } from "./echelon";
 import type {
   ModelFilter,
   ModelFilterId,
@@ -222,19 +223,18 @@ export const models = [
   },
   {
     slug: "quantum-1-echelon",
-    name: "quantum-1-echelon",
+    name: echelonPreview.name,
     status: "in-development",
-    statusLabel: "Pipeline and preflight stage — no trained model",
+    statusLabel: "In development · Coming Soon",
     availability: "not-released",
-    summary:
-      "The current strategic Quantum model line. Public evidence covers an architecture preflight, a validated tokenizer and Garden data-pipeline smoke tests; no Echelon model has been trained or released.",
+    summary: echelonPreview.cardSummary,
     parameterCount: null,
-    modelType: "In-development German-language model line",
+    modelType: "German-first language model · 1B target",
     intendedUse: [
       "Reproducible German-language base-model research",
       "A later chat stage within the same Echelon model line",
     ],
-    languages: ["German-language focus; the production corpus is not complete"],
+    languages: ["German-first, with English coverage planned"],
     lineage:
       "Public path configuration treats quantum-1-echelon-base and quantum-1-echelon-chat as stages or variants within the same quantum-1-echelon model line and forbids reuse of the pilot models, tokenizers and data.",
     releaseStatus:
@@ -249,83 +249,26 @@ export const models = [
         pendingLabel: "Implementation repository unavailable",
       },
     ],
-    technicalFacts: [
-      {
-        label: "Architecture status",
-        value:
-          "Configuration preflight only. The proposed Echelon Base configuration specifies 26 layers, hidden size 1,280, intermediate size 3,584, 20 attention heads and 5 KV heads. The committed preflight computes 506,333,440 trainable parameters; none of this is evidence of trained weights.",
-      },
-      {
-        label: "Configured context",
-        value:
-          "2,048 tokens in the architecture and Garden pipeline configurations; not validated on a trained Echelon model.",
-      },
-      {
-        label: "Tokenizer",
-        value:
-          "SentencePiece BPE with a configured 32,768-token vocabulary. The committed validation report records 23 round-trip cases and 0 failures.",
-      },
-      {
-        label: "Garden smoke test",
-        value:
-          "5,001 documents seen, 1,559 accepted and 1,380,886 tokens produced. These are smoke-test results, not production-dataset totals.",
-      },
-      {
-        label: "Production data run",
-        value:
-          "Not yet available. The committed Phase 3 report states that the full production run had not started.",
-      },
-      {
-        label: "Model training",
-        value: "Not yet available. No completed Echelon training is claimed.",
-      },
-      {
-        label: "Evaluation",
-        value:
-          "Not yet available. No Echelon model outputs, loss curves or benchmark results are published.",
-      },
-    ],
-    sources: [
-      {
-        label: "Architecture configuration",
-        url: publicResearchUrls.echelonArchitectureConfiguration,
-      },
-      {
-        label: "Architecture preflight report",
-        url: publicResearchUrls.echelonArchitecturePreflight,
-      },
-      {
-        label: "Tokenizer validation report",
-        url: publicResearchUrls.echelonTokenizerValidation,
-      },
-      {
-        label: "Garden Phase 3 report",
-        url: publicResearchUrls.echelonGardenReport,
-      },
-      {
-        label: "Model-line path configuration",
-        url: publicResearchUrls.echelonPaths,
-      },
-    ],
+    technicalFacts: echelonPreview.specifications.rows.map((row) => ({
+      label: row.label,
+      value: `${row.value} · ${row.status}`,
+    })),
+    sources: echelonPreview.evidence.sources,
     inferenceSoftware: [],
     usageExample: null,
-    researchContext:
-      "The published work currently establishes pipeline readiness, artifact integrity and configuration boundaries. Echelon Base is the base-training stage; Echelon Chat is a later stage or variant in the same line. Neither is a separate released model family, and neither has public trained weights.",
+    researchContext: echelonPreview.evidence.description,
     limitations: [
-      "The proposed architecture has passed a configuration preflight only",
-      "The full Garden production-data run has not been published as completed",
-      "No Echelon model training logs, checkpoints or weights are public",
-      "No Echelon model outputs or benchmark results are available",
-      "Training hardware, runtime, cost and energy use are not published",
-      "A model license is not yet available because no model release exists",
-      "Not available for production use",
+      "Architecture and tokenizer selection are still in progress",
+      "The 1B specifications are planned targets, not measured model results",
+      "No production Base or Chat checkpoint is available",
+      "No model benchmark results, release date or model license are announced",
     ],
     relatedResearchNoteIds: [],
     indexFacts: [
-      "Configuration preflight only",
-      "No trained public model",
-      "Tokenizer and data-pipeline evidence",
-      "Echelon Base → later Chat stage",
+      "~1B parameter target",
+      "In development · Coming Soon",
+      "German-first, with English coverage planned",
+      "Base → SFT → Preference Optimization → Chat",
     ],
     featured: false,
   },

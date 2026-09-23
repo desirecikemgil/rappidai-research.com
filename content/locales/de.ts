@@ -1,3 +1,4 @@
+import { deEchelonTranslations } from "./de-echelon";
 import { deComparisonTranslations } from "./de-comparisons";
 import { deMetadataTranslations } from "./de-metadata";
 import { deResourceTranslations } from "./de-resources";
@@ -607,4 +608,5 @@ export const deTranslations: Readonly<Record<string, string>> = {
     "Jeder Ressourcenbereich mit seinem aktuellen Dokumentationsstand. Gestrichelte Felder sind offene Lücken, keine Auslassungen.",
 
   CONCLUSIONS: "SCHLUSSFOLGERUNGEN",
+  ...deEchelonTranslations,
 };

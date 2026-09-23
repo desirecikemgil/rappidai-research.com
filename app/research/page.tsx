@@ -356,6 +356,12 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
               <p className="body-lg mt-7 max-w-[42rem]">
                 {publication.echelon.introduction}
               </p>
+              <ActionLink
+                className="mt-6"
+                href={localizePath("/models/quantum-1-echelon", locale)}
+              >
+                {t(locale, "View current 1B targets")}
+              </ActionLink>
             </Reveal>
 
             <div className="space-y-3 border-t border-line sm:space-y-4 lg:col-span-6 lg:col-start-7">

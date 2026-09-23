@@ -1,77 +1,16 @@
 import type {
-  ExternalCallToAction,
   InternalCallToAction,
   PageIntroduction,
   PageMetadata,
   SiteRoute,
 } from "./types";
 
-export const homePageContent = {
-  hero: {
-    eyebrow: "INDEPENDENT AI RESEARCH",
-    headlineLines: ["Smaller Models.", "Focused Intelligence."],
-    description:
-      "rappidAI documents compact German-language model experiments, GGUF releases and local-inference workflows. The two public Quantum pilots are experimental base-completion models; Echelon is the current strategic model line and remains at pipeline and preflight stage.",
-    supportingText:
-      "The work is intended for developers, researchers, students and builders investigating small-model training, documented evaluation and local deployment with limited compute. The current pilots are research artifacts, not chat assistants or production systems.",
-    primaryAction: {
-      label: "Explore our models",
-      href: "/models",
-    } satisfies InternalCallToAction,
-    externalAction: {
-      label: "View on Hugging Face",
-      linkKey: "huggingFace",
-    } satisfies ExternalCallToAction,
-    status:
-      "Current focus: Echelon data-pipeline validation, reproducibility and transparent evidence boundaries.",
-  },
-  thesis: {
-    eyebrow: "RESEARCH THESIS",
-  },
-  featuredModel: {
-    eyebrow: "FEATURED MODEL",
-    title: "quantum-1.6-pilot",
-    productionNotice:
-      "Experimental model. Not production-ready and not intended as a production assistant.",
-  },
-  modelEvolution: {
-    eyebrow: "MODEL EVOLUTION",
-    title: "From 49.3M pilot releases to the quantum-1-echelon pipeline.",
-  },
-  currentResearch: {
-    eyebrow: "CURRENT RESEARCH",
-    title: "Focused questions, practical constraints.",
-  },
-  openResearch: {
-    eyebrow: "OPEN RESEARCH",
-    headline: "Open publication is part of the research process.",
-    text: "Where licensing and safety constraints allow, rappidAI publishes model artifacts, documentation, evaluation notes and implementation details so that work can be inspected and, when all required artifacts are available, reproduced.",
-    actions: [
-      { label: "Hugging Face", linkKey: "huggingFace" },
-      { label: "GitHub", linkKey: "github" },
-    ] satisfies readonly ExternalCallToAction[],
-  },
-  founder: {
-    eyebrow: "FOUNDER",
-    headline: "Independent research, built from Berlin.",
-  },
-  contact: {
-    eyebrow: "CONTACT",
-    headline: "Interested in the research?",
-    text: "For technical discussions, collaboration enquiries or questions about the models, contact rappidAI directly.",
-    action: {
-      label: "Contact rappidAI",
-      href: "/contact",
-    } satisfies InternalCallToAction,
-  },
-} as const;
-
 export const modelsPageContent = {
   introduction: {
     eyebrow: "MODELS",
     title: "Compact model experiments, documented clearly.",
     description:
-      "Explore two public experimental pilot releases and the source-linked, in-development quantum-1-echelon pipeline.",
+      "Meet Quantum 1 Echelon, our upcoming German-first 1B model, and explore the two public experimental Quantum pilot releases.",
   } satisfies PageIntroduction,
   filterLabel: "Filter models",
   missingParameterLabel: "Final parameter size not yet defined",
@@ -140,7 +79,7 @@ export const aboutPageContent = {
   currentDirection: {
     eyebrow: "CURRENT DIRECTION",
     title: "The Echelon model line.",
-    text: "Echelon has architecture preflight, tokenizer validation and Garden smoke evidence. The next milestone is production data preparation, followed by a validated training recipe, base training and evaluation. Compute and storage are constraints; the compute plan documents the gates. No Echelon checkpoint is published.",
+    text: "Quantum 1 Echelon is our current major model project: a German-first language model targeting approximately 1B parameters, developed from scratch with English coverage planned. Base pretraining comes first, with Chat as the intended final stage. Specifications are provisional; no trained model is released.",
   },
   experimentalNotice: {
     eyebrow: "EXPERIMENTAL OUTPUTS",
@@ -241,14 +180,14 @@ export const privacyPageContent = {
 
 export const pageMetadata = {
   "/": {
-    title: "rappidAI Research — Compact and Local AI Models",
+    title: "rappidAI Research — Introducing Quantum 1 Echelon",
     description:
-      "Self-funded, founder-led AI research and development in Berlin: compact language models, documented experiments and open agent infrastructure.",
+      "Introducing Quantum 1 Echelon, an upcoming German-first ~1B language model built from scratch. Independent AI research and open agent infrastructure from Berlin.",
   },
   "/models": {
     title: "Models — rappidAI Research",
     description:
-      "Explore two released Quantum pilot models and the evidence-backed pipeline status of the untrained Echelon model line.",
+      "Explore Quantum 1 Echelon, an upcoming German-first 1B language model, alongside the two released experimental Quantum pilots.",
   },
   "/models/quantum-1-pilot": {
     title: "quantum-1-pilot — rappidAI Research",
@@ -261,9 +200,9 @@ export const pageMetadata = {
       "Technical details, local inference guidance and documented limitations for the experimental 49.3M-parameter quantum-1.6-pilot.",
   },
   "/models/quantum-1-echelon": {
-    title: "quantum-1-echelon — rappidAI Research",
+    title: "Quantum 1 Echelon — rappidAI Research",
     description:
-      "Evidence-backed pipeline, tokenizer and architecture-preflight status for the untrained quantum-1-echelon model line.",
+      "Quantum 1 Echelon is an upcoming German-first ~1B parameter language model developed from scratch by rappidAI Research. Explore planned specifications and development stages.",
   },
   "/research": {
     title: "Research — rappidAI Research",
