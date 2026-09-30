@@ -8,6 +8,12 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Quantum 1 Echelon presentation — 30 September 2026
+
+- Replaced the Echelon orbit aura with an interactive signal lattice: a fine canvas grid that bends towards the pointer like a gravity well, lights up around it, ripples on click and carries sparse signal pulses along its lines. It pauses offscreen, on hidden tabs and for reduced motion, and falls back to a static CSS grid without JavaScript.
+- Restructured the Echelon hero around a two-part status chip, a pointer-lit wordmark, primary and secondary calls to action and a horizon strip of key targets, each labelled Target or Planned.
+- Refined the Echelon detail page with numbered principles, a specification sheet with status chips, a dashed development path and a numbered source list, and gave the model index card a grid texture. Model information and evidence boundaries are unchanged.
+
 ### Ghost v0.3.0 website update — 21 September 2026
 
 - Promoted released Ghost v0.3.0 across the homepage, tools overview, Ghost detail page and English/German metadata.
