@@ -21,6 +21,8 @@ export const echelonPreview = {
   languageDetail: "With English coverage",
   cardSummary:
     "Our next language model. German-first, built from scratch, with a focus on data quality and controlled training.",
+  figuresNote: "Development targets, not measured results.",
+  scrollLabel: "Scroll to the next section",
   overview: {
     eyebrow: "The next Quantum",
     title: "A focused foundation.",

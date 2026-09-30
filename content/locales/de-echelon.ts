@@ -27,6 +27,9 @@ export const deEchelonTranslations: Readonly<Record<string, string>> = {
   "Explore Quantum 1 Echelon": "Quantum 1 Echelon entdecken",
   "Explore the specifications": "Spezifikationen entdecken",
   "Parameter target": "Parameterziel",
+  "Development targets, not measured results.":
+    "Entwicklungsziele, keine gemessenen Ergebnisse.",
+  "Scroll to the next section": "Zum nächsten Abschnitt scrollen",
   "With English coverage": "Mit englischer Sprachabdeckung",
   "Our next language model. German-first, built from scratch, with a focus on data quality and controlled training.":
     "Unser nächstes Sprachmodell. Deutsch im Fokus, von Grund auf entwickelt, mit Schwerpunkt auf Datenqualität und kontrolliertem Training.",

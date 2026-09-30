@@ -13,6 +13,7 @@ export function EchelonCard({ locale }: { locale: Locale }) {
         href={localizePath("/models/quantum-1-echelon", locale)}
         className={styles.cardLink}
       >
+        <div className={styles.cardMatrix} aria-hidden="true" />
         <div className={styles.cardCopy}>
           <ModelStatusBadge locale={locale} />
           <h3>{c.name}</h3>

@@ -140,38 +140,59 @@ for (const width of [375, 768, 1440, 1920]) {
   });
 }
 
-test("pointer enhancement settles, pauses offscreen and respects live motion changes", async ({
+test("signal field follows the pointer, pauses offscreen and respects live motion changes", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  const aura = page.getByTestId("echelon-aura");
-  const offset = () =>
-    aura.evaluate((element) => element.style.getPropertyValue("--aura-x"));
-  await expect(aura).toHaveAttribute("data-interactive", "true");
+  const hero = page.locator("section").first();
+  const field = page.getByTestId("echelon-field");
+  const strength = () =>
+    hero.evaluate((element) => element.style.getPropertyValue("--field-on"));
+  await expect(field).toHaveAttribute("data-ready", "true");
+  await expect(field).toHaveAttribute("data-running", "true");
+  await expect(field).toHaveAttribute("data-interactive", "true");
+  const painted = await field
+    .locator("canvas")
+    .evaluate((canvas: HTMLCanvasElement) => {
+      const { data } = canvas
+        .getContext("2d")!
+        .getImageData(0, 0, canvas.width, canvas.height);
+      let count = 0;
+      for (let index = 3; index < data.length; index += 4)
+        if (data[index]) count++;
+      return count;
+    });
+  expect(painted).toBeGreaterThan(0);
   await page.mouse.move(1150, 330);
-  await expect.poll(offset).not.toBe("");
-  await expect.poll(async () => parseFloat(await offset())).toBeGreaterThan(5);
-  expect(parseFloat(await offset())).toBeLessThanOrEqual(22);
+  await page.mouse.move(1160, 340);
+  await expect
+    .poll(async () => parseFloat(await strength()) || 0)
+    .toBeGreaterThan(0.5);
+  const x = await hero.evaluate((element) =>
+    parseFloat(element.style.getPropertyValue("--field-px")),
+  );
+  expect(x).toBeGreaterThan(1000);
+  expect(x).toBeLessThanOrEqual(1160);
   await page.locator("footer").scrollIntoViewIfNeeded();
-  await expect(page.locator("section").first()).not.toBeInViewport();
-  await expect(aura).toHaveAttribute("data-running", "false");
-  await expect(aura).toHaveAttribute("data-interactive", "false");
-  expect(parseFloat(await offset())).toBe(0);
+  await expect(hero).not.toBeInViewport();
+  await expect(field).toHaveAttribute("data-running", "false");
+  await expect(field).toHaveAttribute("data-interactive", "false");
+  expect(await strength()).toBe("");
   await page.locator("h1").scrollIntoViewIfNeeded();
+  await expect(field).toHaveAttribute("data-running", "true");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(aura).toHaveAttribute("data-running", "false");
-  await expect(aura).toHaveAttribute("data-interactive", "false");
+  await expect(field).toHaveAttribute("data-running", "false");
+  await expect(field).toHaveAttribute("data-interactive", "false");
   await page.mouse.move(1200, 400);
-  expect(parseFloat(await offset())).toBe(0);
-  const runningAnimations = await aura.evaluate(
+  expect(await strength()).toBe("");
+  const runningAnimations = await hero.evaluate(
     (element) =>
       element
         .getAnimations({ subtree: true })
         .filter((animation) => animation.playState === "running").length,
   );
   expect(runningAnimations).toBe(0);
-  await expect(aura.locator("canvas")).toHaveCount(0);
 });
 
 test("touch devices do not require a pointer and support mobile navigation", async ({
@@ -184,7 +205,7 @@ test("touch devices do not require a pointer and support mobile navigation", asy
   });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.getByTestId("echelon-aura")).toHaveAttribute(
+  await expect(page.getByTestId("echelon-field")).toHaveAttribute(
     "data-interactive",
     "false",
   );
