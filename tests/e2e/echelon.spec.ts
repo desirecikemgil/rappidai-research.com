@@ -215,7 +215,7 @@ test("touch devices do not require a pointer and support mobile navigation", asy
     .click();
   await page
     .getByRole("navigation", { name: "Mobile navigation" })
-    .getByRole("link", { name: "Models", exact: true })
+    .getByRole("link", { name: /^Models/ })
     .click();
   await expect(page).toHaveURL("/models");
   await page.locator(".model-index-featured a").click();
