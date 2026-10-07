@@ -39,7 +39,7 @@ describe("Echelon announcement boundaries", () => {
     expect(german.specifications.notice).toContain("Entwicklungsziele");
     for (const locale of ["en", "de"] as const) {
       expect(metadataFor("/", locale).title).toContain(
-        "Quantum Sentinel Alpha",
+        "Quantum Sentinel-Alpha",
       );
       const metadata = metadataFor("/models/quantum-1-echelon", locale);
       expect(metadata.title).toBe("Quantum 1 Echelon — rappidAI Research");

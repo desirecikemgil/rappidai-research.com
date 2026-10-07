@@ -17,7 +17,7 @@ for (const locale of ["en", "de"] as const) {
         errors.push(message.text());
     });
     await page.goto(home);
-    await expect(page.locator("h1")).toHaveText("Quantum Sentinel Alpha");
+    await expect(page.locator("h1")).toHaveText("Quantum Sentinel-Alpha");
     await page.goto(models);
     await page.locator(".model-index-featured").getByRole("link").click();
     await expect(page.getByText(status, { exact: true })).toBeVisible();
@@ -57,7 +57,7 @@ for (const locale of ["en", "de"] as const) {
     await expect(page).toHaveURL(models);
     await expect(page.locator(".model-catalog article")).toHaveCount(4);
     await expect(page.locator(".model-catalog article").first()).toContainText(
-      "Quantum Sentinel Alpha",
+      "Quantum Sentinel-Alpha",
     );
     await expect(page.locator(".model-catalog")).toContainText(
       "quantum-1-pilot",
@@ -114,7 +114,7 @@ for (const width of [375, 768, 1440, 1920]) {
       if (route === "/") {
         const cta = await page
           .getByRole("link", {
-            name: "Explore Quantum Sentinel Alpha",
+            name: "Explore Quantum Sentinel-Alpha",
             exact: true,
           })
           .first()
@@ -232,9 +232,9 @@ test("launch content and navigation are available without JavaScript", async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText("Quantum Sentinel Alpha");
+  await expect(page.locator("h1")).toHaveText("Quantum Sentinel-Alpha");
   await page
-    .getByRole("link", { name: "Explore Quantum Sentinel Alpha", exact: true })
+    .getByRole("link", { name: "Explore Quantum Sentinel-Alpha", exact: true })
     .first()
     .click();
   await expect(page.locator("#foundation")).toContainText(

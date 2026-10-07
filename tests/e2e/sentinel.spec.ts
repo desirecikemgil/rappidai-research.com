@@ -15,14 +15,14 @@ for (const locale of ["en", "de"] as const) {
       if (message.type() === "error") errors.push(message.text());
     });
     await page.goto(home);
-    await expect(page.locator("h1")).toHaveText("Quantum Sentinel Alpha");
+    await expect(page.locator("h1")).toHaveText("Quantum Sentinel-Alpha");
     await expect(page.locator("section").first()).toContainText("Qwen3.5-9B");
     await page
       .getByRole("link", {
         name:
           locale === "en"
-            ? "Explore Quantum Sentinel Alpha"
-            : "Quantum Sentinel Alpha entdecken",
+            ? "Explore Quantum Sentinel-Alpha"
+            : "Quantum Sentinel-Alpha entdecken",
         exact: true,
       })
       .first()
@@ -48,7 +48,7 @@ for (const locale of ["en", "de"] as const) {
       .click();
     await expect(page.locator(".model-catalog article")).toHaveCount(4);
     await expect(page.locator(".model-catalog article").first()).toContainText(
-      "Quantum Sentinel Alpha",
+      "Quantum Sentinel-Alpha",
     );
     await expect(page.locator(".model-catalog article").nth(1)).toContainText(
       "Quantum 1 Echelon",
@@ -84,6 +84,23 @@ for (const width of [320, 375, 768, 1440]) {
         ),
       ).toBeLessThanOrEqual(0);
       await expect(page.locator("h1")).toHaveCount(1);
+      const alignment = await page
+        .locator("section")
+        .first()
+        .evaluate((hero) => {
+          const title = hero.querySelector("h1")!;
+          const actions = hero.querySelector("a[href]")!;
+          const horizon = hero.querySelector("ul")!;
+          return {
+            textAlign: getComputedStyle(title).textAlign,
+            titleX: title.getBoundingClientRect().left,
+            horizonX: horizon.getBoundingClientRect().left,
+            actionX: actions.getBoundingClientRect().left,
+          };
+        });
+      expect(alignment.textAlign).toBe("left");
+      expect(Math.abs(alignment.titleX - alignment.horizonX)).toBeLessThan(1);
+      expect(Math.abs(alignment.titleX - alignment.actionX)).toBeLessThan(1);
       const violations = (
         await new AxeBuilder({ page }).analyze()
       ).violations.filter(({ impact }) =>

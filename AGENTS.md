@@ -28,6 +28,8 @@ When implementing from a selected generated mock, treat that image as the source
 
 - October 2026 Sentinel prioritization: Quantum Sentinel Alpha replaces Echelon only as the homepage focus. Preserve Echelon content, URLs, assets and its detail presentation. Reuse the navy/blue/white launch layout with a static signal grid for Sentinel; the existing canvas remains Echelon-specific. Sentinel capabilities are training objectives, Qwen3.5-9B is a provisional candidate pending a 4B/9B security bake-off, October 2026 is an Alpha target only, and all weights/inference/quantization artifacts remain planned. Preserve EN/DE parity.
 
+- October 2026 Sentinel design refinement: align the Sentinel hero, model name, copy, status and CTAs to the shared left page edge. Use the public name “Quantum Sentinel-Alpha”: Quantum is the model family, Sentinel the security line, Alpha the development stage. Keep Sentinel-Alpha together at one type size, scale headings and cards to the established site, and avoid oversized viewport-filling stages. Preserve the current URLs and Echelon presentation.
+
 ## Durable research-publication direction
 
 - Treat “Documented clearly” as an evidence rule: connect public claims to committed reports, configurations, manifests, checksums or model cards.

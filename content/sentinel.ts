@@ -3,7 +3,7 @@ import type { ModelRecord } from "./types";
 // Public development plan, supplied by the maintainer on 7 October 2026.
 // Capabilities and release artifacts are objectives, not measured results.
 export const sentinelPreview = {
-  name: "Quantum Sentinel Alpha",
+  name: "Quantum Sentinel-Alpha",
   line: "Quantum Sentinel 1",
   status: "Alpha · In Development",
   target: "Target: October 2026",
@@ -13,13 +13,13 @@ export const sentinelPreview = {
   description: "Specialized AI for secure software.",
   summary:
     "A specialized AI model being trained to find, understand and fix vulnerabilities in source code.",
-  explore: "Explore Quantum Sentinel Alpha",
+  explore: "Explore Quantum Sentinel-Alpha",
   roadmapLink: "View roadmap",
   targetNotice:
     "An Alpha development target, not a guaranteed release date. Quantum Sentinel 1.0 follows later.",
   positioning: ["Cybersecurity-focused", "Local-first", "Open weights planned"],
   overview:
-    "Quantum Sentinel Alpha is the first substantial security fine-tuning milestone of the Quantum Sentinel 1 model line. It is designed as a specialized second security reviewer for developers, open-source maintainers, small engineering teams, security researchers and coding-agent builders.",
+    "Quantum Sentinel-Alpha is the first substantial security fine-tuning milestone of the Quantum Sentinel 1 model line. It is designed as a specialized second security reviewer for developers, open-source maintainers, small engineering teams, security researchers and coding-agent builders.",
   capabilitiesTitle: "From a potential risk to a reasoned finding.",
   capabilitiesNotice:
     "Training objectives for Alpha. Performance has not yet been published. When evidence is insufficient, the model should express uncertainty or abstain.",
@@ -93,7 +93,7 @@ export const sentinelPreview = {
     "Deterministic work belongs in tools: indexing narrows the search, static analysis adds signals, verification checks model claims and tests help establish whether a patch still works and is safer. Specialization plus verification matters more than model size alone.",
   foundationTitle: "A candidate, before a freeze.",
   foundationText:
-    "Quantum Sentinel Alpha is currently being developed with Qwen3.5-9B as the primary foundation candidate. Final foundation selection follows an internal security bake-off between Qwen3.5-9B and Qwen3.5-4B. The foundation is not frozen.",
+    "Quantum Sentinel-Alpha is currently being developed with Qwen3.5-9B as the primary foundation candidate. Final foundation selection follows an internal security bake-off between Qwen3.5-9B and Qwen3.5-4B. The foundation is not frozen.",
   trainingTitle: "Security post-training, focused on evidence.",
   trainingText:
     "The plan builds on an existing open-weight foundation rather than pretraining from scratch. QLoRA / LoRA supervised fine-tuning is the core, using curated vulnerability examples, fixed/vulnerable code pairs, hard negatives, patch tasks, localization, CWE classification, evidence and false-positive rejection. Preference training or domain adaptation will be added only if evaluations show measurable value.",

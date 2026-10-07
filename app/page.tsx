@@ -20,7 +20,7 @@ const copy = {
   en: {
     intro: "Independent AI research. Berlin.",
     description:
-      "We build compact language models and open tools for inspectable AI systems. Independent, founder-led research from Berlin, with Quantum Sentinel Alpha as our current security-model focus.",
+      "We build compact language models and open tools for inspectable AI systems. Independent, founder-led research from Berlin, with Quantum Sentinel-Alpha as our current security-model focus.",
     explore: "Explore our models",
     research: "Inside the research",
     work: "The work",
@@ -81,7 +81,7 @@ const copy = {
   de: {
     intro: "Unabhängige KI-Forschung. Berlin.",
     description:
-      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. Unabhängige, gründergeführte Forschung aus Berlin – mit Quantum Sentinel Alpha als unserem aktuellen Security-Modellschwerpunkt.",
+      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. Unabhängige, gründergeführte Forschung aus Berlin – mit Quantum Sentinel-Alpha als unserem aktuellen Security-Modellschwerpunkt.",
     explore: "Modelle entdecken",
     research: "Einblick in die Forschung",
     work: "Unsere Arbeit",
