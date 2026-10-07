@@ -187,13 +187,16 @@ test("signal field follows the pointer, pauses offscreen and respects live motio
   await expect(field).toHaveAttribute("data-interactive", "false");
   await page.mouse.move(1200, 400);
   expect(await strength()).toBe("");
-  const runningAnimations = await hero.evaluate(
-    (element) =>
-      element
-        .getAnimations({ subtree: true })
-        .filter((animation) => animation.playState === "running").length,
-  );
-  expect(runningAnimations).toBe(0);
+  await expect
+    .poll(() =>
+      hero.evaluate(
+        (element) =>
+          element
+            .getAnimations({ subtree: true })
+            .filter((animation) => animation.playState === "running").length,
+      ),
+    )
+    .toBe(0);
 });
 
 test("touch devices do not require a pointer and support mobile navigation", async ({
