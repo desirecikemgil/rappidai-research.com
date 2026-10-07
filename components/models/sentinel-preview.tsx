@@ -236,7 +236,7 @@ export function SentinelCard({ locale }: { locale: Locale }) {
       >
         <div className={launch.cardMatrix} aria-hidden="true" />
         <div className={`${launch.cardCopy} ${styles.cardCopy}`}>
-          <p className={launch.status}>{c.status}</p>
+          <p className={`${launch.status} ${styles.cardStatus}`}>{c.status}</p>
           <h3>{c.name}</h3>
           <p>
             {t(
