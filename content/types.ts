@@ -4,6 +4,7 @@ export type SiteRoute =
   | "/models/quantum-1-pilot"
   | "/models/quantum-1-6-pilot"
   | "/models/quantum-1-echelon"
+  | "/models/quantum-sentinel-alpha"
   | "/research"
   | "/tools"
   | "/tools/ghost"
@@ -106,7 +107,10 @@ export interface SiteConfiguration {
 }
 
 export type ModelSlug =
-  "quantum-1-pilot" | "quantum-1-6-pilot" | "quantum-1-echelon";
+  | "quantum-1-pilot"
+  | "quantum-1-6-pilot"
+  | "quantum-1-echelon"
+  | "quantum-sentinel-alpha";
 
 export type ModelStatus = "experimental" | "in-development";
 

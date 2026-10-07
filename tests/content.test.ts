@@ -24,7 +24,7 @@ import {
 
 describe("model content helpers", () => {
   it("resolves every configured model slug", () => {
-    expect(modelSlugs).toHaveLength(3);
+    expect(modelSlugs).toHaveLength(4);
     expect(new Set(modelSlugs).size).toBe(modelSlugs.length);
 
     for (const slug of modelSlugs) {
@@ -53,6 +53,7 @@ describe("model content helpers", () => {
       "quantum-1-6-pilot",
     ]);
     expect(inDevelopment.map((model) => model.slug)).toEqual([
+      "quantum-sentinel-alpha",
       "quantum-1-echelon",
     ]);
   });

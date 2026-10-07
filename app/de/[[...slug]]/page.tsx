@@ -57,6 +57,7 @@ export default async function GermanPage({ params }: GermanPageProps) {
     case "/models/quantum-1-pilot":
     case "/models/quantum-1-6-pilot":
     case "/models/quantum-1-echelon":
+    case "/models/quantum-sentinel-alpha":
       return (
         <LocalizedModelDetailPage
           slug={route.slice("/models/".length)}

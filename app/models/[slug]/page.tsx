@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { SentinelPreview } from "@/components/models/sentinel-preview";
 import { EchelonPreview } from "@/components/models/echelon-preview";
 import { ArchitectureStack } from "@/components/graphics/architecture-stack";
 import { ModelCardVisual } from "@/components/graphics/model-card-visual";
@@ -55,6 +56,8 @@ export function LocalizedModelDetailPage({
 }) {
   const model = getModelBySlug(slug, locale);
   if (!model) notFound();
+  if (model.slug === "quantum-sentinel-alpha")
+    return <SentinelPreview locale={locale} />;
   if (model.slug === "quantum-1-echelon")
     return <EchelonPreview locale={locale} />;
   const architecture = architectureFor(slug);

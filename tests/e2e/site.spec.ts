@@ -7,6 +7,7 @@ const publicRoutes = [
   "/models/quantum-1-pilot",
   "/models/quantum-1-6-pilot",
   "/models/quantum-1-echelon",
+  "/models/quantum-sentinel-alpha",
   "/research",
   "/tools",
   "/tools/ghost",

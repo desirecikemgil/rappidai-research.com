@@ -10,7 +10,7 @@ export const modelsPageContent = {
     eyebrow: "MODELS",
     title: "Compact model experiments, documented clearly.",
     description:
-      "Meet Quantum 1 Echelon, our upcoming German-first 1B model, and explore the two public experimental Quantum pilot releases.",
+      "Meet Quantum Sentinel Alpha, our security-specialized code model in development, alongside Quantum 1 Echelon and the two public experimental Quantum pilots.",
   } satisfies PageIntroduction,
   filterLabel: "Filter models",
   missingParameterLabel: "Final parameter size not yet defined",
@@ -78,8 +78,8 @@ export const aboutPageContent = {
   },
   currentDirection: {
     eyebrow: "CURRENT DIRECTION",
-    title: "The Echelon model line.",
-    text: "Quantum 1 Echelon is our current major model project: a German-first language model targeting approximately 1B parameters, developed from scratch with English coverage planned. Base pretraining comes first, with Chat as the intended final stage. Specifications are provisional; no trained model is released.",
+    title: "Quantum Sentinel Alpha.",
+    text: "Our current focus is Quantum Sentinel Alpha, a security-specialized source-code model in development. Local inference and an open-weight release are planned. Quantum 1 Echelon remains our separate German-first language-model project, available in the model index.",
   },
   experimentalNotice: {
     eyebrow: "EXPERIMENTAL OUTPUTS",
@@ -180,14 +180,19 @@ export const privacyPageContent = {
 
 export const pageMetadata = {
   "/": {
-    title: "rappidAI Research — Introducing Quantum 1 Echelon",
+    title: "rappidAI Research — Introducing Quantum Sentinel Alpha",
     description:
-      "Introducing Quantum 1 Echelon, an upcoming German-first ~1B language model built from scratch. Independent AI research and open agent infrastructure from Berlin.",
+      "rappidAI Research develops open AI systems including Quantum Sentinel Alpha, a security-specialized model for source-code vulnerability analysis. Alpha is in development; open weights are planned.",
   },
   "/models": {
     title: "Models — rappidAI Research",
     description:
-      "Explore Quantum 1 Echelon, an upcoming German-first 1B language model, alongside the two released experimental Quantum pilots.",
+      "Explore Quantum Sentinel Alpha, Quantum 1 Echelon and the two released experimental Quantum pilots. Sentinel is a local-first source-code security model in development.",
+  },
+  "/models/quantum-sentinel-alpha": {
+    title: "Quantum Sentinel Alpha — rappidAI Research",
+    description:
+      "Quantum Sentinel Alpha is a security-specialized code model in development. Explore training objectives, the provisional foundation, planned local inference and the October 2026 Alpha target.",
   },
   "/models/quantum-1-pilot": {
     title: "quantum-1-pilot — rappidAI Research",
