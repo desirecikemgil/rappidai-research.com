@@ -1,3 +1,4 @@
+import { sentinelModel } from "./sentinel";
 import { echelonPreview } from "./echelon";
 import type {
   ModelFilter,
@@ -22,6 +23,7 @@ const pilotLimitations = [
 ] as const;
 
 export const models = [
+  sentinelModel,
   {
     slug: "quantum-1-pilot",
     name: "quantum-1-pilot",

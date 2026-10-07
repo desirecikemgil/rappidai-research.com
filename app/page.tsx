@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ghostRelease } from "@/content/ghost";
 import { ArrowUpRight } from "lucide-react";
-import { EchelonHero } from "@/components/models/echelon-hero";
+import {
+  SentinelHero,
+  SentinelCapabilities,
+  SentinelArchitecture,
+  SentinelRoadmap,
+} from "@/components/models/sentinel-preview";
 import styles from "@/components/models/echelon.module.css";
 import { SignalArt } from "@/components/graphics/signal-art";
 import { ActionLink } from "@/components/ui/action-link";
@@ -15,7 +20,7 @@ const copy = {
   en: {
     intro: "Independent AI research. Berlin.",
     description:
-      "We build compact language models and open tools for inspectable AI systems. Independent, founder-led research from Berlin, with Quantum 1 Echelon as our current major model project.",
+      "We build compact language models and open tools for inspectable AI systems. Independent, founder-led research from Berlin, with Quantum Sentinel Alpha as our current security-model focus.",
     explore: "Explore our models",
     research: "Inside the research",
     work: "The work",
@@ -24,8 +29,9 @@ const copy = {
       "From model weights to agent execution. Three distinct research directions, built around efficiency, transparency and local control.",
     quantum: "Compact models. Open experiments.",
     quantumText:
-      "German-language pilot models, local inference and the next Echelon architecture. Explore the releases, methods and evidence behind each stage.",
-    quantumStatus: "Two public pilots · Echelon in development",
+      "Security-specialized Sentinel, the Echelon model line and German-language pilot models. Explore the releases, methods and evidence behind each stage.",
+    quantumStatus:
+      "Sentinel Alpha + Echelon in development · Two public pilots",
     ghost: "Set the boundaries.",
     ghostText:
       "An integrated security runtime for autonomous agents: isolation, SHADOW deception, prompt-injection signals, scoped approvals, runtime limits and evidence behind one simple flow.",
@@ -61,7 +67,7 @@ const copy = {
       "What continued pretraining taught us about quantum-1.6-pilot. Methods, results and the limits of a compact language model.",
     articleType: "Research note",
     read: "Read the research note",
-    echelon: "The next model line.",
+    echelon: "The Echelon model line.",
     echelonText:
       "Explore the 1B development target and the planned path from Base to Chat. Specifications are provisional; no trained model has been released.",
     sources: "Open by design.",
@@ -75,7 +81,7 @@ const copy = {
   de: {
     intro: "Unabhängige KI-Forschung. Berlin.",
     description:
-      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. Unabhängige, gründergeführte Forschung aus Berlin – mit Quantum 1 Echelon als unserem aktuellen Modellschwerpunkt.",
+      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. Unabhängige, gründergeführte Forschung aus Berlin – mit Quantum Sentinel Alpha als unserem aktuellen Security-Modellschwerpunkt.",
     explore: "Modelle entdecken",
     research: "Einblick in die Forschung",
     work: "Unsere Arbeit",
@@ -84,8 +90,9 @@ const copy = {
       "Von Modellgewichten bis zur Agenten-Ausführung. Drei eigenständige Forschungsrichtungen mit Fokus auf Effizienz, Transparenz und lokale Kontrolle.",
     quantum: "Kompakte Modelle. Offene Experimente.",
     quantumText:
-      "Deutschsprachige Pilotmodelle, lokale Inferenz und die nächste Echelon-Architektur. Entdecke Releases, Methoden und die Evidenz hinter jeder Phase.",
-    quantumStatus: "Zwei öffentliche Piloten · Echelon in Entwicklung",
+      "Das Security-spezialisierte Sentinel, die Echelon-Modelllinie und deutschsprachige Pilotmodelle. Entdecke Releases, Methoden und die Evidenz hinter jeder Phase.",
+    quantumStatus:
+      "Sentinel Alpha + Echelon in Entwicklung · Zwei öffentliche Piloten",
     ghost: "Setze die Grenzen.",
     ghostText:
       "Eine integrierte Security-Runtime für autonome Agenten: Isolation, SHADOW-Deception, Prompt-Injection-Signale, eng begrenzte Freigaben, Runtime-Limits und Evidenz in einem einfachen Ablauf.",
@@ -121,7 +128,7 @@ const copy = {
       "Was uns fortgesetztes Pretraining über quantum-1.6-pilot gezeigt hat. Methoden, Ergebnisse und die Grenzen eines kompakten Sprachmodells.",
     articleType: "Forschungsnotiz",
     read: "Forschungsnotiz lesen",
-    echelon: "Die nächste Modelllinie.",
+    echelon: "Die Echelon-Modelllinie.",
     echelonText:
       "Entdecke das 1B-Entwicklungsziel und den geplanten Weg von Base zu Chat. Die Spezifikationen sind vorläufig; noch kein trainiertes Modell veröffentlicht.",
     sources: "Offen entwickelt.",
@@ -139,7 +146,10 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
   const path = (href: string) => localizePath(href, locale);
   return (
     <>
-      <EchelonHero locale={locale} />
+      <SentinelHero locale={locale} />
+      <SentinelCapabilities locale={locale} />
+      <SentinelArchitecture locale={locale} />
+      <SentinelRoadmap locale={locale} />
       <section
         id="introduction"
         className={`page-shell ${styles.introduction}`}

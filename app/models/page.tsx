@@ -22,7 +22,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
             label: t(locale, "Model releases"),
             description: t(
               locale,
-              "Browse the released pilots and the in-development Echelon pipeline.",
+              "Browse Sentinel Alpha, Echelon and the released pilots.",
             ),
           },
           {

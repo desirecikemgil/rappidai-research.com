@@ -26,6 +26,8 @@ When implementing from a selected generated mock, treat that image as the source
 - Treat interaction performance as a visual requirement: scrolling, filtering, navigation and pointer feedback must remain fluid before adding passive motion or refraction effects.
 - Avoid permanent pointer/scroll subscriptions, per-frame canvas redraws, widespread backdrop blur and decorative infinite loops. Prefer static server-rendered graphics, short CSS transform/opacity responses and native progressive enhancement.
 
+- October 2026 Sentinel prioritization: Quantum Sentinel Alpha replaces Echelon only as the homepage focus. Preserve Echelon content, URLs, assets and its detail presentation. Reuse the navy/blue/white launch layout with a static signal grid for Sentinel; the existing canvas remains Echelon-specific. Sentinel capabilities are training objectives, Qwen3.5-9B is a provisional candidate pending a 4B/9B security bake-off, October 2026 is an Alpha target only, and all weights/inference/quantization artifacts remain planned. Preserve EN/DE parity.
+
 ## Durable research-publication direction
 
 - Treat “Documented clearly” as an evidence rule: connect public claims to committed reports, configurations, manifests, checksums or model cards.

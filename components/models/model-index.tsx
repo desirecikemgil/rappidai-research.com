@@ -1,5 +1,6 @@
 "use client";
 
+import { SentinelCard } from "./sentinel-preview";
 import { EchelonCard } from "./echelon-card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -14,8 +15,12 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
     () =>
       [...getModelsByFilter(filter, locale)].sort(
         (a, b) =>
-          Number(b.slug === "quantum-1-echelon") -
-          Number(a.slug === "quantum-1-echelon"),
+          (b.slug === "quantum-sentinel-alpha"
+            ? 2
+            : Number(b.slug === "quantum-1-echelon")) -
+          (a.slug === "quantum-sentinel-alpha"
+            ? 2
+            : Number(a.slug === "quantum-1-echelon")),
       ),
     [filter, locale],
   );
@@ -63,7 +68,9 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
 
       <div className="model-catalog mt-8" aria-live="polite">
         {visibleModels.map((model) =>
-          model.slug === "quantum-1-echelon" ? (
+          model.slug === "quantum-sentinel-alpha" ? (
+            <SentinelCard key={model.slug} locale={locale} />
+          ) : model.slug === "quantum-1-echelon" ? (
             <EchelonCard key={model.slug} locale={locale} />
           ) : (
             <article

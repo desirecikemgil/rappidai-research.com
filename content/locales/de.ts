@@ -1,3 +1,4 @@
+import { deSentinelTranslations } from "./de-sentinel";
 import { deEchelonTranslations } from "./de-echelon";
 import { deComparisonTranslations } from "./de-comparisons";
 import { deMetadataTranslations } from "./de-metadata";
@@ -609,4 +610,5 @@ export const deTranslations: Readonly<Record<string, string>> = {
 
   CONCLUSIONS: "SCHLUSSFOLGERUNGEN",
   ...deEchelonTranslations,
+  ...deSentinelTranslations,
 };

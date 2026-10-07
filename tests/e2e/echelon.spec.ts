@@ -5,10 +5,6 @@ for (const locale of ["en", "de"] as const) {
   const home = locale === "en" ? "/" : "/de";
   const models = locale === "en" ? "/models" : "/de/models";
   const model = `${models}/quantum-1-echelon`;
-  const cta =
-    locale === "en"
-      ? "Explore Quantum 1 Echelon"
-      : "Quantum 1 Echelon entdecken";
   const status = locale === "en" ? "Coming Soon" : "Demnächst";
 
   test(`${locale}: launch navigation, target specs and historical releases`, async ({
@@ -21,9 +17,10 @@ for (const locale of ["en", "de"] as const) {
         errors.push(message.text());
     });
     await page.goto(home);
-    await expect(page.locator("h1")).toHaveText("Quantum 1 Echelon");
+    await expect(page.locator("h1")).toHaveText("Quantum Sentinel Alpha");
+    await page.goto(models);
+    await page.locator(".model-index-featured").getByRole("link").click();
     await expect(page.getByText(status, { exact: true })).toBeVisible();
-    await page.getByRole("link", { name: cta, exact: true }).click();
     await expect(page).toHaveURL(model);
     await expect(page).toHaveTitle("Quantum 1 Echelon — rappidAI Research");
     const specs = page.locator("#specifications");
@@ -58,9 +55,9 @@ for (const locale of ["en", "de"] as const) {
       })
       .click();
     await expect(page).toHaveURL(models);
-    await expect(page.locator(".model-catalog article")).toHaveCount(3);
+    await expect(page.locator(".model-catalog article")).toHaveCount(4);
     await expect(page.locator(".model-catalog article").first()).toContainText(
-      "Quantum 1 Echelon",
+      "Quantum Sentinel Alpha",
     );
     await expect(page.locator(".model-catalog")).toContainText(
       "quantum-1-pilot",
@@ -85,7 +82,7 @@ for (const locale of ["en", "de"] as const) {
         exact: true,
       })
       .click();
-    await expect(page.locator(".model-catalog article")).toHaveCount(1);
+    await expect(page.locator(".model-catalog article")).toHaveCount(2);
     await page.locator(".model-index-featured a").click();
     await expect(page).toHaveURL(model);
     expect(errors).toEqual([]);
@@ -116,7 +113,11 @@ for (const width of [375, 768, 1440, 1920]) {
       await expect(page.locator("h1")).toHaveCount(1);
       if (route === "/") {
         const cta = await page
-          .getByRole("link", { name: "Explore Quantum 1 Echelon", exact: true })
+          .getByRole("link", {
+            name: "Explore Quantum Sentinel Alpha",
+            exact: true,
+          })
+          .first()
           .boundingBox();
         expect(cta!.y + cta!.height).toBeLessThanOrEqual(
           page.viewportSize()!.height,
@@ -144,7 +145,7 @@ test("signal field follows the pointer, pauses offscreen and respects live motio
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/");
+  await page.goto("/models/quantum-1-echelon");
   const hero = page.locator("section").first();
   const field = page.getByTestId("echelon-field");
   const strength = () =>
@@ -186,13 +187,16 @@ test("signal field follows the pointer, pauses offscreen and respects live motio
   await expect(field).toHaveAttribute("data-interactive", "false");
   await page.mouse.move(1200, 400);
   expect(await strength()).toBe("");
-  const runningAnimations = await hero.evaluate(
-    (element) =>
-      element
-        .getAnimations({ subtree: true })
-        .filter((animation) => animation.playState === "running").length,
-  );
-  expect(runningAnimations).toBe(0);
+  await expect
+    .poll(() =>
+      hero.evaluate(
+        (element) =>
+          element
+            .getAnimations({ subtree: true })
+            .filter((animation) => animation.playState === "running").length,
+      ),
+    )
+    .toBe(0);
 });
 
 test("touch devices do not require a pointer and support mobile navigation", async ({
@@ -204,7 +208,7 @@ test("touch devices do not require a pointer and support mobile navigation", asy
     hasTouch: true,
   });
   const page = await context.newPage();
-  await page.goto("/");
+  await page.goto("/models/quantum-1-echelon");
   await expect(page.getByTestId("echelon-field")).toHaveAttribute(
     "data-interactive",
     "false",
@@ -214,7 +218,7 @@ test("touch devices do not require a pointer and support mobile navigation", asy
     .click();
   await page
     .getByRole("navigation", { name: "Mobile navigation" })
-    .getByRole("link", { name: "Models", exact: true })
+    .getByRole("link", { name: /^Models/ })
     .click();
   await expect(page).toHaveURL("/models");
   await page.locator(".model-index-featured a").click();
@@ -228,12 +232,13 @@ test("launch content and navigation are available without JavaScript", async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText("Quantum 1 Echelon");
+  await expect(page.locator("h1")).toHaveText("Quantum Sentinel Alpha");
   await page
-    .getByRole("link", { name: "Explore Quantum 1 Echelon", exact: true })
+    .getByRole("link", { name: "Explore Quantum Sentinel Alpha", exact: true })
+    .first()
     .click();
-  await expect(page.locator("#specifications")).toContainText(
-    "Under evaluation",
+  await expect(page.locator("#foundation")).toContainText(
+    "The foundation is not frozen.",
   );
   await context.close();
 });
