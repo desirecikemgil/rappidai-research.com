@@ -1,6 +1,6 @@
-# Quantum Sentinel Alpha — development card
+# Quantum Sentinel-Alpha — development card
 
-Quantum Sentinel Alpha is the first substantial security-SFT milestone in the
+Quantum Sentinel-Alpha is the first substantial security-SFT milestone in the
 Quantum Sentinel 1 line. It is in development; October 2026 is an **Alpha target**,
 not a guaranteed release date or a target for the stable Quantum Sentinel 1.0.
 

@@ -35,7 +35,7 @@ export function SentinelHero({
           </Link>
         </div>
       ) : null}
-      <div className={`${launch.heroContent} ${styles.heroContent}`}>
+      <div className={`page-shell ${launch.heroContent} ${styles.heroContent}`}>
         <p className={launch.announce}>
           <span className={launch.announceLabel}>
             {detail
@@ -44,10 +44,10 @@ export function SentinelHero({
           </span>
         </p>
         <h1 id="sentinel-title" className={`${launch.title} ${styles.title}`}>
-          <span className={launch.titleLead}>Quantum</span>{" "}
-          <span className={styles.word}>
-            Sentinel <span className={styles.alpha}>Alpha</span>
-          </span>
+          <span className={`${launch.titleLead} ${styles.titleLead}`}>
+            Quantum
+          </span>{" "}
+          <span className={styles.word}>Sentinel-Alpha</span>
         </h1>
         <p className={styles.tagline}>{c.description}</p>
         <p className={launch.heroDescription}>{c.summary}</p>
@@ -55,7 +55,7 @@ export function SentinelHero({
           {c.status}
           <span>{c.target}</span>
         </p>
-        <div className={launch.heroActions}>
+        <div className={`${launch.heroActions} ${styles.heroActions}`}>
           <ActionLink
             href={detail ? "#overview" : modelPath}
             className={`on-navy-primary ${launch.heroAction}`}
@@ -231,12 +231,12 @@ export function SentinelCard({ locale }: { locale: Locale }) {
   return (
     <article className={`${launch.card} ${styles.card} model-index-sentinel`}>
       <Link
-        className={launch.cardLink}
+        className={`${launch.cardLink} ${styles.cardLink}`}
         href={localizePath("/models/quantum-sentinel-alpha", locale)}
       >
         <div className={launch.cardMatrix} aria-hidden="true" />
-        <div className={launch.cardCopy}>
-          <p className={launch.status}>{c.status}</p>
+        <div className={`${launch.cardCopy} ${styles.cardCopy}`}>
+          <p className={`${launch.status} ${styles.cardStatus}`}>{c.status}</p>
           <h3>{c.name}</h3>
           <p>
             {t(

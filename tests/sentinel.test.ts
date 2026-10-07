@@ -38,7 +38,7 @@ describe("Sentinel announcement boundaries", () => {
     expect(siteRoutes).toContain("/models/quantum-sentinel-alpha");
     for (const locale of ["en", "de"] as const) {
       expect(metadataFor("/", locale).title).toContain(
-        "Quantum Sentinel Alpha",
+        "Quantum Sentinel-Alpha",
       );
       const metadata = metadataFor("/models/quantum-sentinel-alpha", locale);
       expect(metadata.alternates?.languages?.en).toBe(

@@ -98,7 +98,7 @@ export const siteConfig = {
   name: "rappidAI research",
   shortName: "rappidAI",
   description:
-    "Independent AI research from Berlin, developing Quantum Sentinel Alpha for source-code security alongside compact model experiments and open agent infrastructure.",
+    "Independent AI research from Berlin, developing Quantum Sentinel-Alpha for source-code security alongside compact model experiments and open agent infrastructure.",
   location: "Berlin, Germany",
   lastReviewed: "2026-09-18",
   businessEmail: publicContact.businessEmail,
