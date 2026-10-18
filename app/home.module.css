@@ -511,5 +511,4 @@
 
 .productVisual :global(.terminal) {
   white-space: pre-wrap;
-  word-break: break-word;
 }

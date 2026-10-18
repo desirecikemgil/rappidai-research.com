@@ -36,7 +36,7 @@ export function EvidenceMatrix({
 
   return (
     <figure className="evidence-matrix m-0">
-      <ul className="m-0 grid list-none grid-cols-2 gap-2 p-0 sm:grid-cols-4">
+      <ul className="evidence-matrix-grid m-0 list-none p-0">
         {cells.map((cell, index) => (
           <motion.li
             key={cell.label}

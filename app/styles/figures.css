@@ -3,6 +3,13 @@
    Data figures
    -------------------------------------------------------------------------- */
 
+  /* Cells never drop below a width that fits the longest German label. */
+  .evidence-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr));
+    gap: 0.5rem;
+  }
+
   .evidence-cell {
     display: flex;
     min-height: 5.5rem;
@@ -55,7 +62,7 @@
 
   .evidence-cell-label {
     min-width: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     hyphens: auto;
     color: var(--ink-2);
     font-size: 0.82rem;
@@ -380,5 +387,66 @@
     width: 0.85rem;
     height: 0.85rem;
     border-radius: 999px;
+  }
+
+  /* Three model cards side by side need desktop width; stack them earlier. */
+  @media (max-width: 980px) {
+    .comparison-model-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .comparison-mini-stack {
+      min-height: 5.2rem;
+    }
+
+    .comparison-evidence-footer {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.35rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .evidence-cell {
+      min-height: 3.6rem;
+      padding: 0.8rem 0.85rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .comparison-tab {
+      min-height: 3.8rem;
+      padding-inline: 0.35rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.07em;
+    }
+
+    .comparison-panel {
+      padding: 1.25rem 1rem;
+    }
+
+    .comparison-model-card {
+      padding: 1.15rem;
+    }
+
+    .comparison-pipeline-flow {
+      grid-template-columns: minmax(0, 1fr);
+      padding-left: 0.3rem;
+    }
+
+    .comparison-pipeline-flow li {
+      min-height: 3.25rem;
+      padding: 0 0 1.2rem 1.3rem;
+      border-top: 0;
+      border-left: 1px solid rgb(29 78 216 / 0.35);
+    }
+
+    .comparison-pipeline-flow li.is-configured {
+      border-left-style: dashed;
+    }
+
+    .comparison-flow-node {
+      top: 0.15rem;
+      left: -0.32rem;
+    }
   }
 }

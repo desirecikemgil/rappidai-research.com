@@ -60,7 +60,7 @@ function LegalGroup({
           <p className="eyebrow">{eyebrow}</p>
           <h2
             id={id}
-            className="mt-4 text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] tracking-[-0.04em] text-ink"
+            className="mt-4 text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] leading-[1.08] tracking-[-0.04em] text-ink"
           >
             {title}
           </h2>

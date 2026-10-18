@@ -96,7 +96,7 @@ export function ContactForm({
     return (
       <div className="liquid-surface p-6 sm:p-9 lg:p-10">
         <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
-        <h2 className="mt-5 max-w-[16ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
+        <h2 className="mt-5 max-w-[16ch] text-[clamp(1.9rem,3.3vw,3.25rem)] leading-[1.05] font-[520] tracking-[-0.045em] text-ink">
           {form.unavailableHeading}
         </h2>
         <p className="body-copy mt-5 max-w-[35rem]">
@@ -164,7 +164,7 @@ export function ContactForm({
   return (
     <div className="liquid-surface p-5 pt-7 sm:p-9 lg:p-10">
       <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
-      <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
+      <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] leading-[1.05] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}
       </h2>
       <p

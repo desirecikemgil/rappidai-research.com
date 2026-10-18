@@ -102,13 +102,13 @@ export function LocalizedPilotResearchNotePage({ locale }: { locale: Locale }) {
               {publication.sections.map((section, index) => (
                 <Reveal
                   key={section.title}
-                  className="grid gap-8 lg:grid-cols-[0.45fr_1.55fr]"
+                  className="grid gap-8 lg:grid-cols-[0.6fr_1.4fr]"
                 >
                   <div>
                     <p className="technical-number text-xs text-accent">
                       {String(index + 1).padStart(2, "0")}
                     </p>
-                    <h2 className="mt-5 text-[clamp(1.55rem,2.8vw,2.6rem)] font-medium tracking-[-0.04em] text-ink">
+                    <h2 className="mt-5 text-[clamp(1.45rem,2.2vw,1.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-ink">
                       {section.title}
                     </h2>
                   </div>

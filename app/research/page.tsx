@@ -87,6 +87,9 @@ function StatFigure({
   note: string;
   pending?: boolean;
 }) {
+  // "49,3 Mio." keeps the figure large and sets the unit smaller, so German
+  // units do not push three figures into each other.
+  const [figure, ...unit] = value.split(" ");
   return (
     <div>
       <dt className="sr-only">{label}</dt>
@@ -98,7 +101,12 @@ function StatFigure({
               : "text-[var(--color-dark-accent)]"
           }`}
         >
-          {value}
+          {figure}
+          {unit.length > 0 ? (
+            <span className="ml-1.5 text-[0.42em] tracking-normal">
+              {unit.join(" ")}
+            </span>
+          ) : null}
         </span>
         <span className="mt-4 block text-sm leading-6 text-[var(--color-dark-body)]">
           {label}
@@ -278,7 +286,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
               tabIndex={0}
               className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
             >
-              <table className="w-full min-w-[72rem] border-collapse text-left">
+              <table className="stack-table w-full min-w-[72rem] border-collapse text-left">
                 <caption className="sr-only">
                   {t(
                     locale,
@@ -309,7 +317,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                     <tr key={item.artifact}>
                       <th
                         scope="row"
-                        className="border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
+                        className="min-w-[14rem] border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
                       >
                         <a
                           href={item.url}
@@ -320,16 +328,28 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                           {item.artifact}
                         </a>
                       </th>
-                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                      <td
+                        data-label={t(locale, "Scope")}
+                        className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft"
+                      >
                         {item.scope}
                       </td>
-                      <td className="border-b border-line px-6 py-6 align-top">
+                      <td
+                        data-label={t(locale, "Status")}
+                        className="border-b border-line px-6 py-6 align-top"
+                      >
                         <EvidenceStatus label={item.status} locale={locale} />
                       </td>
-                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                      <td
+                        data-label={t(locale, "Public evidence")}
+                        className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft"
+                      >
                         {item.evidence}
                       </td>
-                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted">
+                      <td
+                        data-label={t(locale, "Claim boundary")}
+                        className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted"
+                      >
                         {item.boundary}
                       </td>
                     </tr>
@@ -492,12 +512,12 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
             <Reveal delay={0.08} className="lg:pt-4">
               <dl className="grid gap-x-8 gap-y-8 sm:grid-cols-3">
                 <StatFigure
-                  value="49.3M"
+                  value={t(locale, "49.3M")}
                   label={t(locale, "Released parameters")}
                   note={t(locale, "Measured")}
                 />
                 <StatFigure
-                  value="506M"
+                  value={t(locale, "506M")}
                   label={t(locale, "Configured Echelon target")}
                   note={t(locale, "Configured, not trained")}
                   pending
@@ -673,7 +693,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                 tabIndex={0}
                 className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
               >
-                <table className="w-full min-w-[48rem] border-collapse text-left">
+                <table className="stack-table w-full min-w-[48rem] border-collapse text-left">
                   <caption className="sr-only">
                     {t(
                       locale,
@@ -708,6 +728,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                           ) : (
                             <td
                               key={`${index}-${value}`}
+                              data-label={research.comparison.columns[index]}
                               className="border-b border-line px-6 py-5 text-sm leading-6 text-ink-soft"
                             >
                               {value}
@@ -1009,7 +1030,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                 tabIndex={0}
                 className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
               >
-                <table className="w-full min-w-[68rem] border-collapse text-left">
+                <table className="stack-table w-full min-w-[68rem] border-collapse text-left">
                   <caption className="sr-only">
                     {t(
                       locale,
@@ -1039,7 +1060,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                       <tr key={item.area}>
                         <th
                           scope="row"
-                          className="border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
+                          className="min-w-[14rem] border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
                         >
                           <a
                             href={item.url}
@@ -1050,13 +1071,22 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                             {item.area}
                           </a>
                         </th>
-                        <td className="border-b border-line px-6 py-6 align-top">
+                        <td
+                          data-label={t(locale, "Status")}
+                          className="border-b border-line px-6 py-6 align-top"
+                        >
                           <EvidenceStatus label={item.status} locale={locale} />
                         </td>
-                        <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                        <td
+                          data-label={t(locale, "Available evidence")}
+                          className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft"
+                        >
                           {item.evidence}
                         </td>
-                        <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted">
+                        <td
+                          data-label={t(locale, "Still missing")}
+                          className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted"
+                        >
                           {item.missing}
                         </td>
                       </tr>

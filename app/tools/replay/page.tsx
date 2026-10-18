@@ -281,7 +281,7 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
           <p>{c.ladderNote}</p>
         </div>
         <ol
-          className="m-0 grid list-none gap-3 p-0 sm:grid-cols-5"
+          className="m-0 grid list-none gap-3 p-0 sm:grid-cols-3 lg:grid-cols-5"
           data-stagger
         >
           {c.ladder.map((x, i) => (

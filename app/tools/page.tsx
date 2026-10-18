@@ -186,7 +186,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
           role="region"
           aria-label={c.thesisTitle}
         >
-          <table className="table min-w-[40rem]">
+          <table className="table stack-table min-w-[40rem]">
             <thead>
               <tr>
                 <th scope="col" className="w-[16%]" />
@@ -197,20 +197,34 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
             <tbody>
               <tr>
                 <th scope="row">{t(locale, "Question")}</th>
-                <td className="text-ink">{c.ghostQuestion}</td>
-                <td className="text-ink">{c.replayQuestion}</td>
+                <td data-label="rappidAI Ghost" className="text-ink">
+                  {c.ghostQuestion}
+                </td>
+                <td data-label="rappidAI Replay" className="text-ink">
+                  {c.replayQuestion}
+                </td>
               </tr>
               <tr>
                 <th scope="row">{t(locale, "Scope")}</th>
-                <td className="text-ink-soft">{c.ghostSummary}</td>
-                <td className="text-ink-soft">{c.replaySummary}</td>
+                <td data-label="rappidAI Ghost" className="text-ink-soft">
+                  {c.ghostSummary}
+                </td>
+                <td data-label="rappidAI Replay" className="text-ink-soft">
+                  {c.replaySummary}
+                </td>
               </tr>
               <tr>
                 <th scope="row">{t(locale, "Core actions")}</th>
-                <td className="font-mono text-[0.8rem] text-ink-soft">
+                <td
+                  data-label="rappidAI Ghost"
+                  className="font-mono text-[0.8rem] text-ink-soft"
+                >
                   {tools[0].accent}
                 </td>
-                <td className="font-mono text-[0.8rem] text-ink-soft">
+                <td
+                  data-label="rappidAI Replay"
+                  className="font-mono text-[0.8rem] text-ink-soft"
+                >
                   {tools[1].accent}
                 </td>
               </tr>

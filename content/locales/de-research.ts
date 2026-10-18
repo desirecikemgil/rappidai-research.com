@@ -134,7 +134,7 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Das ist die Übernahmequote eines Smoke-Tests, nicht die Ausbeute des noch nicht gestarteten Produktionslaufs.",
   "Engineering lesson": "Technische Erkenntnis",
   "Recovery behavior was validated before production scale.":
-    "Das Wiederherstellungsverhalten wurde bereits vor einem Lauf im Produktionsmaßstab validiert.",
+    "Die Wiederherstellung wurde bereits vor einem Lauf im Produktionsmaßstab validiert.",
   "The Garden implementation documents atomic checkpoints, safe partial-shard handling, dataset-state resume, a deterministic skip fallback and controlled shutdown behavior.":
     "Die Garden-Implementierung dokumentiert atomare Checkpoints, den sicheren Umgang mit unvollständigen Shards, das Fortsetzen anhand des Datensatzzustands, einen deterministischen Skip-Fallback und ein kontrolliertes Herunterfahren.",
   "This establishes pipeline resilience tests, not successful production-data completion.":

@@ -78,7 +78,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
           role="region"
           aria-label={t(locale, "The Quantum lineup.")}
         >
-          <table className="table min-w-[46rem]">
+          <table className="table stack-table min-w-[46rem]">
             <thead>
               <tr>
                 <th scope="col">{t(locale, "Model")}</th>
@@ -99,7 +99,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
                       <ArrowRight aria-hidden="true" size={14} />
                     </Link>
                   </td>
-                  <td>
+                  <td data-label={t(locale, "Status")}>
                     <span
                       className={`chip chip-dot ${
                         model.availability === "available"
@@ -110,8 +110,16 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
                       {model.statusLabel}
                     </span>
                   </td>
-                  <td className="text-ink-soft">{model.modelType}</td>
-                  <td className="font-mono text-[0.84rem] text-ink-soft">
+                  <td
+                    data-label={t(locale, "Model type")}
+                    className="text-ink-soft"
+                  >
+                    {model.modelType}
+                  </td>
+                  <td
+                    data-label={t(locale, "Parameter size")}
+                    className="font-mono text-[0.84rem] text-ink-soft"
+                  >
                     {model.parameterCount?.label ??
                       (model.slug === "quantum-1-echelon"
                         ? t(locale, "~1B parameter target")

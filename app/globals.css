@@ -188,9 +188,23 @@
     text-wrap: pretty;
   }
 
+  /* break-word (not anywhere) keeps min-content widths honest, so grid and
+     table columns cannot collapse to a few pixels; hyphens split long words. */
   dd {
     min-width: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  @media (max-width: 640px) {
+    p,
+    li,
+    td,
+    th,
+    dd,
+    dt {
+      hyphens: auto;
+    }
   }
 
   .skip-link {
@@ -574,6 +588,8 @@
 
   .chip {
     display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
     min-height: 1.75rem;
     align-items: center;
     gap: 0.45rem;
@@ -711,6 +727,33 @@
   .window-bar .dots {
     display: inline-flex;
     gap: 6px;
+  }
+
+  /* On narrow screens the trailing label drops to its own line instead of
+     squeezing or truncating the title. */
+  .window-bar {
+    flex-wrap: wrap;
+    row-gap: 0.15rem;
+    padding-block: 0.45rem;
+  }
+
+  .window-bar > span:not(.dots) {
+    min-width: 0;
+  }
+
+  @media (max-width: 480px) {
+    .window-bar {
+      gap: 0.75rem;
+    }
+
+    .window-bar .dots {
+      display: none;
+    }
+
+    .terminal {
+      padding: 1rem;
+      font-size: 0.72rem;
+    }
   }
 
   .window-bar .dots i {
@@ -1719,7 +1762,7 @@
     font-weight: 500 !important;
     line-height: 1.05;
     letter-spacing: -0.045em !important;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
 
   .model-catalog-link {
@@ -2071,6 +2114,99 @@
     .table th,
     .table td {
       padding: 0.8rem 0.9rem;
+    }
+  }
+
+  /* Label/value tables (row headers, no column headers) stack on phones:
+     the label sits above its value instead of squeezing it into a sliver. */
+  @media (max-width: 640px) {
+    .table:not(:has(thead)) tr {
+      display: block;
+      padding: 0.85rem 0.95rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .table:not(:has(thead)) tr:last-child {
+      border-bottom: 0;
+    }
+
+    .table:not(:has(thead)) th,
+    .table:not(:has(thead)) td {
+      display: block;
+      width: auto !important;
+      padding: 0;
+      border-bottom: 0;
+      white-space: normal;
+    }
+
+    .table:not(:has(thead)) th {
+      margin-bottom: 0.3rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Data tables with column headers become one card per row on phones; each
+     value carries its column name from data-label. */
+  @media (max-width: 639.98px) {
+    .stack-table {
+      min-width: 0 !important;
+    }
+
+    .stack-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .stack-table,
+    .stack-table tbody,
+    .stack-table tr,
+    .stack-table th,
+    .stack-table td {
+      display: block;
+    }
+
+    .stack-table tbody tr {
+      padding: 1.1rem 1.15rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stack-table tbody tr:last-child {
+      border-bottom: 0;
+    }
+
+    .stack-table tbody th,
+    .stack-table tbody td {
+      width: auto !important;
+      min-width: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: normal;
+    }
+
+    .stack-table tbody tr > :first-child {
+      color: var(--ink);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .stack-table tbody tr > * + * {
+      margin-top: 0.8rem;
+    }
+
+    .stack-table td[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
   }
 

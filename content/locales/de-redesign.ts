@@ -85,4 +85,7 @@ export const deRedesignTranslations: Readonly<Record<string, string>> = {
   "Model and tokenizer license registry":
     "Lizenzregister für Modell und Tokenizer",
   "98,990,560 bytes": "98.990.560 Byte",
+  "49.3M": "49,3 Mio.",
+  "506M": "506 Mio.",
+  "49,295,872": "49.295.872",
 };
