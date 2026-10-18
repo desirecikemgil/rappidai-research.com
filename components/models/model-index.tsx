@@ -30,16 +30,16 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
   );
   return (
     <section
-      className="page-shell pb-[var(--section-space)]"
+      className="page-shell section"
       aria-labelledby="models-list-heading"
     >
-      <h2 id="models-list-heading" className="display-section mb-8">
-        {t(locale, "Model index")}
-      </h2>
-      <div className="flex flex-col gap-5 border-y border-line py-5 sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-mono text-[0.69rem] tracking-[0.16em] text-muted uppercase">
-          {t(locale, "Filter models")}
-        </p>
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="kicker">{t(locale, "Model releases")}</p>
+          <h2 id="models-list-heading" className="display-section mt-4">
+            {t(locale, "Model index")}
+          </h2>
+        </div>
         <div
           className="flex flex-wrap gap-2"
           role="group"
@@ -53,11 +53,7 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
                 type="button"
                 aria-pressed={active}
                 onClick={() => setFilter(item.id)}
-                className={`min-h-11 border px-4 text-[0.78rem] font-medium transition-colors ${
-                  active
-                    ? "liquid-button border-ink bg-ink text-white"
-                    : "liquid-pill border-line bg-white/30 text-muted hover:border-ink hover:text-ink"
-                }`}
+                className="filter-chip"
               >
                 {item.label}
               </button>
@@ -73,21 +69,14 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
           ) : model.slug === "quantum-1-echelon" ? (
             <EchelonCard key={model.slug} locale={locale} />
           ) : (
-            <article
-              key={model.slug}
-              className="liquid-row model-index-row group rounded-[1.35rem] border-y border-line py-8 sm:py-10"
-            >
+            <article key={model.slug} className="model-index-row group">
               <Link
                 href={localizePath(`/models/${model.slug}`, locale)}
                 className="model-catalog-link"
               >
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="inline-flex items-center gap-2 font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
-                      <span
-                        className="size-1.5 rounded-full bg-accent"
-                        aria-hidden="true"
-                      />
+                    <span className="chip chip-dot chip-ok">
                       {model.statusLabel}
                     </span>
                     <span className="text-xs text-muted">
@@ -95,16 +84,16 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
                         t(locale, "Parameter size not yet defined")}
                     </span>
                   </div>
-                  <h3 className="mt-5 font-[510] tracking-[-0.052em] text-ink transition-colors group-hover:text-accent">
+                  <h3 className="mt-5 text-ink transition-colors group-hover:text-accent">
                     {model.name}
                   </h3>
                   <p className="body-copy mt-5 max-w-xl">{model.summary}</p>
                 </div>
 
-                <dl className="grid grid-cols-1 gap-x-6 gap-y-5 text-sm sm:grid-cols-2 lg:grid-cols-1">
+                <dl className="grid grid-cols-1 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
                   {model.indexFacts.slice(1).map((fact, factIndex) => (
-                    <div key={fact} className="border-l border-line pl-4">
-                      <dt className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
+                    <div key={fact} className="border-t border-line pt-3">
+                      <dt className="text-[0.78rem] text-muted">
                         {factIndex === 0
                           ? t(locale, "Status")
                           : factIndex === 1
@@ -116,7 +105,8 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
                   ))}
                 </dl>
 
-                <span className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-all duration-300 group-hover:scale-105 group-hover:border-accent group-hover:bg-accent group-hover:text-white lg:justify-self-end">
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-accent">
+                  {t(locale, "View model card")}
                   <ArrowRight aria-hidden="true" size={18} strokeWidth={1.6} />
                 </span>
               </Link>

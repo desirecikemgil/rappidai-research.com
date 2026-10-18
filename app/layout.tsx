@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import "./studio.css";
 import { SiteFrame } from "@/components/layout/site-frame";
 import { siteConfig } from "@/content/site";
 import { serializeJsonLd } from "@/lib/json-ld";

@@ -32,9 +32,11 @@ export function SectionNavigator({
           <li key={`${item.href}-${item.label}`}>
             <Link href={item.href} className="section-navigator-link">
               <span className="section-navigator-title">{item.label}</span>
-              <span className="section-navigator-description">
-                {item.description}
-              </span>
+              {item.description && item.description !== item.label ? (
+                <span className="section-navigator-description">
+                  {item.description}
+                </span>
+              ) : null}
             </Link>
           </li>
         ))}

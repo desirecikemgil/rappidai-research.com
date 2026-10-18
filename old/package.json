@@ -1,0 +1,54 @@
+{
+  "name": "rappidai-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The public website for the rappidAI independent AI research initiative.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desirecikemgil/rappidai-research.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/desirecikemgil/rappidai-research.com/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "next build",
+    "start": "next start",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm links:internal && pnpm build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "links:external": "node scripts/check-links.mjs --external",
+    "links:internal": "node scripts/check-links.mjs --internal",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "pnpm build && playwright test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "framer-motion": "13.3.0",
+    "geist": "1.7.2",
+    "lucide-react": "1.46.0",
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "26.6.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.5",
+    "prettier": "3.9.6",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  },
+  "packageManager": "pnpm@11.9.0"
+}

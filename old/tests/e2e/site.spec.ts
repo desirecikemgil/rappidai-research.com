@@ -1,0 +1,439 @@
+import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
+
+const publicRoutes = [
+  "/",
+  "/models",
+  "/models/quantum-1-pilot",
+  "/models/quantum-1-6-pilot",
+  "/models/quantum-1-echelon",
+  "/models/quantum-sentinel-alpha",
+  "/research",
+  "/tools",
+  "/tools/ghost",
+  "/tools/replay",
+  "/resources",
+  "/resources/publications",
+  "/resources/publications/from-100m-to-600m-german-tokens",
+  "/resources/reproducibility",
+  "/resources/data-and-training",
+  "/resources/responsible-use",
+  "/resources/licensing",
+  "/resources/status",
+  "/resources/faq",
+  "/about",
+  "/contact",
+  "/imprint",
+  "/privacy",
+] as const;
+
+for (const route of ["/tools/replay", "/de/tools/replay"]) {
+  test(`${route} command examples can be scrolled with the keyboard`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(route);
+    const commands = page.locator("pre");
+    await expect(commands).toContainText(
+      "--mode live --confirm-execution <state-id>",
+    );
+    await commands.focus();
+    await expect(commands).toBeFocused();
+    await commands.press("ArrowRight");
+    await expect
+      .poll(() => commands.evaluate((element) => element.scrollLeft))
+      .toBeGreaterThan(0);
+    const violations = (
+      await new AxeBuilder({ page }).analyze()
+    ).violations.filter(({ impact }) =>
+      ["serious", "critical"].includes(impact ?? ""),
+    );
+    expect(violations).toEqual([]);
+  });
+}
+
+for (const route of publicRoutes) {
+  test(`${route} renders one accessible page heading`, async ({ page }) => {
+    // Audit resting colors, not partially transparent scroll-reveal frames.
+    // Motion and responsive behavior have separate interaction coverage below.
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    const response = await page.goto(route);
+
+    expect(response?.status()).toBe(200);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("h1")).toBeVisible();
+
+    const seriousViolations = (
+      await new AxeBuilder({ page }).analyze()
+    ).violations.filter(({ impact }) =>
+      ["serious", "critical"].includes(impact ?? ""),
+    );
+
+    expect(
+      seriousViolations,
+      seriousViolations
+        .map(
+          ({ id, help, nodes }) =>
+            `${id}: ${help} (${nodes.length} affected node(s))`,
+        )
+        .join("\n"),
+    ).toEqual([]);
+  });
+}
+
+for (const route of publicRoutes) {
+  const germanRoute = route === "/" ? "/de" : `/de${route}`;
+
+  test(`${germanRoute} renders its localized page`, async ({ page }) => {
+    const response = await page.goto(germanRoute);
+
+    expect(response?.status()).toBe(200);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("h1")).toBeVisible();
+    await expect(page.locator("html")).toHaveAttribute("lang", "de");
+  });
+}
+
+test("internal navigation targets return successful responses", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/");
+  const hrefs = await page
+    .locator('a[href^="/"]')
+    .evaluateAll((links) =>
+      [...new Set(links.map((link) => link.getAttribute("href")))].filter(
+        (href): href is string => Boolean(href),
+      ),
+    );
+
+  for (const href of hrefs) {
+    const response = await request.get(href);
+    expect(response.ok(), `${href} returned ${response.status()}`).toBe(true);
+  }
+});
+
+test("language switch preserves the current deep route", async ({ page }) => {
+  await page.goto("/resources/licensing");
+
+  await page
+    .getByRole("link", { name: /switch to deutsch/i })
+    .first()
+    .click();
+  await expect(page).toHaveURL("/de/resources/licensing");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(
+    "Öffentliche Verfügbarkeit",
+  );
+  await expect(page.locator("html")).toHaveAttribute("lang", "de");
+
+  await page
+    .getByRole("link", { name: /wechseln zu english/i })
+    .first()
+    .click();
+  await expect(page).toHaveURL("/resources/licensing");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+});
+
+test("German navigation marks only the current primary area", async ({
+  page,
+}) => {
+  await page.goto("/de/research");
+
+  const currentLinks = page
+    .getByRole("navigation", { name: "Primary navigation" })
+    .locator('a[aria-current="page"]');
+
+  await expect(currentLinks).toHaveCount(1);
+  await expect(currentLinks).toHaveText("Forschung");
+});
+
+test("mobile research index stays contained and exposes every topic", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/research");
+
+  const index = page.getByRole("navigation", { name: "Explore this page" });
+  await expect(index.getByRole("link")).toHaveCount(5);
+
+  const measurements = await page.evaluate(() => ({
+    pageOverflow:
+      document.documentElement.scrollWidth -
+      document.documentElement.clientWidth,
+    indexOverflow:
+      (document.querySelector(".section-navigator-list")?.scrollWidth ?? 0) -
+      (document.querySelector(".section-navigator-list")?.clientWidth ?? 0),
+  }));
+
+  expect(measurements.pageOverflow).toBeLessThanOrEqual(0);
+  expect(measurements.indexOverflow).toBeLessThanOrEqual(0);
+  for (const link of await index.getByRole("link").all()) {
+    await expect(link).toBeVisible();
+  }
+});
+
+test("mobile menu remains legible and closes after a deep-route language switch", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/tools/ghost");
+  await page
+    .getByRole("button", { name: "Open navigation", exact: true })
+    .click();
+  const violations = (
+    await new AxeBuilder({ page }).include("header.liquid-header").analyze()
+  ).violations.filter(({ impact }) =>
+    ["serious", "critical"].includes(impact ?? ""),
+  );
+  expect(violations).toEqual([]);
+  await page
+    .getByRole("link", { name: "Switch to Deutsch", exact: true })
+    .click();
+  await expect(page).toHaveURL("/de/tools/ghost");
+  await expect(
+    page.getByRole("button", { name: "Navigation öffnen", exact: true }),
+  ).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
+});
+
+test("tool implementation details can be expanded with the keyboard", async ({
+  page,
+}) => {
+  await page.goto("/tools");
+  const summary = page.locator(".tool-showcase-card summary").first();
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(
+    page.locator(".tool-showcase-card").first().locator("details li").first(),
+  ).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(
+    page.locator(".tool-showcase-card").first().locator("details li").first(),
+  ).not.toBeVisible();
+});
+
+test("contact form reports required fields without claiming a send", async ({
+  page,
+}) => {
+  await page.goto("/contact");
+  await page.getByRole("button", { name: /continue in email app/i }).click();
+
+  await expect(page.locator('form [role="alert"]')).toHaveCount(4);
+  await expect(page.locator('input[name="name"]')).toBeFocused();
+  await expect(page.getByRole("status")).toContainText(
+    "No message has been sent.",
+  );
+});
+
+test("German contact form reports localized validation messages", async ({
+  page,
+}) => {
+  await page.goto("/de/contact");
+  await page.getByRole("button", { name: /in e-mail-app fortfahren/i }).click();
+
+  await expect(page.locator('form [role="alert"]')).toHaveCount(4);
+  await expect(page.getByRole("status")).toContainText(
+    "Es wurde keine Nachricht gesendet.",
+  );
+});
+
+test("model comparison switches between all three visual views", async ({
+  page,
+}) => {
+  await page.goto("/models");
+
+  const architectureTab = page.getByRole("tab", { name: "Architecture" });
+  const tokenizerTab = page.getByRole("tab", { name: "Tokenizer" });
+  const pipelineTab = page.getByRole("tab", { name: "Data pipeline" });
+
+  await expect(architectureTab).toHaveAttribute("aria-selected", "true");
+  await expect(
+    page.getByRole("tabpanel").locator(".comparison-model-card"),
+  ).toHaveCount(3);
+
+  await tokenizerTab.click();
+  await expect(tokenizerTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "One frozen pilot tokenizer",
+  );
+
+  await pipelineTab.click();
+  await expect(pipelineTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "8B configured training-token target",
+  );
+});
+
+test("German model comparison is translated and keyboard operable", async ({
+  page,
+}) => {
+  await page.goto("/de/models");
+
+  const architectureTab = page.getByRole("tab", { name: "Architektur" });
+  await architectureTab.focus();
+  await architectureTab.press("ArrowRight");
+
+  const tokenizerTab = page.getByRole("tab", { name: "Tokenizer" });
+  await expect(tokenizerTab).toBeFocused();
+  await expect(tokenizerTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "Ein eingefrorener Pilot-Tokenizer",
+  );
+
+  await page.getByRole("tab", { name: "Datenpipeline" }).click();
+  await expect(page.getByRole("tabpanel")).toContainText(
+    "8 Mrd. Trainings-Token",
+  );
+});
+
+test("reduced-motion rendering avoids horizontal overflow", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/research");
+
+  const dimensions = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+
+  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+});
+
+for (const route of ["/models", "/de/models"] as const) {
+  test(`${route} comparison fits a reduced-motion mobile viewport`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(route);
+
+    const pipelineName = route.startsWith("/de")
+      ? "Datenpipeline"
+      : "Data pipeline";
+    await page.getByRole("tab", { name: pipelineName }).click();
+
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+    await expect(
+      page.getByRole("tabpanel").locator(".comparison-model-card"),
+    ).toHaveCount(3);
+  });
+}
+
+for (const route of [
+  "/resources",
+  "/resources/publications/from-100m-to-600m-german-tokens",
+  "/resources/reproducibility",
+  "/resources/data-and-training",
+  "/resources/responsible-use",
+  "/resources/licensing",
+  "/resources/status",
+  "/resources/faq",
+] as const) {
+  test(`${route} fits a reduced-motion mobile viewport`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(route);
+
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+    await expect(page.locator("h1")).toBeVisible();
+  });
+}
+
+for (const route of [
+  "/de/research",
+  "/de/resources",
+  "/de/resources/publications/from-100m-to-600m-german-tokens",
+  "/de/resources/licensing",
+] as const) {
+  test(`${route} fits a reduced-motion mobile viewport`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(route);
+
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+    await expect(page.locator("h1")).toBeVisible();
+  });
+}
+
+test("robots and sitemap endpoints are public", async ({ request }) => {
+  const [robots, sitemap] = await Promise.all([
+    request.get("/robots.txt"),
+    request.get("/sitemap.xml"),
+  ]);
+
+  expect(robots.ok()).toBe(true);
+  expect(await robots.text()).toContain("Sitemap:");
+  expect(sitemap.ok()).toBe(true);
+
+  const sitemapBody = await sitemap.text();
+  for (const route of publicRoutes) {
+    expect(sitemapBody).toContain(
+      route === "/"
+        ? "https://www.rappidai-research.com"
+        : `https://www.rappidai-research.com${route}`,
+    );
+    expect(sitemapBody).toContain(
+      route === "/"
+        ? "https://www.rappidai-research.com/de"
+        : `https://www.rappidai-research.com/de${route}`,
+    );
+  }
+});
+
+for (const route of ["/tools/ghost", "/de/tools/ghost"] as const) {
+  test(`${route} exposes v0.3.0 evidence and fits mobile and desktop`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(route);
+    await expect(page.locator("main")).toContainText(
+      "PASS: 25 · FAIL: 0 · SKIP: 0",
+    );
+    await expect(page.locator("main")).not.toContainText("v0.1.0");
+    await expect(
+      page.getByRole("link", { name: "v0.3.0 Release", exact: true }).first(),
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/rappidAI-Research/rappid-ghost/releases/tag/v0.3.0",
+    );
+    await page.locator("#ghost-bench summary").press("Enter");
+    await expect(
+      page.getByText("interrupted-session-recovery", { exact: true }),
+    ).toBeVisible();
+    for (const width of [360, 768, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      const layout = await page.evaluate(() => ({
+        overflow:
+          document.documentElement.scrollWidth -
+          document.documentElement.clientWidth,
+        brokenAnchors: [...document.querySelectorAll('main a[href^="#"]')]
+          .map((link) => link.getAttribute("href")!.slice(1))
+          .filter((id) => !document.getElementById(id)),
+      }));
+      expect(
+        layout.overflow,
+        `Page overflow at ${width}px`,
+      ).toBeLessThanOrEqual(0);
+      expect(layout.brokenAnchors).toEqual([]);
+    }
+  });
+}

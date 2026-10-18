@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
-import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { AlertTriangle, ArrowLeft, ArrowRight } from "lucide-react";
 import { SentinelPreview } from "@/components/models/sentinel-preview";
 import { EchelonPreview } from "@/components/models/echelon-preview";
 import { ArchitectureStack } from "@/components/graphics/architecture-stack";
@@ -89,98 +88,54 @@ export function LocalizedModelDetailPage({
     locale,
   );
 
+  const specs = [
+    {
+      label: t(locale, "Parameter size"),
+      value: model.parameterCount?.label ?? page.missingParameterLabel,
+    },
+    ...model.technicalFacts.slice(0, 3).map((fact) => ({
+      label: fact.label,
+      value: fact.value,
+    })),
+  ];
+
   return (
     <>
-      <section className="model-detail-opening page-shell pt-[clamp(5rem,10vw,8rem)] pb-[clamp(2.75rem,6vw,5.5rem)]">
-        <Reveal>
+      <section className="model-detail-opening page-intro">
+        <div className="page-shell">
           <Link
             href={localizePath("/models", locale)}
-            className="-ml-2 inline-flex min-h-11 items-center gap-2 px-2 text-sm text-muted transition-colors hover:text-ink"
+            className="inline-flex min-h-10 items-center gap-2 text-sm text-muted transition-colors hover:text-ink"
           >
             <ArrowLeft aria-hidden="true" size={15} strokeWidth={1.7} />
             {t(locale, "All models")}
           </Link>
-        </Reveal>
 
-        <div className="model-hero liquid-surface mt-10 grid gap-10 p-7 sm:mt-14 sm:p-10 lg:mt-16 lg:grid-cols-[1fr_0.42fr] lg:items-end lg:p-12">
-          <div className="model-grid" aria-hidden="true" />
-          <div className="relative">
-            <Reveal>
-              <p className="eyebrow">
-                {t(locale, "Model card")} · {model.statusLabel}
-              </p>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <h1 className="mt-7 max-w-[14ch] text-[clamp(3.15rem,7vw,7rem)] leading-[0.92] font-[520] tracking-[-0.063em] text-ink">
-                {model.name}
-              </h1>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-8 flex items-baseline gap-3">
-                <span className="display-mega text-accent">
-                  {model.parameterCount?.shortLabel ?? "—"}
+          <div className="model-hero grid gap-12 pb-[clamp(3rem,6vw,5rem)] pt-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
+            <div className="min-w-0">
+              <p className="flex flex-wrap items-center gap-3 text-sm text-muted">
+                <span className="chip chip-dot chip-ok">
+                  {model.statusLabel}
                 </span>
-                <span className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
-                  {t(locale, "Parameter size")}
-                </span>
+                <span>{t(locale, "Model card")}</span>
               </p>
-              <p className="mt-3 max-w-[30rem] text-sm text-muted">
-                {model.parameterCount?.label ?? page.missingParameterLabel}
-              </p>
-            </Reveal>
-          </div>
-
-          {architecture ? (
-            <Reveal
-              delay={0.18}
-              variant="scale"
-              className="relative lg:border-l lg:border-line lg:pl-9"
-            >
-              <p className="font-mono text-[0.63rem] tracking-[0.14em] text-muted uppercase">
-                {architecture.configured
-                  ? t(locale, "Configured architecture")
-                  : t(locale, "Published architecture")}
-              </p>
-              <div className="mt-6">
-                <ArchitectureStack
-                  layers={architecture.layers}
-                  hiddenSize={architecture.hiddenSize}
-                  heads={architecture.heads}
-                  configured={architecture.configured}
-                  locale={locale}
-                />
-              </div>
-              {architecture.configured ? (
-                <p className="mt-4 text-[0.75rem] leading-5 text-muted">
-                  {t(
-                    locale,
-                    "Drawn from the committed preflight report. No Echelon model has been trained.",
-                  )}
-                </p>
-              ) : null}
-            </Reveal>
-          ) : null}
-        </div>
-        <DrawRule className="mt-10 sm:mt-14 lg:mt-16" />
-      </section>
-
-      <section className="page-shell pb-[var(--section-space)]">
-        <div className="grid gap-14 lg:grid-cols-[0.78fr_1.22fr]">
-          <Reveal>
-            <div className="lg:sticky lg:top-32">
-              <p className="eyebrow">{t(locale, "Summary")}</p>
-              <p className="body-lg mt-6">{model.summary}</p>
+              <h1 className="mt-6 text-ink">{model.name}</h1>
+              <p className="lede mt-6">{model.summary}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {modelLinks.length === 0 ? (
                   <PendingAction>{page.missingLinksLabel}</PendingAction>
                 ) : (
-                  modelLinks.map((link) =>
+                  modelLinks.map((link, index) =>
                     link.url ? (
                       <ActionLink
                         key={`${link.kind}-${link.label}`}
                         href={link.url}
                         external
-                        variant="secondary"
+                        variant={
+                          index === modelLinks.length - 1
+                            ? "primary"
+                            : "secondary"
+                        }
                       >
                         {link.label}
                       </ActionLink>
@@ -193,10 +148,74 @@ export function LocalizedModelDetailPage({
                 )}
               </div>
             </div>
-          </Reveal>
 
-          <Reveal delay={0.08}>
-            <dl className="border-t border-line">
+            <div className="window min-w-0">
+              <div className="window-bar">
+                <span>{model.name}</span>
+                <span>{model.parameterCount?.shortLabel ?? "—"}</span>
+              </div>
+              <dl className="m-0">
+                {specs.map((spec) => (
+                  <div
+                    key={spec.label}
+                    className="grid gap-1 border-b border-line px-5 py-4 last:border-b-0 sm:grid-cols-[9rem_1fr] sm:gap-4"
+                  >
+                    <dt className="text-[0.82rem] text-muted">{spec.label}</dt>
+                    <dd className="m-0 min-w-0 break-words font-mono text-[0.82rem] text-ink">
+                      {spec.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              {architecture ? (
+                <div className="border-t border-line bg-pale-soft px-5 py-5">
+                  <p className="text-[0.8rem] text-muted">
+                    {architecture.configured
+                      ? t(locale, "Configured architecture")
+                      : t(locale, "Published architecture")}
+                  </p>
+                  <div className="mt-4">
+                    <ArchitectureStack
+                      layers={architecture.layers}
+                      hiddenSize={architecture.hiddenSize}
+                      heads={architecture.heads}
+                      configured={architecture.configured}
+                      locale={locale}
+                    />
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="page-shell section"
+        aria-labelledby="model-card-title"
+      >
+        <div className="section-head split">
+          <div>
+            <p className="kicker">{t(locale, "Summary")}</p>
+            <h2 id="model-card-title" className="display-section">
+              {t(locale, "Model card")}
+            </h2>
+          </div>
+          <p>
+            {t(
+              locale,
+              "Information linked to public project sources. Unknown release dates, licensing terms and unsupported client compatibility are not inferred.",
+            )}
+          </p>
+        </div>
+        <div
+          className="table-wrap"
+          tabIndex={0}
+          role="region"
+          aria-label={t(locale, "Model card")}
+        >
+          <table className="table">
+            <tbody>
               <ModelFact
                 label={t(locale, "Status")}
                 value={model.statusLabel}
@@ -226,120 +245,143 @@ export function LocalizedModelDetailPage({
                 label={t(locale, "License")}
                 value={model.license ?? page.missingLicenseLabel}
               />
-            </dl>
-          </Reveal>
+            </tbody>
+          </table>
         </div>
       </section>
 
       {model.technicalFacts.length > 0 || model.inferenceSoftware.length > 0 ? (
-        <section className="liquid-section border-y border-line bg-pale-soft/35">
-          <div className="page-shell section-space-sm">
-            <div className="grid min-w-0 gap-12 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
-              <Reveal className="min-w-0">
-                <p className="eyebrow">{t(locale, "Technical dossier")}</p>
-                <h2 className="display-section mt-6">
+        <section className="band" aria-labelledby="technical-dossier-title">
+          <div className="page-shell section">
+            <div className="section-head split">
+              <div>
+                <p className="kicker">{t(locale, "Technical dossier")}</p>
+                <h2 id="technical-dossier-title" className="display-section">
                   {t(locale, "Documented model facts.")}
                 </h2>
-                <p className="body-copy mt-6 max-w-[34rem]">
-                  {t(
-                    locale,
-                    "Information linked to public project sources. Unknown release dates, licensing terms and unsupported client compatibility are not inferred.",
-                  )}
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.08} className="min-w-0">
-                <dl className="liquid-surface min-w-0 px-6 sm:px-8">
-                  {model.technicalFacts.map((fact) => (
-                    <ModelFact
-                      key={fact.label}
-                      label={fact.label}
-                      value={fact.value}
-                    />
+              </div>
+              {model.sources.length > 0 ? (
+                <p className="flex flex-wrap gap-x-2 gap-y-1 text-sm leading-6 text-muted">
+                  <span>{t(locale, "Primary sources")}:</span>
+                  {model.sources.map((source, index) => (
+                    <span key={source.url}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-accent underline-offset-4 hover:underline"
+                      >
+                        {source.label}
+                      </a>
+                      {index < model.sources.length - 1 ? " ·" : null}
+                    </span>
                   ))}
-                  {model.inferenceSoftware.length > 0 ? (
-                    <ModelFact
-                      label={t(locale, "Inference")}
-                      value={model.inferenceSoftware.join(" · ")}
-                    />
-                  ) : null}
-                </dl>
-
-                {model.sources.length > 0 ? (
-                  <p className="mt-5 flex flex-wrap gap-x-2 gap-y-1 text-sm leading-6 text-muted">
-                    <span>{t(locale, "Primary sources")}:</span>
-                    {model.sources.map((source, index) => (
-                      <span key={source.url}>
-                        <a
-                          href={source.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
-                        >
-                          {source.label}
-                        </a>
-                        {index < model.sources.length - 1 ? " ·" : null}
-                      </span>
+                </p>
+              ) : null}
+            </div>
+            <div className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+              <div
+                className="table-wrap"
+                tabIndex={0}
+                role="region"
+                aria-label={t(locale, "Documented model facts.")}
+              >
+                <table className="table">
+                  <tbody>
+                    {model.technicalFacts.map((fact) => (
+                      <ModelFact
+                        key={fact.label}
+                        label={fact.label}
+                        value={fact.value}
+                        mono
+                      />
                     ))}
-                  </p>
-                ) : null}
-
-                {model.usageExample ? (
-                  <div className="liquid-surface mt-5 p-6 sm:p-8">
-                    <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
-                      {t(locale, "Reference completion command")}
-                    </p>
+                    {model.inferenceSoftware.length > 0 ? (
+                      <ModelFact
+                        label={t(locale, "Inference")}
+                        value={model.inferenceSoftware.join(" · ")}
+                      />
+                    ) : null}
+                  </tbody>
+                </table>
+              </div>
+              {model.usageExample ? (
+                <div className="min-w-0">
+                  <div className="window window-dark">
+                    <div className="window-bar">
+                      <span>{t(locale, "Reference completion command")}</span>
+                      <span>llama.cpp</span>
+                    </div>
                     <pre
                       aria-label={t(
                         locale,
                         "Scrollable reference completion command",
                       )}
                       tabIndex={0}
-                      className="mt-5 overflow-x-auto rounded-[0.85rem] border border-white/70 bg-ink p-5 text-[0.78rem] leading-6 text-[#d9e6f7] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+                      className="terminal"
                     >
                       <code>{model.usageExample}</code>
                     </pre>
-                    <p className="mt-4 text-sm leading-6 text-muted">
-                      {t(
-                        locale,
-                        "Completion prompting is the documented reference path. No chat template is promised.",
-                      )}
-                    </p>
                   </div>
-                ) : null}
-              </Reveal>
+                  <p className="mt-4 text-sm leading-6 text-muted">
+                    {t(
+                      locale,
+                      "Completion prompting is the documented reference path. No chat template is promised.",
+                    )}
+                  </p>
+                </div>
+              ) : null}
             </div>
           </div>
         </section>
       ) : null}
 
-      {model.researchContext ? (
-        <section className="page-shell section-space-sm">
-          <div className="grid gap-10 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
-            <Reveal>
-              <p className="eyebrow">{t(locale, "Research context")}</p>
-              <h2 className="display-section mt-6">
-                {t(locale, "How this release fits the experiment.")}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.08} className="border-t border-line pt-8">
-              <p className="body-lg max-w-[44rem]">{model.researchContext}</p>
-              <div className="mt-8">
-                <ActionLink href={localizePath("/research", locale)}>
-                  {t(locale, "Read the research methodology")}
-                </ActionLink>
-              </div>
-            </Reveal>
+      <section
+        className="page-shell section"
+        aria-labelledby="limitations-title"
+      >
+        <div className="section-head split">
+          <div>
+            <p className="kicker">{t(locale, "Limitations")}</p>
+            <h2 id="limitations-title" className="display-section">
+              {t(locale, "Read the limits first.")}
+            </h2>
           </div>
-        </section>
-      ) : null}
+          {model.status === "experimental" ? (
+            <p>
+              {t(
+                locale,
+                "This model is experimental and not production-ready. It must not be used for high-stakes decisions.",
+              )}
+            </p>
+          ) : null}
+        </div>
+        <ul
+          className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2"
+          data-stagger
+        >
+          {model.limitations.map((limitation) => (
+            <li key={limitation} className="card flex gap-3 p-5">
+              <AlertTriangle
+                aria-hidden="true"
+                size={17}
+                strokeWidth={1.7}
+                className="mt-0.5 flex-none text-muted"
+              />
+              <span className="text-[0.98rem] leading-7 text-ink-soft">
+                {limitation}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {model.featured ? (
-        <section className="liquid-section border-y border-line bg-pale-soft/40 py-[clamp(4.5rem,8vw,8rem)]">
-          <div className="page-shell grid gap-12 lg:grid-cols-[0.5fr_1.2fr] lg:items-center">
-            <Reveal>
-              <p className="eyebrow">{t(locale, "Repository reference")}</p>
-              <h2 className="mt-6 text-[clamp(2rem,4vw,4rem)] font-[510] leading-[1.02] tracking-[-0.05em] text-ink">
+        <section className="band">
+          <div className="page-shell section grid gap-12 lg:grid-cols-[0.5fr_1.2fr] lg:items-center">
+            <div>
+              <p className="kicker">{t(locale, "Repository reference")}</p>
+              <h2 className="display-section mt-4">
                 {t(locale, "The pilot model card.")}
               </h2>
               <p className="body-copy mt-5">
@@ -348,139 +390,104 @@ export function LocalizedModelDetailPage({
                   "A visual snapshot of the model's parameter size and intended research use.",
                 )}
               </p>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <ModelCardVisual
-                name={model.name}
-                parametersMillions={49.3}
-                primaryUse={model.intendedUse[0]}
-                modelType={model.modelType}
-                contextTokens={512}
-                vocabulary={16384}
-                locale={locale}
-              />
-            </Reveal>
+            </div>
+            <ModelCardVisual
+              name={model.name}
+              parametersMillions={49.3}
+              primaryUse={model.intendedUse[0]}
+              modelType={model.modelType}
+              contextTokens={512}
+              vocabulary={16384}
+              locale={locale}
+            />
           </div>
         </section>
       ) : null}
 
-      <section className="liquid-section border-y border-line bg-pale-soft/35">
-        <div className="page-shell section-space-sm">
-          <Reveal className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
-              <p className="eyebrow">{t(locale, "RELATED RESOURCES")}</p>
-              <h2 className="display-section mt-6 text-ink">
-                {t(locale, "Inspect the wider evidence.")}
-              </h2>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {relatedResources.map((resource) => (
-                <ActionLink
-                  key={resource.href}
-                  href={resource.href}
-                  variant="secondary"
-                  className="justify-between"
-                >
-                  {resource.label}
-                </ActionLink>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="page-shell section-space">
-        <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr]">
-          <Reveal>
-            <p className="eyebrow">{t(locale, "Limitations")}</p>
-            <h2 className="display-section mt-6">
-              {t(locale, "Read the limits first.")}
+      <section className="band" aria-labelledby="research-context-title">
+        <div className="page-shell section grid gap-10 lg:grid-cols-2">
+          <div>
+            <p className="kicker">{t(locale, "Research context")}</p>
+            <h2 id="research-context-title" className="display-section mt-4">
+              {t(locale, "How this release fits the experiment.")}
             </h2>
-          </Reveal>
-          <div className="space-y-3 border-t border-line sm:space-y-4">
-            {model.limitations.map((limitation, index) => (
-              <Reveal key={limitation} delay={index * 0.035}>
-                <div className="liquid-row grid grid-cols-[3rem_1fr] gap-4 rounded-[1.15rem] border-y border-line py-5 sm:grid-cols-[5rem_1fr] sm:py-6">
-                  <span className="font-mono text-[0.66rem] tracking-[0.12em] text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-lg tracking-[-0.02em] text-ink-soft">
-                    {limitation}
+            {model.researchContext ? (
+              <p className="body-lg mt-6 max-w-[40rem]">
+                {model.researchContext}
+              </p>
+            ) : null}
+            <div className="mt-8">
+              <ActionLink href={localizePath("/research", locale)}>
+                {t(locale, "Read the research methodology")}
+              </ActionLink>
+            </div>
+          </div>
+          <div className="grid content-start gap-3">
+            {relatedNotes.map((note) =>
+              note.href ? (
+                <Link key={note.id} href={note.href} className="card block p-5">
+                  <p className="kicker">{t(locale, "Related research note")}</p>
+                  <h3 className="mt-2 text-lg font-medium tracking-[-0.025em] text-ink">
+                    {note.title}
+                  </h3>
+                  <p className="mt-2 font-mono text-[0.7rem] text-muted">
+                    {note.kindLabel} · {note.progressLabel} ·{" "}
+                    {t(locale, "23 July 2026")}
+                  </p>
+                </Link>
+              ) : (
+                <div key={note.id} className="card p-5">
+                  <p className="kicker">{t(locale, "Related research note")}</p>
+                  <h3 className="mt-2 text-lg font-medium tracking-[-0.025em] text-ink">
+                    {note.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted">
+                    {t(locale, "No public article is available yet.")}
                   </p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-        {model.status === "experimental" ? (
-          <p className="mt-10 border-l-2 border-accent pl-5 text-sm leading-6 text-muted">
-            {t(
-              locale,
-              "This model is experimental and not production-ready. It must not be used for high-stakes decisions.",
+              ),
             )}
-          </p>
-        ) : null}
-      </section>
-
-      {relatedNotes.length > 0 ? (
-        <section className="liquid-section border-y border-line bg-pale-soft/40">
-          <div className="page-shell section-space-sm">
-            <p className="eyebrow">{t(locale, "Related research note")}</p>
-            <div className="mt-10 space-y-3 border-b border-line sm:space-y-4">
-              {relatedNotes.map((note) => (
-                <div key={note.id}>
-                  {note.href ? (
-                    <Link
-                      href={note.href}
-                      className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 transition-colors hover:text-accent sm:grid-cols-[1fr_auto] sm:items-center"
-                    >
-                      <div>
-                        <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">
-                          {note.title}
-                        </h2>
-                        <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
-                          {note.kindLabel} · {note.progressLabel} ·{" "}
-                          {t(locale, "23 July 2026")}
-                        </p>
-                      </div>
-                      <span className="text-sm font-medium text-ink">
-                        {t(locale, "Read research note")}
-                      </span>
-                    </Link>
-                  ) : (
-                    <div className="liquid-row grid gap-4 rounded-[1.15rem] border-y border-line py-6 sm:grid-cols-[1fr_auto] sm:items-center">
-                      <div>
-                        <h2 className="text-xl font-[520] tracking-[-0.03em] text-ink">
-                          {note.title}
-                        </h2>
-                        <p className="mt-2 font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
-                          {note.kindLabel} · {note.progressLabel}
-                        </p>
-                      </div>
-                      <span className="max-w-[18rem] text-sm leading-6 text-muted sm:text-right">
-                        {t(locale, "No public article is available yet.")}
-                      </span>
-                    </div>
-                  )}
-                </div>
+            <p className="mt-3 text-sm font-medium text-ink">
+              {t(locale, "Inspect the wider evidence.")}
+            </p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {relatedResources.map((resource) => (
+                <Link
+                  key={resource.href}
+                  href={resource.href}
+                  className="card flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-ink"
+                >
+                  {resource.label}
+                  <ArrowRight aria-hidden="true" size={15} />
+                </Link>
               ))}
             </div>
           </div>
-        </section>
-      ) : null}
+        </div>
+      </section>
     </>
   );
 }
 
-function ModelFact({ label, value }: { label: string; value: string }) {
+function ModelFact({
+  label,
+  value,
+  mono = false,
+}: {
+  label: string;
+  value: string;
+  mono?: boolean;
+}) {
   return (
-    <div className="grid gap-2 border-b border-line py-6 sm:grid-cols-[10rem_1fr] sm:gap-6">
-      <dt className="font-mono text-[0.65rem] tracking-[0.13em] text-muted uppercase">
+    <tr>
+      <th scope="row" className="w-[34%]">
         {label}
-      </dt>
-      <dd className="min-w-0 break-words text-[0.98rem] leading-7 text-ink-soft">
+      </th>
+      <td
+        className={`min-w-0 break-words text-ink-soft ${mono ? "font-mono text-[0.84rem]" : ""}`}
+      >
         {value}
-      </dd>
-    </div>
+      </td>
+    </tr>
   );
 }

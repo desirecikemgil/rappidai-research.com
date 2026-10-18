@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { ArrowRight, Check, X } from "lucide-react";
 import { ResearchDiagram } from "@/components/research/research-diagram";
 import { BrandSymbol } from "@/components/ui/brand-lockup";
-import { SignalArt } from "@/components/graphics/signal-art";
 import { PageIntro } from "@/components/ui/page-intro";
 import { ActionLink } from "@/components/ui/action-link";
 import { aboutPageContent } from "@/content/pages";
@@ -16,12 +14,18 @@ export const metadata = metadataFor("/about");
 export function LocalizedAboutPage({ locale }: { locale: Locale }) {
   const page = localizeContent(aboutPageContent, locale);
   const config = localizeContent(siteConfig, locale);
+  const path = (href: string) => localizePath(href, locale);
   const limitationFacts = [
     [t(locale, "Factual output"), t(locale, "May be unreliable")],
     [t(locale, "Response quality"), t(locale, "May be inconsistent")],
     [t(locale, "High-stakes decisions"), t(locale, "Not suitable")],
     [t(locale, "Production assistant"), t(locale, "Not intended")],
   ];
+  const structure = [
+    ["rappidAI Quantum", t(locale, "Models"), "/models"],
+    ["rappidAI Ghost", t(locale, "Agent security"), "/tools/ghost"],
+    ["rappidAI Replay", t(locale, "Reproducible agent runs"), "/tools/replay"],
+  ] as const;
 
   return (
     <>
@@ -31,6 +35,47 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
           locale === "de"
             ? "Unabhängig denken. Nachvollziehbar entwickeln."
             : "Independent thinking. Inspectable work."
+        }
+        facts={[
+          { label: t(locale, "Location"), value: config.location },
+          { label: t(locale, "Founder"), value: config.founder.name },
+          {
+            label: t(locale, "Pilot status"),
+            value: t(locale, "Experimental"),
+          },
+          {
+            label: t(locale, "Production use"),
+            value: t(locale, "Not intended"),
+          },
+        ]}
+        aside={
+          <div className="card overflow-hidden">
+            <div className="flex items-center gap-5 border-b border-line bg-pale-soft p-6">
+              <div className="w-14 flex-none">
+                <BrandSymbol />
+              </div>
+              <div className="min-w-0">
+                <p className="m-0 text-sm text-muted">{t(locale, "Founder")}</p>
+                <p className="m-0 mt-1 text-xl font-medium tracking-[-0.03em] text-ink">
+                  {config.founder.name}
+                </p>
+                <p className="m-0 mt-1 text-sm text-muted">
+                  {config.founder.role}
+                </p>
+              </div>
+            </div>
+            <ul className="m-0 grid list-none gap-0 p-0">
+              {config.founder.focusAreas.map((area) => (
+                <li
+                  key={area}
+                  className="flex items-center gap-3 border-b border-line px-6 py-3 text-[0.92rem] text-ink-soft last:border-b-0"
+                >
+                  <Check aria-hidden="true" size={15} className="text-accent" />
+                  {area}
+                </li>
+              ))}
+            </ul>
+          </div>
         }
         indexLabel={t(locale, "Explore this page")}
         topics={[
@@ -61,285 +106,197 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
         ]}
       />
 
-      <section
-        aria-labelledby="what-rappidai-is-heading"
-        className="page-shell pb-[var(--section-space)]"
-      >
-        <DrawRule />
-        <div className="grid min-h-[34rem] gap-12 py-[clamp(4rem,7vw,7rem)] lg:grid-cols-12 lg:items-center lg:gap-10">
-          <Reveal className="research-aside lg:col-span-6">
-            <p className="eyebrow">{page.whatItIs.eyebrow}</p>
+      <section className="page-shell section">
+        <div className="grid gap-4 lg:grid-cols-2" data-stagger>
+          <article className="card p-7 sm:p-9">
+            <p className="kicker">
+              <Check aria-hidden="true" size={15} />
+              {page.whatItIs.eyebrow}
+            </p>
             <h2
               id="what-rappidai-is-heading"
-              className="display-section mt-7 text-ink"
+              className="mt-4 text-[clamp(1.8rem,2.8vw,2.4rem)] font-medium leading-[1.08] tracking-[-0.045em] text-ink"
             >
               {page.whatItIs.title}
             </h2>
-            <p className="body-lg mt-7 max-w-[38rem]">{page.whatItIs.text}</p>
-          </Reveal>
-
-          <Reveal
-            delay={0.1}
-            variant="scale"
-            className="founder-mark liquid-surface relative flex min-h-[20rem] items-center justify-center overflow-hidden lg:col-span-5 lg:col-start-8 lg:min-h-[27rem]"
-          >
-            <SignalArt className="absolute inset-0" />
-            <BrandSymbol className="relative z-10 w-[clamp(9rem,18vw,15rem)] opacity-95" />
-          </Reveal>
+            <p className="body-lg mt-5">{page.whatItIs.text}</p>
+          </article>
+          <article className="card p-7 sm:p-9">
+            <p className="kicker !text-muted">
+              <X aria-hidden="true" size={15} />
+              {page.whatItIsNot.eyebrow}
+            </p>
+            <h2
+              id="what-rappidai-is-not-heading"
+              className="mt-4 text-[clamp(1.8rem,2.8vw,2.4rem)] font-medium leading-[1.08] tracking-[-0.045em] text-ink"
+            >
+              {page.whatItIsNot.title}
+            </h2>
+            <p className="body-lg mt-5">{page.whatItIsNot.text}</p>
+          </article>
         </div>
       </section>
 
-      <section
-        aria-labelledby="project-structure-heading"
-        className="liquid-section border-y border-line bg-pale-soft/35"
-      >
-        <div className="page-shell section-space-sm grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="research-aside lg:col-span-4">
-            <p className="eyebrow">{page.projectStructure.eyebrow}</p>
-            <h2
-              id="project-structure-heading"
-              className="display-section mt-7 text-ink"
-            >
+      <section className="band" aria-labelledby="project-structure-heading">
+        <div className="page-shell section grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
+          <div>
+            <p className="kicker">{page.projectStructure.eyebrow}</p>
+            <h2 id="project-structure-heading" className="display-section mt-4">
               {page.projectStructure.title}
             </h2>
-          </Reveal>
-          <Reveal
-            delay={0.08}
-            className="border-t border-line pt-8 lg:col-span-6 lg:col-start-7"
-          >
-            <p className="body-lg max-w-[42rem]">
+            <p className="body-lg mt-6 max-w-[38rem]">
               {page.projectStructure.text}
             </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section
-        aria-labelledby="what-rappidai-is-not-heading"
-        className="liquid-section border-y border-line bg-pale-soft/40"
-      >
-        <div className="page-shell section-space-sm">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-            <Reveal className="research-aside lg:col-span-4">
-              <p className="eyebrow">{page.whatItIsNot.eyebrow}</p>
-              <h2
-                id="what-rappidai-is-not-heading"
-                className="mt-7 max-w-[16ch] text-[clamp(2.2rem,4vw,4.4rem)] font-medium leading-[1] tracking-[-0.055em] text-ink"
-              >
-                {page.whatItIsNot.title}
-              </h2>
-            </Reveal>
-
-            <Reveal
-              delay={0.08}
-              className="border-t border-line-strong pt-8 lg:col-span-6 lg:col-start-7"
-            >
-              <p className="body-lg max-w-[40rem]">{page.whatItIsNot.text}</p>
-              <dl className="mt-10 grid border-t border-line sm:grid-cols-2">
-                <div className="border-b border-line py-6 sm:border-r sm:pr-8">
-                  <dt className="technical-number text-[0.68rem] uppercase tracking-[0.16em] text-muted">
-                    {t(locale, "Pilot status")}
-                  </dt>
-                  <dd className="mt-3 text-lg font-medium tracking-[-0.02em] text-ink">
-                    {t(locale, "Experimental")}
-                  </dd>
-                </div>
-                <div className="border-b border-line py-6 sm:pl-8">
-                  <dt className="technical-number text-[0.68rem] uppercase tracking-[0.16em] text-muted">
-                    {t(locale, "Production use")}
-                  </dt>
-                  <dd className="mt-3 text-lg font-medium tracking-[-0.02em] text-ink">
-                    {t(locale, "Not intended")}
-                  </dd>
-                </div>
-              </dl>
-            </Reveal>
           </div>
+          <figure className="m-0" aria-label={page.projectStructure.title}>
+            <div className="card flex items-center justify-between gap-4 p-5">
+              <span className="text-lg font-medium tracking-[-0.03em] text-ink">
+                rappidAI
+              </span>
+              <span className="text-sm text-muted">
+                {t(locale, "Independent AI research · Berlin, Germany")}
+              </span>
+            </div>
+            <div
+              className="mx-auto h-6 w-px bg-line-strong"
+              aria-hidden="true"
+            />
+            <div className="grid gap-3 sm:grid-cols-3">
+              {structure.map(([name, role, href]) => (
+                <Link key={name} href={path(href)} className="card block p-5">
+                  <span className="block text-[0.95rem] font-medium text-ink">
+                    {name}
+                  </span>
+                  <span className="mt-1 block text-sm text-muted">{role}</span>
+                </Link>
+              ))}
+            </div>
+          </figure>
         </div>
       </section>
 
       <section
+        className="page-shell section"
         aria-labelledby="published-work-heading"
-        className="page-shell section-space"
       >
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="research-aside lg:col-span-4">
-            <p className="eyebrow">{page.publishedWork.eyebrow}</p>
-            <h2
-              id="published-work-heading"
-              className="display-section mt-7 text-ink"
-            >
+        <div className="grid gap-12 lg:grid-cols-2">
+          <div>
+            <p className="kicker">{page.publishedWork.eyebrow}</p>
+            <h2 id="published-work-heading" className="display-section mt-4">
               {page.publishedWork.title}
             </h2>
-          </Reveal>
-          <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
-            <DrawRule />
-            <div className="space-y-6 py-8">
+            <div className="mt-6 space-y-5">
               {page.publishedWork.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="body-lg max-w-[44rem]">
+                <p key={paragraph} className="body-copy max-w-[40rem]">
                   {paragraph}
                 </p>
               ))}
             </div>
-            <ActionLink href={page.publishedWork.action.href}>
-              {page.publishedWork.action.label}
-            </ActionLink>
-          </Reveal>
-        </div>
-      </section>
-
-      <section
-        aria-labelledby="why-compact-models-heading"
-        className="page-shell section-space"
-      >
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="research-aside lg:col-span-6">
-            <p className="eyebrow">{page.whyCompactModelsMatter.eyebrow}</p>
+            <div className="mt-8">
+              <ActionLink href={page.publishedWork.action.href}>
+                {page.publishedWork.action.label}
+              </ActionLink>
+            </div>
+          </div>
+          <div>
+            <p className="kicker">{page.whyCompactModelsMatter.eyebrow}</p>
             <h2
               id="why-compact-models-heading"
-              className="display-section mt-7 text-ink"
+              className="display-section mt-4"
             >
               {page.whyCompactModelsMatter.title}
             </h2>
-          </Reveal>
-
-          <Reveal delay={0.08} className="lg:col-span-5 lg:col-start-8 lg:pt-8">
-            <p className="body-lg">{page.whyCompactModelsMatter.text}</p>
-            <div className="mt-10 border-y border-line py-6">
-              <p className="technical-number text-[0.7rem] uppercase tracking-[0.17em] text-accent">
+            <p className="body-copy mt-6">{page.whyCompactModelsMatter.text}</p>
+            <div className="card mt-8 p-6">
+              <p className="m-0 text-sm text-muted">
                 {t(locale, "Design target")}
               </p>
-              <p className="mt-4 text-xl font-medium leading-snug tracking-[-0.03em] text-ink">
+              <p className="m-0 mt-2 text-xl font-medium leading-snug tracking-[-0.03em] text-ink">
                 {t(locale, "Local and resource-efficient experimentation.")}
               </p>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      <section
-        aria-labelledby="current-direction-heading"
-        className="liquid-section ambient-grid border-y border-line bg-pale-soft/35"
-      >
-        <div className="page-shell section-space-sm">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
-            <Reveal className="research-aside lg:col-span-5">
-              <p className="eyebrow">{page.currentDirection.eyebrow}</p>
-              <h2
-                id="current-direction-heading"
-                className="display-section mt-7 text-ink"
-              >
-                {page.currentDirection.title}
-              </h2>
-              <p className="body-lg mt-7 max-w-[36rem]">
-                {page.currentDirection.text}
-              </p>
-              <Link
-                href={localizePath("/research", locale)}
-                className="link-arrow mt-9 inline-flex items-center gap-3 text-sm font-medium text-ink transition-colors hover:text-accent"
-              >
-                {t(locale, "Explore the research")}
-                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-              </Link>
-            </Reveal>
-
-            <Reveal
-              delay={0.1}
-              className="liquid-surface px-4 py-8 sm:px-8 lg:col-span-6 lg:col-start-7"
-            >
-              <ResearchDiagram kind="pipeline" />
-            </Reveal>
+      <section className="band" aria-labelledby="current-direction-heading">
+        <div className="page-shell section grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
+          <div>
+            <p className="kicker">{page.currentDirection.eyebrow}</p>
+            <h2 id="current-direction-heading" className="display-section mt-4">
+              {page.currentDirection.title}
+            </h2>
+            <p className="body-lg mt-6 max-w-[36rem]">
+              {page.currentDirection.text}
+            </p>
+            <Link href={path("/research")} className="text-link mt-8">
+              {t(locale, "Explore the research")}
+              <ArrowRight aria-hidden="true" size={15} />
+            </Link>
+          </div>
+          <div className="window p-4 sm:p-8">
+            <ResearchDiagram kind="pipeline" />
           </div>
         </div>
       </section>
 
       <section
+        className="page-shell section"
         aria-labelledby="experimental-outputs-heading"
-        className="page-shell section-space"
       >
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="research-aside lg:col-span-4">
-            <p className="eyebrow">{page.experimentalNotice.eyebrow}</p>
-            <h2
-              id="experimental-outputs-heading"
-              className="display-section mt-7 text-ink"
-            >
+        <div className="section-head split">
+          <div>
+            <p className="kicker">{page.experimentalNotice.eyebrow}</p>
+            <h2 id="experimental-outputs-heading" className="display-section">
               {page.experimentalNotice.title}
             </h2>
-          </Reveal>
-
-          <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
-            <DrawRule />
-            <p className="body-lg py-8">{page.experimentalNotice.text}</p>
-            <dl className="border-t border-line">
+          </div>
+          <p>{page.experimentalNotice.text}</p>
+        </div>
+        <div
+          className="table-wrap"
+          tabIndex={0}
+          role="region"
+          aria-label={page.experimentalNotice.title}
+        >
+          <table className="table">
+            <tbody>
               {limitationFacts.map(([term, detail]) => (
-                <div
-                  key={term}
-                  className="grid gap-2 border-b border-line py-5 sm:grid-cols-2 sm:gap-8"
-                >
-                  <dt className="text-sm text-muted">{term}</dt>
-                  <dd className="text-sm font-medium text-ink sm:text-right">
-                    {detail}
-                  </dd>
-                </div>
+                <tr key={term}>
+                  <th scope="row">{term}</th>
+                  <td className="font-medium text-ink">{detail}</td>
+                </tr>
               ))}
-            </dl>
-          </Reveal>
+            </tbody>
+          </table>
         </div>
       </section>
 
       <section
         aria-labelledby="early-stage-heading"
-        className="border-t border-line bg-ink text-white"
+        className="bg-ink text-white"
       >
-        <div className="page-shell section-space-sm">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-10">
-            <Reveal className="lg:col-span-7">
-              <p className="eyebrow eyebrow-on-dark">
-                {t(locale, "EARLY-STAGE RESEARCH")}
-              </p>
-              <h2
-                id="early-stage-heading"
-                className="mt-7 max-w-[16ch] text-[clamp(2.5rem,5vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.06em] text-white"
-              >
-                {t(locale, "Independent research, built from Berlin.")}
-              </h2>
-              <p className="mt-8 max-w-[39rem] text-[clamp(1.05rem,1.45vw,1.28rem)] leading-relaxed text-[#c8d6e9]">
-                {config.founder.biography}
-              </p>
-            </Reveal>
-
-            <Reveal
-              delay={0.1}
-              className="border-t border-white/20 pt-7 lg:col-span-4 lg:col-start-9"
+        <div className="page-shell section grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
+          <div>
+            <p className="eyebrow eyebrow-on-dark">
+              {t(locale, "EARLY-STAGE RESEARCH")}
+            </p>
+            <h2
+              id="early-stage-heading"
+              className="mt-5 max-w-[16ch] text-[clamp(2.4rem,4.6vw,4rem)] font-medium leading-[1.02] tracking-[-0.055em] text-white"
             >
-              <p className="technical-number text-[0.68rem] uppercase tracking-[0.17em] text-[#72a8ff]">
-                {t(locale, "Founder")}
-              </p>
-              <p className="mt-5 text-2xl font-medium tracking-[-0.035em] text-white">
-                {config.founder.name}
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-[#c8d6e9]">
-                {config.founder.role}
-              </p>
-              <ul className="mt-7 space-y-3 border-t border-white/15 pt-6">
-                {config.founder.focusAreas.map((area) => (
-                  <li
-                    key={area}
-                    className="flex items-center gap-3 text-sm text-[#c8d6e9]"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="size-1.5 rounded-full bg-[#72a8ff]"
-                    />
-                    {area}
-                  </li>
-                ))}
-              </ul>
-              <p className="technical-number mt-8 text-[0.68rem] uppercase tracking-[0.17em] text-[#88a0be]">
-                {config.location}
-              </p>
-            </Reveal>
+              {t(locale, "Independent research, built from Berlin.")}
+            </h2>
+          </div>
+          <div>
+            <p className="m-0 text-[1.05rem] leading-relaxed text-[var(--color-dark-body)]">
+              {config.founder.biography}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ActionLink href={path("/contact")} className="on-navy-primary">
+                {t(locale, "Contact")}
+              </ActionLink>
+            </div>
           </div>
         </div>
       </section>

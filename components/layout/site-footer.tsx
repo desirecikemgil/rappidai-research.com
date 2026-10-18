@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BrandLockup } from "@/components/ui/brand-lockup";
+import { navigationGroups } from "@/content/navigation";
 import { resourceUtilityLinks } from "@/content/resources";
 import { footerNavigation, siteConfig } from "@/content/site";
 import {
@@ -16,46 +17,73 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
   const locale = localeFromPathname(usePathname());
   const config = localizeContent(siteConfig, locale);
-  const navigation = localizeContent(footerNavigation, locale);
+  const groups = localizeContent(navigationGroups, locale);
+  const legal = localizeContent(footerNavigation.legal, locale);
   const utilities = localizeContent(resourceUtilityLinks, locale);
 
   return (
-    <footer className="dark-band site-footer border-t border-line">
-      <div className="page-shell section-space-sm relative">
-        <div className="grid gap-10 sm:grid-cols-2 sm:gap-14 lg:grid-cols-[1.3fr_0.62fr_0.75fr_0.75fr_0.55fr]">
-          <div>
-            <BrandLockup
-              inverted
+    <footer className="site-footer">
+      <div className="page-shell-wide">
+        <div className="footer-top">
+          <div className="max-w-sm">
+            <Link
               href={localizePath("/", locale)}
-              homeLabel={t(locale, "rappidAI research home")}
-            />
-            <p className="mt-7 max-w-md leading-7 text-[var(--color-dark-body)]">
-              {config.description}
-            </p>
-            <p className="mt-6 font-mono text-[0.68rem] tracking-[0.14em] text-[var(--color-dark-muted)] uppercase">
+              aria-label={t(locale, "rappidAI research home")}
+              className="block w-[10.5rem]"
+            >
+              <Image
+                src="/brand/rappidai-research-lockup.png"
+                alt="rappidAI research"
+                width={1055}
+                height={225}
+                sizes="168px"
+                className="brand-inverted h-auto w-full"
+              />
+            </Link>
+            <p className="footer-text mt-6">{config.description}</p>
+            <p className="footer-text mt-5 !text-[0.85rem]">
               {t(locale, "Based in")} {config.location}
             </p>
           </div>
 
-          <FooterColumn title={t(locale, "Explore")}>
-            {navigation.explore.map((item) => (
-              <Link key={item.href} href={item.href} className="footer-link">
-                {item.label}
-              </Link>
+          <div className="footer-grid">
+            {groups.map((group) => (
+              <FooterColumn key={group.id} title={group.label}>
+                {group.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={localizePath(item.href, locale)}
+                    className="footer-link"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </FooterColumn>
             ))}
-          </FooterColumn>
 
-          <FooterColumn title={t(locale, "Resources")}>
-            {navigation.resources.map((item) => (
-              <Link key={item.href} href={item.href} className="footer-link">
-                {item.label}
-              </Link>
-            ))}
-          </FooterColumn>
-
-          <FooterColumn title={t(locale, "Open research")}>
-            {Object.values(config.externalLinks).map((item) =>
-              item.url ? (
+            <FooterColumn title={t(locale, "Open research")}>
+              {Object.values(config.externalLinks).map((item) =>
+                item.url ? (
+                  <a
+                    key={item.label}
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-link"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <span
+                    key={item.label}
+                    className="footer-link"
+                    title={t(locale, "External link not configured")}
+                  >
+                    {item.pendingLabel}
+                  </span>
+                ),
+              )}
+              {utilities.map((item) => (
                 <a
                   key={item.label}
                   href={item.url}
@@ -65,31 +93,18 @@ export function SiteFooter() {
                 >
                   {item.label}
                 </a>
-              ) : (
-                <span
-                  key={item.label}
-                  className="text-[var(--color-dark-muted)]"
-                  title={t(locale, "External link not configured")}
-                >
-                  {item.pendingLabel}
-                </span>
-              ),
-            )}
-            {utilities.map((item) => (
-              <a
-                key={item.label}
-                href={item.url}
-                target="_blank"
-                rel="noreferrer"
-                className="footer-link"
-              >
-                {item.label}
-              </a>
-            ))}
-          </FooterColumn>
+              ))}
+            </FooterColumn>
+          </div>
+        </div>
 
-          <FooterColumn title={t(locale, "Legal")}>
-            {navigation.legal.map((item) => (
+        <div className="footer-bottom">
+          <p className="m-0">
+            © {year} {config.name} ·{" "}
+            {t(locale, "Independent AI research · Berlin, Germany")}
+          </p>
+          <div className="flex flex-wrap gap-5">
+            {legal.map((item) => (
               <Link key={item.href} href={item.href} className="footer-link">
                 {item.label}
               </Link>
@@ -100,21 +115,12 @@ export function SiteFooter() {
             >
               {t(locale, "Licensing")}
             </Link>
-          </FooterColumn>
-        </div>
-
-        <div className="mt-12 flex flex-col gap-4 border-t border-[var(--color-dark-line)] pt-6 text-[0.78rem] text-[var(--color-dark-muted)] sm:mt-20 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {year} {config.name}
-          </p>
-          <p>{t(locale, "Independent AI research · Berlin, Germany")}</p>
+          </div>
         </div>
       </div>
-
-      {/* Oversized mark bled off the bottom edge, closing the page. */}
-      <span className="footer-ghost" aria-hidden="true">
-        rappidAI
-      </span>
+      <div className="footer-mark" aria-hidden="true">
+        <span>rappidAI</span>
+      </div>
     </footer>
   );
 }
@@ -128,10 +134,8 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="font-mono text-[0.68rem] font-medium tracking-[0.14em] text-[var(--color-dark-muted)] uppercase">
-        {title}
-      </h2>
-      <div className="mt-5 flex flex-col gap-3 text-sm">{children}</div>
+      <h2 className="footer-heading">{title}</h2>
+      <div className="footer-links">{children}</div>
     </div>
   );
 }

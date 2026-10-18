@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ghostRelease } from "@/content/ghost";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import {
-  SentinelHero,
-  SentinelCapabilities,
   SentinelArchitecture,
+  SentinelCapabilities,
+  SentinelHero,
   SentinelRoadmap,
 } from "@/components/models/sentinel-preview";
-import styles from "@/components/models/echelon.module.css";
-import { SignalArt } from "@/components/graphics/signal-art";
 import { ActionLink } from "@/components/ui/action-link";
-import { localizePath, type Locale } from "@/lib/i18n";
+import { ghostCopy, ghostRelease } from "@/content/ghost";
+import { models } from "@/content/models";
+import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 import { metadataFor } from "@/lib/metadata";
+import styles from "./home.module.css";
 
 export const metadata: Metadata = metadataFor("/");
 
@@ -143,173 +143,278 @@ const copy = {
 
 export function LocalizedHomePage({ locale }: { locale: Locale }) {
   const c = copy[locale];
+  const ghost = ghostCopy[locale];
+  const lineup = localizeContent(models, locale);
   const path = (href: string) => localizePath(href, locale);
   return (
     <>
       <SentinelHero locale={locale} />
-      <SentinelCapabilities locale={locale} />
       <SentinelArchitecture locale={locale} />
+      <SentinelCapabilities locale={locale} />
       <SentinelRoadmap locale={locale} />
+
       <section
         id="introduction"
-        className={`page-shell ${styles.introduction}`}
+        className={styles.company}
         aria-labelledby="introduction-title"
       >
-        <div>
-          <p className="studio-kicker">rappidAI Research</p>
-          <h2 id="introduction-title">{c.intro}</h2>
-        </div>
-        <div>
-          <p>{c.description}</p>
-          <Link className="quiet-link" href={path("/about")}>
-            {c.aboutLink}
-            <ArrowUpRight size={17} aria-hidden="true" />
-          </Link>
+        <div className={`page-shell ${styles.companyInner}`}>
+          <div>
+            <p className="kicker">rappidAI Research</p>
+            <h2 id="introduction-title" className={styles.companyTitle}>
+              {c.intro}
+            </h2>
+          </div>
+          <div className={styles.companyBody}>
+            <p>{c.description}</p>
+            <Link className="text-link" href={path("/about")}>
+              {c.aboutLink}
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
-      <section id="work" className="page-shell studio-section work-section">
-        <div className="studio-section-heading">
+
+      <section id="work" className="page-shell section">
+        <div className="section-head split">
           <div>
-            <p className="studio-kicker">{c.work}</p>
-            <h2>{c.workTitle}</h2>
+            <p className="kicker">{c.work}</p>
+            <h2 className="display-section">{c.workTitle}</h2>
           </div>
           <p>{c.workText}</p>
         </div>
-        <article className="product-feature product-quantum">
-          <div className="product-copy">
-            <p className="product-brand">
-              rappidAI <span>Quantum</span>
-            </p>
-            <h3>{c.quantum}</h3>
-            <p>{c.quantumText}</p>
-            <span className="product-status">{c.quantumStatus}</span>
-            <ActionLink href={path("/models")} className="on-navy-primary">
-              {c.explore}
-            </ActionLink>
-          </div>
-          <SignalArt />
-        </article>
-        <div className="product-pair">
-          {(["ghost", "replay"] as const).map((kind) => (
-            <article className={`product-feature product-${kind}`} key={kind}>
-              <SignalArt kind={kind} />
-              <div className="product-copy">
-                <p className="product-brand">
-                  rappidAI <span>{kind === "ghost" ? "Ghost" : "Replay"}</span>
-                </p>
-                <h3>{c[kind]}</h3>
-                <p>{kind === "ghost" ? c.ghostText : c.replayText}</p>
-                <div className="product-bottom">
-                  <span className="product-status">
-                    {kind === "ghost"
-                      ? `${ghostRelease.version} · ${c.ghostStatus}`
-                      : c.toolStatus}
-                  </span>
-                  <Link
-                    href={path(`/tools/${kind}`)}
-                    className="product-open"
-                    aria-label={`${c.open} rappidAI ${kind === "ghost" ? "Ghost" : "Replay"}`}
-                  >
-                    <ArrowUpRight size={22} />
-                  </Link>
+        <div className={styles.portfolio} data-stagger>
+          <article className={`${styles.product} product-quantum`}>
+            <div className={styles.productVisual} aria-hidden="true">
+              <div className="window">
+                <div className="window-bar">
+                  <span>Quantum</span>
+                  <span>{lineup.length} / models</span>
                 </div>
+                <ul className={styles.lineup}>
+                  {lineup.map((model) => (
+                    <li key={model.slug}>
+                      <span>{model.name}</span>
+                      <span
+                        className={`chip chip-dot ${
+                          model.availability === "available"
+                            ? "chip-ok"
+                            : "chip-planned"
+                        }`}
+                      >
+                        {model.availability === "available"
+                          ? t(locale, "Public")
+                          : t(locale, "In development")}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </article>
-          ))}
+            </div>
+            <div className={styles.productBody}>
+              <p className={styles.brand}>
+                rappidAI <strong>Quantum</strong>
+              </p>
+              <h3>{c.quantum}</h3>
+              <p>{c.quantumText}</p>
+              <p className={`product-status ${styles.status}`}>
+                {c.quantumStatus}
+              </p>
+              <Link href={path("/models")} className={styles.productLink}>
+                {c.explore}
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            </div>
+          </article>
+
+          <article className={`${styles.product} product-ghost`}>
+            <div className={styles.productVisual} aria-hidden="true">
+              <div className="window">
+                <div className="window-bar">
+                  <span>ghost run</span>
+                  <span>{ghostRelease.version}</span>
+                </div>
+                <div className={styles.decisions}>
+                  {ghost.policies.map((policy) => (
+                    <span key={policy.name}>{policy.name}</span>
+                  ))}
+                </div>
+                <p className={styles.bench}>
+                  <span>GhostBench</span>
+                  {ghost.benchResult}
+                </p>
+              </div>
+            </div>
+            <div className={styles.productBody}>
+              <p className={styles.brand}>
+                rappidAI <strong>Ghost</strong>
+              </p>
+              <h3>{c.ghost}</h3>
+              <p>{c.ghostText}</p>
+              <p className={`product-status ${styles.status}`}>
+                {ghostRelease.version} · {c.ghostStatus}
+              </p>
+              <Link
+                href={path("/tools/ghost")}
+                className={styles.productLink}
+                aria-label={`${c.open} rappidAI Ghost`}
+              >
+                {c.open}
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            </div>
+          </article>
+
+          <article className={`${styles.product} product-replay`}>
+            <div className={styles.productVisual} aria-hidden="true">
+              <div className="window window-dark">
+                <div className="window-bar">
+                  <span>rappid replay</span>
+                  <span>CLI</span>
+                </div>
+                <pre className="terminal">
+                  {[
+                    "rappid replay record -- <command>",
+                    "rappid replay branch <state-id>",
+                    "rappid replay diff <left-session-id> <right-session-id>",
+                  ].map((line) => (
+                    <span key={line} className="block">
+                      <span className="prompt">$ </span>
+                      {line}
+                    </span>
+                  ))}
+                </pre>
+              </div>
+            </div>
+            <div className={styles.productBody}>
+              <p className={styles.brand}>
+                rappidAI <strong>Replay</strong>
+              </p>
+              <h3>{c.replay}</h3>
+              <p>{c.replayText}</p>
+              <p className={`product-status ${styles.status}`}>
+                {c.toolStatus}
+              </p>
+              <Link
+                href={path("/tools/replay")}
+                className={styles.productLink}
+                aria-label={`${c.open} rappidAI Replay`}
+              >
+                {c.open}
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            </div>
+          </article>
         </div>
       </section>
-      <section className="approach-section">
-        <div className="page-shell studio-section approach-layout">
-          <div>
-            <p className="studio-kicker">{c.approach}</p>
-            <h2 className="studio-title">{c.approachTitle}</h2>
-            <p className="studio-description">{c.approachText}</p>
-            <Link href={path("/research")} className="quiet-link">
+
+      <section className="band">
+        <div className={`page-shell section ${styles.approach}`}>
+          <div className={styles.approachIntro}>
+            <p className="kicker">{c.approach}</p>
+            <h2 className="display-section">{c.approachTitle}</h2>
+            <p className="lede">{c.approachText}</p>
+            <Link href={path("/research")} className="text-link">
               {c.research}
-              <ArrowUpRight size={18} />
+              <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
-          <div className="approach-principles">
+          <dl className={styles.principles} data-stagger>
             {c.principles.map(([title, text]) => (
-              <article key={title}>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
+              <div key={title}>
+                <dt>{title}</dt>
+                <dd>{text}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
-      <section className="page-shell studio-section">
-        <div className="studio-section-heading">
+
+      <section className="page-shell section">
+        <div className="section-head split">
           <div>
-            <p className="studio-kicker">{c.latest}</p>
-            <h2>{c.latestTitle}</h2>
+            <p className="kicker">{c.latest}</p>
+            <h2 className="display-section">{c.latestTitle}</h2>
           </div>
-          <Link href={path("/resources/publications")} className="quiet-link">
+          <Link href={path("/resources/publications")} className="text-link">
             {c.all}
-            <ArrowUpRight size={18} />
+            <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>
-        <div className="journal-layout">
+        <div className={styles.journal}>
           <Link
             href={path(
               "/resources/publications/from-100m-to-600m-german-tokens",
             )}
-            className="journal-feature"
+            className={styles.feature}
+            data-reveal
           >
-            <div className="journal-figure" aria-hidden="true">
-              <span>100M</span>
-              <div className="token-steps">
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <i key={n} style={{ height: `${25 + n * 12}%` }} />
-                ))}
+            <figure className={styles.figure} aria-hidden="true">
+              <div className={styles.bars}>
+                <div>
+                  <i style={{ height: `${(100 / 600) * 100}%` }} />
+                  <span>quantum-1-pilot</span>
+                  <strong>~100M</strong>
+                </div>
+                <div>
+                  <i style={{ height: "100%" }} />
+                  <span>quantum-1.6-pilot</span>
+                  <strong>~600M</strong>
+                </div>
               </div>
-              <span>600M</span>
-            </div>
-            <div className="journal-copy">
-              <p className="studio-kicker">{c.articleType}</p>
+              <figcaption>{t(locale, "German training tokens")}</figcaption>
+            </figure>
+            <div className={styles.featureCopy}>
+              <p className="kicker">{c.articleType}</p>
               <h3>{c.articleTitle}</h3>
               <p>{c.articleText}</p>
-              <span className="quiet-link">
+              <span className="text-link">
                 {c.read}
-                <ArrowUpRight size={18} />
+                <ArrowRight size={15} aria-hidden="true" />
               </span>
             </div>
           </Link>
-          <div className="journal-aside">
-            <article>
-              <p className="studio-kicker">Quantum Echelon</p>
+          <div className={styles.aside}>
+            <Link
+              href={path("/models/quantum-1-echelon")}
+              className={styles.asideItem}
+            >
+              <p className="kicker">Quantum Echelon</p>
               <h3>{c.echelon}</h3>
               <p>{c.echelonText}</p>
-              <Link
-                className="quiet-link"
-                href={path("/models/quantum-1-echelon")}
-              >
+              <span className="text-link">
                 {c.open}
-                <ArrowUpRight size={18} />
-              </Link>
-            </article>
-            <article>
-              <p className="studio-kicker">Resources</p>
+                <ArrowRight size={15} aria-hidden="true" />
+              </span>
+            </Link>
+            <Link href={path("/resources")} className={styles.asideItem}>
+              <p className="kicker">{t(locale, "Resources")}</p>
               <h3>{c.sources}</h3>
               <p>{c.sourcesText}</p>
-              <Link className="quiet-link" href={path("/resources")}>
+              <span className="text-link">
                 {c.open}
-                <ArrowUpRight size={18} />
-              </Link>
-            </article>
+                <ArrowRight size={15} aria-hidden="true" />
+              </span>
+            </Link>
           </div>
         </div>
       </section>
-      <section className="studio-about-band">
-        <div className="page-shell">
-          <p className="studio-kicker">rappidAI</p>
-          <h2>{c.about}</h2>
+
+      <section className={styles.closing}>
+        <div className={`page-shell ${styles.closingInner}`}>
           <div>
+            <p className={styles.closingKicker}>rappidAI</p>
+            <h2>{c.about}</h2>
+          </div>
+          <div className={styles.closingBody}>
             <p>{c.aboutText}</p>
-            <ActionLink href={path("/about")} variant="secondary">
-              {c.aboutLink}
-            </ActionLink>
+            <div className="flex flex-wrap gap-3">
+              <ActionLink href={path("/about")}>{c.aboutLink}</ActionLink>
+              <Link href={path("/contact")} className={styles.closingLink}>
+                {t(locale, "Contact")}
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

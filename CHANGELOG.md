@@ -8,6 +8,14 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Website rebuild — 18 October 2026
+
+- Rebuilt the website as a light, institutional research site: new design system on Geist Sans and Geist Mono, grouped navigation (Models, Research, Tools, About) with mega-menu panels and a separate Contact action, and light page headers with breadcrumbs, key facts and a short page map.
+- Moved research, resources and legal pages into a shared documentation layout with a persistent section sidebar.
+- Redesigned the homepage around Quantum Sentinel-Alpha, a two-lane pipeline figure, the training roadmap and a portfolio built from real content; added a deep-navy footer that ends in an oversized rappidAI wordmark.
+- Replaced decorative atmosphere, parallax and network-backdrop effects with one reveal observer and short scroll-linked CSS animations that respect reduced motion. The Echelon signal lattice is unchanged.
+- Kept all content, URLs, English/German parity and evidence labels. The previous website is preserved in `old/` as a frozen backup.
+
 ### Quantum 1 Echelon presentation — 30 September 2026
 
 - Replaced the Echelon orbit aura with an interactive signal lattice: a fine canvas grid that bends towards the pointer like a gravity well, lights up around it, ripples on click and carries sparse signal pulses along its lines. It pauses offscreen, on hidden tabs and for reduced motion, and falls back to a static CSS grid without JavaScript.

@@ -1,5 +1,4 @@
 import { replayLinks } from "@/content/replay";
-import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { metadataFor } from "@/lib/metadata";
@@ -153,7 +152,6 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
     <>
       <PageIntro
         {...c.intro}
-        artwork="replay"
         indexLabel={locale === "de" ? "Auf dieser Seite" : "On this page"}
         topics={[
           {
@@ -177,18 +175,9 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
             description: c.architectureTitle,
           },
         ]}
-      />
-      <section className="page-shell pb-[var(--section-space)]">
-        <Reveal className="liquid-surface p-7 sm:p-9">
-          <p className="font-mono text-xs tracking-[0.14em] text-accent uppercase">
-            {c.status}
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <ActionLink
-              href={replayLinks.repository}
-              external
-              variant="primary"
-            >
+        actions={
+          <>
+            <ActionLink href={replayLinks.repository} external>
               GitHub
             </ActionLink>
             <ActionLink
@@ -205,149 +194,208 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
             >
               Reviewed revision
             </ActionLink>
+          </>
+        }
+        aside={
+          <div className="window">
+            <div className="window-bar">
+              <span>replay · session</span>
+              <span>{c.status}</span>
+            </div>
+            <ol className="m-0 list-none p-0">
+              {c.architecture.map((layer, i) => (
+                <li
+                  key={layer}
+                  className="flex items-center gap-4 border-b border-line px-5 py-3 text-[0.9rem] text-ink last:border-b-0"
+                >
+                  <span className="font-mono text-[0.72rem] text-muted">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {layer}
+                </li>
+              ))}
+            </ol>
           </div>
-        </Reveal>
+        }
+      />
 
-        <Reveal
-          id="replay-current"
-          className="mt-16 grid gap-10 lg:grid-cols-[0.75fr_1.25fr]"
-        >
+      <section id="replay-current" className="page-shell section">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
-            <p className="eyebrow">CURRENT</p>
-            <h2 className="display-section mt-6 text-ink">{c.currentTitle}</h2>
+            <p className="kicker">{locale === "de" ? "Aktuell" : "Current"}</p>
+            <h2 className="display-section mt-4">{c.currentTitle}</h2>
           </div>
-          <ul className="liquid-surface space-y-4 p-7 sm:p-9">
+          <ul
+            className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2"
+            data-stagger
+          >
             {c.current.map((x) => (
-              <li key={x} className="body-copy">
-                — {x}
+              <li
+                key={x}
+                className="card flex gap-3 p-5 text-[0.95rem] leading-7 text-ink-soft"
+              >
+                <span aria-hidden="true" className="text-accent">
+                  ✓
+                </span>
+                {x}
               </li>
             ))}
           </ul>
-        </Reveal>
-
-        <Reveal id="replay-principles" className="mt-16">
-          <p className="eyebrow">DESIGN LAW</p>
-          <h2 className="display-section mt-6 text-ink">{c.principlesTitle}</h2>
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            {c.principles.map((x) => (
-              <div key={x} className="liquid-card p-6">
-                <p className="body-copy">{x}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal
-          id="replay-reproducibility"
-          className="dark-band mt-16 rounded-[2rem] p-8 sm:p-12"
-        >
-          <p className="eyebrow text-[var(--color-dark-muted)]">
-            REPRODUCIBILITY LADDER
-          </p>
-          <h2 className="display-section mt-6 max-w-3xl text-white">
-            {c.ladderTitle}
-          </h2>
-          <div className="mt-8 grid gap-3 sm:grid-cols-5">
-            {c.ladder.map((x) => (
-              <div
-                key={x.k}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5"
-              >
-                <p className="font-mono text-sm text-[var(--color-dark-accent)]">
-                  {x.k}
-                </p>
-                <p className="mt-3 text-sm text-white">{x.v}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-7 max-w-4xl text-sm leading-7 text-[var(--color-dark-body)]">
-            {c.ladderNote}
-          </p>
-        </Reveal>
-
-        <Reveal id="replay-architecture" className="mt-16">
-          <p className="eyebrow">ARCHITECTURE</p>
-          <h2 className="display-section mt-6 text-ink">
-            {c.architectureTitle}
-          </h2>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {c.architecture.map((x, i) => (
-              <div key={x} className="liquid-card p-5">
-                <p className="font-mono text-[0.62rem] text-accent">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <p className="mt-3 text-sm font-medium text-ink">{x}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
-          <Reveal className="liquid-card p-7 sm:p-9">
-            <p className="eyebrow">FINDINGS</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
-              {c.findingsTitle}
-            </h2>
-            <ul className="mt-6 space-y-3 text-sm leading-7 text-muted">
-              {c.findings.map((x) => (
-                <li key={x}>— {x}</li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal className="liquid-card p-7 sm:p-9">
-            <p className="eyebrow">PLANNED / ARCHITECTURE TARGET</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
-              {c.plannedTitle}
-            </h2>
-            <ul className="mt-6 space-y-3 text-sm leading-7 text-muted">
-              {c.planned.map((x) => (
-                <li key={x}>— {x}</li>
-              ))}
-            </ul>
-          </Reveal>
         </div>
+      </section>
 
-        <Reveal className="mt-16 grid gap-6 lg:grid-cols-2">
-          <div className="liquid-surface p-7 sm:p-9">
-            <p className="eyebrow">USAGE</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+      <section id="replay-principles" className="band">
+        <div className="page-shell section">
+          <div className="section-head">
+            <p className="kicker">
+              {locale === "de" ? "Designprinzipien" : "Design law"}
+            </p>
+            <h2 className="display-section">{c.principlesTitle}</h2>
+          </div>
+          <ol className="m-0 grid list-none gap-0 border-t border-line-strong p-0">
+            {c.principles.map((x, i) => (
+              <li
+                key={x}
+                className="grid gap-2 border-b border-line py-5 sm:grid-cols-[4rem_1fr]"
+              >
+                <span className="font-mono text-xs text-muted">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="m-0 text-[1.05rem] leading-7 text-ink">{x}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="replay-reproducibility" className="page-shell section">
+        <div className="section-head split">
+          <div>
+            <p className="kicker">
+              {locale === "de"
+                ? "Reproduzierbarkeitsleiter"
+                : "Reproducibility ladder"}
+            </p>
+            <h2 className="display-section">{c.ladderTitle}</h2>
+          </div>
+          <p>{c.ladderNote}</p>
+        </div>
+        <ol
+          className="m-0 grid list-none gap-3 p-0 sm:grid-cols-5"
+          data-stagger
+        >
+          {c.ladder.map((x, i) => (
+            <li
+              key={x.k}
+              className="card flex flex-col justify-end p-5"
+              style={{ minHeight: `${7 + i * 1.6}rem` }}
+            >
+              <p className="m-0 font-mono text-sm text-accent">{x.k}</p>
+              <p className="mt-2 text-[0.95rem] font-medium text-ink">{x.v}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="replay-architecture" className="band">
+        <div className="page-shell section">
+          <div className="section-head">
+            <p className="kicker">
+              {locale === "de" ? "Architektur" : "Architecture"}
+            </p>
+            <h2 className="display-section">{c.architectureTitle}</h2>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="card p-6 sm:p-8">
+              <h3 className="m-0 text-xl font-medium tracking-[-0.03em] text-ink">
+                {c.findingsTitle}
+              </h3>
+              <ul className="mt-5 grid list-none gap-3 p-0 text-[0.95rem] leading-7 text-muted">
+                {c.findings.map((x) => (
+                  <li key={x} className="border-t border-line pt-3">
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card p-6 sm:p-8">
+              <p className="m-0">
+                <span className="chip chip-dot chip-planned">
+                  {locale === "de"
+                    ? "Geplant / Architekturziel"
+                    : "Planned / Architecture target"}
+                </span>
+              </p>
+              <h3 className="mt-4 text-xl font-medium tracking-[-0.03em] text-ink">
+                {c.plannedTitle}
+              </h3>
+              <ul className="mt-5 grid list-none gap-3 p-0 text-[0.95rem] leading-7 text-muted">
+                {c.planned.map((x) => (
+                  <li key={x} className="border-t border-line pt-3">
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="page-shell section">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <div className="min-w-0">
+            <h2 className="m-0 text-2xl font-medium tracking-[-0.035em] text-ink">
               {c.usageTitle}
             </h2>
-            <pre
-              role="region"
-              tabIndex={0}
-              aria-label={c.usageTitle}
-              className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-xs leading-6 text-white focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
-            >
-              <code>{`rappid replay record -- <command>\nrappid replay verify <state-id>\nrappid replay restore <state-id>\nrappid replay branch <state-id>\nrappid replay rerun --mode live --confirm-execution <state-id> -- <command>\nrappid replay diff <left-session-id> <right-session-id>`}</code>
-            </pre>
+            <div className="window window-dark mt-5">
+              <div className="window-bar">
+                <span className="dots" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span>rappid replay</span>
+              </div>
+              <pre
+                role="region"
+                tabIndex={0}
+                aria-label={c.usageTitle}
+                className="terminal"
+              >
+                <code>{`rappid replay record -- <command>\nrappid replay verify <state-id>\nrappid replay restore <state-id>\nrappid replay branch <state-id>\nrappid replay rerun --mode live --confirm-execution <state-id> -- <command>\nrappid replay diff <left-session-id> <right-session-id>`}</code>
+              </pre>
+            </div>
           </div>
-          <div className="liquid-surface p-7 sm:p-9">
-            <p className="eyebrow">AUDIENCE</p>
-            <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-ink">
+          <div className="card p-6 sm:p-8">
+            <h2 className="m-0 text-2xl font-medium tracking-[-0.035em] text-ink">
               {c.audienceTitle}
             </h2>
-            <p className="body-copy mt-5">{c.audience}</p>
+            <p className="body-copy mt-4">{c.audience}</p>
+            <p className="mt-8 text-sm font-medium text-ink">{c.sourceTitle}</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <ActionLink
+                href={replayLinks.readme}
+                external
+                variant="secondary"
+              >
+                Pinned README
+              </ActionLink>
+              <ActionLink
+                href={replayLinks.restore}
+                external
+                variant="secondary"
+              >
+                Restore ADR
+              </ActionLink>
+              <ActionLink href={replayLinks.rerun} external variant="secondary">
+                Branch/Rerun ADR
+              </ActionLink>
+              <ActionLink href={replayLinks.diff} external variant="secondary">
+                Diff ADR
+              </ActionLink>
+            </div>
           </div>
-        </Reveal>
-
-        <Reveal className="mt-16">
-          <p className="eyebrow">{c.sourceTitle}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <ActionLink href={replayLinks.readme} external variant="secondary">
-              Pinned README
-            </ActionLink>
-            <ActionLink href={replayLinks.restore} external variant="secondary">
-              Restore ADR
-            </ActionLink>
-            <ActionLink href={replayLinks.rerun} external variant="secondary">
-              Branch/Rerun ADR
-            </ActionLink>
-            <ActionLink href={replayLinks.diff} external variant="secondary">
-              Diff ADR
-            </ActionLink>
-          </div>
-        </Reveal>
+        </div>
       </section>
     </>
   );

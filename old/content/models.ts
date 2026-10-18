@@ -1,0 +1,334 @@
+import { sentinelModel } from "./sentinel";
+import { echelonPreview } from "./echelon";
+import type {
+  ModelFilter,
+  ModelFilterId,
+  ModelRecord,
+  ModelSlug,
+} from "./types";
+import { publicModelUrls, publicResearchUrls } from "./site";
+import { localizeContent, type Locale } from "@/lib/i18n";
+
+const pilotArtifactLicense =
+  "All rights reserved: no public reuse license is granted for the pilot weights, GGUF artifacts or tokenizers. Redistribution, modification and commercial use are not granted; do not describe these artifacts as open weight. Downloadability does not change this boundary.";
+
+const pilotLimitations = [
+  "Semantically weak and factually unreliable output",
+  "Outputs may be incomplete or incoherent",
+  "Limited to a 512-token context window",
+  "No instruction tuning or chat alignment",
+  "No standardized task benchmarks have been published",
+  "Not suitable for medicine, law, finance, safety or other high-stakes applications",
+  "Not intended as a general production assistant",
+] as const;
+
+export const models = [
+  sentinelModel,
+  {
+    slug: "quantum-1-pilot",
+    name: "quantum-1-pilot",
+    status: "experimental",
+    statusLabel: "Public experimental release",
+    availability: "available",
+    summary:
+      "Public legacy and base-model experiment for compact German completion research.",
+    parameterCount: {
+      value: 49_295_872,
+      shortLabel: "49.3M",
+      label: "49,295,872 parameters",
+    },
+    modelType: "Experimental German completion model",
+    intendedUse: ["Legacy research reference", "Local completion experiments"],
+    languages: ["German"],
+    lineage:
+      "Baseline release in the Quantum series and predecessor to quantum-1.6-pilot. Its public manifest uses the historical model ID quantum-1-base.",
+    releaseStatus:
+      "Publicly available as an experimental F16 GGUF release on Hugging Face.",
+    license: pilotArtifactLicense,
+    links: [
+      {
+        kind: "model-card",
+        label: "License registry",
+        url: publicResearchUrls.modelLicenseRegistry,
+        pendingLabel: "License registry unavailable",
+      },
+      {
+        kind: "huggingFace",
+        label: "View on Hugging Face",
+        url: publicModelUrls["quantum-1-pilot"] as string | null,
+        pendingLabel: "Hugging Face model link pending",
+      },
+    ],
+    technicalFacts: [
+      { label: "Version", value: "1.0.0" },
+      { label: "Context", value: "512 tokens" },
+      {
+        label: "Release format",
+        value: "F16 GGUF, 98,990,560 bytes (98.99 MB; 94.40 MiB)",
+      },
+      { label: "Prompting", value: "Completion mode" },
+    ],
+    sources: [
+      {
+        label: "Hugging Face model card",
+        url: publicResearchUrls.quantum1ModelCard,
+      },
+      {
+        label: "Model and tokenizer license registry",
+        url: publicResearchUrls.modelLicenseRegistry,
+      },
+    ],
+    inferenceSoftware: [
+      "llama.cpp compatibility is documented by the public release",
+    ],
+    usageExample: null,
+    researchContext:
+      "This release provides the baseline for the Quantum model series and documents the first public small-scale German base-model experiment.",
+    limitations: pilotLimitations,
+    relatedResearchNoteIds: [],
+    indexFacts: [
+      "49.3M parameters",
+      "Public experimental release",
+      "German base-completion model",
+      "German completion research",
+    ],
+    featured: false,
+  },
+  {
+    slug: "quantum-1-6-pilot",
+    name: "quantum-1.6-pilot",
+    status: "experimental",
+    statusLabel: "Public experimental release",
+    availability: "available",
+    summary:
+      "A 49.3M-parameter experimental German completion model released after a reported continued-pretraining stage.",
+    parameterCount: {
+      value: 49_295_872,
+      shortLabel: "49.3M",
+      label: "49,295,872 parameters",
+    },
+    modelType: "LlamaForCausalLM-style experimental completion model",
+    intendedUse: [
+      "Research into documented continued-pretraining workflows",
+      "Local German-language completion experiments",
+    ],
+    languages: ["German"],
+    lineage:
+      "The release card reports continued pretraining from Quantum 1 Base. The public configuration specifies weights-only initialization, a fresh optimizer, scheduler and step counter, and a frozen quantum-1 tokenizer; no final public run manifest verifies every configured detail.",
+    releaseStatus:
+      "Publicly available as an experimental F16 GGUF release; the public artifact is 98,990,560 bytes.",
+    license: pilotArtifactLicense,
+    links: [
+      {
+        kind: "model-card",
+        label: "License registry",
+        url: publicResearchUrls.modelLicenseRegistry,
+        pendingLabel: "License registry unavailable",
+      },
+      {
+        kind: "huggingFace",
+        label: "View on Hugging Face",
+        url: publicModelUrls["quantum-1-6-pilot"] as string | null,
+        pendingLabel: "Hugging Face model link pending",
+      },
+      {
+        kind: "model-card",
+        label: "Model card",
+        url: publicResearchUrls.quantum16ModelCard as string | null,
+        pendingLabel: "Model card link pending",
+      },
+    ],
+    technicalFacts: [
+      {
+        label: "Version",
+        value:
+          "1.6.0, matching the public quantum-1.6-pilot-v1.6.0-f16.gguf filename and release manifest",
+      },
+      {
+        label: "Architecture",
+        value:
+          "LlamaForCausalLM-style; hidden size 512; intermediate size 1,536; 12 layers; 8 attention heads; 8 KV heads; tied embeddings",
+      },
+      { label: "Vocabulary", value: "16,384 tokens" },
+      { label: "Context", value: "512 tokens" },
+      {
+        label: "Tokenizer",
+        value:
+          "Custom frozen quantum-1 tokenizer with a 16,384-token vocabulary",
+      },
+      {
+        label: "Training data",
+        value:
+          "Approximately 100M German base-training tokens plus 500M additional German tokens, as documented in the public model card.",
+      },
+      {
+        label: "Training configuration",
+        value:
+          "The public configuration targets approximately 30,518 steps, derived from 500M tokens at an effective 16,384 tokens per step. A final public run log is not linked.",
+      },
+      {
+        label: "Evaluation",
+        value:
+          "The Hugging Face model card reports validation loss 3.348852 and perplexity 28.4700. No versioned evaluation report or standardized downstream-task benchmarks have been published.",
+      },
+      {
+        label: "Release",
+        value: "F16 GGUF, approximately 99 MB",
+      },
+      {
+        label: "Quantization",
+        value:
+          "The public release provides an F16 GGUF; no Q8 or Q4 variants are listed",
+      },
+      {
+        label: "Hardware",
+        value: "Minimum RAM requirements have not been formally measured",
+      },
+    ],
+    sources: [
+      {
+        label: "Hugging Face model card",
+        url: publicResearchUrls.quantum16ModelCard,
+      },
+      {
+        label: "Model and tokenizer license registry",
+        url: publicResearchUrls.modelLicenseRegistry,
+      },
+      {
+        label: "Training documentation",
+        url: publicResearchUrls.trainingDocumentation,
+      },
+      {
+        label: "Generation diagnosis",
+        url: publicResearchUrls.diagnosisDocumentation,
+      },
+    ],
+    inferenceSoftware: [
+      "llama.cpp compatibility is documented. Android comparison tooling exists, but no completed public Android validation report is currently linked.",
+    ],
+    usageExample:
+      'llama-completion -m quantum-1.6-pilot-v1.6.0-f16.gguf -p "Berlin ist" -n 64 --temp 0 --top-p 1 --top-k 0',
+    researchContext:
+      "This release reports continued pretraining with a fixed architecture and tokenizer. Public configuration and code are available, but a final run manifest and complete training logs are not linked.",
+    limitations: [
+      ...pilotLimitations,
+      "Third-party client compatibility has not been established by a published validation report",
+    ],
+    relatedResearchNoteIds: ["from-100m-to-600m-german-tokens"],
+    indexFacts: [
+      "49.3M parameters",
+      "Public experimental release",
+      "German completion model",
+      "F16 GGUF · llama.cpp",
+    ],
+    featured: true,
+  },
+  {
+    slug: "quantum-1-echelon",
+    name: echelonPreview.name,
+    status: "in-development",
+    statusLabel: "In development · Coming Soon",
+    availability: "not-released",
+    summary: echelonPreview.cardSummary,
+    parameterCount: null,
+    modelType: "German-first language model · 1B target",
+    intendedUse: [
+      "Reproducible German-language base-model research",
+      "A later chat stage within the same Echelon model line",
+    ],
+    languages: ["German-first, with English coverage planned"],
+    lineage:
+      "Public path configuration treats quantum-1-echelon-base and quantum-1-echelon-chat as stages or variants within the same quantum-1-echelon model line and forbids reuse of the pilot models, tokenizers and data.",
+    releaseStatus:
+      "No trained Echelon weights, checkpoints, GGUF files or Hugging Face model repository are publicly available.",
+    license:
+      "No model weights have been released. A license for any future quantum-1-echelon weights has not been documented.",
+    links: [
+      {
+        kind: "github",
+        label: "Inspect implementation repository",
+        url: publicResearchUrls.repository,
+        pendingLabel: "Implementation repository unavailable",
+      },
+    ],
+    technicalFacts: echelonPreview.specifications.rows.map((row) => ({
+      label: row.label,
+      value: `${row.value} · ${row.status}`,
+    })),
+    sources: echelonPreview.evidence.sources,
+    inferenceSoftware: [],
+    usageExample: null,
+    researchContext: echelonPreview.evidence.description,
+    limitations: [
+      "Architecture and tokenizer selection are still in progress",
+      "The 1B specifications are planned targets, not measured model results",
+      "No production Base or Chat checkpoint is available",
+      "No model benchmark results, release date or model license are announced",
+    ],
+    relatedResearchNoteIds: [],
+    indexFacts: [
+      "~1B parameter target",
+      "In development · Coming Soon",
+      "German-first, with English coverage planned",
+      "Base → SFT → Preference Optimization → Chat",
+    ],
+    featured: false,
+  },
+] as const satisfies readonly ModelRecord[];
+
+export type Model = (typeof models)[number];
+
+export const modelFilters = [
+  { id: "all", label: "All" },
+  { id: "available", label: "Public releases" },
+  { id: "in-development", label: "In development" },
+] as const satisfies readonly ModelFilter[];
+
+export const modelSlugs = models.map((model) => model.slug) as ModelSlug[];
+
+export function isModelSlug(value: string): value is ModelSlug {
+  return models.some((model) => model.slug === value);
+}
+
+export function getModelBySlug(
+  slug: string,
+  locale: Locale = "en",
+): Model | undefined {
+  const model = models.find((entry) => entry.slug === slug);
+  return model ? localizeContent(model, locale) : undefined;
+}
+
+export function getFeaturedModel(locale: Locale = "en"): Model {
+  const featuredModel = models.find((model) => model.featured);
+
+  if (!featuredModel) {
+    throw new Error("A featured model has not been configured.");
+  }
+
+  return localizeContent(featuredModel, locale);
+}
+
+export function getModelsByFilter(
+  filter: ModelFilterId,
+  locale: Locale = "en",
+): readonly Model[] {
+  let filteredModels: readonly Model[];
+
+  switch (filter) {
+    case "all":
+      filteredModels = models;
+      break;
+    case "available":
+      filteredModels = models.filter(
+        (model) => model.availability === "available",
+      );
+      break;
+    case "in-development":
+      filteredModels = models.filter(
+        (model) => model.status === "in-development",
+      );
+      break;
+  }
+
+  return localizeContent(filteredModels, locale);
+}

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { DocLayout } from "@/components/layout/doc-layout";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { PageIntro } from "@/components/ui/page-intro";
 import { imprintPageContent } from "@/content/pages";
@@ -79,87 +80,88 @@ export function LocalizedImprintPage({ locale }: { locale: Locale }) {
   return (
     <>
       <PageIntro {...page.introduction} />
+      <DocLayout>
+        <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
+          <DrawRule />
 
-      <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
-        <DrawRule />
+          <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
+            <LegalGroup
+              id="imprint-identity"
+              eyebrow="01"
+              title={t(locale, "Identity")}
+            >
+              <LegalField
+                label={page.identityLabel}
+                value={legal.publicIdentity}
+                note={t(
+                  locale,
+                  "This is the public project identity and is not a claim about a registered legal entity.",
+                )}
+              />
+              <LegalField
+                label={t(locale, "Legal name")}
+                value={legal.legalName}
+              />
+              <LegalField
+                label={t(locale, "Legal form")}
+                value={legal.legalForm}
+              />
+            </LegalGroup>
 
-        <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
-          <LegalGroup
-            id="imprint-identity"
-            eyebrow="01"
-            title={t(locale, "Identity")}
-          >
-            <LegalField
-              label={page.identityLabel}
-              value={legal.publicIdentity}
-              note={t(
-                locale,
-                "This is the public project identity and is not a claim about a registered legal entity.",
-              )}
-            />
-            <LegalField
-              label={t(locale, "Legal name")}
-              value={legal.legalName}
-            />
-            <LegalField
-              label={t(locale, "Legal form")}
-              value={legal.legalForm}
-            />
-          </LegalGroup>
+            <LegalGroup
+              id="imprint-location"
+              eyebrow="02"
+              title={t(locale, "Location")}
+              delay={0.04}
+            >
+              <LegalField
+                label={page.locationLabel}
+                value={legal.generalLocation}
+                note={page.locationQualification}
+              />
+              <LegalField
+                label={t(locale, "Service address")}
+                value={legal.serviceAddress}
+              />
+            </LegalGroup>
 
-          <LegalGroup
-            id="imprint-location"
-            eyebrow="02"
-            title={t(locale, "Location")}
-            delay={0.04}
-          >
-            <LegalField
-              label={page.locationLabel}
-              value={legal.generalLocation}
-              note={page.locationQualification}
-            />
-            <LegalField
-              label={t(locale, "Service address")}
-              value={legal.serviceAddress}
-            />
-          </LegalGroup>
+            <LegalGroup
+              id="imprint-contact"
+              eyebrow="03"
+              title={page.contactLabel}
+              delay={0.06}
+            >
+              <LegalField
+                label={t(locale, "Email")}
+                value={
+                  <a
+                    className="underline decoration-line-strong underline-offset-4 hover:text-accent"
+                    href={`mailto:${businessEmail}`}
+                  >
+                    {businessEmail}
+                  </a>
+                }
+              />
+            </LegalGroup>
 
-          <LegalGroup
-            id="imprint-contact"
-            eyebrow="03"
-            title={page.contactLabel}
-            delay={0.06}
-          >
-            <LegalField
-              label={t(locale, "Email")}
-              value={
-                <a
-                  className="underline decoration-line-strong underline-offset-4 hover:text-accent"
-                  href={`mailto:${businessEmail}`}
-                >
-                  {businessEmail}
-                </a>
-              }
-            />
-          </LegalGroup>
-
-          <LegalGroup
-            id="imprint-responsibility"
-            eyebrow="04"
-            title={t(locale, "Content responsibility")}
-            delay={0.08}
-          >
-            <LegalField
-              label={t(locale, "Responsible person")}
-              value={legal.responsibleForContent}
-            />
-            <LegalField
-              label={t(locale, "Last reviewed")}
-              value={t(locale, "23 July 2026")}
-            />
-          </LegalGroup>
+            <LegalGroup
+              id="imprint-responsibility"
+              eyebrow="04"
+              title={t(locale, "Content responsibility")}
+              delay={0.08}
+            >
+              <LegalField
+                label={t(locale, "Responsible person")}
+                value={legal.responsibleForContent}
+              />
+              <LegalField
+                label={t(locale, "Last reviewed")}
+                value={t(locale, "23 July 2026")}
+              />
+            </LegalGroup>
+          </div>
         </div>
-      </div>
+      </DocLayout>
     </>
   );
 }

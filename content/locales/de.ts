@@ -6,6 +6,7 @@ import { deResourceTranslations } from "./de-resources";
 import { deResearchTranslations } from "./de-research";
 
 import { deReadinessTranslations } from "./de-readiness";
+import { deRedesignTranslations } from "./de-redesign";
 
 export const deTranslations: Readonly<Record<string, string>> = {
   ...deComparisonTranslations,
@@ -13,6 +14,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   ...deResourceTranslations,
   ...deResearchTranslations,
   ...deReadinessTranslations,
+  ...deRedesignTranslations,
   "Independent AI research on compact language models and documented training, evaluation and local-inference workflows.":
     "Unabhängige KI-Forschung zu kompakten Sprachmodellen sowie dokumentierten Trainings-, Evaluations- und lokalen Inferenzabläufen.",
   "Berlin, Germany": "Berlin, Deutschland",
