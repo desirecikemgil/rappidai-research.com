@@ -10,6 +10,7 @@ versioned releases are introduced.
 
 ### Mobile layout pass — 18 October 2026
 
+- The oversized footer wordmark now reads „quantum“ instead of „rappidAI“, at the same size.
 - Restored the responsive rules for the model comparison: its three model cards now stack on phones and tablets instead of squeezing text into letter-wide columns.
 - Label/value tables (model cards, Echelon specifications, Ghost limits) and the research, reproducibility, licensing, model and tool matrices now show one card per row on phones, with each value labelled.
 - Replaced mid-word line breaking with hyphenation, made the evidence grid width-aware, kept window title bars and status chips from stretching or truncating, and tightened heading line heights.

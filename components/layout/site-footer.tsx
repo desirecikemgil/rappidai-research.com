@@ -119,7 +119,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="footer-mark" aria-hidden="true">
-        <span>rappidAI</span>
+        <span>quantum</span>
       </div>
     </footer>
   );
