@@ -15,7 +15,13 @@ export type RailItem = {
  * no sense of where they are or how much is left. Desktop only — on narrow
  * viewports it would cost more width than it returns.
  */
-export function SectionRail({ items }: { items: RailItem[] }) {
+export function SectionRail({
+  items,
+  label,
+}: {
+  items: RailItem[];
+  label: string;
+}) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
 
   useEffect(() => {
@@ -43,7 +49,7 @@ export function SectionRail({ items }: { items: RailItem[] }) {
   }, [items]);
 
   return (
-    <nav className="section-rail" aria-label="Section index">
+    <nav className="section-rail" aria-label={label}>
       <ul className="m-0 flex list-none flex-col gap-0.5 p-0">
         {items.map((item) => {
           const active = item.id === activeId;

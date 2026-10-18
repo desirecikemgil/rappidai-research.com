@@ -137,7 +137,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <SectionRail items={railItems} />
+      <SectionRail items={railItems} label={t(locale, "Section index")} />
       <PageIntro
         {...page.introduction}
         indexLabel={t(locale, "Explore this page")}
@@ -196,12 +196,12 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
               </p>
               <h2>
                 {locale === "de"
-                  ? "Was verändert mehr Pretraining?"
+                  ? "Was ändert sich mit mehr Pretraining?"
                   : "What changes with more pretraining?"}
               </h2>
               <p>
                 {locale === "de"
-                  ? "Die öffentliche Forschungsnotiz zu quantum-1.6-pilot verbindet die Modellversuche mit Methoden, Beobachtungen und offenen Fragen."
+                  ? "Die öffentliche Forschungsnotiz zu quantum-1.6-pilot verknüpft die Modellexperimente mit Methodik, Beobachtungen und offenen Fragen."
                   : "The public quantum-1.6-pilot research note connects the model experiments to methods, observations and open questions."}
               </p>
               <ActionLink
@@ -252,7 +252,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
           <details className="evidence-legend mt-8">
             <summary>
               {locale === "de"
-                ? "So liest du die Evidenzstatus"
+                ? "Was die Statusangaben bedeuten"
                 : "How to read the evidence statuses"}
             </summary>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
@@ -450,7 +450,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                 className="liquid-card p-7 sm:p-9"
               >
                 <p className="font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
-                  {item.kind}
+                  {t(locale, item.kind)}
                 </p>
                 <h3 className="mt-6 text-[clamp(1.45rem,2.4vw,2rem)] font-medium leading-[1.1] tracking-[-0.035em] text-ink">
                   {item.title}

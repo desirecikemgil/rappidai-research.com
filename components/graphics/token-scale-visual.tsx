@@ -48,7 +48,7 @@ export function TokenScaleVisual({
                 <CountUp
                   value={step.tokens}
                   locale={locale}
-                  suffix={`M ${t(locale, "tokens")}`}
+                  suffix={`${locale === "de" ? " Mio." : "M"} ${t(locale, "tokens")}`}
                 />
               </p>
             </div>

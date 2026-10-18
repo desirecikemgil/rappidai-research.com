@@ -44,6 +44,11 @@ When implementing from a selected generated mock, treat that image as the source
 - Show missing evidence directly with `Not published`, `Not measured`, `Not yet available`, `Partial evidence` or `Maintainer input required`.
 - Never upgrade configured targets, estimated architecture properties or smoke-test totals into claims about completed Echelon training or production data.
 
+## Durable German-language direction
+
+- October 2026 maintainer request: the German site must read like native German copy, not a 1:1 translation. Follow `docs/german-style-guide.md` for every German string: formal „Sie“ (never „du“), natural sentence structure, „Belege/Nachweise“ instead of „Evidenz“, „Model Card“, plural „Tokens“, German quotes and number formats, short UI labels, and unchanged facts and evidence boundaries.
+- Every visible English string needs a German value; check `/de` pages for English leftovers (including aria-labels, units and labels rendered from protected keys) before shipping.
+
 ## Delivery workflow
 
 - After a requested change is complete and verified, commit it and push it to GitHub immediately; do not leave finished website changes only in the local worktree.

@@ -52,44 +52,45 @@ const copy = {
   de: {
     intro: {
       eyebrow: "TOOLS",
-      title: "Deine Agenten. Deine Umgebung. Deine Evidenz.",
+      title: "Ihre Agenten. Ihre Umgebung. Ihre Nachweise.",
       description:
-        "Zwei Open-Source-Werkzeuge für Agenten-Infrastruktur. Ghost kontrolliert Zugriffe auf die Umgebung. Replay zeichnet Ausführungen auf und bewahrt nachvollziehbare technische Zustände.",
+        "Zwei Open-Source-Werkzeuge als Infrastruktur für KI-Agenten. Ghost kontrolliert den Zugriff auf die Umgebung. Replay zeichnet Ausführungen auf und hält technische Zustände nachprüfbar fest.",
     },
     thesis: "ZWEI UNTERSCHIEDLICHE FRAGEN",
-    thesisTitle: "Umgebung kontrollieren. Evidenz bewahren.",
+    thesisTitle: "Die Umgebung kontrollieren. Nachweise sichern.",
     ghostQuestion:
-      "Worauf darf der Agent zugreifen – und wie werden verdächtige Eingaben, sensible Aktionen und Runtime-Risiken behandelt?",
+      "Worauf darf der Agent zugreifen – und wie wird mit verdächtigen Eingaben, sensiblen Aktionen und Laufzeitrisiken umgegangen?",
     replayQuestion:
-      "Was ist während des Runs passiert – und lässt sich der technische Zustand rekonstruieren?",
-    note: "Ghost und Replay sind komplementäre Forschungsrichtungen, werden hier aber nicht als bereits integriertes Gesamtprodukt dargestellt. Die aktuellen Implementierungen bleiben getrennte Repositories mit getrennten Garantien.",
+      "Was ist während des Laufs passiert – und lässt sich der technische Zustand rekonstruieren?",
+    note: "Ghost und Replay sind Forschungsrichtungen, die sich ergänzen. Wir stellen sie hier nicht als ein gemeinsames, integriertes Produkt dar. Ihre aktuellen Implementierungen liegen in getrennten Repositories mit jeweils eigenen Garantien.",
     ghostSummary:
-      "Eine integrierte Security-Runtime für autonome Agenten. Isolation, SHADOW-Deception, Prompt-Injection-Signale, eng begrenzte ASK-Entscheidungen, Runtime-Limits und Evidenz arbeiten unter demselben ghost-run-Ablauf zusammen.",
+      "Eine integrierte Security-Runtime für autonome Agenten. Isolation, Täuschung per SHADOW, Prompt-Injection-Signale, eng begrenzte ASK-Entscheidungen, Laufzeitgrenzen und Nachweise greifen im selben Ablauf hinter ghost run ineinander.",
     replaySummary:
-      "Local-first Infrastruktur zum Aufzeichnen, Wiederherstellen, Verzweigen, erneuten Ausführen und Vergleichen von KI-Agenten-Runs.",
-    current: "AKTUELLE IMPLEMENTIERUNG",
-    ghostStatus: "Integrierte Agenten-Sicherheit · Experimentell",
+      "Lokal ausgerichtete Infrastruktur, um Ausführungen von KI-Agenten aufzuzeichnen, wiederherzustellen, zu verzweigen, erneut auszuführen und zu vergleichen.",
+    current: "DERZEIT IMPLEMENTIERT",
+    ghostStatus: "Integrierte Agentensicherheit · Experimentell",
     release: "v0.3.0 Release",
     ghostFacts: [
-      "Begrenzter Prompt-Injection Guard und deterministischer Trust Context",
-      "ALLOW / DENY / SHADOW / ASK mit exakt session-begrenzter Freigabe",
-      "Nicht-Root-Docker-Isolation plus RAM-, CPU-, PID-, tmpfs- und Laufzeitlimits",
-      "HTTP/HTTPS-Egress für exakte Hostnamen; Containment hat Vorrang vor Approval",
-      "Evidenzbasierte Zusammenfassungen, Provenance, Incidents und Crash-Recovery",
-      "Adversarial GhostBench mit 25 Szenarien: 25 PASS / 0 FAIL / 0 SKIP",
+      "Begrenzter Prompt-Injection Guard und deterministischer Vertrauenskontext",
+      "ALLOW / DENY / SHADOW / ASK mit exakter, auf die Session beschränkter Freigabe",
+      "Docker-Isolation ohne Root-Rechte sowie Grenzen für Speicher, CPU, PIDs, tmpfs und Laufzeit",
+      "Ausgehender HTTP/HTTPS-Verkehr mit exaktem Hostnamenabgleich; Abschottung hat Vorrang vor Freigaben",
+      "Belegbasierte Zusammenfassungen, Herkunftsnachweise, Vorfälle und Wiederherstellung nach Abstürzen",
+      "Adversariales GhostBench-Release-Gate mit 25 Szenarien: 25 PASS / 0 FAIL / 0 SKIP",
     ],
     replayFacts: [
-      "Generischer Execution Recorder",
+      "Generische Aufzeichnung von Ausführungen",
       "Verifizierte Wiederherstellung",
-      "Branch und kontrollierter Rerun",
-      "Deterministischer multidimensionaler Diff",
-      "SQLite-Metadaten plus content-addressed State",
+      "Verzweigen und kontrollierte erneute Ausführung",
+      "Deterministischer Vergleich über mehrere Dimensionen",
+      "SQLite-Metadaten und inhaltsadressierte Zustände",
     ],
-    inspect: "Quellcode prüfen",
-    learn: "Tool ansehen",
-    evidenceTitle: "Aussagen sind an geprüfte Source-Revisions gebunden.",
+    inspect: "Quellcode ansehen",
+    learn: "Mehr erfahren",
+    evidenceTitle:
+      "Aussagen sind an geprüfte Revisionen des Quellcodes gebunden.",
     evidenceText:
-      "Die folgenden Seiten trennen implementiertes Verhalten von Architektur-Zielen und verknüpfen technische Aussagen mit gepinnten Repository-Revisions und Architekturunterlagen.",
+      "Die Detailseiten trennen implementiertes Verhalten von Architekturzielen. Technische Aussagen verweisen auf festgeschriebene Revisionen der Repositories und auf Architekturunterlagen.",
   },
 } as const;
 

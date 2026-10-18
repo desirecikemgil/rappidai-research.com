@@ -67,10 +67,7 @@ for (const locale of ["en", "de"] as const) {
     );
     await page
       .getByRole("button", {
-        name:
-          locale === "en"
-            ? "Public releases"
-            : "Öffentliche Veröffentlichungen",
+        name: locale === "en" ? "Public releases" : "Veröffentlichte Modelle",
         exact: true,
       })
       .click();
