@@ -127,7 +127,7 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
               tabIndex={0}
               className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
             >
-              <table className="w-full min-w-[64rem] border-collapse text-left">
+              <table className="stack-table w-full min-w-[64rem] border-collapse text-left">
                 <caption className="sr-only">
                   {t(
                     locale,
@@ -152,17 +152,26 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
                     <tr key={item.area}>
                       <th
                         scope="row"
-                        className="border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
+                        className="min-w-[14rem] border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
                       >
                         {item.area}
                       </th>
-                      <td className="border-b border-line px-6 py-6 align-top">
+                      <td
+                        data-label={columns[1]}
+                        className="border-b border-line px-6 py-6 align-top"
+                      >
                         <EvidenceBadge status={item.status} locale={locale} />
                       </td>
-                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                      <td
+                        data-label={columns[2]}
+                        className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft"
+                      >
                         {item.available}
                       </td>
-                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted">
+                      <td
+                        data-label={columns[3]}
+                        className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted"
+                      >
                         {item.missing}
                       </td>
                     </tr>

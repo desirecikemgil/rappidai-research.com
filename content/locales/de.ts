@@ -16,7 +16,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   ...deReadinessTranslations,
   ...deRedesignTranslations,
   "Independent AI research on compact language models and documented training, evaluation and local-inference workflows.":
-    "Unabhängige KI-Forschung zu kompakten Sprachmodellen sowie dokumentierten Trainings-, Evaluations- und lokalen Inferenzabläufen.",
+    "Unabhängige KI-Forschung zu kompakten Sprachmodellen – mit dokumentierten Abläufen für Training, Evaluation und lokale Inferenz.",
   "Berlin, Germany": "Berlin, Deutschland",
   "Almutstraße 3, 13467 Berlin, Germany":
     "Almutstraße 3, 13467 Berlin, Deutschland",
@@ -27,19 +27,19 @@ export const deTranslations: Readonly<Record<string, string>> = {
   Resources: "Ressourcen",
   About: "Über uns",
   Contact: "Kontakt",
-  "Explore this page": "Diese Seite erkunden",
+  "Explore this page": "Auf dieser Seite",
   Overview: "Überblick",
   "Model releases": "Modellveröffentlichungen",
-  "Evidence and findings": "Evidenz und Erkenntnisse",
+  "Evidence and findings": "Belege und Befunde",
   "Methods and limits": "Methoden und Grenzen",
   "Open questions": "Offene Fragen",
-  "Evidence map": "Evidenzübersicht",
+  "Evidence map": "Belegübersicht",
   "Documentation directory": "Dokumentationsverzeichnis",
   "Research profiles": "Forschungsprofile",
   "Tool overview": "Werkzeugübersicht",
-  "Source evidence": "Quellenevidenz",
+  "Source evidence": "Quellennachweise",
   "What rappidAI is": "Was rappidAI ist",
-  "Published work": "Veröffentlichte Arbeit",
+  "Published work": "Veröffentlichte Arbeiten",
   "Current direction": "Aktuelle Ausrichtung",
   "Contact options": "Kontaktmöglichkeiten",
   "Prepare an email": "E-Mail vorbereiten",
@@ -47,63 +47,63 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Current Echelon line": "Aktuelle Echelon-Linie",
   "Reporting channels": "Meldewege",
   "Browse the released pilots and the in-development Echelon pipeline.":
-    "Veröffentlichte Piloten und die Echelon-Pipeline in Entwicklung ansehen.",
+    "Die veröffentlichten Pilotmodelle und die entstehende Echelon-Pipeline im Überblick.",
   "Compare architecture, tokenizer and data evidence on one scale.":
-    "Architektur-, Tokenizer- und Datenevidenz auf einer gemeinsamen Skala vergleichen.",
+    "Belege zu Architektur, Tokenizer und Daten auf einer gemeinsamen Skala vergleichen.",
   "See what is published, partial or still unavailable.":
-    "Erkennen, was veröffentlicht, teilweise belegt oder noch nicht verfügbar ist.",
+    "Was veröffentlicht, teilweise belegt oder noch nicht verfügbar ist.",
   "Separate architecture, tokenizer and pipeline evidence from training.":
-    "Architektur-, Tokenizer- und Pipeline-Evidenz klar vom Training trennen.",
+    "Belege zu Architektur, Tokenizer und Pipeline – klar getrennt vom Training.",
   "Understand the experiment design, evaluation and known failures.":
-    "Versuchsaufbau, Evaluation und bekannte Fehlermuster verstehen.",
+    "Versuchsaufbau, Evaluation und bekannte Fehlermuster.",
   "Inspect artifacts, checksums and the remaining publication gaps.":
-    "Artefakte, Prüfsummen und verbleibende Veröffentlichungslücken prüfen.",
+    "Artefakte, Prüfsummen und die verbleibenden Lücken in der Veröffentlichung.",
   "Continue with the questions that define the next research phase.":
-    "Mit den Fragen fortfahren, die die nächste Forschungsphase bestimmen.",
+    "Die Fragen, die die nächste Forschungsphase bestimmen.",
   "Read the documentation status of every research area at a glance.":
-    "Den Dokumentationsstand aller Forschungsbereiche auf einen Blick erfassen.",
+    "Der Dokumentationsstand aller Forschungsbereiche auf einen Blick.",
   "Open the source repositories and public model releases.":
-    "Quell-Repositories und öffentliche Modellveröffentlichungen öffnen.",
+    "Zu den Quell-Repositories und den veröffentlichten Modellen.",
   "Choose a focused record for methods, licensing, status or reuse.":
-    "Einen fokussierten Nachweis zu Methoden, Lizenzierung, Status oder Wiederverwendung wählen.",
+    "Die passende Dokumentation zu Methoden, Lizenzen, Status oder Nachnutzung.",
   "Understand the initiative, its structure and its research scope.":
-    "Initiative, Struktur und Forschungsumfang verstehen.",
+    "Die Initiative, ihr Aufbau und ihr Forschungsgebiet.",
   "Review the public pilot models and their evidence boundaries.":
-    "Öffentliche Pilotmodelle und ihre Evidenzgrenzen prüfen.",
+    "Die öffentlichen Pilotmodelle und die Grenzen des Belegten.",
   "Follow the Echelon architecture, tokenizer and data-pipeline work.":
-    "Die Arbeit an Echelon-Architektur, Tokenizer und Datenpipeline verfolgen.",
+    "Die Arbeit an Echelon: Architektur, Tokenizer und Datenpipeline.",
   "Choose email, Hugging Face or GitHub for the right context.":
-    "Je nach Anliegen E-Mail, Hugging Face oder GitHub wählen.",
+    "E-Mail, Hugging Face oder GitHub – je nach Anliegen.",
   "Create a local email draft without sending data through the website.":
-    "Einen lokalen E-Mail-Entwurf erstellen, ohne Daten über die Website zu senden.",
+    "Einen E-Mail-Entwurf lokal erstellen, ohne Daten über die Website zu senden.",
   "Route public feedback, security reports and sensitive concerns correctly.":
-    "Öffentliches Feedback, Sicherheitsmeldungen und sensible Anliegen richtig zuordnen.",
+    "Wohin öffentliches Feedback, Sicherheitsmeldungen und sensible Anliegen gehören.",
   "Understand the different jobs of Ghost and Replay before diving in.":
-    "Vor dem Einstieg die unterschiedlichen Aufgaben von Ghost und Replay verstehen.",
+    "Die unterschiedlichen Aufgaben von Ghost und Replay im Überblick.",
   "Control what an agent may access and detect contact with decoys.":
-    "Steuern, worauf ein Agent zugreifen darf, und Kontakt mit Ködern erkennen.",
+    "Festlegen, worauf ein Agent zugreifen darf, und Kontakt mit Ködern erkennen.",
   "Record, restore, branch and compare technical execution state.":
     "Technische Ausführungszustände aufzeichnen, wiederherstellen, verzweigen und vergleichen.",
   "Trace implementation claims to reviewed source revisions.":
-    "Implementierungsaussagen bis zu geprüften Quellrevisionen zurückverfolgen.",
+    "Aussagen zur Implementierung bis zu geprüften Quellrevisionen zurückverfolgen.",
   "Research index": "Forschungsübersicht",
   "Start with the question you want to answer.":
-    "Beginnen Sie mit der Frage, die Sie beantworten möchten.",
+    "Beginnen Sie mit Ihrer Frage.",
   "The site separates model releases, research evidence, agent infrastructure and supporting documentation so each area can be understood on its own.":
-    "Die Website trennt Modellveröffentlichungen, Forschungsevidenz, Agenten-Infrastruktur und begleitende Dokumentation, damit jeder Bereich für sich verständlich bleibt.",
+    "Die Website trennt Modellveröffentlichungen, Forschungsbelege, Infrastruktur für KI-Agenten und ergänzende Dokumentation. So erschließt sich jeder Bereich für sich.",
   "Evidence, findings, methods and open questions.":
-    "Evidenz, Erkenntnisse, Methoden und offene Fragen.",
+    "Belege, Befunde, Methoden und offene Fragen.",
   "Released pilots and the current Echelon pipeline.":
-    "Veröffentlichte Piloten und die aktuelle Echelon-Pipeline.",
+    "Veröffentlichte Pilotmodelle und die aktuelle Echelon-Pipeline.",
   "Ghost and Replay for controlled agent execution.":
-    "Ghost und Replay für kontrollierte Agentenausführung.",
+    "Ghost und Replay für die kontrollierte Ausführung von KI-Agenten.",
   "Source-linked records for reproducibility and reuse.":
-    "Quellenverknüpfte Nachweise zu Reproduzierbarkeit und Wiederverwendung.",
-  "Explore models": "Modelle entdecken",
+    "Mit Quellen verlinkte Nachweise zu Reproduzierbarkeit und Nachnutzung.",
+  "Explore models": "Modelle ansehen",
   "Founder & Independent AI Research Developer":
-    "Gründer & unabhängiger KI-Forschungsentwickler",
+    "Gründer & unabhängiger Entwickler in der KI-Forschung",
   "Jonas Désiré Cikemgil is a Berlin-based independent AI developer focused on compact language models, documented training pipelines, agent infrastructure and local inference.":
-    "Jonas Désiré Cikemgil ist ein unabhängiger KI-Entwickler aus Berlin. Sein Schwerpunkt liegt auf kompakten Sprachmodellen, dokumentierten Trainingspipelines, Agenten-Infrastruktur und lokaler Inferenz.",
+    "Jonas Désiré Cikemgil ist unabhängiger KI-Entwickler in Berlin. Seine Schwerpunkte sind kompakte Sprachmodelle, dokumentierte Trainingspipelines, Infrastruktur für KI-Agenten und lokale Inferenz.",
   "Compact language models": "Kompakte Sprachmodelle",
   "Documented training pipelines": "Dokumentierte Trainingspipelines",
   "GGUF deployment": "GGUF-Bereitstellung",
@@ -113,221 +113,222 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "GitHub link pending": "GitHub-Link ausstehend",
   "Private individual / independent initiative":
     "Privatperson / unabhängige Initiative",
-  Explore: "Entdecken",
+  Explore: "Mehr erfahren",
   Publications: "Publikationen",
   Reproducibility: "Reproduzierbarkeit",
   "Data & training": "Daten & Training",
   "Responsible use": "Verantwortungsvolle Nutzung",
-  Licensing: "Lizenzierung",
+  Licensing: "Lizenzen",
   Status: "Status",
   FAQ: "FAQ",
   Imprint: "Impressum",
   Privacy: "Datenschutz",
   "INDEPENDENT AI RESEARCH": "UNABHÄNGIGE KI-FORSCHUNG",
   "Smaller Models.": "Kleinere Modelle.",
-  "Focused Intelligence.": "Gezielte Intelligenz.",
+  "Focused Intelligence.": "Fokussierte Intelligenz.",
   "rappidAI documents compact German-language model experiments, GGUF releases and local-inference workflows. The two public Quantum pilots are experimental base-completion models; Echelon is the current strategic model line and remains at pipeline and preflight stage.":
-    "rappidAI dokumentiert kompakte deutschsprachige Modellexperimente, GGUF-Veröffentlichungen und Abläufe für lokale Inferenz. Die beiden öffentlichen Quantum-Piloten sind experimentelle Base-Completion-Modelle; Echelon ist die aktuelle strategische Modelllinie und befindet sich weiterhin in der Pipeline- und Preflight-Phase.",
+    "rappidAI dokumentiert Experimente mit kompakten deutschsprachigen Modellen, GGUF-Veröffentlichungen und Abläufe für lokale Inferenz. Die beiden öffentlichen Quantum-Pilotmodelle sind experimentelle Basismodelle für Textfortsetzung. Echelon ist die aktuelle strategische Modelllinie und befindet sich weiterhin in der Pipeline- und Preflight-Phase.",
   "The work is intended for developers, researchers, students and builders investigating small-model training, documented evaluation and local deployment with limited compute. The current pilots are research artifacts, not chat assistants or production systems.":
-    "Die Arbeit richtet sich an Entwickler, Forschende, Studierende und Gestaltende, die Training kleiner Modelle, dokumentierte Evaluation und lokale Bereitstellung mit begrenzten Rechenressourcen untersuchen. Die aktuellen Piloten sind Forschungsartefakte, keine Chat-Assistenten oder Produktivsysteme.",
-  "Explore our models": "Unsere Modelle entdecken",
+    "Die Arbeit richtet sich an Entwickler, Forschende, Studierende und alle, die selbst Systeme bauen und sich mit dem Training kleiner Modelle, dokumentierter Evaluation und lokaler Bereitstellung bei begrenzter Rechenleistung befassen. Die aktuellen Pilotmodelle sind Forschungsartefakte – keine Chat-Assistenten und keine Produktivsysteme.",
+  "Explore our models": "Zu unseren Modellen",
   "View on Hugging Face": "Auf Hugging Face ansehen",
   "Current focus: Echelon data-pipeline validation, reproducibility and transparent evidence boundaries.":
-    "Aktueller Schwerpunkt: Validierung der Echelon-Datenpipeline, Reproduzierbarkeit und transparente Evidenzgrenzen.",
+    "Aktueller Schwerpunkt: Validierung der Echelon-Datenpipeline, Reproduzierbarkeit und klar ausgewiesene Grenzen des Belegten.",
   "RESEARCH THESIS": "FORSCHUNGSTHESE",
-  "FEATURED MODEL": "AUSGEWÄHLTES MODELL",
+  "FEATURED MODEL": "MODELL IM FOKUS",
   "Experimental model. Not production-ready and not intended as a production assistant.":
-    "Experimentelles Modell. Nicht produktionsreif und nicht als Produktivassistent vorgesehen.",
+    "Experimentelles Modell. Nicht produktionsreif und nicht als Assistent für den Produktiveinsatz gedacht.",
   "MODEL EVOLUTION": "MODELLENTWICKLUNG",
   "From 49.3M pilot releases to the quantum-1-echelon pipeline.":
-    "Von Pilotveröffentlichungen mit 49,3 Mio. Parametern bis zur quantum-1-echelon-Pipeline.",
+    "Von den Pilotmodellen mit 49,3 Mio. Parametern zur quantum-1-echelon-Pipeline.",
   "CURRENT RESEARCH": "AKTUELLE FORSCHUNG",
   "Focused questions, practical constraints.":
-    "Gezielte Fragen, praktische Grenzen.",
+    "Gezielte Fragen, reale Randbedingungen.",
   "OPEN RESEARCH": "OFFENE FORSCHUNG",
   "Open publication is part of the research process.":
-    "Offene Veröffentlichung ist Teil des Forschungsprozesses.",
+    "Offene Veröffentlichung gehört zum Forschungsprozess.",
   "Where licensing and safety constraints allow, rappidAI publishes model artifacts, documentation, evaluation notes and implementation details so that work can be inspected and, when all required artifacts are available, reproduced.":
-    "Soweit Lizenz- und Sicherheitsbedingungen es zulassen, veröffentlicht rappidAI Modellartefakte, Dokumentation, Evaluationsnotizen und Implementierungsdetails, damit die Arbeit geprüft und – sobald alle erforderlichen Artefakte vorliegen – reproduziert werden kann.",
+    "Soweit Lizenz- und Sicherheitsvorgaben es zulassen, veröffentlicht rappidAI Modellartefakte, Dokumentation, Evaluationsnotizen und Implementierungsdetails. So lässt sich die Arbeit prüfen und – sobald alle nötigen Artefakte vorliegen – reproduzieren.",
   FOUNDER: "GRÜNDER",
   "Independent research, built from Berlin.":
     "Unabhängige Forschung aus Berlin.",
   CONTACT: "KONTAKT",
   "Interested in the research?": "Interesse an der Forschung?",
   "For technical discussions, collaboration enquiries or questions about the models, contact rappidAI directly.":
-    "Für technische Gespräche, Kooperationsanfragen oder Fragen zu den Modellen können Sie rappidAI direkt kontaktieren.",
-  "Contact rappidAI": "rappidAI kontaktieren",
+    "Für fachlichen Austausch, Kooperationsanfragen oder Fragen zu den Modellen erreichen Sie rappidAI direkt.",
+  "Contact rappidAI": "Kontakt aufnehmen",
   "Compact model experiments, documented clearly.":
     "Kompakte Modellexperimente, klar dokumentiert.",
   "Explore two public experimental pilot releases and the source-linked, in-development quantum-1-echelon pipeline.":
-    "Entdecken Sie zwei öffentliche experimentelle Pilotveröffentlichungen und die quellenverknüpfte quantum-1-echelon-Pipeline in Entwicklung.",
+    "Zwei öffentliche experimentelle Pilotmodelle und die entstehende quantum-1-echelon-Pipeline – mit Verweisen auf die Quellen.",
   "Filter models": "Modelle filtern",
   "Final parameter size not yet defined":
     "Endgültige Parametergröße noch nicht festgelegt",
   "No public model release exists, so no model license applies.":
-    "Es gibt keine öffentliche Modellveröffentlichung; daher gilt keine Modelllizenz.",
+    "Da kein Modell veröffentlicht wurde, gilt keine Modelllizenz.",
   "No public model release link is available.":
-    "Es ist kein Link zu einer öffentlichen Modellveröffentlichung verfügbar.",
+    "Es gibt keinen Link zu einem veröffentlichten Modell.",
   "Documented clearly, artifact by artifact.":
     "Klar dokumentiert, Artefakt für Artefakt.",
   "A source-linked evidence ledger for the released Quantum pilots and the current Echelon pipeline, including findings, negative results, reproducibility status and visible publication gaps.":
-    "Ein quellenverknüpftes Evidenzregister für die veröffentlichten Quantum-Piloten und die aktuelle Echelon-Pipeline – einschließlich Erkenntnissen, negativen Ergebnissen, Reproduzierbarkeitsstatus und sichtbaren Veröffentlichungslücken.",
+    "Ein Belegverzeichnis mit Quellenverweisen für die veröffentlichten Quantum-Pilotmodelle und die aktuelle Echelon-Pipeline – mit Befunden, negativen Ergebnissen, dem Stand der Reproduzierbarkeit und offen ausgewiesenen Lücken in der Veröffentlichung.",
   "Inspect the evidence, not just the claims.":
-    "Prüfen Sie die Evidenz, nicht nur die Aussagen.",
+    "Die Belege prüfen, nicht nur die Aussagen.",
   "Publications, reproducibility records, data provenance, responsible-use guidance, licensing boundaries and current project status in one evidence-bounded documentation hub.":
-    "Publikationen, Reproduzierbarkeitsnachweise, Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und aktueller Projektstatus in einem evidenzgebundenen Dokumentationsbereich.",
+    "Publikationen, Nachweise zur Reproduzierbarkeit, Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und aktueller Projektstatus – gebündelt an einem Ort und strikt an den Belegen ausgerichtet.",
   "An independent research initiative at an early stage.":
     "Eine unabhängige Forschungsinitiative in einer frühen Phase.",
   "WHAT RAPPIDAI IS": "WAS RAPPIDAI IST",
   "Learning through real model development.":
-    "Lernen durch reale Modellentwicklung.",
+    "Lernen durch echte Modellentwicklung.",
   "rappidAI develops compact language-model experiments and investigates training pipelines, evaluation, efficient inference and practical local deployment.":
-    "rappidAI entwickelt Experimente mit kompakten Sprachmodellen und untersucht Trainingspipelines, Evaluation, effiziente Inferenz und praktische lokale Bereitstellung.",
+    "rappidAI führt Experimente mit kompakten Sprachmodellen durch und untersucht Trainingspipelines, Evaluation, effiziente Inferenz und die praktische lokale Bereitstellung.",
   "WHAT RAPPIDAI IS NOT": "WAS RAPPIDAI NICHT IST",
   "Experimental work is not production capability.":
-    "Experimentelle Arbeit ist keine Produktivfähigkeit.",
+    "Experimentell heißt nicht produktionsreif.",
   "rappidAI is not presented as a frontier-scale laboratory. Its pilot models are experimental, unreliable in factual output and not intended as production assistants or for high-stakes decisions.":
-    "rappidAI wird nicht als Forschungslabor im Frontier-Maßstab dargestellt. Die Pilotmodelle sind experimentell, bei faktischen Ausgaben unzuverlässig und weder als Produktivassistenten noch für Entscheidungen mit hohem Risiko vorgesehen.",
+    "rappidAI tritt nicht als Forschungslabor im Frontier-Maßstab auf. Die Pilotmodelle sind experimentell, bei Faktenaussagen unzuverlässig und weder als Assistenten für den Produktiveinsatz noch für Entscheidungen mit hoher Tragweite gedacht.",
   "WHY COMPACT MODELS": "WARUM KOMPAKTE MODELLE",
   "Capability should be considered alongside resources.":
-    "Fähigkeit sollte gemeinsam mit dem Ressourcenbedarf betrachtet werden.",
+    "Leistungsfähigkeit und Ressourcenbedarf gemeinsam betrachten.",
   "Local inference can reduce dependence on external services and may keep prompts on the user’s device. Actual privacy depends on the application, configuration and surrounding infrastructure.":
-    "Lokale Inferenz kann die Abhängigkeit von externen Diensten verringern und Eingaben möglicherweise auf dem Gerät des Nutzers halten. Der tatsächliche Datenschutz hängt von Anwendung, Konfiguration und umgebender Infrastruktur ab.",
+    "Lokale Inferenz kann die Abhängigkeit von externen Diensten verringern und Eingaben unter Umständen auf dem eigenen Gerät halten. Wie gut die Privatsphäre tatsächlich geschützt ist, hängt von Anwendung, Konfiguration und umgebender Infrastruktur ab.",
   "PROJECT STRUCTURE": "PROJEKTSTRUKTUR",
-  "PUBLISHED WORK": "VERÖFFENTLICHTE ARBEIT",
-  "Two public experimental pilots.": "Zwei öffentliche experimentelle Piloten.",
+  "PUBLISHED WORK": "VERÖFFENTLICHTE ARBEITEN",
+  "Two public experimental pilots.":
+    "Zwei öffentliche experimentelle Pilotmodelle.",
   "rappidAI currently publishes two experimental German base-completion models: quantum-1-pilot and quantum-1.6-pilot. Both contain 49,295,872 parameters and are available as F16 GGUF files for local experimentation. The accompanying public repository documents the training, evaluation and GGUF-export workflow.":
-    "rappidAI veröffentlicht derzeit zwei experimentelle deutsche Base-Completion-Modelle: quantum-1-pilot und quantum-1.6-pilot. Beide enthalten 49.295.872 Parameter und stehen als F16-GGUF-Dateien für lokale Experimente zur Verfügung. Das zugehörige öffentliche Repository dokumentiert den Ablauf für Training, Evaluation und GGUF-Export.",
+    "rappidAI veröffentlicht derzeit zwei experimentelle deutsche Basismodelle für Textfortsetzung: quantum-1-pilot und quantum-1.6-pilot. Beide haben 49.295.872 Parameter und stehen als F16-GGUF-Dateien für lokale Experimente bereit. Das zugehörige öffentliche Repository dokumentiert den Ablauf von Training, Evaluation und GGUF-Export.",
   "The public releases and source repository document the artifacts and intended workflow, but final run manifests and complete training logs are not linked. The releases do not demonstrate production readiness, reliable factual answering or competitiveness with larger general-purpose models.":
-    "Die öffentlichen Veröffentlichungen und das Quell-Repository dokumentieren die Artefakte und den vorgesehenen Ablauf, verlinken jedoch keine abschließenden Run-Manifeste oder vollständigen Trainingsprotokolle. Die Veröffentlichungen belegen weder Produktreife noch verlässliche faktische Antworten oder Wettbewerbsfähigkeit gegenüber größeren Allzweckmodellen.",
-  "View public models": "Öffentliche Modelle ansehen",
+    "Die veröffentlichten Modelle und das Quell-Repository dokumentieren die Artefakte und den vorgesehenen Ablauf; abschließende Manifeste der Trainingsläufe und vollständige Trainingsprotokolle sind jedoch nicht verlinkt. Die Veröffentlichungen belegen weder Produktionsreife noch zuverlässige Antworten auf Faktenfragen oder Wettbewerbsfähigkeit gegenüber größeren Allzweckmodellen.",
+  "View public models": "Veröffentlichte Modelle ansehen",
   "CURRENT DIRECTION": "AKTUELLE AUSRICHTUNG",
   "The Echelon model line.": "Die Echelon-Modelllinie.",
   "EXPERIMENTAL OUTPUTS": "EXPERIMENTELLE AUSGABEN",
-  "Limitations are communicated directly.":
-    "Einschränkungen werden direkt benannt.",
+  "Limitations are communicated directly.": "Grenzen benennen wir offen.",
   "Research outputs may be limited, repetitive, factually unreliable and inconsistent. They should be inspected as experiments, not treated as production systems.":
-    "Forschungsausgaben können begrenzt, repetitiv, faktisch unzuverlässig und inkonsistent sein. Sie sollten als Experimente geprüft und nicht als Produktivsysteme behandelt werden.",
+    "Die Ausgaben der Forschungsmodelle können begrenzt, repetitiv, faktisch unzuverlässig und inkonsistent sein. Sie sind als Experimente zu prüfen, nicht als Produktivsysteme zu behandeln.",
   "Contact and research profiles": "Kontakt und Forschungsprofile",
-  "Email contact is unavailable.": "E-Mail-Kontakt ist nicht verfügbar.",
+  "Email contact is unavailable.": "Kontakt per E-Mail ist nicht verfügbar.",
   "Technical questions": "Technische Fragen",
   "Open-source collaboration": "Open-Source-Zusammenarbeit",
-  "Model feedback": "Modellfeedback",
+  "Model feedback": "Feedback zu den Modellen",
   "Project enquiries": "Projektanfragen",
   "Send an enquiry": "Anfrage vorbereiten",
   "Complete the fields below to prepare an email in your own email application. Nothing is transmitted or stored by this website.":
-    "Füllen Sie die folgenden Felder aus, um eine E-Mail in Ihrer eigenen E-Mail-Anwendung vorzubereiten. Über diese Website wird nichts übertragen oder gespeichert.",
+    "Füllen Sie die Felder aus, um eine E-Mail in Ihrer eigenen E-Mail-Anwendung vorzubereiten. Die Website selbst überträgt oder speichert nichts.",
   "Direct email contact is unavailable.":
-    "Direkter E-Mail-Kontakt ist nicht verfügbar.",
+    "Direkter Kontakt per E-Mail ist nicht verfügbar.",
   "No recipient is configured for the email draft. Use the linked research profiles for public project context.":
-    "Für den E-Mail-Entwurf ist kein Empfänger konfiguriert. Nutzen Sie die verlinkten Forschungsprofile für öffentlichen Projektkontext.",
+    "Für den E-Mail-Entwurf ist kein Empfänger hinterlegt. Öffentliche Informationen zum Projekt finden Sie über die verlinkten Forschungsprofile.",
   Name: "Name",
-  "Enter your name.": "Geben Sie Ihren Namen ein.",
+  "Enter your name.": "Bitte geben Sie Ihren Namen ein.",
   Email: "E-Mail",
-  "Enter your email address.": "Geben Sie Ihre E-Mail-Adresse ein.",
-  "Enter a valid email address.": "Geben Sie eine gültige E-Mail-Adresse ein.",
+  "Enter your email address.": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+  "Enter a valid email address.":
+    "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
   Subject: "Betreff",
-  "Enter a subject.": "Geben Sie einen Betreff ein.",
+  "Enter a subject.": "Bitte geben Sie einen Betreff ein.",
   Message: "Nachricht",
-  "Enter a message.": "Geben Sie eine Nachricht ein.",
+  "Enter a message.": "Bitte geben Sie eine Nachricht ein.",
   "Continue in email app": "In E-Mail-App fortfahren",
   "Opening your email application. Your message has not been sent yet.":
-    "Ihre E-Mail-Anwendung wird geöffnet. Ihre Nachricht wurde noch nicht gesendet.",
+    "Ihre E-Mail-Anwendung wird geöffnet. Die Nachricht ist noch nicht gesendet.",
   "Message sending is not configured. Your message has not been sent.":
-    "Der Nachrichtenversand ist nicht konfiguriert. Ihre Nachricht wurde nicht gesendet.",
-  "Provider information": "Anbieterinformationen",
+    "Der Nachrichtenversand ist nicht eingerichtet. Ihre Nachricht wurde nicht gesendet.",
+  "Provider information": "Angaben zum Anbieter",
   "Provider information for rappidAI research, an independent initiative operated by Jonas Désiré Cikemgil.":
-    "Anbieterinformationen für rappidAI research, eine unabhängige Initiative von Jonas Désiré Cikemgil.",
-  "Project identity": "Projektidentität",
+    "Angaben zum Anbieter von rappidAI research, einer unabhängigen Initiative, betrieben von Jonas Désiré Cikemgil.",
+  "Project identity": "Projektbezeichnung",
   "General location": "Allgemeiner Standort",
   "Berlin, Germany is a general project location, not a legal service address.":
-    "Berlin, Deutschland ist ein allgemeiner Projektstandort und keine ladungsfähige Anschrift.",
+    "Berlin, Deutschland ist der allgemeine Standort des Projekts, keine ladungsfähige Anschrift.",
   "Privacy information": "Datenschutzhinweise",
   "This page describes how the website handles personal data in its current implementation.":
-    "Diese Seite beschreibt, wie die Website in ihrer aktuellen Umsetzung mit personenbezogenen Daten umgeht.",
+    "Diese Seite beschreibt, wie die Website in ihrer derzeitigen Umsetzung mit personenbezogenen Daten umgeht.",
   "Controller information": "Verantwortlicher",
   "Jonas Désiré Cikemgil is the controller for this website. The controller address is recorded below.":
-    "Jonas Désiré Cikemgil ist der Verantwortliche für diese Website. Die Anschrift des Verantwortlichen ist nachfolgend aufgeführt.",
+    "Verantwortlicher für diese Website ist Jonas Désiré Cikemgil. Die Anschrift des Verantwortlichen ist unten aufgeführt.",
   Hosting: "Hosting",
   "The live website is hosted on Vercel. Processing location, server-log categories, purposes, legal bases and retention periods still require a verified, deployment-specific privacy and legal review.":
-    "Die Live-Website wird bei Vercel gehostet. Verarbeitungsort, Kategorien von Serverprotokollen, Zwecke, Rechtsgrundlagen und Speicherfristen erfordern weiterhin eine verifizierte, bereitstellungsspezifische Datenschutz- und Rechtsprüfung.",
+    "Die Live-Website wird bei Vercel gehostet. Für Verarbeitungsort, Kategorien der Serverprotokolle, Zwecke, Rechtsgrundlagen und Speicherfristen steht eine verifizierte, auf diese Bereitstellung bezogene Datenschutz- und Rechtsprüfung noch aus.",
   "Contact form": "Kontaktformular",
   "The contact form has no server endpoint. It validates entries locally and opens the visitor’s email application through a mailto link. The website itself does not transmit or store the entered message.":
-    "Das Kontaktformular besitzt keinen Server-Endpunkt. Es prüft Eingaben lokal und öffnet über einen mailto-Link die E-Mail-Anwendung des Besuchers. Die Website selbst überträgt oder speichert die eingegebene Nachricht nicht.",
+    "Das Kontaktformular hat keinen Server-Endpunkt. Es prüft die Eingaben lokal und öffnet über einen mailto-Link die E-Mail-Anwendung des Besuchers. Die Website selbst überträgt oder speichert die eingegebene Nachricht nicht.",
   "Analytics and marketing cookies": "Analyse- und Marketing-Cookies",
   "No analytics or marketing cookies are configured in this project.":
     "In diesem Projekt sind keine Analyse- oder Marketing-Cookies konfiguriert.",
   "External links": "Externe Links",
   "The website links to configured research profiles on Hugging Face and GitHub. Their operators are responsible for their own privacy practices when visitors follow those links.":
-    "Die Website verlinkt konfigurierte Forschungsprofile auf Hugging Face und GitHub. Wenn Besucher diesen Links folgen, sind deren Betreiber für ihre jeweiligen Datenschutzpraktiken verantwortlich.",
-  "Public experimental release": "Öffentliche experimentelle Veröffentlichung",
+    "Die Website verlinkt auf die hinterlegten Forschungsprofile bei Hugging Face und GitHub. Folgen Besucher diesen Links, sind die jeweiligen Betreiber für ihre eigenen Datenschutzpraktiken verantwortlich.",
+  "Public experimental release": "Experimentell veröffentlicht",
   "Public legacy and base-model experiment for compact German completion research.":
-    "Öffentliches Legacy- und Basismodell-Experiment für die Forschung an kompakten deutschen Textvervollständigungsmodellen.",
+    "Öffentliches historisches Basismodell-Experiment aus der Forschung zu kompakten Modellen für deutsche Textfortsetzung.",
   "49,295,872 parameters": "49.295.872 Parameter",
   "Experimental German completion model":
-    "Experimentelles deutsches Textvervollständigungsmodell",
+    "Experimentelles Modell für deutsche Textfortsetzung",
   "Legacy research reference": "Historische Forschungsreferenz",
-  "Local completion experiments": "Lokale Textvervollständigungsexperimente",
+  "Local completion experiments": "Lokale Experimente zur Textfortsetzung",
   German: "Deutsch",
   "Baseline release in the Quantum series and predecessor to quantum-1.6-pilot. Its public manifest uses the historical model ID quantum-1-base.":
-    "Basisveröffentlichung der Quantum-Reihe und Vorgänger von quantum-1.6-pilot. Das öffentliche Manifest verwendet die historische Modell-ID quantum-1-base.",
+    "Ausgangsversion der Quantum-Reihe und Vorgänger von quantum-1.6-pilot. Das öffentliche Manifest führt das Modell unter der historischen ID quantum-1-base.",
   "Publicly available as an experimental F16 GGUF release on Hugging Face.":
-    "Öffentlich als experimentelle F16-GGUF-Veröffentlichung auf Hugging Face verfügbar.",
+    "Als experimentelle F16-GGUF-Veröffentlichung öffentlich auf Hugging Face verfügbar.",
   "All rights reserved: no public reuse license is granted for the pilot weights, GGUF artifacts or tokenizers. Redistribution, modification and commercial use are not granted; do not describe these artifacts as open weight. Downloadability does not change this boundary.":
-    "Alle Rechte vorbehalten: Für Pilotgewichte, GGUF-Artefakte und Tokenizer wird keine öffentliche Wiederverwendungslizenz erteilt. Rechte zur Weiterverbreitung, Veränderung und kommerziellen Nutzung werden nicht eingeräumt; diese Artefakte dürfen nicht als Open Weight bezeichnet werden. Die Downloadmöglichkeit ändert diese Grenze nicht.",
+    "Alle Rechte vorbehalten: Für die Gewichte der Pilotmodelle, die GGUF-Artefakte und die Tokenizer wird keine öffentliche Lizenz zur Weiterverwendung erteilt. Rechte zur Weiterverbreitung, Veränderung und kommerziellen Nutzung werden nicht eingeräumt; diese Artefakte dürfen nicht als Open Weight bezeichnet werden. Dass sie heruntergeladen werden können, ändert an dieser Grenze nichts.",
   "No model license is currently stated in the public repository. Downloadability does not by itself define reuse rights.":
-    "Im öffentlichen Repository ist derzeit keine Modelllizenz angegeben. Die Möglichkeit zum Herunterladen definiert für sich allein keine Wiederverwendungsrechte.",
+    "Im öffentlichen Repository ist derzeit keine Modelllizenz angegeben. Dass ein Modell heruntergeladen werden kann, begründet für sich genommen keine Rechte zur Weiterverwendung.",
   "Hugging Face model link pending": "Hugging-Face-Modelllink ausstehend",
   Version: "Version",
   Context: "Kontext",
-  "512 tokens": "512 Token",
+  "512 tokens": "512 Tokens",
   "Release format": "Veröffentlichungsformat",
   Prompting: "Prompting",
-  "Completion mode": "Vervollständigungsmodus",
-  "Hugging Face model card": "Hugging-Face-Modellkarte",
+  "Completion mode": "Textfortsetzung",
+  "Hugging Face model card": "Model Card auf Hugging Face",
   "llama.cpp compatibility is documented by the public release":
-    "Die Kompatibilität mit llama.cpp ist durch die öffentliche Veröffentlichung dokumentiert",
+    "Die Veröffentlichung dokumentiert die Kompatibilität mit llama.cpp",
   "This release provides the baseline for the Quantum model series and documents the first public small-scale German base-model experiment.":
-    "Diese Veröffentlichung bildet die Grundlage der Quantum-Modellreihe und dokumentiert das erste öffentliche deutsche Basismodell-Experiment im kleinen Maßstab.",
+    "Diese Veröffentlichung bildet die Ausgangsbasis der Quantum-Modellreihe und dokumentiert das erste öffentliche Experiment mit einem kleinen deutschen Basismodell.",
   "Semantically weak and factually unreliable output":
-    "Semantisch schwache und faktisch unzuverlässige Ausgabe",
+    "Semantisch schwache und faktisch unzuverlässige Ausgaben",
   "Outputs may be incomplete or incoherent":
-    "Ausgaben können unvollständig oder inkohärent sein",
+    "Ausgaben können unvollständig oder unzusammenhängend sein",
   "Limited to a 512-token context window":
-    "Auf ein Kontextfenster von 512 Token begrenzt",
+    "Kontextfenster auf 512 Tokens begrenzt",
   "No instruction tuning or chat alignment":
-    "Kein Instruction-Tuning oder Chat-Alignment",
+    "Kein Instruction-Tuning und kein Chat-Alignment",
   "No standardized task benchmarks have been published":
-    "Es wurden keine standardisierten Aufgaben-Benchmarks veröffentlicht",
+    "Keine standardisierten Aufgaben-Benchmarks veröffentlicht",
   "Not suitable for medicine, law, finance, safety or other high-stakes applications":
-    "Nicht für Medizin, Recht, Finanzen, Sicherheit oder andere Hochrisikoanwendungen geeignet",
+    "Nicht geeignet für Medizin, Recht, Finanzen, Sicherheit oder andere Anwendungen mit hoher Tragweite",
   "Not intended as a general production assistant":
-    "Nicht als allgemeiner Produktivassistent vorgesehen",
+    "Nicht als allgemeiner Assistent für den Produktiveinsatz gedacht",
   "49.3M parameters": "49,3 Mio. Parameter",
-  "German base-completion model": "Deutsches Base-Completion-Modell",
-  "German completion research": "Forschung zur deutschen Textvervollständigung",
+  "German base-completion model": "Deutsches Basismodell für Textfortsetzung",
+  "German completion research": "Forschung zur deutschen Textfortsetzung",
   "A 49.3M-parameter experimental German completion model released after a reported continued-pretraining stage.":
-    "Ein experimentelles deutsches Textvervollständigungsmodell mit 49,3 Mio. Parametern, das nach einer berichteten Continued-Pretraining-Phase veröffentlicht wurde.",
+    "Ein experimentelles Modell für deutsche Textfortsetzung mit 49,3 Mio. Parametern, veröffentlicht nach einer laut Angaben durchgeführten Phase fortgesetzten Pretrainings.",
   "LlamaForCausalLM-style experimental completion model":
-    "Experimentelles Textvervollständigungsmodell im Stil von LlamaForCausalLM",
+    "Experimentelles Modell für Textfortsetzung im Stil von LlamaForCausalLM",
   "Research into documented continued-pretraining workflows":
-    "Forschung zu dokumentierten Continued-Pretraining-Abläufen",
+    "Forschung zu dokumentierten Abläufen für fortgesetztes Pretraining",
   "Local German-language completion experiments":
-    "Lokale deutschsprachige Textvervollständigungsexperimente",
+    "Lokale Experimente zur deutschen Textfortsetzung",
   "The release card reports continued pretraining from Quantum 1 Base. The public configuration specifies weights-only initialization, a fresh optimizer, scheduler and step counter, and a frozen quantum-1 tokenizer; no final public run manifest verifies every configured detail.":
-    "Die Veröffentlichungskarte berichtet Continued Pretraining ausgehend von Quantum 1 Base. Die öffentliche Konfiguration legt eine Initialisierung nur der Gewichte, einen neuen Optimierer, Scheduler und Schrittzähler sowie einen eingefrorenen quantum-1-Tokenizer fest; kein abschließendes öffentliches Run-Manifest bestätigt jedes konfigurierte Detail.",
+    "Die Model Card der Veröffentlichung nennt fortgesetztes Pretraining ausgehend von Quantum 1 Base. Die öffentliche Konfiguration legt fest: Initialisierung nur aus den Gewichten, neuer Optimizer, Scheduler und Schrittzähler sowie ein eingefrorener quantum-1-Tokenizer. Ein abschließendes öffentliches Manifest des Trainingslaufs, das jedes konfigurierte Detail bestätigt, gibt es nicht.",
   "Publicly available as an experimental F16 GGUF release; the public artifact is 98,990,560 bytes.":
-    "Öffentlich als experimentelle F16-GGUF-Veröffentlichung verfügbar; das öffentliche Artefakt umfasst 98.990.560 Byte.",
-  "Model card": "Modellkarte",
-  "Model card link pending": "Modellkarten-Link ausstehend",
+    "Als experimentelle F16-GGUF-Veröffentlichung öffentlich verfügbar; das öffentliche Artefakt ist 98.990.560 Byte groß.",
+  "Model card": "Model Card",
+  "Model card link pending": "Link zur Model Card ausstehend",
   "F16 GGUF, 98,990,560 bytes (98.99 MB; 94.40 MiB)":
     "F16-GGUF, 98.990.560 Byte (98,99 MB; 94,40 MiB)",
   "1.6.0, matching the public quantum-1.6-pilot-v1.6.0-f16.gguf filename and release manifest":
-    "1.6.0, entsprechend dem öffentlichen Dateinamen quantum-1.6-pilot-v1.6.0-f16.gguf und dem Veröffentlichungsmanifest",
+    "1.6.0, entsprechend dem öffentlichen Dateinamen quantum-1.6-pilot-v1.6.0-f16.gguf und dem Manifest der Veröffentlichung",
   "LlamaForCausalLM-style; hidden size 512; intermediate size 1,536; 12 layers; 8 attention heads; 8 KV heads; tied embeddings":
-    "Im Stil von LlamaForCausalLM; Hidden Size 512; Intermediate Size 1.536; 12 Schichten; 8 Attention-Heads; 8 KV-Heads; gekoppelte Einbettungen",
-  "16,384 tokens": "16.384 Token",
-  "F16 GGUF, approximately 99 MB": "F16-GGUF, ungefähr 99 MB",
+    "Im Stil von LlamaForCausalLM; Hidden Size 512; Intermediate Size 1.536; 12 Schichten; 8 Attention-Heads; 8 KV-Heads; gekoppelte Embeddings",
+  "16,384 tokens": "16.384 Tokens",
+  "F16 GGUF, approximately 99 MB": "F16-GGUF, rund 99 MB",
   Architecture: "Architektur",
   Vocabulary: "Vokabular",
   Tokenizer: "Tokenizer",
@@ -338,30 +339,30 @@ export const deTranslations: Readonly<Record<string, string>> = {
   Quantization: "Quantisierung",
   Hardware: "Hardware",
   "Custom frozen quantum-1 tokenizer with a 16,384-token vocabulary":
-    "Benutzerdefinierter eingefrorener quantum-1-Tokenizer mit einem Vokabular von 16.384 Token",
+    "Eigener, eingefrorener quantum-1-Tokenizer mit einem Vokabular von 16.384 Tokens",
   "Approximately 100M German base-training tokens plus 500M additional German tokens, as documented in the public model card.":
-    "Ungefähr 100 Mio. deutsche Basistrainings-Token plus 500 Mio. zusätzliche deutsche Token, wie in der öffentlichen Modellkarte dokumentiert.",
+    "Rund 100 Mio. deutsche Tokens aus dem Basistraining plus 500 Mio. weitere deutsche Tokens, wie in der öffentlichen Model Card dokumentiert.",
   "The public configuration targets approximately 30,518 steps, derived from 500M tokens at an effective 16,384 tokens per step. A final public run log is not linked.":
-    "Die öffentliche Konfiguration zielt auf ungefähr 30.518 Schritte, abgeleitet aus 500 Mio. Token bei effektiv 16.384 Token pro Schritt. Ein abschließendes öffentliches Run-Protokoll ist nicht verlinkt.",
+    "Die öffentliche Konfiguration sieht rund 30.518 Schritte vor, abgeleitet aus 500 Mio. Tokens bei effektiv 16.384 Tokens pro Schritt. Ein abschließendes öffentliches Protokoll des Trainingslaufs ist nicht verlinkt.",
   "The Hugging Face model card reports validation loss 3.348852 and perplexity 28.4700. No versioned evaluation report or standardized downstream-task benchmarks have been published.":
-    "Die Hugging-Face-Modellkarte berichtet einen Validierungsverlust von 3,348852 und eine Perplexität von 28,4700. Es wurden weder ein versionierter Evaluationsbericht noch standardisierte Downstream-Aufgaben-Benchmarks veröffentlicht.",
+    "Die Model Card auf Hugging Face nennt einen Validierungs-Loss von 3,348852 und eine Perplexität von 28,4700. Es wurden weder ein versionierter Evaluationsbericht noch standardisierte Benchmarks für Downstream-Aufgaben veröffentlicht.",
   "The public release provides an F16 GGUF; no Q8 or Q4 variants are listed":
-    "Die öffentliche Veröffentlichung stellt ein F16-GGUF bereit; Q8- oder Q4-Varianten sind nicht aufgeführt",
+    "Die Veröffentlichung stellt ein F16-GGUF bereit; Q8- oder Q4-Varianten sind nicht aufgeführt",
   "Minimum RAM requirements have not been formally measured":
     "Der minimale RAM-Bedarf wurde nicht formal gemessen",
   "Training documentation": "Trainingsdokumentation",
   "Generation diagnosis": "Generierungsdiagnose",
   "llama.cpp compatibility is documented. Android comparison tooling exists, but no completed public Android validation report is currently linked.":
-    "Die Kompatibilität mit llama.cpp ist dokumentiert. Werkzeuge für Android-Vergleiche sind vorhanden, derzeit ist jedoch kein abgeschlossener öffentlicher Android-Validierungsbericht verlinkt.",
+    "Die Kompatibilität mit llama.cpp ist dokumentiert. Werkzeuge für Android-Vergleiche gibt es, ein abgeschlossener öffentlicher Validierungsbericht für Android ist derzeit jedoch nicht verlinkt.",
   "This release reports continued pretraining with a fixed architecture and tokenizer. Public configuration and code are available, but a final run manifest and complete training logs are not linked.":
-    "Diese Veröffentlichung berichtet Continued Pretraining mit fester Architektur und festem Tokenizer. Öffentliche Konfiguration und Code sind verfügbar, ein abschließendes Run-Manifest und vollständige Trainingsprotokolle sind jedoch nicht verlinkt.",
+    "Laut dieser Veröffentlichung wurde das Pretraining mit unveränderter Architektur und unverändertem Tokenizer fortgesetzt. Öffentliche Konfiguration und Code liegen vor; ein abschließendes Manifest des Trainingslaufs und vollständige Trainingsprotokolle sind jedoch nicht verlinkt.",
   "Third-party client compatibility has not been established by a published validation report":
-    "Die Kompatibilität mit Drittanbieter-Clients wurde nicht durch einen veröffentlichten Validierungsbericht belegt",
-  "German completion model": "Deutsches Textvervollständigungsmodell",
+    "Die Kompatibilität mit Clients von Drittanbietern ist durch keinen veröffentlichten Validierungsbericht belegt",
+  "German completion model": "Deutsches Modell für Textfortsetzung",
   "Pipeline and preflight stage — no trained model":
     "Pipeline- und Preflight-Phase – kein trainiertes Modell",
   "The current strategic Quantum model line. Public evidence covers an architecture preflight, a validated tokenizer and Garden data-pipeline smoke tests; no Echelon model has been trained or released.":
-    "Die aktuelle strategische Quantum-Modelllinie. Öffentliche Evidenz umfasst einen Architektur-Preflight, einen validierten Tokenizer und Smoke-Tests der Garden-Datenpipeline; kein Echelon-Modell wurde trainiert oder veröffentlicht.",
+    "Die aktuelle strategische Quantum-Modelllinie. Öffentlich belegt sind ein Architektur-Preflight, ein validierter Tokenizer und Smoke-Tests der Garden-Datenpipeline; ein Echelon-Modell wurde weder trainiert noch veröffentlicht.",
   "In-development German-language model line":
     "Deutschsprachige Modelllinie in Entwicklung",
   "Reproducible German-language base-model research":
@@ -369,14 +370,14 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "A later chat stage within the same Echelon model line":
     "Eine spätere Chat-Phase innerhalb derselben Echelon-Modelllinie",
   "German-language focus; the production corpus is not complete":
-    "Deutschsprachiger Schwerpunkt; der Produktionskorpus ist nicht vollständig",
+    "Schwerpunkt Deutsch; der Produktionskorpus ist nicht vollständig",
   "Public path configuration treats quantum-1-echelon-base and quantum-1-echelon-chat as stages or variants within the same quantum-1-echelon model line and forbids reuse of the pilot models, tokenizers and data.":
-    "Die öffentliche Pfadkonfiguration behandelt quantum-1-echelon-base und quantum-1-echelon-chat als Phasen oder Varianten innerhalb derselben quantum-1-echelon-Modelllinie und untersagt die Wiederverwendung der Pilotmodelle, Tokenizer und Daten.",
+    "Die öffentliche Pfadkonfiguration behandelt quantum-1-echelon-base und quantum-1-echelon-chat als Phasen oder Varianten derselben Modelllinie quantum-1-echelon und schließt die Wiederverwendung der Pilotmodelle, Tokenizer und Daten aus.",
   "No trained Echelon weights, checkpoints, GGUF files or Hugging Face model repository are publicly available.":
-    "Es sind keine trainierten Echelon-Gewichte, Checkpoints, GGUF-Dateien oder kein Hugging-Face-Modell-Repository öffentlich verfügbar.",
+    "Trainierte Echelon-Gewichte, Checkpoints, GGUF-Dateien oder ein Hugging-Face-Modell-Repository sind nicht öffentlich verfügbar.",
   "No model weights have been released. A license for any future quantum-1-echelon weights has not been documented.":
-    "Es wurden keine Modellgewichte veröffentlicht. Eine Lizenz für mögliche zukünftige quantum-1-echelon-Gewichte ist nicht dokumentiert.",
-  "Inspect implementation repository": "Implementierungs-Repository prüfen",
+    "Es wurden keine Modellgewichte veröffentlicht. Eine Lizenz für etwaige künftige quantum-1-echelon-Gewichte ist nicht dokumentiert.",
+  "Inspect implementation repository": "Zum Implementierungs-Repository",
   "Implementation repository unavailable":
     "Implementierungs-Repository nicht verfügbar",
   "Architecture status": "Architekturstatus",
@@ -385,53 +386,53 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Tokenizer validation report": "Tokenizer-Validierungsbericht",
   "Model-line path configuration": "Pfadkonfiguration der Modelllinie",
   "Configuration preflight only. The proposed Echelon Base configuration specifies 26 layers, hidden size 1,280, intermediate size 3,584, 20 attention heads and 5 KV heads. The committed preflight computes 506,333,440 trainable parameters; none of this is evidence of trained weights.":
-    "Nur Konfigurations-Preflight. Die vorgeschlagene Echelon-Base-Konfiguration legt 26 Schichten, eine Hidden Size von 1.280, eine Intermediate Size von 3.584, 20 Attention-Heads und 5 KV-Heads fest. Der eingecheckte Preflight berechnet 506.333.440 trainierbare Parameter; nichts davon ist ein Nachweis trainierter Gewichte.",
+    "Nur Konfigurations-Preflight. Die vorgeschlagene Echelon-Base-Konfiguration sieht 26 Schichten, eine Hidden Size von 1.280, eine Intermediate Size von 3.584, 20 Attention-Heads und 5 KV-Heads vor. Der im Repository hinterlegte Preflight errechnet 506.333.440 trainierbare Parameter; nichts davon belegt trainierte Gewichte.",
   "Configured context": "Konfigurierter Kontext",
   "2,048 tokens in the architecture and Garden pipeline configurations; not validated on a trained Echelon model.":
-    "2.048 Token in den Architektur- und Garden-Pipeline-Konfigurationen; nicht an einem trainierten Echelon-Modell validiert.",
+    "2.048 Tokens laut Architektur- und Garden-Pipeline-Konfiguration; nicht an einem trainierten Echelon-Modell validiert.",
   "SentencePiece BPE with a configured 32,768-token vocabulary. The committed validation report records 23 round-trip cases and 0 failures.":
-    "SentencePiece BPE mit einem konfigurierten Vokabular von 32.768 Token. Der eingecheckte Validierungsbericht verzeichnet 23 Round-Trip-Fälle und 0 Fehler.",
+    "SentencePiece BPE mit einem konfigurierten Vokabular von 32.768 Tokens. Der im Repository hinterlegte Validierungsbericht verzeichnet 23 Round-Trip-Fälle und 0 Fehler.",
   "Garden smoke test": "Garden-Smoke-Test",
   "5,001 documents seen, 1,559 accepted and 1,380,886 tokens produced. These are smoke-test results, not production-dataset totals.":
-    "5.001 Dokumente gesehen, 1.559 akzeptiert und 1.380.886 Token erzeugt. Dies sind Smoke-Test-Ergebnisse, keine Gesamtwerte eines Produktionsdatensatzes.",
+    "5.001 Dokumente gesichtet, 1.559 akzeptiert und 1.380.886 Tokens erzeugt. Das sind Ergebnisse eines Smoke-Tests, keine Gesamtwerte eines Produktionsdatensatzes.",
   "Production data run": "Produktionsdatenlauf",
   "Not yet available. The committed Phase 3 report states that the full production run had not started.":
-    "Noch nicht verfügbar. Der eingecheckte Phase-3-Bericht hält fest, dass der vollständige Produktionslauf nicht gestartet war.",
+    "Noch nicht verfügbar. Laut dem im Repository hinterlegten Bericht zu Phase 3 hatte der vollständige Produktionslauf noch nicht begonnen.",
   "Model training": "Modelltraining",
   "Not yet available. No completed Echelon training is claimed.":
-    "Noch nicht verfügbar. Es wird kein abgeschlossenes Echelon-Training behauptet.",
+    "Noch nicht verfügbar. Ein abgeschlossenes Echelon-Training wird nicht behauptet.",
   "Not yet available. No Echelon model outputs, loss curves or benchmark results are published.":
-    "Noch nicht verfügbar. Es sind keine Echelon-Modellausgaben, Verlustkurven oder Benchmark-Ergebnisse veröffentlicht.",
+    "Noch nicht verfügbar. Es wurden keine Ausgaben eines Echelon-Modells, keine Loss-Kurven und keine Benchmark-Ergebnisse veröffentlicht.",
   "The published work currently establishes pipeline readiness, artifact integrity and configuration boundaries. Echelon Base is the base-training stage; Echelon Chat is a later stage or variant in the same line. Neither is a separate released model family, and neither has public trained weights.":
-    "Die veröffentlichte Arbeit belegt derzeit Pipeline-Bereitschaft, Artefaktintegrität und Konfigurationsgrenzen. Echelon Base ist die Basistrainingsphase; Echelon Chat ist eine spätere Phase oder Variante derselben Linie. Keines ist eine separat veröffentlichte Modellfamilie, und für keines sind trainierte Gewichte öffentlich.",
+    "Die veröffentlichte Arbeit belegt derzeit die Einsatzbereitschaft der Pipeline, die Integrität der Artefakte und die Grenzen der Konfiguration. Echelon Base ist die Phase des Basistrainings; Echelon Chat ist eine spätere Phase oder Variante derselben Linie. Keine der beiden ist eine eigenständig veröffentlichte Modellfamilie, und für keine gibt es veröffentlichte trainierte Gewichte.",
   "The proposed architecture has passed a configuration preflight only":
-    "Die vorgeschlagene Architektur hat nur einen Konfigurations-Preflight durchlaufen",
+    "Die vorgeschlagene Architektur hat lediglich einen Konfigurations-Preflight durchlaufen",
   "The full Garden production-data run has not been published as completed":
-    "Der vollständige Garden-Produktionsdatenlauf wurde nicht als abgeschlossen veröffentlicht",
+    "Der vollständige Produktionslauf der Garden-Daten wurde nicht als abgeschlossen veröffentlicht",
   "No Echelon model training logs, checkpoints or weights are public":
-    "Es sind keine Echelon-Trainingsprotokolle, Checkpoints oder Gewichte öffentlich",
+    "Trainingsprotokolle, Checkpoints oder Gewichte von Echelon sind nicht öffentlich",
   "No Echelon model outputs or benchmark results are available":
-    "Es sind keine Echelon-Modellausgaben oder Benchmark-Ergebnisse verfügbar",
+    "Ausgaben oder Benchmark-Ergebnisse eines Echelon-Modells liegen nicht vor",
   "Training hardware, runtime, cost and energy use are not published":
     "Trainingshardware, Laufzeit, Kosten und Energieverbrauch sind nicht veröffentlicht",
   "A model license is not yet available because no model release exists":
-    "Eine Modelllizenz ist noch nicht verfügbar, da keine Modellveröffentlichung existiert",
+    "Eine Modelllizenz gibt es noch nicht, da kein Modell veröffentlicht wurde",
   "Not available for production use":
     "Nicht für den Produktiveinsatz verfügbar",
   "Configuration preflight only": "Nur Konfigurations-Preflight",
-  "No trained public model": "Kein öffentliches trainiertes Modell",
+  "No trained public model": "Kein trainiertes Modell veröffentlicht",
   "Tokenizer and data-pipeline evidence":
-    "Evidenz zu Tokenizer und Datenpipeline",
+    "Belege zu Tokenizer und Datenpipeline",
   "Echelon Base → later Chat stage": "Echelon Base → spätere Chat-Phase",
   All: "Alle",
-  "Public releases": "Öffentliche Veröffentlichungen",
+  "Public releases": "Veröffentlichte Modelle",
   "In development": "In Entwicklung",
   Published: "Veröffentlicht",
-  "Partial evidence": "Teilweise Evidenz",
+  "Partial evidence": "Teilweise belegt",
   "Not published": "Nicht veröffentlicht",
   "Not measured": "Nicht gemessen",
   "Not yet available": "Noch nicht verfügbar",
-  "Maintainer input required": "Angaben des Maintainers erforderlich",
+  "Maintainer input required": "Angabe des Maintainers ausstehend",
   Language: "Sprache",
   "current language": "aktuelle Sprache",
   "Switch to": "Wechseln zu",
@@ -461,32 +462,32 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Error:": "Fehler:",
   ENQUIRY: "ANFRAGE",
   "No message is transmitted or stored by this website.":
-    "Über diese Website wird keine Nachricht übertragen oder gespeichert.",
+    "Diese Website überträgt oder speichert keine Nachrichten.",
   "No message has been sent.": "Es wurde keine Nachricht gesendet.",
   "Primary sources": "Primärquellen",
   "DOCUMENTATION DIRECTORY": "DOKUMENTATIONSÜBERSICHT",
-  "Continue through the evidence.": "Weitere Evidenz prüfen.",
-  "Documentation by topic.": "Dokumentation nach Thema.",
+  "Continue through the evidence.": "Weiter zu den Belegen.",
+  "Documentation by topic.": "Dokumentation nach Themen.",
   "Every section keeps public evidence, configured targets and missing information visibly separate.":
-    "Jeder Bereich trennt öffentliche Evidenz, konfigurierte Zielwerte und fehlende Informationen sichtbar voneinander.",
+    "Jeder Bereich hält öffentliche Belege, konfigurierte Zielwerte und fehlende Angaben sichtbar auseinander.",
   "Open resource": "Ressource öffnen",
   "LAST REVIEWED": "ZULETZT GEPRÜFT",
-  "Inspect pinned snapshot": "Fixierten Snapshot prüfen",
+  "Inspect pinned snapshot": "Festgeschriebenen Stand prüfen",
   "Email rappidAI": "E-Mail an rappidAI",
   "CONTACT CHANNELS": "KONTAKTWEGE",
   "Typical enquiries": "Typische Anfragen",
   "REPORTING CHANNELS": "MELDEWEGE",
   "Public feedback, private security and sensitive concerns.":
-    "Öffentliches Feedback, private Sicherheitsmeldungen und sensible Anliegen.",
+    "Öffentliches Feedback, vertrauliche Sicherheitsmeldungen und sensible Anliegen.",
   "Open channel": "Kanal öffnen",
   Identity: "Identität",
   "This is the public project identity and is not a claim about a registered legal entity.":
-    "Dies ist die öffentliche Projektidentität und keine Aussage über eine eingetragene juristische Person.",
+    "Dies ist die öffentliche Bezeichnung des Projekts und keine Aussage über eine eingetragene juristische Person.",
   "Legal name": "Rechtlicher Name",
   "Legal form": "Rechtsform",
   Location: "Standort",
   "Service address": "Ladungsfähige Anschrift",
-  "Content responsibility": "Inhaltliche Verantwortung",
+  "Content responsibility": "Verantwortlich für den Inhalt",
   "Responsible person": "Verantwortliche Person",
   "Last reviewed": "Zuletzt geprüft",
   Controller: "Verantwortlicher",
@@ -494,33 +495,33 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "The configured hosting provider is":
     "Der konfigurierte Hosting-Anbieter ist",
   "Server-log categories, processing purpose, legal basis and retention period remain subject to deployment-specific verification and legal review. This notice does not infer provider behavior that has not been confirmed for the production deployment.":
-    "Kategorien von Serverprotokollen, Verarbeitungszweck, Rechtsgrundlage und Speicherfrist bleiben Gegenstand einer bereitstellungsspezifischen Prüfung und rechtlichen Bewertung. Dieser Hinweis leitet kein Verhalten des Anbieters ab, das für die Produktivbereitstellung nicht bestätigt wurde.",
+    "Kategorien der Serverprotokolle, Verarbeitungszweck, Rechtsgrundlage und Speicherfrist stehen unter dem Vorbehalt einer Verifizierung für die konkrete Bereitstellung und einer rechtlichen Prüfung. Dieser Hinweis schließt nicht auf ein Verhalten des Anbieters, das für die produktive Bereitstellung nicht bestätigt ist.",
   "The configured recipient is": "Der konfigurierte Empfänger ist",
   "The visitor chooses whether to send the prepared email in their own email application.":
-    "Der Besucher entscheidet selbst, ob die vorbereitete E-Mail in der eigenen E-Mail-Anwendung gesendet wird.",
+    "Ob die vorbereitete E-Mail in der eigenen E-Mail-Anwendung gesendet wird, entscheiden Besucher selbst.",
   "The site configuration indicates that analytics or marketing cookies are enabled. Providers, purposes, legal bases, retention periods and any required consent controls must be documented before those features are enabled.":
-    "Die Website-Konfiguration weist darauf hin, dass Analyse- oder Marketing-Cookies aktiviert sind. Anbieter, Zwecke, Rechtsgrundlagen, Speicherfristen und erforderliche Einwilligungsmechanismen müssen dokumentiert werden, bevor diese Funktionen aktiviert werden.",
+    "Laut Website-Konfiguration sind Analyse- oder Marketing-Cookies aktiviert. Anbieter, Zwecke, Rechtsgrundlagen, Speicherfristen und gegebenenfalls erforderliche Einwilligungsmechanismen müssen dokumentiert sein, bevor diese Funktionen aktiviert werden.",
   "The hosting provider remains unverified. Deployment-specific server-log details, retention periods, purposes and legal bases therefore remain open required information.":
-    "Der Hosting-Anbieter ist weiterhin nicht verifiziert. Bereitstellungsspezifische Details zu Serverprotokollen, Speicherfristen, Zwecken und Rechtsgrundlagen bleiben daher als erforderliche Angaben offen.",
+    "Der Hosting-Anbieter ist noch nicht verifiziert. Angaben zu Serverprotokollen, Speicherfristen, Zwecken und Rechtsgrundlagen der konkreten Bereitstellung stehen daher als erforderliche Informationen noch aus.",
   "Last reviewed 23 July 2026. Hosting-specific log categories, processing purposes, legal bases and retention periods remain verification and legal-review items.":
-    "Zuletzt geprüft am 23. Juli 2026. Hosting-spezifische Protokollkategorien, Verarbeitungszwecke, Rechtsgrundlagen und Speicherfristen bleiben Gegenstand der Verifikation und rechtlichen Prüfung.",
+    "Zuletzt geprüft am 23. Juli 2026. Protokollkategorien, Verarbeitungszwecke, Rechtsgrundlagen und Speicherfristen des Hostings müssen noch verifiziert und rechtlich geprüft werden.",
   "link pending": "Link ausstehend",
   "Parameter size": "Parametergröße",
   parameters: "Parameter",
   "Model type": "Modelltyp",
-  "Primary use": "Primäre Nutzung",
+  "Primary use": "Hauptzweck",
   Languages: "Sprachen",
   and: "und",
   experimentation: "Experimente",
   "German-language experimentation": "Deutschsprachige Experimente",
   "quantum-1.6-pilot model-card graphic showing approximately 50M parameters and research and local experimentation as the primary use":
-    "Modellkarten-Grafik zu quantum-1.6-pilot mit ungefähr 50 Mio. Parametern und Forschung sowie lokalen Experimenten als primärem Einsatzzweck",
+    "Model-Card-Grafik zu quantum-1.6-pilot: rund 50 Mio. Parameter, Hauptzweck Forschung und lokale Experimente",
   "DOCUMENTATION STATUS": "DOKUMENTATIONSSTATUS",
   "Evidence, gaps and reuse boundaries.":
-    "Evidenz, Lücken und Wiederverwendungsgrenzen.",
+    "Belege, Lücken und Grenzen der Nachnutzung.",
   "The resources hub turns “Documented clearly” into a public record of sources, reproducibility, data provenance, responsible use and unresolved information.":
-    "Der Ressourcenbereich macht aus „Klar dokumentiert“ eine öffentliche Dokumentation von Quellen, Reproduzierbarkeit, Datenherkunft, verantwortungsvoller Nutzung und ungeklärten Informationen.",
-  "Explore resources": "Ressourcen entdecken",
+    "Im Ressourcenbereich wird „Klar dokumentiert“ konkret: als öffentliche Dokumentation von Quellen, Reproduzierbarkeit, Datenherkunft, verantwortungsvoller Nutzung und noch ungeklärten Angaben.",
+  "Explore resources": "Zu den Ressourcen",
   "token input": "Token-Eingabe",
   "local output": "Lokale Ausgabe",
   "Pilot status": "Pilotstatus",
@@ -529,88 +530,88 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Not intended": "Nicht vorgesehen",
   "Design target": "Entwicklungsziel",
   "Local and resource-efficient experimentation.":
-    "Lokale und ressourceneffiziente Experimente.",
-  "Explore the research": "Forschung entdecken",
+    "Lokale, ressourcenschonende Experimente.",
+  "Explore the research": "Zur Forschung",
   "Factual output": "Faktische Ausgabe",
   "May be unreliable": "Kann unzuverlässig sein",
   "Response quality": "Antwortqualität",
-  "May be inconsistent": "Kann inkonsistent sein",
-  "High-stakes decisions": "Hochrisikoentscheidungen",
+  "May be inconsistent": "Kann schwanken",
+  "High-stakes decisions": "Folgenreiche Entscheidungen",
   "Not suitable": "Nicht geeignet",
   "Production assistant": "Produktivassistent",
-  "EARLY-STAGE RESEARCH": "FORSCHUNG IN FRÜHER PHASE",
+  "EARLY-STAGE RESEARCH": "FRÜHE FORSCHUNGSPHASE",
   Founder: "Gründer",
   "All models": "Alle Modelle",
   Summary: "Zusammenfassung",
   "Intended use": "Vorgesehene Nutzung",
   "Not specified": "Nicht angegeben",
-  Lineage: "Abstammung",
+  Lineage: "Herkunft",
   "Release status": "Veröffentlichungsstatus",
   License: "Lizenz",
   "Technical dossier": "Technisches Dossier",
-  "Documented model facts.": "Dokumentierte Modellfakten.",
+  "Documented model facts.": "Dokumentierte Fakten zum Modell.",
   "Information linked to public project sources. Unknown release dates, licensing terms and unsupported client compatibility are not inferred.":
-    "Informationen, die mit öffentlichen Projektquellen verknüpft sind. Unbekannte Veröffentlichungsdaten, Lizenzbedingungen und nicht belegte Client-Kompatibilität werden nicht abgeleitet.",
+    "Die Angaben sind mit öffentlichen Projektquellen verknüpft. Unbekannte Veröffentlichungsdaten, Lizenzbedingungen und nicht belegte Client-Kompatibilität ergänzen wir nicht durch Annahmen.",
   Inference: "Inferenz",
-  "Reference completion command": "Referenzbefehl für Vervollständigung",
+  "Reference completion command": "Referenzbefehl für Textfortsetzung",
   "Scrollable reference completion command":
-    "Scrollbarer Referenzbefehl für Vervollständigung",
+    "Scrollbarer Referenzbefehl für Textfortsetzung",
   "Completion prompting is the documented reference path. No chat template is promised.":
-    "Completion-Prompting ist der dokumentierte Referenzweg. Ein Chat-Template wird nicht zugesagt.",
+    "Der dokumentierte Referenzweg ist Prompting zur Textfortsetzung. Ein Chat-Template wird nicht zugesagt.",
   "Research context": "Forschungskontext",
   "How this release fits the experiment.":
-    "Wie diese Veröffentlichung in das Experiment einzuordnen ist.",
-  "Read the research methodology": "Forschungsmethodik lesen",
+    "Wie sich diese Veröffentlichung in das Experiment einfügt.",
+  "Read the research methodology": "Zur Forschungsmethodik",
   "Repository reference": "Repository-Referenz",
-  "The pilot model card.": "Die Modellkarte des Piloten.",
+  "The pilot model card.": "Die Model Card des Pilotmodells.",
   "A visual snapshot of the model's parameter size and intended research use.":
-    "Eine visuelle Momentaufnahme der Parametergröße und der vorgesehenen Forschungsnutzung des Modells.",
-  "RELATED RESOURCES": "ZUGEHÖRIGE RESSOURCEN",
-  "Inspect the wider evidence.": "Weiterführende Evidenz prüfen.",
-  Limitations: "Einschränkungen",
-  "Read the limits first.": "Lesen Sie zuerst die Grenzen.",
+    "Parametergröße und vorgesehener Forschungszweck des Modells auf einen Blick.",
+  "RELATED RESOURCES": "WEITERFÜHRENDE RESSOURCEN",
+  "Inspect the wider evidence.": "Weitere Belege prüfen.",
+  Limitations: "Grenzen",
+  "Read the limits first.": "Zuerst die Grenzen.",
   "This model is experimental and not production-ready. It must not be used for high-stakes decisions.":
-    "Dieses Modell ist experimentell und nicht produktionsreif. Es darf nicht für Hochrisikoentscheidungen eingesetzt werden.",
+    "Dieses Modell ist experimentell und nicht produktionsreif. Es darf nicht für Entscheidungen mit hoher Tragweite eingesetzt werden.",
   "Related research note": "Zugehörige Forschungsnotiz",
   "No public article is available yet.":
-    "Es ist noch kein öffentlicher Artikel verfügbar.",
+    "Ein öffentlicher Artikel liegt noch nicht vor.",
 
   // Rendered figures: model card, architecture stack, token scale, evidence map.
-  "MODEL CARD": "MODELLKARTE",
+  "MODEL CARD": "MODEL CARD",
   "Published architecture": "Veröffentlichte Architektur",
   "Configured architecture": "Konfigurierte Architektur",
   "Transformer stack diagram showing the configured layer count, hidden size and attention heads":
-    "Transformer-Stack-Diagramm mit konfigurierter Layer-Anzahl, verborgener Dimension und Attention-Heads",
+    "Diagramm des Transformer-Stacks mit konfigurierter Schichtzahl, Hidden Size und Attention-Heads",
   "Drawn from the committed preflight report. No Echelon model has been trained.":
-    "Gezeichnet nach dem eingecheckten Preflight-Bericht. Es wurde kein Echelon-Modell trainiert.",
+    "Dargestellt nach dem im Repository hinterlegten Preflight-Bericht. Es wurde kein Echelon-Modell trainiert.",
   "quantum-1.6-pilot · published architecture":
     "quantum-1.6-pilot · veröffentlichte Architektur",
   "49.3M released parameters against the 506M configured Echelon target.":
-    "49,3 Mio. veröffentlichte Parameter gegenüber dem konfigurierten Echelon-Ziel von 506 Mio.",
+    "49,3 Mio. veröffentlichte Parameter im Vergleich zum konfigurierten Echelon-Zielwert von 506 Mio.",
 
   "German-token corpus scale": "Korpusgröße in deutschen Tokens",
   "Reported base-model pretraining corpus.":
-    "Berichteter Vortrainings-Korpus des Basismodells.",
+    "Angegebener Pretraining-Korpus des Basismodells.",
   "Reported cumulative scope: approximately 100M base tokens plus 500M additional German tokens.":
-    "Berichteter kumulierter Umfang: ungefähr 100 Mio. Basis-Token plus 500 Mio. zusätzliche deutsche Token.",
+    "Angegebener Gesamtumfang: rund 100 Mio. Basis-Tokens plus 500 Mio. zusätzliche deutsche Tokens.",
   "Configured 8B training-token target. The production run has not started and no Echelon model has been trained.":
-    "Konfiguriertes Ziel von 8 Mrd. Trainings-Token. Der Produktionslauf wurde nicht gestartet und kein Echelon-Modell wurde trainiert.",
+    "Konfigurierter Zielwert: 8 Mrd. Trainings-Tokens. Der Produktionslauf hat nicht begonnen, und es wurde kein Echelon-Modell trainiert.",
   "Linear scale. Hatched bars mark configured targets, not measured runs.":
-    "Lineare Skala. Schraffierte Balken markieren konfigurierte Ziele, keine gemessenen Läufe.",
+    "Lineare Skala. Schraffierte Balken zeigen konfigurierte Zielwerte, keine gemessenen Läufe.",
 
   "Two released pilots. One untrained line.":
-    "Zwei veröffentlichte Piloten. Eine untrainierte Linie.",
+    "Zwei veröffentlichte Pilotmodelle. Eine untrainierte Linie.",
   "Released parameters": "Veröffentlichte Parameter",
-  "Configured Echelon target": "Konfiguriertes Echelon-Ziel",
+  "Configured Echelon target": "Konfigurierter Echelon-Zielwert",
   "Context window": "Kontextfenster",
   Measured: "Gemessen",
   "Configured, not trained": "Konfiguriert, nicht trainiert",
 
-  "EVIDENCE MAP": "EVIDENZKARTE",
+  "EVIDENCE MAP": "BELEGÜBERSICHT",
   "Every resource area with its current documentation status. Dashed cells are open gaps, not omissions.":
-    "Jeder Ressourcenbereich mit seinem aktuellen Dokumentationsstand. Gestrichelte Felder sind offene Lücken, keine Auslassungen.",
+    "Alle Ressourcenbereiche mit ihrem aktuellen Dokumentationsstand. Gestrichelte Felder markieren offene Lücken, keine Auslassungen.",
 
-  CONCLUSIONS: "SCHLUSSFOLGERUNGEN",
+  CONCLUSIONS: "FAZIT",
   ...deEchelonTranslations,
   ...deSentinelTranslations,
 };

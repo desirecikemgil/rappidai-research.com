@@ -46,9 +46,17 @@ export function TokenScaleVisual({
               </p>
               <p className="technical-number text-lg text-ink">
                 <CountUp
-                  value={step.tokens}
+                  value={step.tokens >= 1000 ? step.tokens / 1000 : step.tokens}
                   locale={locale}
-                  suffix={`M ${t(locale, "tokens")}`}
+                  suffix={`${
+                    step.tokens >= 1000
+                      ? locale === "de"
+                        ? " Mrd."
+                        : "B"
+                      : locale === "de"
+                        ? " Mio."
+                        : "M"
+                  } ${t(locale, "tokens")}`}
                 />
               </p>
             </div>

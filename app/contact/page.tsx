@@ -100,7 +100,7 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
           <Reveal className="liquid-surface h-fit p-6 sm:p-9">
             <p className="eyebrow">{t(locale, "CONTACT CHANNELS")}</p>
-            <h2 className="mt-5 max-w-[12ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
+            <h2 className="mt-5 max-w-[12ch] text-[clamp(1.9rem,3.3vw,3.25rem)] leading-[1.05] font-[520] tracking-[-0.045em] text-ink">
               {page.methodsHeading}
             </h2>
 

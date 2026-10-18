@@ -39,7 +39,7 @@ describe("German content", () => {
     expect(t("de", "Models")).toBe("Modelle");
     expect(t("de", "Research")).toBe("Forschung");
     expect(t("de", "Resources")).toBe("Ressourcen");
-    expect(t("de", "Partial evidence")).toBe("Teilweise Evidenz");
+    expect(t("de", "Partial evidence")).toBe("Teilweise belegt");
 
     const model = getModelBySlug("quantum-1-echelon", "de");
     expect(model?.status).toBe("in-development");

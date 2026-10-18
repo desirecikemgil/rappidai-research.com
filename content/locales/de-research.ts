@@ -1,373 +1,377 @@
 export const deResearchTranslations: Readonly<Record<string, string>> = {
   "Echelon architecture, tokenizer and Garden results retain this immutable evidence snapshot. The later compute plan has its own pinned revision and remains planning evidence.":
-    "Echelon-Ergebnisse zu Architektur, Tokenizer und Garden behalten diesen unveränderlichen Evidenzstand. Der spätere Compute-Plan hat eine eigene fixierte Revision und bleibt Planungsevidenz.",
+    "Die Echelon-Ergebnisse zu Architektur, Tokenizer und Garden bleiben an diesen unveränderlichen Belegstand gebunden. Der spätere Compute-Plan hat eine eigene festgeschriebene Revision und bleibt eine Planungsunterlage.",
   "We do not believe every useful AI system needs to be enormous.":
-    "Wir glauben nicht, dass jedes nützliche KI-System enorm groß sein muss.",
+    "Wir glauben nicht, dass jedes nützliche KI-System riesig sein muss.",
   "Our work focuses on compact architectures, documented training workflows, efficient inference and transparent evaluation. The goal is not to imitate frontier-scale laboratories, but to investigate where smaller systems can be genuinely useful.":
-    "Unsere Arbeit konzentriert sich auf kompakte Architekturen, dokumentierte Trainingsabläufe, effiziente Inferenz und transparente Evaluation. Ziel ist nicht, Forschungslabore im Frontier-Maßstab nachzuahmen, sondern zu untersuchen, wo kleinere Systeme tatsächlich nützlich sein können.",
+    "Wir arbeiten an kompakten Architekturen, dokumentierten Trainingsabläufen, effizienter Inferenz und transparenter Evaluation. Wir wollen nicht Labore im Frontier-Maßstab nachahmen, sondern herausfinden, wo kleinere Systeme wirklich nützlich sein können.",
   "Efficient by design": "Von Grund auf effizient",
   "Models should be evaluated not only by capability, but also by the resources they require.":
     "Modelle sollten nicht nur nach ihrer Leistungsfähigkeit, sondern auch nach ihrem Ressourcenbedarf bewertet werden.",
   "Local where possible": "Lokal, wo möglich",
   "Local inference can make AI more accessible and controllable while remaining less dependent on network connectivity.":
-    "Lokale Inferenz kann KI zugänglicher und kontrollierbarer machen und zugleich die Abhängigkeit von Netzwerkverbindungen verringern.",
-  "Open about limitations": "Offen über Einschränkungen",
+    "Lokale Inferenz kann KI zugänglicher und besser kontrollierbar machen – und unabhängiger von einer Netzwerkverbindung.",
+  "Open about limitations": "Offen mit Grenzen umgehen",
   "Experimental models must communicate their weaknesses as clearly as their strengths.":
     "Experimentelle Modelle müssen ihre Schwächen ebenso klar benennen wie ihre Stärken.",
   "Training pipelines": "Trainingspipelines",
   "Versioned architecture, tokenizer and data-preparation workflows with explicit evidence boundaries.":
-    "Versionierte Abläufe für Architektur, Tokenizer und Datenaufbereitung mit ausdrücklichen Evidenzgrenzen.",
+    "Versionierte Abläufe für Architektur, Tokenizer und Datenaufbereitung – mit klar ausgewiesenen Grenzen des Belegten.",
   "Quantization, memory efficiency and deployment through lightweight inference runtimes.":
-    "Quantisierung, Speichereffizienz und Bereitstellung über leichtgewichtige Inferenzlaufzeiten.",
+    "Quantisierung, Speichereffizienz und Bereitstellung über schlanke Inferenz-Runtimes.",
   "Comparing base and continued-pretraining stages through fixed prompts, next-token metrics and documented limitations.":
-    "Vergleich von Basis- und Continued-Pretraining-Phasen anhand fester Prompts, Next-Token-Metriken und dokumentierter Einschränkungen.",
+    "Basisphase und fortgesetztes Pretraining im Vergleich – anhand fester Prompts, Next-Token-Metriken und dokumentierter Einschränkungen.",
   "Public 49.3M-parameter base-completion experiment released as an F16 GGUF.":
-    "Öffentliches Base-Completion-Experiment mit 49,3 Mio. Parametern, veröffentlicht als F16-GGUF.",
+    "Öffentliches Experiment mit einem Basismodell für Textfortsetzung (49,3 Mio. Parameter), veröffentlicht als F16-GGUF.",
   "Public F16 GGUF release whose model card reports continued pretraining on 500M additional German tokens.":
-    "Öffentliche F16-GGUF-Veröffentlichung, deren Modellkarte Continued Pretraining mit 500 Mio. zusätzlichen deutschen Token berichtet.",
+    "Veröffentlicht als F16-GGUF; laut Model Card fortgesetztes Pretraining mit 500 Mio. zusätzlichen deutschen Tokens.",
   "Public base-architecture preflight, validated tokenizer and Garden pipeline smoke test; no trained model release.":
-    "Öffentlicher Preflight der Basisarchitektur, validierter Tokenizer und Smoke-Test der Garden-Pipeline; keine Veröffentlichung eines trainierten Modells.",
+    "Öffentliche Preflight-Prüfung der Basisarchitektur, validierter Tokenizer und Smoke-Test der Garden-Pipeline; kein trainiertes Modell veröffentlicht.",
   "From 100M to 600M German Tokens: Lessons from quantum-1.6-pilot":
-    "Von 100 Mio. zu 600 Mio. deutschen Token: Erkenntnisse aus quantum-1.6-pilot",
+    "Von 100 auf 600 Millionen deutsche Tokens: Erkenntnisse aus quantum-1.6-pilot",
   "A public artifact directly supports the statement.":
-    "Ein öffentliches Artefakt stützt die Aussage direkt.",
+    "Ein öffentliches Artefakt belegt die Aussage direkt.",
   "A configuration, preflight or smoke artifact exists, but it does not establish completion of the full experiment.":
-    "Ein Konfigurations-, Preflight- oder Smoke-Artefakt existiert, belegt jedoch nicht den Abschluss des vollständigen Experiments.",
+    "Es gibt ein Konfigurations-, Preflight- oder Smoke-Test-Artefakt; es belegt aber nicht, dass das vollständige Experiment abgeschlossen ist.",
   "The result may exist privately, but no public artifact supports it.":
-    "Das Ergebnis kann privat existieren, wird jedoch durch kein öffentliches Artefakt gestützt.",
+    "Das Ergebnis liegt möglicherweise intern vor, ist aber durch kein öffentliches Artefakt belegt.",
   "No committed measurement is available.":
-    "Es ist keine eingecheckte Messung verfügbar.",
+    "Im Repository liegt keine Messung vor.",
   "The relevant run or artifact is explicitly not complete.":
-    "Der relevante Lauf oder das Artefakt ist ausdrücklich nicht abgeschlossen.",
+    "Der betreffende Lauf oder das Artefakt ist ausdrücklich als nicht abgeschlossen ausgewiesen.",
   "A publication decision or verified project detail is still required.":
-    "Eine Veröffentlichungsentscheidung oder ein verifiziertes Projektdetail ist weiterhin erforderlich.",
+    "Eine Entscheidung zur Veröffentlichung oder eine geprüfte Projektangabe steht noch aus.",
   "quantum-1-pilot release": "Veröffentlichung von quantum-1-pilot",
   "Released model artifact": "Veröffentlichtes Modellartefakt",
   "Public F16 GGUF, model card, release manifest and SHA-256 checksum.":
-    "Öffentliches F16-GGUF, Modellkarte, Veröffentlichungsmanifest und SHA-256-Prüfsumme.",
+    "Öffentliches F16-GGUF, Model Card, Veröffentlichungsmanifest und SHA-256-Prüfsumme.",
   "No standardized benchmark results and no stated model license.":
-    "Keine standardisierten Benchmark-Ergebnisse und keine angegebene Modelllizenz.",
+    "Keine Ergebnisse standardisierter Benchmarks; keine Modelllizenz angegeben.",
   "quantum-1.6-pilot release": "Veröffentlichung von quantum-1.6-pilot",
   "Released continued-pretraining artifact":
-    "Veröffentlichtes Continued-Pretraining-Artefakt",
+    "Veröffentlichtes Artefakt aus fortgesetztem Pretraining",
   "Public F16 GGUF, model card, manifest, checksum and held-out validation metrics.":
-    "Öffentliches F16-GGUF, Modellkarte, Manifest, Prüfsumme und Hold-out-Validierungsmetriken.",
+    "Öffentliches F16-GGUF, Model Card, Manifest, Prüfsumme und Validierungsmetriken auf Hold-out-Daten.",
   "No standardized downstream benchmark and no raw public generation record.":
-    "Kein standardisierter Downstream-Benchmark und keine öffentliche Dokumentation roher Generierungen.",
+    "Kein standardisierter Downstream-Benchmark und keine öffentliche Dokumentation der Rohausgaben.",
   "Echelon Base architecture": "Echelon-Base-Architektur",
   "Configuration preflight": "Konfigurations-Preflight",
   "The committed preflight computes 506,333,440 parameters for the proposed configuration.":
-    "Der eingecheckte Preflight berechnet 506.333.440 Parameter für die vorgeschlagene Konfiguration.",
+    "Die im Repository hinterlegte Preflight-Prüfung ergibt für die vorgeschlagene Konfiguration 506.333.440 Parameter.",
   "This is a configuration result, not a trained model, checkpoint or capability result.":
-    "Dies ist ein Konfigurationsergebnis, kein trainiertes Modell, Checkpoint oder Fähigkeitsergebnis.",
+    "Das ist ein Konfigurationsergebnis – kein trainiertes Modell, kein Checkpoint und keine Aussage über Fähigkeiten.",
   "Tokenizer artifact": "Tokenizer-Artefakt",
   "Committed configuration, checksums, quality summary and 23-case round-trip validation with 0 failures.":
-    "Eingecheckte Konfiguration, Prüfsummen, Qualitätszusammenfassung und Round-Trip-Validierung mit 23 Fällen und 0 Fehlern.",
+    "Im Repository hinterlegt: Konfiguration, Prüfsummen, Qualitätsübersicht und Round-Trip-Validierung mit 23 Fällen und 0 Fehlern.",
   "Tokenizer validation does not establish model quality.":
     "Die Tokenizer-Validierung belegt keine Modellqualität.",
   "Echelon Garden pipeline": "Echelon-Garden-Pipeline",
   "Data-pipeline smoke and resilience tests":
     "Smoke- und Resilienztests der Datenpipeline",
   "The Phase 3 report records 5,001 documents seen, 1,559 accepted and 1,380,886 tokens produced in the final smoke test.":
-    "Der Phase-3-Bericht verzeichnet im abschließenden Smoke-Test 5.001 gesehene Dokumente, 1.559 akzeptierte Dokumente und 1.380.886 erzeugte Token.",
+    "Der Phase-3-Bericht verzeichnet für den abschließenden Smoke-Test 5.001 gesichtete und 1.559 übernommene Dokumente sowie 1.380.886 erzeugte Tokens.",
   "The same report states that the full production run had not started.":
-    "Derselbe Bericht hält fest, dass der vollständige Produktionslauf nicht gestartet war.",
+    "Derselbe Bericht hält fest, dass der vollständige Produktionslauf noch nicht begonnen hatte.",
   "Echelon production dataset": "Echelon-Produktionsdatensatz",
   "Production manifest and final split totals":
-    "Produktionsmanifest und endgültige Split-Gesamtwerte",
+    "Produktionsmanifest und endgültige Gesamtzahlen je Split",
   "A production configuration and targets are committed.":
-    "Eine Produktionskonfiguration und Zielwerte sind eingecheckt.",
+    "Produktionskonfiguration und Zielwerte sind im Repository hinterlegt.",
   "No completed production manifest or final dataset totals are published.":
-    "Es sind weder ein abgeschlossenes Produktionsmanifest noch endgültige Gesamtwerte des Datensatzes veröffentlicht.",
+    "Weder ein abgeschlossenes Produktionsmanifest noch endgültige Gesamtzahlen des Datensatzes sind veröffentlicht.",
   "Echelon model training": "Echelon-Modelltraining",
   "Training run, checkpoints and weights":
     "Trainingslauf, Checkpoints und Gewichte",
   "No completed training artifact is present in the public sources.":
-    "In den öffentlichen Quellen ist kein abgeschlossenes Trainingsartefakt vorhanden.",
+    "Die öffentlichen Quellen enthalten kein Artefakt eines abgeschlossenen Trainings.",
   "No Echelon loss curve, checkpoint, weight file, GGUF or model output is claimed.":
-    "Es werden keine Echelon-Verlustkurve, kein Checkpoint, keine Gewichtsdatei, kein GGUF und keine Modellausgabe beansprucht.",
+    "Es wird nicht behauptet, dass es für Echelon eine Verlustkurve, einen Checkpoint, eine Gewichtsdatei, ein GGUF oder Modellausgaben gibt.",
   "CURRENT MODEL LINE": "AKTUELLE MODELLLINIE",
   "What exists for quantum-1-echelon—and what does not.":
-    "Was für quantum-1-echelon existiert – und was nicht.",
+    "Was es für quantum-1-echelon gibt – und was nicht.",
   "quantum-1-echelon is the current strategic model line. Echelon Base is the planned base-training stage and Echelon Chat is a later stage or variant within that same line. They are not separate model families.":
-    "quantum-1-echelon ist die aktuelle strategische Modelllinie. Echelon Base ist die geplante Basistrainingsphase und Echelon Chat eine spätere Phase oder Variante innerhalb derselben Linie. Sie sind keine getrennten Modellfamilien.",
+    "quantum-1-echelon ist die aktuelle strategische Modelllinie. Echelon Base ist die geplante Phase des Basistrainings, Echelon Chat eine spätere Phase oder Variante derselben Linie. Es handelt sich nicht um getrennte Modellfamilien.",
   "Architecture preflight": "Architektur-Preflight",
   "The proposed Echelon Base configuration is machine-checked at 506,333,440 parameters within its configured target range.":
-    "Die vorgeschlagene Echelon-Base-Konfiguration wurde maschinell mit 506.333.440 Parametern innerhalb ihres konfigurierten Zielbereichs geprüft.",
+    "Die vorgeschlagene Echelon-Base-Konfiguration wurde maschinell geprüft: 506.333.440 Parameter, innerhalb des konfigurierten Zielbereichs.",
   "Configuration only · no trained weights":
     "Nur Konfiguration · keine trainierten Gewichte",
   "A 32,768-token SentencePiece BPE configuration, checksum list, quality summary and round-trip validation report are committed.":
-    "Eine SentencePiece-BPE-Konfiguration mit 32.768 Token, eine Prüfsummenliste, eine Qualitätszusammenfassung und ein Round-Trip-Validierungsbericht sind eingecheckt.",
+    "Im Repository hinterlegt sind eine SentencePiece-BPE-Konfiguration mit 32.768 Tokens, eine Prüfsummenliste, eine Qualitätsübersicht und ein Bericht zur Round-Trip-Validierung.",
   "Tokenizer artifact · not model evaluation":
     "Tokenizer-Artefakt · keine Modellevaluation",
   "Garden data pipeline": "Garden-Datenpipeline",
   "Smoke, integrity, interruption, resume and shutdown behavior are documented. The final smoke produced 1,380,886 tokens.":
-    "Smoke-, Integritäts-, Unterbrechungs-, Fortsetzungs- und Beendigungsverhalten sind dokumentiert. Der abschließende Smoke-Test erzeugte 1.380.886 Token.",
+    "Dokumentiert sind Smoke-Test, Integrität sowie das Verhalten bei Unterbrechung, Fortsetzung und Beenden. Der abschließende Smoke-Test erzeugte 1.380.886 Tokens.",
   "Production data run not started": "Produktionsdatenlauf nicht gestartet",
   "Echelon Base training": "Echelon-Base-Training",
   "No public training log, checkpoint, weights, evaluation record or model output exists.":
-    "Es existieren kein öffentliches Trainingsprotokoll, kein Checkpoint, keine Gewichte, keine Evaluationsdokumentation und keine Modellausgabe.",
+    "Es gibt kein öffentliches Trainingsprotokoll, keinen Checkpoint, keine Gewichte, keine Evaluationsdokumentation und keine Modellausgabe.",
   "No completion or capability claim":
-    "Keine Abschluss- oder Fähigkeitsaussage",
+    "Keine Aussage zu Abschluss oder Fähigkeiten",
   "Echelon Chat stage": "Echelon-Chat-Phase",
   "The repository reserves a chat-stage path within the Echelon family, but no trained chat artifact is published.":
-    "Das Repository reserviert innerhalb der Echelon-Familie einen Pfad für die Chat-Phase, es ist jedoch kein trainiertes Chat-Artefakt veröffentlicht.",
+    "Das Repository sieht innerhalb der Echelon-Familie einen Pfad für die Chat-Phase vor; ein trainiertes Chat-Artefakt ist jedoch nicht veröffentlicht.",
   "Stage within Echelon · not a separate family":
-    "Phase innerhalb von Echelon · keine separate Familie",
+    "Phase innerhalb von Echelon · keine eigene Familie",
   "Configured production targets": "Konfigurierte Produktionsziele",
   "The Garden production configuration targets 8,000,000,000 training tokens plus 10,000,000 validation and 10,000,000 test tokens at a 2,048-token context length.":
-    "Die Garden-Produktionskonfiguration zielt auf 8.000.000.000 Trainings-Token sowie 10.000.000 Validierungs- und 10.000.000 Test-Token bei einer Kontextlänge von 2.048 Token.",
+    "Zielwerte der Garden-Produktionskonfiguration: 8.000.000.000 Trainings-Tokens sowie je 10.000.000 Validierungs- und Test-Tokens bei einer Kontextlänge von 2.048 Tokens.",
   "These are configuration targets, not completed dataset totals. The website will not present them as achieved until a final public manifest exists.":
-    "Dies sind Konfigurationsziele, keine abgeschlossenen Gesamtwerte des Datensatzes. Die Website stellt sie erst dann als erreicht dar, wenn ein abschließendes öffentliches Manifest existiert.",
+    "Das sind Zielwerte der Konfiguration, keine Gesamtzahlen eines fertigen Datensatzes. Die Website stellt sie erst dann als erreicht dar, wenn ein abschließendes öffentliches Manifest vorliegt.",
   "More pilot training did not establish reliable generation.":
-    "Zusätzliches Pilottraining stellte keine zuverlässige Generierung her.",
+    "Zusätzliches Training führte beim Pilotmodell nicht zu zuverlässiger Textgenerierung.",
   "quantum-1.6-pilot completed the documented training, evaluation and GGUF path, while the public diagnosis still records factual unreliability and frequent repetition.":
-    "quantum-1.6-pilot durchlief den dokumentierten Trainings-, Evaluations- und GGUF-Weg, während die öffentliche Diagnose weiterhin faktische Unzuverlässigkeit und häufige Wiederholungen dokumentiert.",
+    "quantum-1.6-pilot hat den dokumentierten Ablauf aus Training, Evaluation und GGUF-Pfad abgeschlossen. Die öffentliche Diagnose verzeichnet dennoch weiterhin faktische Unzuverlässigkeit und häufige Wiederholungen.",
   "Held-out loss and perplexity are not evidence of factual accuracy or downstream capability.":
-    "Hold-out-Verlust und Perplexität sind kein Nachweis faktischer Genauigkeit oder Downstream-Fähigkeit.",
-  "Pipeline finding": "Pipeline-Erkenntnis",
+    "Verlust und Perplexität auf Hold-out-Daten belegen weder faktische Richtigkeit noch Fähigkeiten bei Downstream-Aufgaben.",
+  "Pipeline finding": "Pipeline-Befund",
   "The final Garden smoke accepted 31.17% of seen documents.":
-    "Der abschließende Garden-Smoke-Test akzeptierte 31,17 % der gesehenen Dokumente.",
+    "Der abschließende Garden-Smoke-Test übernahm 31,17 % der gesichteten Dokumente.",
   "The committed Phase 3 report records 5,001 documents seen and 1,559 accepted under the configured language, quality and structural filters.":
-    "Der eingecheckte Phase-3-Bericht verzeichnet 5.001 gesehene und 1.559 unter den konfigurierten Sprach-, Qualitäts- und Strukturfiltern akzeptierte Dokumente.",
+    "Der im Repository hinterlegte Phase-3-Bericht verzeichnet 5.001 gesichtete Dokumente, von denen 1.559 die konfigurierten Sprach-, Qualitäts- und Strukturfilter passierten.",
   "This is a smoke-test acceptance rate, not the yield of the unstarted production run.":
-    "Dies ist die Akzeptanzrate eines Smoke-Tests, nicht der Ertrag des nicht gestarteten Produktionslaufs.",
+    "Das ist die Übernahmequote eines Smoke-Tests, nicht die Ausbeute des noch nicht gestarteten Produktionslaufs.",
   "Engineering lesson": "Technische Erkenntnis",
   "Recovery behavior was validated before production scale.":
-    "Das Wiederherstellungsverhalten wurde vor dem Produktionsmaßstab validiert.",
+    "Die Wiederherstellung wurde bereits vor einem Lauf im Produktionsmaßstab validiert.",
   "The Garden implementation documents atomic checkpoints, safe partial-shard handling, dataset-state resume, a deterministic skip fallback and controlled shutdown behavior.":
-    "Die Garden-Implementierung dokumentiert atomare Checkpoints, den sicheren Umgang mit partiellen Shards, die Fortsetzung des Datensatzstatus, einen deterministischen Skip-Fallback und kontrolliertes Beendigungsverhalten.",
+    "Die Garden-Implementierung dokumentiert atomare Checkpoints, den sicheren Umgang mit unvollständigen Shards, das Fortsetzen anhand des Datensatzzustands, einen deterministischen Skip-Fallback und ein kontrolliertes Herunterfahren.",
   "This establishes pipeline resilience tests, not successful production-data completion.":
-    "Dies belegt Resilienztests der Pipeline, nicht den erfolgreichen Abschluss der Produktionsdaten.",
+    "Das belegt Resilienztests der Pipeline, nicht aber, dass die Produktionsdaten erfolgreich fertiggestellt wurden.",
   "Validation result": "Validierungsergebnis",
   "The Echelon tokenizer passed its committed round-trip suite.":
-    "Der Echelon-Tokenizer bestand seine eingecheckte Round-Trip-Testsuite.",
+    "Der Echelon-Tokenizer hat die im Repository hinterlegte Round-Trip-Testsuite bestanden.",
   "The public tokenizer report contains 23 prescribed cases and records 0 failed exact round trips, including German umlauts, Unicode, code, JSON and chat-control tokens.":
-    "Der öffentliche Tokenizer-Bericht enthält 23 vorgegebene Fälle und verzeichnet 0 fehlgeschlagene exakte Round Trips, darunter deutsche Umlaute, Unicode, Code, JSON und Chat-Control-Token.",
+    "Der öffentliche Tokenizer-Bericht umfasst 23 vorgegebene Fälle und verzeichnet 0 fehlgeschlagene exakte Round Trips – darunter deutsche Umlaute, Unicode, Code, JSON und Chat-Steuertokens.",
   "The suite is a tokenizer integrity check, not a language-model benchmark.":
-    "Die Suite ist eine Integritätsprüfung des Tokenizers, kein Sprachmodell-Benchmark.",
-  "Pilot release integrity": "Integrität der Pilotveröffentlichungen",
+    "Die Testsuite prüft die Integrität des Tokenizers; sie ist kein Benchmark für Sprachmodelle.",
+  "Pilot release integrity": "Integrität der veröffentlichten Pilotmodelle",
   "GGUF files, manifests and SHA-256 checksums are public.":
     "GGUF-Dateien, Manifeste und SHA-256-Prüfsummen sind öffentlich.",
-  "Model licenses remain unstated.": "Modelllizenzen bleiben ungenannt.",
-  "Pilot method and configuration": "Methode und Konfiguration der Piloten",
+  "Model licenses remain unstated.":
+    "Modelllizenzen sind weiterhin nicht angegeben.",
+  "Pilot method and configuration":
+    "Methode und Konfiguration der Pilotmodelle",
   "Training, data and diagnosis configurations are public.":
     "Trainings-, Daten- und Diagnosekonfigurationen sind öffentlich.",
   "Complete raw run logs and quoted generation records are not public.":
-    "Vollständige rohe Run-Protokolle und zitierte Generierungsnachweise sind nicht öffentlich.",
+    "Vollständige Rohprotokolle der Läufe und Nachweise zu zitierten Generierungen sind nicht öffentlich.",
   "Echelon architecture": "Echelon-Architektur",
   "Configuration and parameter-count preflight are public.":
-    "Konfiguration und Preflight der Parameterzahl sind öffentlich.",
+    "Konfiguration und Preflight-Prüfung der Parameterzahl sind öffentlich.",
   "No trained checkpoint or empirical model measurement exists.":
-    "Es existiert kein trainierter Checkpoint und keine empirische Modellmessung.",
+    "Es gibt weder einen trainierten Checkpoint noch empirische Messungen am Modell.",
   "Configuration, checksums, quality summary and validation report are public.":
-    "Konfiguration, Prüfsummen, Qualitätszusammenfassung und Validierungsbericht sind öffentlich.",
+    "Konfiguration, Prüfsummen, Qualitätsübersicht und Validierungsbericht sind öffentlich.",
   "No claim is made beyond the committed validation suite.":
-    "Über die eingecheckte Validierungssuite hinaus wird keine Aussage getroffen.",
+    "Über die im Repository hinterlegte Validierungssuite hinaus wird nichts behauptet.",
   "Echelon production data": "Echelon-Produktionsdaten",
   "Smoke evidence and production configuration are public.":
-    "Smoke-Evidenz und Produktionskonfiguration sind öffentlich.",
+    "Smoke-Test-Belege und Produktionskonfiguration sind öffentlich.",
   "Final manifest, realized split totals and production hashes are not published.":
-    "Abschließendes Manifest, tatsächlich erreichte Split-Gesamtwerte und Produktions-Hashes sind nicht veröffentlicht.",
+    "Abschließendes Manifest, tatsächliche Gesamtzahlen je Split und Produktions-Hashes sind nicht veröffentlicht.",
   "Echelon training and evaluation": "Echelon-Training und -Evaluation",
   "No completed training evidence is public.":
-    "Es ist keine Evidenz eines abgeschlossenen Trainings öffentlich.",
+    "Es gibt keine öffentlichen Belege für ein abgeschlossenes Training.",
   "Weights, logs, loss curves, outputs and benchmarks are unavailable.":
     "Gewichte, Protokolle, Verlustkurven, Ausgaben und Benchmarks sind nicht verfügbar.",
   "No committed measurement report is public.":
-    "Es ist kein eingecheckter Messbericht öffentlich.",
+    "Im Repository ist kein Messbericht veröffentlicht.",
   "Hardware use, runtime, cost, energy use and realized memory use remain unreported.":
-    "Hardwareeinsatz, Laufzeit, Kosten, Energieverbrauch und tatsächlicher Speicherbedarf bleiben unberichtet.",
+    "Zu Hardwareeinsatz, Laufzeit, Kosten, Energieverbrauch und tatsächlichem Speicherbedarf liegen bislang keine Angaben vor.",
   "Release and dataset licensing":
-    "Lizenzierung von Veröffentlichung und Datensatz",
+    "Lizenzen für Veröffentlichung und Datensatz",
   "Source and revision fields are present in the Garden configuration.":
-    "Quell- und Revisionsfelder sind in der Garden-Konfiguration vorhanden.",
+    "Die Garden-Konfiguration enthält Felder für Quelle und Revision.",
   "No Echelon model license exists because no model is released; final dataset publication terms are not documented.":
-    "Es existiert keine Echelon-Modelllizenz, da kein Modell veröffentlicht ist; endgültige Veröffentlichungsbedingungen für den Datensatz sind nicht dokumentiert.",
+    "Eine Echelon-Modelllizenz gibt es nicht, da kein Modell veröffentlicht ist. Endgültige Bedingungen für die Veröffentlichung des Datensatzes sind nicht dokumentiert.",
   "RESEARCH QUESTIONS": "FORSCHUNGSFRAGEN",
-  "Questions behind the experiments.": "Fragen hinter den Experimenten.",
+  "Questions behind the experiments.": "Die Fragen hinter den Experimenten.",
   "How much can a 49.3M-parameter German base model improve through continued pretraining while keeping its architecture and tokenizer unchanged?":
-    "Wie stark kann sich ein deutsches Basismodell mit 49,3 Mio. Parametern durch Continued Pretraining verbessern, wenn Architektur und Tokenizer unverändert bleiben?",
+    "Wie stark lässt sich ein deutsches Basismodell mit 49,3 Mio. Parametern durch fortgesetztes Pretraining verbessern, wenn Architektur und Tokenizer unverändert bleiben?",
   "Which limitations are caused by model scale, and which may result from export, prompting or inference configuration?":
-    "Welche Einschränkungen entstehen durch die Modellgröße, und welche könnten aus Export, Prompting oder Inferenzkonfiguration resultieren?",
+    "Welche Einschränkungen gehen auf die Modellgröße zurück – und welche könnten von Export, Prompting oder Inferenzkonfiguration herrühren?",
   "Can public GGUF checksums and fixed completion prompts support repeatable local llama.cpp comparisons?":
-    "Können öffentliche GGUF-Prüfsummen und feste Completion-Prompts wiederholbare lokale llama.cpp-Vergleiche unterstützen?",
+    "Können öffentliche GGUF-Prüfsummen und feste Prompts zur Textfortsetzung wiederholbare lokale Vergleiche mit llama.cpp ermöglichen?",
   "These are research questions. They define the investigation; they are not claims that the experiments have already answered each question.":
-    "Dies sind Forschungsfragen. Sie definieren die Untersuchung und sind keine Behauptung, dass die Experimente jede Frage bereits beantwortet hätten.",
-  "EXPERIMENT DESIGN": "EXPERIMENTDESIGN",
+    "Dies sind Forschungsfragen. Sie legen fest, was untersucht wird – sie behaupten nicht, dass die Experimente jede Frage bereits beantwortet haben.",
+  "EXPERIMENT DESIGN": "VERSUCHSAUFBAU",
   "A controlled continued-pretraining experiment.":
-    "Ein kontrolliertes Continued-Pretraining-Experiment.",
+    "Ein kontrolliertes Experiment zum fortgesetzten Pretraining.",
   "The public quantum-1.6-pilot configuration describes continued training from quantum-1-pilot while preserving the 49,295,872-parameter architecture, 512-token context and frozen quantum-1 tokenizer. It specifies a fresh optimizer, scheduler and step counter, but no final public run log verifies every configured detail.":
-    "Die öffentliche Konfiguration von quantum-1.6-pilot beschreibt fortgesetztes Training ausgehend von quantum-1-pilot unter Beibehaltung der Architektur mit 49.295.872 Parametern, des Kontexts von 512 Token und des eingefrorenen quantum-1-Tokenizers. Sie legt einen neuen Optimierer, Scheduler und Schrittzähler fest, doch kein abschließendes öffentliches Run-Protokoll bestätigt jedes konfigurierte Detail.",
+    "Die öffentliche Konfiguration von quantum-1.6-pilot beschreibt ein fortgesetztes Training ausgehend von quantum-1-pilot, bei dem die Architektur mit 49.295.872 Parametern, der Kontext von 512 Tokens und der eingefrorene quantum-1-Tokenizer erhalten bleiben. Sie legt einen neuen Optimierer, Scheduler und Schrittzähler fest; ein abschließendes öffentliches Laufprotokoll, das jedes konfigurierte Detail bestätigt, gibt es jedoch nicht.",
   "Same architecture": "Gleiche Architektur",
-  "Held constant": "Konstant gehalten",
+  "Held constant": "Unverändert",
   "Same parameter count": "Gleiche Parameterzahl",
   "Same context length": "Gleiche Kontextlänge",
   "Frozen tokenizer": "Eingefrorener Tokenizer",
   "Fresh optimizer and scheduler": "Neuer Optimierer und Scheduler",
-  "Configured run state": "Konfigurierter Run-Status",
+  "Configured run state": "Konfigurierter Laufzustand",
   "500M additional German training tokens":
-    "500 Mio. zusätzliche deutsche Trainings-Token",
-  "Reported release scope": "Berichteter Veröffentlichungsumfang",
-  "Public model card": "Öffentliche Modellkarte",
+    "500 Mio. zusätzliche deutsche Trainings-Tokens",
+  "Reported release scope": "Umfang laut Veröffentlichung",
+  "Public model card": "Öffentliche Model Card",
   "HYPOTHESIS AND OBSERVATION": "HYPOTHESE UND BEOBACHTUNG",
   "What was hypothesized, and what was publicly reported.":
-    "Was als Hypothese formuliert und was öffentlich berichtet wurde.",
+    "Was vermutet wurde – und was öffentlich berichtet ist.",
   "Continued pretraining on 500M additional German tokens should improve language-pattern consistency without changing the model architecture or tokenizer.":
-    "Continued Pretraining mit 500 Mio. zusätzlichen deutschen Token sollte die Konsistenz sprachlicher Muster verbessern, ohne Modellarchitektur oder Tokenizer zu verändern.",
+    "Fortgesetztes Pretraining mit 500 Mio. zusätzlichen deutschen Tokens sollte sprachliche Muster konsistenter machen, ohne Modellarchitektur oder Tokenizer zu verändern.",
   "The public Hugging Face release provides an F16 GGUF and reports validation loss 3.348852 and perplexity 28.4700. The model cards warn that generated text remains factually unreliable and may be incomplete or incoherent; complete run logs and raw evaluation outputs are not linked.":
-    "Die öffentliche Hugging-Face-Veröffentlichung stellt ein F16-GGUF bereit und berichtet einen Validierungsverlust von 3,348852 sowie eine Perplexität von 28,4700. Die Modellkarten warnen, dass generierter Text faktisch unzuverlässig bleibt und unvollständig oder inkohärent sein kann; vollständige Run-Protokolle und rohe Evaluationsausgaben sind nicht verlinkt.",
+    "Die Veröffentlichung auf Hugging Face stellt ein F16-GGUF bereit und nennt einen Validierungsverlust von 3,348852 sowie eine Perplexität von 28,4700. Die Model Cards warnen, dass generierter Text faktisch unzuverlässig bleibt und unvollständig oder inkohärent sein kann. Vollständige Laufprotokolle und rohe Evaluationsausgaben sind nicht verlinkt.",
   "These metrics describe next-token prediction on held-out data. They do not demonstrate factual accuracy, instruction following or downstream-task performance.":
-    "Diese Metriken beschreiben die Next-Token-Vorhersage auf zurückgehaltenen Daten. Sie belegen weder faktische Genauigkeit noch Instruction Following oder Downstream-Aufgabenleistung.",
+    "Diese Metriken beschreiben die Next-Token-Vorhersage auf zurückgehaltenen Daten. Sie belegen weder faktische Richtigkeit noch das Befolgen von Anweisungen oder die Leistung bei Downstream-Aufgaben.",
   "MODEL COMPARISON": "MODELLVERGLEICH",
   "One architecture, two training stages.":
     "Eine Architektur, zwei Trainingsphasen.",
   Property: "Eigenschaft",
   Parameters: "Parameter",
   "Model type": "Modelltyp",
-  "Base completion": "Base Completion",
+  "Base completion": "Basismodell (Textfortsetzung)",
   "Training scope": "Trainingsumfang",
-  "HF-reported approximately 100M tokens": "Laut HF ungefähr 100 Mio. Token",
-  "HF-reported 500M additional tokens": "Laut HF 500 Mio. zusätzliche Token",
+  "HF-reported approximately 100M tokens": "Laut HF ca. 100 Mio. Tokens",
+  "HF-reported 500M additional tokens": "Laut HF 500 Mio. zusätzliche Tokens",
   "Same frozen tokenizer": "Derselbe eingefrorene Tokenizer",
   "Public experiment": "Öffentliches Experiment",
   "Public release; continued pretraining reported":
-    "Öffentliche Veröffentlichung; Continued Pretraining berichtet",
+    "Veröffentlicht; fortgesetztes Pretraining berichtet",
   "The comparison documents the evolution of the training pipeline. It is not evidence of competitiveness with larger models.":
-    "Der Vergleich dokumentiert die Entwicklung der Trainingspipeline. Er ist kein Nachweis der Wettbewerbsfähigkeit gegenüber größeren Modellen.",
+    "Der Vergleich dokumentiert, wie sich die Trainingspipeline entwickelt hat. Er belegt keine Wettbewerbsfähigkeit gegenüber größeren Modellen.",
   "DATA PIPELINE": "DATENPIPELINE",
   "How the additional training data was prepared.":
     "Wie die zusätzlichen Trainingsdaten aufbereitet wurden.",
   "The public continued-pretraining configuration specifies German-language data from the FineWeb2-HQ `deu_Latn` subset. Its code is designed to clean documents, exactly deduplicate them, filter known documents from the earlier dataset and create stable training, validation and test splits.":
-    "Die öffentliche Continued-Pretraining-Konfiguration legt deutschsprachige Daten aus der FineWeb2-HQ-Teilmenge `deu_Latn` fest. Der Code ist dafür ausgelegt, Dokumente zu bereinigen, exakt zu deduplizieren, bekannte Dokumente aus dem früheren Datensatz zu filtern und stabile Trainings-, Validierungs- und Test-Splits zu erzeugen.",
+    "Die öffentliche Konfiguration für das fortgesetzte Pretraining sieht deutschsprachige Daten aus der FineWeb2-HQ-Teilmenge `deu_Latn` vor. Der zugehörige Code ist darauf ausgelegt, Dokumente zu bereinigen, exakt zu deduplizieren, bereits bekannte Dokumente aus dem früheren Datensatz herauszufiltern und stabile Splits für Training, Validierung und Test zu erzeugen.",
   "Exact fingerprint matching does not guarantee the removal of near-duplicates, lightly modified copies or semantically overlapping documents.":
-    "Der Abgleich exakter Fingerabdrücke garantiert nicht die Entfernung von Beinahe-Duplikaten, leicht veränderten Kopien oder semantisch überlappenden Dokumenten.",
+    "Ein Abgleich exakter Fingerabdrücke entfernt nicht zwingend Beinahe-Duplikate, leicht veränderte Kopien oder semantisch überlappende Dokumente.",
   "The public repository provides the pipeline configuration and method. It does not include a final quantum-1.6 data manifest with document counts, so no document totals are reported here.":
-    "Das öffentliche Repository stellt Pipeline-Konfiguration und Methode bereit. Es enthält kein abschließendes quantum-1.6-Datenmanifest mit Dokumentzahlen; daher werden hier keine Gesamtzahlen genannt.",
+    "Das öffentliche Repository enthält Konfiguration und Methode der Pipeline, aber kein abschließendes Datenmanifest für quantum-1.6 mit Dokumentzahlen. Deshalb werden hier keine Gesamtzahlen genannt.",
   "Data configuration": "Datenkonfiguration",
   "EVALUATION METHOD": "EVALUATIONSMETHODE",
   "How the public workflow frames evaluation.":
-    "Wie der öffentliche Ablauf die Evaluation definiert.",
+    "Wie der öffentliche Ablauf die Evaluation anlegt.",
   "Held-out metrics": "Hold-out-Metriken",
   "Validation loss and perplexity measure next-token prediction on reserved data.":
-    "Validierungsverlust und Perplexität messen die Next-Token-Vorhersage auf reservierten Daten.",
+    "Validierungsverlust und Perplexität messen die Next-Token-Vorhersage auf zurückgehaltenen Daten.",
   "Fixed prompts": "Feste Prompts",
   "Repeated German completion prompts allow qualitative comparison between checkpoints and inference paths.":
-    "Wiederholte deutsche Completion-Prompts ermöglichen qualitative Vergleiche zwischen Checkpoints und Inferenzwegen.",
+    "Wiederholt eingesetzte deutsche Prompts zur Textfortsetzung erlauben qualitative Vergleiche zwischen Checkpoints und Inferenzwegen.",
   "Controlled decoding": "Kontrollierte Decodierung",
   "Deterministic and controlled-sampling settings help separate model behavior from sampling variation.":
-    "Deterministische und kontrollierte Sampling-Einstellungen helfen, Modellverhalten von Sampling-Variation zu trennen.",
+    "Deterministische Einstellungen und kontrolliertes Sampling helfen, das Verhalten des Modells von zufälligen Schwankungen beim Sampling zu trennen.",
   "Failure documentation": "Fehlerdokumentation",
   "Repetition, factual inconsistency and incoherent continuation are treated as results rather than hidden.":
-    "Wiederholungen, faktische Inkonsistenz und inkohärente Fortsetzungen werden als Ergebnisse behandelt und nicht verborgen.",
+    "Wiederholungen, sachliche Widersprüche und inkohärente Fortsetzungen gelten als Ergebnisse und werden nicht verschwiegen.",
   "No versioned final evaluation report, raw generation record or standardized downstream-task benchmark has been published. The website does not imply benchmark competitiveness.":
-    "Es wurden kein versionierter abschließender Evaluationsbericht, keine Dokumentation roher Generierungen und kein standardisierter Downstream-Aufgaben-Benchmark veröffentlicht. Die Website suggeriert keine Benchmark-Wettbewerbsfähigkeit.",
+    "Veröffentlicht wurden bisher weder ein versionierter abschließender Evaluationsbericht noch eine Dokumentation der Rohausgaben oder ein standardisierter Benchmark für Downstream-Aufgaben. Die Website deutet keine Wettbewerbsfähigkeit in Benchmarks an.",
   "Evaluation prompts": "Evaluations-Prompts",
   "Diagnosis configuration": "Diagnosekonfiguration",
   "OBSERVED BEHAVIOR": "BEOBACHTETES VERHALTEN",
-  "Public evidence before examples.": "Öffentliche Evidenz vor Beispielen.",
+  "Public evidence before examples.":
+    "Erst öffentliche Belege, dann Beispiele.",
   "Reproducible example outputs have not yet been attached. This section will remain limited to documented failure categories until public evaluation artifacts are available.":
-    "Reproduzierbare Beispielausgaben wurden noch nicht beigefügt. Dieser Abschnitt bleibt auf dokumentierte Fehlerkategorien beschränkt, bis öffentliche Evaluationsartefakte verfügbar sind.",
+    "Reproduzierbare Beispielausgaben liegen noch nicht bei. Bis öffentliche Evaluationsartefakte verfügbar sind, beschränkt sich dieser Abschnitt auf dokumentierte Fehlerkategorien.",
   "The public diagnosis document defines a comparison method for PyTorch, GGUF and Android paths, but it does not include a completed Android capture or raw output records. The website therefore does not present those planned comparisons as completed evidence.":
-    "Das öffentliche Diagnosedokument definiert eine Vergleichsmethode für PyTorch-, GGUF- und Android-Pfade, enthält jedoch weder eine abgeschlossene Android-Aufzeichnung noch rohe Ausgabedaten. Die Website stellt diese geplanten Vergleiche daher nicht als abgeschlossene Evidenz dar.",
-  "FAILURE MODES": "FEHLERMODI",
-  "Known failure modes.": "Bekannte Fehlermodi.",
-  "Repetitive continuation": "Repetitive Fortsetzung",
+    "Das öffentliche Diagnosedokument legt eine Vergleichsmethode für PyTorch-, GGUF- und Android-Pfade fest, enthält aber weder eine abgeschlossene Android-Aufzeichnung noch rohe Ausgabedaten. Die Website stellt diese geplanten Vergleiche deshalb nicht als abgeschlossene Belege dar.",
+  "FAILURE MODES": "FEHLERBILDER",
+  "Known failure modes.": "Bekannte Fehlerbilder.",
+  "Repetitive continuation": "Repetitive Fortsetzungen",
   "Generated text may repeat patterns instead of developing a coherent continuation.":
     "Generierter Text kann Muster wiederholen, statt eine kohärente Fortsetzung zu entwickeln.",
   "Incomplete or incoherent continuations":
     "Unvollständige oder inkohärente Fortsetzungen",
   "Outputs may stop abruptly or lose semantic continuity.":
-    "Ausgaben können abrupt enden oder ihre semantische Kontinuität verlieren.",
+    "Ausgaben können abrupt abbrechen oder den inhaltlichen Zusammenhang verlieren.",
   "No instruction following": "Kein Instruction Following",
   "The pilots were released as base-completion models, not instruction-tuned assistants.":
-    "Die Piloten wurden als Base-Completion-Modelle veröffentlicht, nicht als instruction-getunte Assistenten.",
+    "Die Pilotmodelle wurden als Basismodelle für Textfortsetzung veröffentlicht, nicht als Assistenten mit Instruction Tuning.",
   "No chat alignment": "Kein Chat-Alignment",
   "No chat template or conversational alignment is promised.":
-    "Es werden weder ein Chat-Template noch Conversational Alignment zugesagt.",
-  "Limited 512-token context": "Begrenzter Kontext von 512 Token",
+    "Ein Chat-Template oder ein Alignment für Dialoge wird nicht zugesagt.",
+  "Limited 512-token context": "Kontext auf 512 Tokens begrenzt",
   "The architecture limits the available context window to 512 tokens.":
-    "Die Architektur begrenzt das verfügbare Kontextfenster auf 512 Token.",
+    "Die Architektur begrenzt das verfügbare Kontextfenster auf 512 Tokens.",
   "These behaviors make the pilot models unsuitable for production assistance and high-stakes decisions.":
-    "Diese Verhaltensweisen machen die Pilotmodelle für produktive Assistenz und Hochrisikoentscheidungen ungeeignet.",
+    "Damit eignen sich die Pilotmodelle weder als Assistenz im Produktivbetrieb noch für Entscheidungen mit hoher Tragweite.",
   INTERPRETATION: "INTERPRETATION",
   "What can—and cannot—be concluded.":
-    "Was geschlossen werden kann – und was nicht.",
+    "Was sich daraus schließen lässt – und was nicht.",
   "The public sources provide released GGUF artifacts, checksums, reported held-out metrics and code for the intended continued-training and evaluation workflow. They do not independently verify every run step without final manifests and logs.":
-    "Die öffentlichen Quellen stellen veröffentlichte GGUF-Artefakte, Prüfsummen, berichtete Hold-out-Metriken und Code für den vorgesehenen Ablauf von fortgesetztem Training und Evaluation bereit. Ohne abschließende Manifeste und Protokolle bestätigen sie nicht unabhängig jeden Run-Schritt.",
+    "Die öffentlichen Quellen umfassen veröffentlichte GGUF-Artefakte, Prüfsummen, berichtete Hold-out-Metriken und Code für den vorgesehenen Ablauf aus fortgesetztem Training und Evaluation. Ohne abschließende Manifeste und Protokolle lässt sich damit jedoch nicht jeder Schritt der Läufe unabhängig nachprüfen.",
   "It does not establish general language competence, factual reliability, instruction-following ability or production readiness.":
-    "Dies belegt weder allgemeine Sprachkompetenz noch faktische Zuverlässigkeit, Instruction-Following-Fähigkeit oder Produktreife.",
+    "Es belegt weder allgemeine Sprachkompetenz noch faktische Zuverlässigkeit, das Befolgen von Anweisungen oder Produktionsreife.",
   "It does not show that small models are generally preferable to larger models. It documents the behavior and constraints of this specific experimental setup.":
-    "Es zeigt nicht, dass kleine Modelle generell größeren Modellen vorzuziehen sind. Es dokumentiert Verhalten und Grenzen dieses konkreten experimentellen Aufbaus.",
-  "Artifacts for inspection.": "Artefakte zur Prüfung.",
+    "Es zeigt nicht, dass kleine Modelle größeren grundsätzlich vorzuziehen sind. Es dokumentiert das Verhalten und die Grenzen genau dieses Versuchsaufbaus.",
+  "Artifacts for inspection.": "Artefakte zum Nachprüfen.",
   "The public releases expose model cards, GGUF files, manifests, checksums and the repository documentation needed to inspect the published artifacts and the configured research workflow.":
-    "Die öffentlichen Veröffentlichungen stellen Modellkarten, GGUF-Dateien, Manifeste, Prüfsummen und die Repository-Dokumentation bereit, die zur Prüfung der veröffentlichten Artefakte und des konfigurierten Forschungsablaufs erforderlich sind.",
-  "Public model and model card": "Öffentliches Modell und Modellkarte",
-  "Training and evaluation repository": "Trainings- und Evaluations-Repository",
+    "Die Veröffentlichungen stellen Model Cards, GGUF-Dateien, Manifeste und Prüfsummen bereit, dazu die Repository-Dokumentation, die zur Prüfung der veröffentlichten Artefakte und des konfigurierten Forschungsablaufs nötig ist.",
+  "Public model and model card": "Öffentliches Modell und Model Card",
+  "Training and evaluation repository":
+    "Repository für Training und Evaluation",
   "Continued-pretraining method and configuration":
-    "Continued-Pretraining-Methode und -Konfiguration",
+    "Methode und Konfiguration des fortgesetzten Pretrainings",
   "PyTorch, GGUF and Android comparison method":
     "Vergleichsmethode für PyTorch, GGUF und Android",
   "This command mirrors the pinned public diagnosis configuration and command builder; it was not executed by the website test suite. A local llama.cpp build is required, and --no-cnv keeps llama-cli in completion mode.":
-    "Dieser Befehl entspricht der fixierten öffentlichen Diagnosekonfiguration und dem Command Builder; er wurde nicht von der Website-Testsuite ausgeführt. Ein lokaler llama.cpp-Build ist erforderlich, und --no-cnv hält llama-cli im Vervollständigungsmodus.",
+    "Dieser Befehl entspricht der festgeschriebenen öffentlichen Diagnosekonfiguration und ihrem Command Builder; die Testsuite der Website hat ihn nicht ausgeführt. Er setzt einen lokalen llama.cpp-Build voraus; --no-cnv hält llama-cli im Completion-Modus.",
   "OPEN QUESTIONS": "OFFENE FRAGEN",
   "Questions for the next research phase.":
     "Fragen für die nächste Forschungsphase.",
   "How will the preflighted 506.3M-parameter quantum-1-echelon base architecture behave if the full data and training runs are completed?":
-    "Wie wird sich die im Preflight geprüfte quantum-1-echelon-Basisarchitektur mit 506,3 Mio. Parametern verhalten, falls die vollständigen Daten- und Trainingsläufe abgeschlossen werden?",
+    "Wie wird sich die im Preflight geprüfte Basisarchitektur von quantum-1-echelon mit 506,3 Mio. Parametern verhalten, falls die vollständigen Daten- und Trainingsläufe abgeschlossen werden?",
   "Which quantization levels preserve useful completion behavior while reducing memory requirements?":
-    "Welche Quantisierungsstufen erhalten nützliches Completion-Verhalten und verringern zugleich den Speicherbedarf?",
+    "Welche Quantisierungsstufen senken den Speicherbedarf, ohne brauchbares Fortsetzungsverhalten einzubüßen?",
   "Which evaluation tasks are appropriate for small German base-completion models without overstating their capabilities?":
-    "Welche Evaluationsaufgaben eignen sich für kleine deutsche Base-Completion-Modelle, ohne ihre Fähigkeiten zu übertreiben?",
+    "Welche Evaluationsaufgaben passen zu kleinen deutschen Basismodellen für Textfortsetzung, ohne deren Fähigkeiten zu überzeichnen?",
   "How much improvement comes from additional training data compared with changes in architecture, tokenizer or dataset quality?":
-    "Wie viel Verbesserung entsteht durch zusätzliche Trainingsdaten im Vergleich zu Änderungen an Architektur, Tokenizer oder Datensatzqualität?",
+    "Wie viel Verbesserung bringen zusätzliche Trainingsdaten – verglichen mit Änderungen an Architektur, Tokenizer oder Datensatzqualität?",
   "These questions define possible future investigations. They are not release commitments, milestones or performance promises.":
-    "Diese Fragen definieren mögliche zukünftige Untersuchungen. Sie sind keine Veröffentlichungszusagen, Meilensteine oder Leistungsversprechen.",
-  "EVIDENCE LEDGER": "EVIDENZREGISTER",
+    "Diese Fragen umreißen mögliche künftige Untersuchungen. Sie sind keine Zusagen für Veröffentlichungen, keine Meilensteine und keine Leistungsversprechen.",
+  "EVIDENCE LEDGER": "BELEGÜBERSICHT",
   "Claims mapped to public artifacts.":
-    "Aussagen, öffentlichen Artefakten zugeordnet.",
+    "Welche Aussage auf welchem öffentlichen Artefakt beruht.",
   "Scrollable research evidence ledger":
-    "Scrollbares Evidenzregister der Forschung",
+    "Scrollbare Belegübersicht der Forschung",
   "Public evidence and claim boundaries for Quantum and Echelon artifacts":
-    "Öffentliche Evidenz und Aussagegrenzen für Quantum- und Echelon-Artefakte",
+    "Öffentliche Belege und Grenzen der Aussagen zu Quantum- und Echelon-Artefakten",
   Artifact: "Artefakt",
   Scope: "Umfang",
-  "Public evidence": "Öffentliche Evidenz",
-  "Claim boundary": "Aussagegrenze",
-  "Inspect evidence": "Evidenz prüfen",
+  "Public evidence": "Öffentliche Belege",
+  "Claim boundary": "Grenze der Aussage",
+  "Inspect evidence": "Belege prüfen",
   "PLANNED, NOT ACHIEVED": "GEPLANT, NICHT ERREICHT",
   "Inspect production configuration": "Produktionskonfiguration prüfen",
-  "FINDINGS AND LESSONS": "ERGEBNISSE UND ERKENNTNISSE",
+  "FINDINGS AND LESSONS": "BEFUNDE UND ERKENNTNISSE",
   "Positive checks and negative results, with boundaries.":
-    "Positive Prüfungen und negative Ergebnisse mit klaren Grenzen.",
+    "Bestandene Prüfungen und negative Ergebnisse – mit ihren Grenzen.",
   "Inspect source": "Quelle prüfen",
   "COMPLETED PILOT STUDY": "ABGESCHLOSSENE PILOTSTUDIE",
   "The sections below document the released quantum-1-pilot and quantum-1.6-pilot experiment separately from the untrained Echelon line.":
-    "Die folgenden Abschnitte dokumentieren das veröffentlichte Experiment mit quantum-1-pilot und quantum-1.6-pilot getrennt von der untrainierten Echelon-Linie.",
+    "Die folgenden Abschnitte dokumentieren das veröffentlichte Experiment mit quantum-1-pilot und quantum-1.6-pilot – getrennt von der noch nicht trainierten Echelon-Linie.",
   Hypothesis: "Hypothese",
-  "research expectation": "Forschungserwartung",
+  "research expectation": "Erwartung",
   Observation: "Beobachtung",
-  "public release record": "öffentliche Veröffentlichungsdokumentation",
+  "public release record": "laut Veröffentlichung",
   "Scrollable model comparison": "Scrollbarer Modellvergleich",
   "Comparison of quantum-1-pilot and quantum-1.6-pilot":
     "Vergleich von quantum-1-pilot und quantum-1.6-pilot",
   "Documented limitation": "Dokumentierte Einschränkung",
-  "Evidence status": "Evidenzstatus",
+  "Evidence status": "Belegstatus",
   "Demonstrated by the released artifacts":
     "Durch die veröffentlichten Artefakte belegt",
   "Scrollable reproducibility status matrix":
-    "Scrollbare Matrix des Reproduzierbarkeitsstatus",
+    "Scrollbare Statusmatrix zur Reproduzierbarkeit",
   "Reproducibility evidence and missing artifacts by research area":
-    "Reproduzierbarkeitsevidenz und fehlende Artefakte nach Forschungsbereich",
-  "Available evidence": "Verfügbare Evidenz",
+    "Belege zur Reproduzierbarkeit und fehlende Artefakte nach Forschungsbereich",
+  "Available evidence": "Verfügbare Belege",
   "Missing items are shown as publication gaps. A configuration target, smoke result or preflight does not upgrade a research area to complete reproducibility.":
-    "Fehlende Punkte werden als Veröffentlichungslücken ausgewiesen. Ein Konfigurationsziel, Smoke-Ergebnis oder Preflight macht einen Forschungsbereich nicht zu vollständig reproduzierbarer Forschung.",
+    "Was fehlt, ist als Veröffentlichungslücke ausgewiesen. Ein Zielwert in der Konfiguration, ein Smoke-Test-Ergebnis oder ein Preflight macht einen Forschungsbereich nicht vollständig reproduzierbar.",
   "Public documentation": "Öffentliche Dokumentation",
   "GGUF file": "GGUF-Datei",
   "Scrollable llama.cpp reference command":
     "Scrollbarer llama.cpp-Referenzbefehl",
-  "DETAILED RECORDS": "DETAILLIERTE DOKUMENTATION",
+  "DETAILED RECORDS": "AUSFÜHRLICHE UNTERLAGEN",
   "Continue through the resources hub.": "Weiter im Ressourcenbereich.",
   "Inspect the publication, reproducibility record, data provenance, responsible-use guidance, licensing boundaries and current evidence status.":
-    "Prüfen Sie die Publikation, den Reproduzierbarkeitsnachweis, die Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und den aktuellen Evidenzstatus.",
+    "Dort lassen sich die Publikation, die Nachweise zur Reproduzierbarkeit, die Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und der aktuelle Belegstatus prüfen.",
 };

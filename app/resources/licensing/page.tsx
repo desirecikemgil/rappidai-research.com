@@ -32,7 +32,7 @@ export function LocalizedLicensingPage({ locale }: { locale: Locale }) {
               tabIndex={0}
               className="max-w-full overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
             >
-              <table className="w-full min-w-[72rem] border-collapse text-left">
+              <table className="stack-table w-full min-w-[72rem] border-collapse text-left">
                 <caption className="sr-only">
                   {t(
                     locale,
@@ -57,7 +57,7 @@ export function LocalizedLicensingPage({ locale }: { locale: Locale }) {
                     <tr key={item.material}>
                       <th
                         scope="row"
-                        className="border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
+                        className="min-w-[14rem] border-b border-line px-6 py-6 align-top text-sm font-medium text-ink"
                       >
                         <a
                           href={item.url}
@@ -68,13 +68,22 @@ export function LocalizedLicensingPage({ locale }: { locale: Locale }) {
                           {item.material}
                         </a>
                       </th>
-                      <td className="border-b border-line px-6 py-6 align-top">
+                      <td
+                        data-label={columns[1]}
+                        className="border-b border-line px-6 py-6 align-top"
+                      >
                         <EvidenceBadge status={item.status} locale={locale} />
                       </td>
-                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft">
+                      <td
+                        data-label={columns[2]}
+                        className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-ink-soft"
+                      >
                         {item.terms}
                       </td>
-                      <td className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted">
+                      <td
+                        data-label={columns[3]}
+                        className="border-b border-line px-6 py-6 align-top text-sm leading-6 text-muted"
+                      >
                         {item.boundary}
                       </td>
                     </tr>

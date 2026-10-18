@@ -131,7 +131,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
 
           <div className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <div>
-              <h3 className="m-0 text-[clamp(1.5rem,2.4vw,2rem)] font-medium tracking-[-0.04em] text-ink">
+              <h3 className="m-0 text-[clamp(1.5rem,2.4vw,2rem)] font-medium leading-[1.08] tracking-[-0.04em] text-ink">
                 {c.shadowTitle}
               </h3>
               <p className="body-copy mt-4">{c.shadowText}</p>
@@ -393,7 +393,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
               <p className="body-copy m-0">{c.sourcesText}</p>
               <ActionLink href={ghostLinks.development} external variant="text">
                 {locale === "de"
-                  ? "v0.3.0 Release Notes"
+                  ? "Release Notes zu v0.3.0"
                   : "v0.3.0 release notes"}
               </ActionLink>
             </div>

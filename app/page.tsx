@@ -79,64 +79,64 @@ const copy = {
     aboutLink: "Meet rappidAI",
   },
   de: {
-    intro: "Unabhängige KI-Forschung. Berlin.",
+    intro: "Unabhängige KI-Forschung aus Berlin.",
     description:
-      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. Unabhängige, gründergeführte Forschung aus Berlin – mit Quantum Sentinel-Alpha als unserem aktuellen Security-Modellschwerpunkt.",
-    explore: "Modelle entdecken",
-    research: "Einblick in die Forschung",
+      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme – unabhängig, gründergeführt und aus Berlin. Im Mittelpunkt steht derzeit Quantum Sentinel-Alpha, unser Sicherheitsmodell in Entwicklung.",
+    explore: "Modelle ansehen",
+    research: "Mehr zur Forschung",
     work: "Unsere Arbeit",
-    workTitle: "Intelligenz. Unter deiner Kontrolle.",
+    workTitle: "Intelligenz unter eigener Kontrolle.",
     workText:
-      "Von Modellgewichten bis zur Agenten-Ausführung. Drei eigenständige Forschungsrichtungen mit Fokus auf Effizienz, Transparenz und lokale Kontrolle.",
+      "Von den Modellgewichten bis zur Ausführung von Agenten: drei eigenständige Forschungsrichtungen, ausgerichtet auf Effizienz, Transparenz und lokale Kontrolle.",
     quantum: "Kompakte Modelle. Offene Experimente.",
     quantumText:
-      "Das Security-spezialisierte Sentinel, die Echelon-Modelllinie und deutschsprachige Pilotmodelle. Entdecke Releases, Methoden und die Evidenz hinter jeder Phase.",
+      "Das auf Sicherheit spezialisierte Sentinel, die Echelon-Modelllinie und deutschsprachige Pilotmodelle – mit Veröffentlichungen, Methoden und Belegen zu jeder Phase.",
     quantumStatus:
-      "Sentinel Alpha + Echelon in Entwicklung · Zwei öffentliche Piloten",
-    ghost: "Setze die Grenzen.",
+      "Sentinel Alpha + Echelon in Entwicklung · Zwei öffentliche Pilotmodelle",
+    ghost: "Klare Grenzen setzen.",
     ghostText:
-      "Eine integrierte Security-Runtime für autonome Agenten: Isolation, SHADOW-Deception, Prompt-Injection-Signale, eng begrenzte Freigaben, Runtime-Limits und Evidenz in einem einfachen Ablauf.",
-    replay: "Verstehe jeden Run.",
+      "Eine integrierte Security-Runtime für autonome Agenten: Isolation, Täuschung per SHADOW, Prompt-Injection-Signale, eng begrenzte Freigaben, Laufzeitgrenzen und Nachweise – gebündelt in einem einfachen Ablauf.",
+    replay: "Jeden Lauf verstehen.",
     replayText:
-      "Ausführungen aufzeichnen, technische Zustände wiederherstellen und Branches vergleichen. Lokale Infrastruktur für reproduzierbare Agentenforschung.",
+      "Ausführungen aufzeichnen, technische Zustände wiederherstellen und verzweigte Läufe vergleichen. Lokal ausgerichtete Infrastruktur für reproduzierbare Forschung an KI-Agenten.",
     toolStatus: "Experimentell · Open Source",
-    ghostStatus: "Integrierte Agenten-Sicherheit · Experimentell",
-    open: "Entdecken",
+    ghostStatus: "Integrierte Agentensicherheit · Experimentell",
+    open: "Mehr erfahren",
     approach: "Unser Ansatz",
-    approachTitle: "Entwickelt, um verstanden zu werden.",
+    approachTitle: "Auf Nachvollziehbarkeit angelegt.",
     approachText:
-      "Nützliche Forschung hinterlässt Spuren. Wir verknüpfen unsere Arbeit mit Code, Modellartefakten und dokumentierten Methoden. So kannst du prüfen, was funktioniert und wo die Grenzen liegen.",
+      "Nützliche Forschung hinterlässt Spuren. Wir verknüpfen unsere Arbeit mit Code, Modellartefakten und dokumentierten Methoden. So lässt sich prüfen, was funktioniert und wo die Grenzen liegen.",
     principles: [
       [
         "Effizienz",
-        "Kompakte Architekturen und lokale Inferenz mit Rechenleistung als realer Einschränkung.",
+        "Kompakte Architekturen und lokale Inferenz. Rechenleistung behandeln wir als echte Beschränkung.",
       ],
       [
         "Kontrolle",
-        "Nachvollziehbare Systeme und explizite Grenzen für die Zugriffe eines Agenten.",
+        "Nachvollziehbare Systeme und klar festgelegte Grenzen dafür, worauf ein Agent zugreifen kann.",
       ],
       [
-        "Evidenz",
-        "Veröffentlichte Ergebnisse, aktuelle Entwicklung und offene Fragen sind klar getrennt.",
+        "Belege",
+        "Veröffentlichte Ergebnisse, laufende Entwicklung und offene Fragen halten wir klar auseinander.",
       ],
     ],
     latest: "Aus dem Labor",
-    latestTitle: "Forschung zum Nachvollziehen.",
-    all: "Alle Publikationen",
-    articleTitle: "Von 100M zu 600M deutschen Tokens.",
+    latestTitle: "Forschung, die sich prüfen lässt.",
+    all: "Alle Veröffentlichungen",
+    articleTitle: "Von 100 auf 600 Millionen deutsche Tokens.",
     articleText:
-      "Was uns fortgesetztes Pretraining über quantum-1.6-pilot gezeigt hat. Methoden, Ergebnisse und die Grenzen eines kompakten Sprachmodells.",
+      "Was wir aus dem fortgesetzten Pretraining von quantum-1.6-pilot gelernt haben: Methoden, Ergebnisse und die Grenzen eines kompakten Sprachmodells.",
     articleType: "Forschungsnotiz",
     read: "Forschungsnotiz lesen",
     echelon: "Die Echelon-Modelllinie.",
     echelonText:
-      "Entdecke das 1B-Entwicklungsziel und den geplanten Weg von Base zu Chat. Die Spezifikationen sind vorläufig; noch kein trainiertes Modell veröffentlicht.",
+      "Das 1B-Entwicklungsziel und der geplante Weg von Base zu Chat. Die Spezifikationen sind vorläufig; ein trainiertes Modell ist noch nicht veröffentlicht.",
     sources: "Offen entwickelt.",
     sourcesText:
-      "Modellartefakte, Quellcode und Dokumentation hinter unserer Arbeit.",
-    about: "Unabhängig. Fokussiert. Berlin.",
+      "Modellartefakte, Quellcode-Repositories und Dokumentation zu unserer Arbeit.",
+    about: "Unabhängig. Fokussiert. Aus Berlin.",
     aboutText:
-      "rappidAI ist eine eigenfinanzierte Forschungs- und Entwicklungsinitiative in einer frühen Phase für kompakte Intelligenz und die Infrastruktur darum herum.",
+      "rappidAI ist eine eigenfinanzierte Forschungs- und Entwicklungsinitiative in der Frühphase. Wir entwickeln kompakte KI und die zugehörige Infrastruktur.",
     aboutLink: "Über rappidAI",
   },
 } as const;

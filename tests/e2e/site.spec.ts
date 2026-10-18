@@ -141,7 +141,7 @@ test("German navigation marks only the current primary area", async ({
   await page.goto("/de/research");
 
   const currentLinks = page
-    .getByRole("navigation", { name: "Primary navigation" })
+    .getByRole("navigation", { name: "Hauptnavigation" })
     .locator('a[aria-current="page"]');
 
   await expect(currentLinks).toHaveCount(1);
@@ -279,12 +279,12 @@ test("German model comparison is translated and keyboard operable", async ({
   await expect(tokenizerTab).toBeFocused();
   await expect(tokenizerTab).toHaveAttribute("aria-selected", "true");
   await expect(page.getByRole("tabpanel")).toContainText(
-    "Ein eingefrorener Pilot-Tokenizer",
+    "ein eingefrorener Pilot-Tokenizer",
   );
 
   await page.getByRole("tab", { name: "Datenpipeline" }).click();
   await expect(page.getByRole("tabpanel")).toContainText(
-    "8 Mrd. Trainings-Token",
+    "8 Mrd. Trainings-Tokens",
   );
 });
 

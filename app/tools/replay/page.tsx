@@ -78,70 +78,70 @@ const copy = {
   de: {
     intro: {
       eyebrow: "TOOL · REPLAY",
-      title: "rappidAI Replay. Verstehe jeden Run.",
+      title: "rappidAI Replay. Jeden Lauf verstehen.",
       description:
-        "Replay ist ein Local-first Execution Recorder und State Engine für KI-Agenten-Runs. Der deterministische Kern funktioniert ohne KI und soll technische Ausführungen untersuchbar, wiederherstellbar, verzweigbar und vergleichbar machen.",
+        "Replay ist ein lokal ausgerichteter Recorder und eine Zustands-Engine für Läufe von KI-Agenten. Der deterministische Kern funktioniert ohne KI. Er ist darauf ausgelegt, technische Ausführungen prüfbar, wiederherstellbar, verzweigbar und vergleichbar zu machen.",
     },
     status: "EXPERIMENTELL · AKTUELLE IMPLEMENTIERUNG",
-    currentTitle: "Was heute implementiert ist.",
+    currentTitle: "Was derzeit implementiert ist.",
     current: [
-      "Generische Aufzeichnung von Ausführungen mit Command-, Prozess- und Workspace-Erfassung.",
-      "Verifikation aufgezeichneter Zustände.",
-      "Verifizierte Wiederherstellung in einen gestagten Tree.",
-      "Branches aus historischen Zuständen mit expliziter Zustimmung zu Live-Reruns.",
-      "Live-Reruns mit ausdrücklicher Ausführungsfreigabe. Recorded-, Controlled- und Hybrid-Modi sind nicht implementiert.",
-      "Deterministischer multidimensionaler Replay-Diff.",
+      "Generische Aufzeichnung von Ausführungen; erfasst werden Befehl, Prozesse und Workspace.",
+      "Überprüfung aufgezeichneter Zustände.",
+      "Verifizierte Wiederherstellung in einen Staging-Verzeichnisbaum.",
+      "Verzweigen aus früheren Zuständen, mit ausdrücklicher Zustimmung zur erneuten Live-Ausführung.",
+      "Erneute Live-Ausführung nach ausdrücklicher Zustimmung. Die Modi Recorded, Controlled und Hybrid sind nicht implementiert.",
+      "Deterministischer Replay-Vergleich über mehrere Dimensionen.",
     ],
-    principlesTitle: "Die Architektur trennt Evidenz von Interpretation.",
+    principlesTitle: "Die Architektur trennt Belege von ihrer Deutung.",
     principles: [
-      "Der deterministische Kern funktioniert vollständig ohne KI.",
-      "Der Generic Recorder bleibt verpflichtend; Adapter dürfen anreichern, aber Recording niemals voraussetzen oder blockieren.",
-      "Watcher-Events sind Trigger für Reconciliation und nicht die autoritative Wahrheit.",
-      "Finale Checkpoints plus reconciled File-Events und Merkle-State bilden die technische Quelle der Wahrheit.",
-      "Playback und Re-Execution sind getrennte Konzepte: Playback liest gespeicherte Evidenz, Rerun führt Code aus.",
+      "Der deterministische Kern ist auch ohne KI vollständig.",
+      "Der Generic Recorder bleibt Pflicht. Adapter dürfen die Aufzeichnung anreichern, sie aber nie von sich abhängig machen.",
+      "Watcher-Ereignisse stoßen einen Abgleich an, sind aber nicht die maßgebliche Wahrheit.",
+      "Finale Checkpoints, abgeglichene Dateiereignisse und der Merkle-Zustand bilden zusammen die technische Quelle der Wahrheit.",
+      "Wiedergabe und erneute Ausführung sind getrennte Konzepte: Die Wiedergabe liest gespeicherte Nachweise, die erneute Ausführung führt Code aus.",
     ],
     ladderTitle:
-      "Reproduzierbarkeit ist eine Stufenleiter, kein Ja/Nein-Claim.",
+      "Reproduzierbarkeit ist eine Stufenleiter, keine Ja-oder-Nein-Frage.",
     ladder: [
-      { k: "R0", v: "Inspectable" },
-      { k: "R1", v: "Restorable" },
-      { k: "R2", v: "Re-executable" },
-      { k: "R3", v: "Controlled external I/O" },
-      { k: "R4", v: "Containerized / fully captured" },
+      { k: "R0", v: "Prüfbar" },
+      { k: "R1", v: "Wiederherstellbar" },
+      { k: "R2", v: "Erneut ausführbar" },
+      { k: "R3", v: "Kontrollierte externe I/O" },
+      { k: "R4", v: "Containerisiert / vollständig erfasst" },
     ],
     ladderNote:
-      "R0–R4 ist der Architekturvertrag zur Beschreibung der erreichten Reproduzierbarkeit. Diese Seite behauptet nicht, dass heute jede Stufe für jede Session vollständig implementiert ist.",
-    architectureTitle: "State- und Storage-Architektur.",
+      "R0–R4 legt in der Architektur verbindlich fest, wie die erreichte Reproduzierbarkeit beschrieben wird. Diese Seite behauptet nicht, dass heute jede Stufe für jede Session vollständig implementiert ist.",
+    architectureTitle: "Architektur für Zustände und Speicherung.",
     architecture: [
-      "CLI / API Layer",
-      "Session + Event Services",
+      "CLI-/API-Schicht",
+      "Session- und Ereignisdienste",
       "Generic Recorder + Adapter",
-      "Event Bus + State Engine",
+      "Event-Bus + Zustands-Engine",
       "SQLite-Metadaten und Indizes",
-      "Content-addressed State Storage",
-      "Optionaler read-only Intelligence Layer",
+      "Inhaltsadressierter Zustandsspeicher",
+      "Optionale Intelligence-Schicht (nur lesend)",
     ],
     plannedTitle:
-      "Architekturziele, die nicht mit der aktuellen Implementierung verwechselt werden dürfen.",
+      "Architekturziele – nicht zu verwechseln mit dem, was heute implementiert ist.",
     planned: [
-      "Portables .rplay Export/Import-Paket",
-      "Vollständiges External-I/O-Cassette-System",
-      "Vollständige lokale UI",
+      "Portables .rplay-Paket für Export und Import",
+      "Vollständiges Kassetten-Ökosystem für externe I/O",
+      "Vollständige lokale Benutzeroberfläche",
       "Optionaler lokaler Intelligence-Sidecar",
-      "Breitere Adapter-Abdeckung und Hardening",
+      "Breitere Abdeckung durch Adapter und weitere Härtung",
     ],
-    findingsTitle: "Engineering-Erkenntnisse.",
+    findingsTitle: "Erkenntnisse aus der Entwicklung.",
     findings: [
-      "Zuverlässiges Restore braucht ein eigenes State-Modell und darf nicht nur auf Terminal-Logs beruhen.",
-      "Content-addressed Storage und rekursive State Trees machen State-Identität explizit und deduplizierbar.",
-      "Ein Filesystem-Watcher kann allein keine Quelle der Wahrheit sein; Reconciliation und Checkpoints sind notwendig.",
-      "Recorded Playback darf niemals stillschweigend Code ausführen oder auf das Netzwerk zugreifen.",
-      "Adapter bleiben additiv, damit Reproduzierbarkeit nicht von einer IDE oder einem Agenten-Anbieter abhängt.",
+      "Eine zuverlässige Wiederherstellung braucht ein eigenes Zustandsmodell; Terminal-Logs allein reichen nicht.",
+      "Inhaltsadressierte Speicherung und rekursive Zustandsbäume machen die Identität von Zuständen explizit und erlauben Deduplizierung.",
+      "Ein Dateisystem-Watcher allein kann nicht die Quelle der Wahrheit sein; Abgleich und Checkpoints sind nötig.",
+      "Die Wiedergabe einer Aufzeichnung sollte nie unbemerkt Code ausführen oder auf das Netzwerk zugreifen.",
+      "Adapter sind eine reine Ergänzung, damit die Reproduzierbarkeit nicht von einer bestimmten IDE oder einem einzelnen Agentenanbieter abhängt.",
     ],
-    usageTitle: "Aktuelle CLI-Oberfläche.",
-    audienceTitle: "Für wen es gedacht ist.",
+    usageTitle: "Aktuelle CLI-Befehle.",
+    audienceTitle: "Für wen Replay gedacht ist.",
     audience:
-      "Für Entwickler und Forschende, die autonome Agenten debuggen, Ausführungspfade vergleichen, Fehler reproduzieren, Agentenänderungen testen und lokal prüfbare Evidenz darüber erhalten wollen, was ein Run verändert hat.",
+      "Für Entwickler und Forschende, die autonome Agenten debuggen, Ausführungspfade vergleichen, Fehler reproduzieren und Änderungen an Agenten testen – und lokal prüfbare Nachweise darüber sichern wollen, was ein Lauf verändert hat.",
     sourceTitle: "Geprüfte Architektur und Quellen",
   },
 } as const;
@@ -185,14 +185,14 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
               external
               variant="secondary"
             >
-              ADR index
+              {locale === "de" ? "ADR-Übersicht" : "ADR index"}
             </ActionLink>
             <ActionLink
               href={replayLinks.snapshot}
               external
               variant="secondary"
             >
-              Reviewed revision
+              {locale === "de" ? "Geprüfte Revision" : "Reviewed revision"}
             </ActionLink>
           </>
         }
@@ -273,7 +273,7 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
           <div>
             <p className="kicker">
               {locale === "de"
-                ? "Reproduzierbarkeitsleiter"
+                ? "Stufen der Reproduzierbarkeit"
                 : "Reproducibility ladder"}
             </p>
             <h2 className="display-section">{c.ladderTitle}</h2>
@@ -281,7 +281,7 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
           <p>{c.ladderNote}</p>
         </div>
         <ol
-          className="m-0 grid list-none gap-3 p-0 sm:grid-cols-5"
+          className="m-0 grid list-none gap-3 p-0 sm:grid-cols-3 lg:grid-cols-5"
           data-stagger
         >
           {c.ladder.map((x, i) => (
@@ -378,20 +378,22 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
                 external
                 variant="secondary"
               >
-                Pinned README
+                {locale === "de" ? "README (festgeschrieben)" : "Pinned README"}
               </ActionLink>
               <ActionLink
                 href={replayLinks.restore}
                 external
                 variant="secondary"
               >
-                Restore ADR
+                {locale === "de" ? "ADR: Wiederherstellen" : "Restore ADR"}
               </ActionLink>
               <ActionLink href={replayLinks.rerun} external variant="secondary">
-                Branch/Rerun ADR
+                {locale === "de"
+                  ? "ADR: Verzweigen und erneut ausführen"
+                  : "Branch/Rerun ADR"}
               </ActionLink>
               <ActionLink href={replayLinks.diff} external variant="secondary">
-                Diff ADR
+                {locale === "de" ? "ADR: Vergleich" : "Diff ADR"}
               </ActionLink>
             </div>
           </div>

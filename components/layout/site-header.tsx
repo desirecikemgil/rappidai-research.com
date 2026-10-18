@@ -166,7 +166,10 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav aria-label="Primary navigation" className="header-nav">
+        <nav
+          aria-label={t(locale, "Primary navigation")}
+          className="header-nav"
+        >
           <ul className="header-groups">
             {groups.map((group) => {
               const open = openGroup === group.id;

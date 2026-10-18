@@ -60,14 +60,16 @@ export function ModelCardVisual({
           <p className="font-mono text-[0.63rem] tracking-[0.16em] text-muted uppercase">
             {t(locale, "Parameter size")}
           </p>
-          <p className="mt-4 flex items-baseline gap-3">
+          <p className="mt-4 flex items-baseline gap-2">
             <CountUp
               value={parametersMillions}
               decimals={1}
               locale={locale}
-              suffix="M"
-              className="display-mega text-accent"
+              className="display-mega whitespace-nowrap text-accent"
             />
+            <span className="text-[clamp(1.4rem,2.2vw,2rem)] font-medium tracking-[-0.03em] text-accent">
+              {locale === "de" ? "Mio." : "M"}
+            </span>
           </p>
           <p className="mt-3 text-sm text-ink-soft">
             {t(locale, "parameters")}

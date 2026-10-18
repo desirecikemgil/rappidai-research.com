@@ -182,7 +182,7 @@
   }
 
   .schema dl > div {
-    grid-template-columns: 6.6rem minmax(0, 1fr);
+    grid-template-columns: 5.9rem minmax(0, 1fr);
     padding-left: 0.6rem;
   }
 
@@ -479,6 +479,17 @@
 
   .stepNo {
     grid-row: auto;
+  }
+
+  /* Eight columns leave little room per step; hyphenate long compounds. */
+  .step h3,
+  .step p {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .step p {
+    font-size: 0.8rem;
   }
 
   .lane {

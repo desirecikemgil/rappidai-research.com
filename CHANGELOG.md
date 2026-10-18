@@ -8,6 +8,20 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Mobile layout pass — 18 October 2026
+
+- The oversized footer wordmark now reads „quantum“ instead of „rappidAI“, at the same size.
+- Restored the responsive rules for the model comparison: its three model cards now stack on phones and tablets instead of squeezing text into letter-wide columns.
+- Label/value tables (model cards, Echelon specifications, Ghost limits) and the research, reproducibility, licensing, model and tool matrices now show one card per row on phones, with each value labelled.
+- Replaced mid-word line breaking with hyphenation, made the evidence grid width-aware, kept window title bars and status chips from stretching or truncating, and tightened heading line heights.
+- Localised remaining figures on German pages (49,3 Mio., 8 Mrd. Tokens, 49.295.872) and fixed tablet and desktop spots where German labels did not fit.
+
+### German copy revision — 18 October 2026
+
+- Rewrote the German site copy so it reads like native German rather than a literal translation: about 950 strings across the locale dictionaries and inline page copy, a consistent formal „Sie“, „Belege“ instead of „Evidenz“, and German typography and number formats. Facts, evidence labels and limits are unchanged.
+- Translated English leftovers on `/de`: layer and token units, research finding labels, license-registry labels, Replay source links, „Local-first“ and „German-first“ chips, and the primary-navigation and section-index aria-labels.
+- Added `docs/german-style-guide.md` with the voice rules and glossary for future German copy.
+
 ### Website rebuild — 18 October 2026
 
 - Rebuilt the website as a light, institutional research site: new design system on Geist Sans and Geist Mono, grouped navigation (Models, Research, Tools, About) with mega-menu panels and a separate Contact action, and light page headers with breadcrumbs, key facts and a short page map.

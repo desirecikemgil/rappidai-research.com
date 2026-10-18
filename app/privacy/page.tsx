@@ -136,7 +136,7 @@ function PrivacySection({
           <p className="eyebrow">{String(index + 1).padStart(2, "0")}</p>
           <h2
             id={`privacy-${section.id}`}
-            className="mt-4 max-w-[16ch] text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] tracking-[-0.04em] text-ink"
+            className="mt-4 max-w-[16ch] text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] leading-[1.08] tracking-[-0.04em] text-ink"
           >
             {section.title}
           </h2>

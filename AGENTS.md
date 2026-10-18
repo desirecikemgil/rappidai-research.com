@@ -33,7 +33,8 @@ When implementing from a selected generated mock, treat that image as the source
 - October 2026 complete rebuild (supersedes the earlier navy-stage and liquid-glass directions): the site should read as a serious, institutional AI research company, not as "typical AI" (no glow, neon gradients, radar/matrix motifs or decorative dark stages). Light-first: white reading surfaces, a quiet stone tone (`--paper`) for rhythm, brand navy for primary actions and one closing band, one signal blue for links and state, restrained 8–12px radii and hairline borders.
 - Information architecture is grouped, not flat: Models, Research, Tools and About, each with a mega-menu panel of its pages; Contact is a separate action. Inner pages open with a light page header (breadcrumb, title, purpose, key facts, short page map). Research, resources and legal pages share a documentation layout with a persistent section sidebar. Existing URLs stay unchanged.
 - Visuals come from real content presented as product UI (terminal windows with real commands, spec sheets, tables, the two-lane Sentinel pipeline, bar figures drawn to scale). Any illustration of planned output must be labelled as illustrative and never read as model output.
-- Every page closes with a deep-navy footer that ends in an oversized "rappidAI" wordmark cropped at the bottom edge (maintainer request); the homepage closing band above it stays light so the two do not merge.
+- Every page closes with a deep-navy footer that ends in an oversized lowercase "quantum" wordmark, at the same size the earlier "rappidAI" wordmark used, cropped at the bottom edge (maintainer requests, October 2026); the homepage closing band above it stays light so the two do not merge.
+- October 2026 mobile pass (maintainer feedback that the phone layout looked broken): multi-column figures stack below 980px; label/value tables and data tables (`.stack-table` with `data-label` on cells) become one card per row below 640px; never use `overflow-wrap: anywhere` on text, because it lets grid and table columns collapse to a few pixels — use `break-word` plus `hyphens: auto` and reserve `break-all` for hashes. Check German pages at 320, 375, 414, 768 and 1280px before shipping layout changes.
 - Typography is part of the rappidAI identity: keep Geist Sans for headlines and text and Geist Mono for technical values, with tight headline tracking (about -0.045 to -0.055em, weight ~500). Do not introduce serif or other display typefaces (explicit maintainer decision).
 
 ## Durable research-publication direction
@@ -43,6 +44,11 @@ When implementing from a selected generated mock, treat that image as the source
 - Present Echelon Base and Echelon Chat as stages or variants within `quantum-1-echelon`, never as separate model families.
 - Show missing evidence directly with `Not published`, `Not measured`, `Not yet available`, `Partial evidence` or `Maintainer input required`.
 - Never upgrade configured targets, estimated architecture properties or smoke-test totals into claims about completed Echelon training or production data.
+
+## Durable German-language direction
+
+- October 2026 maintainer request: the German site must read like native German copy, not a 1:1 translation. Follow `docs/german-style-guide.md` for every German string: formal „Sie“ (never „du“), natural sentence structure, „Belege/Nachweise“ instead of „Evidenz“, „Model Card“, plural „Tokens“, German quotes and number formats, short UI labels, and unchanged facts and evidence boundaries.
+- Every visible English string needs a German value; check `/de` pages for English leftovers (including aria-labels, units and labels rendered from protected keys) before shipping.
 
 ## Delivery workflow
 
