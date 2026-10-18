@@ -1,62 +1,66 @@
-import { Reveal } from "@/components/motion/reveal";
-import { RevealText } from "@/components/motion/reveal-text";
-import type { SignatureKind } from "@/components/graphics/section-signature";
-import { SignalArt, type SignalKind } from "@/components/graphics/signal-art";
+import type { ReactNode } from "react";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import {
   SectionNavigator,
   type SectionNavigatorItem,
 } from "@/components/ui/section-navigator";
 
+type Fact = { readonly label: string; readonly value: string };
+
 type PageIntroProps = {
   eyebrow: string;
   title: string;
   description: string;
-  /**
-   * Optional motif for this page. The resource pages all share one layout;
-   * a distinct drawing per page is what stops them reading as the same page.
-   */
-  signature?: SignatureKind;
-  artwork?: SignalKind;
   indexLabel?: string;
   topics?: readonly SectionNavigatorItem[];
+  facts?: readonly Fact[];
+  actions?: ReactNode;
+  aside?: ReactNode;
 };
 
+/** Light page header: location, purpose, key facts and a short page map. */
 export function PageIntro({
   eyebrow,
   title,
   description,
-  signature,
-  artwork,
   indexLabel,
   topics,
+  facts,
+  actions,
+  aside,
 }: PageIntroProps) {
   return (
-    <section className="page-intro-liquid dark-band text-white">
-      <SignalArt
-        kind={artwork ?? (signature === "directory" ? "replay" : "quantum")}
-        className="page-intro-art"
-      />
+    <section className="page-intro">
       <div className="page-shell page-intro-shell">
-        <div className="page-intro-main">
-          <div className="min-w-0">
-            <Reveal>
-              <p className="page-intro-context">
-                rappidAI <span aria-hidden="true" />
-                {eyebrow}
-              </p>
-            </Reveal>
-            <h1 className="display-page mt-7 text-[var(--color-dark-title)]">
-              <RevealText lines={[title]} delay={0.06} />
-            </h1>
-          </div>
-          <Reveal delay={0.12} className="lg:pb-1">
-            <p className="page-intro-description">{description}</p>
-          </Reveal>
+        <div className="page-intro-context">
+          <Breadcrumbs trailing={/\d/.test(eyebrow) ? eyebrow : undefined} />
         </div>
+        <div className={`page-intro-main ${aside ? "has-aside" : ""}`}>
+          <div className="min-w-0">
+            <h1 className="display-page">{title}</h1>
+            <p className="page-intro-description mt-6">{description}</p>
+            {actions ? (
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                {actions}
+              </div>
+            ) : null}
+          </div>
+          {aside ? <div className="min-w-0">{aside}</div> : null}
+        </div>
+        {facts?.length ? (
+          <dl className="facts mt-12">
+            {facts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
         {topics?.length && indexLabel ? (
-          <Reveal delay={0.18} className="intro-index">
-            <SectionNavigator label={indexLabel} items={topics} onDark />
-          </Reveal>
+          <div className="intro-index">
+            <SectionNavigator label={indexLabel} items={topics} />
+          </div>
         ) : null}
       </div>
     </section>

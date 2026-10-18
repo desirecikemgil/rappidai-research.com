@@ -56,7 +56,7 @@ export function ModelComparisonSuite({ locale = "en" }: { locale?: Locale }) {
             <p className="eyebrow">{content.introduction.eyebrow}</p>
             <h2
               id="model-system-comparison-heading"
-              className="display-section mt-7 max-w-[13ch] text-ink"
+              className="display-section mt-4 max-w-[13ch] text-ink"
             >
               {content.introduction.title}
             </h2>
@@ -64,7 +64,7 @@ export function ModelComparisonSuite({ locale = "en" }: { locale?: Locale }) {
           <div className="max-w-[47rem]">
             <p className="body-lg">{content.introduction.description}</p>
             <Link
-              className="quiet-link mt-5 underline underline-offset-4"
+              className="text-link mt-5"
               href={localizePath("/models/quantum-1-echelon", locale)}
             >
               {t(locale, "View current 1B targets")}
@@ -131,7 +131,7 @@ export function ModelComparisonSuite({ locale = "en" }: { locale?: Locale }) {
             >
               <div className="max-w-[55rem]">
                 <p className="eyebrow">{view.eyebrow}</p>
-                <h3 className="mt-5 text-[clamp(2rem,4.5vw,4.6rem)] leading-[0.98] font-[510] tracking-[-0.055em] text-ink">
+                <h3 className="mt-4 max-w-[22ch] text-[clamp(1.75rem,3vw,2.6rem)] leading-[1.05] font-[500] tracking-[-0.045em] text-ink">
                   {view.title}
                 </h3>
                 <p className="body-copy mt-6 max-w-[47rem]">

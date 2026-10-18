@@ -1,4 +1,5 @@
 import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { DocLayout } from "@/components/layout/doc-layout";
 import { PageIntro } from "@/components/ui/page-intro";
 import { privacyPageContent } from "@/content/pages";
 import { siteConfig } from "@/content/site";
@@ -164,43 +165,44 @@ export function LocalizedPrivacyPage({ locale }: { locale: Locale }) {
   return (
     <>
       <PageIntro {...page.introduction} />
+      <DocLayout>
+        <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
+          <DrawRule />
 
-      <div className="page-shell pb-[clamp(6rem,11vw,11rem)]">
-        <DrawRule />
+          {privacy.hostingProvider === null ? (
+            <Reveal className="mt-8">
+              <p className="max-w-[48rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
+                {t(
+                  locale,
+                  "The hosting provider remains unverified. Deployment-specific server-log details, retention periods, purposes and legal bases therefore remain open required information.",
+                )}
+              </p>
+            </Reveal>
+          ) : null}
 
-        {privacy.hostingProvider === null ? (
           <Reveal className="mt-8">
-            <p className="max-w-[48rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
+            <p className="max-w-[52rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
               {t(
                 locale,
-                "The hosting provider remains unverified. Deployment-specific server-log details, retention periods, purposes and legal bases therefore remain open required information.",
+                "Last reviewed 23 July 2026. Hosting-specific log categories, processing purposes, legal bases and retention periods remain verification and legal-review items.",
               )}
             </p>
           </Reveal>
-        ) : null}
 
-        <Reveal className="mt-8">
-          <p className="max-w-[52rem] border-l-2 border-accent bg-pale-soft px-5 py-4 text-sm leading-6 text-ink">
-            {t(
-              locale,
-              "Last reviewed 23 July 2026. Hosting-specific log categories, processing purposes, legal bases and retention periods remain verification and legal-review items.",
-            )}
-          </p>
-        </Reveal>
-
-        <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
-          {page.sections.map((section, index) => (
-            <PrivacySection
-              key={section.id}
-              section={section}
-              index={index}
-              privacy={privacy}
-              businessEmail={businessEmail}
-              locale={locale}
-            />
-          ))}
+          <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
+            {page.sections.map((section, index) => (
+              <PrivacySection
+                key={section.id}
+                section={section}
+                index={index}
+                privacy={privacy}
+                businessEmail={businessEmail}
+                locale={locale}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </DocLayout>
     </>
   );
 }

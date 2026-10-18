@@ -803,11 +803,11 @@
 .specSection {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #f5f8fc, #eef4fb);
-  border-block: 1px solid #e1e8f2;
+  background: var(--paper-2);
+  border-block: 1px solid var(--line);
 }
 .specSection::before {
-  content: "";
+  content: none;
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -827,10 +827,9 @@
 }
 .specSheet {
   overflow: hidden;
-  border: 1px solid #d6e1ef;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: var(--elev-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .specSheetBar {
   display: flex;
@@ -838,7 +837,7 @@
   justify-content: space-between;
   padding: 0.9rem 1.4rem;
   border-bottom: 1px solid #e3ebf5;
-  background: linear-gradient(180deg, #fbfdff, #f3f7fd);
+  background: var(--surface);
   color: #45618a;
   font-family: var(--font-mono);
   font-size: 0.64rem;
@@ -1041,10 +1040,11 @@
 .evidence {
   position: relative;
   overflow: hidden;
-  background: #061e46;
+  background: var(--night);
   color: #f2f7ff;
 }
 .evidenceGlow {
+  display: none;
   position: absolute;
   inset: 0;
   pointer-events: none;

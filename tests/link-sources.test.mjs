@@ -14,6 +14,7 @@ describe("public link discovery", () => {
       "docs/__fixtures__/sample.md",
       "components/card.spec.tsx",
       "tests\\unit.ts",
+      "old/content/site.ts",
     ]) {
       expect(isPublicLinkSource(file)).toBe(false);
     }

@@ -81,6 +81,7 @@ content/       Typed public facts and page copy
 docs/          Architecture, licensing, training context and maintainer guidance
 lib/           Small framework-independent helpers
 model_cards/   Evidence-bounded cards for each model line
+old/           Frozen backup of the previous website (not built or deployed)
 public/        Brand and model-card images used by the site
 tests/         CPU-only content and serialization tests
 ```

@@ -1,6 +1,4 @@
-import { Reveal } from "@/components/motion/reveal";
-import { ghostLinks, ghostRelease } from "@/content/ghost";
-import { SignalArt } from "@/components/graphics/signal-art";
+import { ghostCommands, ghostLinks, ghostRelease } from "@/content/ghost";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { metadataFor } from "@/lib/metadata";
@@ -110,12 +108,31 @@ const tools = [
   },
 ] as const;
 
+const replayCommands = [
+  "rappid replay record -- <command>",
+  "rappid replay verify <state-id>",
+  "rappid replay restore <state-id>",
+  "rappid replay branch <state-id>",
+  "rappid replay diff <left-session-id> <right-session-id>",
+];
+
 export function LocalizedToolsPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   return (
     <>
       <PageIntro
         {...c.intro}
+        facts={[
+          {
+            label: "rappidAI Ghost",
+            value: `${ghostRelease.version} · ${c.ghostStatus}`,
+          },
+          {
+            label: "rappidAI Replay",
+            value: t(locale, "Experimental · Open source"),
+          },
+          { label: t(locale, "Source"), value: "GitHub · rappidAI-Research" },
+        ]}
         indexLabel={t(locale, "Explore this page")}
         topics={[
           {
@@ -152,96 +169,157 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
           },
         ]}
       />
-      <section
-        id="tools-overview"
-        className="page-shell scroll-mt-32 pb-[var(--section-space)] pt-[clamp(4rem,7vw,6rem)]"
-      >
-        <Reveal className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+
+      <section id="tools-overview" className="page-shell section">
+        <div className="section-head split">
           <div>
-            <p className="eyebrow">{c.thesis}</p>
-            <h2 className="display-section mt-7 text-ink">{c.thesisTitle}</h2>
+            <p className="kicker">{t(locale, "Two different questions")}</p>
+            <h2 className="display-section">{c.thesisTitle}</h2>
           </div>
-          <div className="liquid-surface p-6 sm:p-8">
-            <p className="body-lg text-ink">Ghost — {c.ghostQuestion}</p>
-            <p className="body-lg mt-5 text-ink">Replay — {c.replayQuestion}</p>
-            <p className="body-copy mt-6">{c.note}</p>
-          </div>
-        </Reveal>
-
-        <div className="tool-showcase">
-          {tools.map((tool, index) => {
-            const isGhost = tool.name === "Ghost";
-            const facts = isGhost ? c.ghostFacts : c.replayFacts;
-            const href = locale === "de" ? `/de${tool.href}` : tool.href;
-            return (
-              <Reveal
-                key={tool.name}
-                delay={index * 0.05}
-                className="tool-showcase-card"
-              >
-                <SignalArt kind={isGhost ? "ghost" : "replay"} />
-                <div className="tool-showcase-body">
-                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-accent uppercase">
-                    {tool.accent}
-                  </p>
-                  <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-ink sm:text-5xl">
-                    <span id={tool.name.toLowerCase()} className="scroll-mt-32">
-                      rappidAI {tool.name}
-                    </span>
-                  </h2>
-                  <p className="body-lg mt-5">
-                    {isGhost ? c.ghostSummary : c.replaySummary}
-                  </p>
-                  {isGhost && (
-                    <p className="mt-5 text-sm font-medium text-accent">
-                      {ghostRelease.version} · {c.ghostStatus}
-                    </p>
-                  )}
-                  <details>
-                    <summary>{c.current}</summary>
-                    <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
-                      {facts.map((fact) => (
-                        <li key={fact}>— {fact}</li>
-                      ))}
-                    </ul>
-                  </details>
-                  <div className="mt-9 flex flex-wrap gap-3">
-                    <ActionLink href={href} variant="primary">
-                      {c.learn}
-                    </ActionLink>
-                    <ActionLink href={tool.repo} external variant="secondary">
-                      {c.inspect}
-                    </ActionLink>
-                    {isGhost && (
-                      <ActionLink
-                        href={ghostLinks.release}
-                        external
-                        variant="secondary"
-                      >
-                        {c.release}
-                      </ActionLink>
-                    )}
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
+          <p>{c.note}</p>
         </div>
-
-        <Reveal
-          id="tool-evidence"
-          className="dark-band mt-16 scroll-mt-32 overflow-hidden rounded-[2rem] p-8 sm:p-12"
+        <div
+          className="table-wrap"
+          data-reveal
+          tabIndex={0}
+          role="region"
+          aria-label={c.thesisTitle}
         >
-          <p className="eyebrow text-[var(--color-dark-muted)]">
-            EVIDENCE BOUNDARY
-          </p>
-          <h2 className="display-section mt-6 max-w-3xl text-white">
-            {c.evidenceTitle}
-          </h2>
-          <p className="mt-6 max-w-3xl text-base leading-7 text-[var(--color-dark-body)]">
-            {c.evidenceText}
-          </p>
-        </Reveal>
+          <table className="table min-w-[40rem]">
+            <thead>
+              <tr>
+                <th scope="col" className="w-[16%]" />
+                <th scope="col">rappidAI Ghost</th>
+                <th scope="col">rappidAI Replay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{t(locale, "Question")}</th>
+                <td className="text-ink">{c.ghostQuestion}</td>
+                <td className="text-ink">{c.replayQuestion}</td>
+              </tr>
+              <tr>
+                <th scope="row">{t(locale, "Scope")}</th>
+                <td className="text-ink-soft">{c.ghostSummary}</td>
+                <td className="text-ink-soft">{c.replaySummary}</td>
+              </tr>
+              <tr>
+                <th scope="row">{t(locale, "Core actions")}</th>
+                <td className="font-mono text-[0.8rem] text-ink-soft">
+                  {tools[0].accent}
+                </td>
+                <td className="font-mono text-[0.8rem] text-ink-soft">
+                  {tools[1].accent}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="page-shell section">
+          <div className="tool-showcase lg:grid-cols-2">
+            {tools.map((tool) => {
+              const isGhost = tool.name === "Ghost";
+              const facts = isGhost ? c.ghostFacts : c.replayFacts;
+              const href = locale === "de" ? `/de${tool.href}` : tool.href;
+              return (
+                <article
+                  key={tool.name}
+                  className="tool-showcase-card card flex flex-col overflow-hidden"
+                  data-reveal
+                >
+                  <div className="border-b border-line bg-pale-soft p-5">
+                    <div className="window window-dark">
+                      <div className="window-bar">
+                        <span>{isGhost ? "ghost" : "rappid replay"}</span>
+                        <span>{isGhost ? ghostRelease.version : "CLI"}</span>
+                      </div>
+                      <pre
+                        className="terminal"
+                        tabIndex={0}
+                        aria-label={`rappidAI ${tool.name} CLI`}
+                      >
+                        {(isGhost
+                          ? ghostCommands.start.split("\n")
+                          : replayCommands
+                        ).map((line) => (
+                          <span key={line} className="block">
+                            <span className="prompt">$ </span>
+                            {line}
+                          </span>
+                        ))}
+                      </pre>
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
+                    <p className="font-mono text-[0.72rem] tracking-[0.08em] text-muted">
+                      {tool.accent}
+                    </p>
+                    <h2 className="mt-4 text-[clamp(1.9rem,3vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.045em] text-ink">
+                      <span
+                        id={tool.name.toLowerCase()}
+                        className="scroll-mt-32"
+                      >
+                        rappidAI {tool.name}
+                      </span>
+                    </h2>
+                    <p className="body-copy mt-4">
+                      {isGhost ? c.ghostSummary : c.replaySummary}
+                    </p>
+                    <p className="mt-5">
+                      <span className="chip chip-dot">
+                        {isGhost
+                          ? `${ghostRelease.version} · ${c.ghostStatus}`
+                          : t(locale, "Experimental · Open source")}
+                      </span>
+                    </p>
+                    <details>
+                      <summary>{c.current}</summary>
+                      <ul className="m-0 grid list-none gap-2 p-0 pb-4 text-sm leading-6 text-muted">
+                        {facts.map((fact) => (
+                          <li key={fact} className="flex gap-2">
+                            <span aria-hidden="true" className="text-accent">
+                              ✓
+                            </span>
+                            {fact}
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                    <div className="mt-auto flex flex-wrap gap-3 pt-6">
+                      <ActionLink href={href}>{c.learn}</ActionLink>
+                      <ActionLink href={tool.repo} external variant="secondary">
+                        {c.inspect}
+                      </ActionLink>
+                      {isGhost && (
+                        <ActionLink
+                          href={ghostLinks.release}
+                          external
+                          variant="secondary"
+                        >
+                          {c.release}
+                        </ActionLink>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="tool-evidence" className="page-shell section">
+        <div className="card grid gap-6 p-7 sm:p-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end">
+          <div>
+            <p className="kicker">{t(locale, "Evidence boundary")}</p>
+            <h2 className="display-section mt-4">{c.evidenceTitle}</h2>
+          </div>
+          <p className="body-copy m-0">{c.evidenceText}</p>
+        </div>
       </section>
     </>
   );

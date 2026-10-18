@@ -1,0 +1,299 @@
+import type {
+  InternalCallToAction,
+  PageIntroduction,
+  PageMetadata,
+  SiteRoute,
+} from "./types";
+
+export const modelsPageContent = {
+  introduction: {
+    eyebrow: "MODELS",
+    title: "Compact model experiments, documented clearly.",
+    description:
+      "Meet Quantum Sentinel-Alpha, our security-specialized code model in development, alongside Quantum 1 Echelon and the two public experimental Quantum pilots.",
+  } satisfies PageIntroduction,
+  filterLabel: "Filter models",
+  missingParameterLabel: "Final parameter size not yet defined",
+  missingLicenseLabel:
+    "No public model release exists, so no model license applies.",
+  missingLinksLabel: "No public model release link is available.",
+} as const;
+
+export const researchPageContent = {
+  introduction: {
+    eyebrow: "RESEARCH",
+    title: "Documented clearly, artifact by artifact.",
+    description:
+      "A source-linked evidence ledger for the released Quantum pilots and the current Echelon pipeline, including findings, negative results, reproducibility status and visible publication gaps.",
+  } satisfies PageIntroduction,
+} as const;
+
+export const resourcesPageContent = {
+  introduction: {
+    eyebrow: "RESOURCES",
+    title: "Inspect the evidence, not just the claims.",
+    description:
+      "Publications, reproducibility records, data provenance, responsible-use guidance, licensing boundaries and current project status in one evidence-bounded documentation hub.",
+  } satisfies PageIntroduction,
+} as const;
+
+export const aboutPageContent = {
+  introduction: {
+    eyebrow: "ABOUT",
+    title: "An independent research initiative at an early stage.",
+    description:
+      "rappidAI is a self-funded, founder-led, early-stage AI research and development initiative based in Berlin.",
+  } satisfies PageIntroduction,
+  whatItIs: {
+    eyebrow: "WHAT RAPPIDAI IS",
+    title: "Learning through real model development.",
+    text: "rappidAI develops compact language-model experiments and investigates training pipelines, evaluation, efficient inference and practical local deployment.",
+  },
+  whatItIsNot: {
+    eyebrow: "WHAT RAPPIDAI IS NOT",
+    title: "Experimental work is not production capability.",
+    text: "rappidAI is not presented as a frontier-scale laboratory. Its pilot models are experimental, unreliable in factual output and not intended as production assistants or for high-stakes decisions.",
+  },
+  whyCompactModelsMatter: {
+    eyebrow: "WHY COMPACT MODELS",
+    title: "Capability should be considered alongside resources.",
+    text: "Local inference can reduce dependence on external services and may keep prompts on the user’s device. Actual privacy depends on the application, configuration and surrounding infrastructure.",
+  },
+  projectStructure: {
+    eyebrow: "PROJECT STRUCTURE",
+    title: "An initiative, a model project and agent infrastructure.",
+    text: "rappidAI is the initiative. rappidAI Quantum is its model-development project; Lumen is an earlier name retained in repository paths. Ghost and Replay are supporting open-source projects for agent security and execution reproducibility.",
+  },
+  publishedWork: {
+    eyebrow: "PUBLISHED WORK",
+    title: "Two public experimental pilots.",
+    paragraphs: [
+      "rappidAI currently publishes two experimental German base-completion models: quantum-1-pilot and quantum-1.6-pilot. Both contain 49,295,872 parameters and are available as F16 GGUF files for local experimentation. The accompanying public repository documents the training, evaluation and GGUF-export workflow.",
+      "The public releases and source repository document the artifacts and intended workflow, but final run manifests and complete training logs are not linked. The releases do not demonstrate production readiness, reliable factual answering or competitiveness with larger general-purpose models.",
+    ],
+    action: {
+      label: "View public models",
+      href: "/models",
+    } satisfies InternalCallToAction,
+  },
+  currentDirection: {
+    eyebrow: "CURRENT DIRECTION",
+    title: "Quantum Sentinel-Alpha.",
+    text: "Our current focus is Quantum Sentinel-Alpha, a security-specialized source-code model in development. Local inference and an open-weight release are planned. Quantum 1 Echelon remains our separate German-first language-model project, available in the model index.",
+  },
+  experimentalNotice: {
+    eyebrow: "EXPERIMENTAL OUTPUTS",
+    title: "Limitations are communicated directly.",
+    text: "Research outputs may be limited, repetitive, factually unreliable and inconsistent. They should be inspected as experiments, not treated as production systems.",
+  },
+} as const;
+
+export const contactPageContent = {
+  introduction: {
+    eyebrow: "CONTACT",
+    title: "Interested in the research?",
+    description:
+      "Contact founder Jonas Désiré Cikemgil at the project’s business-domain email for technical questions, model feedback, open-source collaboration or project enquiries.",
+  } satisfies PageIntroduction,
+  methodsHeading: "Contact and research profiles",
+  emailMissingLabel: "Email contact is unavailable.",
+  enquiryTypes: [
+    "Technical questions",
+    "Open-source collaboration",
+    "Model feedback",
+    "Project enquiries",
+  ],
+  form: {
+    heading: "Send an enquiry",
+    description:
+      "Complete the fields below to prepare an email in your own email application. Nothing is transmitted or stored by this website.",
+    unavailableHeading: "Direct email contact is unavailable.",
+    unavailableDescription:
+      "No recipient is configured for the email draft. Use the linked research profiles for public project context.",
+    fields: {
+      name: { label: "Name", requiredMessage: "Enter your name." },
+      email: {
+        label: "Email",
+        requiredMessage: "Enter your email address.",
+        invalidMessage: "Enter a valid email address.",
+      },
+      subject: { label: "Subject", requiredMessage: "Enter a subject." },
+      message: { label: "Message", requiredMessage: "Enter a message." },
+    },
+    submitLabel: "Continue in email app",
+    openingEmailLabel:
+      "Opening your email application. Your message has not been sent yet.",
+    unavailableMessage:
+      "Message sending is not configured. Your message has not been sent.",
+  },
+} as const;
+
+export const imprintPageContent = {
+  introduction: {
+    eyebrow: "IMPRINT",
+    title: "Provider information",
+    description:
+      "Provider information for rappidAI research, an independent initiative operated by Jonas Désiré Cikemgil.",
+  } satisfies PageIntroduction,
+  identityLabel: "Project identity",
+  locationLabel: "General location",
+  locationQualification:
+    "Berlin, Germany is a general project location, not a legal service address.",
+  contactLabel: "Contact",
+} as const;
+
+export const privacyPageContent = {
+  introduction: {
+    eyebrow: "PRIVACY",
+    title: "Privacy information",
+    description:
+      "This page describes how the website handles personal data in its current implementation.",
+  } satisfies PageIntroduction,
+  sections: [
+    {
+      id: "controller",
+      title: "Controller information",
+      text: "Jonas Désiré Cikemgil is the controller for this website. The controller address is recorded below.",
+    },
+    {
+      id: "hosting",
+      title: "Hosting",
+      text: "The live website is hosted on Vercel. Processing location, server-log categories, purposes, legal bases and retention periods still require a verified, deployment-specific privacy and legal review.",
+    },
+    {
+      id: "contact",
+      title: "Contact form",
+      text: "The contact form has no server endpoint. It validates entries locally and opens the visitor’s email application through a mailto link. The website itself does not transmit or store the entered message.",
+    },
+    {
+      id: "analytics",
+      title: "Analytics and marketing cookies",
+      text: "No analytics or marketing cookies are configured in this project.",
+    },
+    {
+      id: "external-links",
+      title: "External links",
+      text: "The website links to configured research profiles on Hugging Face and GitHub. Their operators are responsible for their own privacy practices when visitors follow those links.",
+    },
+  ],
+} as const;
+
+export const pageMetadata = {
+  "/": {
+    title: "rappidAI Research — Introducing Quantum Sentinel-Alpha",
+    description:
+      "rappidAI Research develops open AI systems including Quantum Sentinel-Alpha, a security-specialized model for source-code vulnerability analysis. Alpha is in development; open weights are planned.",
+  },
+  "/models": {
+    title: "Models — rappidAI Research",
+    description:
+      "Explore Quantum Sentinel-Alpha, Quantum 1 Echelon and the two released experimental Quantum pilots. Sentinel is a local-first source-code security model in development.",
+  },
+  "/models/quantum-sentinel-alpha": {
+    title: "Quantum Sentinel-Alpha — rappidAI Research",
+    description:
+      "Quantum Sentinel-Alpha is a security-specialized code model in development. Explore training objectives, the provisional foundation, planned local inference and the October 2026 Alpha target.",
+  },
+  "/models/quantum-1-pilot": {
+    title: "quantum-1-pilot — rappidAI Research",
+    description:
+      "Model information and documented limitations for the experimental 49.3M-parameter quantum-1-pilot.",
+  },
+  "/models/quantum-1-6-pilot": {
+    title: "quantum-1.6-pilot — rappidAI Research",
+    description:
+      "Technical details, local inference guidance and documented limitations for the experimental 49.3M-parameter quantum-1.6-pilot.",
+  },
+  "/models/quantum-1-echelon": {
+    title: "Quantum 1 Echelon — rappidAI Research",
+    description:
+      "Quantum 1 Echelon is an upcoming German-first ~1B parameter language model developed from scratch by rappidAI Research. Explore planned specifications and development stages.",
+  },
+  "/research": {
+    title: "Research — rappidAI Research",
+    description:
+      "An artifact-level evidence ledger covering Quantum pilot results, Echelon pipeline status, negative findings, gaps and reproducibility.",
+  },
+  "/tools": {
+    title: "Tools — rappidAI Research",
+    description:
+      "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
+  },
+  "/tools/ghost": {
+    title: "Ghost v0.3.0 — rappidAI Research",
+    description:
+      "Ghost v0.3.0: integrated agent security with Prompt-Injection Guard, ALLOW/DENY/SHADOW/ASK, runtime protection, evidence and 25 GhostBench scenarios.",
+  },
+  "/tools/replay": {
+    title: "Replay — rappidAI Research",
+    description:
+      "Local-first infrastructure for recording, verifying, restoring, branching, rerunning and diffing AI-agent executions.",
+  },
+  "/resources": {
+    title: "Resources — rappidAI Research",
+    description:
+      "Evidence-bounded publications, reproducibility records, data documentation, responsible-use guidance, licensing status and project updates.",
+  },
+  "/resources/publications": {
+    title: "Publications — rappidAI Research",
+    description:
+      "Research notes and publication records from rappidAI, including negative results, evidence boundaries and primary sources.",
+  },
+  "/resources/publications/from-100m-to-600m-german-tokens": {
+    title: "From 100M to 600M German Tokens — rappidAI Research",
+    description:
+      "A source-linked research note on the documented quantum-1.6-pilot continued-pretraining experiment and its unresolved limitations.",
+  },
+  "/resources/reproducibility": {
+    title: "Reproducibility — rappidAI Research",
+    description:
+      "Pinned source revisions, release checksums, reference commands and explicit reproducibility gaps for Quantum and Echelon artifacts.",
+  },
+  "/resources/data-and-training": {
+    title: "Data & Training — rappidAI Research",
+    description:
+      "Dataset provenance, configured targets, pipeline evidence and known data and training gaps for the Quantum model series.",
+  },
+  "/resources/responsible-use": {
+    title: "Responsible Use — rappidAI Research",
+    description:
+      "Known limitations, unmeasured risks, prohibited high-stakes uses and reporting channels for rappidAI research artifacts.",
+  },
+  "/resources/licensing": {
+    title: "Licensing — rappidAI Research",
+    description:
+      "The verified license boundary for website code, model artifacts, tokenizers, datasets, repositories and visual assets.",
+  },
+  "/resources/status": {
+    title: "Project Status — rappidAI Research",
+    description:
+      "Current model-line status, reviewed evidence snapshot, publication gaps and research roadmap.",
+  },
+  "/resources/faq": {
+    title: "FAQ — rappidAI Research",
+    description:
+      "Answers about base-completion models, GGUF, local inference, Echelon stages, evidence status, privacy and licensing.",
+  },
+  "/about": {
+    title: "About — rappidAI Research",
+    description:
+      "Learn about rappidAI, a self-funded, founder-led, early-stage AI research and development initiative in Berlin.",
+  },
+  "/contact": {
+    title: "Contact — rappidAI Research",
+    description:
+      "Contact rappidAI about technical discussions, collaboration enquiries or model questions.",
+  },
+  "/imprint": {
+    title: "Imprint — rappidAI Research",
+    description: "Provider information for the rappidAI research website.",
+  },
+  "/privacy": {
+    title: "Privacy — rappidAI Research",
+    description: "Privacy information for the rappidAI research website.",
+  },
+} as const satisfies Readonly<Record<SiteRoute, PageMetadata>>;
+
+export function getPageMetadata(route: SiteRoute): PageMetadata {
+  return pageMetadata[route];
+}

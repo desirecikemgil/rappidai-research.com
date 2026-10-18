@@ -30,6 +30,12 @@ When implementing from a selected generated mock, treat that image as the source
 
 - October 2026 Sentinel design refinement: align the Sentinel hero, model name, copy, status and CTAs to the shared left page edge. Use the public name “Quantum Sentinel-Alpha”: Quantum is the model family, Sentinel the security line, Alpha the development stage. Keep Sentinel-Alpha together at one type size, scale headings and cards to the established site, and avoid oversized viewport-filling stages. Preserve the current URLs and Echelon presentation.
 
+- October 2026 complete rebuild (supersedes the earlier navy-stage and liquid-glass directions): the site should read as a serious, institutional AI research company, not as "typical AI" (no glow, neon gradients, radar/matrix motifs or decorative dark stages). Light-first: white reading surfaces, a quiet stone tone (`--paper`) for rhythm, brand navy for primary actions and one closing band, one signal blue for links and state, restrained 8–12px radii and hairline borders.
+- Information architecture is grouped, not flat: Models, Research, Tools and About, each with a mega-menu panel of its pages; Contact is a separate action. Inner pages open with a light page header (breadcrumb, title, purpose, key facts, short page map). Research, resources and legal pages share a documentation layout with a persistent section sidebar. Existing URLs stay unchanged.
+- Visuals come from real content presented as product UI (terminal windows with real commands, spec sheets, tables, the two-lane Sentinel pipeline, bar figures drawn to scale). Any illustration of planned output must be labelled as illustrative and never read as model output.
+- Every page closes with a deep-navy footer that ends in an oversized "rappidAI" wordmark cropped at the bottom edge (maintainer request); the homepage closing band above it stays light so the two do not merge.
+- Typography is part of the rappidAI identity: keep Geist Sans for headlines and text and Geist Mono for technical values, with tight headline tracking (about -0.045 to -0.055em, weight ~500). Do not introduce serif or other display typefaces (explicit maintainer decision).
+
 ## Durable research-publication direction
 
 - Treat “Documented clearly” as an evidence rule: connect public claims to committed reports, configurations, manifests, checksums or model cards.

@@ -1,4 +1,4 @@
-import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { DocLayout } from "@/components/layout/doc-layout";
 import { EvidenceMatrix } from "@/components/graphics/evidence-matrix";
 import type { EvidenceCell } from "@/components/graphics/evidence-matrix";
 import {
@@ -49,7 +49,6 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
     <>
       <PageIntro
         {...page.introduction}
-        signature="directory"
         indexLabel={t(locale, "Explore this page")}
         topics={[
           {
@@ -79,61 +78,59 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
         ]}
       />
 
-      <ResourceDirectory locale={locale} />
+      <DocLayout>
+        <ResourceDirectory locale={locale} />
 
-      <section
-        id="resources-evidence-map"
-        className="page-shell scroll-mt-32 pb-[var(--section-space)] pt-[clamp(4rem,7vw,6rem)]"
-      >
-        <ReviewStamp
-          label={review.label}
-          reference={review.evidenceReference}
-          explanation={review.explanation}
-          url={review.evidenceUrl}
-          locale={locale}
-        />
-
-        <Reveal className="liquid-surface mt-8 p-6 sm:p-9">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-            <p className="eyebrow">{t(locale, "EVIDENCE MAP")}</p>
-            <p className="max-w-[34rem] text-sm leading-6 text-muted">
-              {t(
-                locale,
-                "Every resource area with its current documentation status. Dashed cells are open gaps, not omissions.",
-              )}
-            </p>
-          </div>
-          <div className="mt-8">
+        <section id="resources-evidence-map" className="scroll-mt-32">
+          <p className="kicker">{t(locale, "Evidence map")}</p>
+          <h2 className="display-section mt-3">
+            {t(locale, "Documentation status at a glance.")}
+          </h2>
+          <p className="body-copy mt-4 max-w-[40rem]">
+            {t(
+              locale,
+              "Every resource area with its current documentation status. Dashed cells are open gaps, not omissions.",
+            )}
+          </p>
+          <div className="card mt-8 p-5 sm:p-7">
             <EvidenceMatrix cells={evidenceCells} locale={locale} />
           </div>
-        </Reveal>
+          <div className="mt-4">
+            <ReviewStamp
+              label={review.label}
+              reference={review.evidenceReference}
+              explanation={review.explanation}
+              url={review.evidenceUrl}
+              locale={locale}
+            />
+          </div>
+        </section>
 
-        <Stagger
-          id="research-profiles"
-          className="mt-4 grid scroll-mt-32 gap-4 md:grid-cols-3"
-        >
-          {utilityLinks.map((item) => (
-            <StaggerItem key={item.label}>
+        <section id="research-profiles" className="scroll-mt-32">
+          <p className="kicker">{t(locale, "Research profiles")}</p>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            {utilityLinks.map((item) => (
               <a
+                key={item.label}
                 href={item.url}
                 target="_blank"
                 rel="noreferrer"
-                className="liquid-card flex min-h-[10rem] flex-col p-6 transition-transform duration-300 hover:-translate-y-1"
+                className="card flex min-h-[8.5rem] flex-col p-5"
               >
-                <p className="font-mono text-[0.64rem] tracking-[0.13em] text-accent uppercase">
+                <p className="m-0 text-xs text-muted">
                   {t(locale, "OPEN SOURCE")}
                 </p>
-                <h2 className="mt-5 text-xl font-medium tracking-[-0.03em] text-ink">
+                <h2 className="mt-3 text-lg font-medium tracking-[-0.025em] text-ink">
                   {item.label}
                 </h2>
-                <p className="mt-3 text-sm leading-6 text-muted">
+                <p className="mt-2 text-sm leading-6 text-muted">
                   {item.detail}
                 </p>
               </a>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </section>
+            ))}
+          </div>
+        </section>
+      </DocLayout>
     </>
   );
 }

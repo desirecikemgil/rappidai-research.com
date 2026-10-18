@@ -1,26 +1,28 @@
 "use client";
 
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState, type ComponentProps } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ComponentProps,
+  type CSSProperties,
+} from "react";
+import { groupForPath, navigationGroups } from "@/content/navigation";
 import { siteConfig } from "@/content/site";
-import { BrandLockup } from "@/components/ui/brand-lockup";
 import {
   alternateLocale,
   languageName,
   localeFromPathname,
   localizeContent,
   localizePath,
+  stripLocaleFromPathname,
   t,
   type Locale,
 } from "@/lib/i18n";
-
-function isCurrentRoute(pathname: string, href: string) {
-  return href === "/" || href === "/de"
-    ? pathname === href
-    : pathname === href || pathname.startsWith(`${href}/`);
-}
 
 function IntentLink({ href, ...props }: ComponentProps<typeof Link>) {
   const router = useRouter();
@@ -49,15 +51,12 @@ function LanguageSwitcher({
   compact?: boolean;
 }) {
   const targetLocale = alternateLocale(locale);
-  const label = t(locale, "Language");
 
   return (
     <div
-      className={`liquid-pill inline-flex items-center border border-line bg-white/35 p-1 ${
-        compact ? "w-full justify-between" : ""
-      }`}
+      className={`lang-switch ${compact ? "lang-switch-compact" : ""}`}
       role="group"
-      aria-label={label}
+      aria-label={t(locale, "Language")}
     >
       {(["en", "de"] as const).map((item) => {
         const active = item === locale;
@@ -67,16 +66,12 @@ function LanguageSwitcher({
             href={localizePath(pathname, item)}
             hrefLang={item}
             lang={item}
+            data-active={active}
             aria-label={
               active
                 ? `${languageName(item)} · ${t(locale, "current language")}`
                 : `${t(locale, "Switch to")} ${languageName(item)}`
             }
-            className={`inline-flex min-h-9 items-center justify-center rounded-full px-3 font-mono text-[0.66rem] font-medium tracking-[0.1em] transition-colors ${
-              active
-                ? "bg-ink text-white shadow-sm"
-                : "text-muted hover:text-ink"
-            } ${compact ? "flex-1" : ""}`}
           >
             {item.toUpperCase()}
           </IntentLink>
@@ -93,96 +88,131 @@ export function SiteHeader() {
   const pathname = usePathname();
   const locale = localeFromPathname(pathname);
   const config = localizeContent(siteConfig, locale);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const groups = localizeContent(navigationGroups, locale);
+  const currentGroup = groupForPath(pathname)?.id;
+  const plainPath = stripLocaleFromPathname(pathname);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const closeTimer = useRef<number | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const home = localizePath("/", locale);
+  const panel = groups.find((group) => group.id === openGroup);
+
+  const cancelClose = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = window.setTimeout(() => setOpenGroup(null), 140);
+  };
 
   useEffect(() => {
-    let frame = 0;
-    let lastValue = false;
-
-    const handleScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        const nextValue = window.scrollY > 12;
-        if (nextValue === lastValue) return;
-        lastValue = nextValue;
-        setIsScrolled(nextValue);
-      });
+    if (!openGroup) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenGroup(null);
     };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const onPointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node))
+        setOpenGroup(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("pointerdown", onPointerDown);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("pointerdown", onPointerDown);
     };
-  }, []);
+  }, [openGroup]);
 
   useEffect(() => {
     if (!menuOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
     };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [menuOpen]);
 
+  useEffect(() => cancelClose, []);
+
   return (
     <header
-      data-scrolled={isScrolled || menuOpen}
-      className="liquid-header sticky top-0 z-50 border-b border-transparent"
+      ref={headerRef}
+      className="site-header liquid-header"
+      onPointerLeave={(event) => {
+        if (event.pointerType === "mouse") scheduleClose();
+      }}
+      onPointerEnter={cancelClose}
     >
-      <div className="scroll-progress-line" aria-hidden="true" />
-      <div className="page-shell-wide flex h-[var(--header-height)] items-center justify-between gap-5">
-        <BrandLockup
-          inverted
-          priority
-          href={localizePath("/", locale)}
-          homeLabel={t(locale, "rappidAI research home")}
-        />
-
-        <nav
-          aria-label="Primary navigation"
-          className="site-primary-navigation hidden items-center gap-4 xl:flex"
+      <div className="page-shell-wide header-inner">
+        <Link
+          href={home}
+          aria-label={t(locale, "rappidAI research home")}
+          className="header-brand"
         >
-          <div className="nav-links flex items-center gap-0.5">
-            {config.navigation.map((item) => {
-              const active = isCurrentRoute(pathname, item.href);
+          <Image
+            src="/brand/rappidai-research-lockup.png"
+            alt="rappidAI research"
+            width={1055}
+            height={225}
+            priority
+            sizes="156px"
+            className="h-auto w-full"
+          />
+        </Link>
+
+        <nav aria-label="Primary navigation" className="header-nav">
+          <ul className="header-groups">
+            {groups.map((group) => {
+              const open = openGroup === group.id;
               return (
-                <IntentLink
-                  key={item.href}
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
-                  className="nav-item relative rounded-full px-3 py-2 text-[0.83rem] font-medium text-muted transition-colors duration-300 hover:text-ink aria-[current=page]:text-white"
+                <li
+                  key={group.id}
+                  className="header-group"
+                  data-open={open}
+                  onPointerEnter={(event) => {
+                    if (event.pointerType !== "mouse") return;
+                    cancelClose();
+                    setOpenGroup(group.id);
+                  }}
                 >
-                  {active ? (
-                    <span
-                      aria-hidden="true"
-                      className="nav-indicator absolute inset-0 rounded-full"
-                    />
-                  ) : null}
-                  <span className="relative z-10">{item.label}</span>
-                </IntentLink>
+                  <IntentLink
+                    href={localizePath(group.href, locale)}
+                    aria-current={
+                      currentGroup === group.id ? "page" : undefined
+                    }
+                    className="nav-item"
+                  >
+                    {group.label}
+                  </IntentLink>
+                  <button
+                    type="button"
+                    className="nav-toggle"
+                    aria-expanded={open}
+                    aria-controls={`mega-${group.id}`}
+                    aria-label={`${group.label}: ${t(locale, "More pages")}`}
+                    onClick={() => setOpenGroup(open ? null : group.id)}
+                  >
+                    <ChevronDown aria-hidden="true" size={14} strokeWidth={2} />
+                  </button>
+                </li>
               );
             })}
+          </ul>
+          <div className="header-tools">
+            <LanguageSwitcher locale={locale} pathname={pathname} />
+            <IntentLink
+              href={config.primaryNavigationAction.href}
+              className="btn btn-primary header-contact"
+            >
+              {config.primaryNavigationAction.label}
+            </IntentLink>
           </div>
-          <LanguageSwitcher locale={locale} pathname={pathname} />
-          <IntentLink
-            href={config.primaryNavigationAction.href}
-            className="nav-contact-action liquid-button inline-flex min-h-11 items-center border border-ink bg-ink px-5 text-[0.84rem] font-medium text-white transition-colors hover:border-accent hover:bg-accent"
-          >
-            {config.primaryNavigationAction.label}
-          </IntentLink>
         </nav>
 
         <button
@@ -195,63 +225,95 @@ export function SiteHeader() {
               : t(locale, "Open navigation")
           }
           onClick={() => setMenuOpen((current) => !current)}
-          className="liquid-icon-button flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-ink xl:hidden"
+          className="menu-button"
         >
           {menuOpen ? (
-            <X aria-hidden="true" size={20} strokeWidth={1.7} />
+            <X aria-hidden="true" size={19} strokeWidth={1.7} />
           ) : (
-            <Menu aria-hidden="true" size={20} strokeWidth={1.7} />
+            <Menu aria-hidden="true" size={19} strokeWidth={1.7} />
           )}
         </button>
       </div>
 
+      {panel ? (
+        <div id={`mega-${panel.id}`} className="mega">
+          <div className="page-shell-wide mega-inner">
+            <div className="mega-intro">
+              <h2>{panel.title}</h2>
+              <p>{panel.description}</p>
+              <IntentLink
+                href={localizePath(panel.href, locale)}
+                className="text-link mt-2"
+                onClick={() => setOpenGroup(null)}
+              >
+                {t(locale, "Overview")}
+                <ArrowRight aria-hidden="true" size={15} />
+              </IntentLink>
+            </div>
+            <ul className="mega-links">
+              {panel.items.map((item) => (
+                <li key={item.href}>
+                  <IntentLink
+                    href={localizePath(item.href, locale)}
+                    className="mega-link"
+                    data-current={plainPath === item.href}
+                    onClick={() => setOpenGroup(null)}
+                  >
+                    <strong>{item.label}</strong>
+                    <span>{item.description}</span>
+                  </IntentLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ) : null}
+
       {menuOpen ? (
-        <div
-          id="mobile-navigation"
-          className="liquid-mobile-menu mobile-navigation-enter max-h-[calc(100svh-var(--header-height))] origin-top overflow-y-auto border-t border-line xl:hidden"
-        >
+        <div id="mobile-navigation" className="mobile-menu">
           <nav
             aria-label={t(locale, "Mobile navigation")}
-            className="page-shell py-5"
+            className="page-shell pb-12 pt-2"
           >
-            <div className="divide-y divide-line border-y border-line">
-              {config.navigation.map((item) => {
-                const active = isCurrentRoute(pathname, item.href);
-                return (
-                  <div key={item.href}>
-                    <IntentLink
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex min-h-14 items-center justify-between text-base text-ink"
-                    >
-                      {item.label}
-                      {active ? (
-                        <span className="font-mono text-[0.65rem] tracking-[0.12em] text-accent">
-                          {t(locale, "ACTIVE")}
-                        </span>
-                      ) : (
-                        <ArrowUpRight
-                          aria-hidden="true"
-                          className="size-4 text-muted"
-                          strokeWidth={1.6}
-                        />
-                      )}
-                    </IntentLink>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="mt-5">
+            {groups.map((group, index) => (
+              <div
+                key={group.id}
+                className="mobile-group"
+                style={{ "--i": index } as CSSProperties}
+              >
+                <IntentLink
+                  href={localizePath(group.href, locale)}
+                  aria-current={currentGroup === group.id ? "page" : undefined}
+                  className="mobile-group-title"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {group.label}
+                </IntentLink>
+                <ul>
+                  {group.items.map((item) => (
+                    <li key={item.href}>
+                      <IntentLink
+                        href={localizePath(item.href, locale)}
+                        data-current={plainPath === item.href}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </IntentLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
               <LanguageSwitcher locale={locale} pathname={pathname} compact />
+              <IntentLink
+                href={config.primaryNavigationAction.href}
+                className="btn btn-primary"
+                onClick={() => setMenuOpen(false)}
+              >
+                {config.primaryNavigationAction.label}
+              </IntentLink>
             </div>
-            <IntentLink
-              href={config.primaryNavigationAction.href}
-              onClick={() => setMenuOpen(false)}
-              className="liquid-button mt-5 flex min-h-12 items-center justify-center bg-ink px-5 text-sm font-medium text-white"
-            >
-              {config.primaryNavigationAction.label}
-            </IntentLink>
           </nav>
         </div>
       ) : null}

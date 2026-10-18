@@ -1,5 +1,5 @@
 import { ContactForm } from "@/components/contact/contact-form";
-import { DrawRule, Reveal } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 import { ActionLink, PendingAction } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { contactPageContent } from "@/content/pages";
@@ -57,6 +57,16 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
     <>
       <PageIntro
         {...page.introduction}
+        facts={[
+          ...(businessEmail
+            ? [{ label: t(locale, "Email"), value: businessEmail }]
+            : []),
+          { label: t(locale, "Based in"), value: config.location },
+          {
+            label: t(locale, "Typical enquiries"),
+            value: page.enquiryTypes.slice(0, 2).join(" · "),
+          },
+        ]}
         indexLabel={t(locale, "Explore this page")}
         topics={[
           {
@@ -86,12 +96,8 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
         ]}
       />
 
-      <section
-        id="contact-options"
-        className="page-shell scroll-mt-32 pb-[clamp(5rem,9vw,9rem)] pt-[clamp(4rem,7vw,6rem)]"
-      >
-        <DrawRule />
-        <div className="grid gap-[clamp(2.5rem,6vw,6rem)] pt-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
+      <section id="contact-options" className="page-shell section scroll-mt-32">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
           <Reveal className="liquid-surface h-fit p-6 sm:p-9">
             <p className="eyebrow">{t(locale, "CONTACT CHANNELS")}</p>
             <h2 className="mt-5 max-w-[12ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
@@ -159,7 +165,7 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
           className="mt-[clamp(4rem,8vw,7rem)] scroll-mt-32"
         >
           <p className="eyebrow">{t(locale, "REPORTING CHANNELS")}</p>
-          <h2 className="display-section mt-7 text-ink">
+          <h2 className="display-section mt-4 text-ink">
             {t(
               locale,
               "Public feedback, private security and sensitive concerns.",

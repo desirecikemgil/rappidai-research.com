@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/reveal";
+import { DocLayout } from "@/components/layout/doc-layout";
 import {
   EvidenceBadge,
   ResourceDirectory,
@@ -17,98 +18,100 @@ export function LocalizedDataAndTrainingPage({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageIntro {...content.introduction} signature="data" />
+      <PageIntro {...content.introduction} />
+      <DocLayout>
+        <section className="page-shell pb-[var(--section-space)]">
+          <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.65fr_1.35fr]">
+            <div>
+              <p className="eyebrow">{t(locale, "PRIMARY DATASET")}</p>
+              <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
+                {content.dataset.name}
+              </h2>
+              <p className="mt-3 font-mono text-[0.68rem] tracking-[0.12em] text-accent uppercase">
+                {content.dataset.subset}
+              </p>
+            </div>
+            <div>
+              <p className="body-lg">{content.dataset.origin}</p>
+              <p className="body-copy mt-5">{content.dataset.terms}</p>
+              <a
+                href={content.dataset.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 hover:text-accent"
+              >
+                {t(locale, "Inspect dataset card")}
+              </a>
+            </div>
+          </Reveal>
 
-      <section className="page-shell pb-[var(--section-space)]">
-        <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.65fr_1.35fr]">
-          <div>
-            <p className="eyebrow">{t(locale, "PRIMARY DATASET")}</p>
-            <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
-              {content.dataset.name}
-            </h2>
-            <p className="mt-3 font-mono text-[0.68rem] tracking-[0.12em] text-accent uppercase">
-              {content.dataset.subset}
-            </p>
-          </div>
-          <div>
-            <p className="body-lg">{content.dataset.origin}</p>
-            <p className="body-copy mt-5">{content.dataset.terms}</p>
-            <a
-              href={content.dataset.url}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex text-sm font-medium text-ink underline decoration-line-strong underline-offset-4 hover:text-accent"
-            >
-              {t(locale, "Inspect dataset card")}
-            </a>
-          </div>
-        </Reveal>
-
-        <div className="mt-12 space-y-4">
-          {content.stages.map((stage, index) => (
-            <Reveal
-              key={stage.name}
-              delay={index * 0.035}
-              className="liquid-row grid gap-7 rounded-[1.3rem] border-y border-line py-8 lg:grid-cols-[0.65fr_1.35fr]"
-            >
-              <div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="technical-number text-xs text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <EvidenceBadge status={stage.status} locale={locale} />
+          <div className="mt-12 space-y-4">
+            {content.stages.map((stage, index) => (
+              <Reveal
+                key={stage.name}
+                delay={index * 0.035}
+                className="liquid-row grid gap-7 rounded-[1.3rem] border-y border-line py-8 lg:grid-cols-[0.65fr_1.35fr]"
+              >
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="technical-number text-xs text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <EvidenceBadge status={stage.status} locale={locale} />
+                  </div>
+                  <h2 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
+                    {stage.name}
+                  </h2>
                 </div>
-                <h2 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
-                  {stage.name}
-                </h2>
-              </div>
-              <dl className="border-b border-line">
-                <StageFact
-                  label={t(locale, "Source revision")}
-                  value={stage.sourceRevision}
-                />
-                <StageFact
-                  label={t(locale, "Configured target")}
-                  value={stage.target}
-                />
-                <StageFact
-                  label={t(locale, "Public observation")}
-                  value={stage.observed}
-                />
-              </dl>
+                <dl className="border-b border-line">
+                  <StageFact
+                    label={t(locale, "Source revision")}
+                    value={stage.sourceRevision}
+                  />
+                  <StageFact
+                    label={t(locale, "Configured target")}
+                    value={stage.target}
+                  />
+                  <StageFact
+                    label={t(locale, "Public observation")}
+                    value={stage.observed}
+                  />
+                </dl>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-[clamp(4rem,8vw,8rem)] grid gap-4 lg:grid-cols-2">
+            <Reveal className="liquid-card p-7 sm:p-9">
+              <p className="eyebrow">{t(locale, "PIPELINE CONTROLS")}</p>
+              <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
+                {t(locale, "Documented controls.")}
+              </h2>
+              <BulletList items={content.controls} />
             </Reveal>
-          ))}
-        </div>
+            <Reveal delay={0.05} className="liquid-card p-7 sm:p-9">
+              <p className="eyebrow">{t(locale, "KNOWN LIMITATIONS")}</p>
+              <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
+                {t(locale, "Evidence still missing.")}
+              </h2>
+              <BulletList items={content.limitations} muted />
+            </Reveal>
+          </div>
 
-        <div className="mt-[clamp(4rem,8vw,8rem)] grid gap-4 lg:grid-cols-2">
-          <Reveal className="liquid-card p-7 sm:p-9">
-            <p className="eyebrow">{t(locale, "PIPELINE CONTROLS")}</p>
-            <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
-              {t(locale, "Documented controls.")}
-            </h2>
-            <BulletList items={content.controls} />
+          <Reveal className="mt-8 border-l-2 border-accent bg-pale-soft px-6 py-5">
+            <p className="text-sm leading-6 text-ink-soft">
+              {content.contact} {t(locale, "Contact")}:{" "}
+              {siteConfig.businessEmail}
+            </p>
           </Reveal>
-          <Reveal delay={0.05} className="liquid-card p-7 sm:p-9">
-            <p className="eyebrow">{t(locale, "KNOWN LIMITATIONS")}</p>
-            <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
-              {t(locale, "Evidence still missing.")}
-            </h2>
-            <BulletList items={content.limitations} muted />
+
+          <Reveal className="mt-10">
+            <SourceLinks sources={content.sources} locale={locale} />
           </Reveal>
-        </div>
+        </section>
 
-        <Reveal className="mt-8 border-l-2 border-accent bg-pale-soft px-6 py-5">
-          <p className="text-sm leading-6 text-ink-soft">
-            {content.contact} {t(locale, "Contact")}: {siteConfig.businessEmail}
-          </p>
-        </Reveal>
-
-        <Reveal className="mt-10">
-          <SourceLinks sources={content.sources} locale={locale} />
-        </Reveal>
-      </section>
-
-      <ResourceDirectory current="data-and-training" locale={locale} />
+        <ResourceDirectory current="data-and-training" locale={locale} />
+      </DocLayout>
     </>
   );
 }

@@ -94,7 +94,7 @@ export function ContactForm({
 
   if (!businessEmail) {
     return (
-      <div className="liquid-surface border border-white/70 p-6 sm:p-9 lg:p-10">
+      <div className="liquid-surface p-6 sm:p-9 lg:p-10">
         <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
         <h2 className="mt-5 max-w-[16ch] text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
           {form.unavailableHeading}
@@ -162,7 +162,7 @@ export function ContactForm({
     "liquid-field mt-2 min-h-[3.25rem] w-full border border-line bg-transparent px-0 py-3.5 text-base text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent aria-[invalid=true]:border-accent";
 
   return (
-    <div className="liquid-surface border border-white/70 p-5 pt-7 sm:p-9 lg:p-10">
+    <div className="liquid-surface p-5 pt-7 sm:p-9 lg:p-10">
       <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
       <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}
@@ -185,7 +185,7 @@ export function ContactForm({
           <div>
             <label
               htmlFor={`${idPrefix}-name`}
-              className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-muted"
+              className="text-[0.85rem] font-medium text-ink"
             >
               {form.fields.name.label}
               <span aria-hidden="true" className="ml-1 text-accent">
@@ -216,7 +216,7 @@ export function ContactForm({
           <div>
             <label
               htmlFor={`${idPrefix}-email`}
-              className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-muted"
+              className="text-[0.85rem] font-medium text-ink"
             >
               {form.fields.email.label}
               <span aria-hidden="true" className="ml-1 text-accent">
@@ -248,7 +248,7 @@ export function ContactForm({
           <div className="sm:col-span-2">
             <label
               htmlFor={`${idPrefix}-subject`}
-              className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-muted"
+              className="text-[0.85rem] font-medium text-ink"
             >
               {form.fields.subject.label}
               <span aria-hidden="true" className="ml-1 text-accent">
@@ -278,7 +278,7 @@ export function ContactForm({
           <div className="sm:col-span-2">
             <label
               htmlFor={`${idPrefix}-message`}
-              className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-muted"
+              className="text-[0.85rem] font-medium text-ink"
             >
               {form.fields.message.label}
               <span aria-hidden="true" className="ml-1 text-accent">
@@ -309,7 +309,7 @@ export function ContactForm({
         <div className="mt-9 flex flex-col items-start gap-5">
           <button
             type="submit"
-            className="link-arrow liquid-button inline-flex min-h-12 w-full items-center justify-center gap-2.5 border border-ink bg-ink px-5 text-[0.88rem] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:border-accent hover:bg-accent focus-visible:border-accent focus-visible:bg-accent sm:w-auto"
+            className="btn btn-primary link-arrow w-full sm:w-auto"
           >
             {form.submitLabel}
             <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
