@@ -9,7 +9,7 @@ import {
 } from "@/components/models/sentinel-preview";
 import { ActionLink } from "@/components/ui/action-link";
 import { ghostCopy, ghostRelease } from "@/content/ghost";
-import { models } from "@/content/models";
+import { modelListName, models } from "@/content/models";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 import { metadataFor } from "@/lib/metadata";
 import styles from "./home.module.css";
@@ -194,7 +194,7 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 <ul className={styles.lineup}>
                   {lineup.map((model) => (
                     <li key={model.slug}>
-                      <span>{model.name}</span>
+                      <span>{modelListName(model.slug)}</span>
                       <span
                         className={`chip chip-dot ${
                           model.availability === "available"

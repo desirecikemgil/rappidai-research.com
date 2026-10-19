@@ -8,6 +8,10 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Model list names — 19 October 2026
+
+- Model lists (lineup table, model index, homepage portfolio, mega menu and footer) now name every model in the same lowercase, hyphenated form: quantum-sentinel-alpha, quantum-1-echelon, quantum-1.6-pilot and quantum-1-pilot. Headings and running text keep the public names.
+
 ### Mobile layout pass — 18 October 2026
 
 - The oversized footer wordmark now reads „quantum“ instead of „rappidAI“, at the same size.

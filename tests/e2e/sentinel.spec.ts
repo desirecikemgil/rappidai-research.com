@@ -48,10 +48,10 @@ for (const locale of ["en", "de"] as const) {
       .click();
     await expect(page.locator(".model-catalog article")).toHaveCount(4);
     await expect(page.locator(".model-catalog article").first()).toContainText(
-      "Quantum Sentinel-Alpha",
+      "quantum-sentinel-alpha",
     );
     await expect(page.locator(".model-catalog article").nth(1)).toContainText(
-      "Quantum 1 Echelon",
+      "quantum-1-echelon",
     );
     await page.locator(".model-index-featured a").click();
     await expect(page).toHaveURL(`${models}/quantum-1-echelon`);

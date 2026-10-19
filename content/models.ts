@@ -286,6 +286,22 @@ export const modelFilters = [
 
 export const modelSlugs = models.map((model) => model.slug) as ModelSlug[];
 
+/**
+ * Lists of models (lineup, model index, menus, footer) name every model in
+ * the same lowercase, hyphenated form as the pilots. Headings and prose keep
+ * the public names such as "Quantum Sentinel-Alpha".
+ */
+const modelListNames: Record<ModelSlug, string> = {
+  "quantum-sentinel-alpha": "quantum-sentinel-alpha",
+  "quantum-1-echelon": "quantum-1-echelon",
+  "quantum-1-6-pilot": "quantum-1.6-pilot",
+  "quantum-1-pilot": "quantum-1-pilot",
+};
+
+export function modelListName(slug: ModelSlug): string {
+  return modelListNames[slug];
+}
+
 export function isModelSlug(value: string): value is ModelSlug {
   return models.some((model) => model.slug === value);
 }

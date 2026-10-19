@@ -28,12 +28,12 @@ export const navigationGroups = [
       "A security-specialized model in development, the Echelon model line and two public pilot releases.",
     items: [
       {
-        label: "Quantum Sentinel-Alpha",
+        label: "quantum-sentinel-alpha",
         href: "/models/quantum-sentinel-alpha",
         description: "Security-specialized code model · Alpha in development",
       },
       {
-        label: "Quantum 1 Echelon",
+        label: "quantum-1-echelon",
         href: "/models/quantum-1-echelon",
         description: "German-first model line · ~1B target · Coming Soon",
       },
