@@ -14,6 +14,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
+import { modelListName } from "@/content/models";
 import { sentinelPreview } from "@/content/sentinel";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 import styles from "./sentinel.module.css";
@@ -401,7 +402,7 @@ export function SentinelCard({ locale }: { locale: Locale }) {
           <p className={styles.cardStatus}>
             <span className="chip chip-dot">{c.status}</span>
           </p>
-          <h3>{c.name}</h3>
+          <h3>{modelListName("quantum-sentinel-alpha")}</h3>
           <p>
             {t(
               locale,

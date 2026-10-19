@@ -5,7 +5,11 @@ import { EchelonCard } from "./echelon-card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { getModelsByFilter, modelFilters } from "@/content/models";
+import {
+  getModelsByFilter,
+  modelFilters,
+  modelListName,
+} from "@/content/models";
 import type { ModelFilterId } from "@/content/types";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 
@@ -85,7 +89,7 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
                     </span>
                   </div>
                   <h3 className="mt-5 text-ink transition-colors group-hover:text-accent">
-                    {model.name}
+                    {modelListName(model.slug)}
                   </h3>
                   <p className="body-copy mt-5 max-w-xl">{model.summary}</p>
                 </div>

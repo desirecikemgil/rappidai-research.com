@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { ModelComparisonSuite } from "@/components/graphics/model-comparison-suite";
 import { ModelIndex } from "@/components/models/model-index";
 import { PageIntro } from "@/components/ui/page-intro";
-import { models } from "@/content/models";
+import { modelListName, models } from "@/content/models";
 import { modelsPageContent } from "@/content/pages";
 import { metadataFor } from "@/lib/metadata";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
@@ -95,7 +95,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
                       href={localizePath(`/models/${model.slug}`, locale)}
                       className="inline-flex items-center gap-2 font-medium text-ink hover:text-accent"
                     >
-                      {model.name}
+                      {modelListName(model.slug)}
                       <ArrowRight aria-hidden="true" size={14} />
                     </Link>
                   </td>

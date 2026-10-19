@@ -57,7 +57,7 @@ for (const locale of ["en", "de"] as const) {
     await expect(page).toHaveURL(models);
     await expect(page.locator(".model-catalog article")).toHaveCount(4);
     await expect(page.locator(".model-catalog article").first()).toContainText(
-      "Quantum Sentinel-Alpha",
+      "quantum-sentinel-alpha",
     );
     await expect(page.locator(".model-catalog")).toContainText(
       "quantum-1-pilot",
