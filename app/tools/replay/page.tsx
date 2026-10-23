@@ -9,13 +9,13 @@ export const metadata = metadataFor("/tools/replay");
 const copy = {
   en: {
     intro: {
-      eyebrow: "TOOL · REPLAY",
-      title: "rappidAI Replay. Understand every run.",
+      eyebrow: "Tool · Replay",
+      title: "rappidAI Replay: recording and comparing agent runs",
       description:
         "Replay is a local-first execution recorder and state engine for AI-agent runs. Its deterministic core works without AI and is designed to make technical execution inspectable, restorable, branchable and comparable.",
     },
-    status: "EXPERIMENTAL · CURRENT IMPLEMENTATION",
-    currentTitle: "What is implemented today.",
+    status: "Experimental · current implementation",
+    currentTitle: "What is implemented today",
     current: [
       "Generic execution recording with command, process and workspace capture.",
       "Verification of recorded state.",
@@ -24,7 +24,7 @@ const copy = {
       "Live reruns with explicit execution consent. Recorded, controlled and hybrid modes are not implemented.",
       "Deterministic multi-dimensional replay diff.",
     ],
-    principlesTitle: "The architecture separates evidence from interpretation.",
+    principlesTitle: "The architecture separates evidence from interpretation",
     principles: [
       "The deterministic core is complete without AI.",
       "The Generic Recorder remains mandatory; adapters may enrich but never gate recording.",
@@ -32,7 +32,7 @@ const copy = {
       "Final checkpoints plus reconciled file events and Merkle state are the technical source of truth.",
       "Playback and re-execution are separate concepts: playback reads stored evidence, rerun executes code.",
     ],
-    ladderTitle: "Reproducibility is a ladder, not a binary claim.",
+    ladderTitle: "Reproducibility is a ladder, not a binary claim",
     ladder: [
       { k: "R0", v: "Inspectable" },
       { k: "R1", v: "Restorable" },
@@ -42,7 +42,7 @@ const copy = {
     ],
     ladderNote:
       "R0–R4 is the architecture contract for describing achieved reproducibility. The page does not claim every level is fully implemented for every session today.",
-    architectureTitle: "State and storage architecture.",
+    architectureTitle: "State and storage architecture",
     architecture: [
       "CLI / API layer",
       "Session + event services",
@@ -53,7 +53,7 @@ const copy = {
       "Optional read-only intelligence layer",
     ],
     plannedTitle:
-      "Architecture targets that must not be confused with current implementation.",
+      "Architecture targets that must not be confused with current implementation",
     planned: [
       "Portable .rplay export/import package",
       "Complete external-I/O cassette ecosystem",
@@ -61,7 +61,7 @@ const copy = {
       "Optional local intelligence sidecar",
       "Broader adapter coverage and hardening",
     ],
-    findingsTitle: "Engineering findings.",
+    findingsTitle: "Engineering findings",
     findings: [
       "Reliable restore needs its own state model rather than relying only on terminal logs.",
       "Content-addressed storage and recursive state trees make state identity explicit and deduplicable.",
@@ -69,21 +69,21 @@ const copy = {
       "Recorded playback should never silently execute code or access the network.",
       "Adapters are additive so reproducibility does not depend on one IDE or agent vendor.",
     ],
-    usageTitle: "Current CLI surface.",
-    audienceTitle: "Who it is for.",
+    usageTitle: "Current CLI surface",
+    audienceTitle: "Who it is for",
     audience:
       "Developers and researchers debugging autonomous agents, comparing execution paths, reproducing failures, testing agent changes and preserving inspectable local evidence of what a run changed.",
     sourceTitle: "Reviewed architecture and source",
   },
   de: {
     intro: {
-      eyebrow: "TOOL · REPLAY",
-      title: "rappidAI Replay. Jeden Lauf verstehen.",
+      eyebrow: "Tool · Replay",
+      title: "rappidAI Replay: Agentenläufe aufzeichnen und vergleichen",
       description:
         "Replay ist ein lokal ausgerichteter Recorder und eine Zustands-Engine für Läufe von KI-Agenten. Der deterministische Kern funktioniert ohne KI. Er ist darauf ausgelegt, technische Ausführungen prüfbar, wiederherstellbar, verzweigbar und vergleichbar zu machen.",
     },
-    status: "EXPERIMENTELL · AKTUELLE IMPLEMENTIERUNG",
-    currentTitle: "Was derzeit implementiert ist.",
+    status: "Experimentell · aktuelle Implementierung",
+    currentTitle: "Was derzeit implementiert ist",
     current: [
       "Generische Aufzeichnung von Ausführungen; erfasst werden Befehl, Prozesse und Workspace.",
       "Überprüfung aufgezeichneter Zustände.",
@@ -92,7 +92,7 @@ const copy = {
       "Erneute Live-Ausführung nach ausdrücklicher Zustimmung. Die Modi Recorded, Controlled und Hybrid sind nicht implementiert.",
       "Deterministischer Replay-Vergleich über mehrere Dimensionen.",
     ],
-    principlesTitle: "Die Architektur trennt Belege von ihrer Deutung.",
+    principlesTitle: "Die Architektur trennt Belege von ihrer Deutung",
     principles: [
       "Der deterministische Kern ist auch ohne KI vollständig.",
       "Der Generic Recorder bleibt Pflicht. Adapter dürfen die Aufzeichnung anreichern, sie aber nie von sich abhängig machen.",
@@ -101,7 +101,7 @@ const copy = {
       "Wiedergabe und erneute Ausführung sind getrennte Konzepte: Die Wiedergabe liest gespeicherte Nachweise, die erneute Ausführung führt Code aus.",
     ],
     ladderTitle:
-      "Reproduzierbarkeit ist eine Stufenleiter, keine Ja-oder-Nein-Frage.",
+      "Reproduzierbarkeit ist eine Stufenleiter, keine Ja-oder-Nein-Frage",
     ladder: [
       { k: "R0", v: "Prüfbar" },
       { k: "R1", v: "Wiederherstellbar" },
@@ -111,7 +111,7 @@ const copy = {
     ],
     ladderNote:
       "R0–R4 legt in der Architektur verbindlich fest, wie die erreichte Reproduzierbarkeit beschrieben wird. Diese Seite behauptet nicht, dass heute jede Stufe für jede Session vollständig implementiert ist.",
-    architectureTitle: "Architektur für Zustände und Speicherung.",
+    architectureTitle: "Architektur für Zustände und Speicherung",
     architecture: [
       "CLI-/API-Schicht",
       "Session- und Ereignisdienste",
@@ -121,8 +121,7 @@ const copy = {
       "Inhaltsadressierter Zustandsspeicher",
       "Optionale Intelligence-Schicht (nur lesend)",
     ],
-    plannedTitle:
-      "Architekturziele – nicht zu verwechseln mit dem, was heute implementiert ist.",
+    plannedTitle: "Architekturziele, die noch nicht implementiert sind",
     planned: [
       "Portables .rplay-Paket für Export und Import",
       "Vollständiges Kassetten-Ökosystem für externe I/O",
@@ -130,7 +129,7 @@ const copy = {
       "Optionaler lokaler Intelligence-Sidecar",
       "Breitere Abdeckung durch Adapter und weitere Härtung",
     ],
-    findingsTitle: "Erkenntnisse aus der Entwicklung.",
+    findingsTitle: "Erkenntnisse aus der Entwicklung",
     findings: [
       "Eine zuverlässige Wiederherstellung braucht ein eigenes Zustandsmodell; Terminal-Logs allein reichen nicht.",
       "Inhaltsadressierte Speicherung und rekursive Zustandsbäume machen die Identität von Zuständen explizit und erlauben Deduplizierung.",
@@ -138,10 +137,10 @@ const copy = {
       "Die Wiedergabe einer Aufzeichnung sollte nie unbemerkt Code ausführen oder auf das Netzwerk zugreifen.",
       "Adapter sind eine reine Ergänzung, damit die Reproduzierbarkeit nicht von einer bestimmten IDE oder einem einzelnen Agentenanbieter abhängt.",
     ],
-    usageTitle: "Aktuelle CLI-Befehle.",
-    audienceTitle: "Für wen Replay gedacht ist.",
+    usageTitle: "Aktuelle CLI-Befehle",
+    audienceTitle: "Für wen Replay gedacht ist",
     audience:
-      "Für Entwickler und Forschende, die autonome Agenten debuggen, Ausführungspfade vergleichen, Fehler reproduzieren und Änderungen an Agenten testen – und lokal prüfbare Nachweise darüber sichern wollen, was ein Lauf verändert hat.",
+      "Für Entwickler und Forschende, die autonome Agenten debuggen, Ausführungspfade vergleichen, Fehler reproduzieren und Änderungen an Agenten testen und lokal prüfbare Nachweise darüber sichern wollen, was ein Lauf verändert hat.",
     sourceTitle: "Geprüfte Architektur und Quellen",
   },
 } as const;
@@ -209,7 +208,7 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
                   className="flex items-center gap-4 border-b border-line px-5 py-3 text-[0.9rem] text-ink last:border-b-0"
                 >
                   <span className="font-mono text-[0.72rem] text-muted">
-                    {String(i + 1).padStart(2, "0")}
+                    {i + 1}
                   </span>
                   {layer}
                 </li>
@@ -232,11 +231,8 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
             {c.current.map((x) => (
               <li
                 key={x}
-                className="card flex gap-3 p-5 text-[0.95rem] leading-7 text-ink-soft"
+                className="card p-5 text-[0.95rem] leading-7 text-ink-soft"
               >
-                <span aria-hidden="true" className="text-accent">
-                  ✓
-                </span>
                 {x}
               </li>
             ))}
@@ -248,19 +244,13 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
         <div className="page-shell section">
           <div className="section-head">
             <p className="kicker">
-              {locale === "de" ? "Designprinzipien" : "Design law"}
+              {locale === "de" ? "Designprinzipien" : "Design principles"}
             </p>
             <h2 className="display-section">{c.principlesTitle}</h2>
           </div>
           <ol className="m-0 grid list-none gap-0 border-t border-line-strong p-0">
-            {c.principles.map((x, i) => (
-              <li
-                key={x}
-                className="grid gap-2 border-b border-line py-5 sm:grid-cols-[4rem_1fr]"
-              >
-                <span className="font-mono text-xs text-muted">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+            {c.principles.map((x) => (
+              <li key={x} className="grid gap-2 border-b border-line py-5">
                 <p className="m-0 text-[1.05rem] leading-7 text-ink">{x}</p>
               </li>
             ))}
@@ -320,7 +310,7 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
             </div>
             <div className="card p-6 sm:p-8">
               <p className="m-0">
-                <span className="chip chip-dot chip-planned">
+                <span className="chip">
                   {locale === "de"
                     ? "Geplant / Architekturziel"
                     : "Planned / Architecture target"}
@@ -349,11 +339,6 @@ export function LocalizedReplayPage({ locale }: { locale: Locale }) {
             </h2>
             <div className="window window-dark mt-5">
               <div className="window-bar">
-                <span className="dots" aria-hidden="true">
-                  <i />
-                  <i />
-                  <i />
-                </span>
                 <span>rappid replay</span>
               </div>
               <pre

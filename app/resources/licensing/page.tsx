@@ -45,7 +45,7 @@ export function LocalizedLicensingPage({ locale }: { locale: Locale }) {
                       <th
                         key={column}
                         scope="col"
-                        className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
+                        className="ui-label border-b border-line-strong px-6 py-5"
                       >
                         {column}
                       </th>

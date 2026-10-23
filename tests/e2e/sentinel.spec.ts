@@ -90,16 +90,16 @@ for (const width of [320, 375, 768, 1440]) {
         .evaluate((hero) => {
           const title = hero.querySelector("h1")!;
           const actions = hero.querySelector("a[href]")!;
-          const horizon = hero.querySelector("ul")!;
+          const facts = hero.querySelector("dl.facts")!;
           return {
             textAlign: getComputedStyle(title).textAlign,
             titleX: title.getBoundingClientRect().left,
-            horizonX: horizon.getBoundingClientRect().left,
+            factsX: facts.getBoundingClientRect().left,
             actionX: actions.getBoundingClientRect().left,
           };
         });
       expect(alignment.textAlign).toBe("left");
-      expect(Math.abs(alignment.titleX - alignment.horizonX)).toBeLessThan(1);
+      expect(Math.abs(alignment.titleX - alignment.factsX)).toBeLessThan(1);
       expect(Math.abs(alignment.titleX - alignment.actionX)).toBeLessThan(1);
       const violations = (
         await new AxeBuilder({ page }).analyze()

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { DocLayout } from "@/components/layout/doc-layout";
-import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import {
   EvidenceBadge,
@@ -19,8 +18,8 @@ export function LocalizedPublicationsPage({ locale }: { locale: Locale }) {
   return (
     <>
       <PageIntro
-        eyebrow={t(locale, "PUBLICATIONS")}
-        title={t(locale, "Research notes with visible evidence boundaries.")}
+        eyebrow={t(locale, "Publications")}
+        title={t(locale, "Publications and research notes")}
         description={t(
           locale,
           "Project publications summarize public artifacts, negative results and unresolved questions. They are not presented as peer-reviewed academic papers.",
@@ -42,7 +41,7 @@ export function LocalizedPublicationsPage({ locale }: { locale: Locale }) {
                       <span>600M</span>
                     </div>
                     <p className="eyebrow">{publication.kindLabel}</p>
-                    <p className="mt-5 font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase">
+                    <p className="ui-label mt-5">
                       {t(locale, "23 July 2026")} ·{" "}
                       {publication.peerReviewStatus} · {t(locale, "No DOI")}
                     </p>
@@ -57,7 +56,6 @@ export function LocalizedPublicationsPage({ locale }: { locale: Locale }) {
                     <p className="body-lg mt-6">{publication.summary}</p>
                     <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors group-hover:text-accent">
                       {t(locale, "Read research note")}
-                      <ArrowRight aria-hidden="true" className="size-4" />
                     </span>
                   </div>
                 </Link>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { resourceCards } from "@/content/resources";
 import type {
@@ -18,12 +17,9 @@ export function EvidenceBadge({
   onDark?: boolean;
   locale?: Locale;
 }) {
-  const published = status === "Published";
-  const partial = status === "Partial evidence";
-
   return (
     <span
-      className={`chip chip-dot ${published ? "chip-ok" : partial ? "" : "chip-planned"} ${
+      className={`chip ${
         onDark ? "!border-white/25 !bg-transparent !text-white" : ""
       }`}
     >
@@ -80,8 +76,8 @@ export function ResourceDirectory({
           <p className="kicker">{t(locale, "Documentation directory")}</p>
           <h2 id="resource-directory-heading" className="display-section mt-3">
             {current
-              ? t(locale, "Continue through the evidence.")
-              : t(locale, "Documentation by topic.")}
+              ? t(locale, "Related documentation")
+              : t(locale, "Documentation by topic")}
           </h2>
         </div>
       </div>
@@ -108,7 +104,6 @@ export function ResourceDirectory({
             </p>
             <span className="mt-auto inline-flex items-center gap-1.5 pt-1 text-sm font-medium text-accent">
               {t(locale, "Open resource")}
-              <ArrowRight aria-hidden="true" className="size-4" />
             </span>
           </Link>
         ))}
@@ -133,7 +128,7 @@ export function ReviewStamp({
   return (
     <Reveal className="card grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.6fr_1.4fr]">
       <div>
-        <p className="eyebrow">{t(locale, "LAST REVIEWED")}</p>
+        <p className="eyebrow">{t(locale, "Last reviewed")}</p>
         <p className="mt-3 text-2xl font-medium tracking-[-0.035em] text-ink">
           {label}
         </p>

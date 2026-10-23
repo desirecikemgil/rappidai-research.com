@@ -4,9 +4,6 @@ import styles from "./echelon.module.css";
 
 export function ModelStatusBadge({ locale }: { locale: Locale }) {
   return (
-    <span className={styles.status}>
-      <span aria-hidden="true" />
-      {t(locale, echelonPreview.status)}
-    </span>
+    <span className={styles.status}>{t(locale, echelonPreview.status)}</span>
   );
 }

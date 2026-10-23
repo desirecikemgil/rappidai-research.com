@@ -63,18 +63,8 @@
   animation-delay: 220ms;
 }
 
-.announce {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem 0.9rem;
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.875rem;
-}
-
 .title {
-  margin: 1.5rem 0 0;
+  margin: 0;
   color: var(--ink);
   font-weight: 500;
   text-align: left;
@@ -194,34 +184,19 @@
 .schemaFoot {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem 1.5rem;
   padding: 0.9rem 1.35rem 1.1rem;
   border-top: 1px solid var(--code-line);
 }
 
 .decision {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.25rem 0.6rem;
-  border: 1px solid var(--code-line);
-  border-radius: 999px;
-  color: var(--code-ink);
+  color: var(--code-muted);
   font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
 }
 
-.decision::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--code-muted);
-}
-
-.decision:first-child::before {
-  background: var(--code-accent);
+.decision:first-child {
+  color: var(--code-ink);
 }
 
 .illustrative {
@@ -233,15 +208,6 @@
 
 .heroFacts {
   padding-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-.positioning {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
 }
 
 /* ---------------- Training objectives ---------------- */
@@ -278,18 +244,6 @@
   background: var(--white);
 }
 
-.icon {
-  display: inline-flex;
-  width: 2.25rem;
-  height: 2.25rem;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-  border-radius: var(--radius-sm);
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
 .objectives h3 {
   margin: 0;
   color: var(--ink);
@@ -317,12 +271,6 @@
   color: var(--ink-2);
   font-size: 0.92rem;
   line-height: 1.6;
-}
-
-.notice svg {
-  flex: none;
-  margin-top: 0.2rem;
-  color: var(--accent);
 }
 
 /* ---------------- Architecture: two lanes ---------------- */
@@ -529,13 +477,11 @@
   font-size: 0.8rem;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 1rem 0 0;
-  padding: 0;
-  list-style: none;
+.tasks {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
 .reason {

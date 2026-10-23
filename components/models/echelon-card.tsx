@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { echelonPreview } from "@/content/echelon";
 import { modelListName } from "@/content/models";
 import { localizeContent, localizePath, type Locale } from "@/lib/i18n";
@@ -19,10 +18,7 @@ export function EchelonCard({ locale }: { locale: Locale }) {
           <ModelStatusBadge locale={locale} />
           <h3>{modelListName("quantum-1-echelon")}</h3>
           <p>{c.cardSummary}</p>
-          <span className={styles.cardAction}>
-            {c.explore}
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </span>
+          <span className={styles.cardAction}>{c.explore}</span>
         </div>
         <div className={styles.cardVariant}>
           <span className={styles.variant}>{c.variant}</span>

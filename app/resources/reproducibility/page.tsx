@@ -34,7 +34,7 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
                 className="liquid-card min-w-0 p-7 sm:p-9"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="eyebrow">{t(locale, "PUBLIC F16 GGUF")}</p>
+                  <p className="eyebrow">{t(locale, "Public F16 GGUF")}</p>
                   <EvidenceBadge status="Published" locale={locale} />
                 </div>
                 <h2 className="mt-7 text-3xl font-medium tracking-[-0.045em] text-ink">
@@ -87,7 +87,7 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
           </div>
 
           <Reveal className="liquid-surface mt-8 overflow-hidden p-7 sm:p-9">
-            <p className="eyebrow">{t(locale, "LLAMA.CPP REFERENCE")}</p>
+            <p className="eyebrow">{t(locale, "llama.cpp reference")}</p>
             <pre
               tabIndex={0}
               className="mt-6 max-w-full overflow-x-auto rounded-[1rem] border border-line bg-ink p-5 text-[0.76rem] leading-6 text-[#d8e4f6] focus-visible:outline-2 focus-visible:outline-accent"
@@ -101,17 +101,17 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
 
           <div className="mt-[clamp(4rem,7vw,7rem)] grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <Reveal>
-              <p className="eyebrow">{t(locale, "VERIFICATION WORKFLOW")}</p>
+              <p className="eyebrow">{t(locale, "Verification workflow")}</p>
               <h2 className="display-section mt-7 text-ink">
-                {t(locale, "A repeatable local record.")}
+                {t(locale, "Local verification steps")}
               </h2>
             </Reveal>
             <ol className="space-y-3 sm:space-y-4">
               {content.verificationSteps.map((step, index) => (
                 <li key={step}>
                   <Reveal className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-7 sm:grid-cols-[3rem_1fr]">
-                    <span className="technical-number text-xs text-accent">
-                      {String(index + 1).padStart(2, "0")}
+                    <span className="technical-number text-sm text-muted">
+                      {index + 1}
                     </span>
                     <p className="text-base leading-7 text-ink-soft">{step}</p>
                   </Reveal>
@@ -140,7 +140,7 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
                       <th
                         key={column}
                         scope="col"
-                        className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
+                        className="ui-label border-b border-line-strong px-6 py-5"
                       >
                         {column}
                       </th>
@@ -207,9 +207,7 @@ function ReleaseFact({
 }) {
   return (
     <div className="grid gap-2 border-t border-line py-5 sm:grid-cols-[7rem_1fr]">
-      <dt className="font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
-        {label}
-      </dt>
+      <dt className="ui-label">{label}</dt>
       <dd
         className={`text-sm leading-6 text-ink-soft ${breakValue ? "break-all font-mono text-[0.7rem]" : ""}`}
       >

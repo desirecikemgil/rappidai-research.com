@@ -25,27 +25,27 @@ export const echelonPreview = {
   scrollLabel: "Scroll to the next section",
   overview: {
     eyebrow: "The next Quantum",
-    title: "A focused foundation.",
+    title: "What Echelon is designed for",
     description:
       "Echelon is our current major model project: an approximately 1B-parameter language model developed from scratch. The goal is carefully curated data and controlled training, rather than parameter count alone.",
     principles: [
       {
-        title: "German-first. Not German-only.",
+        title: "German first, with English support",
         text: "German is the primary language focus. English coverage is planned to retain useful English capabilities alongside it.",
       },
       {
-        title: "From Base to Chat.",
+        title: "From Base to Chat",
         text: "Base pretraining comes first. Supervised fine-tuning and preference optimization are planned next, with an evaluated Chat model as the final user-facing stage.",
       },
       {
-        title: "Quality before scale.",
+        title: "Data quality over parameter count",
         text: "High-quality data, documented training and careful evaluation guide the project. Capabilities will be reported when measurements exist.",
       },
     ],
   },
   specifications: {
     eyebrow: "Technical preview",
-    title: "Expected specifications.",
+    title: "Planned specifications",
     notice:
       "These are development targets, not completed-model specifications or measured results. The final configuration may change.",
     columns: ["Specification", "Planned value", "Status"],
@@ -80,7 +80,7 @@ export const echelonPreview = {
   },
   stages: {
     eyebrow: "Development path",
-    title: "One model line. Four stages.",
+    title: "Four planned development stages",
     notice:
       "Planned stages, not completed milestones. Base and Chat belong to the same Echelon model line.",
     items: [
@@ -102,7 +102,7 @@ export const echelonPreview = {
   },
   evidence: {
     eyebrow: "Research in progress",
-    title: "A preview, with clear boundaries.",
+    title: "Current status and sources",
     description:
       "Architecture and tokenizer selection are in progress. No production Base or Chat checkpoint, model weights or benchmark results are available. A release date and model license have not been announced.",
     historyTitle: "Earlier preflight evidence",

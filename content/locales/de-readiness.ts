@@ -1,8 +1,8 @@
 export const deReadinessTranslations: Readonly<Record<string, string>> = {
   "rappidAI is a self-funded, founder-led, early-stage AI research and development initiative based in Berlin.":
     "rappidAI ist eine junge, eigenfinanzierte und gründergeführte Initiative für KI-Forschung und -Entwicklung mit Sitz in Berlin.",
-  "An initiative, a model project and agent infrastructure.":
-    "Eine Initiative, ein Modellprojekt, Infrastruktur für KI-Agenten.",
+  "An initiative, a model project and agent infrastructure":
+    "Eine Initiative, ein Modellprojekt und Infrastruktur für KI-Agenten",
   "rappidAI is the initiative. rappidAI Quantum is its model-development project; Lumen is an earlier name retained in repository paths. Ghost and Replay are supporting open-source projects for agent security and execution reproducibility.":
     "rappidAI ist die Initiative, rappidAI Quantum ihr Projekt zur Modellentwicklung. Der frühere Name Lumen findet sich noch in Repository-Pfaden. Ghost und Replay sind ergänzende Open-Source-Projekte für die Sicherheit von KI-Agenten und reproduzierbare Ausführungen.",
   "Echelon has architecture preflight, tokenizer validation and Garden smoke evidence. The next milestone is production data preparation, followed by a validated training recipe, base training and evaluation. Compute and storage are constraints; the compute plan documents the gates. No Echelon checkpoint is published.":
@@ -12,9 +12,9 @@ export const deReadinessTranslations: Readonly<Record<string, string>> = {
   "Learn about rappidAI, a self-funded, founder-led, early-stage AI research and development initiative in Berlin.":
     "Was rappidAI ist: eine junge, eigenfinanzierte und gründergeführte Initiative für KI-Forschung und -Entwicklung in Berlin.",
   "Contact founder Jonas Désiré Cikemgil at the project’s business-domain email for technical questions, model feedback, open-source collaboration or project enquiries.":
-    "Gründer Jonas Désiré Cikemgil ist über die E-Mail-Adresse der Projektdomain erreichbar – bei technischen Fragen, Feedback zu den Modellen, Open-Source-Zusammenarbeit oder Anfragen zum Projekt.",
+    "Gründer Jonas Désiré Cikemgil ist über die E-Mail-Adresse der Projektdomain erreichbar, etwa bei technischen Fragen, Feedback zu den Modellen, Open-Source-Zusammenarbeit oder Anfragen zum Projekt.",
   "Self-funded, founder-led AI research and development in Berlin, building compact language-model experiments and open agent infrastructure.":
-    "Eigenfinanzierte, gründergeführte KI-Forschung und -Entwicklung in Berlin – mit Experimenten zu kompakten Sprachmodellen und offener Infrastruktur für KI-Agenten.",
+    "Eigenfinanzierte, gründergeführte KI-Forschung und -Entwicklung in Berlin. Schwerpunkte sind Experimente mit kompakten Sprachmodellen und offene Infrastruktur für KI-Agenten.",
   "18 September 2026": "18. September 2026",
   "Research results retain the historical evidence snapshot and pinned model revisions. Project identity, license decisions and compute planning were checked separately on 18 September 2026; their links identify the relevant revisions.":
     "Forschungsergebnisse beziehen sich weiterhin auf den historischen Belegstand und die festgeschriebenen Modellrevisionen. Projektidentität, Lizenzentscheidungen und die Planung der Rechenressourcen wurden am 18. September 2026 gesondert geprüft; die Links verweisen auf die jeweiligen Revisionen.",

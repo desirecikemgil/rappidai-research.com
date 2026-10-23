@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -250,7 +250,6 @@ export function SiteHeader() {
                 onClick={() => setOpenGroup(null)}
               >
                 {t(locale, "Overview")}
-                <ArrowRight aria-hidden="true" size={15} />
               </IntentLink>
             </div>
             <ul className="mega-links">

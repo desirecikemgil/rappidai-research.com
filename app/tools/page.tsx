@@ -9,23 +9,23 @@ export const metadata = metadataFor("/tools");
 const copy = {
   en: {
     intro: {
-      eyebrow: "TOOLS",
-      title: "Your agents. Your environment. Your evidence.",
+      eyebrow: "Tools",
+      title: "Tools for secure and reproducible AI agents",
       description:
         "Two open-source tools for agent infrastructure. Ghost controls access to the environment. Replay records execution and preserves inspectable technical state.",
     },
-    thesis: "TWO DIFFERENT QUESTIONS",
-    thesisTitle: "Control the environment. Preserve the evidence.",
+    thesis: "Two different questions",
+    thesisTitle: "Ghost secures the environment, Replay records the run",
     ghostQuestion:
-      "What may the agent access — and how should suspicious input, sensitive actions and runtime risk be handled?",
+      "What may the agent access, and how should suspicious input, sensitive actions and runtime risk be handled?",
     replayQuestion:
-      "What happened during the run — and can the technical state be reconstructed?",
+      "What happened during the run, and can the technical state be reconstructed?",
     note: "Ghost and Replay are complementary research directions, not presented here as a single integrated product. Their current implementations remain separate repositories with separate guarantees.",
     ghostSummary:
       "An integrated security runtime for autonomous agents. Isolation, SHADOW deception, prompt-injection signals, scoped ASK decisions, runtime limits and evidence work together behind the same ghost run flow.",
     replaySummary:
       "Local-first infrastructure for recording, restoring, branching, rerunning and diffing AI-agent executions.",
-    current: "CURRENT IMPLEMENTATION",
+    current: "Current implementation",
     ghostStatus: "Integrated agent security · Experimental",
     release: "v0.3.0 Release",
     ghostFacts: [
@@ -45,29 +45,29 @@ const copy = {
     ],
     inspect: "Inspect the source",
     learn: "Explore tool",
-    evidenceTitle: "Claims are tied to reviewed source revisions.",
+    evidenceTitle: "Claims are tied to reviewed source revisions",
     evidenceText:
       "The pages below distinguish implemented behavior from architecture targets and link technical claims to pinned repository revisions and architecture records.",
   },
   de: {
     intro: {
-      eyebrow: "TOOLS",
-      title: "Ihre Agenten. Ihre Umgebung. Ihre Nachweise.",
+      eyebrow: "Tools",
+      title: "Werkzeuge für sichere und nachvollziehbare KI-Agenten",
       description:
         "Zwei Open-Source-Werkzeuge als Infrastruktur für KI-Agenten. Ghost kontrolliert den Zugriff auf die Umgebung. Replay zeichnet Ausführungen auf und hält technische Zustände nachprüfbar fest.",
     },
-    thesis: "ZWEI UNTERSCHIEDLICHE FRAGEN",
-    thesisTitle: "Die Umgebung kontrollieren. Nachweise sichern.",
+    thesis: "Zwei unterschiedliche Fragen",
+    thesisTitle: "Ghost sichert die Umgebung, Replay zeichnet den Lauf auf",
     ghostQuestion:
-      "Worauf darf der Agent zugreifen – und wie wird mit verdächtigen Eingaben, sensiblen Aktionen und Laufzeitrisiken umgegangen?",
+      "Worauf darf der Agent zugreifen, und wie wird mit verdächtigen Eingaben, sensiblen Aktionen und Laufzeitrisiken umgegangen?",
     replayQuestion:
-      "Was ist während des Laufs passiert – und lässt sich der technische Zustand rekonstruieren?",
+      "Was ist während des Laufs passiert, und lässt sich der technische Zustand rekonstruieren?",
     note: "Ghost und Replay sind Forschungsrichtungen, die sich ergänzen. Wir stellen sie hier nicht als ein gemeinsames, integriertes Produkt dar. Ihre aktuellen Implementierungen liegen in getrennten Repositories mit jeweils eigenen Garantien.",
     ghostSummary:
       "Eine integrierte Security-Runtime für autonome Agenten. Isolation, Täuschung per SHADOW, Prompt-Injection-Signale, eng begrenzte ASK-Entscheidungen, Laufzeitgrenzen und Nachweise greifen im selben Ablauf hinter ghost run ineinander.",
     replaySummary:
       "Lokal ausgerichtete Infrastruktur, um Ausführungen von KI-Agenten aufzuzeichnen, wiederherzustellen, zu verzweigen, erneut auszuführen und zu vergleichen.",
-    current: "DERZEIT IMPLEMENTIERT",
+    current: "Derzeit implementiert",
     ghostStatus: "Integrierte Agentensicherheit · Experimentell",
     release: "v0.3.0 Release",
     ghostFacts: [
@@ -88,7 +88,7 @@ const copy = {
     inspect: "Quellcode ansehen",
     learn: "Mehr erfahren",
     evidenceTitle:
-      "Aussagen sind an geprüfte Revisionen des Quellcodes gebunden.",
+      "Aussagen sind an geprüfte Revisionen des Quellcodes gebunden",
     evidenceText:
       "Die Detailseiten trennen implementiertes Verhalten von Architekturzielen. Technische Aussagen verweisen auf festgeschriebene Revisionen der Repositories und auf Architekturunterlagen.",
   },
@@ -285,7 +285,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                       {isGhost ? c.ghostSummary : c.replaySummary}
                     </p>
                     <p className="mt-5">
-                      <span className="chip chip-dot">
+                      <span className="chip">
                         {isGhost
                           ? `${ghostRelease.version} · ${c.ghostStatus}`
                           : t(locale, "Experimental · Open source")}
@@ -293,14 +293,9 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                     </p>
                     <details>
                       <summary>{c.current}</summary>
-                      <ul className="m-0 grid list-none gap-2 p-0 pb-4 text-sm leading-6 text-muted">
+                      <ul className="m-0 grid list-disc gap-2 pb-4 pl-5 text-sm leading-6 text-muted">
                         {facts.map((fact) => (
-                          <li key={fact} className="flex gap-2">
-                            <span aria-hidden="true" className="text-accent">
-                              ✓
-                            </span>
-                            {fact}
-                          </li>
+                          <li key={fact}>{fact}</li>
                         ))}
                       </ul>
                     </details>

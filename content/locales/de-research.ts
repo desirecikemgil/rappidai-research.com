@@ -10,17 +10,17 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Modelle sollten nicht nur nach ihrer Leistungsfähigkeit, sondern auch nach ihrem Ressourcenbedarf bewertet werden.",
   "Local where possible": "Lokal, wo möglich",
   "Local inference can make AI more accessible and controllable while remaining less dependent on network connectivity.":
-    "Lokale Inferenz kann KI zugänglicher und besser kontrollierbar machen – und unabhängiger von einer Netzwerkverbindung.",
+    "Lokale Inferenz kann KI zugänglicher und besser kontrollierbar und unabhängiger von einer Netzwerkverbindung machen.",
   "Open about limitations": "Offen mit Grenzen umgehen",
   "Experimental models must communicate their weaknesses as clearly as their strengths.":
     "Experimentelle Modelle müssen ihre Schwächen ebenso klar benennen wie ihre Stärken.",
   "Training pipelines": "Trainingspipelines",
   "Versioned architecture, tokenizer and data-preparation workflows with explicit evidence boundaries.":
-    "Versionierte Abläufe für Architektur, Tokenizer und Datenaufbereitung – mit klar ausgewiesenen Grenzen des Belegten.",
+    "Versionierte Abläufe für Architektur, Tokenizer und Datenaufbereitung, mit klar ausgewiesenen Grenzen des Belegten.",
   "Quantization, memory efficiency and deployment through lightweight inference runtimes.":
     "Quantisierung, Speichereffizienz und Bereitstellung über schlanke Inferenz-Runtimes.",
   "Comparing base and continued-pretraining stages through fixed prompts, next-token metrics and documented limitations.":
-    "Basisphase und fortgesetztes Pretraining im Vergleich – anhand fester Prompts, Next-Token-Metriken und dokumentierter Einschränkungen.",
+    "Basisphase und fortgesetztes Pretraining im Vergleich, anhand fester Prompts, Next-Token-Metriken und dokumentierter Einschränkungen.",
   "Public 49.3M-parameter base-completion experiment released as an F16 GGUF.":
     "Öffentliches Experiment mit einem Basismodell für Textfortsetzung (49,3 Mio. Parameter), veröffentlicht als F16-GGUF.",
   "Public F16 GGUF release whose model card reports continued pretraining on 500M additional German tokens.":
@@ -59,7 +59,7 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
   "The committed preflight computes 506,333,440 parameters for the proposed configuration.":
     "Die im Repository hinterlegte Preflight-Prüfung ergibt für die vorgeschlagene Konfiguration 506.333.440 Parameter.",
   "This is a configuration result, not a trained model, checkpoint or capability result.":
-    "Das ist ein Konfigurationsergebnis – kein trainiertes Modell, kein Checkpoint und keine Aussage über Fähigkeiten.",
+    "Das ist ein Konfigurationsergebnis, kein trainiertes Modell, kein Checkpoint und keine Aussage über Fähigkeiten.",
   "Tokenizer artifact": "Tokenizer-Artefakt",
   "Committed configuration, checksums, quality summary and 23-case round-trip validation with 0 failures.":
     "Im Repository hinterlegt: Konfiguration, Prüfsummen, Qualitätsübersicht und Round-Trip-Validierung mit 23 Fällen und 0 Fehlern.",
@@ -86,9 +86,9 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Die öffentlichen Quellen enthalten kein Artefakt eines abgeschlossenen Trainings.",
   "No Echelon loss curve, checkpoint, weight file, GGUF or model output is claimed.":
     "Es wird nicht behauptet, dass es für Echelon eine Verlustkurve, einen Checkpoint, eine Gewichtsdatei, ein GGUF oder Modellausgaben gibt.",
-  "CURRENT MODEL LINE": "AKTUELLE MODELLLINIE",
+  "Current model line": "Aktuelle Modelllinie",
   "What exists for quantum-1-echelon—and what does not.":
-    "Was es für quantum-1-echelon gibt – und was nicht.",
+    "Was es für quantum-1-echelon bereits gibt und was noch fehlt.",
   "quantum-1-echelon is the current strategic model line. Echelon Base is the planned base-training stage and Echelon Chat is a later stage or variant within that same line. They are not separate model families.":
     "quantum-1-echelon ist die aktuelle strategische Modelllinie. Echelon Base ist die geplante Phase des Basistrainings, Echelon Chat eine spätere Phase oder Variante derselben Linie. Es handelt sich nicht um getrennte Modellfamilien.",
   "Architecture preflight": "Architektur-Preflight",
@@ -119,31 +119,31 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Zielwerte der Garden-Produktionskonfiguration: 8.000.000.000 Trainings-Tokens sowie je 10.000.000 Validierungs- und Test-Tokens bei einer Kontextlänge von 2.048 Tokens.",
   "These are configuration targets, not completed dataset totals. The website will not present them as achieved until a final public manifest exists.":
     "Das sind Zielwerte der Konfiguration, keine Gesamtzahlen eines fertigen Datensatzes. Die Website stellt sie erst dann als erreicht dar, wenn ein abschließendes öffentliches Manifest vorliegt.",
-  "More pilot training did not establish reliable generation.":
-    "Zusätzliches Training führte beim Pilotmodell nicht zu zuverlässiger Textgenerierung.",
+  "More pilot training did not establish reliable generation":
+    "Zusätzliches Training führte beim Pilotmodell nicht zu zuverlässiger Textgenerierung",
   "quantum-1.6-pilot completed the documented training, evaluation and GGUF path, while the public diagnosis still records factual unreliability and frequent repetition.":
     "quantum-1.6-pilot hat den dokumentierten Ablauf aus Training, Evaluation und GGUF-Pfad abgeschlossen. Die öffentliche Diagnose verzeichnet dennoch weiterhin faktische Unzuverlässigkeit und häufige Wiederholungen.",
   "Held-out loss and perplexity are not evidence of factual accuracy or downstream capability.":
     "Verlust und Perplexität auf Hold-out-Daten belegen weder faktische Richtigkeit noch Fähigkeiten bei Downstream-Aufgaben.",
   "Pipeline finding": "Pipeline-Befund",
-  "The final Garden smoke accepted 31.17% of seen documents.":
-    "Der abschließende Garden-Smoke-Test übernahm 31,17 % der gesichteten Dokumente.",
+  "The final Garden smoke accepted 31.17% of seen documents":
+    "Der abschließende Garden-Smoke-Test übernahm 31,17 % der gesichteten Dokumente",
   "The committed Phase 3 report records 5,001 documents seen and 1,559 accepted under the configured language, quality and structural filters.":
     "Der im Repository hinterlegte Phase-3-Bericht verzeichnet 5.001 gesichtete Dokumente, von denen 1.559 die konfigurierten Sprach-, Qualitäts- und Strukturfilter passierten.",
   "This is a smoke-test acceptance rate, not the yield of the unstarted production run.":
     "Das ist die Übernahmequote eines Smoke-Tests, nicht die Ausbeute des noch nicht gestarteten Produktionslaufs.",
   "Engineering lesson": "Technische Erkenntnis",
-  "Recovery behavior was validated before production scale.":
-    "Die Wiederherstellung wurde bereits vor einem Lauf im Produktionsmaßstab validiert.",
+  "Recovery behavior was validated before production scale":
+    "Die Wiederherstellung wurde bereits vor einem Lauf im Produktionsmaßstab validiert",
   "The Garden implementation documents atomic checkpoints, safe partial-shard handling, dataset-state resume, a deterministic skip fallback and controlled shutdown behavior.":
     "Die Garden-Implementierung dokumentiert atomare Checkpoints, den sicheren Umgang mit unvollständigen Shards, das Fortsetzen anhand des Datensatzzustands, einen deterministischen Skip-Fallback und ein kontrolliertes Herunterfahren.",
   "This establishes pipeline resilience tests, not successful production-data completion.":
     "Das belegt Resilienztests der Pipeline, nicht aber, dass die Produktionsdaten erfolgreich fertiggestellt wurden.",
   "Validation result": "Validierungsergebnis",
-  "The Echelon tokenizer passed its committed round-trip suite.":
-    "Der Echelon-Tokenizer hat die im Repository hinterlegte Round-Trip-Testsuite bestanden.",
+  "The Echelon tokenizer passed its committed round-trip suite":
+    "Der Echelon-Tokenizer hat die im Repository hinterlegte Round-Trip-Testsuite bestanden",
   "The public tokenizer report contains 23 prescribed cases and records 0 failed exact round trips, including German umlauts, Unicode, code, JSON and chat-control tokens.":
-    "Der öffentliche Tokenizer-Bericht umfasst 23 vorgegebene Fälle und verzeichnet 0 fehlgeschlagene exakte Round Trips – darunter deutsche Umlaute, Unicode, Code, JSON und Chat-Steuertokens.",
+    "Der öffentliche Tokenizer-Bericht umfasst 23 vorgegebene Fälle und verzeichnet 0 fehlgeschlagene exakte Round Trips, darunter deutsche Umlaute, Unicode, Code, JSON und Chat-Steuertokens.",
   "The suite is a tokenizer integrity check, not a language-model benchmark.":
     "Die Testsuite prüft die Integrität des Tokenizers; sie ist kein Benchmark für Sprachmodelle.",
   "Pilot release integrity": "Integrität der veröffentlichten Pilotmodelle",
@@ -186,19 +186,19 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Die Garden-Konfiguration enthält Felder für Quelle und Revision.",
   "No Echelon model license exists because no model is released; final dataset publication terms are not documented.":
     "Eine Echelon-Modelllizenz gibt es nicht, da kein Modell veröffentlicht ist. Endgültige Bedingungen für die Veröffentlichung des Datensatzes sind nicht dokumentiert.",
-  "RESEARCH QUESTIONS": "FORSCHUNGSFRAGEN",
-  "Questions behind the experiments.": "Die Fragen hinter den Experimenten.",
+  "Research questions": "Forschungsfragen",
+  "Questions behind the experiments": "Die Fragen hinter den Experimenten",
   "How much can a 49.3M-parameter German base model improve through continued pretraining while keeping its architecture and tokenizer unchanged?":
     "Wie stark lässt sich ein deutsches Basismodell mit 49,3 Mio. Parametern durch fortgesetztes Pretraining verbessern, wenn Architektur und Tokenizer unverändert bleiben?",
   "Which limitations are caused by model scale, and which may result from export, prompting or inference configuration?":
-    "Welche Einschränkungen gehen auf die Modellgröße zurück – und welche könnten von Export, Prompting oder Inferenzkonfiguration herrühren?",
+    "Welche Einschränkungen gehen auf die Modellgröße zurück, und welche könnten von Export, Prompting oder Inferenzkonfiguration herrühren?",
   "Can public GGUF checksums and fixed completion prompts support repeatable local llama.cpp comparisons?":
     "Können öffentliche GGUF-Prüfsummen und feste Prompts zur Textfortsetzung wiederholbare lokale Vergleiche mit llama.cpp ermöglichen?",
   "These are research questions. They define the investigation; they are not claims that the experiments have already answered each question.":
-    "Dies sind Forschungsfragen. Sie legen fest, was untersucht wird – sie behaupten nicht, dass die Experimente jede Frage bereits beantwortet haben.",
-  "EXPERIMENT DESIGN": "VERSUCHSAUFBAU",
-  "A controlled continued-pretraining experiment.":
-    "Ein kontrolliertes Experiment zum fortgesetzten Pretraining.",
+    "Dies sind Forschungsfragen. Sie legen fest, was untersucht wird; sie behaupten nicht, dass die Experimente jede Frage bereits beantwortet haben.",
+  "Experiment design": "Versuchsaufbau",
+  "A controlled continued-pretraining experiment":
+    "Ein kontrolliertes Experiment zum fortgesetzten Pretraining",
   "The public quantum-1.6-pilot configuration describes continued training from quantum-1-pilot while preserving the 49,295,872-parameter architecture, 512-token context and frozen quantum-1 tokenizer. It specifies a fresh optimizer, scheduler and step counter, but no final public run log verifies every configured detail.":
     "Die öffentliche Konfiguration von quantum-1.6-pilot beschreibt ein fortgesetztes Training ausgehend von quantum-1-pilot, bei dem die Architektur mit 49.295.872 Parametern, der Kontext von 512 Tokens und der eingefrorene quantum-1-Tokenizer erhalten bleiben. Sie legt einen neuen Optimierer, Scheduler und Schrittzähler fest; ein abschließendes öffentliches Laufprotokoll, das jedes konfigurierte Detail bestätigt, gibt es jedoch nicht.",
   "Same architecture": "Gleiche Architektur",
@@ -212,18 +212,17 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "500 Mio. zusätzliche deutsche Trainings-Tokens",
   "Reported release scope": "Umfang laut Veröffentlichung",
   "Public model card": "Öffentliche Model Card",
-  "HYPOTHESIS AND OBSERVATION": "HYPOTHESE UND BEOBACHTUNG",
-  "What was hypothesized, and what was publicly reported.":
-    "Was vermutet wurde – und was öffentlich berichtet ist.",
+  "Hypothesis and observation": "Hypothese und Beobachtung",
+  "Expected and reported results": "Erwartete und berichtete Ergebnisse",
   "Continued pretraining on 500M additional German tokens should improve language-pattern consistency without changing the model architecture or tokenizer.":
     "Fortgesetztes Pretraining mit 500 Mio. zusätzlichen deutschen Tokens sollte sprachliche Muster konsistenter machen, ohne Modellarchitektur oder Tokenizer zu verändern.",
   "The public Hugging Face release provides an F16 GGUF and reports validation loss 3.348852 and perplexity 28.4700. The model cards warn that generated text remains factually unreliable and may be incomplete or incoherent; complete run logs and raw evaluation outputs are not linked.":
     "Die Veröffentlichung auf Hugging Face stellt ein F16-GGUF bereit und nennt einen Validierungsverlust von 3,348852 sowie eine Perplexität von 28,4700. Die Model Cards warnen, dass generierter Text faktisch unzuverlässig bleibt und unvollständig oder inkohärent sein kann. Vollständige Laufprotokolle und rohe Evaluationsausgaben sind nicht verlinkt.",
   "These metrics describe next-token prediction on held-out data. They do not demonstrate factual accuracy, instruction following or downstream-task performance.":
     "Diese Metriken beschreiben die Next-Token-Vorhersage auf zurückgehaltenen Daten. Sie belegen weder faktische Richtigkeit noch das Befolgen von Anweisungen oder die Leistung bei Downstream-Aufgaben.",
-  "MODEL COMPARISON": "MODELLVERGLEICH",
-  "One architecture, two training stages.":
-    "Eine Architektur, zwei Trainingsphasen.",
+  "Model comparison": "Modellvergleich",
+  "One architecture, two training stages":
+    "Eine Architektur, zwei Trainingsphasen",
   Property: "Eigenschaft",
   Parameters: "Parameter",
   "Model type": "Modelltyp",
@@ -237,9 +236,9 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Veröffentlicht; fortgesetztes Pretraining berichtet",
   "The comparison documents the evolution of the training pipeline. It is not evidence of competitiveness with larger models.":
     "Der Vergleich dokumentiert, wie sich die Trainingspipeline entwickelt hat. Er belegt keine Wettbewerbsfähigkeit gegenüber größeren Modellen.",
-  "DATA PIPELINE": "DATENPIPELINE",
-  "How the additional training data was prepared.":
-    "Wie die zusätzlichen Trainingsdaten aufbereitet wurden.",
+  "Data pipeline": "Datenpipeline",
+  "How the additional training data was prepared":
+    "Wie die zusätzlichen Trainingsdaten aufbereitet wurden",
   "The public continued-pretraining configuration specifies German-language data from the FineWeb2-HQ `deu_Latn` subset. Its code is designed to clean documents, exactly deduplicate them, filter known documents from the earlier dataset and create stable training, validation and test splits.":
     "Die öffentliche Konfiguration für das fortgesetzte Pretraining sieht deutschsprachige Daten aus der FineWeb2-HQ-Teilmenge `deu_Latn` vor. Der zugehörige Code ist darauf ausgelegt, Dokumente zu bereinigen, exakt zu deduplizieren, bereits bekannte Dokumente aus dem früheren Datensatz herauszufiltern und stabile Splits für Training, Validierung und Test zu erzeugen.",
   "Exact fingerprint matching does not guarantee the removal of near-duplicates, lightly modified copies or semantically overlapping documents.":
@@ -247,9 +246,9 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
   "The public repository provides the pipeline configuration and method. It does not include a final quantum-1.6 data manifest with document counts, so no document totals are reported here.":
     "Das öffentliche Repository enthält Konfiguration und Methode der Pipeline, aber kein abschließendes Datenmanifest für quantum-1.6 mit Dokumentzahlen. Deshalb werden hier keine Gesamtzahlen genannt.",
   "Data configuration": "Datenkonfiguration",
-  "EVALUATION METHOD": "EVALUATIONSMETHODE",
-  "How the public workflow frames evaluation.":
-    "Wie der öffentliche Ablauf die Evaluation anlegt.",
+  "Evaluation method": "Evaluationsmethode",
+  "How the public workflow frames evaluation":
+    "Wie der öffentliche Ablauf die Evaluation anlegt",
   "Held-out metrics": "Hold-out-Metriken",
   "Validation loss and perplexity measure next-token prediction on reserved data.":
     "Validierungsverlust und Perplexität messen die Next-Token-Vorhersage auf zurückgehaltenen Daten.",
@@ -266,15 +265,14 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Veröffentlicht wurden bisher weder ein versionierter abschließender Evaluationsbericht noch eine Dokumentation der Rohausgaben oder ein standardisierter Benchmark für Downstream-Aufgaben. Die Website deutet keine Wettbewerbsfähigkeit in Benchmarks an.",
   "Evaluation prompts": "Evaluations-Prompts",
   "Diagnosis configuration": "Diagnosekonfiguration",
-  "OBSERVED BEHAVIOR": "BEOBACHTETES VERHALTEN",
-  "Public evidence before examples.":
-    "Erst öffentliche Belege, dann Beispiele.",
+  "Observed behavior": "Beobachtetes Verhalten",
+  "Public evidence before examples": "Öffentliche Belege vor Beispielen",
   "Reproducible example outputs have not yet been attached. This section will remain limited to documented failure categories until public evaluation artifacts are available.":
     "Reproduzierbare Beispielausgaben liegen noch nicht bei. Bis öffentliche Evaluationsartefakte verfügbar sind, beschränkt sich dieser Abschnitt auf dokumentierte Fehlerkategorien.",
   "The public diagnosis document defines a comparison method for PyTorch, GGUF and Android paths, but it does not include a completed Android capture or raw output records. The website therefore does not present those planned comparisons as completed evidence.":
     "Das öffentliche Diagnosedokument legt eine Vergleichsmethode für PyTorch-, GGUF- und Android-Pfade fest, enthält aber weder eine abgeschlossene Android-Aufzeichnung noch rohe Ausgabedaten. Die Website stellt diese geplanten Vergleiche deshalb nicht als abgeschlossene Belege dar.",
-  "FAILURE MODES": "FEHLERBILDER",
-  "Known failure modes.": "Bekannte Fehlerbilder.",
+  "Failure modes": "Fehlerbilder",
+  "Known failure modes": "Bekannte Fehlerbilder",
   "Repetitive continuation": "Repetitive Fortsetzungen",
   "Generated text may repeat patterns instead of developing a coherent continuation.":
     "Generierter Text kann Muster wiederholen, statt eine kohärente Fortsetzung zu entwickeln.",
@@ -293,16 +291,15 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Die Architektur begrenzt das verfügbare Kontextfenster auf 512 Tokens.",
   "These behaviors make the pilot models unsuitable for production assistance and high-stakes decisions.":
     "Damit eignen sich die Pilotmodelle weder als Assistenz im Produktivbetrieb noch für Entscheidungen mit hoher Tragweite.",
-  INTERPRETATION: "INTERPRETATION",
-  "What can—and cannot—be concluded.":
-    "Was sich daraus schließen lässt – und was nicht.",
+  Interpretation: "Interpretation",
+  "Conclusions and their limits": "Schlussfolgerungen und ihre Grenzen",
   "The public sources provide released GGUF artifacts, checksums, reported held-out metrics and code for the intended continued-training and evaluation workflow. They do not independently verify every run step without final manifests and logs.":
     "Die öffentlichen Quellen umfassen veröffentlichte GGUF-Artefakte, Prüfsummen, berichtete Hold-out-Metriken und Code für den vorgesehenen Ablauf aus fortgesetztem Training und Evaluation. Ohne abschließende Manifeste und Protokolle lässt sich damit jedoch nicht jeder Schritt der Läufe unabhängig nachprüfen.",
   "It does not establish general language competence, factual reliability, instruction-following ability or production readiness.":
     "Es belegt weder allgemeine Sprachkompetenz noch faktische Zuverlässigkeit, das Befolgen von Anweisungen oder Produktionsreife.",
   "It does not show that small models are generally preferable to larger models. It documents the behavior and constraints of this specific experimental setup.":
     "Es zeigt nicht, dass kleine Modelle größeren grundsätzlich vorzuziehen sind. Es dokumentiert das Verhalten und die Grenzen genau dieses Versuchsaufbaus.",
-  "Artifacts for inspection.": "Artefakte zum Nachprüfen.",
+  "Published artifacts": "Veröffentlichte Artefakte",
   "The public releases expose model cards, GGUF files, manifests, checksums and the repository documentation needed to inspect the published artifacts and the configured research workflow.":
     "Die Veröffentlichungen stellen Model Cards, GGUF-Dateien, Manifeste und Prüfsummen bereit, dazu die Repository-Dokumentation, die zur Prüfung der veröffentlichten Artefakte und des konfigurierten Forschungsablaufs nötig ist.",
   "Public model and model card": "Öffentliches Modell und Model Card",
@@ -314,9 +311,9 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
     "Vergleichsmethode für PyTorch, GGUF und Android",
   "This command mirrors the pinned public diagnosis configuration and command builder; it was not executed by the website test suite. A local llama.cpp build is required, and --no-cnv keeps llama-cli in completion mode.":
     "Dieser Befehl entspricht der festgeschriebenen öffentlichen Diagnosekonfiguration und ihrem Command Builder; die Testsuite der Website hat ihn nicht ausgeführt. Er setzt einen lokalen llama.cpp-Build voraus; --no-cnv hält llama-cli im Completion-Modus.",
-  "OPEN QUESTIONS": "OFFENE FRAGEN",
-  "Questions for the next research phase.":
-    "Fragen für die nächste Forschungsphase.",
+  "Open questions": "Offene Fragen",
+  "Questions for the next research phase":
+    "Fragen für die nächste Forschungsphase",
   "How will the preflighted 506.3M-parameter quantum-1-echelon base architecture behave if the full data and training runs are completed?":
     "Wie wird sich die im Preflight geprüfte Basisarchitektur von quantum-1-echelon mit 506,3 Mio. Parametern verhalten, falls die vollständigen Daten- und Trainingsläufe abgeschlossen werden?",
   "Which quantization levels preserve useful completion behavior while reducing memory requirements?":
@@ -324,12 +321,10 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
   "Which evaluation tasks are appropriate for small German base-completion models without overstating their capabilities?":
     "Welche Evaluationsaufgaben passen zu kleinen deutschen Basismodellen für Textfortsetzung, ohne deren Fähigkeiten zu überzeichnen?",
   "How much improvement comes from additional training data compared with changes in architecture, tokenizer or dataset quality?":
-    "Wie viel Verbesserung bringen zusätzliche Trainingsdaten – verglichen mit Änderungen an Architektur, Tokenizer oder Datensatzqualität?",
+    "Wie viel Verbesserung bringen zusätzliche Trainingsdaten im Vergleich zu Änderungen an Architektur, Tokenizer oder Datensatzqualität?",
   "These questions define possible future investigations. They are not release commitments, milestones or performance promises.":
     "Diese Fragen umreißen mögliche künftige Untersuchungen. Sie sind keine Zusagen für Veröffentlichungen, keine Meilensteine und keine Leistungsversprechen.",
-  "EVIDENCE LEDGER": "BELEGÜBERSICHT",
-  "Claims mapped to public artifacts.":
-    "Welche Aussage auf welchem öffentlichen Artefakt beruht.",
+  "Claims and their public sources": "Aussagen und ihre öffentlichen Quellen",
   "Scrollable research evidence ledger":
     "Scrollbare Belegübersicht der Forschung",
   "Public evidence and claim boundaries for Quantum and Echelon artifacts":
@@ -339,15 +334,15 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
   "Public evidence": "Öffentliche Belege",
   "Claim boundary": "Grenze der Aussage",
   "Inspect evidence": "Belege prüfen",
-  "PLANNED, NOT ACHIEVED": "GEPLANT, NICHT ERREICHT",
+  "Planned, not achieved": "Geplant, nicht erreicht",
   "Inspect production configuration": "Produktionskonfiguration prüfen",
-  "FINDINGS AND LESSONS": "BEFUNDE UND ERKENNTNISSE",
-  "Positive checks and negative results, with boundaries.":
-    "Bestandene Prüfungen und negative Ergebnisse – mit ihren Grenzen.",
+  "Findings and lessons": "Befunde und Erkenntnisse",
+  "Positive checks and negative results":
+    "Bestandene Prüfungen und negative Ergebnisse",
   "Inspect source": "Quelle prüfen",
-  "COMPLETED PILOT STUDY": "ABGESCHLOSSENE PILOTSTUDIE",
+  "Completed pilot study": "Abgeschlossene Pilotstudie",
   "The sections below document the released quantum-1-pilot and quantum-1.6-pilot experiment separately from the untrained Echelon line.":
-    "Die folgenden Abschnitte dokumentieren das veröffentlichte Experiment mit quantum-1-pilot und quantum-1.6-pilot – getrennt von der noch nicht trainierten Echelon-Linie.",
+    "Die folgenden Abschnitte dokumentieren das veröffentlichte Experiment mit quantum-1-pilot und quantum-1.6-pilot, getrennt von der noch nicht trainierten Echelon-Linie.",
   Hypothesis: "Hypothese",
   "research expectation": "Erwartung",
   Observation: "Beobachtung",
@@ -370,8 +365,8 @@ export const deResearchTranslations: Readonly<Record<string, string>> = {
   "GGUF file": "GGUF-Datei",
   "Scrollable llama.cpp reference command":
     "Scrollbarer llama.cpp-Referenzbefehl",
-  "DETAILED RECORDS": "AUSFÜHRLICHE UNTERLAGEN",
-  "Continue through the resources hub.": "Weiter im Ressourcenbereich.",
+  "Detailed records": "Ausführliche Unterlagen",
+  "Further resources": "Weiterführende Ressourcen",
   "Inspect the publication, reproducibility record, data provenance, responsible-use guidance, licensing boundaries and current evidence status.":
     "Dort lassen sich die Publikation, die Nachweise zur Reproduzierbarkeit, die Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und der aktuelle Belegstatus prüfen.",
 };

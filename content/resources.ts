@@ -24,7 +24,7 @@ export const resourceReview = {
 export const resourceCards = [
   {
     id: "publications",
-    eyebrow: "RESEARCH OUTPUTS",
+    eyebrow: "Research outputs",
     title: "Publications",
     description:
       "Source-linked research notes that separate observations, negative results and open questions.",
@@ -33,7 +33,7 @@ export const resourceCards = [
   },
   {
     id: "reproducibility",
-    eyebrow: "ARTIFACT INTEGRITY",
+    eyebrow: "Artifact integrity",
     title: "Reproducibility",
     description:
       "Pinned revisions, GGUF checksums, reference commands and explicit gaps in the public run record.",
@@ -42,7 +42,7 @@ export const resourceCards = [
   },
   {
     id: "data-and-training",
-    eyebrow: "PROVENANCE",
+    eyebrow: "Provenance",
     title: "Data & training",
     description:
       "Dataset sources, configured targets, smoke evidence, filtering and missing final manifests.",
@@ -51,7 +51,7 @@ export const resourceCards = [
   },
   {
     id: "responsible-use",
-    eyebrow: "LIMITS FIRST",
+    eyebrow: "Limits first",
     title: "Responsible use",
     description:
       "Known failure modes, unmeasured risks, excluded uses and secure artifact handling.",
@@ -60,7 +60,7 @@ export const resourceCards = [
   },
   {
     id: "licensing",
-    eyebrow: "REUSE BOUNDARIES",
+    eyebrow: "Reuse boundaries",
     title: "Licensing",
     description:
       "A material-by-material record of what is licensed, governed elsewhere or still unresolved.",
@@ -69,7 +69,7 @@ export const resourceCards = [
   },
   {
     id: "status",
-    eyebrow: "CURRENT STATE",
+    eyebrow: "Current state",
     title: "Project status",
     description:
       "Model-line maturity, the reviewed evidence snapshot, open artifacts and next documentation work.",
@@ -78,7 +78,7 @@ export const resourceCards = [
   },
   {
     id: "faq",
-    eyebrow: "ORIENTATION",
+    eyebrow: "Orientation",
     title: "FAQ",
     description:
       "Plain-language answers about base completion, GGUF, Echelon, privacy, evidence and licensing.",
@@ -92,7 +92,7 @@ export const publications = [
     slug: "from-100m-to-600m-german-tokens",
     title: "From 100M to 600M German Tokens",
     summary:
-      "What the public quantum-1.6-pilot record supports about continued pretraining—and why more reported training did not establish reliable generation.",
+      "What the public quantum-1.6-pilot record supports about continued pretraining, and why more reported training did not establish reliable generation.",
     kindLabel: "Research note",
     status: "published",
     publicationDate: "2026-07-23",
@@ -176,8 +176,8 @@ export function getPublicationBySlug(
 
 export const reproducibilityContent = {
   introduction: {
-    eyebrow: "REPRODUCIBILITY",
-    title: "Artifacts that can be inspected—and gaps that cannot be replayed.",
+    eyebrow: "Reproducibility",
+    title: "Reproducibility of the published models",
     description:
       "Release integrity is public for the two pilot GGUF files. Full training reproducibility remains partial because final manifests, logs, environments and raw evaluations are missing.",
   },
@@ -282,8 +282,8 @@ export const reproducibilityContent = {
 
 export const dataAndTrainingContent = {
   introduction: {
-    eyebrow: "DATA & TRAINING",
-    title: "Configured methods are not completed runs.",
+    eyebrow: "Data & training",
+    title: "Data and training methods",
     description:
       "This record distinguishes dataset provenance, configured targets, smoke-test evidence and absent production or training artifacts across the Quantum model line.",
   },
@@ -372,8 +372,8 @@ export const dataAndTrainingContent = {
 
 export const responsibleUseContent = {
   introduction: {
-    eyebrow: "RESPONSIBLE USE",
-    title: "Experimental artifacts require cautious use.",
+    eyebrow: "Responsible use",
+    title: "Responsible use of experimental models",
     description:
       "The public pilots are small base-completion models with documented reliability limits. Echelon has no trained public model. None of these artifacts should be treated as a production assistant.",
   },
@@ -441,10 +441,10 @@ export const responsibleUseContent = {
 
 export const licensingContent = {
   introduction: {
-    eyebrow: "LICENSING",
-    title: "Public availability is not a reuse license.",
+    eyebrow: "Licensing",
+    title: "Licensing and reuse",
     description:
-      "Licensing is recorded per material. The website's Apache-2.0 license does not automatically cover models, tokenizers, datasets, external repositories, logos or model-card images.",
+      "Public availability is not a reuse license. Licensing is recorded per material: the website's Apache-2.0 license does not automatically cover models, tokenizers, datasets, external repositories, logos or model-card images.",
   },
   items: [
     {
@@ -519,8 +519,8 @@ export const licensingContent = {
 
 export const statusContent = {
   introduction: {
-    eyebrow: "PROJECT STATUS",
-    title: "Current evidence, visible gaps and no silent upgrades.",
+    eyebrow: "Project status",
+    title: "Project and documentation status",
     description:
       "A concise view of what is public for each model line, what remains incomplete and which documentation work comes next.",
   },

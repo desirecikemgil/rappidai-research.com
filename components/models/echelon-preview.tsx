@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
 import { echelonPreview } from "@/content/echelon";
 import { publicResearchUrls } from "@/content/site";
@@ -33,11 +32,8 @@ export function EchelonPreview({ locale }: { locale: Locale }) {
           <p className="studio-description">{c.overview.description}</p>
         </div>
         <ol className={styles.principles}>
-          {c.overview.principles.map((item, index) => (
+          {c.overview.principles.map((item) => (
             <li key={item.title} className="css-reveal">
-              <span className={styles.principleIndex} aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <div>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -117,9 +113,7 @@ export function EchelonPreview({ locale }: { locale: Locale }) {
           {c.stages.items.map((stage, index) => (
             <li key={stage.name} className="css-reveal">
               <div className={styles.stageTrack} aria-hidden="true">
-                <span className={styles.stageNode}>
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                <span className={styles.stageNode}>{index + 1}</span>
               </div>
               <p className={styles.stageStatus}>{t(locale, "Planned")}</p>
               <h3>{stage.name}</h3>
@@ -151,11 +145,8 @@ export function EchelonPreview({ locale }: { locale: Locale }) {
               {c.evidence.sources.map((source, index) => (
                 <li key={source.url}>
                   <a href={source.url} target="_blank" rel="noreferrer">
-                    <span aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                    <span aria-hidden="true">{index + 1}</span>
                     {source.label}
-                    <ArrowUpRight size={16} aria-hidden="true" />
                   </a>
                 </li>
               ))}
@@ -169,7 +160,6 @@ export function EchelonPreview({ locale }: { locale: Locale }) {
                 rel="noreferrer"
               >
                 {c.evidence.historyLink}
-                <ArrowUpRight size={15} aria-hidden="true" />
               </a>
             </details>
           </div>

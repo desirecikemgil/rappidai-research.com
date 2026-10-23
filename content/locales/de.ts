@@ -16,7 +16,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   ...deReadinessTranslations,
   ...deRedesignTranslations,
   "Independent AI research on compact language models and documented training, evaluation and local-inference workflows.":
-    "Unabhängige KI-Forschung zu kompakten Sprachmodellen – mit dokumentierten Abläufen für Training, Evaluation und lokale Inferenz.",
+    "Unabhängige KI-Forschung zu kompakten Sprachmodellen, mit dokumentierten Abläufen für Training, Evaluation und lokale Inferenz.",
   "Berlin, Germany": "Berlin, Deutschland",
   "Almutstraße 3, 13467 Berlin, Germany":
     "Almutstraße 3, 13467 Berlin, Deutschland",
@@ -53,7 +53,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "See what is published, partial or still unavailable.":
     "Was veröffentlicht, teilweise belegt oder noch nicht verfügbar ist.",
   "Separate architecture, tokenizer and pipeline evidence from training.":
-    "Belege zu Architektur, Tokenizer und Pipeline – klar getrennt vom Training.",
+    "Belege zu Architektur, Tokenizer und Pipeline, klar getrennt vom Training.",
   "Understand the experiment design, evaluation and known failures.":
     "Versuchsaufbau, Evaluation und bekannte Fehlermuster.",
   "Inspect artifacts, checksums and the remaining publication gaps.":
@@ -73,7 +73,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Follow the Echelon architecture, tokenizer and data-pipeline work.":
     "Die Arbeit an Echelon: Architektur, Tokenizer und Datenpipeline.",
   "Choose email, Hugging Face or GitHub for the right context.":
-    "E-Mail, Hugging Face oder GitHub – je nach Anliegen.",
+    "E-Mail, Hugging Face oder GitHub, je nach Anliegen.",
   "Create a local email draft without sending data through the website.":
     "Einen E-Mail-Entwurf lokal erstellen, ohne Daten über die Website zu senden.",
   "Route public feedback, security reports and sensitive concerns correctly.":
@@ -123,7 +123,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   FAQ: "FAQ",
   Imprint: "Impressum",
   Privacy: "Datenschutz",
-  "INDEPENDENT AI RESEARCH": "UNABHÄNGIGE KI-FORSCHUNG",
+  "Independent AI research": "Unabhängige KI-Forschung",
   "Smaller Models.": "Kleinere Modelle.",
   "Focused Intelligence.": "Fokussierte Intelligenz.",
   "rappidAI documents compact German-language model experiments, GGUF releases and local-inference workflows. The two public Quantum pilots are experimental base-completion models; Echelon is the current strategic model line and remains at pipeline and preflight stage.":
@@ -134,33 +134,30 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "View on Hugging Face": "Auf Hugging Face ansehen",
   "Current focus: Echelon data-pipeline validation, reproducibility and transparent evidence boundaries.":
     "Aktueller Schwerpunkt: Validierung der Echelon-Datenpipeline, Reproduzierbarkeit und klar ausgewiesene Grenzen des Belegten.",
-  "RESEARCH THESIS": "FORSCHUNGSTHESE",
-  "FEATURED MODEL": "MODELL IM FOKUS",
+  "Research thesis": "Forschungsthese",
+  "Featured model": "Modell im Fokus",
   "Experimental model. Not production-ready and not intended as a production assistant.":
     "Experimentelles Modell. Nicht produktionsreif und nicht als Assistent für den Produktiveinsatz gedacht.",
-  "MODEL EVOLUTION": "MODELLENTWICKLUNG",
+  "Model evolution": "Modellentwicklung",
   "From 49.3M pilot releases to the quantum-1-echelon pipeline.":
     "Von den Pilotmodellen mit 49,3 Mio. Parametern zur quantum-1-echelon-Pipeline.",
-  "CURRENT RESEARCH": "AKTUELLE FORSCHUNG",
+  "Current research": "Aktuelle Forschung",
   "Focused questions, practical constraints.":
     "Gezielte Fragen, reale Randbedingungen.",
-  "OPEN RESEARCH": "OFFENE FORSCHUNG",
+  "Open research": "Offene Forschung",
   "Open publication is part of the research process.":
     "Offene Veröffentlichung gehört zum Forschungsprozess.",
   "Where licensing and safety constraints allow, rappidAI publishes model artifacts, documentation, evaluation notes and implementation details so that work can be inspected and, when all required artifacts are available, reproduced.":
     "Soweit Lizenz- und Sicherheitsvorgaben es zulassen, veröffentlicht rappidAI Modellartefakte, Dokumentation, Evaluationsnotizen und Implementierungsdetails. So lässt sich die Arbeit prüfen und – sobald alle nötigen Artefakte vorliegen – reproduzieren.",
-  FOUNDER: "GRÜNDER",
-  "Independent research, built from Berlin.":
-    "Unabhängige Forschung aus Berlin.",
-  CONTACT: "KONTAKT",
+  Founder: "Gründer",
+  "Independent research from Berlin": "Unabhängige Forschung aus Berlin",
   "Interested in the research?": "Interesse an der Forschung?",
   "For technical discussions, collaboration enquiries or questions about the models, contact rappidAI directly.":
     "Für fachlichen Austausch, Kooperationsanfragen oder Fragen zu den Modellen erreichen Sie rappidAI direkt.",
   "Contact rappidAI": "Kontakt aufnehmen",
-  "Compact model experiments, documented clearly.":
-    "Kompakte Modellexperimente, klar dokumentiert.",
+  "The Quantum model family": "Die Quantum-Modellfamilie",
   "Explore two public experimental pilot releases and the source-linked, in-development quantum-1-echelon pipeline.":
-    "Zwei öffentliche experimentelle Pilotmodelle und die entstehende quantum-1-echelon-Pipeline – mit Verweisen auf die Quellen.",
+    "Zwei öffentliche experimentelle Pilotmodelle und die entstehende quantum-1-echelon-Pipeline, mit Verweisen auf die Quellen.",
   "Filter models": "Modelle filtern",
   "Final parameter size not yet defined":
     "Endgültige Parametergröße noch nicht festgelegt",
@@ -168,44 +165,39 @@ export const deTranslations: Readonly<Record<string, string>> = {
     "Da kein Modell veröffentlicht wurde, gilt keine Modelllizenz.",
   "No public model release link is available.":
     "Es gibt keinen Link zu einem veröffentlichten Modell.",
-  "Documented clearly, artifact by artifact.":
-    "Klar dokumentiert, Artefakt für Artefakt.",
+  "Research and published evidence": "Forschung und veröffentlichte Belege",
   "A source-linked evidence ledger for the released Quantum pilots and the current Echelon pipeline, including findings, negative results, reproducibility status and visible publication gaps.":
-    "Ein Belegverzeichnis mit Quellenverweisen für die veröffentlichten Quantum-Pilotmodelle und die aktuelle Echelon-Pipeline – mit Befunden, negativen Ergebnissen, dem Stand der Reproduzierbarkeit und offen ausgewiesenen Lücken in der Veröffentlichung.",
-  "Inspect the evidence, not just the claims.":
-    "Die Belege prüfen, nicht nur die Aussagen.",
+    "Ein Belegverzeichnis mit Quellenverweisen für die veröffentlichten Quantum-Pilotmodelle und die aktuelle Echelon-Pipeline, mit Befunden, negativen Ergebnissen, dem Stand der Reproduzierbarkeit und offen ausgewiesenen Lücken in der Veröffentlichung.",
+  "Resources and documentation": "Ressourcen und Dokumentation",
   "Publications, reproducibility records, data provenance, responsible-use guidance, licensing boundaries and current project status in one evidence-bounded documentation hub.":
-    "Publikationen, Nachweise zur Reproduzierbarkeit, Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und aktueller Projektstatus – gebündelt an einem Ort und strikt an den Belegen ausgerichtet.",
+    "Publikationen, Nachweise zur Reproduzierbarkeit, Datenherkunft, Hinweise zur verantwortungsvollen Nutzung, Lizenzgrenzen und aktueller Projektstatus, gebündelt an einem Ort und strikt an den Belegen ausgerichtet.",
   "An independent research initiative at an early stage.":
     "Eine unabhängige Forschungsinitiative in einer frühen Phase.",
-  "WHAT RAPPIDAI IS": "WAS RAPPIDAI IST",
-  "Learning through real model development.":
-    "Lernen durch echte Modellentwicklung.",
+  "Learning through real model development":
+    "Lernen durch echte Modellentwicklung",
   "rappidAI develops compact language-model experiments and investigates training pipelines, evaluation, efficient inference and practical local deployment.":
     "rappidAI führt Experimente mit kompakten Sprachmodellen durch und untersucht Trainingspipelines, Evaluation, effiziente Inferenz und die praktische lokale Bereitstellung.",
-  "WHAT RAPPIDAI IS NOT": "WAS RAPPIDAI NICHT IST",
-  "Experimental work is not production capability.":
-    "Experimentell heißt nicht produktionsreif.",
+  "What rappidAI is not": "Was rappidAI nicht ist",
+  "Experimental work is not production capability":
+    "Experimentell heißt nicht produktionsreif",
   "rappidAI is not presented as a frontier-scale laboratory. Its pilot models are experimental, unreliable in factual output and not intended as production assistants or for high-stakes decisions.":
     "rappidAI tritt nicht als Forschungslabor im Frontier-Maßstab auf. Die Pilotmodelle sind experimentell, bei Faktenaussagen unzuverlässig und weder als Assistenten für den Produktiveinsatz noch für Entscheidungen mit hoher Tragweite gedacht.",
-  "WHY COMPACT MODELS": "WARUM KOMPAKTE MODELLE",
-  "Capability should be considered alongside resources.":
-    "Leistungsfähigkeit und Ressourcenbedarf gemeinsam betrachten.",
+  "Why compact models": "Warum kompakte Modelle",
+  "Capability should be considered alongside resources":
+    "Leistungsfähigkeit und Ressourcenbedarf gemeinsam betrachten",
   "Local inference can reduce dependence on external services and may keep prompts on the user’s device. Actual privacy depends on the application, configuration and surrounding infrastructure.":
     "Lokale Inferenz kann die Abhängigkeit von externen Diensten verringern und Eingaben unter Umständen auf dem eigenen Gerät halten. Wie gut die Privatsphäre tatsächlich geschützt ist, hängt von Anwendung, Konfiguration und umgebender Infrastruktur ab.",
-  "PROJECT STRUCTURE": "PROJEKTSTRUKTUR",
-  "PUBLISHED WORK": "VERÖFFENTLICHTE ARBEITEN",
-  "Two public experimental pilots.":
-    "Zwei öffentliche experimentelle Pilotmodelle.",
+  "Project structure": "Projektstruktur",
+  "Two public experimental pilots":
+    "Zwei öffentliche experimentelle Pilotmodelle",
   "rappidAI currently publishes two experimental German base-completion models: quantum-1-pilot and quantum-1.6-pilot. Both contain 49,295,872 parameters and are available as F16 GGUF files for local experimentation. The accompanying public repository documents the training, evaluation and GGUF-export workflow.":
     "rappidAI veröffentlicht derzeit zwei experimentelle deutsche Basismodelle für Textfortsetzung: quantum-1-pilot und quantum-1.6-pilot. Beide haben 49.295.872 Parameter und stehen als F16-GGUF-Dateien für lokale Experimente bereit. Das zugehörige öffentliche Repository dokumentiert den Ablauf von Training, Evaluation und GGUF-Export.",
   "The public releases and source repository document the artifacts and intended workflow, but final run manifests and complete training logs are not linked. The releases do not demonstrate production readiness, reliable factual answering or competitiveness with larger general-purpose models.":
     "Die veröffentlichten Modelle und das Quell-Repository dokumentieren die Artefakte und den vorgesehenen Ablauf; abschließende Manifeste der Trainingsläufe und vollständige Trainingsprotokolle sind jedoch nicht verlinkt. Die Veröffentlichungen belegen weder Produktionsreife noch zuverlässige Antworten auf Faktenfragen oder Wettbewerbsfähigkeit gegenüber größeren Allzweckmodellen.",
   "View public models": "Veröffentlichte Modelle ansehen",
-  "CURRENT DIRECTION": "AKTUELLE AUSRICHTUNG",
-  "The Echelon model line.": "Die Echelon-Modelllinie.",
-  "EXPERIMENTAL OUTPUTS": "EXPERIMENTELLE AUSGABEN",
-  "Limitations are communicated directly.": "Grenzen benennen wir offen.",
+  "The Echelon model line": "Die Echelon-Modelllinie",
+  "Experimental outputs": "Experimentelle Ausgaben",
+  "Limitations are communicated directly": "Grenzen benennen wir offen",
   "Research outputs may be limited, repetitive, factually unreliable and inconsistent. They should be inspected as experiments, not treated as production systems.":
     "Die Ausgaben der Forschungsmodelle können begrenzt, repetitiv, faktisch unzuverlässig und inkonsistent sein. Sie sind als Experimente zu prüfen, nicht als Produktivsysteme zu behandeln.",
   "Contact and research profiles": "Kontakt und Forschungsprofile",
@@ -360,7 +352,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
     "Die Kompatibilität mit Clients von Drittanbietern ist durch keinen veröffentlichten Validierungsbericht belegt",
   "German completion model": "Deutsches Modell für Textfortsetzung",
   "Pipeline and preflight stage — no trained model":
-    "Pipeline- und Preflight-Phase – kein trainiertes Modell",
+    "Pipeline- und Preflight-Phase, kein trainiertes Modell",
   "The current strategic Quantum model line. Public evidence covers an architecture preflight, a validated tokenizer and Garden data-pipeline smoke tests; no Echelon model has been trained or released.":
     "Die aktuelle strategische Quantum-Modelllinie. Öffentlich belegt sind ein Architektur-Preflight, ein validierter Tokenizer und Smoke-Tests der Garden-Datenpipeline; ein Echelon-Modell wurde weder trainiert noch veröffentlicht.",
   "In-development German-language model line":
@@ -440,45 +432,42 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Close navigation": "Navigation schließen",
   "Open navigation": "Navigation öffnen",
   "Mobile navigation": "Mobile Navigation",
-  ACTIVE: "AKTIV",
+  ACTIVE: "Aktiv",
   "rappidAI research home": "Startseite von rappidAI research",
   "Based in": "Ansässig in",
-  "Open research": "Offene Forschung",
   "External link not configured": "Externer Link nicht konfiguriert",
   Legal: "Rechtliches",
   "Independent AI research · Berlin, Germany":
     "Unabhängige KI-Forschung · Berlin, Deutschland",
   "Skip to content": "Zum Inhalt springen",
-  MODELS: "MODELLE",
-  RESEARCH: "FORSCHUNG",
-  RESOURCES: "RESSOURCEN",
-  ABOUT: "ÜBER UNS",
-  IMPRINT: "IMPRESSUM",
-  PRIVACY: "DATENSCHUTZ",
+  MODELS: "Modelle",
+  RESEARCH: "Forschung",
+  RESOURCES: "Ressourcen",
+  ABOUT: "Über uns",
+  IMPRINT: "Impressum",
+  PRIVACY: "Datenschutz",
   "Model index": "Modellübersicht",
   "Parameter size not yet defined": "Parametergröße noch nicht festgelegt",
   Model: "Modell",
   Use: "Nutzung",
   "Error:": "Fehler:",
-  ENQUIRY: "ANFRAGE",
+  Enquiry: "Anfrage",
   "No message is transmitted or stored by this website.":
     "Diese Website überträgt oder speichert keine Nachrichten.",
   "No message has been sent.": "Es wurde keine Nachricht gesendet.",
   "Primary sources": "Primärquellen",
-  "DOCUMENTATION DIRECTORY": "DOKUMENTATIONSÜBERSICHT",
-  "Continue through the evidence.": "Weiter zu den Belegen.",
-  "Documentation by topic.": "Dokumentation nach Themen.",
+  "Related documentation": "Weiterführende Dokumentation",
+  "Documentation by topic": "Dokumentation nach Themen",
   "Every section keeps public evidence, configured targets and missing information visibly separate.":
     "Jeder Bereich hält öffentliche Belege, konfigurierte Zielwerte und fehlende Angaben sichtbar auseinander.",
   "Open resource": "Ressource öffnen",
-  "LAST REVIEWED": "ZULETZT GEPRÜFT",
+  "Last reviewed": "Zuletzt geprüft",
   "Inspect pinned snapshot": "Festgeschriebenen Stand prüfen",
   "Email rappidAI": "E-Mail an rappidAI",
-  "CONTACT CHANNELS": "KONTAKTWEGE",
+  "Contact channels": "Kontaktwege",
   "Typical enquiries": "Typische Anfragen",
-  "REPORTING CHANNELS": "MELDEWEGE",
-  "Public feedback, private security and sensitive concerns.":
-    "Öffentliches Feedback, vertrauliche Sicherheitsmeldungen und sensible Anliegen.",
+  "Public feedback, private security reports and sensitive concerns":
+    "Öffentliches Feedback, vertrauliche Sicherheitsmeldungen und sensible Anliegen",
   "Open channel": "Kanal öffnen",
   Identity: "Identität",
   "This is the public project identity and is not a claim about a registered legal entity.":
@@ -489,7 +478,6 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Service address": "Ladungsfähige Anschrift",
   "Content responsibility": "Verantwortlich für den Inhalt",
   "Responsible person": "Verantwortliche Person",
-  "Last reviewed": "Zuletzt geprüft",
   Controller: "Verantwortlicher",
   Address: "Anschrift",
   "The configured hosting provider is":
@@ -516,7 +504,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "German-language experimentation": "Deutschsprachige Experimente",
   "quantum-1.6-pilot model-card graphic showing approximately 50M parameters and research and local experimentation as the primary use":
     "Model-Card-Grafik zu quantum-1.6-pilot: rund 50 Mio. Parameter, Hauptzweck Forschung und lokale Experimente",
-  "DOCUMENTATION STATUS": "DOKUMENTATIONSSTATUS",
+  "Documentation status": "Dokumentationsstatus",
   "Evidence, gaps and reuse boundaries.":
     "Belege, Lücken und Grenzen der Nachnutzung.",
   "The resources hub turns “Documented clearly” into a public record of sources, reproducibility, data provenance, responsible use and unresolved information.":
@@ -539,8 +527,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "High-stakes decisions": "Folgenreiche Entscheidungen",
   "Not suitable": "Nicht geeignet",
   "Production assistant": "Produktivassistent",
-  "EARLY-STAGE RESEARCH": "FRÜHE FORSCHUNGSPHASE",
-  Founder: "Gründer",
+  "Early-stage research": "Frühe Forschungsphase",
   "All models": "Alle Modelle",
   Summary: "Zusammenfassung",
   "Intended use": "Vorgesehene Nutzung",
@@ -549,7 +536,7 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Release status": "Veröffentlichungsstatus",
   License: "Lizenz",
   "Technical dossier": "Technisches Dossier",
-  "Documented model facts.": "Dokumentierte Fakten zum Modell.",
+  "Documented model facts": "Dokumentierte Fakten zum Modell",
   "Information linked to public project sources. Unknown release dates, licensing terms and unsupported client compatibility are not inferred.":
     "Die Angaben sind mit öffentlichen Projektquellen verknüpft. Unbekannte Veröffentlichungsdaten, Lizenzbedingungen und nicht belegte Client-Kompatibilität ergänzen wir nicht durch Annahmen.",
   Inference: "Inferenz",
@@ -559,17 +546,18 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Completion prompting is the documented reference path. No chat template is promised.":
     "Der dokumentierte Referenzweg ist Prompting zur Textfortsetzung. Ein Chat-Template wird nicht zugesagt.",
   "Research context": "Forschungskontext",
-  "How this release fits the experiment.":
-    "Wie sich diese Veröffentlichung in das Experiment einfügt.",
+  "How this release fits the experiment":
+    "Wie sich diese Veröffentlichung in das Experiment einfügt",
   "Read the research methodology": "Zur Forschungsmethodik",
   "Repository reference": "Repository-Referenz",
-  "The pilot model card.": "Die Model Card des Pilotmodells.",
+  "The pilot model card": "Die Model Card des Pilotmodells",
   "A visual snapshot of the model's parameter size and intended research use.":
     "Parametergröße und vorgesehener Forschungszweck des Modells auf einen Blick.",
-  "RELATED RESOURCES": "WEITERFÜHRENDE RESSOURCEN",
+  "Related resources": "Weiterführende Ressourcen",
   "Inspect the wider evidence.": "Weitere Belege prüfen.",
   Limitations: "Grenzen",
-  "Read the limits first.": "Zuerst die Grenzen.",
+  "Known limitations of this release":
+    "Bekannte Einschränkungen dieser Version",
   "This model is experimental and not production-ready. It must not be used for high-stakes decisions.":
     "Dieses Modell ist experimentell und nicht produktionsreif. Es darf nicht für Entscheidungen mit hoher Tragweite eingesetzt werden.",
   "Related research note": "Zugehörige Forschungsnotiz",
@@ -577,7 +565,6 @@ export const deTranslations: Readonly<Record<string, string>> = {
     "Ein öffentlicher Artikel liegt noch nicht vor.",
 
   // Rendered figures: model card, architecture stack, token scale, evidence map.
-  "MODEL CARD": "MODEL CARD",
   "Published architecture": "Veröffentlichte Architektur",
   "Configured architecture": "Konfigurierte Architektur",
   "Transformer stack diagram showing the configured layer count, hidden size and attention heads":
@@ -599,19 +586,18 @@ export const deTranslations: Readonly<Record<string, string>> = {
   "Linear scale. Hatched bars mark configured targets, not measured runs.":
     "Lineare Skala. Schraffierte Balken zeigen konfigurierte Zielwerte, keine gemessenen Läufe.",
 
-  "Two released pilots. One untrained line.":
-    "Zwei veröffentlichte Pilotmodelle. Eine untrainierte Linie.",
+  "Two released pilots and one untrained model line":
+    "Zwei veröffentlichte Pilotmodelle und eine noch untrainierte Modelllinie",
   "Released parameters": "Veröffentlichte Parameter",
   "Configured Echelon target": "Konfigurierter Echelon-Zielwert",
   "Context window": "Kontextfenster",
   Measured: "Gemessen",
   "Configured, not trained": "Konfiguriert, nicht trainiert",
 
-  "EVIDENCE MAP": "BELEGÜBERSICHT",
   "Every resource area with its current documentation status. Dashed cells are open gaps, not omissions.":
     "Alle Ressourcenbereiche mit ihrem aktuellen Dokumentationsstand. Gestrichelte Felder markieren offene Lücken, keine Auslassungen.",
 
-  CONCLUSIONS: "FAZIT",
+  CONCLUSIONS: "Fazit",
   ...deEchelonTranslations,
   ...deSentinelTranslations,
 };

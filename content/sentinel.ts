@@ -20,7 +20,7 @@ export const sentinelPreview = {
   positioning: ["Cybersecurity-focused", "Local-first", "Open weights planned"],
   overview:
     "Quantum Sentinel-Alpha is the first substantial security fine-tuning milestone of the Quantum Sentinel 1 model line. It is designed as a specialized second security reviewer for developers, open-source maintainers, small engineering teams, security researchers and coding-agent builders.",
-  capabilitiesTitle: "From a potential risk to a reasoned finding.",
+  capabilitiesTitle: "What the model is trained to do",
   capabilitiesNotice:
     "Training objectives for Alpha. Performance has not yet been published. When evidence is insufficient, the model should express uncertainty or abstain.",
   capabilities: [
@@ -57,7 +57,7 @@ export const sentinelPreview = {
       text: "Review repositories, pull requests and diffs as a specialized second security reviewer.",
     },
   ],
-  architectureTitle: "A specialized model. A verifiable system.",
+  architectureTitle: "How the model and the Sentinel Engine work together",
   architectureText:
     "The model evaluates semantic risks. The Sentinel Engine supplies repository context and deterministic tools, then checks candidate findings. The planned model remains independently downloadable and locally usable.",
   modelTasks:
@@ -91,15 +91,15 @@ export const sentinelPreview = {
   ],
   architectureReason:
     "Deterministic work belongs in tools: indexing narrows the search, static analysis adds signals, verification checks model claims and tests help establish whether a patch still works and is safer. Specialization plus verification matters more than model size alone.",
-  foundationTitle: "A candidate, before a freeze.",
+  foundationTitle: "Base model: a provisional candidate",
   foundationText:
     "Quantum Sentinel-Alpha is currently being developed with Qwen3.5-9B as the primary foundation candidate. Final foundation selection follows an internal security bake-off between Qwen3.5-9B and Qwen3.5-4B. The foundation is not frozen.",
-  trainingTitle: "Security post-training, focused on evidence.",
+  trainingTitle: "Security post-training with a focus on evidence",
   trainingText:
     "The plan builds on an existing open-weight foundation rather than pretraining from scratch. QLoRA / LoRA supervised fine-tuning is the core, using curated vulnerability examples, fixed/vulnerable code pairs, hard negatives, patch tasks, localization, CWE classification, evidence and false-positive rejection. Preference training or domain adaptation will be added only if evaluations show measurable value.",
   languageNotice:
     "First-generation language focus: Python, JavaScript / TypeScript and Go. Other languages may follow through additional data and evaluation.",
-  localTitle: "Your code. Local analysis.",
+  localTitle: "Local analysis of your code",
   localText:
     "Local-first inference is planned so code can be reviewed without requiring upload to an external cloud service. An open-weight release on Hugging Face and quantized local variants are planned; no Sentinel weights are available yet.",
   artifacts: [
@@ -112,7 +112,7 @@ export const sentinelPreview = {
   ],
   hardwareNotice:
     "The primary candidate is in the approximately 9B class. Quantization is intended to make consumer-hardware inference possible. RAM and VRAM requirements will be published after measurement of the final variants.",
-  roadmapTitle: "Alpha first. A stable release later.",
+  roadmapTitle: "Development path to a stable release",
   roadmapText:
     "Alpha is the first real security-SFT milestone, before Beta, Release Candidate and the later stable Quantum Sentinel 1.0. The early Lean plan aims for an initial Alpha fine-tune; the sequence below is a development plan, not a record of completed phases.",
   phases: [

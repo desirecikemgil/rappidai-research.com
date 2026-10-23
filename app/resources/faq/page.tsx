@@ -15,10 +15,7 @@ export function LocalizedFaqPage({ locale }: { locale: Locale }) {
     <>
       <PageIntro
         eyebrow="FAQ"
-        title={t(
-          locale,
-          "Straight answers about an early-stage research project.",
-        )}
+        title={t(locale, "Frequently asked questions")}
         description={t(
           locale,
           "The most common questions about model type, local inference, Echelon, evidence status, privacy, licensing and reporting.",
@@ -33,10 +30,7 @@ export function LocalizedFaqPage({ locale }: { locale: Locale }) {
                 delay={Math.min(index * 0.025, 0.12)}
                 className="liquid-row grid gap-7 rounded-[1.3rem] border-y border-line py-8 lg:grid-cols-[0.7fr_1.3fr]"
               >
-                <div className="grid gap-4 sm:grid-cols-[3rem_1fr]">
-                  <span className="technical-number text-xs text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                <div className="grid gap-4">
                   <h2 className="text-xl font-medium tracking-[-0.03em] text-ink">
                     {entry.question}
                   </h2>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
 import {
   SentinelArchitecture,
   SentinelCapabilities,
@@ -18,31 +17,31 @@ export const metadata: Metadata = metadataFor("/");
 
 const copy = {
   en: {
-    intro: "Independent AI research. Berlin.",
+    intro: "Independent AI research from Berlin",
     description:
-      "We build compact language models and open tools for inspectable AI systems. Independent, founder-led research from Berlin, with Quantum Sentinel-Alpha as our current security-model focus.",
+      "We build compact language models and open tools for inspectable AI systems. rappidAI is an independent, founder-led research initiative in Berlin; our current focus is Quantum Sentinel-Alpha, a security model in development.",
     explore: "Explore our models",
     research: "Inside the research",
     work: "The work",
-    workTitle: "Intelligence. Under your control.",
+    workTitle: "Three research areas",
     workText:
       "From model weights to agent execution. Three distinct research directions, built around efficiency, transparency and local control.",
-    quantum: "Compact models. Open experiments.",
+    quantum: "Compact language models",
     quantumText:
       "Security-specialized Sentinel, the Echelon model line and German-language pilot models. Explore the releases, methods and evidence behind each stage.",
     quantumStatus:
-      "Sentinel Alpha + Echelon in development · Two public pilots",
-    ghost: "Set the boundaries.",
+      "Sentinel-Alpha and Echelon in development, two public pilots",
+    ghost: "Security runtime for AI agents",
     ghostText:
       "An integrated security runtime for autonomous agents: isolation, SHADOW deception, prompt-injection signals, scoped approvals, runtime limits and evidence behind one simple flow.",
-    replay: "Understand every run.",
+    replay: "Recording and comparing agent runs",
     replayText:
       "Record execution, restore technical state and compare branches. Local-first infrastructure for reproducible agent research.",
     toolStatus: "Experimental · Open source",
-    ghostStatus: "Integrated agent security · Experimental",
+    ghostStatus: "Experimental",
     open: "Explore",
     approach: "Our approach",
-    approachTitle: "Built to be understood.",
+    approachTitle: "Principles of our work",
     approachText:
       "Useful research leaves a trail. We connect our work to code, model artifacts and documented methods, so you can examine what works and where the limits are.",
     principles: [
@@ -60,50 +59,50 @@ const copy = {
       ],
     ],
     latest: "From the lab",
-    latestTitle: "Research you can inspect.",
+    latestTitle: "Latest research and publications",
     all: "All publications",
-    articleTitle: "From 100M to 600M German tokens.",
+    articleTitle: "From 100M to 600M German tokens",
     articleText:
       "What continued pretraining taught us about quantum-1.6-pilot. Methods, results and the limits of a compact language model.",
     articleType: "Research note",
     read: "Read the research note",
-    echelon: "The Echelon model line.",
+    echelon: "The Echelon model line",
     echelonText:
       "Explore the 1B development target and the planned path from Base to Chat. Specifications are provisional; no trained model has been released.",
-    sources: "Open by design.",
+    sources: "Code, models and documentation",
     sourcesText:
       "Find the model artifacts, source repositories and documentation behind the work.",
-    about: "Independent. Focused. Berlin.",
+    about: "An independent research initiative in Berlin",
     aboutText:
       "rappidAI is an early-stage, self-funded research and development initiative building compact intelligence and the infrastructure around it.",
     aboutLink: "Meet rappidAI",
   },
   de: {
-    intro: "Unabhängige KI-Forschung aus Berlin.",
+    intro: "Unabhängige KI-Forschung aus Berlin",
     description:
-      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme – unabhängig, gründergeführt und aus Berlin. Im Mittelpunkt steht derzeit Quantum Sentinel-Alpha, unser Sicherheitsmodell in Entwicklung.",
+      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. rappidAI ist eine unabhängige, gründergeführte Forschungsinitiative aus Berlin; derzeit konzentrieren wir uns auf Quantum Sentinel-Alpha, unser Sicherheitsmodell in Entwicklung.",
     explore: "Modelle ansehen",
     research: "Mehr zur Forschung",
     work: "Unsere Arbeit",
-    workTitle: "Intelligenz unter eigener Kontrolle.",
+    workTitle: "Drei Forschungsbereiche",
     workText:
       "Von den Modellgewichten bis zur Ausführung von Agenten: drei eigenständige Forschungsrichtungen, ausgerichtet auf Effizienz, Transparenz und lokale Kontrolle.",
-    quantum: "Kompakte Modelle. Offene Experimente.",
+    quantum: "Kompakte Sprachmodelle",
     quantumText:
-      "Das auf Sicherheit spezialisierte Sentinel, die Echelon-Modelllinie und deutschsprachige Pilotmodelle – mit Veröffentlichungen, Methoden und Belegen zu jeder Phase.",
+      "Das auf Sicherheit spezialisierte Sentinel, die Echelon-Modelllinie und deutschsprachige Pilotmodelle. Zu jeder Phase dokumentieren wir Veröffentlichungen, Methoden und Belege.",
     quantumStatus:
-      "Sentinel Alpha + Echelon in Entwicklung · Zwei öffentliche Pilotmodelle",
-    ghost: "Klare Grenzen setzen.",
+      "Sentinel-Alpha und Echelon in Entwicklung, zwei öffentliche Pilotmodelle",
+    ghost: "Security-Runtime für KI-Agenten",
     ghostText:
-      "Eine integrierte Security-Runtime für autonome Agenten: Isolation, Täuschung per SHADOW, Prompt-Injection-Signale, eng begrenzte Freigaben, Laufzeitgrenzen und Nachweise – gebündelt in einem einfachen Ablauf.",
-    replay: "Jeden Lauf verstehen.",
+      "Eine integrierte Security-Runtime für autonome Agenten: Isolation, Täuschung per SHADOW, Prompt-Injection-Signale, eng begrenzte Freigaben, Laufzeitgrenzen und Nachweise, gebündelt in einem einfachen Ablauf.",
+    replay: "Agentenläufe aufzeichnen und vergleichen",
     replayText:
       "Ausführungen aufzeichnen, technische Zustände wiederherstellen und verzweigte Läufe vergleichen. Lokal ausgerichtete Infrastruktur für reproduzierbare Forschung an KI-Agenten.",
     toolStatus: "Experimentell · Open Source",
-    ghostStatus: "Integrierte Agentensicherheit · Experimentell",
+    ghostStatus: "Experimentell",
     open: "Mehr erfahren",
     approach: "Unser Ansatz",
-    approachTitle: "Auf Nachvollziehbarkeit angelegt.",
+    approachTitle: "Grundsätze unserer Arbeit",
     approachText:
       "Nützliche Forschung hinterlässt Spuren. Wir verknüpfen unsere Arbeit mit Code, Modellartefakten und dokumentierten Methoden. So lässt sich prüfen, was funktioniert und wo die Grenzen liegen.",
     principles: [
@@ -121,20 +120,20 @@ const copy = {
       ],
     ],
     latest: "Aus dem Labor",
-    latestTitle: "Forschung, die sich prüfen lässt.",
+    latestTitle: "Aktuelle Forschung und Veröffentlichungen",
     all: "Alle Veröffentlichungen",
-    articleTitle: "Von 100 auf 600 Millionen deutsche Tokens.",
+    articleTitle: "Von 100 auf 600 Millionen deutsche Tokens",
     articleText:
       "Was wir aus dem fortgesetzten Pretraining von quantum-1.6-pilot gelernt haben: Methoden, Ergebnisse und die Grenzen eines kompakten Sprachmodells.",
     articleType: "Forschungsnotiz",
     read: "Forschungsnotiz lesen",
-    echelon: "Die Echelon-Modelllinie.",
+    echelon: "Die Echelon-Modelllinie",
     echelonText:
       "Das 1B-Entwicklungsziel und der geplante Weg von Base zu Chat. Die Spezifikationen sind vorläufig; ein trainiertes Modell ist noch nicht veröffentlicht.",
-    sources: "Offen entwickelt.",
+    sources: "Code, Modelle und Dokumentation",
     sourcesText:
       "Modellartefakte, Quellcode-Repositories und Dokumentation zu unserer Arbeit.",
-    about: "Unabhängig. Fokussiert. Aus Berlin.",
+    about: "Eine unabhängige Forschungsinitiative in Berlin",
     aboutText:
       "rappidAI ist eine eigenfinanzierte Forschungs- und Entwicklungsinitiative in der Frühphase. Wir entwickeln kompakte KI und die zugehörige Infrastruktur.",
     aboutLink: "Über rappidAI",
@@ -169,7 +168,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
             <p>{c.description}</p>
             <Link className="text-link" href={path("/about")}>
               {c.aboutLink}
-              <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -195,13 +193,7 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                   {lineup.map((model) => (
                     <li key={model.slug}>
                       <span>{modelListName(model.slug)}</span>
-                      <span
-                        className={`chip chip-dot ${
-                          model.availability === "available"
-                            ? "chip-ok"
-                            : "chip-planned"
-                        }`}
-                      >
+                      <span className="chip">
                         {model.availability === "available"
                           ? t(locale, "Public")
                           : t(locale, "In development")}
@@ -222,7 +214,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               </p>
               <Link href={path("/models")} className={styles.productLink}>
                 {c.explore}
-                <ArrowRight size={15} aria-hidden="true" />
               </Link>
             </div>
           </article>
@@ -260,7 +251,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 aria-label={`${c.open} rappidAI Ghost`}
               >
                 {c.open}
-                <ArrowRight size={15} aria-hidden="true" />
               </Link>
             </div>
           </article>
@@ -301,7 +291,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 aria-label={`${c.open} rappidAI Replay`}
               >
                 {c.open}
-                <ArrowRight size={15} aria-hidden="true" />
               </Link>
             </div>
           </article>
@@ -316,7 +305,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
             <p className="lede">{c.approachText}</p>
             <Link href={path("/research")} className="text-link">
               {c.research}
-              <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
           <dl className={styles.principles} data-stagger>
@@ -338,7 +326,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
           </div>
           <Link href={path("/resources/publications")} className="text-link">
             {c.all}
-            <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>
         <div className={styles.journal}>
@@ -368,10 +355,7 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               <p className="kicker">{c.articleType}</p>
               <h3>{c.articleTitle}</h3>
               <p>{c.articleText}</p>
-              <span className="text-link">
-                {c.read}
-                <ArrowRight size={15} aria-hidden="true" />
-              </span>
+              <span className="text-link">{c.read}</span>
             </div>
           </Link>
           <div className={styles.aside}>
@@ -382,19 +366,13 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               <p className="kicker">Quantum Echelon</p>
               <h3>{c.echelon}</h3>
               <p>{c.echelonText}</p>
-              <span className="text-link">
-                {c.open}
-                <ArrowRight size={15} aria-hidden="true" />
-              </span>
+              <span className="text-link">{c.open}</span>
             </Link>
             <Link href={path("/resources")} className={styles.asideItem}>
               <p className="kicker">{t(locale, "Resources")}</p>
               <h3>{c.sources}</h3>
               <p>{c.sourcesText}</p>
-              <span className="text-link">
-                {c.open}
-                <ArrowRight size={15} aria-hidden="true" />
-              </span>
+              <span className="text-link">{c.open}</span>
             </Link>
           </div>
         </div>
@@ -412,7 +390,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               <ActionLink href={path("/about")}>{c.aboutLink}</ActionLink>
               <Link href={path("/contact")} className={styles.closingLink}>
                 {t(locale, "Contact")}
-                <ArrowUpRight size={15} aria-hidden="true" />
               </Link>
             </div>
           </div>

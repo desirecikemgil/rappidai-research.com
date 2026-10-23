@@ -14,9 +14,7 @@ type PrivacySectionRecord = (typeof privacyPageContent.sections)[number];
 function Detail({ label, value }: { label: string; value: string }) {
   return (
     <div className="grid gap-2 border-t border-line py-4 sm:grid-cols-[10rem_1fr] sm:gap-6">
-      <dt className="font-mono text-[0.69rem] font-medium uppercase tracking-[0.14em] text-muted">
-        {label}
-      </dt>
+      <dt className="ui-label">{label}</dt>
       <dd className="whitespace-pre-line text-[0.96rem] leading-7 text-ink">
         {value}
       </dd>
@@ -133,10 +131,9 @@ function PrivacySection({
         className="grid gap-7 lg:grid-cols-[0.72fr_1.28fr]"
       >
         <div className="research-aside">
-          <p className="eyebrow">{String(index + 1).padStart(2, "0")}</p>
           <h2
             id={`privacy-${section.id}`}
-            className="mt-4 max-w-[16ch] text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] leading-[1.08] tracking-[-0.04em] text-ink"
+            className="max-w-[16ch] text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] leading-[1.08] tracking-[-0.04em] text-ink"
           >
             {section.title}
           </h2>

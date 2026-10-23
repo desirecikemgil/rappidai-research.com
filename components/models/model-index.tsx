@@ -2,7 +2,6 @@
 
 import { SentinelCard } from "./sentinel-preview";
 import { EchelonCard } from "./echelon-card";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
@@ -80,9 +79,7 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
               >
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="chip chip-dot chip-ok">
-                      {model.statusLabel}
-                    </span>
+                    <span className="chip">{model.statusLabel}</span>
                     <span className="text-xs text-muted">
                       {model.parameterCount?.label ??
                         t(locale, "Parameter size not yet defined")}
@@ -111,7 +108,6 @@ export function ModelIndex({ locale = "en" }: { locale?: Locale }) {
 
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-accent">
                   {t(locale, "View model card")}
-                  <ArrowRight aria-hidden="true" size={18} strokeWidth={1.6} />
                 </span>
               </Link>
             </article>

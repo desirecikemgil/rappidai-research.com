@@ -1,12 +1,12 @@
 export const deComparisonTranslations: Readonly<Record<string, string>> = {
-  "MODEL SYSTEM COMPARISON": "MODELLE IM VERGLEICH",
+  "Model system comparison": "Modelle im Vergleich",
   "Three model stages, compared on the same evidence scale.":
-    "Drei Modellstufen im Vergleich – mit demselben Maßstab für Belege.",
+    "Drei Modellstufen im Vergleich, gemessen am selben Maßstab für Belege.",
   "Architecture, tokenizer and data-pipeline differences are shown separately so released artifacts, published validation and configured Echelon targets cannot be mistaken for the same kind of evidence.":
     "Unterschiede bei Architektur, Tokenizer und Datenpipeline werden getrennt gezeigt. So entsteht nicht der Eindruck, veröffentlichte Artefakte, publizierte Validierungen und konfigurierte Echelon-Ziele seien Belege derselben Art.",
   "Data pipeline": "Datenpipeline",
-  "ARCHITECTURE SCALE": "ARCHITEKTUR UND GRÖSSE",
-  "From a 49.3M pilot to a configured 506.3M Echelon Base.":
+  "Architecture scale": "Architektur und Größe",
+  "From a 49.3M pilot to a configured 506.3M Echelon Base":
     "Vom Pilotmodell mit 49,3 Mio. zur konfigurierten Echelon Base mit 506,3 Mio. Parametern.",
   "Parameter and context scale can be compared directly. Layer dimensions are shown only where a public source states them; the first pilot therefore keeps an explicit documentation gap.":
     "Parameterzahl und Kontextlänge lassen sich direkt vergleichen. Schichtdimensionen zeigen wir nur dort, wo eine öffentliche Quelle sie nennt; beim ersten Pilotmodell bleibt deshalb eine ausdrücklich markierte Dokumentationslücke.",
@@ -25,11 +25,11 @@ export const deComparisonTranslations: Readonly<Record<string, string>> = {
   "quantum-1-pilot manifest": "Manifest von quantum-1-pilot",
   "Echelon architecture configuration": "Architekturkonfiguration von Echelon",
   "Echelon architecture preflight": "Architektur-Preflight von Echelon",
-  "TOKENIZER GENERATIONS": "TOKENIZER-GENERATIONEN",
+  "Tokenizer generations": "Tokenizer-Generationen",
   "One frozen pilot tokenizer, then a new Echelon vocabulary.":
     "Erst ein eingefrorener Pilot-Tokenizer, dann ein neues Vokabular für Echelon.",
   "The two pilot stages share the quantum-1 tokenizer. Echelon introduces a separately configured SentencePiece BPE tokenizer with a larger vocabulary and published integrity checks.":
-    "Beide Pilotstufen nutzen denselben quantum-1-Tokenizer. Mit Echelon kommt ein eigens konfigurierter SentencePiece-BPE-Tokenizer hinzu – mit größerem Vokabular und veröffentlichten Integritätsprüfungen.",
+    "Beide Pilotstufen nutzen denselben quantum-1-Tokenizer. Mit Echelon kommt ein eigens konfigurierter SentencePiece-BPE-Tokenizer hinzu. Er hat ein größeres Vokabular und veröffentlichte Integritätsprüfungen.",
   "Released model tokenizer": "Tokenizer des veröffentlichten Modells",
   "quantum-1 tokenizer": "quantum-1-Tokenizer",
   "Baseline tokenizer": "Basis-Tokenizer",
@@ -55,7 +55,7 @@ export const deComparisonTranslations: Readonly<Record<string, string>> = {
     "Die Round-Trip-Suite von Echelon prüft die Integrität des Tokenizers. Sie ist kein Benchmark für Sprachmodelle und belegt nichts über die Qualität generierter Texte.",
   "Echelon tokenizer configuration": "Tokenizer-Konfiguration von Echelon",
   "Echelon tokenizer validation": "Tokenizer-Validierung von Echelon",
-  "DATA PIPELINE SCALE": "DATENPIPELINE UND UMFANG",
+  "Data pipeline scale": "Datenpipeline und Umfang",
   "Reported pilot scope versus an unstarted Echelon production target.":
     "Berichteter Pilotumfang im Vergleich zu einem Produktionsziel für Echelon, dessen Umsetzung noch nicht begonnen hat.",
   "The scale uses the 100M-token pilot report as a reference. The 1.6 stage reports 500M additional German tokens; Echelon targets 8B training tokens, but only smoke-test output exists.":

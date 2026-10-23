@@ -6,7 +6,7 @@ export type ComparisonEvidenceTone = "released" | "published" | "configured";
 export const modelComparisonContent = {
   introduction: {
     eyebrow: "Historical preflight comparison",
-    title: "Earlier evidence. Preserved for context.",
+    title: "Earlier evidence for context",
     description:
       "This comparison preserves the earlier 506M Echelon preflight, tokenizer validation and 8B-token configuration. These are historical pipeline records, not the current 1B development targets or model capability measurements.",
   },
@@ -16,8 +16,8 @@ export const modelComparisonContent = {
     { id: "pipeline", label: "Data pipeline" },
   ],
   architecture: {
-    eyebrow: "ARCHITECTURE SCALE",
-    title: "From a 49.3M pilot to a configured 506.3M Echelon Base.",
+    eyebrow: "Architecture scale",
+    title: "From a 49.3M pilot to a configured 506.3M Echelon Base",
     description:
       "Parameter and context scale can be compared directly. Layer dimensions are shown only where a public source states them; the first pilot therefore keeps an explicit documentation gap.",
     models: [
@@ -89,7 +89,7 @@ export const modelComparisonContent = {
     ],
   },
   tokenizer: {
-    eyebrow: "TOKENIZER GENERATIONS",
+    eyebrow: "Tokenizer generations",
     title: "One frozen pilot tokenizer, then a new Echelon vocabulary.",
     description:
       "The two pilot stages share the quantum-1 tokenizer. Echelon introduces a separately configured SentencePiece BPE tokenizer with a larger vocabulary and published integrity checks.",
@@ -150,7 +150,7 @@ export const modelComparisonContent = {
     ],
   },
   pipeline: {
-    eyebrow: "DATA PIPELINE SCALE",
+    eyebrow: "Data pipeline scale",
     title:
       "Reported pilot scope versus an unstarted Echelon production target.",
     description:

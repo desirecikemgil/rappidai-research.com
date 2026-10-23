@@ -91,8 +91,7 @@
     height: auto;
   }
 
-  .architecture-stack,
-  .research-diagram {
+  .architecture-stack {
     overflow: visible;
   }
 
@@ -151,11 +150,8 @@
     border-right: 1px solid var(--line);
     background: transparent;
     color: var(--muted);
-    font-family: var(--mono);
-    font-size: 0.67rem;
-    font-weight: 450;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 500;
     transition:
       color var(--dur-fast) var(--ease-soft),
       background-color var(--dur-fast) var(--ease-soft);
@@ -416,8 +412,7 @@
     .comparison-tab {
       min-height: 3.8rem;
       padding-inline: 0.35rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.07em;
+      font-size: 0.78rem;
     }
 
     .comparison-panel {

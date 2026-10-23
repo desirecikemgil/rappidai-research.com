@@ -84,7 +84,7 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
         <section id="resources-evidence-map" className="scroll-mt-32">
           <p className="kicker">{t(locale, "Evidence map")}</p>
           <h2 className="display-section mt-3">
-            {t(locale, "Documentation status at a glance.")}
+            {t(locale, "Documentation status at a glance")}
           </h2>
           <p className="body-copy mt-4 max-w-[40rem]">
             {t(
@@ -118,7 +118,7 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
                 className="card flex min-h-[8.5rem] flex-col p-5"
               >
                 <p className="m-0 text-xs text-muted">
-                  {t(locale, "OPEN SOURCE")}
+                  {t(locale, "Open source")}
                 </p>
                 <h2 className="mt-3 text-lg font-medium tracking-[-0.025em] text-ink">
                   {item.label}

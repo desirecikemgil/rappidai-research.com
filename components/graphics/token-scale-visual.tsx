@@ -41,9 +41,7 @@ export function TokenScaleVisual({
         {steps.map((step, index) => (
           <li key={step.label}>
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                {step.label}
-              </p>
+              <p className="ui-label">{step.label}</p>
               <p className="technical-number text-lg text-ink">
                 <CountUp
                   value={step.tokens >= 1000 ? step.tokens / 1000 : step.tokens}

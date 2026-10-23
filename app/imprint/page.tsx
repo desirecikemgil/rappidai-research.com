@@ -20,9 +20,7 @@ function LegalField({
 }) {
   return (
     <div className="grid gap-2 border-t border-line py-5 sm:grid-cols-[12rem_1fr] sm:gap-8">
-      <dt className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.15em] text-muted">
-        {label}
-      </dt>
+      <dt className="ui-label">{label}</dt>
       <dd className="text-ink">
         <span className="whitespace-pre-line text-[0.98rem] leading-7">
           {value}
@@ -39,13 +37,11 @@ function LegalField({
 
 function LegalGroup({
   id,
-  eyebrow,
   title,
   children,
   delay = 0,
 }: {
   id: string;
-  eyebrow: string;
   title: string;
   children: ReactNode;
   delay?: number;
@@ -57,10 +53,9 @@ function LegalGroup({
         className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]"
       >
         <div className="research-aside">
-          <p className="eyebrow">{eyebrow}</p>
           <h2
             id={id}
-            className="mt-4 text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] leading-[1.08] tracking-[-0.04em] text-ink"
+            className="text-[clamp(1.55rem,2.5vw,2.4rem)] font-[520] leading-[1.08] tracking-[-0.04em] text-ink"
           >
             {title}
           </h2>
@@ -85,11 +80,7 @@ export function LocalizedImprintPage({ locale }: { locale: Locale }) {
           <DrawRule />
 
           <div className="mt-[clamp(4rem,7vw,7rem)] space-y-[clamp(4.5rem,8vw,8rem)]">
-            <LegalGroup
-              id="imprint-identity"
-              eyebrow="01"
-              title={t(locale, "Identity")}
-            >
+            <LegalGroup id="imprint-identity" title={t(locale, "Identity")}>
               <LegalField
                 label={page.identityLabel}
                 value={legal.publicIdentity}
@@ -110,7 +101,6 @@ export function LocalizedImprintPage({ locale }: { locale: Locale }) {
 
             <LegalGroup
               id="imprint-location"
-              eyebrow="02"
               title={t(locale, "Location")}
               delay={0.04}
             >
@@ -127,7 +117,6 @@ export function LocalizedImprintPage({ locale }: { locale: Locale }) {
 
             <LegalGroup
               id="imprint-contact"
-              eyebrow="03"
               title={page.contactLabel}
               delay={0.06}
             >
@@ -146,7 +135,6 @@ export function LocalizedImprintPage({ locale }: { locale: Locale }) {
 
             <LegalGroup
               id="imprint-responsibility"
-              eyebrow="04"
               title={t(locale, "Content responsibility")}
               delay={0.08}
             >

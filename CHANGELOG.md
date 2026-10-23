@@ -8,6 +8,12 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Professional polish — 23 October 2026
+
+- Removed typical AI-website decoration: arrow and check-mark icons, window traffic-light dots, announcement pills, status dots, glow, gradient text, pulsing and blur-in effects, and decorative 01/02 numbering.
+- Replaced mono uppercase labels with sentence-case labels in Geist Sans; Geist Mono is now reserved for technical values.
+- Rewrote slogan-style headings in English and German as plain, descriptive headings without trailing full stops, and reduced dash-heavy copy. Facts, evidence labels and limits are unchanged.
+
 ### Model list names — 19 October 2026
 
 - Model lists (lineup table, model index, homepage portfolio, mega menu and footer) now name every model in the same lowercase, hyphenated form: quantum-sentinel-alpha, quantum-1-echelon, quantum-1.6-pilot and quantum-1-pilot. Headings and running text keep the public names.

@@ -22,12 +22,12 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
           <Reveal className="border border-accent/25 bg-ink p-7 text-white sm:p-10">
             <div className="flex flex-wrap items-center gap-3">
               <p className="eyebrow eyebrow-on-dark">
-                {t(locale, "EXCLUDED USES")}
+                {t(locale, "Excluded uses")}
               </p>
               <EvidenceBadge status="Published" onDark locale={locale} />
             </div>
             <h2 className="mt-7 max-w-[18ch] text-[clamp(2rem,4vw,4rem)] font-medium leading-[1] tracking-[-0.05em]">
-              {t(locale, "Do not treat experimental completions as decisions.")}
+              {t(locale, "Do not treat experimental completions as decisions")}
             </h2>
             <ul className="mt-9 grid gap-3 md:grid-cols-2">
               {content.excludedUses.map((item) => (
@@ -43,9 +43,9 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
 
           <div className="mt-[clamp(4rem,8vw,8rem)]">
             <Reveal>
-              <p className="eyebrow">{t(locale, "KNOWN BEHAVIOR")}</p>
+              <p className="eyebrow">{t(locale, "Known behavior")}</p>
               <h2 className="display-section mt-7 text-ink">
-                {t(locale, "Limits observed in the public record.")}
+                {t(locale, "Documented behavioral limits")}
               </h2>
             </Reveal>
             <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -55,10 +55,7 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
                   delay={(index % 2) * 0.04}
                   className="liquid-card p-7 sm:p-9"
                 >
-                  <span className="technical-number text-xs text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-7 text-2xl font-medium tracking-[-0.035em] text-ink">
+                  <h3 className="text-2xl font-medium tracking-[-0.035em] text-ink">
                     {item.title}
                   </h3>
                   <p className="body-copy mt-4">{item.text}</p>
@@ -70,18 +67,18 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
           <div className="mt-[clamp(4rem,8vw,8rem)] grid gap-4 lg:grid-cols-2">
             <Reveal className="liquid-card p-7 sm:p-9">
               <div className="flex flex-wrap items-center gap-3">
-                <p className="eyebrow">{t(locale, "UNMEASURED RISKS")}</p>
+                <p className="eyebrow">{t(locale, "Unmeasured risks")}</p>
                 <EvidenceBadge status="Not measured" locale={locale} />
               </div>
               <h2 className="mt-7 text-3xl font-medium tracking-[-0.045em] text-ink">
-                {t(locale, "No safety evaluation is inferred.")}
+                {t(locale, "No safety claims without evaluation")}
               </h2>
               <SimpleList items={content.unmeasuredRisks} />
             </Reveal>
             <Reveal delay={0.05} className="liquid-card p-7 sm:p-9">
-              <p className="eyebrow">{t(locale, "ARTIFACT SAFETY")}</p>
+              <p className="eyebrow">{t(locale, "Artifact safety")}</p>
               <h2 className="mt-7 text-3xl font-medium tracking-[-0.045em] text-ink">
-                {t(locale, "Treat files and code as untrusted.")}
+                {t(locale, "Treat files and code as untrusted")}
               </h2>
               <SimpleList items={content.artifactSafety} />
             </Reveal>
@@ -89,9 +86,9 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
 
           <div className="mt-[clamp(4rem,8vw,8rem)]">
             <Reveal>
-              <p className="eyebrow">{t(locale, "REPORTING")}</p>
+              <p className="eyebrow">{t(locale, "Reporting")}</p>
               <h2 className="display-section mt-7 text-ink">
-                {t(locale, "Use the right channel.")}
+                {t(locale, "Where to report issues")}
               </h2>
             </Reveal>
             <div className="mt-10 grid gap-4 lg:grid-cols-3">

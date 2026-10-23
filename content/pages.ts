@@ -7,8 +7,8 @@ import type {
 
 export const modelsPageContent = {
   introduction: {
-    eyebrow: "MODELS",
-    title: "Compact model experiments, documented clearly.",
+    eyebrow: "Models",
+    title: "The Quantum model family",
     description:
       "Meet Quantum Sentinel-Alpha, our security-specialized code model in development, alongside Quantum 1 Echelon and the two public experimental Quantum pilots.",
   } satisfies PageIntroduction,
@@ -21,8 +21,8 @@ export const modelsPageContent = {
 
 export const researchPageContent = {
   introduction: {
-    eyebrow: "RESEARCH",
-    title: "Documented clearly, artifact by artifact.",
+    eyebrow: "Research",
+    title: "Research and published evidence",
     description:
       "A source-linked evidence ledger for the released Quantum pilots and the current Echelon pipeline, including findings, negative results, reproducibility status and visible publication gaps.",
   } satisfies PageIntroduction,
@@ -30,8 +30,8 @@ export const researchPageContent = {
 
 export const resourcesPageContent = {
   introduction: {
-    eyebrow: "RESOURCES",
-    title: "Inspect the evidence, not just the claims.",
+    eyebrow: "Resources",
+    title: "Resources and documentation",
     description:
       "Publications, reproducibility records, data provenance, responsible-use guidance, licensing boundaries and current project status in one evidence-bounded documentation hub.",
   } satisfies PageIntroduction,
@@ -39,34 +39,34 @@ export const resourcesPageContent = {
 
 export const aboutPageContent = {
   introduction: {
-    eyebrow: "ABOUT",
+    eyebrow: "About",
     title: "An independent research initiative at an early stage.",
     description:
       "rappidAI is a self-funded, founder-led, early-stage AI research and development initiative based in Berlin.",
   } satisfies PageIntroduction,
   whatItIs: {
-    eyebrow: "WHAT RAPPIDAI IS",
-    title: "Learning through real model development.",
+    eyebrow: "What rappidAI is",
+    title: "Learning through real model development",
     text: "rappidAI develops compact language-model experiments and investigates training pipelines, evaluation, efficient inference and practical local deployment.",
   },
   whatItIsNot: {
-    eyebrow: "WHAT RAPPIDAI IS NOT",
-    title: "Experimental work is not production capability.",
+    eyebrow: "What rappidAI is not",
+    title: "Experimental work is not production capability",
     text: "rappidAI is not presented as a frontier-scale laboratory. Its pilot models are experimental, unreliable in factual output and not intended as production assistants or for high-stakes decisions.",
   },
   whyCompactModelsMatter: {
-    eyebrow: "WHY COMPACT MODELS",
-    title: "Capability should be considered alongside resources.",
+    eyebrow: "Why compact models",
+    title: "Capability should be considered alongside resources",
     text: "Local inference can reduce dependence on external services and may keep prompts on the user’s device. Actual privacy depends on the application, configuration and surrounding infrastructure.",
   },
   projectStructure: {
-    eyebrow: "PROJECT STRUCTURE",
-    title: "An initiative, a model project and agent infrastructure.",
+    eyebrow: "Project structure",
+    title: "An initiative, a model project and agent infrastructure",
     text: "rappidAI is the initiative. rappidAI Quantum is its model-development project; Lumen is an earlier name retained in repository paths. Ghost and Replay are supporting open-source projects for agent security and execution reproducibility.",
   },
   publishedWork: {
-    eyebrow: "PUBLISHED WORK",
-    title: "Two public experimental pilots.",
+    eyebrow: "Published work",
+    title: "Two public experimental pilots",
     paragraphs: [
       "rappidAI currently publishes two experimental German base-completion models: quantum-1-pilot and quantum-1.6-pilot. Both contain 49,295,872 parameters and are available as F16 GGUF files for local experimentation. The accompanying public repository documents the training, evaluation and GGUF-export workflow.",
       "The public releases and source repository document the artifacts and intended workflow, but final run manifests and complete training logs are not linked. The releases do not demonstrate production readiness, reliable factual answering or competitiveness with larger general-purpose models.",
@@ -77,20 +77,20 @@ export const aboutPageContent = {
     } satisfies InternalCallToAction,
   },
   currentDirection: {
-    eyebrow: "CURRENT DIRECTION",
-    title: "Quantum Sentinel-Alpha.",
+    eyebrow: "Current direction",
+    title: "Quantum Sentinel-Alpha",
     text: "Our current focus is Quantum Sentinel-Alpha, a security-specialized source-code model in development. Local inference and an open-weight release are planned. Quantum 1 Echelon remains our separate German-first language-model project, available in the model index.",
   },
   experimentalNotice: {
-    eyebrow: "EXPERIMENTAL OUTPUTS",
-    title: "Limitations are communicated directly.",
+    eyebrow: "Experimental outputs",
+    title: "Limitations are communicated directly",
     text: "Research outputs may be limited, repetitive, factually unreliable and inconsistent. They should be inspected as experiments, not treated as production systems.",
   },
 } as const;
 
 export const contactPageContent = {
   introduction: {
-    eyebrow: "CONTACT",
+    eyebrow: "Contact",
     title: "Interested in the research?",
     description:
       "Contact founder Jonas Désiré Cikemgil at the project’s business-domain email for technical questions, model feedback, open-source collaboration or project enquiries.",
@@ -130,7 +130,7 @@ export const contactPageContent = {
 
 export const imprintPageContent = {
   introduction: {
-    eyebrow: "IMPRINT",
+    eyebrow: "Imprint",
     title: "Provider information",
     description:
       "Provider information for rappidAI research, an independent initiative operated by Jonas Désiré Cikemgil.",
@@ -144,7 +144,7 @@ export const imprintPageContent = {
 
 export const privacyPageContent = {
   introduction: {
-    eyebrow: "PRIVACY",
+    eyebrow: "Privacy",
     title: "Privacy information",
     description:
       "This page describes how the website handles personal data in its current implementation.",
@@ -180,7 +180,7 @@ export const privacyPageContent = {
 
 export const pageMetadata = {
   "/": {
-    title: "rappidAI Research — Introducing Quantum Sentinel-Alpha",
+    title: "rappidAI Research — Quantum Sentinel-Alpha",
     description:
       "rappidAI Research develops open AI systems including Quantum Sentinel-Alpha, a security-specialized model for source-code vulnerability analysis. Alpha is in development; open weights are planned.",
   },

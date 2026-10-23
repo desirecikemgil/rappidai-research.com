@@ -3,7 +3,7 @@ import { ActionLink } from "@/components/ui/action-link";
 export default function NotFound() {
   return (
     <section className="page-shell flex min-h-[68svh] flex-col justify-center py-24">
-      <p className="eyebrow">404 · NOT FOUND</p>
+      <p className="eyebrow">404 · Not found</p>
       <h1 className="display-page mt-7">
         This route is outside the experiment.
       </h1>
