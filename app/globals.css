@@ -319,26 +319,19 @@
   }
 
   .kicker,
-  .studio-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--accent);
+  .studio-kicker,
+  .eyebrow,
+  .page-context,
+  .ui-label {
+    color: var(--muted);
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: -0.005em;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
-  .eyebrow,
-  .page-context {
-    color: var(--accent);
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    line-height: 1.5;
-    text-transform: uppercase;
+  .ui-label {
+    font-size: 0.8125rem;
   }
 
   .eyebrow-on-dark,
@@ -349,7 +342,7 @@
   .night .eyebrow,
   .night .kicker,
   .dark-band .studio-kicker {
-    color: var(--night-accent);
+    color: var(--footer-muted);
   }
 
   .lede {
@@ -390,6 +383,7 @@
   .section-head,
   .studio-section-heading {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem 4rem;
     margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
@@ -609,23 +603,6 @@
     }
   }
 
-  .chip-dot::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .chip-planned::before {
-    border: 1px solid var(--muted);
-    background: transparent;
-  }
-
-  .chip-ok::before {
-    background: var(--ok);
-  }
-
   /* --------------------------------------------------------------------------
    Surfaces
    -------------------------------------------------------------------------- */
@@ -724,11 +701,6 @@
     letter-spacing: 0.04em;
   }
 
-  .window-bar .dots {
-    display: inline-flex;
-    gap: 6px;
-  }
-
   /* On narrow screens the trailing label drops to its own line instead of
      squeezing or truncating the title. */
   .window-bar {
@@ -737,7 +709,7 @@
     padding-block: 0.45rem;
   }
 
-  .window-bar > span:not(.dots) {
+  .window-bar > span {
     min-width: 0;
   }
 
@@ -746,21 +718,10 @@
       gap: 0.75rem;
     }
 
-    .window-bar .dots {
-      display: none;
-    }
-
     .terminal {
       padding: 1rem;
       font-size: 0.72rem;
     }
-  }
-
-  .window-bar .dots i {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--line-strong);
   }
 
   .window-dark {
@@ -773,10 +734,6 @@
     border-color: var(--code-line);
     background: var(--code-2);
     color: var(--code-muted);
-  }
-
-  .window-dark .window-bar .dots i {
-    background: rgb(255 255 255 / 0.18);
   }
 
   .code-surface,
@@ -1267,6 +1224,7 @@
 
   .page-intro-main {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.75rem;
     margin-top: 1.75rem;
   }
@@ -1343,20 +1301,8 @@
     letter-spacing: -0.01em;
   }
 
-  .section-navigator-title::after {
-    content: "↓";
-    color: var(--faint);
-    font-size: 0.85rem;
-    transition: transform var(--dur-base) var(--ease-glide);
-  }
-
   .section-navigator-link:hover .section-navigator-title {
     color: var(--accent);
-  }
-
-  .section-navigator-link:hover .section-navigator-title::after {
-    color: var(--accent);
-    transform: translateY(2px);
   }
 
   .section-navigator-description {
@@ -1596,11 +1542,8 @@
   .footer-heading {
     margin: 0 0 1rem;
     color: var(--footer-muted);
-    font-family: var(--mono);
-    font-size: 0.68rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
   }
 
   .footer-links {
@@ -2046,8 +1989,7 @@
     height: auto;
   }
 
-  .architecture-stack,
-  .research-diagram {
+  .architecture-stack {
     overflow: visible;
   }
 
@@ -2202,11 +2144,8 @@
       display: block;
       margin-bottom: 0.3rem;
       color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 0.78rem;
+      font-weight: 500;
     }
   }
 

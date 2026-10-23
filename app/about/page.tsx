@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, Check, X } from "lucide-react";
-import { ResearchDiagram } from "@/components/research/research-diagram";
 import { BrandSymbol } from "@/components/ui/brand-lockup";
 import { PageIntro } from "@/components/ui/page-intro";
 import { ActionLink } from "@/components/ui/action-link";
 import { aboutPageContent } from "@/content/pages";
+import { sentinelPreview } from "@/content/sentinel";
 import { siteConfig } from "@/content/site";
 import { metadataFor } from "@/lib/metadata";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
@@ -21,6 +20,13 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
     [t(locale, "High-stakes decisions"), t(locale, "Not suitable")],
     [t(locale, "Production assistant"), t(locale, "Not intended")],
   ];
+  const sentinel = localizeContent(sentinelPreview, locale);
+  const sentinelFacts = [
+    [t(locale, "Status"), sentinel.status],
+    [t(locale, "Alpha target"), t(locale, "October 2026")],
+    [t(locale, "Primary foundation candidate"), sentinel.primaryFoundation],
+    [t(locale, "Primary languages"), sentinel.languages.join(", ")],
+  ];
   const structure = [
     ["rappidAI Quantum", t(locale, "Models"), "/models"],
     ["rappidAI Ghost", t(locale, "Agent security"), "/tools/ghost"],
@@ -31,11 +37,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
     <>
       <PageIntro
         {...page.introduction}
-        title={
-          locale === "de"
-            ? "Unabhängig denken. Nachvollziehbar entwickeln."
-            : "Independent thinking. Inspectable work."
-        }
+        title={locale === "de" ? "Über rappidAI" : "About rappidAI"}
         facts={[
           { label: t(locale, "Location"), value: config.location },
           { label: t(locale, "Founder"), value: config.founder.name },
@@ -68,9 +70,8 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
               {config.founder.focusAreas.map((area) => (
                 <li
                   key={area}
-                  className="flex items-center gap-3 border-b border-line px-6 py-3 text-[0.92rem] text-ink-soft last:border-b-0"
+                  className="border-b border-line px-6 py-3 text-[0.92rem] text-ink-soft last:border-b-0"
                 >
-                  <Check aria-hidden="true" size={15} className="text-accent" />
                   {area}
                 </li>
               ))}
@@ -109,10 +110,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
       <section className="page-shell section">
         <div className="grid gap-4 lg:grid-cols-2" data-stagger>
           <article className="card p-7 sm:p-9">
-            <p className="kicker">
-              <Check aria-hidden="true" size={15} />
-              {page.whatItIs.eyebrow}
-            </p>
+            <p className="kicker">{page.whatItIs.eyebrow}</p>
             <h2
               id="what-rappidai-is-heading"
               className="mt-4 text-[clamp(1.8rem,2.8vw,2.4rem)] font-medium leading-[1.08] tracking-[-0.045em] text-ink"
@@ -122,10 +120,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
             <p className="body-lg mt-5">{page.whatItIs.text}</p>
           </article>
           <article className="card p-7 sm:p-9">
-            <p className="kicker !text-muted">
-              <X aria-hidden="true" size={15} />
-              {page.whatItIsNot.eyebrow}
-            </p>
+            <p className="kicker">{page.whatItIsNot.eyebrow}</p>
             <h2
               id="what-rappidai-is-not-heading"
               className="mt-4 text-[clamp(1.8rem,2.8vw,2.4rem)] font-medium leading-[1.08] tracking-[-0.045em] text-ink"
@@ -231,11 +226,24 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
             </p>
             <Link href={path("/research")} className="text-link mt-8">
               {t(locale, "Explore the research")}
-              <ArrowRight aria-hidden="true" size={15} />
             </Link>
           </div>
-          <div className="window p-4 sm:p-8">
-            <ResearchDiagram kind="pipeline" />
+          <div
+            className="table-wrap"
+            tabIndex={0}
+            role="region"
+            aria-label={page.currentDirection.title}
+          >
+            <table className="table">
+              <tbody>
+                {sentinelFacts.map(([term, detail]) => (
+                  <tr key={term}>
+                    <th scope="row">{term}</th>
+                    <td className="font-medium text-ink">{detail}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -279,13 +287,13 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
         <div className="page-shell section grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
           <div>
             <p className="eyebrow eyebrow-on-dark">
-              {t(locale, "EARLY-STAGE RESEARCH")}
+              {t(locale, "Early-stage research")}
             </p>
             <h2
               id="early-stage-heading"
               className="mt-5 max-w-[16ch] text-[clamp(2.4rem,4.6vw,4rem)] font-medium leading-[1.02] tracking-[-0.055em] text-white"
             >
-              {t(locale, "Independent research, built from Berlin.")}
+              {t(locale, "Independent research from Berlin")}
             </h2>
           </div>
           <div>

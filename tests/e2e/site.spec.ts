@@ -123,7 +123,7 @@ test("language switch preserves the current deep route", async ({ page }) => {
     .click();
   await expect(page).toHaveURL("/de/resources/licensing");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Öffentliche Verfügbarkeit",
+    "Lizenzen und Weiterverwendung",
   );
   await expect(page.locator("html")).toHaveAttribute("lang", "de");
 

@@ -53,7 +53,7 @@ function EvidenceStatus({ label, locale }: { label: string; locale: Locale }) {
 
   return (
     <span
-      className={`inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 font-mono text-[0.62rem] font-medium tracking-[0.1em] uppercase ${
+      className={`ui-label inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 ${
         published
           ? "border-accent/25 bg-accent/8 text-accent"
           : partial
@@ -61,12 +61,6 @@ function EvidenceStatus({ label, locale }: { label: string; locale: Locale }) {
             : "border-line-strong bg-white/55 text-muted"
       }`}
     >
-      <span
-        aria-hidden="true"
-        className={`mr-2 size-1.5 rounded-full ${
-          published ? "bg-accent" : partial ? "bg-[#79aaff]" : "bg-muted/55"
-        }`}
-      />
       {t(locale, label)}
     </span>
   );
@@ -111,15 +105,7 @@ function StatFigure({
         <span className="mt-4 block text-sm leading-6 text-[var(--color-dark-body)]">
           {label}
         </span>
-        <span className="mt-2 flex items-center gap-2 font-mono text-[0.6rem] tracking-[0.12em] text-[var(--color-dark-muted)] uppercase">
-          <span
-            aria-hidden="true"
-            className={`size-1.5 rounded-full ${
-              pending
-                ? "border border-[var(--color-dark-muted)]"
-                : "bg-[var(--color-dark-accent)]"
-            }`}
-          />
+        <span className="ui-label mt-2 block text-[var(--color-dark-muted)]">
           {note}
         </span>
       </dd>
@@ -228,18 +214,16 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
           </div>
           <Reveal className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <div>
-              <p className="eyebrow">{t(locale, "EVIDENCE LEDGER")}</p>
+              <p className="eyebrow">{t(locale, "Evidence ledger")}</p>
               <h2
                 id="evidence-ledger-heading"
                 className="display-section mt-7 text-ink"
               >
-                {t(locale, "Claims mapped to public artifacts.")}
+                {t(locale, "Claims and their public sources")}
               </h2>
             </div>
             <div className="liquid-surface p-6 sm:p-8">
-              <p className="font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
-                {publication.evidenceSnapshot.label}
-              </p>
+              <p className="ui-label">{publication.evidenceSnapshot.label}</p>
               <p className="mt-4 break-all font-mono text-[0.72rem] leading-6 text-ink-soft">
                 {publication.evidenceSnapshot.reference}
               </p>
@@ -305,7 +289,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                       <th
                         key={column}
                         scope="col"
-                        className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
+                        className="ui-label border-b border-line-strong px-6 py-5"
                       >
                         {t(locale, column)}
                       </th>
@@ -392,8 +376,8 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                     delay={index * 0.03}
                     className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-7 sm:grid-cols-[3rem_1fr]"
                   >
-                    <span className="technical-number text-xs text-accent">
-                      {String(index + 1).padStart(2, "0")}
+                    <span className="technical-number text-sm text-muted">
+                      {index + 1}
                     </span>
                     <div>
                       <div className="flex flex-wrap items-center gap-3">
@@ -405,7 +389,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                       <p className="body-copy mt-3 max-w-[42rem]">
                         {stage.detail}
                       </p>
-                      <p className="mt-4 font-mono text-[0.64rem] leading-5 tracking-[0.09em] text-muted uppercase">
+                      <p className="ui-label mt-4">
                         {t(locale, "Boundary")} · {stage.boundary}
                       </p>
                       <a
@@ -424,7 +408,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
 
             <Reveal className="liquid-surface mt-12 grid gap-7 border-accent/20 p-7 sm:p-9 lg:grid-cols-[0.75fr_1.25fr]">
               <div>
-                <p className="eyebrow">{t(locale, "PLANNED, NOT ACHIEVED")}</p>
+                <p className="eyebrow">{t(locale, "Planned, not achieved")}</p>
                 <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
                   {publication.echelon.plannedTargets.title}
                 </h3>
@@ -454,12 +438,9 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
           className="page-shell section-space"
         >
           <Reveal className="max-w-[58rem]">
-            <p className="eyebrow">{t(locale, "FINDINGS AND LESSONS")}</p>
+            <p className="eyebrow">{t(locale, "Findings and lessons")}</p>
             <h2 id="findings-heading" className="display-section mt-7 text-ink">
-              {t(
-                locale,
-                "Positive checks and negative results, with boundaries.",
-              )}
+              {t(locale, "Positive checks and negative results")}
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-4 lg:grid-cols-2">
@@ -469,9 +450,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                 delay={(index % 2) * 0.04}
                 className="liquid-card p-7 sm:p-9"
               >
-                <p className="font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
-                  {t(locale, item.kind)}
-                </p>
+                <p className="ui-label">{t(locale, item.kind)}</p>
                 <h3 className="mt-6 text-[clamp(1.45rem,2.4vw,2rem)] font-medium leading-[1.1] tracking-[-0.035em] text-ink">
                   {item.title}
                 </h3>
@@ -496,10 +475,10 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
           <div className="page-shell section-space-sm relative grid gap-10 xl:grid-cols-[0.85fr_1.15fr] xl:gap-16">
             <Reveal>
               <p className="eyebrow eyebrow-on-dark">
-                {t(locale, "COMPLETED PILOT STUDY")}
+                {t(locale, "Completed pilot study")}
               </p>
               <h2 className="display-section mt-7 text-[var(--color-dark-title)]">
-                {t(locale, "Two released pilots. One untrained line.")}
+                {t(locale, "Two released pilots and one untrained model line")}
               </h2>
               <p className="mt-7 max-w-[38rem] leading-7 text-[var(--color-dark-body)]">
                 {t(
@@ -553,11 +532,8 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                   <li key={question}>
                     <Reveal
                       delay={index * 0.04}
-                      className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[3rem_1fr] lg:py-10"
+                      className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 lg:py-10"
                     >
-                      <span className="technical-number text-xs tracking-[0.16em] text-accent">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
                       <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.35] tracking-[-0.025em] text-ink">
                         {question}
                       </p>
@@ -605,10 +581,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                     delay={(index % 2) * 0.04}
                     className="liquid-card min-w-0 p-6 sm:min-h-[10.5rem] sm:p-7"
                   >
-                    <span className="technical-number text-[0.68rem] tracking-[0.14em] text-accent">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="mt-7 text-xl font-medium tracking-[-0.03em] text-ink">
+                    <h3 className="text-xl font-medium tracking-[-0.03em] text-ink">
                       {variable.label}
                     </h3>
                     <p className="mt-3 text-sm leading-6 text-muted">
@@ -639,7 +612,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
 
           <div className="mt-12 grid gap-4 lg:grid-cols-2">
             <Reveal className="liquid-card p-7 sm:p-10">
-              <p className="font-mono text-[0.68rem] tracking-[0.15em] text-accent uppercase">
+              <p className="ui-label">
                 {t(locale, "Hypothesis")} · {t(locale, "research expectation")}
               </p>
               <p className="body-lg mt-7 max-w-[39rem]">
@@ -650,7 +623,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
               delay={0.06}
               className="liquid-card border-accent/25 p-7 sm:p-10"
             >
-              <p className="font-mono text-[0.68rem] tracking-[0.15em] text-accent uppercase">
+              <p className="ui-label">
                 {t(locale, "Observation")} ·{" "}
                 {t(locale, "public release record")}
               </p>
@@ -706,7 +679,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                         <th
                           key={column}
                           scope="col"
-                          className="border-b border-line-strong px-6 py-5 font-mono text-[0.68rem] tracking-[0.13em] text-muted uppercase"
+                          className="ui-label border-b border-line-strong px-6 py-5"
                         >
                           {column}
                         </th>
@@ -775,7 +748,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
               </p>
 
               <div className="liquid-surface mt-8 p-6 sm:p-8">
-                <p className="font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+                <p className="ui-label">
                   {t(locale, "German-token corpus scale")}
                 </p>
                 <div className="mt-7">
@@ -817,9 +790,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
               </div>
 
               <div className="liquid-surface mt-8 border-l-2 border-accent p-6 sm:p-8">
-                <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
-                  {t(locale, "Documented limitation")}
-                </p>
+                <p className="ui-label">{t(locale, "Documented limitation")}</p>
                 <p className="mt-4 text-lg leading-7 tracking-[-0.015em] text-ink">
                   {research.dataPipeline.limitation}
                 </p>
@@ -855,11 +826,8 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                   <Reveal
                     key={item.title}
                     delay={index * 0.035}
-                    className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[3rem_1fr]"
+                    className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8"
                   >
-                    <span className="technical-number text-xs text-accent">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
                     <div>
                       <h3 className="text-xl font-medium tracking-[-0.025em] text-ink">
                         {item.title}
@@ -900,9 +868,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
             </Reveal>
             <Reveal className="">
               <div className="liquid-surface p-7 sm:p-10">
-                <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
-                  {t(locale, "Evidence status")}
-                </p>
+                <p className="ui-label">{t(locale, "Evidence status")}</p>
                 <p className="body-lg mt-6 max-w-[44rem]">
                   {research.observedBehavior.unavailable}
                 </p>
@@ -939,10 +905,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                   delay={(index % 3) * 0.035}
                   className="liquid-card p-7 sm:min-h-[13rem] sm:p-8"
                 >
-                  <span className="technical-number text-xs text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-7 text-xl font-medium tracking-[-0.025em] text-ink">
+                  <h3 className="text-xl font-medium tracking-[-0.025em] text-ink">
                     {item.title}
                   </h3>
                   <p className="body-copy mt-3">{item.text}</p>
@@ -977,7 +940,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
             </Reveal>
             <Reveal className="">
               <div className="liquid-card border-accent/25 p-7 sm:p-9">
-                <p className="font-mono text-[0.67rem] tracking-[0.14em] text-accent uppercase">
+                <p className="ui-label">
                   {t(locale, "Demonstrated by the released artifacts")}
                 </p>
                 <p className="body-lg mt-6">
@@ -1048,7 +1011,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                         <th
                           key={column}
                           scope="col"
-                          className="border-b border-line-strong px-6 py-5 font-mono text-[0.66rem] tracking-[0.13em] text-muted uppercase"
+                          className="ui-label border-b border-line-strong px-6 py-5"
                         >
                           {t(locale, column)}
                         </th>
@@ -1112,7 +1075,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                   delay={(index % 2) * 0.04}
                   className="liquid-card min-w-0 p-7 sm:p-8"
                 >
-                  <p className="font-mono text-[0.66rem] tracking-[0.13em] text-accent uppercase">
+                  <p className="ui-label">
                     {t(locale, "Public documentation")}
                   </p>
                   <h3 className="mt-5 text-xl font-medium tracking-[-0.025em] text-ink">
@@ -1139,23 +1102,19 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                   key={release.model}
                   className="liquid-surface min-w-0 p-7 sm:p-9"
                 >
-                  <p className="eyebrow">{t(locale, "PUBLIC F16 GGUF")}</p>
+                  <p className="eyebrow">{t(locale, "Public F16 GGUF")}</p>
                   <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em] text-ink">
                     {release.model}
                   </h3>
                   <dl className="mt-7 border-b border-line">
                     <div className="grid gap-2 border-t border-line py-5 sm:grid-cols-[7rem_1fr] sm:gap-6">
-                      <dt className="font-mono text-[0.65rem] tracking-[0.13em] text-muted uppercase">
-                        {t(locale, "File")}
-                      </dt>
+                      <dt className="ui-label">{t(locale, "File")}</dt>
                       <dd className="min-w-0 break-all text-sm leading-6 text-ink-soft">
                         {release.filename}
                       </dd>
                     </div>
                     <div className="grid gap-2 border-t border-line py-5 sm:grid-cols-[7rem_1fr] sm:gap-6">
-                      <dt className="font-mono text-[0.65rem] tracking-[0.13em] text-muted uppercase">
-                        SHA-256
-                      </dt>
+                      <dt className="ui-label">SHA-256</dt>
                       <dd className="min-w-0 break-all font-mono text-[0.72rem] leading-6 text-ink-soft">
                         {release.sha256}
                       </dd>
@@ -1185,7 +1144,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
             </div>
 
             <Reveal className="mt-12 min-w-0">
-              <p className="eyebrow">{t(locale, "LLAMA.CPP REFERENCE")}</p>
+              <p className="eyebrow">{t(locale, "llama.cpp reference")}</p>
               <div className="liquid-surface mt-6 min-w-0 p-6 sm:p-8">
                 <pre
                   aria-label={t(
@@ -1225,11 +1184,8 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
                   <li key={question}>
                     <Reveal
                       delay={index * 0.035}
-                      className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8 sm:grid-cols-[3rem_1fr]"
+                      className="liquid-row grid gap-5 rounded-[1.2rem] border-y border-line py-8"
                     >
-                      <span className="technical-number text-xs text-accent">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
                       <p className="text-lg leading-7 tracking-[-0.02em] text-ink">
                         {question}
                       </p>
@@ -1249,9 +1205,9 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         <section className="page-shell pb-[var(--section-space)]">
           <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <p className="eyebrow">{t(locale, "DETAILED RECORDS")}</p>
+              <p className="eyebrow">{t(locale, "Detailed records")}</p>
               <h2 className="display-section mt-7 text-ink">
-                {t(locale, "Continue through the resources hub.")}
+                {t(locale, "Further resources")}
               </h2>
               <p className="body-lg mt-6 max-w-[48rem]">
                 {t(

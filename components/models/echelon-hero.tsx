@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowDown, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
 import { echelonPreview } from "@/content/echelon";
 import { localizeContent, localizePath, type Locale } from "@/lib/i18n";
@@ -69,18 +68,9 @@ export function EchelonHero({
       aria-labelledby="echelon-title"
     >
       <EchelonField />
-      <div className={styles.frame} aria-hidden="true">
-        <i />
-        <i />
-        <i />
-        <i />
-      </div>
       {detail ? (
         <div className={`page-shell ${styles.back}`}>
-          <Link href={localizePath("/models", locale)}>
-            <ArrowLeft size={15} aria-hidden="true" />
-            {c.allModels}
-          </Link>
+          <Link href={localizePath("/models", locale)}>{c.allModels}</Link>
         </div>
       ) : null}
       <div className={`${styles.heroContent} echelon-hero-content`}>
@@ -117,7 +107,6 @@ export function EchelonHero({
             className={styles.secondaryAction}
           >
             {detail ? c.stages.eyebrow : c.specsLink}
-            <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
           </Link>
         </div>
       </div>
@@ -137,13 +126,6 @@ export function EchelonHero({
             </div>
           ))}
         </dl>
-        <a
-          className={styles.scrollCue}
-          href={detail ? "#overview" : "#introduction"}
-          aria-label={c.scrollLabel}
-        >
-          <ArrowDown size={15} aria-hidden="true" />
-        </a>
       </div>
     </section>
   );

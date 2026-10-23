@@ -37,10 +37,13 @@ the English, but natural German. Use this guide for every new or changed German 
   Split long sentences. Translate meaning, not words.
 - Avoid unnecessary anglicisms when a common German word exists. Keep established technical
   English terms German developers actually use (see glossary).
-- Do not shout: uppercase-only English kickers (e.g. "RESEARCH THESIS") are rendered uppercase by the
-  design anyway; keep the German value in the same case as it is now, just pick a natural phrase.
-- Headlines may keep the site's style of short statements ending with a period, but must sound
-  natural in German (no literal „Grenzen zuerst“, „Offen über Einschränkungen“).
+- Labels and kickers are written in normal German capitalisation („Offene Fragen“, never
+  „OFFENE FRAGEN“); the design no longer transforms them to uppercase.
+- Headlines describe the content in plain words and have no trailing full stop. No slogans or
+  staccato fragments („Unabhängig. Fokussiert. Aus Berlin.“, „Erst X, dann Y“), no „– und was
+  nicht“ constructions. They must sound natural in German (no literal „Grenzen zuerst“).
+- Use the dash sparingly. Prefer a comma, colon, semicolon or a new sentence; keep „ – “ for real
+  parenthetical asides.
 - Buttons and links: infinitive or noun phrase, not imperative with „Sie“
   („Modelle ansehen“, „Mehr erfahren“, „Zur Forschungsnotiz“, „Kontakt aufnehmen“).
 - Short descriptions under navigation/topic links: compact noun phrases or infinitive phrases

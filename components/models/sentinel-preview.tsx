@@ -1,34 +1,10 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Crosshair,
-  Eye,
-  FileSearch,
-  GitPullRequest,
-  Info,
-  ScanSearch,
-  ShieldX,
-  Tags,
-  Wrench,
-} from "lucide-react";
 import { ActionLink } from "@/components/ui/action-link";
 import { modelListName } from "@/content/models";
 import { sentinelPreview } from "@/content/sentinel";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 import styles from "./sentinel.module.css";
-
-const objectiveIcons = [
-  ScanSearch,
-  Crosshair,
-  Tags,
-  FileSearch,
-  Wrench,
-  GitPullRequest,
-  ShieldX,
-  Eye,
-];
 
 /** The planned report fields, derived from the published training objectives. */
 function PlannedReport({ locale }: { locale: Locale }) {
@@ -44,11 +20,6 @@ function PlannedReport({ locale }: { locale: Locale }) {
     <figure className={`m-0 ${styles.heroWindow}`}>
       <div className="window window-dark">
         <div className="window-bar">
-          <span className="dots" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </span>
           <span>sentinel · report.json</span>
           <span>JSON / SARIF</span>
         </div>
@@ -111,19 +82,12 @@ export function SentinelHero({
       {detail ? (
         <div className={`page-shell ${styles.back}`}>
           <Link href={localizePath("/models", locale)}>
-            <ArrowLeft size={15} aria-hidden="true" />
             {t(locale, "All models")}
           </Link>
         </div>
       ) : null}
       <div className={`page-shell ${styles.heroGrid}`}>
         <div className={styles.heroCopy}>
-          <p className={styles.announce}>
-            <span className="chip chip-dot">
-              {detail ? "Quantum Sentinel 1" : t(locale, "Introducing")}
-            </span>
-            <span>{c.status}</span>
-          </p>
           <h1 id="sentinel-title" className={styles.title}>
             <span className={styles.titleLead}>Quantum</span>{" "}
             <span className={styles.word}>Sentinel-Alpha</span>
@@ -171,13 +135,6 @@ export function SentinelHero({
             <dd>{c.languages.join(" · ")}</dd>
           </div>
         </dl>
-        <ul className={styles.positioning}>
-          {c.positioning.map((item) => (
-            <li key={item} className="chip">
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
@@ -198,24 +155,15 @@ export function SentinelCapabilities({ locale }: { locale: Locale }) {
             {c.capabilitiesTitle}
           </h2>
         </div>
-        <p className={styles.notice}>
-          <Info size={16} aria-hidden="true" />
-          {c.capabilitiesNotice}
-        </p>
+        <p className={styles.notice}>{c.capabilitiesNotice}</p>
       </div>
       <ol className={styles.objectives} data-stagger>
-        {c.capabilities.map((capability, i) => {
-          const Icon = objectiveIcons[i] ?? ScanSearch;
-          return (
-            <li key={capability.title}>
-              <span className={styles.icon} aria-hidden="true">
-                <Icon size={17} strokeWidth={1.7} />
-              </span>
-              <h3>{capability.title}</h3>
-              <p>{capability.text}</p>
-            </li>
-          );
-        })}
+        {c.capabilities.map((capability) => (
+          <li key={capability.title}>
+            <h3>{capability.title}</h3>
+            <p>{capability.text}</p>
+          </li>
+        ))}
       </ol>
     </section>
   );
@@ -292,7 +240,7 @@ export function SentinelArchitecture({
                     }
                   >
                     <span className={styles.stepNo} aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
+                      {i + 1}
                     </span>
                     <h3>{step.title}</h3>
                     {detail ? <p>{step.text}</p> : null}
@@ -310,24 +258,16 @@ export function SentinelArchitecture({
           <article>
             <p className={styles.label}>{modelLabel}</p>
             <h3>Quantum Sentinel Model</h3>
-            <ul className={styles.tags}>
-              {c.modelTasks.split(" · ").map((task) => (
-                <li key={task} className="chip">
-                  {task}
-                </li>
-              ))}
-            </ul>
+            <p className={styles.tasks}>
+              {c.modelTasks.split(" · ").join(", ")}
+            </p>
           </article>
           <article>
             <p className={styles.label}>{engineLabel}</p>
             <h3>Sentinel Engine</h3>
-            <ul className={styles.tags}>
-              {c.engineTasks.split(" · ").map((task) => (
-                <li key={task} className="chip">
-                  {task}
-                </li>
-              ))}
-            </ul>
+            <p className={styles.tasks}>
+              {c.engineTasks.split(" · ").join(", ")}
+            </p>
           </article>
         </div>
         <p className={styles.reason}>{c.architectureReason}</p>
@@ -382,7 +322,6 @@ export function SentinelRoadmap({
             href={localizePath("/models/quantum-sentinel-alpha", locale)}
           >
             {c.explore}
-            <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>
       ) : null}
@@ -400,7 +339,7 @@ export function SentinelCard({ locale }: { locale: Locale }) {
       >
         <div className={styles.cardCopy}>
           <p className={styles.cardStatus}>
-            <span className="chip chip-dot">{c.status}</span>
+            <span className="chip">{c.status}</span>
           </p>
           <h3>{modelListName("quantum-sentinel-alpha")}</h3>
           <p>
@@ -409,10 +348,7 @@ export function SentinelCard({ locale }: { locale: Locale }) {
               "Specialized for vulnerability detection, localization, classification, remediation and secure code review. Alpha is in development; these are training objectives.",
             )}
           </p>
-          <span className={styles.cardAction}>
-            {c.explore}
-            <ArrowRight size={15} aria-hidden="true" />
-          </span>
+          <span className={styles.cardAction}>{c.explore}</span>
         </div>
         <dl className={`facts ${styles.cardMeta}`}>
           <div>
@@ -486,7 +422,7 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
         <div>
           <p className="kicker">Quantum Sentinel 1 / Alpha</p>
           <h2 id="sentinel-overview-title">
-            {t(locale, "Source-code security. With evidence.")}
+            {t(locale, "Source-code security with verifiable evidence")}
           </h2>
         </div>
         <div>
@@ -525,9 +461,7 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
                 {c.artifacts.map((artifact) => (
                   <li key={artifact}>
                     {artifact}
-                    <span className="chip chip-dot chip-planned">
-                      {t(locale, "Planned")}
-                    </span>
+                    <span className="chip">{t(locale, "Planned")}</span>
                   </li>
                 ))}
               </ul>
@@ -545,7 +479,7 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
           <div>
             <p className="kicker">{t(locale, "Research status")}</p>
             <h2 id="sentinel-research-title">
-              {t(locale, "In development. Open questions remain.")}
+              {t(locale, "Development status and open questions")}
             </h2>
           </div>
           <div>
@@ -556,7 +490,6 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
               className="text-link mt-8"
             >
               {t(locale, "All models")}
-              <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
         </div>

@@ -52,7 +52,7 @@ export function EvidenceMatrix({
         ))}
       </ul>
 
-      <figcaption className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-4 font-mono text-[0.62rem] tracking-[0.11em] text-muted uppercase">
+      <figcaption className="ui-label mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-4">
         <span className="evidence-key is-published">
           {counts.published} {t(locale, "Published")}
         </span>

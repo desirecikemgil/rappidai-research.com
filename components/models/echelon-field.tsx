@@ -532,9 +532,7 @@ export function EchelonField() {
     >
       <div className={styles.fieldBase} />
       <canvas ref={canvasRef} className={styles.fieldCanvas} />
-      <div className={styles.fieldSpot} />
       <div className={styles.fieldVeil} />
-      <div className={styles.grain} />
     </div>
   );
 }

@@ -208,8 +208,8 @@ export const researchPublication = {
     },
   ],
   echelon: {
-    eyebrow: "ECHELON RESEARCH RECORD",
-    title: "Earlier evidence. Current direction.",
+    eyebrow: "Echelon research record",
+    title: "Echelon development record",
     introduction:
       "Quantum 1 Echelon now targets approximately 1B parameters. The records below preserve the earlier 506M preflight and pipeline work, not the current specifications. Base and Chat remain stages of the same model line.",
     stages: [
@@ -289,7 +289,7 @@ export const researchPublication = {
   findings: [
     {
       kind: "Negative result",
-      title: "More pilot training did not establish reliable generation.",
+      title: "More pilot training did not establish reliable generation",
       finding:
         "quantum-1.6-pilot completed the documented training, evaluation and GGUF path, while the public diagnosis still records factual unreliability and frequent repetition.",
       boundary:
@@ -298,7 +298,7 @@ export const researchPublication = {
     },
     {
       kind: "Pipeline finding",
-      title: "The final Garden smoke accepted 31.17% of seen documents.",
+      title: "The final Garden smoke accepted 31.17% of seen documents",
       finding:
         "The committed Phase 3 report records 5,001 documents seen and 1,559 accepted under the configured language, quality and structural filters.",
       boundary:
@@ -307,7 +307,7 @@ export const researchPublication = {
     },
     {
       kind: "Engineering lesson",
-      title: "Recovery behavior was validated before production scale.",
+      title: "Recovery behavior was validated before production scale",
       finding:
         "The Garden implementation documents atomic checkpoints, safe partial-shard handling, dataset-state resume, a deterministic skip fallback and controlled shutdown behavior.",
       boundary:
@@ -316,7 +316,7 @@ export const researchPublication = {
     },
     {
       kind: "Validation result",
-      title: "The Echelon tokenizer passed its committed round-trip suite.",
+      title: "The Echelon tokenizer passed its committed round-trip suite",
       finding:
         "The public tokenizer report contains 23 prescribed cases and records 0 failed exact round trips, including German umlauts, Unicode, code, JSON and chat-control tokens.",
       boundary:
@@ -393,8 +393,8 @@ export const researchPublication = {
 
 export const quantumExperimentResearch = {
   questions: {
-    eyebrow: "RESEARCH QUESTIONS",
-    title: "Questions behind the experiments.",
+    eyebrow: "Research questions",
+    title: "Questions behind the experiments",
     items: [
       "How much can a 49.3M-parameter German base model improve through continued pretraining while keeping its architecture and tokenizer unchanged?",
       "Which limitations are caused by model scale, and which may result from export, prompting or inference configuration?",
@@ -418,8 +418,8 @@ export const quantumExperimentResearch = {
     ],
   },
   design: {
-    eyebrow: "EXPERIMENT DESIGN",
-    title: "A controlled continued-pretraining experiment.",
+    eyebrow: "Experiment design",
+    title: "A controlled continued-pretraining experiment",
     text: "The public quantum-1.6-pilot configuration describes continued training from quantum-1-pilot while preserving the 49,295,872-parameter architecture, 512-token context and frozen quantum-1 tokenizer. It specifies a fresh optimizer, scheduler and step counter, but no final public run log verifies every configured detail.",
     variables: [
       { label: "Same architecture", value: "Held constant" },
@@ -448,8 +448,8 @@ export const quantumExperimentResearch = {
     ],
   },
   hypothesisAndObservation: {
-    eyebrow: "HYPOTHESIS AND OBSERVATION",
-    title: "What was hypothesized, and what was publicly reported.",
+    eyebrow: "Hypothesis and observation",
+    title: "Expected and reported results",
     hypothesis:
       "Continued pretraining on 500M additional German tokens should improve language-pattern consistency without changing the model architecture or tokenizer.",
     observation:
@@ -468,8 +468,8 @@ export const quantumExperimentResearch = {
     ],
   },
   comparison: {
-    eyebrow: "MODEL COMPARISON",
-    title: "One architecture, two training stages.",
+    eyebrow: "Model comparison",
+    title: "One architecture, two training stages",
     columns: ["Property", "quantum-1-pilot", "quantum-1.6-pilot"],
     rows: [
       ["Parameters", "49,295,872", "49,295,872"],
@@ -501,8 +501,8 @@ export const quantumExperimentResearch = {
     ],
   },
   dataPipeline: {
-    eyebrow: "DATA PIPELINE",
-    title: "How the additional training data was prepared.",
+    eyebrow: "Data pipeline",
+    title: "How the additional training data was prepared",
     text: "The public continued-pretraining configuration specifies German-language data from the FineWeb2-HQ `deu_Latn` subset. Its code is designed to clean documents, exactly deduplicate them, filter known documents from the earlier dataset and create stable training, validation and test splits.",
     limitation:
       "Exact fingerprint matching does not guarantee the removal of near-duplicates, lightly modified copies or semantically overlapping documents.",
@@ -520,8 +520,8 @@ export const quantumExperimentResearch = {
     ],
   },
   evaluation: {
-    eyebrow: "EVALUATION METHOD",
-    title: "How the public workflow frames evaluation.",
+    eyebrow: "Evaluation method",
+    title: "How the public workflow frames evaluation",
     items: [
       {
         title: "Held-out metrics",
@@ -558,8 +558,8 @@ export const quantumExperimentResearch = {
     ],
   },
   observedBehavior: {
-    eyebrow: "OBSERVED BEHAVIOR",
-    title: "Public evidence before examples.",
+    eyebrow: "Observed behavior",
+    title: "Public evidence before examples",
     unavailable:
       "Reproducible example outputs have not yet been attached. This section will remain limited to documented failure categories until public evaluation artifacts are available.",
     explanation:
@@ -576,8 +576,8 @@ export const quantumExperimentResearch = {
     ],
   },
   failureModes: {
-    eyebrow: "FAILURE MODES",
-    title: "Known failure modes.",
+    eyebrow: "Failure modes",
+    title: "Known failure modes",
     items: [
       {
         title: "Factual inconsistency",
@@ -622,8 +622,8 @@ export const quantumExperimentResearch = {
     ],
   },
   conclusions: {
-    eyebrow: "INTERPRETATION",
-    title: "What can—and cannot—be concluded.",
+    eyebrow: "Interpretation",
+    title: "Conclusions and their limits",
     demonstrated:
       "The public sources provide released GGUF artifacts, checksums, reported held-out metrics and code for the intended continued-training and evaluation workflow. They do not independently verify every run step without final manifests and logs.",
     notDemonstrated: [
@@ -646,8 +646,8 @@ export const quantumExperimentResearch = {
     ],
   },
   reproducibility: {
-    eyebrow: "REPRODUCIBILITY",
-    title: "Artifacts for inspection.",
+    eyebrow: "Reproducibility",
+    title: "Published artifacts",
     introduction:
       "The public releases expose model cards, GGUF files, manifests, checksums and the repository documentation needed to inspect the published artifacts and the configured research workflow.",
     documentation: [
@@ -703,8 +703,8 @@ export const quantumExperimentResearch = {
       "This command mirrors the pinned public diagnosis configuration and command builder; it was not executed by the website test suite. A local llama.cpp build is required, and --no-cnv keeps llama-cli in completion mode.",
   },
   openQuestions: {
-    eyebrow: "OPEN QUESTIONS",
-    title: "Questions for the next research phase.",
+    eyebrow: "Open questions",
+    title: "Questions for the next research phase",
     items: [
       "How will the planned German-first 1B Echelon model behave after controlled pretraining and evaluation?",
       "Which quantization levels preserve useful completion behavior while reducing memory requirements?",

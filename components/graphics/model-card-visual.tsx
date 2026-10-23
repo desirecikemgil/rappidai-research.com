@@ -45,10 +45,8 @@ export function ModelCardVisual({
       <div className="model-card-grid" aria-hidden="true" />
 
       <div className="relative flex flex-wrap items-start justify-between gap-6">
-        <p className="eyebrow">{t(locale, "MODEL CARD")}</p>
-        <p className="font-mono text-[0.62rem] tracking-[0.16em] text-muted uppercase">
-          rappidAI · research
-        </p>
+        <p className="eyebrow">{t(locale, "Model card")}</p>
+        <p className="ui-label">rappidAI · research</p>
       </div>
 
       <p className="relative mt-8 text-[clamp(2.1rem,5.4vw,4.6rem)] leading-[0.95] font-[520] tracking-[-0.06em] text-ink">
@@ -57,9 +55,7 @@ export function ModelCardVisual({
 
       <div className="relative mt-10 grid gap-10 border-t border-line pt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
         <div>
-          <p className="font-mono text-[0.63rem] tracking-[0.16em] text-muted uppercase">
-            {t(locale, "Parameter size")}
-          </p>
+          <p className="ui-label">{t(locale, "Parameter size")}</p>
           <p className="mt-4 flex items-baseline gap-2">
             <CountUp
               value={parametersMillions}
@@ -83,9 +79,7 @@ export function ModelCardVisual({
         </div>
 
         <div>
-          <p className="font-mono text-[0.63rem] tracking-[0.16em] text-muted uppercase">
-            {t(locale, "Primary use")}
-          </p>
+          <p className="ui-label">{t(locale, "Primary use")}</p>
           <p className="mt-4 text-[clamp(1.15rem,1.9vw,1.6rem)] leading-[1.3] font-[500] tracking-[-0.03em] text-accent">
             {primaryUse}
           </p>
@@ -96,9 +90,7 @@ export function ModelCardVisual({
                 key={row.label}
                 className="grid gap-1 border-b border-line py-4 sm:grid-cols-[9rem_1fr] sm:gap-5"
               >
-                <dt className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
-                  {row.label}
-                </dt>
+                <dt className="ui-label">{row.label}</dt>
                 <dd className="text-[0.92rem] leading-6 text-ink-soft">
                   {row.value}
                 </dd>

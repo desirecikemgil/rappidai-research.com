@@ -16,11 +16,6 @@ function CodeBlock({ code, label }: { code: string; label: string }) {
   return (
     <div className="window window-dark min-w-0">
       <div className="window-bar">
-        <span className="dots" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </span>
         <span className="truncate">{label}</span>
       </div>
       <pre role="region" tabIndex={0} aria-label={label} className="terminal">
@@ -139,9 +134,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
             <ol className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2">
               {c.shadowSteps.map(([title, text], i) => (
                 <li key={title} className="card min-w-0 p-5">
-                  <p className="m-0 font-mono text-xs text-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
+                  <p className="m-0 font-mono text-xs text-muted">{i + 1}</p>
                   <p className="mt-2 text-base font-medium text-ink">{title}</p>
                   <p className="mt-2 text-sm leading-6 text-muted">{text}</p>
                 </li>
@@ -248,9 +241,7 @@ export function LocalizedGhostPage({ locale }: { locale: Locale }) {
               className="grid min-w-0 gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10"
             >
               <div className="min-w-0">
-                <p className="m-0 font-mono text-xs text-muted">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
+                <p className="m-0 font-mono text-xs text-muted">{i + 1}</p>
                 <h3 className="mt-2 text-xl font-medium tracking-[-0.03em] text-ink">
                   {title}
                 </h3>

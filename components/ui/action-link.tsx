@@ -1,4 +1,3 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -17,18 +16,12 @@ export function ActionLink({
   external = false,
   className = "",
 }: ActionLinkProps) {
-  const classes = `btn btn-${variant} link-arrow ${className}`;
-  const icon = external ? (
-    <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.7} />
-  ) : (
-    <ArrowRight aria-hidden="true" size={16} strokeWidth={1.7} />
-  );
+  const classes = `btn btn-${variant} ${className}`;
 
   if (external) {
     return (
       <a href={href} target="_blank" rel="noreferrer" className={classes}>
         {children}
-        {icon}
       </a>
     );
   }
@@ -36,7 +29,6 @@ export function ActionLink({
   return (
     <Link href={href} className={classes}>
       {children}
-      {icon}
     </Link>
   );
 }

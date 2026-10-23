@@ -8,7 +8,7 @@ export const deRedesignTranslations: Readonly<Record<string, string>> = {
   "At a glance": "Auf einen Blick",
   Breadcrumb: "Pfadnavigation",
   "Control agent access with isolation, deception, prompt signals and evidence.":
-    "Zugriffe von KI-Agenten kontrollieren – mit Isolation, Täuschung, Prompt-Signalen und Nachweisen.",
+    "Zugriffe von KI-Agenten kontrollieren: mit Isolation, Täuschung, Prompt-Signalen und Nachweisen.",
   "Record, restore, branch and compare technical execution state.":
     "Technische Ausführungszustände aufzeichnen, wiederherstellen, verzweigen und vergleichen.",
   "Understand the different jobs of Ghost and Replay before diving in.":
@@ -16,14 +16,13 @@ export const deRedesignTranslations: Readonly<Record<string, string>> = {
   "Trace implementation claims to reviewed source revisions.":
     "Aussagen zur Implementierung bis zu geprüften Quellrevisionen zurückverfolgen.",
   "Choose email, Hugging Face or GitHub for the right context.":
-    "E-Mail, Hugging Face oder GitHub – je nach Anliegen.",
+    "E-Mail, Hugging Face oder GitHub, je nach Anliegen.",
   "Understand the initiative, its structure and its research scope.":
     "Die Initiative, ihr Aufbau und ihr Forschungsgebiet.",
   "Core actions": "Kernfunktionen",
   Decision: "Entscheidung",
   Documentation: "Dokumentation",
-  "Documentation status at a glance.":
-    "Der Stand der Dokumentation auf einen Blick.",
+  "Documentation status at a glance": "Stand der Dokumentation im Überblick",
   "Evidence ledger": "Belegregister",
   "Evidence-backed finding": "Belegter Befund",
   "Experimental · Open source": "Experimentell · Open Source",
@@ -50,7 +49,7 @@ export const deRedesignTranslations: Readonly<Record<string, string>> = {
   Scope: "Umfang",
   "Status, type and size of every model line in one table.":
     "Status, Typ und Größe aller Modelllinien in einer Tabelle.",
-  "The Quantum lineup.": "Die Quantum-Modellreihe.",
+  "Quantum lineup": "Quantum-Modellreihe",
   "The complete documentation directory.":
     "Die gesamte Dokumentation im Überblick.",
   "Two different questions": "Zwei unterschiedliche Fragen",

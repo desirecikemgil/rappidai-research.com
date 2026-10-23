@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AlertTriangle, ArrowLeft, ArrowRight } from "lucide-react";
 import { SentinelPreview } from "@/components/models/sentinel-preview";
 import { EchelonPreview } from "@/components/models/echelon-preview";
 import { ArchitectureStack } from "@/components/graphics/architecture-stack";
@@ -107,16 +106,13 @@ export function LocalizedModelDetailPage({
             href={localizePath("/models", locale)}
             className="inline-flex min-h-10 items-center gap-2 text-sm text-muted transition-colors hover:text-ink"
           >
-            <ArrowLeft aria-hidden="true" size={15} strokeWidth={1.7} />
             {t(locale, "All models")}
           </Link>
 
           <div className="model-hero grid gap-12 pb-[clamp(3rem,6vw,5rem)] pt-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
             <div className="min-w-0">
               <p className="flex flex-wrap items-center gap-3 text-sm text-muted">
-                <span className="chip chip-dot chip-ok">
-                  {model.statusLabel}
-                </span>
+                <span className="chip">{model.statusLabel}</span>
                 <span>{t(locale, "Model card")}</span>
               </p>
               <h1 className="mt-6 text-ink">{model.name}</h1>
@@ -257,7 +253,7 @@ export function LocalizedModelDetailPage({
               <div>
                 <p className="kicker">{t(locale, "Technical dossier")}</p>
                 <h2 id="technical-dossier-title" className="display-section">
-                  {t(locale, "Documented model facts.")}
+                  {t(locale, "Documented model facts")}
                 </h2>
               </div>
               {model.sources.length > 0 ? (
@@ -284,7 +280,7 @@ export function LocalizedModelDetailPage({
                 className="table-wrap"
                 tabIndex={0}
                 role="region"
-                aria-label={t(locale, "Documented model facts.")}
+                aria-label={t(locale, "Documented model facts")}
               >
                 <table className="table">
                   <tbody>
@@ -344,7 +340,7 @@ export function LocalizedModelDetailPage({
           <div>
             <p className="kicker">{t(locale, "Limitations")}</p>
             <h2 id="limitations-title" className="display-section">
-              {t(locale, "Read the limits first.")}
+              {t(locale, "Known limitations of this release")}
             </h2>
           </div>
           {model.status === "experimental" ? (
@@ -361,16 +357,11 @@ export function LocalizedModelDetailPage({
           data-stagger
         >
           {model.limitations.map((limitation) => (
-            <li key={limitation} className="card flex gap-3 p-5">
-              <AlertTriangle
-                aria-hidden="true"
-                size={17}
-                strokeWidth={1.7}
-                className="mt-0.5 flex-none text-muted"
-              />
-              <span className="text-[0.98rem] leading-7 text-ink-soft">
-                {limitation}
-              </span>
+            <li
+              key={limitation}
+              className="card p-5 text-[0.98rem] leading-7 text-ink-soft"
+            >
+              {limitation}
             </li>
           ))}
         </ul>
@@ -382,7 +373,7 @@ export function LocalizedModelDetailPage({
             <div>
               <p className="kicker">{t(locale, "Repository reference")}</p>
               <h2 className="display-section mt-4">
-                {t(locale, "The pilot model card.")}
+                {t(locale, "The pilot model card")}
               </h2>
               <p className="body-copy mt-5">
                 {t(
@@ -409,7 +400,7 @@ export function LocalizedModelDetailPage({
           <div>
             <p className="kicker">{t(locale, "Research context")}</p>
             <h2 id="research-context-title" className="display-section mt-4">
-              {t(locale, "How this release fits the experiment.")}
+              {t(locale, "How this release fits the experiment")}
             </h2>
             {model.researchContext ? (
               <p className="body-lg mt-6 max-w-[40rem]">
@@ -458,7 +449,6 @@ export function LocalizedModelDetailPage({
                   className="card flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-ink"
                 >
                   {resource.label}
-                  <ArrowRight aria-hidden="true" size={15} />
                 </Link>
               ))}
             </div>

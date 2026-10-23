@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { ModelComparisonSuite } from "@/components/graphics/model-comparison-suite";
 import { ModelIndex } from "@/components/models/model-index";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -68,7 +67,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
         <div className="section-head">
           <p className="kicker">{t(locale, "At a glance")}</p>
           <h2 id="lineup-heading" className="display-section">
-            {t(locale, "The Quantum lineup.")}
+            {t(locale, "Quantum lineup")}
           </h2>
         </div>
         <div
@@ -76,7 +75,7 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
           data-reveal
           tabIndex={0}
           role="region"
-          aria-label={t(locale, "The Quantum lineup.")}
+          aria-label={t(locale, "Quantum lineup")}
         >
           <table className="table stack-table min-w-[46rem]">
             <thead>
@@ -96,19 +95,10 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
                       className="inline-flex items-center gap-2 font-medium text-ink hover:text-accent"
                     >
                       {modelListName(model.slug)}
-                      <ArrowRight aria-hidden="true" size={14} />
                     </Link>
                   </td>
                   <td data-label={t(locale, "Status")}>
-                    <span
-                      className={`chip chip-dot ${
-                        model.availability === "available"
-                          ? "chip-ok"
-                          : "chip-planned"
-                      }`}
-                    >
-                      {model.statusLabel}
-                    </span>
+                    <span className="chip">{model.statusLabel}</span>
                   </td>
                   <td
                     data-label={t(locale, "Model type")}

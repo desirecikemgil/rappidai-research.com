@@ -230,7 +230,7 @@ function ArchitectureComparison({
           </div>
 
           <div className="comparison-stack-wrap mt-8">
-            <p className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
+            <p className="ui-label">
               {model.layers
                 ? `${model.layers} ${t(locale, "layers")}`
                 : t(locale, "Detailed dimensions")}
@@ -258,7 +258,7 @@ function ArchitectureComparison({
               />
             </dl>
           ) : (
-            <p className="mt-6 font-mono text-[0.64rem] leading-5 tracking-[0.08em] text-muted uppercase">
+            <p className="ui-label mt-6">
               {t(locale, "Not published in pinned evidence")}
             </p>
           )}
@@ -349,9 +349,7 @@ function TokenizerComparison({
             </p>
 
             <div className="mt-8 flex items-end justify-between gap-4">
-              <p className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
-                {t(locale, "Vocabulary")}
-              </p>
+              <p className="ui-label">{t(locale, "Vocabulary")}</p>
               <p className="technical-number text-2xl text-accent">
                 {model.vocabulary.toLocaleString(locale)}
               </p>
@@ -401,9 +399,7 @@ function TokenizerComparison({
       </div>
 
       <div className="comparison-validation-strip mt-4">
-        <p className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
-          {t(locale, "Validation scope")}
-        </p>
+        <p className="ui-label">{t(locale, "Validation scope")}</p>
         <ul className="m-0 mt-4 flex list-none flex-wrap gap-2 p-0">
           {data.validationScope.map((item, index) => (
             <motion.li
@@ -440,12 +436,8 @@ function PipelineComparison({
   return (
     <>
       <div className="mt-9 flex items-center justify-between gap-4 border-y border-line py-4">
-        <p className="font-mono text-[0.62rem] tracking-[0.13em] text-muted uppercase">
-          {data.scaleLabel}
-        </p>
-        <p className="font-mono text-[0.6rem] tracking-[0.1em] text-accent uppercase">
-          {t(locale, "Reference scale")}
-        </p>
+        <p className="ui-label">{data.scaleLabel}</p>
+        <p className="ui-label">{t(locale, "Reference scale")}</p>
       </div>
 
       <div className="comparison-model-grid mt-4">
@@ -541,7 +533,7 @@ function ComparisonCardHeader({
 }) {
   return (
     <header>
-      <p className="font-mono text-[0.61rem] tracking-[0.12em] text-accent uppercase">
+      <p className="ui-label">
         <span
           className={`comparison-evidence-dot is-${tone}`}
           aria-hidden="true"
@@ -558,9 +550,7 @@ function ComparisonCardHeader({
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="font-mono text-[0.58rem] tracking-[0.12em] text-muted uppercase">
-        {label}
-      </dt>
+      <dt className="ui-label">{label}</dt>
       <dd className="mt-2 text-[0.8rem] leading-5 font-medium text-ink">
         {value}
       </dd>
@@ -571,9 +561,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 function CompactMetric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg border border-line bg-white/35 p-2.5">
-      <dt className="font-mono text-[0.5rem] leading-4 tracking-[0.08em] text-muted uppercase">
-        {label}
-      </dt>
+      <dt className="ui-label">{label}</dt>
       <dd className="technical-number mt-1.5 text-base text-ink">{value}</dd>
     </div>
   );
@@ -591,17 +579,13 @@ function EvidenceFooter({
   return (
     <footer className="comparison-evidence-footer mt-8">
       <div>
-        <p className="font-mono text-[0.61rem] tracking-[0.13em] text-accent uppercase">
-          {t(locale, "Evidence boundary")}
-        </p>
+        <p className="ui-label">{t(locale, "Evidence boundary")}</p>
         <p className="mt-3 max-w-[48rem] text-sm leading-6 text-muted">
           {boundary}
         </p>
       </div>
       <div>
-        <p className="font-mono text-[0.61rem] tracking-[0.13em] text-muted uppercase">
-          {t(locale, "Primary sources")}
-        </p>
+        <p className="ui-label">{t(locale, "Primary sources")}</p>
         <p className="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-sm">
           {sources.map((source) => (
             <a

@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import { useId, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { contactPageContent } from "@/content/pages";
@@ -95,7 +94,7 @@ export function ContactForm({
   if (!businessEmail) {
     return (
       <div className="liquid-surface p-6 sm:p-9 lg:p-10">
-        <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
+        <p className="eyebrow">{t(locale, "Enquiry")}</p>
         <h2 className="mt-5 max-w-[16ch] text-[clamp(1.9rem,3.3vw,3.25rem)] leading-[1.05] font-[520] tracking-[-0.045em] text-ink">
           {form.unavailableHeading}
         </h2>
@@ -163,7 +162,7 @@ export function ContactForm({
 
   return (
     <div className="liquid-surface p-5 pt-7 sm:p-9 lg:p-10">
-      <p className="eyebrow">{t(locale, "ENQUIRY")}</p>
+      <p className="eyebrow">{t(locale, "Enquiry")}</p>
       <h2 className="mt-5 text-[clamp(1.9rem,3.3vw,3.25rem)] leading-[1.05] font-[520] tracking-[-0.045em] text-ink">
         {form.heading}
       </h2>
@@ -312,7 +311,6 @@ export function ContactForm({
             className="btn btn-primary link-arrow w-full sm:w-auto"
           >
             {form.submitLabel}
-            <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
           </button>
 
           <p

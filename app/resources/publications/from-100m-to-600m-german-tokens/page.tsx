@@ -99,16 +99,13 @@ export function LocalizedPilotResearchNotePage({ locale }: { locale: Locale }) {
 
           <div className="page-shell section-space">
             <div className="mx-auto max-w-[66rem] space-y-[clamp(4rem,8vw,7rem)]">
-              {publication.sections.map((section, index) => (
+              {publication.sections.map((section) => (
                 <Reveal
                   key={section.title}
                   className="grid gap-8 lg:grid-cols-[0.6fr_1.4fr]"
                 >
                   <div>
-                    <p className="technical-number text-xs text-accent">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h2 className="mt-5 text-[clamp(1.45rem,2.2vw,1.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-ink">
+                    <h2 className="text-[clamp(1.45rem,2.2vw,1.75rem)] font-medium leading-[1.12] tracking-[-0.035em] text-ink">
                       {section.title}
                     </h2>
                   </div>
@@ -164,9 +161,7 @@ export default function PilotResearchNotePage() {
 function PublicationFact({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
-        {label}
-      </p>
+      <p className="ui-label">{label}</p>
       <p className="mt-3 text-sm leading-6 text-ink">{value}</p>
     </div>
   );

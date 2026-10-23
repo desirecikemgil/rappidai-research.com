@@ -1,39 +1,39 @@
 export const deResourceTranslations: Readonly<Record<string, string>> = {
   "23 July 2026": "23. Juli 2026",
   "24 July 2026": "24. Juli 2026",
-  "RESEARCH OUTPUTS": "FORSCHUNGSERGEBNISSE",
+  "Research outputs": "Forschungsergebnisse",
   "Source-linked research notes that separate observations, negative results and open questions.":
     "Forschungsnotizen mit verlinkten Quellen, die Beobachtungen, negative Ergebnisse und offene Fragen auseinanderhalten.",
-  "ARTIFACT INTEGRITY": "ARTEFAKTINTEGRITÄT",
+  "Artifact integrity": "Artefaktintegrität",
   "Pinned revisions, GGUF checksums, reference commands and explicit gaps in the public run record.":
     "Festgeschriebene Revisionen, GGUF-Prüfsummen, Referenzbefehle und offen benannte Lücken in der öffentlichen Dokumentation der Trainingsläufe.",
-  PROVENANCE: "HERKUNFT",
+  Provenance: "Herkunft",
   "Dataset sources, configured targets, smoke evidence, filtering and missing final manifests.":
     "Datenquellen, konfigurierte Zielwerte, Smoke-Test-Belege, Filterung und fehlende finale Manifeste.",
-  "LIMITS FIRST": "GRENZEN IM BLICK",
+  "Limits first": "Grenzen im Blick",
   "Known failure modes, unmeasured risks, excluded uses and secure artifact handling.":
     "Bekannte Fehlerbilder, nicht gemessene Risiken, ausgeschlossene Anwendungen und der sichere Umgang mit Artefakten.",
-  "REUSE BOUNDARIES": "GRENZEN DER WEITERVERWENDUNG",
+  "Reuse boundaries": "Grenzen der Weiterverwendung",
   "A material-by-material record of what is licensed, governed elsewhere or still unresolved.":
     "Eine Aufstellung für jedes einzelne Material: was lizenziert, anderweitig geregelt oder noch ungeklärt ist.",
-  "CURRENT STATE": "AKTUELLER STAND",
+  "Current state": "Aktueller Stand",
   "Project status": "Projektstatus",
   "Model-line maturity, the reviewed evidence snapshot, open artifacts and next documentation work.":
     "Reifegrad der Modelllinien, geprüfter Belegstand, offene Artefakte und die nächsten Dokumentationsschritte.",
-  ORIENTATION: "ORIENTIERUNG",
+  Orientation: "Orientierung",
   "Plain-language answers about base completion, GGUF, Echelon, privacy, evidence and licensing.":
     "Verständliche Antworten zu Basismodellen, GGUF, Echelon, Datenschutz, Belegen und Lizenzierung.",
   "From 100M to 600M German Tokens":
     "Von 100 auf 600 Millionen deutsche Tokens",
-  "What the public quantum-1.6-pilot record supports about continued pretraining—and why more reported training did not establish reliable generation.":
-    "Was die öffentliche Dokumentation zu quantum-1.6-pilot über fortgesetztes Pretraining belegt – und warum das berichtete zusätzliche Training keine zuverlässige Textgenerierung gebracht hat.",
+  "What the public quantum-1.6-pilot record supports about continued pretraining, and why more reported training did not establish reliable generation.":
+    "Was die öffentliche Dokumentation zu quantum-1.6-pilot über fortgesetztes Pretraining belegt und warum das berichtete zusätzliche Training keine zuverlässige Textgenerierung gebracht hat.",
   "Research note": "Forschungsnotiz",
   "Not peer-reviewed": "Ohne Peer-Review",
   "quantum-1-pilot model card": "Model Card zu quantum-1-pilot",
   "quantum-1.6-pilot model card": "Model Card zu quantum-1.6-pilot",
   "Research question": "Forschungsfrage",
   "The public experiment asks whether continued pretraining on 500 million additional German tokens can improve language-pattern consistency while preserving the 49,295,872-parameter architecture, 512-token context and frozen quantum-1 tokenizer.":
-    "Das öffentliche Experiment geht der Frage nach, ob fortgesetztes Pretraining mit 500 Millionen zusätzlichen deutschen Tokens die Konsistenz sprachlicher Muster verbessern kann – bei unveränderter Architektur mit 49.295.872 Parametern, einer Kontextlänge von 512 Tokens und eingefrorenem quantum-1-Tokenizer.",
+    "Das öffentliche Experiment geht der Frage nach, ob fortgesetztes Pretraining mit 500 Millionen zusätzlichen deutschen Tokens die Konsistenz sprachlicher Muster verbessern kann, bei unveränderter Architektur mit 49.295.872 Parametern, einer Kontextlänge von 512 Tokens und eingefrorenem quantum-1-Tokenizer.",
   "This note evaluates only what the linked public artifacts support. It does not reconstruct the private training run or infer missing measurements.":
     "Diese Notiz bewertet nur, was die verlinkten öffentlichen Artefakte belegen. Sie rekonstruiert weder den privaten Trainingslauf, noch erschließt sie fehlende Messwerte.",
   "Documented method": "Dokumentierte Methode",
@@ -62,10 +62,10 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
   "No versioned raw generation record, standardized downstream benchmark, complete training log, final data manifest or independently replayable metric report is public.":
     "Öffentlich liegen weder versionierte Rohausgaben der Generierung noch ein standardisierter Downstream-Benchmark, ein vollständiges Trainingsprotokoll, ein abschließendes Datenmanifest oder ein unabhängig reproduzierbarer Metrikbericht vor.",
   "The strongest supported conclusion is that the documented workflow produced a public continued-pretraining artifact with reported held-out metrics while important generation limitations remained.":
-    "Die weitestgehende belegte Schlussfolgerung lautet: Der dokumentierte Ablauf hat ein öffentliches Artefakt aus fortgesetztem Pretraining mit berichteten Hold-out-Metriken erzeugt – wesentliche Einschränkungen bei der Generierung blieben jedoch bestehen.",
-  REPRODUCIBILITY: "REPRODUZIERBARKEIT",
-  "Artifacts that can be inspected—and gaps that cannot be replayed.":
-    "Artefakte, die sich prüfen lassen – und Lücken, die sich nicht reproduzieren lassen.",
+    "Die weitestgehende belegte Schlussfolgerung lautet: Der dokumentierte Ablauf hat ein öffentliches Artefakt aus fortgesetztem Pretraining mit berichteten Hold-out-Metriken erzeugt; wesentliche Einschränkungen bei der Generierung blieben jedoch bestehen.",
+  Reproducibility: "Reproduzierbarkeit",
+  "Reproducibility of the published models":
+    "Reproduzierbarkeit der veröffentlichten Modelle",
   "Release integrity is public for the two pilot GGUF files. Full training reproducibility remains partial because final manifests, logs, environments and raw evaluations are missing.":
     "Für die beiden GGUF-Dateien der Pilotmodelle sind die Integritätsnachweise öffentlich. Das Training selbst lässt sich dagegen nur teilweise reproduzieren, weil abschließende Manifeste, Protokolle, Umgebungen und Rohdaten der Evaluation fehlen.",
   "This command mirrors the pinned diagnosis configuration. The website test suite does not execute model inference. A local llama.cpp build is required, and the exact external llama.cpp revision cannot be initialized from the reviewed repository because its Git link has no .gitmodules entry.":
@@ -112,9 +112,8 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
   "Pinned implementation snapshot": "Festgeschriebener Implementierungsstand",
   "Training-run template": "Vorlage für Trainingsläufe",
   "Data and training record": "Dokumentation zu Daten und Training",
-  "DATA & TRAINING": "DATEN & TRAINING",
-  "Configured methods are not completed runs.":
-    "Eine Konfiguration ist noch kein abgeschlossener Lauf.",
+  "Data & training": "Daten & Training",
+  "Data and training methods": "Daten und Trainingsmethoden",
   "This record distinguishes dataset provenance, configured targets, smoke-test evidence and absent production or training artifacts across the Quantum model line.":
     "Diese Dokumentation hält für die gesamte Quantum-Modelllinie auseinander: Datenherkunft, konfigurierte Zielwerte, Smoke-Test-Belege und fehlende Produktions- oder Trainingsartefakte.",
   "A German-language subset derived from public web material distributed through FineWeb2-HQ.":
@@ -159,9 +158,9 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
   "Public data and training record":
     "Öffentliche Dokumentation zu Daten und Training",
   "Garden Phase 3 report": "Bericht zu Garden Phase 3",
-  "RESPONSIBLE USE": "VERANTWORTUNGSVOLLE NUTZUNG",
-  "Experimental artifacts require cautious use.":
-    "Experimentelle Artefakte erfordern einen vorsichtigen Umgang.",
+  "Responsible use": "Verantwortungsvolle Nutzung",
+  "Responsible use of experimental models":
+    "Verantwortungsvoller Umgang mit experimentellen Modellen",
   "The public pilots are small base-completion models with documented reliability limits. Echelon has no trained public model. None of these artifacts should be treated as a production assistant.":
     "Die öffentlichen Pilotmodelle sind kleine Basismodelle für Textfortsetzung mit dokumentierten Grenzen bei der Zuverlässigkeit. Für Echelon gibt es kein öffentliches trainiertes Modell. Keines dieser Artefakte sollte wie ein produktiv einsetzbarer Assistent behandelt werden.",
   "Medical, legal, financial or safety-critical decisions":
@@ -217,11 +216,9 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
     "Datenschutz, Rechte oder sensible Inhalte",
   "Email the project directly and include only the information necessary to identify the concern.":
     "Wenden Sie sich direkt per E-Mail an das Projekt und machen Sie nur die Angaben, die zur Identifizierung des Anliegens nötig sind.",
-  LICENSING: "LIZENZIERUNG",
-  "Public availability is not a reuse license.":
-    "Öffentliche Verfügbarkeit ist keine Lizenz zur Weiterverwendung.",
-  "Licensing is recorded per material. The website's Apache-2.0 license does not automatically cover models, tokenizers, datasets, external repositories, logos or model-card images.":
-    "Die Lizenzlage wird für jedes Material einzeln dokumentiert. Die Apache-2.0-Lizenz der Website gilt nicht automatisch für Modelle, Tokenizer, Datensätze, externe Repositories, Logos oder Bilder aus Model Cards.",
+  "Licensing and reuse": "Lizenzen und Weiterverwendung",
+  "Public availability is not a reuse license. Licensing is recorded per material: the website's Apache-2.0 license does not automatically cover models, tokenizers, datasets, external repositories, logos or model-card images.":
+    "Öffentliche Verfügbarkeit ist keine Lizenz zur Weiterverwendung. Die Lizenzlage wird für jedes Material einzeln dokumentiert: Die Apache-2.0-Lizenz der Website gilt nicht automatisch für Modelle, Tokenizer, Datensätze, externe Repositories, Logos oder Bilder aus Model Cards.",
   "Website source and original documentation":
     "Website-Quellcode und eigene Dokumentation",
   "Apache License 2.0": "Apache-Lizenz 2.0",
@@ -258,9 +255,7 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
     "Die Lizenz für den Quellcode erstreckt sich nicht auf Modellgewichte, GGUF-Artefakte oder trainierte Tokenizer-Binärdateien; sie gilt unabhängig vom Website-Repository.",
   "Full licensing and provenance record":
     "Vollständige Dokumentation zu Lizenzen und Herkunft",
-  "PROJECT STATUS": "PROJEKTSTATUS",
-  "Current evidence, visible gaps and no silent upgrades.":
-    "Aktuelle Belege, sichtbare Lücken, keine stillschweigenden Aufwertungen.",
+  "Project and documentation status": "Projekt- und Dokumentationsstand",
   "A concise view of what is public for each model line, what remains incomplete and which documentation work comes next.":
     "Ein knapper Überblick: was zu jeder Modelllinie öffentlich ist, was noch unvollständig ist und welche Dokumentationsarbeit als Nächstes ansteht.",
   "Public 49.3M-parameter experimental F16 GGUF release.":
@@ -348,22 +343,20 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
   Security: "Sicherheit",
   "Private vulnerability-reporting guidance":
     "Hinweise zur vertraulichen Meldung von Schwachstellen",
-  "OPEN SOURCE": "OPEN SOURCE",
-  PUBLICATIONS: "PUBLIKATIONEN",
-  "Research notes with visible evidence boundaries.":
-    "Forschungsnotizen, die zeigen, was belegt ist – und was nicht.",
+  "Open source": "Open Source",
+  Publications: "Publikationen",
+  "Publications and research notes": "Publikationen und Forschungsnotizen",
   "Project publications summarize public artifacts, negative results and unresolved questions. They are not presented as peer-reviewed academic papers.":
     "Die Publikationen des Projekts fassen öffentliche Artefakte, negative Ergebnisse und offene Fragen zusammen. Sie erheben nicht den Anspruch, begutachtete wissenschaftliche Fachartikel zu sein.",
   "No DOI": "Keine DOI",
   "Read research note": "Zur Forschungsnotiz",
-  "Straight answers about an early-stage research project.":
-    "Klare Antworten zu einem Forschungsprojekt in der Frühphase.",
+  "Frequently asked questions": "Häufige Fragen",
   "The most common questions about model type, local inference, Echelon, evidence status, privacy, licensing and reporting.":
     "Die häufigsten Fragen zu Modelltyp, lokaler Inferenz, Echelon, Belegstatus, Datenschutz, Lizenzen und Meldewegen.",
-  "OPEN PUBLICATION ITEMS": "OFFENE PUNKTE",
-  "Gaps remain part of the record.": "Auch Lücken gehören zur Dokumentation.",
-  "DOCUMENTATION ROADMAP": "DOKUMENTATIONS-ROADMAP",
-  "Evidence before claims.": "Erst belegen, dann behaupten.",
+  "Open publication items": "Offene Punkte",
+  "Known gaps in the public record": "Bekannte Lücken in der Dokumentation",
+  "Documentation roadmap": "Roadmap der Dokumentation",
+  "Next documentation steps": "Nächste Schritte der Dokumentation",
   Material: "Material",
   "Current terms": "Geltende Bedingungen",
   Boundary: "Grenze",
@@ -372,39 +365,38 @@ export const deResourceTranslations: Readonly<Record<string, string>> = {
     "Lizenz- und Herkunftsstatus je Projektmaterial",
   "This is a project-maintenance record, not legal advice. No unresolved material is described as open source, open weight or freely reusable.":
     "Diese Übersicht dient der Projektpflege und ist keine Rechtsberatung. Ungeklärtes Material wird weder als Open Source noch als Open Weight oder frei weiterverwendbar bezeichnet.",
-  "EXCLUDED USES": "AUSGESCHLOSSENE ANWENDUNGEN",
-  "Do not treat experimental completions as decisions.":
-    "Experimentelle Textfortsetzungen ersetzen keine Entscheidungen.",
-  "KNOWN BEHAVIOR": "BEKANNTES VERHALTEN",
-  "Limits observed in the public record.":
-    "Grenzen, die in der öffentlichen Dokumentation festgehalten sind.",
-  "UNMEASURED RISKS": "NICHT GEMESSENE RISIKEN",
-  "No safety evaluation is inferred.":
-    "Eine Sicherheitsevaluation wird nicht unterstellt.",
-  "ARTIFACT SAFETY": "ARTEFAKTSICHERHEIT",
-  "Treat files and code as untrusted.":
-    "Dateien und Code als nicht vertrauenswürdig behandeln.",
-  REPORTING: "MELDEWEGE",
-  "Use the right channel.": "Jede Meldung an die richtige Stelle.",
+  "Excluded uses": "Ausgeschlossene Anwendungen",
+  "Do not treat experimental completions as decisions":
+    "Experimentelle Textfortsetzungen ersetzen keine Entscheidungen",
+  "Known behavior": "Bekanntes Verhalten",
+  "Documented behavioral limits": "Dokumentierte Grenzen im Modellverhalten",
+  "Unmeasured risks": "Nicht gemessene Risiken",
+  "No safety claims without evaluation":
+    "Keine Sicherheitsaussagen ohne Evaluation",
+  "Artifact safety": "Artefaktsicherheit",
+  "Treat files and code as untrusted":
+    "Dateien und Code als nicht vertrauenswürdig behandeln",
+  Reporting: "Meldewege",
+  "Where to report issues": "Wo Sie Probleme melden",
   "Open reporting guidance": "Meldehinweise ansehen",
-  "PRIMARY DATASET": "HAUPTDATENSATZ",
+  "Primary dataset": "Hauptdatensatz",
   "Inspect dataset card": "Dataset Card ansehen",
   "Source revision": "Quellrevision",
   "Configured target": "Konfigurierter Zielwert",
   "Public observation": "Öffentliche Beobachtung",
-  "PIPELINE CONTROLS": "PIPELINE-KONTROLLEN",
-  "Documented controls.": "Dokumentierte Kontrollen.",
-  "KNOWN LIMITATIONS": "BEKANNTE EINSCHRÄNKUNGEN",
-  "Evidence still missing.": "Was noch nicht belegt ist.",
-  "PUBLIC F16 GGUF": "ÖFFENTLICHES F16-GGUF",
+  "Pipeline controls": "Kontrollen in der Pipeline",
+  "Documented controls": "Dokumentierte Kontrollen",
+  "Known limitations": "Bekannte Einschränkungen",
+  "Missing evidence": "Fehlende Belege",
+  "Public F16 GGUF": "Öffentliches F16-GGUF",
   File: "Datei",
   Size: "Größe",
   "Model repository": "Modell-Repository",
   Checksum: "Prüfsumme",
   Manifest: "Manifest",
-  "LLAMA.CPP REFERENCE": "LLAMA.CPP-REFERENZ",
-  "VERIFICATION WORKFLOW": "PRÜFABLAUF",
-  "A repeatable local record.": "Lokal prüfen, wiederholbar festhalten.",
+  "llama.cpp reference": "Referenz für llama.cpp",
+  "Verification workflow": "Prüfablauf",
+  "Local verification steps": "Schritte zur lokalen Prüfung",
   Area: "Bereich",
   Available: "Verfügbar",
   "Still missing": "Fehlt noch",

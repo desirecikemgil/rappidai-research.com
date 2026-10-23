@@ -58,9 +58,9 @@ export function LocalizedStatusPage({ locale }: { locale: Locale }) {
 
           <div className="mt-[clamp(4rem,8vw,8rem)]">
             <Reveal>
-              <p className="eyebrow">{t(locale, "OPEN PUBLICATION ITEMS")}</p>
+              <p className="eyebrow">{t(locale, "Open publication items")}</p>
               <h2 className="display-section mt-7 text-ink">
-                {t(locale, "Gaps remain part of the record.")}
+                {t(locale, "Known gaps in the public record")}
               </h2>
             </Reveal>
             <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -84,9 +84,9 @@ export function LocalizedStatusPage({ locale }: { locale: Locale }) {
 
           <Reveal className="liquid-surface mt-[clamp(4rem,8vw,8rem)] grid gap-8 p-7 sm:p-9 lg:grid-cols-[0.6fr_1.4fr]">
             <div>
-              <p className="eyebrow">{t(locale, "DOCUMENTATION ROADMAP")}</p>
+              <p className="eyebrow">{t(locale, "Documentation roadmap")}</p>
               <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
-                {t(locale, "Evidence before claims.")}
+                {t(locale, "Next documentation steps")}
               </h2>
             </div>
             <ol className="space-y-4">
@@ -95,8 +95,8 @@ export function LocalizedStatusPage({ locale }: { locale: Locale }) {
                   key={item}
                   className="grid gap-3 border-t border-line pt-4 sm:grid-cols-[3rem_1fr]"
                 >
-                  <span className="technical-number text-xs text-accent">
-                    {String(index + 1).padStart(2, "0")}
+                  <span className="technical-number text-sm text-muted">
+                    {index + 1}
                   </span>
                   <p className="text-sm leading-6 text-ink-soft">{item}</p>
                 </li>

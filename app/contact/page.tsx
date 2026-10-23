@@ -27,9 +27,7 @@ function ContactChannel({
 }: ContactChannelProps) {
   return (
     <div className="grid gap-3 border-t border-line py-5 sm:grid-cols-[8.5rem_1fr] sm:items-center sm:py-6">
-      <dt className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-muted">
-        {label}
-      </dt>
+      <dt className="ui-label">{label}</dt>
       <dd>
         {value ? (
           <ActionLink
@@ -99,7 +97,7 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
       <section id="contact-options" className="page-shell section scroll-mt-32">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
           <Reveal className="liquid-surface h-fit p-6 sm:p-9">
-            <p className="eyebrow">{t(locale, "CONTACT CHANNELS")}</p>
+            <p className="eyebrow">{t(locale, "Contact channels")}</p>
             <h2 className="mt-5 max-w-[12ch] text-[clamp(1.9rem,3.3vw,3.25rem)] leading-[1.05] font-[520] tracking-[-0.045em] text-ink">
               {page.methodsHeading}
             </h2>
@@ -130,24 +128,15 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
               />
             </dl>
 
-            <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted sm:mt-7">
+            <p className="ui-label mt-6 sm:mt-7">
               {t(locale, "Based in")} {config.location}
             </p>
 
             <div className="mt-6 border-t border-line pt-6 sm:mt-8 sm:pt-7">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
-                {t(locale, "Typical enquiries")}
-              </p>
+              <p className="ui-label">{t(locale, "Typical enquiries")}</p>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                 {page.enquiryTypes.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-sm text-ink-soft"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="size-1.5 rounded-full bg-accent"
-                    />
+                  <li key={item} className="text-sm text-ink-soft">
                     {item}
                   </li>
                 ))}
@@ -164,11 +153,11 @@ export function LocalizedContactPage({ locale }: { locale: Locale }) {
           id="reporting-channels"
           className="mt-[clamp(4rem,8vw,7rem)] scroll-mt-32"
         >
-          <p className="eyebrow">{t(locale, "REPORTING CHANNELS")}</p>
+          <p className="eyebrow">{t(locale, "Reporting channels")}</p>
           <h2 className="display-section mt-4 text-ink">
             {t(
               locale,
-              "Public feedback, private security and sensitive concerns.",
+              "Public feedback, private security reports and sensitive concerns",
             )}
           </h2>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
