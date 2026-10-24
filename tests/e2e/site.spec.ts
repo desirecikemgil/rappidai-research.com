@@ -15,6 +15,7 @@ const publicRoutes = [
   "/resources",
   "/resources/publications",
   "/resources/publications/from-100m-to-600m-german-tokens",
+  "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
   "/resources/reproducibility",
   "/resources/data-and-training",
   "/resources/responsible-use",
@@ -331,6 +332,7 @@ for (const route of ["/models", "/de/models"] as const) {
 for (const route of [
   "/resources",
   "/resources/publications/from-100m-to-600m-german-tokens",
+  "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
   "/resources/reproducibility",
   "/resources/data-and-training",
   "/resources/responsible-use",
@@ -357,6 +359,7 @@ for (const route of [
   "/de/research",
   "/de/resources",
   "/de/resources/publications/from-100m-to-600m-german-tokens",
+  "/de/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
   "/de/resources/licensing",
 ] as const) {
   test(`${route} fits a reduced-motion mobile viewport`, async ({ page }) => {
@@ -435,5 +438,36 @@ for (const route of ["/tools/ghost", "/de/tools/ghost"] as const) {
       ).toBeLessThanOrEqual(0);
       expect(layout.brokenAnchors).toEqual([]);
     }
+  });
+}
+
+for (const locale of ["en", "de"] as const) {
+  const prefix = locale === "de" ? "/de" : "";
+  test(`${locale}: publications index lists both research notes and the new note resolves its citations`, async ({
+    page,
+  }) => {
+    await page.goto(`${prefix}/resources/publications`);
+    const covers = page.locator(".publication-cover");
+    await expect(covers).toHaveCount(2);
+    await expect(covers.first()).toHaveAttribute(
+      "href",
+      `${prefix}/resources/publications/false-positive-problem-in-ai-vulnerability-detection`,
+    );
+    await covers.first().click();
+    await expect(page.locator("h1")).toHaveText(
+      locale === "de"
+        ? "Das False-Positive-Problem bei der KI-gestützten Erkennung von Schwachstellen"
+        : "The False Positive Problem in AI Vulnerability Detection",
+    );
+    const citations = await page
+      .locator("a.note-citation")
+      .evaluateAll((links) => links.map((link) => link.getAttribute("href")!));
+    expect(citations.length).toBeGreaterThan(0);
+    for (const href of new Set(citations))
+      await expect(page.locator(href)).toHaveCount(1);
+    await expect(page.locator(".note-references li")).toHaveCount(17);
+    await expect(
+      page.locator(".note-references a[href^='/']").first(),
+    ).toHaveAttribute("href", `${prefix}/models/quantum-sentinel-alpha`);
   });
 }

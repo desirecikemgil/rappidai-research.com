@@ -46,6 +46,7 @@ When implementing from a selected generated mock, treat that image as the source
 - Present Echelon Base and Echelon Chat as stages or variants within `quantum-1-echelon`, never as separate model families.
 - Show missing evidence directly with `Not published`, `Not measured`, `Not yet available`, `Partial evidence` or `Maintainer input required`.
 - Never upgrade configured targets, estimated architecture properties or smoke-test totals into claims about completed Echelon training or production data.
+- Research notes share one template (`components/resources/research-note-article.tsx`) and one data shape (`PublicationRecord`): header with kind, optional category, Published badge and facts (date, review status, DOI), an evidence notice, sections with optional subsections, figures (outcome matrix, code examples, tables) and either primary-source chips or a numbered reference list cited as `[n]` in the text. Every note gets one quiet typographic cover figure (`publication-art.tsx`) used on the publications index and the homepage; lists show the newest note first. Hypothetical numbers must be labelled as such, and statements about Quantum Sentinel-Alpha must follow `content/sentinel.ts` (October 2026: research note "The False Positive Problem in AI Vulnerability Detection").
 
 ## Durable German-language direction
 

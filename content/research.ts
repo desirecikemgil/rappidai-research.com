@@ -89,6 +89,16 @@ export const experimentLogs = [
 
 export const researchNotes = [
   {
+    id: "false-positive-problem-in-ai-vulnerability-detection",
+    title: "The False Positive Problem in AI Vulnerability Detection",
+    kind: "research-note",
+    kindLabel: "Research note",
+    progress: "published",
+    progressLabel: "Published",
+    href: "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
+    publicationDate: "2026-10-24",
+  },
+  {
     id: "from-100m-to-600m-german-tokens",
     title: "From 100M to 600M German Tokens: Lessons from quantum-1.6-pilot",
     kind: "research-note",
@@ -718,6 +728,8 @@ export const quantumExperimentResearch = {
 
 export function getResearchNoteById(
   id: ResearchNoteId,
-): (typeof researchNotes)[number] | undefined {
-  return researchNotes.find((note) => note.id === id);
+): ResearchNote | undefined {
+  return (researchNotes as readonly ResearchNote[]).find(
+    (note) => note.id === id,
+  );
 }

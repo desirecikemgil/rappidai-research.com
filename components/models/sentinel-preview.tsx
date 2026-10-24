@@ -485,12 +485,23 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
           <div>
             <p>{c.researchNotice}</p>
             <p className={styles.note}>{c.safetyText}</p>
-            <Link
-              href={localizePath("/models", locale)}
-              className="text-link mt-8"
-            >
-              {t(locale, "All models")}
-            </Link>
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+              <Link
+                href={localizePath(
+                  "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
+                  locale,
+                )}
+                className="text-link"
+              >
+                {t(locale, "Research note: the false positive problem")}
+              </Link>
+              <Link
+                href={localizePath("/models", locale)}
+                className="text-link"
+              >
+                {t(locale, "All models")}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

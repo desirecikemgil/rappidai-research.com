@@ -12,6 +12,7 @@ export type SiteRoute =
   | "/resources"
   | "/resources/publications"
   | "/resources/publications/from-100m-to-600m-german-tokens"
+  | "/resources/publications/false-positive-problem-in-ai-vulnerability-detection"
   | "/resources/reproducibility"
   | "/resources/data-and-training"
   | "/resources/responsible-use"
@@ -145,6 +146,7 @@ export interface ModelSource {
 
 export type ResearchNoteId =
   | "from-100m-to-600m-german-tokens"
+  | "false-positive-problem-in-ai-vulnerability-detection"
   | "why-local-inference-changes-the-design-target"
   | "from-pretraining-to-focused-adaptation"
   | "evaluating-small-models-without-misleading-benchmarks";
@@ -226,24 +228,86 @@ export interface ResourceCard {
   readonly status: EvidenceStatus;
 }
 
-export interface PublicationSection {
+export type PublicationSlug =
+  | "from-100m-to-600m-german-tokens"
+  | "false-positive-problem-in-ai-vulnerability-detection";
+
+export interface PublicationSubsection {
   readonly title: string;
   readonly paragraphs: readonly string[];
+}
+
+/** One code listing in an example; `verdict` states what the listing shows. */
+export interface PublicationCodePanel {
+  readonly label: string;
+  readonly verdict: string;
+  readonly language: string;
+  readonly code: string;
+  readonly explanation: string;
+}
+
+export type PublicationFigure =
+  | {
+      readonly kind: "outcomes";
+      readonly label: string;
+      readonly title: string;
+      readonly caption: string;
+      readonly columns: readonly [string, string];
+      readonly rows: readonly [string, string];
+      /** Row-major: reported × vulnerable, reported × safe, … */
+      readonly cells: readonly (readonly [string, string])[];
+    }
+  | {
+      readonly kind: "code";
+      readonly label: string;
+      readonly title: string;
+      readonly caption: string;
+      readonly panels: readonly PublicationCodePanel[];
+    }
+  | {
+      readonly kind: "table";
+      readonly label: string;
+      readonly title: string;
+      readonly caption: string;
+      readonly columns: readonly string[];
+      readonly rows: readonly (readonly string[])[];
+    };
+
+export interface PublicationSection {
+  /** Anchor for the contents list; notes without ids render no contents. */
+  readonly id?: string;
+  readonly title: string;
+  readonly paragraphs: readonly string[];
+  readonly subsections?: readonly PublicationSubsection[];
   readonly items?: readonly string[];
+  readonly closing?: readonly string[];
+  readonly figures?: readonly PublicationFigure[];
+}
+
+/** A numbered reference, cited in the text as [n]. */
+export interface PublicationReference {
+  readonly authors: string;
+  readonly title: string;
+  readonly venue: string;
+  readonly url: string;
 }
 
 export interface PublicationRecord {
-  readonly slug: "from-100m-to-600m-german-tokens";
+  readonly slug: PublicationSlug;
   readonly title: string;
   readonly summary: string;
   readonly kindLabel: string;
+  readonly category?: string;
   readonly status: "published";
   readonly publicationDate: string;
+  readonly publicationDateLabel: string;
   readonly lastReviewed: string;
   readonly peerReviewStatus: "Not peer-reviewed";
   readonly doi: null;
   readonly href: SiteRoute;
+  readonly notice: string;
   readonly sources: readonly ResourceSource[];
+  readonly references?: readonly PublicationReference[];
   readonly sections: readonly PublicationSection[];
 }
 

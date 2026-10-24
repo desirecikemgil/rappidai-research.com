@@ -2,9 +2,11 @@ import type {
   EvidenceStatus,
   FaqEntry,
   PublicationRecord,
+  PublicationSlug,
   ResourceCard,
   ResourceSource,
 } from "./types";
+import { falsePositiveNote } from "./false-positive-note";
 import {
   publicModelUrls,
   publicProjectUrls,
@@ -87,7 +89,9 @@ export const resourceCards = [
   },
 ] as const satisfies readonly ResourceCard[];
 
+// Newest first: the publications index and the homepage list in this order.
 export const publications = [
+  falsePositiveNote,
   {
     slug: "from-100m-to-600m-german-tokens",
     title: "From 100M to 600M German Tokens",
@@ -96,10 +100,13 @@ export const publications = [
     kindLabel: "Research note",
     status: "published",
     publicationDate: "2026-07-23",
+    publicationDateLabel: "23 July 2026",
     lastReviewed: "2026-07-23",
     peerReviewStatus: "Not peer-reviewed",
     doi: null,
     href: "/resources/publications/from-100m-to-600m-german-tokens",
+    notice:
+      "This project research note is not an academic publication. It summarizes only the linked public record and does not fill gaps in training logs, raw evaluations or release provenance.",
     sources: [
       {
         label: "quantum-1-pilot model card",
@@ -169,7 +176,7 @@ export const publications = [
 ] as const satisfies readonly PublicationRecord[];
 
 export function getPublicationBySlug(
-  slug: string,
+  slug: PublicationSlug,
 ): PublicationRecord | undefined {
   return publications.find((publication) => publication.slug === slug);
 }

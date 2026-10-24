@@ -288,6 +288,18 @@
   }
 }
 
+.notes {
+  display: grid;
+  gap: 1rem;
+}
+
+.outcomes {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
 .feature {
   display: grid;
   overflow: hidden;
@@ -403,6 +415,16 @@
 .aside {
   display: grid;
   gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .aside {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.asideItem :global(.text-link) {
+  margin-top: auto;
 }
 
 .asideItem {
