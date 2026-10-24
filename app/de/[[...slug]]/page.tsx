@@ -12,6 +12,7 @@ import { LocalizedDataAndTrainingPage } from "@/app/resources/data-and-training/
 import { LocalizedFaqPage } from "@/app/resources/faq/page";
 import { LocalizedLicensingPage } from "@/app/resources/licensing/page";
 import { LocalizedResourcesPage } from "@/app/resources/page";
+import { LocalizedFalsePositiveNotePage } from "@/app/resources/publications/false-positive-problem-in-ai-vulnerability-detection/page";
 import { LocalizedPilotResearchNotePage } from "@/app/resources/publications/from-100m-to-600m-german-tokens/page";
 import { LocalizedPublicationsPage } from "@/app/resources/publications/page";
 import { LocalizedReproducibilityPage } from "@/app/resources/reproducibility/page";
@@ -72,6 +73,8 @@ export default async function GermanPage({ params }: GermanPageProps) {
       return <LocalizedPublicationsPage locale="de" />;
     case "/resources/publications/from-100m-to-600m-german-tokens":
       return <LocalizedPilotResearchNotePage locale="de" />;
+    case "/resources/publications/false-positive-problem-in-ai-vulnerability-detection":
+      return <LocalizedFalsePositiveNotePage locale="de" />;
     case "/resources/reproducibility":
       return <LocalizedReproducibilityPage locale="de" />;
     case "/resources/data-and-training":

@@ -8,6 +8,12 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Second research note — 24 October 2026
+
+- Published the research note "The False Positive Problem in AI Vulnerability Detection" in English and German: a research-informed analysis of why AI-based vulnerability detection confuses suspicious patterns with exploitable weaknesses, covering causes, costs, hard negatives, evaluation metrics, the Quantum Sentinel-Alpha research direction and open questions, with 17 verified references. It reports no new experiments or Sentinel-Alpha results.
+- Moved both research notes onto one shared article template with contents, figures, code examples, tables and numbered citations; the first note's content is unchanged and its spacing below the evidence notice is fixed.
+- Added a minimal detection-outcomes cover figure, listed the new note on the publications index, homepage, documentation sidebar and Quantum Sentinel-Alpha page, and added SEO metadata, article structured data and tests for citations and references.
+
 ### Professional polish — 23 October 2026
 
 - Removed typical AI-website decoration: arrow and check-mark icons, window traffic-light dots, announcement pills, status dots, glow, gradient text, pulsing and blur-in effects, and decorative 01/02 numbering.

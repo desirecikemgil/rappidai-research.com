@@ -239,6 +239,13 @@ export const pageMetadata = {
     description:
       "Research notes and publication records from rappidAI, including negative results, evidence boundaries and primary sources.",
   },
+  "/resources/publications/false-positive-problem-in-ai-vulnerability-detection":
+    {
+      title:
+        "The False Positive Problem in AI Vulnerability Detection — rappidAI Research",
+      description:
+        "A research note on why AI-based vulnerability detection struggles to separate exploitable weaknesses from harmless code, with hard negatives, evaluation metrics and the Quantum Sentinel-Alpha research direction.",
+    },
   "/resources/publications/from-100m-to-600m-german-tokens": {
     title: "From 100M to 600M German Tokens — rappidAI Research",
     description:

@@ -14,6 +14,7 @@ export const siteRoutes = [
   "/resources",
   "/resources/publications",
   "/resources/publications/from-100m-to-600m-german-tokens",
+  "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
   "/resources/reproducibility",
   "/resources/data-and-training",
   "/resources/responsible-use",

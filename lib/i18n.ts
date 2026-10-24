@@ -5,12 +5,14 @@ export type Locale = (typeof locales)[number];
 
 const protectedKeys = new Set([
   "availability",
+  "code",
   "doi",
   "evidenceReference",
   "featured",
   "id",
   "isoDate",
   "kind",
+  "language",
   "lastReviewed",
   "linkKey",
   "modelSlug",

@@ -171,6 +171,10 @@ export const documentationNavigation = [
       { label: "Evidence ledger", href: "/research" },
       { label: "Publications", href: "/resources/publications" },
       {
+        label: "The False Positive Problem",
+        href: "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
+      },
+      {
         label: "From 100M to 600M German Tokens",
         href: "/resources/publications/from-100m-to-600m-german-tokens",
       },

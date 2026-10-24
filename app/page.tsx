@@ -6,6 +6,7 @@ import {
   SentinelHero,
   SentinelRoadmap,
 } from "@/components/models/sentinel-preview";
+import { DetectionOutcomesArt } from "@/components/resources/publication-art";
 import { ActionLink } from "@/components/ui/action-link";
 import { ghostCopy, ghostRelease } from "@/content/ghost";
 import { modelListName, models } from "@/content/models";
@@ -66,6 +67,9 @@ const copy = {
       "What continued pretraining taught us about quantum-1.6-pilot. Methods, results and the limits of a compact language model.",
     articleType: "Research note",
     read: "Read the research note",
+    fpTitle: "The false positive problem in AI vulnerability detection",
+    fpText:
+      "Why AI-based security analysis struggles to tell real vulnerabilities from harmless code that only looks dangerous, and how evaluation should account for it.",
     echelon: "The Echelon model line",
     echelonText:
       "Explore the 1B development target and the planned path from Base to Chat. Specifications are provisional; no trained model has been released.",
@@ -127,6 +131,10 @@ const copy = {
       "Was wir aus dem fortgesetzten Pretraining von quantum-1.6-pilot gelernt haben: Methoden, Ergebnisse und die Grenzen eines kompakten Sprachmodells.",
     articleType: "Forschungsnotiz",
     read: "Forschungsnotiz lesen",
+    fpTitle:
+      "Das False-Positive-Problem bei der KI-gestützten Erkennung von Schwachstellen",
+    fpText:
+      "Warum KI-gestützte Sicherheitsanalysen echte Schwachstellen nur schwer von harmlosem Code unterscheiden, der lediglich gefährlich aussieht, und wie eine Evaluation das berücksichtigen sollte.",
     echelon: "Die Echelon-Modelllinie",
     echelonText:
       "Das 1B-Entwicklungsziel und der geplante Weg von Base zu Chat. Die Spezifikationen sind vorläufig; ein trainiertes Modell ist noch nicht veröffentlicht.",
@@ -329,35 +337,57 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
           </Link>
         </div>
         <div className={styles.journal}>
-          <Link
-            href={path(
-              "/resources/publications/from-100m-to-600m-german-tokens",
-            )}
-            className={styles.feature}
-            data-reveal
-          >
-            <figure className={styles.figure} aria-hidden="true">
-              <div className={styles.bars}>
-                <div>
-                  <i style={{ height: `${(100 / 600) * 100}%` }} />
-                  <span>quantum-1-pilot</span>
-                  <strong>~100M</strong>
+          <div className={styles.notes}>
+            <Link
+              href={path(
+                "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
+              )}
+              className={styles.feature}
+              data-reveal
+            >
+              <figure className={styles.figure} aria-hidden="true">
+                <div className={styles.outcomes}>
+                  <DetectionOutcomesArt locale={locale} />
                 </div>
-                <div>
-                  <i style={{ height: "100%" }} />
-                  <span>quantum-1.6-pilot</span>
-                  <strong>~600M</strong>
-                </div>
+                <figcaption>{t(locale, "Detection outcomes")}</figcaption>
+              </figure>
+              <div className={styles.featureCopy}>
+                <p className="kicker">{c.articleType}</p>
+                <h3>{c.fpTitle}</h3>
+                <p>{c.fpText}</p>
+                <span className="text-link">{c.read}</span>
               </div>
-              <figcaption>{t(locale, "German training tokens")}</figcaption>
-            </figure>
-            <div className={styles.featureCopy}>
-              <p className="kicker">{c.articleType}</p>
-              <h3>{c.articleTitle}</h3>
-              <p>{c.articleText}</p>
-              <span className="text-link">{c.read}</span>
-            </div>
-          </Link>
+            </Link>
+            <Link
+              href={path(
+                "/resources/publications/from-100m-to-600m-german-tokens",
+              )}
+              className={styles.feature}
+              data-reveal
+            >
+              <figure className={styles.figure} aria-hidden="true">
+                <div className={styles.bars}>
+                  <div>
+                    <i style={{ height: `${(100 / 600) * 100}%` }} />
+                    <span>quantum-1-pilot</span>
+                    <strong>~100M</strong>
+                  </div>
+                  <div>
+                    <i style={{ height: "100%" }} />
+                    <span>quantum-1.6-pilot</span>
+                    <strong>~600M</strong>
+                  </div>
+                </div>
+                <figcaption>{t(locale, "German training tokens")}</figcaption>
+              </figure>
+              <div className={styles.featureCopy}>
+                <p className="kicker">{c.articleType}</p>
+                <h3>{c.articleTitle}</h3>
+                <p>{c.articleText}</p>
+                <span className="text-link">{c.read}</span>
+              </div>
+            </Link>
+          </div>
           <div className={styles.aside}>
             <Link
               href={path("/models/quantum-1-echelon")}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DocLayout } from "@/components/layout/doc-layout";
 import { Reveal } from "@/components/motion/reveal";
+import { PublicationArt } from "@/components/resources/publication-art";
 import {
   EvidenceBadge,
   ResourceDirectory,
@@ -35,14 +36,10 @@ export function LocalizedPublicationsPage({ locale }: { locale: Locale }) {
                   className="publication-cover group grid gap-8 lg:grid-cols-[0.8fr_1.2fr]"
                 >
                   <div className="publication-cover-art">
-                    <div className="research-token-figure" aria-hidden="true">
-                      <span>100M</span>
-                      <div />
-                      <span>600M</span>
-                    </div>
+                    <PublicationArt slug={publication.slug} locale={locale} />
                     <p className="eyebrow">{publication.kindLabel}</p>
                     <p className="ui-label mt-5">
-                      {t(locale, "23 July 2026")} ·{" "}
+                      {publication.publicationDateLabel} ·{" "}
                       {publication.peerReviewStatus} · {t(locale, "No DOI")}
                     </p>
                   </div>

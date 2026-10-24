@@ -7,6 +7,8 @@ import {
   modelSlugs,
 } from "@/content/models";
 import { getPageMetadata } from "@/content/pages";
+import { isSiteRoute } from "@/content/routes";
+import type { PublicationRecord } from "@/content/types";
 import { experimentLogs, getResearchNoteById } from "@/content/research";
 import {
   faqEntries,
@@ -109,14 +111,36 @@ describe("resource content contracts", () => {
   it("requires published notes to have dates, routes and public sources", () => {
     expect(publications.length).toBeGreaterThan(0);
 
-    for (const publication of publications) {
+    for (const publication of publications as readonly PublicationRecord[]) {
       expect(publication.status).toBe("published");
       expect(publication.publicationDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(publication.href).toMatch(/^\/resources\/publications\//);
-      expect(publication.sources.length).toBeGreaterThan(0);
+      const references = publication.references ?? [];
+      expect(publication.sources.length + references.length).toBeGreaterThan(0);
       for (const source of publication.sources) {
         expect(new URL(source.url).protocol).toBe("https:");
       }
+      for (const reference of references) {
+        if (reference.url.startsWith("/"))
+          expect(isSiteRoute(reference.url)).toBe(true);
+        else expect(new URL(reference.url).protocol).toBe("https:");
+      }
+    }
+  });
+
+  it("links every citation to a reference and cites every reference", () => {
+    for (const publication of publications as readonly PublicationRecord[]) {
+      const references = publication.references ?? [];
+      if (!references.length) continue;
+      const text = JSON.stringify(publication.sections);
+      const cited = new Set(
+        [...text.matchAll(/\[(\d+)\]/g)].map((match) => Number(match[1])),
+      );
+      for (const number of cited) {
+        expect(number).toBeGreaterThanOrEqual(1);
+        expect(number).toBeLessThanOrEqual(references.length);
+      }
+      expect(cited.size).toBe(references.length);
     }
   });
 
