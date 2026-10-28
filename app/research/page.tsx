@@ -1,6 +1,7 @@
 import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { DocLayout } from "@/components/layout/doc-layout";
 import { SectionRail } from "@/components/research/section-rail";
+import { SecurityResearch } from "@/components/research/security-research";
 import { TokenScaleVisual } from "@/components/graphics/token-scale-visual";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -119,6 +120,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
   const publication = localizeContent(researchPublication, locale);
 
   const railItems = [
+    { id: "security-research", label: t(locale, "Security research") },
     {
       id: "evidence-ledger-heading",
       label: t(locale, "Evidence and findings"),
@@ -136,6 +138,14 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         {...page.introduction}
         indexLabel={t(locale, "Explore this page")}
         topics={[
+          {
+            href: "#security-research",
+            label: t(locale, "Security research"),
+            description: t(
+              locale,
+              "Ghost releases and Sentinel evaluation infrastructure.",
+            ),
+          },
           {
             href: "#evidence-ledger-heading",
             label: t(locale, "Evidence and findings"),
@@ -179,6 +189,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         ]}
       />
       <DocLayout>
+        <SecurityResearch locale={locale} />
         <section
           aria-labelledby="evidence-ledger-heading"
           className="page-shell pb-[var(--section-space)]"

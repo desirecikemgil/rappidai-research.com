@@ -24,7 +24,7 @@ export const researchPageContent = {
     eyebrow: "Research",
     title: "Research and published evidence",
     description:
-      "A source-linked evidence ledger for the released Quantum pilots and the current Echelon pipeline, including findings, negative results, reproducibility status and visible publication gaps.",
+      "Research on agent security with Ghost, verified code review with Quantum Sentinel-Alpha, and the Quantum pilot and Echelon experiments. Published artifacts, implemented infrastructure and research goals are distinguished throughout.",
   } satisfies PageIntroduction,
 } as const;
 
@@ -33,7 +33,7 @@ export const resourcesPageContent = {
     eyebrow: "Resources",
     title: "Resources and documentation",
     description:
-      "Publications, reproducibility records, data provenance, responsible-use guidance, licensing boundaries and current project status in one evidence-bounded documentation hub.",
+      "Research notes, Ghost documentation and examples, Sentinel evaluation workflows, and the existing records on reproducibility, training data, licensing and responsible use.",
   } satisfies PageIntroduction,
 } as const;
 

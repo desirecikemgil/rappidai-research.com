@@ -1,4 +1,5 @@
 import type { PublicationRecord } from "./types";
+import { sentinelResearchLinks } from "./security-research";
 
 // Research-informed analysis published on 24 October 2026. It reports no new
 // experiment and no measurement of a rappidAI model; every external claim is
@@ -14,7 +15,7 @@ export const falsePositiveNote = {
   status: "published",
   publicationDate: "2026-10-24",
   publicationDateLabel: "24 October 2026",
-  lastReviewed: "2026-10-24",
+  lastReviewed: "2026-10-28",
   peerReviewStatus: "Not peer-reviewed",
   doi: null,
   href: "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
@@ -271,7 +272,7 @@ def read_upload(name: str) -> bytes:
           label: "Table 2",
           title: "Hypothetical illustration, not a measurement",
           caption:
-            "Invented test set of 1,000 functions: 50 vulnerable, 950 safe. The detectors are fictional; no rappidAI model or published tool was evaluated. Precision and F1 are undefined for a detector that reports nothing (—).",
+            "Invented test set of 1,000 functions: 50 vulnerable, 950 safe. The detectors are fictional; no rappidAI model or published tool was evaluated. Precision is undefined when no findings are reported (—); F1 is 0 here because all 50 vulnerabilities are missed.",
           columns: [
             "Detector",
             "TP",
@@ -315,7 +316,7 @@ def read_upload(name: str) -> bytes:
               "—",
               "0.0%",
               "0.0%",
-              "—",
+              "0.00",
             ],
           ],
         },
@@ -326,7 +327,7 @@ def read_upload(name: str) -> bytes:
       title: "Research direction: Quantum Sentinel-Alpha",
       paragraphs: [
         "Quantum Sentinel-Alpha is rappidAI Research's security-specialised code model in development, designed as a second security reviewer for repositories, pull requests and diffs. The questions in this note are central to it: its published development plan lists false-positive rejection, recognising similar-looking safe code as benign and abstaining instead of inventing a vulnerability, among its training objectives [16].",
-        "Its current state has to be stated precisely. The primary foundation candidate is Qwen3.5-9B; the final choice follows an internal security bake-off against Qwen3.5-4B. Alpha is a development target for October 2026, not a release. No Sentinel weights, evaluation results or hardware measurements have been published, so no statement about its false positive rate can be made [16]. Table 3 separates the elements discussed here by status.",
+        "At the reviewed repository revision, Sentinel-Alpha is in Phase 0. Qwen3.5-4B and Qwen3.5-9B are candidates for a prepared comparison that has not been run. A finding schema, evaluation runner and 86 synthetic QuickEval cases exist. No candidate model has been evaluated or trained, and no Sentinel weights are released. Regex-baseline results test the evaluation infrastructure; they do not measure a model's false positive rate [18]. Table 3 separates implementation from research goals.",
       ],
       subsections: [
         {
@@ -355,7 +356,7 @@ def read_upload(name: str) -> bytes:
         },
       ],
       closing: [
-        "None of these elements has been evaluated. They describe how the project intends to approach the problem, not evidence that it solves it.",
+        "The planned model and full engine have not been evaluated. Implemented harness checks do not establish that these approaches solve false-positive rejection.",
       ],
       figures: [
         {
@@ -363,9 +364,19 @@ def read_upload(name: str) -> bytes:
           label: "Table 3",
           title: "Status of the Sentinel-Alpha elements discussed in this note",
           caption:
-            "Status as published on the Quantum Sentinel-Alpha model page on 24 October 2026. No component is documented as implemented and evaluated.",
+            "Reviewed against the pinned public repository on 28 October 2026. Implemented evaluation infrastructure is distinct from an evaluated model or a complete repository-security engine [18].",
           columns: ["Element", "Status", "Basis"],
           rows: [
+            [
+              "Finding schema, strict parser/scorer and model runner",
+              "Implemented infrastructure",
+              "Public code and contracts; no model-quality result [18]",
+            ],
+            [
+              "QuickEval v1 and coding-regression cases",
+              "Public synthetic evaluation data",
+              "86 security cases and 16 Python tasks; private holdout not started [18]",
+            ],
             [
               "False-positive rejection and abstention",
               "Research goal",
@@ -389,6 +400,16 @@ def read_upload(name: str) -> bytes:
             ],
           ],
         },
+      ],
+    },
+    {
+      id: "evaluation-protocol",
+      title: "A protocol for testing false-positive rejection",
+      paragraphs: [
+        "A useful comparison begins with a declared unit of evaluation and a frozen contract. The current QuickEval unit is a labelled code case, not a complete repository scan. Keep the code revision, case hash, prompt, parser, scorer and generation settings fixed across candidates. Record the loaded model revision, runtime and per-case output. The prepared Sentinel comparison follows this approach, but has not produced model results [18].",
+        "For a binary finding decision, report TP, FP, TN and FN alongside precision and recall. A false positive rate uses safe cases as its denominator; the fraction of reported findings that are wrong is 1 minus precision. These quantities answer different questions. Report abstentions and invalid outputs separately, state how they affect each denominator and include the share of cases receiving a definite decision. Otherwise a system can appear precise simply by refusing difficult cases.",
+        "Keep vulnerable and corrected neighbours together when evaluating pair accuracy. For data used in training, group related versions and duplicate families before splitting; reserve separate projects or later fixes for evaluation. Inspect label disagreements manually, record assumptions about attacker input and runtime context, and distinguish a correct decision from correct localization and CWE classification [3][9].",
+        "QuickEval is a small, public, project-authored synthetic suite, so it can diagnose pipeline failures and large differences but cannot establish deployment accuracy or an independent holdout result. The repository records no private holdout yet and leaves patch metrics unimplemented [18]. Before any release-quality claim, add rights-reviewed held-out cases, report uncertainty with an appropriate sampling unit, and evaluate patch security and functional regression separately. These are proposed requirements, not completed experiments.",
       ],
     },
     {
@@ -451,7 +472,7 @@ def read_upload(name: str) -> bytes:
       authors: "OWASP Benchmark Project",
       title: "OWASP Benchmark: test-case design and scoring",
       venue: "OWASP Foundation project documentation",
-      url: "https://wiki.owasp.org/index.php/Benchmark",
+      url: "https://owasp.org/projects/benchmark",
     },
     {
       authors: "B. Johnson, Y. Song, E. Murphy-Hill, R. Bowdidge",
@@ -529,6 +550,13 @@ def read_upload(name: str) -> bytes:
       title: "Static Analysis Results Interchange Format (SARIF) Version 2.1.0",
       venue: "OASIS Standard",
       url: "https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html",
+    },
+    {
+      authors: "rappidAI Research",
+      title:
+        "Quantum Sentinel-Alpha: repository status and evaluation contract",
+      venue: "Pinned source revision d7354b6, reviewed 28 October 2026",
+      url: sentinelResearchLinks.status,
     },
   ],
 } as const satisfies PublicationRecord;

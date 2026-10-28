@@ -8,6 +8,14 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Security research and resources — 28 October 2026
+
+- Added source-pinned Ghost v0.3.0 and Sentinel-Alpha research summaries, documentation links, example workflows and current project-status entries in English and German.
+- Updated the existing false-positive note with the implemented evaluation infrastructure, an evaluation protocol and an eighteenth reference. No new model performance is claimed; the pilot note and all routes are retained.
+- Corrected the shared Sentinel summary to describe development without implying an active training run. Added source-pin, translation, responsive-layout and accessibility coverage.
+- Corrected F1 for the hypothetical detector that misses every vulnerability and replaced the obsolete OWASP Benchmark wiki link.
+- Recorded the source audit and publication boundaries in `docs/security-research-review-2026-10-28.md`.
+
 ### Second research note — 24 October 2026
 
 - Published the research note "The False Positive Problem in AI Vulnerability Detection" in English and German: a research-informed analysis of why AI-based vulnerability detection confuses suspicious patterns with exploitable weaknesses, covering causes, costs, hard negatives, evaluation metrics, the Quantum Sentinel-Alpha research direction and open questions, with 17 verified references. It reports no new experiments or Sentinel-Alpha results.

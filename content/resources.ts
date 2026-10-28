@@ -1,3 +1,5 @@
+import { securityResearch, sentinelResearchLinks } from "./security-research";
+import { ghostLinks } from "./ghost";
 import type {
   EvidenceStatus,
   FaqEntry,
@@ -533,6 +535,20 @@ export const statusContent = {
   },
   models: [
     {
+      name: "quantum-sentinel-alpha",
+      status: "Partial evidence",
+      state: securityResearch.projects[1].evidence,
+      boundary: securityResearch.projects[1].boundary,
+      href: "/models/quantum-sentinel-alpha",
+    },
+    {
+      name: "rappidAI Ghost v0.3.0",
+      status: "Published",
+      state: securityResearch.projects[0].evidence,
+      boundary: securityResearch.projects[0].boundary,
+      href: "/tools/ghost",
+    },
+    {
       name: "quantum-1-pilot",
       status: "Published",
       state: "Public 49.3M-parameter experimental F16 GGUF release.",
@@ -604,6 +620,8 @@ export const statusContent = {
     "Keep every website claim tied to an immutable artifact or an explicit missing-evidence label.",
   ],
   sources: [
+    { label: "Repository status", url: sentinelResearchLinks.status },
+    { label: "Release", url: ghostLinks.release },
     { label: "Echelon compute plan", url: publicResearchUrls.computePlan },
     {
       label: "Repository roadmap",
