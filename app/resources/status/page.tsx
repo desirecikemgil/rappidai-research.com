@@ -9,6 +9,7 @@ import {
 } from "@/components/resources/resource-ui";
 import { PageIntro } from "@/components/ui/page-intro";
 import { resourceReview, statusContent } from "@/content/resources";
+import { securityResearch } from "@/content/security-research";
 import { metadataFor } from "@/lib/metadata";
 import { localizeContent, t, type Locale } from "@/lib/i18n";
 
@@ -31,7 +32,10 @@ export function LocalizedStatusPage({ locale }: { locale: Locale }) {
             locale={locale}
           />
 
-          <div className="mt-12 space-y-4">
+          <p className="mt-8 text-sm text-muted">
+            {t(locale, securityResearch.reviewed)}
+          </p>
+          <div className="mt-4 space-y-4">
             {content.models.map((model, index) => (
               <Reveal
                 key={model.name}

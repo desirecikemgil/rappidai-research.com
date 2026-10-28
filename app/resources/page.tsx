@@ -1,4 +1,5 @@
 import { DocLayout } from "@/components/layout/doc-layout";
+import { SecurityResources } from "@/components/research/security-research";
 import { EvidenceMatrix } from "@/components/graphics/evidence-matrix";
 import type { EvidenceCell } from "@/components/graphics/evidence-matrix";
 import {
@@ -52,6 +53,14 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
         indexLabel={t(locale, "Explore this page")}
         topics={[
           {
+            href: "#security-resources",
+            label: t(locale, "Security research"),
+            description: t(
+              locale,
+              "Ghost examples and Sentinel evaluation workflows.",
+            ),
+          },
+          {
             href: "#resource-directory-heading",
             label: t(locale, "Documentation directory"),
             description: t(
@@ -79,6 +88,7 @@ export function LocalizedResourcesPage({ locale }: { locale: Locale }) {
       />
 
       <DocLayout>
+        <SecurityResources locale={locale} />
         <ResourceDirectory locale={locale} />
 
         <section id="resources-evidence-map" className="scroll-mt-32">

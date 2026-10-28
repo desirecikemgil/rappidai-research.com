@@ -8,8 +8,8 @@ export const deSentinelTranslations: Readonly<Record<string, string>> = {
   "Target: October 2026": "Ziel: Oktober 2026",
   "Specialized AI for secure software.":
     "Spezialisierte KI für sichere Software.",
-  "A specialized AI model being trained to find, understand and fix vulnerabilities in source code.":
-    "Ein spezialisiertes KI-Modell, das darauf trainiert wird, Schwachstellen im Quellcode zu finden, zu verstehen und zu beheben.",
+  "A specialized AI model in development to find, understand and fix vulnerabilities in source code.":
+    "Ein spezialisiertes KI-Modell in Entwicklung. Es soll Schwachstellen im Quellcode finden, verstehen und beheben.",
   "Explore Quantum Sentinel-Alpha": "Quantum Sentinel-Alpha entdecken",
   "View roadmap": "Roadmap ansehen",
   "An Alpha development target, not a guaranteed release date. Quantum Sentinel 1.0 follows later.":

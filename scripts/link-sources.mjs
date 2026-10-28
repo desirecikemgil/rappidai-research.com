@@ -5,6 +5,7 @@ import ts from "typescript";
 // Keep the list explicit: do not execute application pages to discover links.
 export const linkModules = [
   "content/site.ts",
+  "content/security-evidence.ts",
   "content/ghost.ts",
   "content/replay.ts",
 ];

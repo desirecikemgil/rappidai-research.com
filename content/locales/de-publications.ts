@@ -155,14 +155,15 @@ export const dePublicationTranslations: Readonly<Record<string, string>> = {
   "Table 2": "Tabelle 2",
   "Hypothetical illustration, not a measurement":
     "Hypothetisches Beispiel, keine Messung",
-  "Invented test set of 1,000 functions: 50 vulnerable, 950 safe. The detectors are fictional; no rappidAI model or published tool was evaluated. Precision and F1 are undefined for a detector that reports nothing (—).":
-    "Erfundenes Testset aus 1.000 Funktionen: 50 verwundbar, 950 sicher. Die Detektoren sind fiktiv; weder ein rappidAI-Modell noch ein veröffentlichtes Werkzeug wurde evaluiert. Für einen Detektor, der nichts meldet, sind Präzision und F1 nicht definiert (—).",
+  "Invented test set of 1,000 functions: 50 vulnerable, 950 safe. The detectors are fictional; no rappidAI model or published tool was evaluated. Precision is undefined when no findings are reported (—); F1 is 0 here because all 50 vulnerabilities are missed.":
+    "Erfundenes Testset aus 1.000 Funktionen: 50 verwundbar, 950 sicher. Die Detektoren sind fiktiv; weder ein rappidAI-Modell noch ein veröffentlichtes Werkzeug wurde evaluiert. Ohne Meldungen ist Precision nicht definiert (—). F1 beträgt hier 0, weil alle 50 Schwachstellen übersehen werden.",
   Detector: "Detektor",
   "A · reports 120": "A · 120 Meldungen",
   "92.0%": "92,0 %",
   "37.5%": "37,5 %",
   "90.0%": "90,0 %",
   "7.9%": "7,9 %",
+  "0.00": "0,00",
   "0.53": "0,53",
   "B · reports 40": "B · 40 Meldungen",
   "97.8%": "97,8 %",
@@ -192,8 +193,8 @@ export const dePublicationTranslations: Readonly<Record<string, string>> = {
   "Transparent uncertainty": "Transparente Unsicherheit",
   "The development plan states that the model should express uncertainty or abstain when evidence is insufficient [16]. How confidence is calibrated and communicated, for example through the level of a result in the SARIF format [17] or an explicit needs-verification state, is still an open design question.":
     "Der Entwicklungsplan sieht vor, dass das Modell Unsicherheit benennt oder sich enthält, wenn die Belege nicht ausreichen [16]. Wie Konfidenz kalibriert und vermittelt wird – etwa über die Stufe eines Ergebnisses im SARIF-Format [17] oder einen ausdrücklichen Status „Prüfung erforderlich“ –, ist noch eine offene Gestaltungsfrage.",
-  "None of these elements has been evaluated. They describe how the project intends to approach the problem, not evidence that it solves it.":
-    "Keines dieser Elemente wurde bisher evaluiert. Sie beschreiben, wie das Projekt das Problem angehen will, und sind kein Beleg dafür, dass es gelöst ist.",
+  "The planned model and full engine have not been evaluated. Implemented harness checks do not establish that these approaches solve false-positive rejection.":
+    "Das geplante Modell und die vollständige Engine wurden noch nicht evaluiert. Prüfungen der implementierten Evaluationsinfrastruktur belegen nicht, dass diese Ansätze Fehlalarme zuverlässig zurückweisen.",
   "Table 3": "Tabelle 3",
   "Status of the Sentinel-Alpha elements discussed in this note":
     "Stand der in dieser Notiz besprochenen Sentinel-Alpha-Elemente",

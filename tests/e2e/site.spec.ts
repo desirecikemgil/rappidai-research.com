@@ -157,7 +157,7 @@ test("mobile research index stays contained and exposes every topic", async ({
   await page.goto("/research");
 
   const index = page.getByRole("navigation", { name: "Explore this page" });
-  await expect(index.getByRole("link")).toHaveCount(5);
+  await expect(index.getByRole("link")).toHaveCount(6);
 
   const measurements = await page.evaluate(() => ({
     pageOverflow:
@@ -465,7 +465,7 @@ for (const locale of ["en", "de"] as const) {
     expect(citations.length).toBeGreaterThan(0);
     for (const href of new Set(citations))
       await expect(page.locator(href)).toHaveCount(1);
-    await expect(page.locator(".note-references li")).toHaveCount(17);
+    await expect(page.locator(".note-references li")).toHaveCount(18);
     await expect(
       page.locator(".note-references a[href^='/']").first(),
     ).toHaveAttribute("href", `${prefix}/models/quantum-sentinel-alpha`);

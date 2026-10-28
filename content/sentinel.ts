@@ -12,7 +12,7 @@ export const sentinelPreview = {
   languages: ["Python", "JavaScript / TypeScript", "Go"],
   description: "Specialized AI for secure software.",
   summary:
-    "A specialized AI model being trained to find, understand and fix vulnerabilities in source code.",
+    "A specialized AI model in development to find, understand and fix vulnerabilities in source code.",
   explore: "Explore Quantum Sentinel-Alpha",
   roadmapLink: "View roadmap",
   targetNotice:
