@@ -1,3 +1,5 @@
+import { DocumentationSections } from "@/components/resources/documentation-sections";
+import { sentinelDataGovernance } from "@/content/documentation";
 import { Reveal } from "@/components/motion/reveal";
 import { DocLayout } from "@/components/layout/doc-layout";
 import {
@@ -21,9 +23,13 @@ export function LocalizedDataAndTrainingPage({ locale }: { locale: Locale }) {
       <PageIntro {...content.introduction} />
       <DocLayout>
         <section className="page-shell pb-[var(--section-space)]">
+          <DocumentationSections
+            content={sentinelDataGovernance}
+            locale={locale}
+          />
           <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
-              <p className="eyebrow">{t(locale, "Primary dataset")}</p>
+              <p className="eyebrow">{t(locale, "Pilot and Echelon data")}</p>
               <h2 className="mt-6 text-3xl font-medium tracking-[-0.045em] text-ink">
                 {content.dataset.name}
               </h2>

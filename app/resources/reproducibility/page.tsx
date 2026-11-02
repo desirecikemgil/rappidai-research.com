@@ -1,3 +1,5 @@
+import { DocumentationSections } from "@/components/resources/documentation-sections";
+import { reproducibilityWorkflows } from "@/content/documentation";
 import { Reveal } from "@/components/motion/reveal";
 import { DocLayout } from "@/components/layout/doc-layout";
 import {
@@ -26,6 +28,10 @@ export function LocalizedReproducibilityPage({ locale }: { locale: Locale }) {
       <PageIntro {...content.introduction} />
       <DocLayout>
         <section className="page-shell pb-[var(--section-space)]">
+          <DocumentationSections
+            content={reproducibilityWorkflows}
+            locale={locale}
+          />
           <div className="grid gap-4 lg:grid-cols-2">
             {content.releases.map((release, index) => (
               <Reveal

@@ -8,6 +8,14 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Research documentation refresh — 2 November 2026
+
+- Expanded reproducibility, data/training, responsible use and licensing for Ghost, Sentinel and Replay while retaining historical pilot/Echelon evidence and both publications.
+- Added source-linked verification workflows, Sentinel data approvals and evaluation-only boundaries, project-specific operational safeguards and separate source/artifact license records in English and German.
+- Corrected the obsolete llama.cpp setup warning, removed the elapsed October Alpha target from current release facts, and retained it as historical context without inventing a new date.
+- Added direct documentation links on Research, routed the shared GitHub profile to the organization, and refreshed metadata, FAQ, status and repository reference documents.
+- Recorded source revisions and review scope in `docs/research-documentation-review-2026-11-02.md`.
+
 ### Security research and resources — 28 October 2026
 
 - Added source-pinned Ghost v0.3.0 and Sentinel-Alpha research summaries, documentation links, example workflows and current project-status entries in English and German.

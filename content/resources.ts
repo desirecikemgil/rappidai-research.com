@@ -1,5 +1,6 @@
 import { securityResearch, sentinelResearchLinks } from "./security-research";
 import { ghostLinks } from "./ghost";
+import { replayLinks } from "./replay";
 import type {
   EvidenceStatus,
   FaqEntry,
@@ -17,12 +18,12 @@ import {
 } from "./site";
 
 export const resourceReview = {
-  isoDate: siteConfig.lastReviewed,
-  label: "18 September 2026",
+  isoDate: "2026-11-02",
+  label: "2 November 2026",
   evidenceReference: "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39",
   evidenceUrl: publicResearchUrls.evidenceSnapshot,
   explanation:
-    "Research results retain the historical evidence snapshot and pinned model revisions. Project identity, license decisions and compute planning were checked separately on 18 September 2026; their links identify the relevant revisions.",
+    "Documentation reviewed on 2 November 2026 against Ghost v0.3.0, the Sentinel foundation record and pinned Replay sources. Pilot and Echelon results retain the historical snapshot linked below; this review does not imply new training, evaluation or a legal review of the site.",
 } as const;
 
 export const resourceCards = [
@@ -40,7 +41,7 @@ export const resourceCards = [
     eyebrow: "Artifact integrity",
     title: "Reproducibility",
     description:
-      "Pinned revisions, GGUF checksums, reference commands and explicit gaps in the public run record.",
+      "Release checksums, GhostBench, Sentinel evaluation contracts, Replay records and model-run provenance.",
     href: "/resources/reproducibility",
     status: "Partial evidence",
   },
@@ -49,7 +50,7 @@ export const resourceCards = [
     eyebrow: "Provenance",
     title: "Data & training",
     description:
-      "Dataset sources, configured targets, smoke evidence, filtering and missing final manifests.",
+      "Sentinel source approvals and evaluation-only data alongside pilot and Echelon corpus provenance.",
     href: "/resources/data-and-training",
     status: "Partial evidence",
   },
@@ -58,7 +59,7 @@ export const resourceCards = [
     eyebrow: "Limits first",
     title: "Responsible use",
     description:
-      "Known failure modes, unmeasured risks, excluded uses and secure artifact handling.",
+      "Project-specific access, code-review and capture safeguards, model limitations and reporting channels.",
     href: "/resources/responsible-use",
     status: "Published",
   },
@@ -67,7 +68,7 @@ export const resourceCards = [
     eyebrow: "Reuse boundaries",
     title: "Licensing",
     description:
-      "A material-by-material record of what is licensed, governed elsewhere or still unresolved.",
+      "Separate terms for Ghost, Replay, Sentinel, pilot artifacts, training data and website assets.",
     href: "/resources/licensing",
     status: "Maintainer input required",
   },
@@ -85,7 +86,7 @@ export const resourceCards = [
     eyebrow: "Orientation",
     title: "FAQ",
     description:
-      "Plain-language answers about base completion, GGUF, Echelon, privacy, evidence and licensing.",
+      "Answers about Ghost, Sentinel, Replay, local models, evidence, privacy and reuse.",
     href: "/resources/faq",
     status: "Published",
   },
@@ -186,9 +187,9 @@ export function getPublicationBySlug(
 export const reproducibilityContent = {
   introduction: {
     eyebrow: "Reproducibility",
-    title: "Reproducibility of the published models",
+    title: "Reproducibility across models and tools",
     description:
-      "Release integrity is public for the two pilot GGUF files. Full training reproducibility remains partial because final manifests, logs, environments and raw evaluations are missing.",
+      "Verify released artifacts, repeat software checks and inspect evaluation contracts across Ghost, Sentinel, Replay and Quantum. Complete pilot training records and trained Echelon or Sentinel releases remain unavailable.",
   },
   releases: [
     {
@@ -215,7 +216,7 @@ export const reproducibilityContent = {
   referenceCommand:
     'llama-cli -m quantum-1.6-pilot-v1.6.0-f16.gguf -p "Berlin ist" -n 64 --seed 20260705 --temp 0 --top-p 1 --top-k 0 --no-cnv',
   commandQualification:
-    "This command mirrors the pinned diagnosis configuration. The website test suite does not execute model inference. A local llama.cpp build is required, and the exact external llama.cpp revision cannot be initialized from the reviewed repository because its Git link has no .gitmodules entry.",
+    "This command mirrors the pinned pilot diagnosis configuration and uses completion mode. The current GGUF export guide documents an explicit external llama.cpp checkout and revision, correcting the historical Git-link setup gap. That correction does not reconstruct missing pilot run records. Website tests do not execute model inference.",
   verificationSteps: [
     "Download the GGUF from the pinned Hugging Face repository revision.",
     "Compare the downloaded file against the published SHA-256 value.",
@@ -224,6 +225,30 @@ export const reproducibilityContent = {
     "Preserve raw output alongside the prompt, seed and decoding settings.",
   ],
   matrix: [
+    {
+      area: "Ghost release and GhostBench",
+      status: "Published",
+      available:
+        "Versioned release, checksums, policy documentation and the 25-scenario release gate.",
+      missing:
+        "Coverage outside the tested runtime and named assertions is not established.",
+    },
+    {
+      area: "Sentinel evaluation infrastructure",
+      status: "Partial evidence",
+      available:
+        "Public synthetic cases, a strict parser/scorer and a revision-pinned comparison protocol.",
+      missing:
+        "No model comparison, trained adapter, private holdout or patch evaluation.",
+    },
+    {
+      area: "Replay execution records",
+      status: "Published",
+      available:
+        "Source contracts for capture verification, staged restore, live rerun and diffs.",
+      missing:
+        "Identical external-service output is not guaranteed by a restored capture.",
+    },
     {
       area: "Pilot GGUF integrity",
       status: "Published",
@@ -275,6 +300,13 @@ export const reproducibilityContent = {
   }[],
   sources: [
     {
+      label: "GGUF setup and external revision",
+      url: publicResearchUrls.ggufSetup,
+    },
+    { label: "GhostBench methodology", url: ghostLinks.benchmarks },
+    { label: "Comparison protocol", url: sentinelResearchLinks.bakeoff },
+    { label: "Replay documentation", url: replayLinks.readme },
+    {
       label: "Pinned implementation snapshot",
       url: publicResearchUrls.evidenceSnapshot,
     },
@@ -294,13 +326,13 @@ export const dataAndTrainingContent = {
     eyebrow: "Data & training",
     title: "Data and training methods",
     description:
-      "This record distinguishes dataset provenance, configured targets, smoke-test evidence and absent production or training artifacts across the Quantum model line.",
+      "A record of Sentinel source approvals, evaluation-only cases and planned safeguards, followed by the data provenance and training evidence for the Quantum pilots and Echelon.",
   },
   dataset: {
     name: "epfml/FineWeb2-HQ",
     subset: "deu_Latn",
     origin:
-      "A German-language subset derived from public web material distributed through FineWeb2-HQ.",
+      "The pilot and Echelon language-model workflows reference the German deu_Latn subset of web-derived FineWeb2-HQ. Sentinel has a separate source-code registry and approval process.",
     terms:
       "The dataset card identifies ODC-By 1.0 and Common Crawl terms. Those terms do not automatically clear rights in every source document or license model weights, code, tokenizers or visual assets.",
     url: publicProjectUrls.fineWebDataset,
@@ -382,9 +414,9 @@ export const dataAndTrainingContent = {
 export const responsibleUseContent = {
   introduction: {
     eyebrow: "Responsible use",
-    title: "Responsible use of experimental models",
+    title: "Responsible use of models and tools",
     description:
-      "The public pilots are small base-completion models with documented reliability limits. Echelon has no trained public model. None of these artifacts should be treated as a production assistant.",
+      "Practical use boundaries for Ghost, Sentinel, Replay and the Quantum model experiments. Review project-specific controls alongside model limitations, artifact handling and private reporting routes.",
   },
   excludedUses: [
     "Medical, legal, financial or safety-critical decisions",
@@ -428,7 +460,7 @@ export const responsibleUseContent = {
   ],
   reporting: [
     {
-      label: "Model behavior or documentation",
+      label: "Website documentation and links",
       detail:
         "Use a public GitHub issue when the report contains no private data or security-sensitive details.",
       url: `${publicProjectUrls.websiteRepository}/issues`,
@@ -453,9 +485,41 @@ export const licensingContent = {
     eyebrow: "Licensing",
     title: "Licensing and reuse",
     description:
-      "Public availability is not a reuse license. Licensing is recorded per material: the website's Apache-2.0 license does not automatically cover models, tokenizers, datasets, external repositories, logos or model-card images.",
+      "Licenses are recorded separately for website code, Ghost, Replay, Sentinel, model artifacts and data. Public access does not grant reuse rights, and a source-code license does not automatically cover weights, datasets or brand assets.",
   },
   items: [
+    {
+      material: "Ghost source and original documentation",
+      status: "Published",
+      terms: "Apache License 2.0 in the Ghost repository",
+      boundary:
+        "Separate from the website grant; preserve applicable notices and dependency terms.",
+      url: ghostLinks.license,
+    },
+    {
+      material: "Replay source and original documentation",
+      status: "Published",
+      terms: "Apache License 2.0 in the Replay repository",
+      boundary:
+        "Captured files and outputs retain their own rights and confidentiality requirements.",
+      url: replayLinks.license,
+    },
+    {
+      material: "Sentinel source and synthetic evaluation cases",
+      status: "Maintainer input required",
+      terms: "No project license recorded in the reviewed source",
+      boundary:
+        "Public visibility is not a reuse grant. Upstream candidate-model licenses do not license Sentinel-authored material.",
+      url: sentinelResearchLinks.status,
+    },
+    {
+      material: "Future Sentinel weights and adapters",
+      status: "Not yet available",
+      terms: "No trained release or artifact license",
+      boundary:
+        "Future publication requires explicit artifact terms and a review of upstream model and data obligations.",
+      url: sentinelResearchLinks.status,
+    },
     {
       material: "Website source and original documentation",
       status: "Published",
@@ -531,7 +595,7 @@ export const statusContent = {
     eyebrow: "Project status",
     title: "Project and documentation status",
     description:
-      "A concise view of what is public for each model line, what remains incomplete and which documentation work comes next.",
+      "The public state of models and tools, the evidence behind it and the next publication and evaluation steps.",
   },
   models: [
     {
@@ -613,6 +677,9 @@ export const statusContent = {
     text: string;
   }[],
   roadmap: [
+    "Run the controlled Sentinel model comparison before selecting a foundation or claiming detection quality.",
+    "Review Sentinel source rights and establish a separate private holdout before training.",
+
     "Maintain the published all-rights-reserved pilot-artifact decision; attach an explicit reuse license only if the policy changes.",
     "Attach raw, versioned pilot evaluation artifacts before making broader capability claims.",
     "Complete the Echelon production-data workflow before any dataset-total claim.",
@@ -636,6 +703,26 @@ export const statusContent = {
 
 export const faqEntries = [
   {
+    question: "What can be used today?",
+    answer:
+      "Ghost v0.3.0 is a released experimental runtime. Replay publishes execution-recording and restore tooling. The two Quantum pilots have public GGUF files with restricted reuse rights. Sentinel and Echelon have no trained public release; their repositories document infrastructure and planned work.",
+  },
+  {
+    question: "Has Sentinel-Alpha been trained or benchmarked?",
+    answer:
+      "No. The reviewed repository records Phase 0, an evaluation harness and public synthetic cases. The Qwen3.5-4B/9B comparison has not run. No foundation is frozen, no training source is approved and no trained adapter exists.",
+  },
+  {
+    question: "Does a successful GhostBench run prove an agent is safe?",
+    answer:
+      "No. It verifies named assertions in the tested environment. Prompt signals, decoy access and containment have specific limits. Review the Ghost threat model and keep host permissions, workspace secrets and network policy within scope.",
+  },
+  {
+    question: "Does Replay guarantee identical model outputs?",
+    answer:
+      "No. Replay supports recorded playback, capture verification, restore and live reruns. External models and services can change, so a new execution may differ even when recorded local state is restored.",
+  },
+  {
     question: "Are the public Quantum pilots chat models?",
     answer:
       "No. quantum-1-pilot and quantum-1.6-pilot are experimental base-completion models. They are not instruction-tuned assistants and no chat template or conversational alignment is promised.",
@@ -658,7 +745,7 @@ export const faqEntries = [
   {
     question: "Why are there no standardized benchmark scores?",
     answer:
-      "No versioned standardized downstream-task benchmark report is public. The website does not invent or infer scores and keeps the gap visible until a suitable reproducible evaluation exists.",
+      "No versioned downstream-task benchmark report is published for the Quantum models. GhostBench reports named software assertions; Sentinel's regex baseline validates its harness. Neither is evidence of a trained model's detection quality.",
   },
   {
     question: "What do the evidence labels mean?",

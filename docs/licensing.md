@@ -128,6 +128,29 @@ External tools such as `llama.cpp`, PyTorch, Transformers, SentencePiece, and
 their dependencies retain their upstream licenses. Linking to, invoking, or
 depending on them does not relicense them under Apache-2.0.
 
+## Ghost, Replay and Sentinel (reviewed 2 November 2026)
+
+Ghost and Replay have separate Apache-2.0 source licenses at the reviewed
+revisions. Applicable license, notice, attribution and dependency obligations
+remain with those works; the website does not relicense them. Replay captures
+retain the rights and confidentiality requirements of their underlying material.
+
+- [Ghost v0.3.0 license](https://github.com/rappidAI-Research/rappid-ghost/blob/2184a0e87b7dca161267f5fe596a2dd5d56d189d/LICENSE)
+- [Replay reviewed license](https://github.com/rappidAI-Research/rappid-replay/blob/dc9c2b953d84074164e752dc13ea1f8d538f3056/LICENSE)
+
+The [reviewed Sentinel status](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/d7354b65063cd07963dcc4753dbd84f81ca8b42d/docs/STATUS.md)
+explicitly leaves the repository license open, including redistribution of
+project-authored synthetic evaluation cases. Public visibility is not a reuse
+grant. Qwen candidates have their own upstream licenses; these do not license
+Sentinel-authored code, data or future adapters. No trained Sentinel artifact
+or artifact license exists. Echelon also has no trained model release or
+artifact license.
+
+A future model or adapter release must record its own terms, exact covered
+files and revisions, upstream model obligations, data approvals and provenance.
+This update records source evidence; it grants no new rights and does not
+resolve outstanding project, brand or model licensing decisions.
+
 ## Contribution provenance
 
 Contributors must follow [CONTRIBUTING.md](../CONTRIBUTING.md). Do not accept new

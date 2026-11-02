@@ -21,7 +21,30 @@ research repository. This review used its public commit
 repositories. Future changes to those sources should be recorded with a new
 dated review rather than retroactively treated as evidence for an older release.
 
-## Dataset provenance
+## Sentinel data governance (reviewed 2 November 2026)
+
+Sentinel uses a separate source-code workflow. At the reviewed
+[revision](https://github.com/rappidAI-Research/quantum-sentinel-alpha/tree/d7354b65063cd07963dcc4753dbd84f81ca8b42d),
+the source registry contains eight sources, all with `production_approved: false`.
+Training-approved sources and training records both remain at zero.
+FineWeb2-HQ is documented below for the pilot/Echelon language-model workflows,
+not as Sentinel training data.
+
+[Sentinel Garden governance](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/d7354b65063cd07963dcc4753dbd84f81ca8b42d/docs/DATA_GOVERNANCE.md)
+requires immutable source revisions, license and terms review, a resolved
+redistribution position and a named reviewer. Planned record provenance includes
+vulnerable/fixed revisions, context, diffs, labels, localization, verification
+artifacts and hashes. Training and private holdout repositories must be disjoint;
+a temporal cutoff is to be frozen before large-scale collection.
+
+QuickEval v1 has 86 public clean-room synthetic cases: 37 vulnerable, 34 hard
+negatives and 15 abstentions. The 16 Python coding-regression tasks are also
+registered evaluation-only. Neither set is training data or a private holdout.
+Public benchmark cases have not been imported; the private holdout has not
+started. Evaluation-only cases, reference patches and test oracles stay excluded
+from training prompts. No model comparison, adapter or training run is recorded.
+
+## Dataset provenance for the pilots and Echelon
 
 The reviewed pipelines name
 [`epfml/FineWeb2-HQ`](https://huggingface.co/datasets/epfml/FineWeb2-HQ), German
@@ -45,11 +68,11 @@ legal advice.
 
 ## Scope by model stage
 
-| Stage               | Public training/data statement                                                      | Evidence boundary                                                                                                                                                       |
-| ------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `quantum-1-pilot`   | Approximately 100M German tokens; trained from scratch for next-token prediction    | Reported by the Hugging Face card. The research repository has preparation/configuration material but no final release run manifest.                                    |
-| `quantum-1.6-pilot` | 500M additional German tokens, approximately 600M cumulative with the earlier stage | Reported by the Hugging Face card. The configuration targets 500M new tokens, but actual post-filter counts and completed steps are not in a final public run manifest. |
-| `quantum-1-echelon` | Production targets of 8B train, 10M validation, and 10M test tokens                 | Configured targets only. The committed report explicitly says the production run was not started.                                                                       |
+| Stage               | Public training/data statement                                                                                               | Evidence boundary                                                                                                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `quantum-1-pilot`   | Approximately 100M German tokens; trained from scratch for next-token prediction                                             | Reported by the Hugging Face card. The research repository has preparation/configuration material but no final release run manifest.                                    |
+| `quantum-1.6-pilot` | 500M additional German tokens, approximately 600M cumulative with the earlier stage                                          | Reported by the Hugging Face card. The configuration targets 500M new tokens, but actual post-filter counts and completed steps are not in a final public run manifest. |
+| `quantum-1-echelon` | Historical 8B train / 10M validation / 10M test configuration; newer 1B plan targets 40B Base tokens and 4,096-token context | Configured targets only. The committed report explicitly says the production run was not started.                                                                       |
 
 ## Pilot data preparation
 
@@ -199,7 +222,7 @@ the release record should link:
   Quantum records the external revision and checkout instructions in
   [docs/gguf-export.md](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md); historical run provenance remains incomplete.
 
-## Next execution milestone
+## Echelon planning milestone
 
 The [compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) separates configured token targets from completed data and training. It adds resource calculations and acceptance gates without starting production preparation, training or a cloud workload.
 

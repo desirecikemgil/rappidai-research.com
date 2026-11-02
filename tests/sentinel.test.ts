@@ -18,7 +18,7 @@ describe("Sentinel announcement boundaries", () => {
       "The foundation is not frozen.",
     );
     expect(sentinelPreview.targetNotice).toContain(
-      "not a guaranteed release date",
+      "no revised release date is announced",
     );
     expect(sentinelPreview.capabilitiesNotice).toContain("Training objectives");
   });
@@ -53,7 +53,8 @@ describe("Sentinel announcement boundaries", () => {
     }
     const german = localizeContent(sentinelPreview, "de");
     expect(german.status).toBe("Alpha · In Entwicklung");
-    expect(german.target).toBe("Ziel: Oktober 2026");
+    expect(german.target).toBe("Veröffentlichungstermin offen");
+    expect(german.targetNotice).toContain("ist verstrichen");
     expect(german.foundationText).toContain("noch nicht eingefroren");
     expect(german.capabilitiesNotice).toContain("Trainingsziele");
   });

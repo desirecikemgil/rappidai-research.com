@@ -6,6 +6,7 @@ export const replayLinks = {
   repository,
   snapshot: `${repository}/tree/${revision}`,
   readme: `${source}/README.md`,
+  license: `${source}/LICENSE`,
   architecture: `${source}/docs/adr/README.md`,
   restore: `${source}/docs/adr/ADR-028-verified-staged-restore.md`,
   rerun: `${source}/docs/adr/ADR-029-exact-branch-live-rerun.md`,

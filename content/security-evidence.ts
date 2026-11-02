@@ -14,6 +14,7 @@ export const sentinelResearchLinks = {
   architecture: `${sentinelSource}/README.md`,
   finding: `${sentinelSource}/data/schemas/finding.schema.json`,
   governance: `${sentinelSource}/docs/DATA_GOVERNANCE.md`,
+  sources: `${sentinelSource}/data/registry.yaml`,
   bakeoff: `${sentinelSource}/docs/BAKEOFF.md`,
   cases: `${sentinelSource}/eval/sentinelbench/quickeval_v1.jsonl`,
   runner: `${sentinelSource}/sentinel/eval/run_model.py`,

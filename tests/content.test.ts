@@ -150,9 +150,10 @@ describe("resource content contracts", () => {
     }
   });
 
-  it("records the reviewed evidence date and exact legal address", () => {
-    expect(resourceReview.isoDate).toBe("2026-09-18");
-    expect(siteConfig.lastReviewed).toBe(resourceReview.isoDate);
+  it("keeps documentation and legal review dates separate", () => {
+    expect(resourceReview.isoDate).toBe("2026-11-02");
+    expect(siteConfig.lastReviewed).toBe("2026-09-18");
+    expect(resourceReview.explanation).toContain("historical snapshot");
     expect(siteConfig.legal.serviceAddress).toBe(
       "Almutstraße 3, 13467 Berlin, Germany",
     );
@@ -207,7 +208,10 @@ describe("public source configuration", () => {
     expect(siteConfig.canonicalUrl).toBe("https://www.rappidai-research.com");
     expect(new URL(siteConfig.canonicalUrl).protocol).toBe("https:");
     expect(siteConfig.externalLinks.github.url).toBe(
-      publicResearchUrls.repository,
+      "https://github.com/rappidAI-Research",
+    );
+    expect(publicResearchUrls.repository).toBe(
+      "https://github.com/rappidAI-Research/lumen-quantum",
     );
   });
 

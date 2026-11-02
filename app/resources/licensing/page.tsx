@@ -1,3 +1,5 @@
+import { DocumentationSections } from "@/components/resources/documentation-sections";
+import { licensingGuidance } from "@/content/documentation";
 import { Reveal } from "@/components/motion/reveal";
 import { DocLayout } from "@/components/layout/doc-layout";
 import {
@@ -92,6 +94,13 @@ export function LocalizedLicensingPage({ locale }: { locale: Locale }) {
               </table>
             </div>
           </Reveal>
+
+          <div className="mt-12">
+            <DocumentationSections
+              content={licensingGuidance}
+              locale={locale}
+            />
+          </div>
 
           <Reveal className="mt-8 border-l-2 border-accent bg-pale-soft px-6 py-5">
             <p className="max-w-[64rem] text-sm leading-6 text-ink-soft">

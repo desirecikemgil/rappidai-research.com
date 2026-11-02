@@ -23,7 +23,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
   const sentinel = localizeContent(sentinelPreview, locale);
   const sentinelFacts = [
     [t(locale, "Status"), sentinel.status],
-    [t(locale, "Alpha target"), t(locale, "October 2026")],
+    [t(locale, "Release timing"), t(locale, "No revised date announced")],
     [t(locale, "Primary foundation candidate"), sentinel.primaryFoundation],
     [t(locale, "Primary languages"), sentinel.languages.join(", ")],
   ];
