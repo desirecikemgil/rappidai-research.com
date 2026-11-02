@@ -1,3 +1,4 @@
+import { ResourceDirectory } from "@/components/resources/resource-ui";
 import { DrawRule, Reveal } from "@/components/motion/reveal";
 import { DocLayout } from "@/components/layout/doc-layout";
 import { SectionRail } from "@/components/research/section-rail";
@@ -1214,23 +1215,7 @@ export function LocalizedResearchPage({ locale }: { locale: Locale }) {
         </section>
 
         <section className="page-shell pb-[var(--section-space)]">
-          <Reveal className="liquid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div>
-              <p className="eyebrow">{t(locale, "Detailed records")}</p>
-              <h2 className="display-section mt-7 text-ink">
-                {t(locale, "Further resources")}
-              </h2>
-              <p className="body-lg mt-6 max-w-[48rem]">
-                {t(
-                  locale,
-                  "Inspect the publication, reproducibility record, data provenance, responsible-use guidance, licensing boundaries and current evidence status.",
-                )}
-              </p>
-            </div>
-            <ActionLink href={localizePath("/resources", locale)}>
-              {t(locale, "Explore resources")}
-            </ActionLink>
-          </Reveal>
+          <ResourceDirectory locale={locale} />
         </section>
       </DocLayout>
     </>

@@ -183,6 +183,8 @@ test("mobile menu remains legible and closes after a deep-route language switch"
   await page
     .getByRole("button", { name: "Open navigation", exact: true })
     .click();
+  // Contrast belongs to the resting menu, after its 200ms entrance fade.
+  await expect(page.locator("#mobile-navigation")).toHaveCSS("opacity", "1");
   const violations = (
     await new AxeBuilder({ page }).include("header.liquid-header").analyze()
   ).violations.filter(({ impact }) =>

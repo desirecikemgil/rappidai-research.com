@@ -192,7 +192,7 @@ export const pageMetadata = {
   "/models/quantum-sentinel-alpha": {
     title: "Quantum Sentinel-Alpha — rappidAI Research",
     description:
-      "Quantum Sentinel-Alpha is a security-specialized code model in development. Explore training objectives, the provisional foundation, planned local inference and the October 2026 Alpha target.",
+      "Quantum Sentinel-Alpha: Phase 0 security-model development, evaluation infrastructure, foundation candidates and planned local inference. No trained release is available.",
   },
   "/models/quantum-1-pilot": {
     title: "quantum-1-pilot — rappidAI Research",
@@ -212,7 +212,7 @@ export const pageMetadata = {
   "/research": {
     title: "Research — rappidAI Research",
     description:
-      "An artifact-level evidence ledger covering Quantum pilot results, Echelon pipeline status, negative findings, gaps and reproducibility.",
+      "Source-linked research on Ghost agent security, Sentinel evaluation infrastructure, Quantum pilot results and the Echelon pipeline.",
   },
   "/tools": {
     title: "Tools — rappidAI Research",
@@ -254,22 +254,22 @@ export const pageMetadata = {
   "/resources/reproducibility": {
     title: "Reproducibility — rappidAI Research",
     description:
-      "Pinned source revisions, release checksums, reference commands and explicit reproducibility gaps for Quantum and Echelon artifacts.",
+      "Reproduce Ghost checks, inspect Sentinel evaluation contracts, verify Replay records and check Quantum GGUF artifacts and training provenance.",
   },
   "/resources/data-and-training": {
     title: "Data & Training — rappidAI Research",
     description:
-      "Dataset provenance, configured targets, pipeline evidence and known data and training gaps for the Quantum model series.",
+      "Sentinel data approvals and evaluation-only cases, plus FineWeb2-HQ provenance, configured targets and training evidence for the Quantum pilots and Echelon.",
   },
   "/resources/responsible-use": {
     title: "Responsible Use — rappidAI Research",
     description:
-      "Known limitations, unmeasured risks, prohibited high-stakes uses and reporting channels for rappidAI research artifacts.",
+      "Access controls for Ghost, finding verification for Sentinel, capture privacy for Replay and responsible use of experimental Quantum models.",
   },
   "/resources/licensing": {
     title: "Licensing — rappidAI Research",
     description:
-      "The verified license boundary for website code, model artifacts, tokenizers, datasets, repositories and visual assets.",
+      "Separate license records for Ghost, Replay, Sentinel, website code, Quantum model artifacts, datasets and brand assets.",
   },
   "/resources/status": {
     title: "Project Status — rappidAI Research",
@@ -279,7 +279,7 @@ export const pageMetadata = {
   "/resources/faq": {
     title: "FAQ — rappidAI Research",
     description:
-      "Answers about base-completion models, GGUF, local inference, Echelon stages, evidence status, privacy and licensing.",
+      "Answers about Ghost, Sentinel, Replay, Quantum models, reproducibility, privacy, project status and reuse rights.",
   },
   "/about": {
     title: "About — rappidAI Research",

@@ -27,7 +27,7 @@ export const echelonPreview = {
     eyebrow: "The next Quantum",
     title: "What Echelon is designed for",
     description:
-      "Echelon is our current major model project: an approximately 1B-parameter language model developed from scratch. The goal is carefully curated data and controlled training, rather than parameter count alone.",
+      "Echelon is our German-first language-model research line, targeting approximately 1B parameters trained from scratch. Its plan centers on curated data and controlled training. Sentinel-Alpha is the separate security-model focus.",
     principles: [
       {
         title: "German first, with English support",

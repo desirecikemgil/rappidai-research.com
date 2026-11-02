@@ -1,8 +1,9 @@
 # Quantum Sentinel-Alpha — development card
 
 Quantum Sentinel-Alpha is the first substantial security-SFT milestone in the
-Quantum Sentinel 1 line. It is in development; October 2026 is an **Alpha target**,
-not a guaranteed release date or a target for the stable Quantum Sentinel 1.0.
+Quantum Sentinel 1 line. It remains in **Phase 0**. The earlier October 2026
+Alpha target has passed; no revised release date is announced. No model has
+been trained or evaluated in the reviewed public record.
 
 ## Training objectives
 
@@ -58,7 +59,11 @@ Foundation → Baseline → Dataset/Garden → Calibration → SFT Alpha → Dat
 
 Prepared from the maintainer-supplied **Quantum Sentinel 1 Masterplan v1.1 Lean,
 6 October 2026**, and explicit website instructions supplied on 7 October 2026.
-The website brief establishes the public Alpha name and October target.
+The website brief established the public Alpha name and historical October target.
+The 2 November 2026 documentation review checked the pinned
+[public status record](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/d7354b65063cd07963dcc4753dbd84f81ca8b42d/docs/STATUS.md):
+86 synthetic QuickEval cases, a model runner and comparison protocol are implemented;
+the comparison, private holdout, data approvals and training remain outstanding.
 This card records research planning only, without claiming a completed training
 run or publishing internal budget, cloud-account or support-case information.
 

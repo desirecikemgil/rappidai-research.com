@@ -6,7 +6,7 @@ export const publicContact = {
 
 export const publicProfiles = {
   huggingFace: "https://huggingface.co/rappidAI",
-  github: "https://github.com/rappidAI-Research/lumen-quantum",
+  github: "https://github.com/rappidAI-Research",
 } as const;
 
 const websiteRepository =
@@ -61,6 +61,7 @@ export const publicResearchUrls = {
   evidenceSnapshot: `${lumenQuantumRepository}/tree/${lumenQuantumReviewedRevision}`,
   modelLicenseRegistry: `${lumenQuantumLicenseDecisionSource}/MODEL_LICENSES.md`,
   sourceLicense: `${lumenQuantumLicenseDecisionSource}/LICENSE`,
+  ggufSetup: `${lumenQuantumLicenseDecisionSource}/docs/gguf-export.md`,
   quantum1ModelCard: `${publicModelUrls["quantum-1-pilot"]}/blob/${reviewedModelRevisions["quantum-1-pilot"]}/README.md`,
   quantum16ModelCard: `${publicModelUrls["quantum-1-6-pilot"]}/blob/${reviewedModelRevisions["quantum-1-6-pilot"]}/README.md`,
   trainingDocumentation: `${lumenQuantumReviewedSource}/docs/quantum_1_6_pilot.md`,

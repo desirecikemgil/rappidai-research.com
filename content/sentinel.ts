@@ -6,7 +6,8 @@ export const sentinelPreview = {
   name: "Quantum Sentinel-Alpha",
   line: "Quantum Sentinel 1",
   status: "Alpha · In Development",
-  target: "Target: October 2026",
+  target: "Release timing not announced",
+  releaseTiming: "No revised date announced",
   primaryFoundation: "Qwen3.5-9B",
   foundations: ["Qwen3.5-9B", "Qwen3.5-4B"],
   languages: ["Python", "JavaScript / TypeScript", "Go"],
@@ -16,11 +17,11 @@ export const sentinelPreview = {
   explore: "Explore Quantum Sentinel-Alpha",
   roadmapLink: "View roadmap",
   targetNotice:
-    "An Alpha development target, not a guaranteed release date. Quantum Sentinel 1.0 follows later.",
+    "The earlier October 2026 Alpha target has passed. The reviewed repository remains in Phase 0; no revised release date is announced. Quantum Sentinel 1.0 remains a later milestone.",
   positioning: ["Cybersecurity-focused", "Local-first", "Open weights planned"],
   overview:
     "Quantum Sentinel-Alpha is the first substantial security fine-tuning milestone of the Quantum Sentinel 1 model line. It is designed as a specialized second security reviewer for developers, open-source maintainers, small engineering teams, security researchers and coding-agent builders.",
-  capabilitiesTitle: "What the model is trained to do",
+  capabilitiesTitle: "Training objectives for Alpha",
   capabilitiesNotice:
     "Training objectives for Alpha. Performance has not yet been published. When evidence is insufficient, the model should express uncertainty or abstain.",
   capabilities: [
@@ -161,7 +162,7 @@ export const sentinelModel = {
       label: "Foundation selection",
       value: "Internal Qwen3.5-4B / 9B security bake-off pending",
     },
-    { label: "Alpha target", value: "October 2026 · Development target" },
+    { label: "Release timing", value: sentinelPreview.releaseTiming },
   ],
   sources: [],
   inferenceSoftware: [],

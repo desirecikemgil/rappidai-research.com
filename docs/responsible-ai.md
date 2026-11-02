@@ -2,7 +2,7 @@
 
 ## Purpose and scope
 
-rappidAI publishes early-stage research on compact language models. This
+rappidAI publishes early-stage model research and agent infrastructure. This
 document records the minimum responsible-use boundary shared by the website,
 model cards, research notes, and future release records. It is not a claim that
 the models have completed a comprehensive safety evaluation.
@@ -12,6 +12,40 @@ The current public pilot models are experimental base-completion models.
 trained public model. Capability, safety, or deployment claims must never be
 inferred from parameter count, configuration, a smoke test, or the existence of
 a downloadable file.
+
+## Project-specific tool and security boundaries
+
+Reviewed on 2 November 2026 against the sources in the
+[documentation review](research-documentation-review-2026-11-02.md).
+
+### Ghost
+
+Ghost v0.3.0 is a released experimental runtime. Its 25-scenario release gate
+checks named properties on Linux amd64 with Docker Engine, not universal attack
+resistance or LLM intent detection. Use minimum privileges, explicit network
+policy and a dedicated workspace without real secrets. Mounted workspace
+secrets remain exposed; command arguments and persisted session artifacts need
+review before sharing. Prompt signals and decoy access do not prove intent.
+Containment affects subsequent decisions and does not revoke established
+connections. Follow Ghost's own threat model and private security policy.
+
+### Quantum Sentinel-Alpha
+
+The reviewed public repository remains in Phase 0 with no evaluated or trained
+model. The earlier October Alpha target has passed; no revised date is announced.
+Future findings and patches require expert review, location/CWE/evidence checks
+and independent verification. A no-finding or abstention answer cannot certify
+secure code. Review only authorized systems and protect private source material.
+The coding-regression harness uses a child process and resource limits, not a
+complete sandbox for executing untrusted code on shared hosts.
+
+### Replay
+
+Captures may contain private source, prompts, arguments and outputs. Limit
+capture scope and access, and review artifacts before sharing. Inspect recorded
+state before restoring it. A live rerun executes work again and may reconnect to
+external services; verify permissions and credentials first. Recorded playback,
+restored local state and identical live model output are different properties.
 
 ## Known model limitations
 
@@ -62,7 +96,7 @@ output.
 
 ## Data, privacy, and rights
 
-The documented pipelines use German web-derived material from FineWeb2-HQ /
+The pilot and Echelon language-model pipelines reference German web-derived material from FineWeb2-HQ /
 Common Crawl. Upstream filtering and deduplication cannot guarantee removal of
 all personal information, copyrighted text, harmful content, near-duplicates,
 or representational bias.

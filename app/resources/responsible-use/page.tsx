@@ -1,3 +1,5 @@
+import { DocumentationSections } from "@/components/resources/documentation-sections";
+import { responsibleUseBoundaries } from "@/content/documentation";
 import { Reveal } from "@/components/motion/reveal";
 import { DocLayout } from "@/components/layout/doc-layout";
 import {
@@ -19,6 +21,10 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
       <PageIntro {...content.introduction} />
       <DocLayout>
         <section className="page-shell pb-[var(--section-space)]">
+          <DocumentationSections
+            content={responsibleUseBoundaries}
+            locale={locale}
+          />
           <Reveal className="border border-accent/25 bg-ink p-7 text-white sm:p-10">
             <div className="flex flex-wrap items-center gap-3">
               <p className="eyebrow eyebrow-on-dark">
@@ -43,7 +49,7 @@ export function LocalizedResponsibleUsePage({ locale }: { locale: Locale }) {
 
           <div className="mt-[clamp(4rem,8vw,8rem)]">
             <Reveal>
-              <p className="eyebrow">{t(locale, "Known behavior")}</p>
+              <p className="eyebrow">{t(locale, "Pilot model behavior")}</p>
               <h2 className="display-section mt-7 text-ink">
                 {t(locale, "Documented behavioral limits")}
               </h2>

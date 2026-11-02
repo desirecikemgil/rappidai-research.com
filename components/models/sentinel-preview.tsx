@@ -115,8 +115,8 @@ export function SentinelHero({
             <dd>{c.status}</dd>
           </div>
           <div>
-            <dt>{t(locale, "Alpha target")}</dt>
-            <dd>{t(locale, "October 2026")}</dd>
+            <dt>{t(locale, "Release timing")}</dt>
+            <dd>{t(locale, "No revised date announced")}</dd>
           </div>
           <div>
             <dt>{t(locale, "Primary foundation candidate")}</dt>
@@ -301,8 +301,8 @@ export function SentinelRoadmap({
       </div>
       <div className={styles.target}>
         <div>
-          <p className={styles.label}>{t(locale, "Alpha target")}</p>
-          <h3>{t(locale, "October 2026")}</h3>
+          <p className={styles.label}>{t(locale, "Release timing")}</p>
+          <h3>{t(locale, "No revised date announced")}</h3>
         </div>
         <p>{c.targetNotice}</p>
       </div>
@@ -356,8 +356,8 @@ export function SentinelCard({ locale }: { locale: Locale }) {
             <dd>{t(locale, "Security-specialized code model")}</dd>
           </div>
           <div>
-            <dt>{t(locale, "Alpha target")}</dt>
-            <dd>{t(locale, "October 2026")}</dd>
+            <dt>{t(locale, "Release timing")}</dt>
+            <dd>{t(locale, "No revised date announced")}</dd>
           </div>
           <div>
             <dt>{t(locale, "Release")}</dt>
@@ -430,7 +430,7 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
           <dl className={`facts ${styles.metadata}`}>
             {[
               ["Status", c.status],
-              ["Alpha target", t(locale, "October 2026")],
+              ["Release timing", t(locale, "No revised date announced")],
               ["Primary foundation candidate", c.primaryFoundation],
             ].map(([label, value]) => (
               <div key={label}>

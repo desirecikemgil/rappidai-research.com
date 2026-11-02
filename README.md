@@ -12,7 +12,9 @@ This repository contains the source for the [public rappidAI research website](h
 - **Early-stage research project** under active development.
 - The website is a statically rendered Next.js application with no database, API routes, analytics or model execution.
 - `quantum-1-pilot` and `quantum-1.6-pilot` are public experimental base-completion releases, not chat assistants or production systems.
-- `quantum-1-echelon` is the strategic next model line. Architecture, tokenizer and data-pipeline preflight artifacts are public, but no trained model has been released.
+- `quantum-sentinel-alpha` is the current security-model focus, in Phase 0 with an evaluation harness but no trained release.
+- Ghost v0.3.0 is a released experimental security runtime; Replay provides execution recording and restore tooling.
+- `quantum-1-echelon` is the separate German-first model line. Architecture, tokenizer and data-pipeline preflight artifacts are public, but no trained model has been released.
 - Model-weight reuse rights and several training-data/run details remain unresolved; see [Licensing](docs/licensing.md) and [Data and training](docs/data-and-training.md).
 
 ## Goals
@@ -113,7 +115,7 @@ Keep claims source-linked. Do not add benchmark scores, release status, people, 
 - Planned token totals and architecture targets remain labelled as targets until final public manifests or trained artifacts exist.
 - Model outputs, benchmarks, hardware use, runtime, cost, energy use, licenses and release dates are never inferred.
 
-The `/research` route contains the public evidence ledger, findings, negative results, engineering lessons and reproducibility matrix. The `/resources` hub publishes the detailed research note, reproducibility record, data provenance, responsible-use guidance, licensing matrix, project status and FAQ. The Echelon model page derives its status from the same centralized source records.
+The `/research` route contains the public evidence ledger, findings, negative results, engineering lessons and reproducibility matrix. The `/resources` hub publishes both research notes and the reproducibility, data, responsible-use, licensing, status and FAQ records. The four documentation topics cover Ghost, Sentinel and Replay alongside historical Quantum evidence; see [the dated source review](docs/research-documentation-review-2026-11-02.md). The Echelon model page derives its status from the same centralized source records.
 
 ## Training, inference and evaluation
 
@@ -140,8 +142,9 @@ Current Quantum documents an external checkout with an explicit revision in
 
 ## Echelon milestone
 
-Quantum 1 Echelon is the current major model project and the homepage launch
-preview. The [1B execution contract](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
+Quantum 1 Echelon remains the separate German-first language-model project.
+Quantum Sentinel-Alpha is the homepage focus; its earlier October target has
+passed, and no revised release date or trained model is announced. The [1B execution contract](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
 sets a German-first, from-scratch ~1.0–1.02B parameter target, 4,096-token Base
 context, BF16 and 40B Base pretraining tokens. English coverage is planned;
 32K/48K tokenizer selection remains open. Base → SFT → Preference Optimization
