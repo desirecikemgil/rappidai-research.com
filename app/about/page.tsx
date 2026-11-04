@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BrandSymbol } from "@/components/ui/brand-lockup";
 import { PageIntro } from "@/components/ui/page-intro";
 import { ActionLink } from "@/components/ui/action-link";
 import { aboutPageContent } from "@/content/pages";
@@ -50,34 +49,6 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
             value: t(locale, "Not intended"),
           },
         ]}
-        aside={
-          <div className="card overflow-hidden">
-            <div className="flex items-center gap-5 border-b border-line bg-pale-soft p-6">
-              <div className="w-14 flex-none">
-                <BrandSymbol />
-              </div>
-              <div className="min-w-0">
-                <p className="m-0 text-sm text-muted">{t(locale, "Founder")}</p>
-                <p className="m-0 mt-1 text-xl font-medium tracking-[-0.03em] text-ink">
-                  {config.founder.name}
-                </p>
-                <p className="m-0 mt-1 text-sm text-muted">
-                  {config.founder.role}
-                </p>
-              </div>
-            </div>
-            <ul className="m-0 grid list-none gap-0 p-0">
-              {config.founder.focusAreas.map((area) => (
-                <li
-                  key={area}
-                  className="border-b border-line px-6 py-3 text-[0.92rem] text-ink-soft last:border-b-0"
-                >
-                  {area}
-                </li>
-              ))}
-            </ul>
-          </div>
-        }
         indexLabel={t(locale, "Explore this page")}
         topics={[
           {
