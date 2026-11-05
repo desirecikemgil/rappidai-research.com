@@ -192,7 +192,7 @@ export const pageMetadata = {
   "/models/quantum-sentinel-alpha": {
     title: "Quantum Sentinel-Alpha — rappidAI Research",
     description:
-      "Quantum Sentinel-Alpha: Phase 0 security-model development, evaluation infrastructure, foundation candidates and planned local inference. No trained release is available.",
+      "Quantum Sentinel-Alpha: a source-code security model in development on Qwen3.5-9B, with the Sentinel Garden dataset, a QLoRA training pipeline and planned local inference. No model has been trained and no release is available.",
   },
   "/models/quantum-1-pilot": {
     title: "quantum-1-pilot — rappidAI Research",
@@ -246,6 +246,13 @@ export const pageMetadata = {
       description:
         "A research note on why AI-based vulnerability detection struggles to separate exploitable weaknesses from harmless code, with hard negatives, evaluation metrics and the Quantum Sentinel-Alpha research direction.",
     },
+  "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check":
+    {
+      title:
+        "Building a Vulnerability-Fix Dataset You Can Check — rappidAI Research",
+      description:
+        "A research note on Sentinel Garden: turning 19,959 security advisories into 2,322 audited training records, the errors code review found on the way and why no record is approved for training yet.",
+    },
   "/resources/publications/from-100m-to-600m-german-tokens": {
     title: "From 100M to 600M German Tokens — rappidAI Research",
     description:
@@ -259,7 +266,7 @@ export const pageMetadata = {
   "/resources/data-and-training": {
     title: "Data & Training — rappidAI Research",
     description:
-      "Sentinel data approvals and evaluation-only cases, plus FineWeb2-HQ provenance, configured targets and training evidence for the Quantum pilots and Echelon.",
+      "The Sentinel Garden data pipeline, its audit, rights review and QLoRA training gate, plus FineWeb2-HQ provenance, configured targets and training evidence for the Quantum pilots and Echelon.",
   },
   "/resources/responsible-use": {
     title: "Responsible Use — rappidAI Research",

@@ -13,6 +13,7 @@ export type SiteRoute =
   | "/resources/publications"
   | "/resources/publications/from-100m-to-600m-german-tokens"
   | "/resources/publications/false-positive-problem-in-ai-vulnerability-detection"
+  | "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check"
   | "/resources/reproducibility"
   | "/resources/data-and-training"
   | "/resources/responsible-use"
@@ -146,6 +147,7 @@ export interface ModelSource {
 
 export type ResearchNoteId =
   | "from-100m-to-600m-german-tokens"
+  | "building-a-vulnerability-fix-dataset-you-can-check"
   | "false-positive-problem-in-ai-vulnerability-detection"
   | "why-local-inference-changes-the-design-target"
   | "from-pretraining-to-focused-adaptation"
@@ -230,7 +232,8 @@ export interface ResourceCard {
 
 export type PublicationSlug =
   | "from-100m-to-600m-german-tokens"
-  | "false-positive-problem-in-ai-vulnerability-detection";
+  | "false-positive-problem-in-ai-vulnerability-detection"
+  | "building-a-vulnerability-fix-dataset-you-can-check";
 
 export interface PublicationSubsection {
   readonly title: string;

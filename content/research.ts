@@ -89,6 +89,16 @@ export const experimentLogs = [
 
 export const researchNotes = [
   {
+    id: "building-a-vulnerability-fix-dataset-you-can-check",
+    title: "Building a Vulnerability-Fix Dataset You Can Check",
+    kind: "research-note",
+    kindLabel: "Research note",
+    progress: "published",
+    progressLabel: "Published",
+    href: "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+    publicationDate: "2026-11-04",
+  },
+  {
     id: "false-positive-problem-in-ai-vulnerability-detection",
     title: "The False Positive Problem in AI Vulnerability Detection",
     kind: "research-note",

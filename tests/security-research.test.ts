@@ -4,7 +4,9 @@ import {
   securityResources,
   sentinelResearchLinks,
   securityReview,
+  sentinelReview,
 } from "@/content/security-research";
+import { sentinelHistoricalLinks } from "@/content/security-evidence";
 import { falsePositiveNote } from "@/content/false-positive-note";
 import { t } from "@/lib/i18n";
 
@@ -26,13 +28,16 @@ describe("security research publication integrity", () => {
     }
   });
 
-  it("pins Sentinel evidence and the note reference to the reviewed revision", () => {
+  it("pins current Sentinel evidence to the 4 November review and keeps the note on its dated snapshot", () => {
     for (const [key, url] of Object.entries(sentinelResearchLinks)) {
       if (key !== "repository")
-        expect(url).toContain(securityReview.sentinelCommit);
+        expect(url).toContain(sentinelReview.sentinelCommit);
     }
+    expect(sentinelHistoricalLinks.status).toContain(
+      securityReview.sentinelCommit,
+    );
     expect(falsePositiveNote.references[17].url).toBe(
-      sentinelResearchLinks.status,
+      sentinelHistoricalLinks.status,
     );
     expect(falsePositiveNote.lastReviewed).toBe(securityReview.date);
   });

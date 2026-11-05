@@ -1,6 +1,7 @@
 import type { ModelRecord } from "./types";
 
-// Public development plan, supplied by the maintainer on 7 October 2026.
+// Public development plan, supplied by the maintainer on 7 October 2026, updated
+// with the reviewed repository state of 4 November 2026 (content/security-evidence.ts).
 // Capabilities and release artifacts are objectives, not measured results.
 export const sentinelPreview = {
   name: "Quantum Sentinel-Alpha",
@@ -9,7 +10,8 @@ export const sentinelPreview = {
   target: "Release timing not announced",
   releaseTiming: "No revised date announced",
   primaryFoundation: "Qwen3.5-9B",
-  foundations: ["Qwen3.5-9B", "Qwen3.5-4B"],
+  foundations: ["Qwen3.5-9B"],
+  foundationRevision: "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
   languages: ["Python", "JavaScript / TypeScript", "Go"],
   description: "Specialized AI for secure software.",
   summary:
@@ -17,7 +19,7 @@ export const sentinelPreview = {
   explore: "Explore Quantum Sentinel-Alpha",
   roadmapLink: "View roadmap",
   targetNotice:
-    "The earlier October 2026 Alpha target has passed. The reviewed repository remains in Phase 0; no revised release date is announced. Quantum Sentinel 1.0 remains a later milestone.",
+    "The earlier October 2026 Alpha target has passed. The foundation is selected and the data and training pipelines are built, but no model has been trained or evaluated yet; no revised release date is announced. Quantum Sentinel 1.0 remains a later milestone.",
   positioning: ["Cybersecurity-focused", "Local-first", "Open weights planned"],
   overview:
     "Quantum Sentinel-Alpha is the first substantial security fine-tuning milestone of the Quantum Sentinel 1 model line. It is designed as a specialized second security reviewer for developers, open-source maintainers, small engineering teams, security researchers and coding-agent builders.",
@@ -92,12 +94,103 @@ export const sentinelPreview = {
   ],
   architectureReason:
     "Deterministic work belongs in tools: indexing narrows the search, static analysis adds signals, verification checks model claims and tests help establish whether a patch still works and is safer. Specialization plus verification matters more than model size alone.",
-  foundationTitle: "Base model: a provisional candidate",
+  foundationTitle: "Base model: Qwen3.5-9B, selected",
   foundationText:
-    "Quantum Sentinel-Alpha is currently being developed with Qwen3.5-9B as the primary foundation candidate. Final foundation selection follows an internal security bake-off between Qwen3.5-9B and Qwen3.5-4B. The foundation is not frozen.",
+    "Quantum Sentinel-Alpha is built on Qwen3.5-9B, pinned to one immutable Hugging Face revision under the Apache-2.0 license. The selection of 4 November 2026 rests on expected capability for multi-step code reasoning, CWE discrimination and patch generation, not on a measured security advantage: neither Qwen3.5-9B nor Qwen3.5-4B has been evaluated yet, and the 4B/9B comparison remains an optional experiment rather than a gate.",
   trainingTitle: "Security post-training with a focus on evidence",
   trainingText:
-    "The plan builds on an existing open-weight foundation rather than pretraining from scratch. QLoRA / LoRA supervised fine-tuning is the core, using curated vulnerability examples, fixed/vulnerable code pairs, hard negatives, patch tasks, localization, CWE classification, evidence and false-positive rejection. Preference training or domain adaptation will be added only if evaluations show measurable value.",
+    "Sentinel builds on an existing open-weight foundation rather than pretraining from scratch. The QLoRA pipeline is implemented and tested on CPU with a tiny model of the same architecture, but it has not been run on the real model. It trains only on governance-approved Sentinel Garden records, computes the loss on the reply alone and refuses to start while no record is approved. Preference training or domain adaptation will be added only if evaluations show measurable value.",
+  trainingFacts: [
+    { label: "Method", value: "QLoRA: 4-bit NF4 base, bf16 compute" },
+    {
+      label: "Adapter",
+      value: "LoRA rank 16, alpha 32, on 200 linear modules",
+    },
+    {
+      label: "Trainable parameters",
+      value: "40.1M (0.45 % of the model)",
+    },
+    {
+      label: "Architecture",
+      value: "24 Gated DeltaNet and 8 full-attention layers",
+    },
+    { label: "Training runs", value: "None yet" },
+  ],
+  modelCardTitle: "Model card",
+  modelCardText:
+    "The technical record of Quantum Sentinel-Alpha as reviewed on 4 November 2026. Values marked as planned or not run describe the prepared pipeline, not a trained model.",
+  modelCard: [
+    {
+      label: "Model",
+      value: "Quantum Sentinel-Alpha, Quantum Sentinel 1 line",
+    },
+    {
+      label: "Type",
+      value:
+        "Security-specialized code model: LoRA adapter on a decoder-only base",
+    },
+    {
+      label: "Base model",
+      value: "Qwen/Qwen3.5-9B, revision c202236, Apache-2.0",
+    },
+    {
+      label: "Base architecture",
+      value:
+        "32 text layers: 24 Gated DeltaNet and 8 full-attention layers, about 8.95B text parameters",
+    },
+    {
+      label: "Fine-tuning",
+      value:
+        "QLoRA, 4-bit NF4 with double quantization, bf16 compute; LoRA rank 16, alpha 32, dropout 0.05",
+    },
+    {
+      label: "Trainable parameters",
+      value: "40,108,032 in 200 attention, DeltaNet and MLP projections",
+    },
+    {
+      label: "Training data",
+      value:
+        "Sentinel Garden seed v1: 2,322 accepted records from 911 repositories; 0 approved for training",
+    },
+    {
+      label: "Prompt and output",
+      value:
+        "Shared review prompt quickeval-review-v1; JSON finding with decision, CWE, lines and evidence",
+    },
+    {
+      label: "Evaluation plan",
+      value:
+        "QuickEval v1 (86 synthetic cases), coding-v1 (16 tasks) and the Garden validation split against the base model",
+    },
+    {
+      label: "Training runs",
+      value: "None; the pipeline is tested on CPU only",
+    },
+    { label: "Evaluation results", value: "Not measured" },
+    {
+      label: "Weights and license",
+      value: "Not released; no artifact license",
+    },
+  ],
+  gardenTitle: "Training data: Sentinel Garden",
+  gardenText:
+    "Sentinel Garden turns real, GitHub-reviewed security advisories into training records: the vulnerable function before the upstream fix, the same function after the fix as a hard negative, and a caller of the vulnerable function with the callee withheld, where the right answer is to abstain. Every record keeps its source revision, license evidence and content hash. Training export is default-deny: nothing is used until a reviewer approves its source and repository.",
+  gardenFacts: [
+    {
+      label: "Advisories inspected",
+      value: "19,959 (PyPI, npm, Go)",
+    },
+    { label: "Accepted records", value: "2,322" },
+    {
+      label: "Composition",
+      value: "1,053 vulnerable · 960 hard negatives · 309 abstentions",
+    },
+    {
+      label: "Coverage",
+      value: "947 vulnerable/fixed pairs · 911 repositories · 161 CWEs",
+    },
+    { label: "Training-approved", value: "0 (rights review pending)" },
+  ],
   languageNotice:
     "First-generation language focus: Python, JavaScript / TypeScript and Go. Other languages may follow through additional data and evaluation.",
   localTitle: "Local analysis of your code",
@@ -115,20 +208,24 @@ export const sentinelPreview = {
     "The primary candidate is in the approximately 9B class. Quantization is intended to make consumer-hardware inference possible. RAM and VRAM requirements will be published after measurement of the final variants.",
   roadmapTitle: "Development path to a stable release",
   roadmapText:
-    "Alpha is the first real security-SFT milestone, before Beta, Release Candidate and the later stable Quantum Sentinel 1.0. The early Lean plan aims for an initial Alpha fine-tune; the sequence below is a development plan, not a record of completed phases.",
+    "Alpha is the first real security-SFT milestone, before Beta, Release Candidate and the later stable Quantum Sentinel 1.0. Each phase below carries its state in the reviewed repository; a built pipeline is not a completed training run.",
   phases: [
-    "Foundation",
-    "Baseline",
-    "Dataset / Garden",
-    "Calibration",
-    "SFT Alpha",
-    "Data Iteration + Beta",
-    "Optional Hardening",
-    "Release Candidate",
-    "Quantum Sentinel 1.0",
+    { title: "Foundation", state: "Selected", current: false },
+    { title: "Baseline", state: "Prepared, not run", current: true },
+    {
+      title: "Dataset / Garden",
+      state: "Built, rights review pending",
+      current: true,
+    },
+    { title: "Calibration", state: "Planned", current: false },
+    { title: "SFT Alpha", state: "Pipeline ready, not run", current: false },
+    { title: "Data Iteration + Beta", state: "Planned", current: false },
+    { title: "Optional Hardening", state: "Planned", current: false },
+    { title: "Release Candidate", state: "Planned", current: false },
+    { title: "Quantum Sentinel 1.0", state: "Planned", current: false },
   ],
   researchNotice:
-    "Alpha is in development. Capabilities, architecture and release artifacts described here are planned and may change with evaluation. No benchmark results or validated hardware requirements are announced.",
+    "Alpha is in development. Capabilities, architecture and release artifacts described here are planned and may change with evaluation. No model has been trained or evaluated, and no benchmark results or validated hardware requirements are announced.",
   safetyText:
     "Defensive source-code security, not a general chatbot, autonomous penetration-testing agent or internet-scanning system. Malware building, credential theft and ransomware assistance are outside the scope. Sentinel complements human security review, SAST and dependency scanning; it does not replace them.",
 } as const;
@@ -155,12 +252,17 @@ export const sentinelModel = {
   links: [],
   technicalFacts: [
     {
-      label: "Primary foundation candidate",
+      label: "Foundation",
       value: sentinelPreview.primaryFoundation,
     },
     {
       label: "Foundation selection",
-      value: "Internal Qwen3.5-4B / 9B security bake-off pending",
+      value:
+        "Selected 4 November 2026 on expected capability; not yet evaluated",
+    },
+    {
+      label: "Training data",
+      value: "Sentinel Garden: 2,322 accepted records, 0 training-approved",
     },
     { label: "Release timing", value: sentinelPreview.releaseTiming },
   ],
@@ -171,7 +273,7 @@ export const sentinelModel = {
   limitations: [sentinelPreview.researchNotice, sentinelPreview.safetyText],
   relatedResearchNoteIds: [],
   indexFacts: [
-    "Foundation selection pending",
+    "Foundation selected · not yet trained",
     sentinelPreview.status,
     "Security-specialized code model",
     sentinelPreview.target,

@@ -13,10 +13,17 @@ describe("Sentinel announcement boundaries", () => {
     expect(model.usageExample).toBeNull();
     expect(model.license).toBeNull();
     expect(model.links).toEqual([]);
-    expect(sentinelPreview.foundations).toEqual(["Qwen3.5-9B", "Qwen3.5-4B"]);
+    expect(sentinelPreview.foundations).toEqual(["Qwen3.5-9B"]);
     expect(sentinelPreview.foundationText).toContain(
-      "The foundation is not frozen.",
+      "not on a measured security advantage",
     );
+    expect(sentinelPreview.trainingText).toContain(
+      "has not been run on the real model",
+    );
+    expect(sentinelPreview.gardenFacts).toContainEqual({
+      label: "Training-approved",
+      value: "0 (rights review pending)",
+    });
     expect(sentinelPreview.targetNotice).toContain(
       "no revised release date is announced",
     );
@@ -55,7 +62,10 @@ describe("Sentinel announcement boundaries", () => {
     expect(german.status).toBe("Alpha · In Entwicklung");
     expect(german.target).toBe("Veröffentlichungstermin offen");
     expect(german.targetNotice).toContain("ist verstrichen");
-    expect(german.foundationText).toContain("noch nicht eingefroren");
+    expect(german.foundationText).toContain(
+      "nicht auf einem gemessenen Sicherheitsvorteil",
+    );
+    expect(german.trainingText).toContain("noch nicht mit dem echten Modell");
     expect(german.capabilitiesNotice).toContain("Trainingsziele");
   });
 });

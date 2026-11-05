@@ -235,7 +235,7 @@ test("launch content and navigation are available without JavaScript", async ({
     .first()
     .click();
   await expect(page.locator("#foundation")).toContainText(
-    "The foundation is not frozen.",
+    "not on a measured security advantage",
   );
   await context.close();
 });

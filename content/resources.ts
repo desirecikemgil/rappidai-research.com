@@ -10,6 +10,7 @@ import type {
   ResourceSource,
 } from "./types";
 import { falsePositiveNote } from "./false-positive-note";
+import { sentinelGardenNote } from "./sentinel-garden-note";
 import {
   publicModelUrls,
   publicProjectUrls,
@@ -50,7 +51,7 @@ export const resourceCards = [
     eyebrow: "Provenance",
     title: "Data & training",
     description:
-      "Sentinel source approvals and evaluation-only data alongside pilot and Echelon corpus provenance.",
+      "The Sentinel Garden data pipeline, audit and rights review alongside pilot and Echelon corpus provenance.",
     href: "/resources/data-and-training",
     status: "Partial evidence",
   },
@@ -94,6 +95,7 @@ export const resourceCards = [
 
 // Newest first: the publications index and the homepage list in this order.
 export const publications = [
+  sentinelGardenNote,
   falsePositiveNote,
   {
     slug: "from-100m-to-600m-german-tokens",
@@ -234,12 +236,12 @@ export const reproducibilityContent = {
         "Coverage outside the tested runtime and named assertions is not established.",
     },
     {
-      area: "Sentinel evaluation infrastructure",
+      area: "Sentinel evaluation and data pipeline",
       status: "Partial evidence",
       available:
-        "Public synthetic cases, a strict parser/scorer and a revision-pinned comparison protocol.",
+        "Public synthetic cases, a strict parser/scorer, a revision-pinned comparison protocol and a reproducible, audited Garden dataset with hash verification.",
       missing:
-        "No model comparison, trained adapter, private holdout or patch evaluation.",
+        "No training-approved record, model evaluation, trained adapter, private holdout or patch evaluation.",
     },
     {
       area: "Replay execution records",
@@ -326,7 +328,7 @@ export const dataAndTrainingContent = {
     eyebrow: "Data & training",
     title: "Data and training methods",
     description:
-      "A record of Sentinel source approvals, evaluation-only cases and planned safeguards, followed by the data provenance and training evidence for the Quantum pilots and Echelon.",
+      "How the Sentinel Garden pipeline turns real security advisories into checked training records, what its audit removed, why no record is approved yet and how the QLoRA training pipeline is gated, followed by the data provenance and training evidence for the Quantum pilots and Echelon.",
   },
   dataset: {
     name: "epfml/FineWeb2-HQ",
@@ -677,8 +679,8 @@ export const statusContent = {
     text: string;
   }[],
   roadmap: [
-    "Run the controlled Sentinel model comparison before selecting a foundation or claiming detection quality.",
-    "Review Sentinel source rights and establish a separate private holdout before training.",
+    "Complete the Sentinel rights review, starting with the registry sources and the tier A repositories, before any training run.",
+    "Run the Sentinel foundation baseline on approved GPU time and establish a separate private holdout before claiming detection quality.",
 
     "Maintain the published all-rights-reserved pilot-artifact decision; attach an explicit reuse license only if the policy changes.",
     "Attach raw, versioned pilot evaluation artifacts before making broader capability claims.",
@@ -710,7 +712,7 @@ export const faqEntries = [
   {
     question: "Has Sentinel-Alpha been trained or benchmarked?",
     answer:
-      "No. The reviewed repository records Phase 0, an evaluation harness and public synthetic cases. The Qwen3.5-4B/9B comparison has not run. No foundation is frozen, no training source is approved and no trained adapter exists.",
+      "No. Qwen3.5-9B is selected as the foundation, and the Sentinel Garden dataset and a QLoRA training pipeline are built, but no model has been trained or evaluated. No training source or repository is approved yet, so the training export is empty, and no adapter exists.",
   },
   {
     question: "Does a successful GhostBench run prove an agent is safe?",

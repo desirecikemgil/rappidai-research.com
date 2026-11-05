@@ -1,5 +1,5 @@
 import type { PublicationRecord } from "./types";
-import { sentinelResearchLinks } from "./security-research";
+import { sentinelHistoricalLinks } from "./security-evidence";
 
 // Research-informed analysis published on 24 October 2026. It reports no new
 // experiment and no measurement of a rappidAI model; every external claim is
@@ -556,7 +556,7 @@ def read_upload(name: str) -> bytes:
       title:
         "Quantum Sentinel-Alpha: repository status and evaluation contract",
       venue: "Pinned source revision d7354b6, reviewed 28 October 2026",
-      url: sentinelResearchLinks.status,
+      url: sentinelHistoricalLinks.status,
     },
   ],
 } as const satisfies PublicationRecord;

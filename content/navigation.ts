@@ -171,6 +171,10 @@ export const documentationNavigation = [
       { label: "Evidence ledger", href: "/research" },
       { label: "Publications", href: "/resources/publications" },
       {
+        label: "Building Sentinel Garden",
+        href: "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+      },
+      {
         label: "The False Positive Problem",
         href: "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
       },
