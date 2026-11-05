@@ -1,4 +1,5 @@
 import { DocumentationSections } from "@/components/resources/documentation-sections";
+import { SentinelGardenFigures } from "@/components/resources/sentinel-garden-figures";
 import { sentinelDataGovernance } from "@/content/documentation";
 import { Reveal } from "@/components/motion/reveal";
 import { DocLayout } from "@/components/layout/doc-layout";
@@ -23,6 +24,7 @@ export function LocalizedDataAndTrainingPage({ locale }: { locale: Locale }) {
       <PageIntro {...content.introduction} />
       <DocLayout>
         <section className="page-shell pb-[var(--section-space)]">
+          <SentinelGardenFigures locale={locale} />
           <DocumentationSections
             content={sentinelDataGovernance}
             locale={locale}

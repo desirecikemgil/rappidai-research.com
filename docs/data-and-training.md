@@ -21,28 +21,58 @@ research repository. This review used its public commit
 repositories. Future changes to those sources should be recorded with a new
 dated review rather than retroactively treated as evidence for an older release.
 
-## Sentinel data governance (reviewed 2 November 2026)
+## Sentinel Garden (reviewed 4 November 2026)
 
-Sentinel uses a separate source-code workflow. At the reviewed
-[revision](https://github.com/rappidAI-Research/quantum-sentinel-alpha/tree/d7354b65063cd07963dcc4753dbd84f81ca8b42d),
-the source registry contains eight sources, all with `production_approved: false`.
-Training-approved sources and training records both remain at zero.
-FineWeb2-HQ is documented below for the pilot/Echelon language-model workflows,
-not as Sentinel training data.
+This review supersedes the Sentinel section of 2 November 2026, which recorded
+the earlier revision `d7354b6` with zero training records. It uses the public
+Sentinel [revision `3c46606`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/tree/3c46606d51aa5e87d05e52d72898c612627535a2)
+after pull requests #4 to #6. FineWeb2-HQ is documented below for the
+pilot/Echelon language-model workflows, not as Sentinel training data.
 
-[Sentinel Garden governance](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/d7354b65063cd07963dcc4753dbd84f81ca8b42d/docs/DATA_GOVERNANCE.md)
-requires immutable source revisions, license and terms review, a resolved
-redistribution position and a named reviewer. Planned record provenance includes
-vulnerable/fixed revisions, context, diffs, labels, localization, verification
-artifacts and hashes. Training and private holdout repositories must be disjoint;
-a temporal cutoff is to be frozen before large-scale collection.
+**Pipeline.** [Sentinel Garden](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/SENTINEL_GARDEN.md) discovers
+GitHub-reviewed GHSA advisories through the OSV export (PyPI, npm, Go), resolves
+each to its single upstream fix commit and keeps fixes confined to one function.
+Each fix yields a vulnerable record, a hard negative (the fixed function) and,
+where possible, an abstention record (a caller without the vulnerable callee).
+Function boundaries, literals, imports and calls come from parse trees:
+Python's `ast`/`tokenize` and tree-sitter grammars pinned in `pyproject.toml`
+and recorded in `stats.json`.
 
-QuickEval v1 has 86 public clean-room synthetic cases: 37 vulnerable, 34 hard
-negatives and 15 abstentions. The 16 Python coding-regression tasks are also
-registered evaluation-only. Neither set is training data or a private holdout.
+**Verified artifact metadata** ([report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/data/garden/seed_v1/REPORT.md),
+[stats](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/data/garden/seed_v1/stats.json)): 19,959 advisories inspected,
+4,830 candidates, 1,206 single-function fixes, 2,773 records built and 2,322
+accepted (1,053 vulnerable, 960 hard negatives, 309 abstentions; 947 complete
+pairs, 911 repositories, 161 CWEs). Splits follow the frozen policy
+[`sentinel-garden-split-v1`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/configs/garden/split_policy.yaml): train 1,737,
+validation 191, reserved holdout 235, temporal quarantine 159. Contamination
+hits against the evaluation cases: 0.
+
+**Audit** ([report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/data/garden/seed_v1/AUDIT_REPORT.md)). Exclusions:
+126 hard negatives fixed again later, 47 reported incomplete, 10 unverifiable
+later fixes, 89 groups with broad localization spans, 1 constant-argument
+abstention and 10 records from the manual review. Manual sample of 44 items,
+reviewed by the implementing AI engineer (not an authorized reviewer); over the
+items that survive the automated exclusions: wrong labels 0/29, imprecise
+localization 1/29 (Wilson 95 % 0.6–17.2 %), unsafe hard negative 1/28
+(0.6–17.7 %), invalid abstention 0/11 (0–25.9 %).
+
+**Governance** ([rights review](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/RIGHTS_REVIEW.md),
+[data governance](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/DATA_GOVERNANCE.md)). The registry lists nine
+sources, all with `production_approved: false`, and the repository approval
+list is empty: **training-approved records remain at zero**. The review queue
+covers 766 repositories (tier A 513 / 1,260 records, B 111 / 330,
+C 15 / 33, D 127 / 305) with license file hashes and deps.dev cross-checks.
+No upstream code is committed; records are rebuilt and verified by hash.
+
+**Training** ([TRAINING.md](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/TRAINING.md)). A QLoRA pipeline for
+`Qwen/Qwen3.5-9B@c202236` exists (4-bit NF4, LoRA r16/α32 on 200 modules,
+40,108,032 trainable parameters) and is tested on CPU only. _Configured target,
+not a run:_ no adapter, checkpoint or training run exists.
+
+QuickEval v1 (86 synthetic cases: 37 vulnerable, 34 hard negatives, 15
+abstentions) and the 16 Python coding-regression tasks remain evaluation-only.
 Public benchmark cases have not been imported; the private holdout has not
-started. Evaluation-only cases, reference patches and test oracles stay excluded
-from training prompts. No model comparison, adapter or training run is recorded.
+started. No model comparison or evaluation is recorded.
 
 ## Dataset provenance for the pilots and Echelon
 

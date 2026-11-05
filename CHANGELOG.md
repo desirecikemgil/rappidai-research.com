@@ -8,6 +8,14 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Sentinel Garden, model card and third research note — 4 November 2026
+
+- Moved every current Sentinel statement to the review of Sentinel commit `3c46606`: Qwen3.5-9B is selected as the foundation on expected capability (not on a measured advantage), the Sentinel Garden data pipeline and a governance-gated QLoRA pipeline are built, and no model has been trained or evaluated. The dated false-positive note keeps its historical snapshot `d7354b6`.
+- Added a Model card and Training data section to the Quantum Sentinel-Alpha page and rewrote `model_cards/quantum-sentinel-alpha.md` as a development-state model card.
+- Added the Sentinel Garden figures to Data & training: the six pipeline stages with their commands, the advisory-to-approval funnel, record composition, repository-level splits, audit exclusions, the manual-sample error rates with Wilson intervals and the rights review queue. All numbers come from the committed statistics at `3c46606`; no record is training-approved.
+- Published the research note "Building a Vulnerability-Fix Dataset You Can Check" in English and German: how 19,959 advisories became 2,322 records, the 33 code-review findings and the failure classes behind them, the switch to tree-sitter parse trees, the outside-evidence audit, infrastructure failures and what is still open. Code examples are self-written; no upstream code is quoted.
+- Featured the new note on the home page, in the documentation sidebar and in the publications index; added German copy for all new strings and unit and end-to-end coverage for the new pages.
+
 ### Research documentation refresh — 2 November 2026
 
 - Expanded reproducibility, data/training, responsible use and licensing for Ghost, Sentinel and Replay while retaining historical pilot/Echelon evidence and both publications.

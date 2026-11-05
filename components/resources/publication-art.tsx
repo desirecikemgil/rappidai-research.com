@@ -14,6 +14,8 @@ export function PublicationArt({
 }) {
   if (slug === "false-positive-problem-in-ai-vulnerability-detection")
     return <DetectionOutcomesArt locale={locale} />;
+  if (slug === "building-a-vulnerability-fix-dataset-you-can-check")
+    return <DatasetFunnelArt locale={locale} />;
 
   return (
     <div className="research-token-figure" aria-hidden="true">
@@ -37,6 +39,17 @@ export function DetectionOutcomesArt({ locale }: { locale: Locale }) {
       <span className="axis-row">{t(locale, "Not reported")}</span>
       <span className="cell">FN</span>
       <span className="cell">TN</span>
+    </div>
+  );
+}
+
+/** Advisories narrowing to audited records, the shape of the Sentinel Garden funnel. */
+export function DatasetFunnelArt({ locale }: { locale: Locale }) {
+  return (
+    <div className="research-token-figure" aria-hidden="true">
+      <span>{t(locale, "19,959")}</span>
+      <div style={{ width: "40%" }} />
+      <span>{t(locale, "2,322")}</span>
     </div>
   );
 }

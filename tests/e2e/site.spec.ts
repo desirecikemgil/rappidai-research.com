@@ -16,6 +16,7 @@ const publicRoutes = [
   "/resources/publications",
   "/resources/publications/from-100m-to-600m-german-tokens",
   "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
+  "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
   "/resources/reproducibility",
   "/resources/data-and-training",
   "/resources/responsible-use",
@@ -335,6 +336,7 @@ for (const route of [
   "/resources",
   "/resources/publications/from-100m-to-600m-german-tokens",
   "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
+  "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
   "/resources/reproducibility",
   "/resources/data-and-training",
   "/resources/responsible-use",
@@ -362,6 +364,9 @@ for (const route of [
   "/de/resources",
   "/de/resources/publications/from-100m-to-600m-german-tokens",
   "/de/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
+  "/de/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+  "/de/resources/data-and-training",
+  "/de/models/quantum-sentinel-alpha",
   "/de/resources/licensing",
 ] as const) {
   test(`${route} fits a reduced-motion mobile viewport`, async ({ page }) => {
@@ -445,17 +450,21 @@ for (const route of ["/tools/ghost", "/de/tools/ghost"] as const) {
 
 for (const locale of ["en", "de"] as const) {
   const prefix = locale === "de" ? "/de" : "";
-  test(`${locale}: publications index lists both research notes and the new note resolves its citations`, async ({
+  test(`${locale}: publications index lists the research notes and the false positive note resolves its citations`, async ({
     page,
   }) => {
     await page.goto(`${prefix}/resources/publications`);
     const covers = page.locator(".publication-cover");
-    await expect(covers).toHaveCount(2);
+    await expect(covers).toHaveCount(3);
     await expect(covers.first()).toHaveAttribute(
+      "href",
+      `${prefix}/resources/publications/building-a-vulnerability-fix-dataset-you-can-check`,
+    );
+    await expect(covers.nth(1)).toHaveAttribute(
       "href",
       `${prefix}/resources/publications/false-positive-problem-in-ai-vulnerability-detection`,
     );
-    await covers.first().click();
+    await covers.nth(1).click();
     await expect(page.locator("h1")).toHaveText(
       locale === "de"
         ? "Das False-Positive-Problem bei der KI-gestützten Erkennung von Schwachstellen"
@@ -471,5 +480,40 @@ for (const locale of ["en", "de"] as const) {
     await expect(
       page.locator(".note-references a[href^='/']").first(),
     ).toHaveAttribute("href", `${prefix}/models/quantum-sentinel-alpha`);
+  });
+}
+
+for (const locale of ["en", "de"] as const) {
+  const prefix = locale === "de" ? "/de" : "";
+  test(`${locale}: Sentinel Garden data, research note and model card render their evidence`, async ({
+    page,
+  }) => {
+    await page.goto(`${prefix}/resources/data-and-training`);
+    const garden = page.locator(
+      'section[aria-labelledby="sentinel-garden-title"]',
+    );
+    await expect(garden).toContainText(locale === "de" ? "19.959" : "19,959");
+    await expect(garden).toContainText(locale === "de" ? "2.322" : "2,322");
+    await expect(garden.locator("table")).toHaveCount(5);
+    await expect(
+      garden.locator('a[href*="3c46606d51aa5e87d05e52d72898c612627535a2"]'),
+    ).toHaveCount(6);
+
+    await page.goto(
+      `${prefix}/resources/publications/building-a-vulnerability-fix-dataset-you-can-check`,
+    );
+    await expect(page.locator("h1")).toHaveText(
+      locale === "de"
+        ? "Ein Datensatz aus Schwachstellen-Fixes, den man prüfen kann"
+        : "Building a Vulnerability-Fix Dataset You Can Check",
+    );
+    await expect(page.locator("main")).toContainText(
+      locale === "de" ? "0 von 29" : "0 of 29",
+    );
+
+    await page.goto(`${prefix}/models/quantum-sentinel-alpha`);
+    await expect(page.locator("#model-card")).toContainText(
+      "40,108,032".replace(/,/g, locale === "de" ? "." : ","),
+    );
   });
 }

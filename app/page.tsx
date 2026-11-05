@@ -62,9 +62,9 @@ const copy = {
     latest: "From the lab",
     latestTitle: "Latest research and publications",
     all: "All publications",
-    articleTitle: "From 100M to 600M German tokens",
+    articleTitle: "Building a vulnerability-fix dataset you can check",
     articleText:
-      "What continued pretraining taught us about quantum-1.6-pilot. Methods, results and the limits of a compact language model.",
+      "How 19,959 security advisories became 2,322 audited training records for Quantum Sentinel-Alpha, what code review found on the way and why none is approved for training yet.",
     articleType: "Research note",
     read: "Read the research note",
     fpTitle: "The false positive problem in AI vulnerability detection",
@@ -126,9 +126,9 @@ const copy = {
     latest: "Aus dem Labor",
     latestTitle: "Aktuelle Forschung und Veröffentlichungen",
     all: "Alle Veröffentlichungen",
-    articleTitle: "Von 100 auf 600 Millionen deutsche Tokens",
+    articleTitle: "Ein Datensatz aus Schwachstellen-Fixes, den man prüfen kann",
     articleText:
-      "Was wir aus dem fortgesetzten Pretraining von quantum-1.6-pilot gelernt haben: Methoden, Ergebnisse und die Grenzen eines kompakten Sprachmodells.",
+      "Wie aus 19.959 Security Advisories 2.322 auditierte Trainingsbeispiele für Quantum Sentinel-Alpha wurden, was das Code-Review dabei fand und warum noch keines für das Training freigegeben ist.",
     articleType: "Forschungsnotiz",
     read: "Forschungsnotiz lesen",
     fpTitle:
@@ -340,6 +340,40 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
           <div className={styles.notes}>
             <Link
               href={path(
+                "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+              )}
+              className={styles.feature}
+              data-reveal
+            >
+              <figure className={styles.figure} aria-hidden="true">
+                <div className={styles.bars}>
+                  <div>
+                    <i style={{ height: "100%" }} />
+                    <span>{t(locale, "Advisories")}</span>
+                    <strong>{t(locale, "19,959")}</strong>
+                  </div>
+                  <div>
+                    <i style={{ height: `${(2322 / 19959) * 100}%` }} />
+                    <span>{t(locale, "Records")}</span>
+                    <strong>{t(locale, "2,322")}</strong>
+                  </div>
+                </div>
+                <figcaption>
+                  {t(
+                    locale,
+                    "From security advisories to accepted training records",
+                  )}
+                </figcaption>
+              </figure>
+              <div className={styles.featureCopy}>
+                <p className="kicker">{c.articleType}</p>
+                <h3>{c.articleTitle}</h3>
+                <p>{c.articleText}</p>
+                <span className="text-link">{c.read}</span>
+              </div>
+            </Link>
+            <Link
+              href={path(
                 "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
               )}
               className={styles.feature}
@@ -355,35 +389,6 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 <p className="kicker">{c.articleType}</p>
                 <h3>{c.fpTitle}</h3>
                 <p>{c.fpText}</p>
-                <span className="text-link">{c.read}</span>
-              </div>
-            </Link>
-            <Link
-              href={path(
-                "/resources/publications/from-100m-to-600m-german-tokens",
-              )}
-              className={styles.feature}
-              data-reveal
-            >
-              <figure className={styles.figure} aria-hidden="true">
-                <div className={styles.bars}>
-                  <div>
-                    <i style={{ height: `${(100 / 600) * 100}%` }} />
-                    <span>quantum-1-pilot</span>
-                    <strong>~100M</strong>
-                  </div>
-                  <div>
-                    <i style={{ height: "100%" }} />
-                    <span>quantum-1.6-pilot</span>
-                    <strong>~600M</strong>
-                  </div>
-                </div>
-                <figcaption>{t(locale, "German training tokens")}</figcaption>
-              </figure>
-              <div className={styles.featureCopy}>
-                <p className="kicker">{c.articleType}</p>
-                <h3>{c.articleTitle}</h3>
-                <p>{c.articleText}</p>
                 <span className="text-link">{c.read}</span>
               </div>
             </Link>

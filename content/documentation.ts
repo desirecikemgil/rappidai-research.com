@@ -33,11 +33,13 @@ export const reproducibilityWorkflows = {
       paragraphs: [
         "The CPU baseline exercises the parser, scorer and output contract. Its results are engineering checks. QuickEval v1 contains 86 public synthetic cases; it is not a private holdout and provides no evidence that a Sentinel model has been trained or evaluated.",
         "A reportable model comparison requires an immutable model revision, a clean known code commit, the full case set and the shared prompt, parser, scorer and generation settings. Retain case and prompt hashes, per-case outputs, library versions and runtime measurements. Invalid output remains invalid; patch metrics stay null until patch evaluation exists.",
+        "Sentinel Garden data is rebuilt, not downloaded: the committed manifest holds metadata and content hashes, and python -m sentinel.garden verify rebuilds every record from the frozen candidate list at the pinned upstream commits and compares the hashes. Two consecutive runs of the pipeline, including the audit, are byte-identical; the parser grammars are pinned and checked.",
       ],
       sources: [
         { label: "Repository status", url: sentinelResearchLinks.status },
         { label: "Comparison protocol", url: sentinelResearchLinks.bakeoff },
         { label: "Evaluation runner", url: sentinelResearchLinks.runner },
+        { label: "Sentinel Garden", url: sentinelResearchLinks.garden },
       ],
     },
     {
@@ -57,27 +59,113 @@ export const reproducibilityWorkflows = {
 } as const;
 
 export const sentinelDataGovernance = {
-  title: "Sentinel Garden: approval before collection",
+  title: "Sentinel Garden: records you can check",
   introduction:
-    "Sentinel uses a separate source-code data workflow. FineWeb2-HQ is documented for the language-model experiments below; it is not presented as Sentinel training data.",
+    "Sentinel uses its own source-code data pipeline, separate from the FineWeb2-HQ corpus documented below for the language-model experiments. The sections explain what a record is, how it is checked and why none is used for training yet. Figures reflect the Sentinel repository reviewed on 4 November 2026.",
   sections: [
     {
       title: "Current data and evaluation record",
       paragraphs: [
-        "The reviewed Sentinel registry lists eight sources, all with production_approved: false. There are zero training-approved sources and zero training records. Public accessibility alone does not authorize collection, training or redistribution.",
-        "QuickEval v1 contains 37 vulnerable, 34 hard-negative and 15 abstention cases across Python, JavaScript/TypeScript and Go. These clean-room synthetic cases and the 16 Python coding-regression tasks are evaluation-only. No imported public benchmark cases or private holdout are reported.",
-      ],
-      items: [
-        "Approve each source only after recording its immutable revision, license, terms, redistribution position and reviewer.",
-        "Preserve vulnerable and fixed revisions, context, diff, label, localization, verification artifacts and content hashes for each future record.",
-        "Keep repositories disjoint across training and the private holdout; freeze the temporal cutoff before large-scale collection.",
-        "Keep evaluation-only cases, reference patches and test oracles out of training prompts. Record exact and fuzzy overlap checks before making contamination claims.",
+        "The reviewed Sentinel registry lists nine sources, all with production_approved: false, and the repository approval list is empty. Sentinel Garden has built 2,773 records from real advisories and accepted 2,322 of them, but zero are training-approved, so the training export is empty. Public accessibility alone does not authorize collection, training or redistribution.",
+        "QuickEval v1 contains 37 vulnerable, 34 hard-negative and 15 abstention cases across Python, JavaScript/TypeScript and Go. These clean-room synthetic cases and the 16 Python coding-regression tasks are evaluation-only, and every Garden record is checked for overlap with them. No imported public benchmark cases or private holdout are reported.",
       ],
       sources: [
-        { label: "Data governance", url: sentinelResearchLinks.governance },
-        { label: "Source registry", url: sentinelResearchLinks.sources },
-        { label: "QuickEval cases", url: sentinelResearchLinks.cases },
         { label: "Repository status", url: sentinelResearchLinks.status },
+        { label: "Source registry", url: sentinelResearchLinks.sources },
+        { label: "Dataset statistics", url: sentinelResearchLinks.seedStats },
+        { label: "QuickEval cases", url: sentinelResearchLinks.cases },
+      ],
+    },
+    {
+      title: "Three records from one upstream fix",
+      paragraphs: [
+        "A fix that changes one function produces up to three records. The function before the fix is labelled vulnerable, with the advisory's CWE and the changed or inserted lines as the localization. The same function after the fix is a hard negative: safe with respect to that weakness, which teaches the model not to report code merely because it resembles a known vulnerability. A caller of the vulnerable function, shown without the callee, becomes an abstention record, because whether it is safe depends on code the reviewer cannot see.",
+        "Each record keeps the advisory, the upstream repository, both commit SHAs, the file path, the license files with their sha256 and a content hash. The upstream patch, cut to the function, must turn the vulnerable excerpt exactly into the fixed excerpt.",
+      ],
+      sources: [
+        { label: "Sentinel Garden design", url: sentinelResearchLinks.garden },
+        { label: "Finding contract", url: sentinelResearchLinks.finding },
+      ],
+    },
+    {
+      title: "Structure from parse trees, not text patterns",
+      paragraphs: [
+        "Where a function starts and ends, what is a string, a regular expression or a comment, which lines are imports and who calls whom decide whether a fix is accepted and where its label points. Python is read with its own ast and tokenize modules; Go, JavaScript and TypeScript with tree-sitter grammars pinned to exact versions, recorded with the dataset and enforced by the consistency check.",
+        "An earlier hand-written scanner for the three languages produced most of the defects found in code review, from regular expressions after an if statement to braces inside raw strings. Replacing it with real parse trees removed the whole class; a comparison over all 548 affected source files showed no Go difference and only corrections for JavaScript and TypeScript.",
+      ],
+      sources: [
+        { label: "Parser module", url: sentinelResearchLinks.syntax },
+        { label: "Repository status", url: sentinelResearchLinks.status },
+      ],
+    },
+    {
+      title: "Evidence beyond the diff: the quality audit",
+      paragraphs: [
+        "A fix commit alone cannot show that the fixed function is safe. The audit therefore queries every other OSV advisory of the same package. If a later fix changes the same function again, or an advisory calls the fix incomplete, the hard negative is excluded; if the later fix commit cannot be read, it is excluded as unverified. Broad localization spans and abstentions whose caller passes only constants are excluded as well.",
+        "A stratified manual sample of 44 items estimates the remaining error. After the automated exclusions it found no wrong label, one imprecise localization in 29 pairs and one unsafe hard negative in 28. The sample was reviewed by the implementing AI engineer, not an authorized reviewer, and its upper bounds of about 17 % are what to plan with.",
+      ],
+      sources: [
+        { label: "Audit report", url: sentinelResearchLinks.auditReport },
+        {
+          label: "Manual review verdicts",
+          url: sentinelResearchLinks.manualReview,
+        },
+      ],
+    },
+    {
+      title: "Default-deny rights review",
+      paragraphs: [
+        "Training needs two kinds of approval: the registry sources that describe the advisories and fixes, and every upstream repository whose code appears in a record. The review queue lists 766 repositories with the license file URL at the used revision, its sha256 and the license the package registry reports. An approval is bound to that license file hash and stops applying if the file changes.",
+        "Repositories with strong copyleft, unknown or missing licenses are not excluded by tooling, but approving them requires a written justification in addition to the approval. No upstream code is committed to the repository or uploaded anywhere; the committed manifest contains metadata and hashes only.",
+      ],
+      items: [
+        "Approve the registry sources ghsa-osv-fix-commits, osv and github-advisory-db after reviewing their terms and attribution requirements.",
+        "Review repositories in tier order, starting with the 513 permissive repositories in tier A.",
+        "Record each decision with the reviewer, date, license identifier and license file hash; curate then fills the training export deterministically.",
+      ],
+      sources: [
+        {
+          label: "Rights review workflow",
+          url: sentinelResearchLinks.rightsReview,
+        },
+        { label: "Review queue", url: sentinelResearchLinks.reviewQueue },
+        { label: "Data governance", url: sentinelResearchLinks.governance },
+      ],
+    },
+    {
+      title: "Frozen splits, contamination and reproducibility",
+      paragraphs: [
+        "The split policy was frozen before the dataset was expanded: repositories are assigned to train, validation or the reserved holdout by a salted hash, so a repository never appears in two splits, and fixes committed on or after 1 July 2026 never enter training. Records are compared with every evaluation case and coding task; the reviewed run found no contamination.",
+        "The pipeline is a fixed point: two consecutive runs, including the audit, produce byte-identical manifests and exclusions, and verify rebuilds every record from the pinned upstream commits with matching content hashes. EXTERNAL_RESOURCES.json lists every upstream repository and commit the dataset depends on.",
+      ],
+      sources: [
+        { label: "Split policy", url: sentinelResearchLinks.splitPolicy },
+        {
+          label: "Garden configuration",
+          url: sentinelResearchLinks.gardenConfig,
+        },
+        {
+          label: "External resources",
+          url: sentinelResearchLinks.externalResources,
+        },
+      ],
+    },
+    {
+      title: "Training pipeline: built, gated and not yet run",
+      paragraphs: [
+        "The QLoRA pipeline fine-tunes Qwen3.5-9B at its pinned revision with a 4-bit NF4 base and bf16 compute. LoRA rank 16 adapters cover the 200 linear modules of the real architecture, 24 Gated DeltaNet and 8 full-attention layers, about 40.1 million trainable parameters. The loss covers only the model's reply; examples longer than the context limit are dropped, never truncated.",
+        "Before training starts, the loader checks that every record is approved and still passes the governance gate, that its label and content hash match the manifest and that no repository is shared with validation or the holdout. Checkpoints record the data and configuration they were trained on and cannot be resumed with different inputs. The pipeline is tested on CPU with a tiny model of the same architecture; it has not been run on the real model.",
+      ],
+      sources: [
+        {
+          label: "Training documentation",
+          url: sentinelResearchLinks.training,
+        },
+        {
+          label: "Training configuration",
+          url: sentinelResearchLinks.trainingConfig,
+        },
+        { label: "Foundation decision", url: sentinelResearchLinks.foundation },
       ],
     },
   ] satisfies readonly DocumentationSection[],
@@ -103,7 +191,7 @@ export const responsibleUseBoundaries = {
     {
       title: "Sentinel: verify findings before acting",
       paragraphs: [
-        "Sentinel-Alpha remains in Phase 0 with no trained release. Treat future vulnerability findings and patches as candidates for expert review. Require code location, CWE, supporting evidence and independent verification; an abstention or no-finding response does not establish that code is secure.",
+        "Sentinel-Alpha has no trained model or release. Treat future vulnerability findings and patches as candidates for expert review. Require code location, CWE, supporting evidence and independent verification; an abstention or no-finding response does not establish that code is secure.",
         "Review only repositories and systems for which permission exists. Protect private source code and credentials, and use isolated execution for generated code. The coding-regression harness currently uses a child process and resource limits; it is not a complete sandbox for untrusted code on a shared host.",
       ],
       sources: [

@@ -119,13 +119,13 @@ export function SentinelHero({
             <dd>{t(locale, "No revised date announced")}</dd>
           </div>
           <div>
-            <dt>{t(locale, "Primary foundation candidate")}</dt>
+            <dt>{t(locale, "Foundation")}</dt>
             <dd>
               {c.primaryFoundation}
               <span className={styles.factNote}>
                 {t(
                   locale,
-                  "Final selection after the internal 4B / 9B security bake-off.",
+                  "Selected 4 November 2026 at a pinned revision; not yet evaluated.",
                 )}
               </span>
             </dd>
@@ -307,11 +307,14 @@ export function SentinelRoadmap({
         <p>{c.targetNotice}</p>
       </div>
       <ol className={styles.roadmap} data-stagger>
-        {c.phases.map((phase, i) => (
-          <li key={phase} className={i === 4 ? styles.focus : undefined}>
+        {c.phases.map((phase) => (
+          <li
+            key={phase.title}
+            className={phase.current ? styles.focus : undefined}
+          >
             <span className={styles.node} aria-hidden="true" />
-            <h3>{phase}</h3>
-            <p>{t(locale, i === 4 ? "Current focus" : "Planned")}</p>
+            <h3>{phase.title}</h3>
+            <p>{phase.state}</p>
           </li>
         ))}
       </ol>
@@ -380,6 +383,13 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
       extra: c.languageNotice,
     },
     {
+      id: "data",
+      label: "Training data",
+      title: c.gardenTitle,
+      text: c.gardenText,
+      extra: null,
+    },
+    {
       id: "training",
       label: "Training approach",
       title: c.trainingTitle,
@@ -401,9 +411,11 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
         <div className="page-shell">
           {[
             ["overview", "Overview"],
+            ["model-card", "Model card"],
             ["capabilities", "Training objectives"],
             ["architecture", "Architecture"],
             ["foundation", "Foundation"],
+            ["data", "Training data"],
             ["training", "Training approach"],
             ["local-first", "Local-first"],
             ["roadmap", "Development plan"],
@@ -431,7 +443,7 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
             {[
               ["Status", c.status],
               ["Release timing", t(locale, "No revised date announced")],
-              ["Primary foundation candidate", c.primaryFoundation],
+              ["Foundation", c.primaryFoundation],
             ].map(([label, value]) => (
               <div key={label}>
                 <dt>{t(locale, label)}</dt>
@@ -440,6 +452,30 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
             ))}
           </dl>
         </div>
+      </section>
+      <section
+        id="model-card"
+        className={`page-shell section ${styles.dossier}`}
+        aria-labelledby="sentinel-model-card-title"
+      >
+        <div>
+          <p className="kicker">{t(locale, "Technical record")}</p>
+          <h2 id="sentinel-model-card-title">{c.modelCardTitle}</h2>
+          <p className={styles.note}>{c.modelCardText}</p>
+        </div>
+        <dl className="m-0 border-b border-line">
+          {c.modelCard.map((row) => (
+            <div
+              key={row.label}
+              className="grid gap-2 border-t border-line py-4 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-6"
+            >
+              <dt className="ui-label">{row.label}</dt>
+              <dd className="m-0 text-sm leading-6 break-words text-ink-soft">
+                {row.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
       <SentinelCapabilities locale={locale} />
       <SentinelArchitecture locale={locale} detail />
@@ -456,6 +492,26 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
           </div>
           <div>
             <p>{item.text}</p>
+            {item.id === "data" || item.id === "training" ? (
+              <dl className={`facts ${styles.metadata}`}>
+                {(item.id === "data" ? c.gardenFacts : c.trainingFacts).map(
+                  (fact) => (
+                    <div key={fact.label}>
+                      <dt>{fact.label}</dt>
+                      <dd>{fact.value}</dd>
+                    </div>
+                  ),
+                )}
+              </dl>
+            ) : null}
+            {item.id === "data" ? (
+              <Link
+                className="text-link mt-6 inline-flex"
+                href={localizePath("/resources/data-and-training", locale)}
+              >
+                {t(locale, "How the dataset is built and checked")}
+              </Link>
+            ) : null}
             {item.id === "local-first" ? (
               <ul className={styles.artifacts}>
                 {c.artifacts.map((artifact) => (
@@ -486,6 +542,15 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
             <p>{c.researchNotice}</p>
             <p className={styles.note}>{c.safetyText}</p>
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+              <Link
+                href={localizePath(
+                  "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+                  locale,
+                )}
+                className="text-link"
+              >
+                {t(locale, "Research note: building Sentinel Garden")}
+              </Link>
               <Link
                 href={localizePath(
                   "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",

@@ -23,7 +23,7 @@ export function LocalizedAboutPage({ locale }: { locale: Locale }) {
   const sentinelFacts = [
     [t(locale, "Status"), sentinel.status],
     [t(locale, "Release timing"), t(locale, "No revised date announced")],
-    [t(locale, "Primary foundation candidate"), sentinel.primaryFoundation],
+    [t(locale, "Foundation"), sentinel.primaryFoundation],
     [t(locale, "Primary languages"), sentinel.languages.join(", ")],
   ];
   const structure = [
