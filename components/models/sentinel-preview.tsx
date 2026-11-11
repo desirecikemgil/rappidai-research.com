@@ -268,6 +268,12 @@ export function SentinelArchitecture({
             <p className={styles.tasks}>
               {c.engineTasks.split(" · ").join(", ")}
             </p>
+            <ActionLink
+              href={localizePath("/tools/sentinel-engine", locale)}
+              variant="text"
+            >
+              {t(locale, "Explore Sentinel Engine")}
+            </ActionLink>
           </article>
         </div>
         <p className={styles.reason}>{c.architectureReason}</p>

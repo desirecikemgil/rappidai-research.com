@@ -1,4 +1,5 @@
 import { ghostCommands, ghostLinks, ghostRelease } from "@/content/ghost";
+import { sentinelEngineCopy } from "@/content/sentinel-engine";
 import { ActionLink } from "@/components/ui/action-link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { metadataFor } from "@/lib/metadata";
@@ -10,17 +11,19 @@ const copy = {
   en: {
     intro: {
       eyebrow: "Tools",
-      title: "Tools for secure and reproducible AI agents",
+      title: "Agent infrastructure & security tools",
       description:
-        "Two open-source tools for agent infrastructure. Ghost controls access to the environment. Replay records execution and preserves inspectable technical state.",
+        "Ghost controls agent execution. Replay records runs and preserves technical state. Sentinel Engine is planned to bring Quantum Sentinel’s security analysis to software repositories.",
     },
-    thesis: "Two different questions",
-    thesisTitle: "Ghost secures the environment, Replay records the run",
+    thesis: "Three distinct tools",
+    thesisTitle: "Execution, recording and code security",
+    engineQuestion:
+      "What security concerns does this code contain, and what evidence supports a finding?",
     ghostQuestion:
       "What may the agent access, and how should suspicious input, sensitive actions and runtime risk be handled?",
     replayQuestion:
       "What happened during the run, and can the technical state be reconstructed?",
-    note: "Ghost and Replay are complementary research directions, not presented here as a single integrated product. Their current implementations remain separate repositories with separate guarantees.",
+    note: "Three independent products with different responsibilities and development stages. Ghost and Replay have experimental implementations. Sentinel Engine is planned; Ghost remains optional, and no integration between the tools is claimed.",
     ghostSummary:
       "An integrated security runtime for autonomous agents. Isolation, SHADOW deception, prompt-injection signals, scoped ASK decisions, runtime limits and evidence work together behind the same ghost run flow.",
     replaySummary:
@@ -52,17 +55,19 @@ const copy = {
   de: {
     intro: {
       eyebrow: "Tools",
-      title: "Werkzeuge für sichere und nachvollziehbare KI-Agenten",
+      title: "Infrastruktur für Agenten und Codesicherheit",
       description:
-        "Zwei Open-Source-Werkzeuge als Infrastruktur für KI-Agenten. Ghost kontrolliert den Zugriff auf die Umgebung. Replay zeichnet Ausführungen auf und hält technische Zustände nachprüfbar fest.",
+        "Ghost kontrolliert die Ausführung von Agenten. Replay zeichnet Läufe auf und hält technische Zustände fest. Sentinel Engine soll die Sicherheitsanalyse von Quantum Sentinel für Software-Repositories nutzbar machen.",
     },
-    thesis: "Zwei unterschiedliche Fragen",
-    thesisTitle: "Ghost sichert die Umgebung, Replay zeichnet den Lauf auf",
+    thesis: "Drei eigenständige Werkzeuge",
+    thesisTitle: "Ausführung, Aufzeichnung und Codesicherheit",
+    engineQuestion:
+      "Welche Sicherheitsprobleme enthält der Code, und welche Belege stützen einen Befund?",
     ghostQuestion:
       "Worauf darf der Agent zugreifen, und wie wird mit verdächtigen Eingaben, sensiblen Aktionen und Laufzeitrisiken umgegangen?",
     replayQuestion:
       "Was ist während des Laufs passiert, und lässt sich der technische Zustand rekonstruieren?",
-    note: "Ghost und Replay sind Forschungsrichtungen, die sich ergänzen. Wir stellen sie hier nicht als ein gemeinsames, integriertes Produkt dar. Ihre aktuellen Implementierungen liegen in getrennten Repositories mit jeweils eigenen Garantien.",
+    note: "Drei eigenständige Produkte mit unterschiedlichen Aufgaben und Entwicklungsständen. Für Ghost und Replay gibt es experimentelle Implementierungen. Sentinel Engine ist geplant; Ghost bleibt optional. Eine Integration der Werkzeuge wird nicht behauptet.",
     ghostSummary:
       "Eine integrierte Security-Runtime für autonome Agenten. Isolation, Täuschung per SHADOW, Prompt-Injection-Signale, eng begrenzte ASK-Entscheidungen, Laufzeitgrenzen und Nachweise greifen im selben Ablauf hinter ghost run ineinander.",
     replaySummary:
@@ -107,6 +112,12 @@ const tools = [
     repo: "https://github.com/rappidAI-Research/rappid-replay",
     accent: "RECORD · RESTORE · BRANCH · DIFF",
   },
+  {
+    name: "Sentinel Engine",
+    href: "/tools/sentinel-engine" as const,
+    repo: null,
+    accent: "JSON / SARIF",
+  },
 ] as const;
 
 const replayCommands = [
@@ -119,6 +130,7 @@ const replayCommands = [
 
 export function LocalizedToolsPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
+  const engine = sentinelEngineCopy[locale];
   return (
     <>
       <PageIntro
@@ -132,6 +144,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
             label: "rappidAI Replay",
             value: t(locale, "Experimental · Open source"),
           },
+          { label: "Sentinel Engine", value: engine.status },
           { label: t(locale, "Source"), value: "GitHub · rappidAI-Research" },
         ]}
         indexLabel={t(locale, "Explore this page")}
@@ -141,7 +154,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
             label: t(locale, "Tool overview"),
             description: t(
               locale,
-              "Understand the different jobs of Ghost and Replay before diving in.",
+              "Compare Ghost, Replay and the planned Sentinel Engine.",
             ),
           },
           {
@@ -161,6 +174,11 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
             ),
           },
           {
+            href: "#sentinel-engine",
+            label: "Sentinel Engine",
+            description: engine.category,
+          },
+          {
             href: "#tool-evidence",
             label: t(locale, "Source evidence"),
             description: t(
@@ -174,7 +192,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
       <section id="tools-overview" className="page-shell section">
         <div className="section-head split">
           <div>
-            <p className="kicker">{t(locale, "Two different questions")}</p>
+            <p className="kicker">{c.thesis}</p>
             <h2 className="display-section">{c.thesisTitle}</h2>
           </div>
           <p>{c.note}</p>
@@ -186,12 +204,13 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
           role="region"
           aria-label={c.thesisTitle}
         >
-          <table className="table stack-table min-w-[40rem]">
+          <table className="table stack-table min-w-[48rem]">
             <thead>
               <tr>
                 <th scope="col" className="w-[16%]" />
                 <th scope="col">rappidAI Ghost</th>
                 <th scope="col">rappidAI Replay</th>
+                <th scope="col">Sentinel Engine</th>
               </tr>
             </thead>
             <tbody>
@@ -203,6 +222,9 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                 <td data-label="rappidAI Replay" className="text-ink">
                   {c.replayQuestion}
                 </td>
+                <td data-label="Sentinel Engine" className="text-ink">
+                  {c.engineQuestion}
+                </td>
               </tr>
               <tr>
                 <th scope="row">{t(locale, "Scope")}</th>
@@ -211,6 +233,9 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                 </td>
                 <td data-label="rappidAI Replay" className="text-ink-soft">
                   {c.replaySummary}
+                </td>
+                <td data-label="Sentinel Engine" className="text-ink-soft">
+                  {engine.summary}
                 </td>
               </tr>
               <tr>
@@ -227,6 +252,9 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                 >
                   {tools[1].accent}
                 </td>
+                <td data-label="Sentinel Engine" className="text-ink-soft">
+                  {engine.status} · JSON / SARIF
+                </td>
               </tr>
             </tbody>
           </table>
@@ -235,8 +263,75 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
 
       <section className="band">
         <div className="page-shell section">
-          <div className="tool-showcase lg:grid-cols-2">
+          <div className="tool-showcase xl:grid-cols-3">
             {tools.map((tool) => {
+              if (tool.name === "Sentinel Engine") {
+                return (
+                  <article
+                    key={tool.name}
+                    id="sentinel-engine"
+                    className="tool-showcase-card card flex scroll-mt-24 flex-col overflow-hidden"
+                    data-reveal
+                  >
+                    <div className="h-60 border-b border-line bg-pale-soft p-5">
+                      <div className="window flex h-full flex-col">
+                        <div className="window-bar">
+                          <span>Sentinel Engine</span>
+                          <span>{engine.status}</span>
+                        </div>
+                        <dl className="m-0 grid flex-1 grid-rows-3 px-4">
+                          {[
+                            engine.phases[0].title,
+                            engine.phases[1].title,
+                            engine.phases[2].title,
+                          ].map((title, i) => (
+                            <div
+                              key={title}
+                              className="flex items-center justify-between gap-3 border-b border-line text-sm last:border-0"
+                            >
+                              <dt>{title}</dt>
+                              <dd className="m-0 text-muted">
+                                {i === 1
+                                  ? "Quantum Sentinel"
+                                  : i === 2
+                                    ? "JSON / SARIF"
+                                    : locale === "de"
+                                      ? "Quellcode"
+                                      : "Source code"}
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </div>
+                    </div>
+                    <div className="flex flex-1 flex-col p-6 sm:p-8">
+                      <p className="text-sm text-muted">{engine.category}</p>
+                      <h2 className="mt-4 text-[clamp(1.9rem,3vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.045em] text-ink">
+                        Sentinel Engine
+                      </h2>
+                      <p className="body-copy mt-4">{engine.summary}</p>
+                      <p className="mt-5 text-sm font-medium text-accent">
+                        {engine.status}
+                      </p>
+                      <details>
+                        <summary>{engine.capabilitiesTitle}</summary>
+                        <ul className="m-0 grid list-disc gap-2 pb-4 pl-5 text-sm leading-6 text-muted">
+                          {engine.features.map((feature) => (
+                            <li key={feature.title}>{feature.title}</li>
+                          ))}
+                        </ul>
+                      </details>
+                      <div className="mt-auto flex flex-wrap gap-3 pt-6">
+                        <ActionLink
+                          href={locale === "de" ? `/de${tool.href}` : tool.href}
+                        >
+                          {c.learn}
+                        </ActionLink>
+                      </div>
+                    </div>
+                  </article>
+                );
+              }
               const isGhost = tool.name === "Ghost";
               const facts = isGhost ? c.ghostFacts : c.replayFacts;
               const href = locale === "de" ? `/de${tool.href}` : tool.href;
@@ -246,8 +341,8 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                   className="tool-showcase-card card flex flex-col overflow-hidden"
                   data-reveal
                 >
-                  <div className="border-b border-line bg-pale-soft p-5">
-                    <div className="window window-dark">
+                  <div className="h-60 border-b border-line bg-pale-soft p-5">
+                    <div className="window window-dark h-full overflow-auto">
                       <div className="window-bar">
                         <span>{isGhost ? "ghost" : "rappid replay"}</span>
                         <span>{isGhost ? ghostRelease.version : "CLI"}</span>
@@ -270,8 +365,14 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-6 sm:p-8">
-                    <p className="font-mono text-[0.72rem] tracking-[0.08em] text-muted">
-                      {tool.accent}
+                    <p className="text-sm text-muted">
+                      {isGhost
+                        ? locale === "de"
+                          ? "Agentensicherheit"
+                          : "Agent security"
+                        : locale === "de"
+                          ? "Aufzeichnung von Agentenläufen"
+                          : "Agent execution recording"}
                     </p>
                     <h2 className="mt-4 text-[clamp(1.9rem,3vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.045em] text-ink">
                       <span

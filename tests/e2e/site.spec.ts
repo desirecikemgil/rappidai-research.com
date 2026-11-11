@@ -12,6 +12,7 @@ const publicRoutes = [
   "/tools",
   "/tools/ghost",
   "/tools/replay",
+  "/tools/sentinel-engine",
   "/resources",
   "/resources/publications",
   "/resources/publications/from-100m-to-600m-german-tokens",
