@@ -386,7 +386,7 @@ export function LocalizedToolsPage({ locale }: { locale: Locale }) {
                       {isGhost ? c.ghostSummary : c.replaySummary}
                     </p>
                     <p className="mt-5">
-                      <span className="chip">
+                      <span className="chip whitespace-normal">
                         {isGhost
                           ? `${ghostRelease.version} · ${c.ghostStatus}`
                           : t(locale, "Experimental · Open source")}
