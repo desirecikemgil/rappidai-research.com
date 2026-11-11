@@ -97,9 +97,9 @@ export const navigationGroups = [
     id: "tools",
     label: "Tools",
     href: "/tools",
-    title: "Agent infrastructure",
+    title: "Agent infrastructure & security tools",
     description:
-      "Two open-source tools: Ghost controls access to the environment, Replay preserves inspectable technical state.",
+      "Ghost controls agent execution, Replay records runs and Sentinel Engine is planned for repository security analysis.",
     items: [
       {
         label: "rappidAI Ghost",
@@ -114,10 +114,14 @@ export const navigationGroups = [
           "Record, restore, branch and compare technical execution state.",
       },
       {
+        label: "Sentinel Engine",
+        href: "/tools/sentinel-engine",
+        description: "Repository-oriented code-security analysis · Planned",
+      },
+      {
         label: "Tool overview",
         href: "/tools",
-        description:
-          "Understand the different jobs of Ghost and Replay before diving in.",
+        description: "Compare Ghost, Replay and the planned Sentinel Engine.",
       },
     ],
   },

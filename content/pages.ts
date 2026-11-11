@@ -217,7 +217,7 @@ export const pageMetadata = {
   "/tools": {
     title: "Tools — rappidAI Research",
     description:
-      "Ghost and Replay: open-source infrastructure for controllable and reproducible AI-agent execution.",
+      "Ghost, Replay and the planned Sentinel Engine: agent infrastructure and repository-oriented code-security analysis from rappidAI Research.",
   },
   "/tools/ghost": {
     title: "Ghost v0.3.0 — rappidAI Research",
@@ -228,6 +228,11 @@ export const pageMetadata = {
     title: "Replay — rappidAI Research",
     description:
       "Local-first infrastructure for recording, verifying, restoring, branching, rerunning and diffing AI-agent executions.",
+  },
+  "/tools/sentinel-engine": {
+    title: "Sentinel Engine — rappidAI Research",
+    description:
+      "Planned repository-security infrastructure powered by Quantum Sentinel-Alpha. Explore context selection, isolated supporting checks and JSON/SARIF reporting.",
   },
   "/resources": {
     title: "Resources — rappidAI Research",
