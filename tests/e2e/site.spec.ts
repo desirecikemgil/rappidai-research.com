@@ -494,10 +494,10 @@ for (const locale of ["en", "de"] as const) {
       'section[aria-labelledby="sentinel-garden-title"]',
     );
     await expect(garden).toContainText(locale === "de" ? "19.959" : "19,959");
-    await expect(garden).toContainText(locale === "de" ? "2.322" : "2,322");
+    await expect(garden).toContainText(locale === "de" ? "2.309" : "2,309");
     await expect(garden.locator("table")).toHaveCount(5);
     await expect(
-      garden.locator('a[href*="3c46606d51aa5e87d05e52d72898c612627535a2"]'),
+      garden.locator('a[href*="47c312158e9a68352e9a59eb31e658d0c22bd7c1"]'),
     ).toHaveCount(6);
 
     await page.goto(
@@ -511,6 +511,14 @@ for (const locale of ["en", "de"] as const) {
     await expect(page.locator("main")).toContainText(
       locale === "de" ? "0 von 29" : "0 of 29",
     );
+    await expect(page.locator("main")).toContainText(
+      locale === "de" ? "2.322" : "2,322",
+    );
+    await expect(
+      page
+        .locator('a[href*="3c46606d51aa5e87d05e52d72898c612627535a2"]')
+        .first(),
+    ).toBeVisible();
 
     await page.goto(`${prefix}/models/quantum-sentinel-alpha`);
     await expect(page.locator("#model-card")).toContainText(

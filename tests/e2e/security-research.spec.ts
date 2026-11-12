@@ -15,7 +15,7 @@ for (const locale of ["en", "de"] as const) {
       await expect(section).toBeVisible();
       await expect(
         section
-          .locator('a[href*="3c46606d51aa5e87d05e52d72898c612627535a2"]')
+          .locator('a[href*="47c312158e9a68352e9a59eb31e658d0c22bd7c1"]')
           .first(),
       ).toBeVisible();
       for (const width of [320, 375, 414, 768, 1280]) {
