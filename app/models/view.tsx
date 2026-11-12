@@ -5,6 +5,7 @@ import { ModelIndex } from "@/components/models/model-index";
 import { PageIntro } from "@/components/ui/page-intro";
 import { modelListName, models } from "@/content/models";
 import { modelsPageContent } from "@/content/pages";
+import { sentinelPreview } from "@/content/sentinel";
 import { metadataFor } from "@/lib/metadata";
 import { localizeContent, localizePath, t, type Locale } from "@/lib/i18n";
 
@@ -113,7 +114,9 @@ export function LocalizedModelsPage({ locale }: { locale: Locale }) {
                     {model.parameterCount?.label ??
                       (model.slug === "quantum-1-echelon"
                         ? t(locale, "~1B parameter target")
-                        : t(locale, "Foundation selection pending"))}
+                        : model.slug === "quantum-sentinel-alpha"
+                          ? `${sentinelPreview.primaryFoundation} (${t(locale, "Foundation")})`
+                          : t(locale, "Parameter size not yet defined"))}
                   </td>
                 </tr>
               ))}

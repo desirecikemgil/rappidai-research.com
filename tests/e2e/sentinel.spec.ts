@@ -41,6 +41,9 @@ for (const locale of ["en", "de"] as const) {
       .first()
       .click();
     await expect(page).toHaveURL(models);
+    await expect(
+      page.getByRole("row").filter({ hasText: "quantum-sentinel-alpha" }),
+    ).toContainText("Qwen3.5-9B");
     await page
       .getByRole("link", { name: "quantum-sentinel-alpha", exact: true })
       .first()
