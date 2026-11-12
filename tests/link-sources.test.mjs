@@ -55,7 +55,7 @@ describe("public link discovery", () => {
     );
     expect(
       urls.some((url) =>
-        /lumen-quantum\/blob\/[a-f0-9]{40}\/docs\/compute-plan.md$/.test(url),
+        /quantum-models\/blob\/[a-f0-9]{40}\/docs\/compute-plan.md$/.test(url),
       ),
     ).toBe(true);
     expect(

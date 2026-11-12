@@ -19,12 +19,12 @@ import {
 } from "./site";
 
 export const resourceReview = {
-  isoDate: "2026-11-02",
-  label: "2 November 2026",
+  isoDate: "2026-11-12",
+  label: "12 November 2026",
   evidenceReference: "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39",
   evidenceUrl: publicResearchUrls.evidenceSnapshot,
   explanation:
-    "Documentation reviewed on 2 November 2026 against Ghost v0.3.0, the Sentinel foundation record and pinned Replay sources. Pilot and Echelon results retain the historical snapshot linked below; this review does not imply new training, evaluation or a legal review of the site.",
+    "Documentation reviewed on 12 November 2026 against Ghost v0.3.0, the current development updates, Sentinel data and training pipelines and pinned Replay sources. Pilot and Echelon results retain the historical snapshot linked below; this review does not imply new training, evaluation or a legal review of the site.",
 } as const;
 
 export const resourceCards = [
@@ -241,7 +241,7 @@ export const reproducibilityContent = {
       available:
         "Public synthetic cases, a strict parser/scorer, a revision-pinned comparison protocol and a reproducible, audited Garden dataset with hash verification.",
       missing:
-        "No training-approved record, model evaluation, trained adapter, private holdout or patch evaluation.",
+        "No training-approved record, model evaluation, trained adapter, private holdout or measured model-patch result.",
     },
     {
       area: "Replay execution records",

@@ -87,10 +87,10 @@ describe("Ghost released source and site-wide consistency", () => {
   });
   it("leaves no obsolete Ghost versions, benchmark totals or source pins in live presentation", () => {
     for (const path of [
-      "app/tools/ghost/page.tsx",
+      "app/tools/ghost/view.tsx",
       "content/ghost.ts",
-      "app/tools/page.tsx",
-      "app/page.tsx",
+      "app/tools/view.tsx",
+      "app/view.tsx",
       "content/pages.ts",
       "content/locales/de-metadata.ts",
     ]) {
@@ -99,7 +99,7 @@ describe("Ghost released source and site-wide consistency", () => {
         /version:\s*"v0\.2\.0"|PASS: 15|001d0baa953301f9fc94443e0e45b28d9f93fac0|34052802282/i,
       );
     }
-    for (const path of ["app/page.tsx", "app/tools/page.tsx"]) {
+    for (const path of ["app/view.tsx", "app/tools/view.tsx"]) {
       expect(readFileSync(path, "utf8")).toContain("ghostRelease.version");
     }
   });

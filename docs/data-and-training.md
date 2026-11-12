@@ -15,21 +15,21 @@ silently become a training claim. Statements use four evidence levels:
 
 The website is a publication and presentation repository. Training and data
 preparation live in the separate
-[`lumen-quantum`](https://github.com/rappidAI-Research/lumen-quantum)
+[`quantum-models`](https://github.com/rappidAI-Research/quantum-models)
 research repository. This review used its public commit
 `f7eda1fb0ae153f0f9cc3477ead997cbdb462b39` plus the public Hugging Face model
 repositories. Future changes to those sources should be recorded with a new
 dated review rather than retroactively treated as evidence for an older release.
 
-## Sentinel Garden (reviewed 4 November 2026)
+## Sentinel Garden (reviewed 12 November 2026)
 
 This review supersedes the Sentinel section of 2 November 2026, which recorded
 the earlier revision `d7354b6` with zero training records. It uses the public
-Sentinel [revision `3c46606`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/tree/3c46606d51aa5e87d05e52d72898c612627535a2)
-after pull requests #4 to #6. FineWeb2-HQ is documented below for the
+Sentinel [revision `47c3121`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/tree/47c312158e9a68352e9a59eb31e658d0c22bd7c1)
+including training-readiness hardening and the pilot rights-review proposal. FineWeb2-HQ is documented below for the
 pilot/Echelon language-model workflows, not as Sentinel training data.
 
-**Pipeline.** [Sentinel Garden](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/SENTINEL_GARDEN.md) discovers
+**Pipeline.** [Sentinel Garden](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/SENTINEL_GARDEN.md) discovers
 GitHub-reviewed GHSA advisories through the OSV export (PyPI, npm, Go), resolves
 each to its single upstream fix commit and keeps fixes confined to one function.
 Each fix yields a vulnerable record, a hard negative (the fixed function) and,
@@ -38,33 +38,35 @@ Function boundaries, literals, imports and calls come from parse trees:
 Python's `ast`/`tokenize` and tree-sitter grammars pinned in `pyproject.toml`
 and recorded in `stats.json`.
 
-**Verified artifact metadata** ([report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/data/garden/seed_v1/REPORT.md),
-[stats](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/data/garden/seed_v1/stats.json)): 19,959 advisories inspected,
-4,830 candidates, 1,206 single-function fixes, 2,773 records built and 2,322
-accepted (1,053 vulnerable, 960 hard negatives, 309 abstentions; 947 complete
-pairs, 911 repositories, 161 CWEs). Splits follow the frozen policy
-[`sentinel-garden-split-v1`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/configs/garden/split_policy.yaml): train 1,737,
+**Verified artifact metadata** ([report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/data/garden/seed_v1/REPORT.md),
+[stats](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/data/garden/seed_v1/stats.json)): 19,959 advisories inspected,
+4,830 candidates, 1,206 single-function fixes, 2,773 records built and 2,309
+accepted (1,047 vulnerable, 954 hard negatives, 308 abstentions; 941 complete
+pairs, four languages, 161 CWEs). Splits follow the frozen policy
+[`sentinel-garden-split-v1`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/configs/garden/split_policy.yaml): train 1,737,
 validation 191, reserved holdout 235, temporal quarantine 159. Contamination
 hits against the evaluation cases: 0.
 
-**Audit** ([report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/data/garden/seed_v1/AUDIT_REPORT.md)). Exclusions:
+**Audit** ([report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/data/garden/seed_v1/AUDIT_REPORT.md)). Exclusions:
 126 hard negatives fixed again later, 47 reported incomplete, 10 unverifiable
 later fixes, 89 groups with broad localization spans, 1 constant-argument
-abstention and 10 records from the manual review. Manual sample of 44 items,
+abstention, 10 records from the manual review and 13 training records whose
+package also appears under a different repository key in validation or the
+reserved holdout. Manual sample of 44 items,
 reviewed by the implementing AI engineer (not an authorized reviewer); over the
 items that survive the automated exclusions: wrong labels 0/29, imprecise
 localization 1/29 (Wilson 95 % 0.6–17.2 %), unsafe hard negative 1/28
 (0.6–17.7 %), invalid abstention 0/11 (0–25.9 %).
 
-**Governance** ([rights review](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/RIGHTS_REVIEW.md),
-[data governance](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/DATA_GOVERNANCE.md)). The registry lists nine
+**Governance** ([rights review](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/RIGHTS_REVIEW.md),
+[data governance](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/DATA_GOVERNANCE.md)). The registry lists nine
 sources, all with `production_approved: false`, and the repository approval
 list is empty: **training-approved records remain at zero**. The review queue
-covers 766 repositories (tier A 513 / 1,260 records, B 111 / 330,
-C 15 / 33, D 127 / 305) with license file hashes and deps.dev cross-checks.
+covers 761 repositories (tier A 511 / 1,256 records, B 110 / 330,
+C 15 / 33, D 125 / 298) with license file hashes and deps.dev cross-checks.
 No upstream code is committed; records are rebuilt and verified by hash.
 
-**Training** ([TRAINING.md](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/TRAINING.md)). A QLoRA pipeline for
+**Training** ([TRAINING.md](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/TRAINING.md)). A QLoRA pipeline for
 `Qwen/Qwen3.5-9B@c202236` exists (4-bit NF4, LoRA r16/α32 on 200 modules,
 40,108,032 trainable parameters) and is tested on CPU only. _Configured target,
 not a run:_ no adapter, checkpoint or training run exists.
@@ -250,20 +252,20 @@ the release record should link:
   Hugging Face metadata.
 - The historical research snapshot had a llama.cpp Git-link setup gap. Current
   Quantum records the external revision and checkout instructions in
-  [docs/gguf-export.md](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md); historical run provenance remains incomplete.
+  [docs/gguf-export.md](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md); historical run provenance remains incomplete.
 
 ## Echelon planning milestone
 
-The [compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) separates configured token targets from completed data and training. It adds resource calculations and acceptance gates without starting production preparation, training or a cloud workload.
+The [compute plan](https://github.com/rappidAI-Research/quantum-models/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) separates configured token targets from completed data and training. It adds resource calculations and acceptance gates without starting production preparation, training or a cloud workload.
 
 ## Primary sources
 
-- [`quantum-1-pilot` Hugging Face repository](https://huggingface.co/rappidAI/quantum-1-pilot)
-- [`quantum-1.6-pilot` Hugging Face repository](https://huggingface.co/rappidAI/quantum-1.6-pilot)
+- [`quantum-1-pilot` Hugging Face repository](https://huggingface.co/rappidai-research/quantum-1-pilot)
+- [`quantum-1.6-pilot` Hugging Face repository](https://huggingface.co/rappidai-research/quantum-1.6-pilot)
 - [FineWeb2-HQ dataset card](https://huggingface.co/datasets/epfml/FineWeb2-HQ)
-- [`quantum-1.6-pilot` data configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
-- [`quantum-1.6-pilot` training configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
-- [Echelon base configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/quantum-1-echelon-base.yaml)
-- [Echelon tokenizer validation](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/tokenizer_validation.json)
-- [Echelon Garden configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/garden_production.yaml)
-- [Echelon Garden Phase 3 report](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/garden_phase3_report.md)
+- [`quantum-1.6-pilot` data configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
+- [`quantum-1.6-pilot` training configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
+- [Echelon base configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/quantum-1-echelon-base.yaml)
+- [Echelon tokenizer validation](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/tokenizer_validation.json)
+- [Echelon Garden configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/garden_production.yaml)
+- [Echelon Garden Phase 3 report](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/garden_phase3_report.md)

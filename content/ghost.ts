@@ -252,7 +252,7 @@ export const ghostCopy = {
       "Optional: replace only the network section in ghost.yaml. Keep deny unless limited egress is needed.",
     installTitle: "Start with a controlled local run",
     requirements:
-      "Runtime-tested release target: Linux amd64 with Docker Engine, a working local Docker CLI/daemon and non-zero numeric host UID/GID. Linux arm64 binaries are cross-built and checksum-verified. Source builds need Git and Go 1.26.8 or a newer supported patch release. Docker Desktop on macOS is not release-qualified; native Windows execution is unsupported.",
+      "Runtime-tested release target: Linux amd64 with Docker Engine, a working local Docker CLI/daemon and non-zero numeric host UID/GID. Linux arm64 binaries are cross-built and checksum-verified. Source builds need Git and Go 1.26.11 or a newer patched supported release. The published v0.3.0 binaries retain their original toolchain; they have not been rebuilt with this update. Docker Desktop on macOS is not release-qualified; native Windows execution is unsupported.",
     buildTitle: "1. Build the released source",
     buildNote:
       "The tag selects released v0.3.0 rather than moving main. PATH is set for this terminal so the commands below resolve to the binary you just built. The reviewed release revision is linked below.",
@@ -483,7 +483,7 @@ export const ghostCopy = {
       "Optional: Nur den Abschnitt network in ghost.yaml ersetzen. Die Einstellung deny beibehalten, sofern kein begrenzter ausgehender Datenverkehr nötig ist.",
     installTitle: "Mit einem kontrollierten lokalen Lauf beginnen",
     requirements:
-      "Mit Laufzeittests geprüfte Zielplattform des Release: Linux amd64 mit Docker Engine, funktionierender lokaler Docker-CLI samt Daemon und einer numerischen Host-UID/GID ungleich null. Binärdateien für Linux arm64 werden per Cross-Compiling erstellt und über Prüfsummen verifiziert. Für den Build aus dem Quellcode sind Git und Go 1.26.8 oder ein neueres unterstütztes Patch-Release nötig. Docker Desktop unter macOS ist für das Release nicht qualifiziert; die native Ausführung unter Windows wird nicht unterstützt.",
+      "Mit Laufzeittests geprüfte Zielplattform des Release: Linux amd64 mit Docker Engine, funktionierender lokaler Docker-CLI samt Daemon und einer numerischen Host-UID/GID ungleich null. Binärdateien für Linux arm64 werden per Cross-Compiling erstellt und über Prüfsummen verifiziert. Für Builds aus dem Quellcode sind Git und Go 1.26.11 oder ein neueres gepatchtes, unterstütztes Release nötig. Die veröffentlichten Binärdateien von v0.3.0 behalten ihre ursprüngliche Toolchain; sie wurden mit dieser Aktualisierung nicht neu gebaut. Docker Desktop unter macOS ist für das Release nicht qualifiziert; die native Ausführung unter Windows wird nicht unterstützt.",
     buildTitle: "1. Veröffentlichten Quellcode bauen",
     buildNote:
       "Der Tag wählt das veröffentlichte v0.3.0 statt des sich ständig ändernden Branches main. PATH wird für dieses Terminal gesetzt, damit die folgenden Befehle die soeben gebaute Binärdatei verwenden. Die geprüfte Revision des Release ist unten verlinkt.",

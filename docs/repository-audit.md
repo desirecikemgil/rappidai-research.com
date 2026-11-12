@@ -129,7 +129,7 @@ of malicious code or future vulnerabilities.
 
 The historical research snapshot had an uninitializable llama.cpp Git link.
 As rechecked on 2026-09-18, Quantum documents a separate checkout and pinned
-revision in [docs/gguf-export.md](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md). This setup correction does not supply missing historical model-run evidence.
+revision in [docs/gguf-export.md](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md). This setup correction does not supply missing historical model-run evidence.
 
 Before release:
 
@@ -201,5 +201,5 @@ open research or licensing item. Before a public release, the maintainer should:
 
 ## References
 
-[1]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
-[2]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/LICENSE "lumen-quantum Apache License 2.0"
+[1]: https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
+[2]: https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/LICENSE "lumen-quantum Apache License 2.0"

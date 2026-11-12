@@ -33,13 +33,13 @@ masterplan are not evidence that training or evaluation has occurred.
   or that the pinned revision is the latest development head.
 - Quantum: current source inspected at
   `0cd95ad9414d1c38ac09f7a30d3587daa0408cb7`.
-  [GGUF setup](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md)
+  [GGUF setup](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md)
   documents a separate llama.cpp checkout pinned to
   `d4cff114c0084f1fbc9b4c62717eca8fb2ae494a`. Corrected the stale setup warning;
   missing historical pilot run manifests remain missing. Older immutable
   evidence links are retained rather than relabelled as new results.
 - Pilot artifact licenses: retained the explicit
-  [maintainer decision](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md).
+  [maintainer decision](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md).
   No new reuse grant is made for models, tokenizers, data or visual assets.
 
 ## Publication decisions

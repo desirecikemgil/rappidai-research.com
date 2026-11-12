@@ -12,7 +12,7 @@ export const linkModules = [
 
 export function isPublicLinkSource(file) {
   const path = file.replaceAll("\\", "/");
-  // old/ is a frozen backup of the previous website, not live content.
+  // Historical source archives are not live public content.
   if (path.startsWith("old/")) return false;
   return !/(^|\/)(?:tests?|__tests__|fixtures|__fixtures__)(\/|$)|\.(?:test|spec)\.[^/]+$/i.test(
     path,

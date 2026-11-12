@@ -4,8 +4,8 @@ Quantum Sentinel-Alpha is the first security fine-tuning milestone of the
 Quantum Sentinel 1 line: a source-code model meant to act as a second security
 reviewer. **No model has been trained or evaluated.** This card records the
 selected foundation, the prepared training and data pipelines and their
-evidence as reviewed on **4 November 2026** at Sentinel commit
-[`3c46606`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/tree/3c46606d51aa5e87d05e52d72898c612627535a2).
+evidence as reviewed on **12 November 2026** at Sentinel commit
+[`47c3121`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/tree/47c312158e9a68352e9a59eb31e658d0c22bd7c1).
 The earlier October 2026 Alpha target has passed; no revised release date is
 announced.
 
@@ -33,7 +33,7 @@ GPU and an Apache-2.0 license. This is not an experimentally demonstrated
 advantage: neither Qwen3.5-9B nor Qwen3.5-4B has a QuickEval or coding-regression
 result, and 9B has not been shown to outperform 4B on security tasks. The
 4B/9B comparison remains an optional experiment, no longer a gate. Decision
-record: [`docs/FOUNDATION.md`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/FOUNDATION.md).
+record: [`docs/FOUNDATION.md`](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/FOUNDATION.md).
 
 ## Intended use and training objectives
 
@@ -61,11 +61,11 @@ abstention record (a caller shown without the vulnerable callee).
 | Candidates with exactly one upstream fix commit                                |  4,830 |
 | Fixes confined to one function                                                 |  1,206 |
 | Records built                                                                  |  2,773 |
-| Records accepted after checks and audit                                        |  2,322 |
+| Records accepted after checks and audit                                        |  2,309 |
 | Records approved for training                                                  |  **0** |
 
-Accepted records: 1,053 vulnerable, 960 hard negatives and 309 abstentions;
-947 complete vulnerable/fixed pairs from 911 repositories covering 161 CWEs.
+Accepted records: 1,047 vulnerable, 954 hard negatives and 308 abstentions;
+941 complete vulnerable/fixed pairs across four languages and 161 CWEs.
 Splits are assigned by a frozen, salted hash of the repository (policy
 `sentinel-garden-split-v1`, temporal cutoff 1 July 2026): train 1,737,
 validation 191, reserved holdout 235, temporal quarantine 159. No repository
@@ -82,7 +82,9 @@ excludes records:
 - 89 groups with a broad localization span (every broad span in the manual
   sample was imprecise);
 - 1 abstention whose caller passes only constants and 10 records from the
-  manual review.
+  manual review;
+- 13 training records whose package also appears in validation or the reserved
+  holdout, even though its repository has moved or changed name.
 
 A stratified manual sample of 44 items was reviewed by the implementing AI
 engineer, **not** an authorized reviewer. Over the items that survive the
@@ -95,10 +97,10 @@ upper bounds.
 
 Training export is default-deny. It requires approval of the registry sources
 (`ghsa-osv-fix-commits`, `osv`, `github-advisory-db`) and of every upstream
-repository. The review queue lists 766 repositories with the license file at
+repository. The review queue lists 761 repositories with the license file at
 each used revision, its sha256 and the package-registry license: tier A
-(permissive, consistent) 513 repositories / 1,260 records, tier B 111 / 330,
-tier C (weak copyleft) 15 / 33, tier D (strong copyleft, unknown, none) 127 / 305.
+(permissive, consistent) 511 repositories / 1,256 records, tier B 110 / 330,
+tier C (weak copyleft) 15 / 33, tier D (strong copyleft, unknown, none) 125 / 305.
 Non-permissive repositories additionally need a written justification. No
 upstream code is committed or uploaded; records are rebuilt from the pinned
 upstream commits and verified by content hash.
@@ -119,12 +121,15 @@ out-of-memory failures.
 ## Evaluation (planned)
 
 A reportable result needs the pinned base model, the trained adapter, the full
-case set and the shared prompt `quickeval-review-v1`, parser, scorer and
+case set and the shared prompt `quickeval-review-v2`, parser, scorer and
 generation settings: QuickEval v1 (37 vulnerable, 34 hard-negative and 15
 abstention synthetic cases), the 16 Python coding-regression tasks and the
 Garden validation split, each compared with the untuned base model. The public
 synthetic cases are not a private holdout; the private holdout has not started.
-Patch evaluation is not implemented.
+Offline patch scoring and patch-supervision exports are implemented as a
+separate task. No model-generated patch has been evaluated. Functional and
+security validation still require per-project environments. An independent
+human-review package covers 64 items; no independent review has been performed.
 
 ## Limitations and risks
 
@@ -146,12 +151,12 @@ GGUF variants, and a Sentinel Scanner/CLI. None is available yet.
 
 Prepared from the maintainer-supplied **Quantum Sentinel 1 Masterplan**
 (v1.1 Lean, 6 October 2026, and v1.2, November 2026) and the Sentinel
-repository at commit `3c46606`:
-[status](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/STATUS.md),
-[Sentinel Garden](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/SENTINEL_GARDEN.md),
-[audit report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/data/garden/seed_v1/AUDIT_REPORT.md),
-[rights review](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/RIGHTS_REVIEW.md) and
-[training](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/3c46606d51aa5e87d05e52d72898c612627535a2/docs/TRAINING.md).
+repository at commit `47c3121`:
+[status](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/STATUS.md),
+[Sentinel Garden](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/SENTINEL_GARDEN.md),
+[audit report](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/data/garden/seed_v1/AUDIT_REPORT.md),
+[rights review](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/RIGHTS_REVIEW.md) and
+[training](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/TRAINING.md).
 This card does not claim a completed training run and publishes no internal
 budget, cloud-account or support-case information. Echelon remains a separate
 model with its own page and card.
