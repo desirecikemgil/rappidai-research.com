@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  SentinelArchitecture,
-  SentinelCapabilities,
-  SentinelHero,
-  SentinelRoadmap,
-} from "@/components/models/sentinel-preview";
 import { DetectionOutcomesArt } from "@/components/resources/publication-art";
 import { ActionLink } from "@/components/ui/action-link";
 import { ghostCopy, ghostRelease } from "@/content/ghost";
@@ -19,8 +13,10 @@ export const metadata: Metadata = metadataFor("/");
 const copy = {
   en: {
     intro: "Independent AI research from Berlin",
+    title: ["AI research,", "openly documented"],
     description:
-      "We build compact language models and open tools for inspectable AI systems. rappidAI is an independent, founder-led research initiative in Berlin; our current focus is Quantum Sentinel-Alpha, a security model in development.",
+      "We research compact language models and build open tools for AI agents. Our methods, results and limitations are documented in public.",
+    workLink: "Explore our work",
     explore: "Explore our models",
     research: "Inside the research",
     work: "The work",
@@ -29,12 +25,12 @@ const copy = {
       "From model weights to agent execution. Three distinct research directions, built around efficiency, transparency and local control.",
     quantum: "Compact language models",
     quantumText:
-      "Security-specialized Sentinel, the Echelon model line and German-language pilot models. Explore the releases, methods and evidence behind each stage.",
+      "German-language pilots, the Echelon model line and security-focused Sentinel research. Explore the artifacts, methods and development status of each model.",
     quantumStatus:
       "Sentinel-Alpha and Echelon in development, two public pilots",
     ghost: "Security runtime for AI agents",
     ghostText:
-      "An integrated security runtime for autonomous agents: isolation, SHADOW deception, prompt-injection signals, scoped approvals, runtime limits and evidence behind one simple flow.",
+      "Run AI agents within explicit boundaries. Ghost combines isolation, approvals and security signals with a record of each session.",
     replay: "Recording and comparing agent runs",
     replayText:
       "Record execution, restore technical state and compare branches. Local-first infrastructure for reproducible agent research.",
@@ -83,8 +79,10 @@ const copy = {
   },
   de: {
     intro: "Unabhängige KI-Forschung aus Berlin",
+    title: ["KI-Forschung,", "offen dokumentiert"],
     description:
-      "Wir entwickeln kompakte Sprachmodelle und offene Werkzeuge für nachvollziehbare KI-Systeme. rappidAI ist eine unabhängige, gründergeführte Forschungsinitiative aus Berlin; derzeit konzentrieren wir uns auf Quantum Sentinel-Alpha, unser Sicherheitsmodell in Entwicklung.",
+      "Wir erforschen kompakte Sprachmodelle und entwickeln offene Werkzeuge für KI-Agenten. Unsere Methoden, Ergebnisse und Grenzen dokumentieren wir öffentlich.",
+    workLink: "Unsere Arbeit entdecken",
     explore: "Modelle ansehen",
     research: "Mehr zur Forschung",
     work: "Unsere Arbeit",
@@ -93,12 +91,12 @@ const copy = {
       "Von den Modellgewichten bis zur Ausführung von Agenten: drei eigenständige Forschungsrichtungen, ausgerichtet auf Effizienz, Transparenz und lokale Kontrolle.",
     quantum: "Kompakte Sprachmodelle",
     quantumText:
-      "Das auf Sicherheit spezialisierte Sentinel, die Echelon-Modelllinie und deutschsprachige Pilotmodelle. Zu jeder Phase dokumentieren wir Veröffentlichungen, Methoden und Belege.",
+      "Deutschsprachige Pilotmodelle, die Echelon-Modelllinie und Sicherheitsforschung mit Sentinel. Zu jedem Modell dokumentieren wir Artefakte, Methoden und Entwicklungsstand.",
     quantumStatus:
       "Sentinel-Alpha und Echelon in Entwicklung, zwei öffentliche Pilotmodelle",
     ghost: "Security-Runtime für KI-Agenten",
     ghostText:
-      "Eine integrierte Security-Runtime für autonome Agenten: Isolation, Täuschung per SHADOW, Prompt-Injection-Signale, eng begrenzte Freigaben, Laufzeitgrenzen und Nachweise, gebündelt in einem einfachen Ablauf.",
+      "KI-Agenten innerhalb klarer Grenzen ausführen. Ghost verbindet Isolation, Freigaben und Sicherheitssignale mit einer Aufzeichnung jeder Sitzung.",
     replay: "Agentenläufe aufzeichnen und vergleichen",
     replayText:
       "Ausführungen aufzeichnen, technische Zustände wiederherstellen und verzweigte Läufe vergleichen. Lokal ausgerichtete Infrastruktur für reproduzierbare Forschung an KI-Agenten.",
@@ -155,37 +153,44 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
   const path = (href: string) => localizePath(href, locale);
   return (
     <>
-      <SentinelHero locale={locale} />
-      <SentinelArchitecture locale={locale} />
-      <SentinelCapabilities locale={locale} />
-      <SentinelRoadmap locale={locale} />
-
       <section
         id="introduction"
-        className={styles.company}
+        className={styles.hero}
         aria-labelledby="introduction-title"
       >
-        <div className={`page-shell ${styles.companyInner}`}>
-          <div>
-            <p className="kicker">rappidAI Research</p>
-            <h2 id="introduction-title" className={styles.companyTitle}>
-              {c.intro}
-            </h2>
+        <div className={`page-shell ${styles.heroInner}`} data-introduction>
+          <div className={styles.heroHeading}>
+            <p className="kicker">{c.intro}</p>
+            <h1 id="introduction-title" className={styles.heroTitle}>
+              <span>{c.title[0]}</span> <span>{c.title[1]}</span>
+            </h1>
           </div>
-          <div className={styles.companyBody}>
+          <div className={styles.heroBody}>
             <p>{c.description}</p>
-            <Link className="text-link" href={path("/about")}>
-              {c.aboutLink}
-            </Link>
+            <div className={styles.heroActions}>
+              <ActionLink href="#work">{c.workLink}</ActionLink>
+              <Link className="text-link" href={path("/about")}>
+                {c.aboutLink}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="work" className="page-shell section">
+      <section
+        id="work"
+        className="page-shell section"
+        aria-labelledby="work-title"
+      >
         <div className="section-head split">
           <div>
             <p className="kicker">{c.work}</p>
-            <h2 className="display-section">{c.workTitle}</h2>
+            <h2
+              id="work-title"
+              className={`display-section ${styles.workTitle}`}
+            >
+              {c.workTitle}
+            </h2>
           </div>
           <p>{c.workText}</p>
         </div>
@@ -195,7 +200,9 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
               <div className="window">
                 <div className="window-bar">
                   <span>Quantum</span>
-                  <span>{lineup.length} / models</span>
+                  <span>
+                    {lineup.length} / {t(locale, "Models")}
+                  </span>
                 </div>
                 <ul className={styles.lineup}>
                   {lineup.map((model) => (

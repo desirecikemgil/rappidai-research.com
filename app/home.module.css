@@ -1,49 +1,69 @@
-/* ---------------- Company ---------------- */
+/* ---------------- Introduction ---------------- */
 
-.company {
-  border-block: 1px solid var(--line);
+.hero {
+  border-bottom: 1px solid var(--line);
   background: var(--white);
 }
 
-.companyInner {
+.heroInner {
   display: grid;
-  gap: 2rem 4rem;
-  padding-block: clamp(4.5rem, 9vw, 7.5rem);
+  gap: 2.25rem 4rem;
+  padding-block: clamp(4rem, 8vw, 7rem) clamp(4.5rem, 9vw, 7.5rem);
 }
 
-@media (min-width: 1024px) {
-  .companyInner {
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+@media (min-width: 980px) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     align-items: end;
   }
 }
 
-.companyTitle {
-  max-width: 14ch;
-  margin: 1rem 0 0;
+.heroTitle {
+  margin: 1.5rem 0 0;
   color: var(--ink);
-  font-size: clamp(2.6rem, 5.6vw, 4.75rem);
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.04;
   letter-spacing: -0.055em;
 }
 
-.companyBody {
-  display: flex;
-  max-width: 34rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
+.heroTitle span {
+  display: block;
 }
 
-.companyBody p {
+.heroHeading,
+.heroBody {
+  min-width: 0;
+}
+
+.heroBody {
+  display: flex;
+  max-width: 30rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+}
+
+.heroBody p {
   margin: 0;
   color: var(--ink-2);
-  font-size: clamp(1.05rem, 1.25vw, 1.15rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.15rem);
   line-height: 1.7;
 }
 
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 1.5rem;
+}
+
 /* ---------------- Portfolio ---------------- */
+
+.workTitle {
+  hyphens: none;
+  text-wrap: balance;
+}
 
 .portfolio {
   display: grid;
@@ -98,6 +118,7 @@
 
 .lineup li {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
@@ -105,6 +126,10 @@
   color: var(--ink);
   font-size: 0.82rem;
   font-weight: 500;
+}
+
+.lineup li > span:first-child {
+  hyphens: none;
 }
 
 .lineup li + li {
@@ -116,6 +141,17 @@
   flex: none;
   font-size: 0.7rem;
   white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .workTitle {
+    font-size: clamp(1.75rem, 7.8vw, 2rem);
+  }
+
+  .productVisual {
+    height: auto;
+    min-height: 16.5rem;
+  }
 }
 
 .decisions {

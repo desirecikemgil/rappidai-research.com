@@ -17,7 +17,11 @@ for (const locale of ["en", "de"] as const) {
         errors.push(message.text());
     });
     await page.goto(home);
-    await expect(page.locator("h1")).toHaveText("Quantum Sentinel-Alpha");
+    await expect(page.locator("h1")).toHaveText(
+      locale === "en"
+        ? "AI research, openly documented"
+        : "KI-Forschung, offen dokumentiert",
+    );
     await page.goto(models);
     await page.locator(".model-index-featured").getByRole("link").click();
     await expect(page.getByText(status, { exact: true })).toBeVisible();
@@ -111,7 +115,7 @@ for (const width of [375, 768, 1440, 1920]) {
       if (route === "/") {
         const cta = await page
           .getByRole("link", {
-            name: "Explore Quantum Sentinel-Alpha",
+            name: "Explore our work",
             exact: true,
           })
           .first()
@@ -223,15 +227,20 @@ test("touch devices do not require a pointer and support mobile navigation", asy
   await context.close();
 });
 
-test("launch content and navigation are available without JavaScript", async ({
+test("homepage and model navigation are available without JavaScript", async ({
   browser,
 }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText("Quantum Sentinel-Alpha");
+  await expect(page.locator("h1")).toHaveText("AI research, openly documented");
   await page
-    .getByRole("link", { name: "Explore Quantum Sentinel-Alpha", exact: true })
+    .getByRole("link", { name: "Explore our models", exact: true })
+    .first()
+    .click();
+  await expect(page).toHaveURL("/models");
+  await page
+    .getByRole("link", { name: "quantum-sentinel-alpha", exact: true })
     .first()
     .click();
   await expect(page.locator("#foundation")).toContainText(

@@ -5,7 +5,7 @@ for (const locale of ["en", "de"] as const) {
   const home = locale === "en" ? "/" : "/de";
   const models = locale === "en" ? "/models" : "/de/models";
   const model = `${models}/quantum-sentinel-alpha`;
-  test(`${locale}: Sentinel leads the homepage and keeps Echelon reachable`, async ({
+  test(`${locale}: company homepage keeps Sentinel and Echelon reachable`, async ({
     page,
     request,
   }) => {
@@ -15,16 +15,34 @@ for (const locale of ["en", "de"] as const) {
       if (message.type() === "error") errors.push(message.text());
     });
     await page.goto(home);
-    await expect(page.locator("h1")).toHaveText("Quantum Sentinel-Alpha");
-    await expect(page.locator("section").first()).toContainText("Qwen3.5-9B");
+    await expect(page.locator("h1")).toHaveText(
+      locale === "en"
+        ? "AI research, openly documented"
+        : "KI-Forschung, offen dokumentiert",
+    );
+    await expect(page.locator("#introduction")).not.toContainText("Sentinel");
+    await expect(page.locator("#work article")).toHaveCount(3);
+    await expect(
+      page.locator("main #architecture, main #capabilities, main #roadmap"),
+    ).toHaveCount(0);
     await page
       .getByRole("link", {
-        name:
-          locale === "en"
-            ? "Explore Quantum Sentinel-Alpha"
-            : "Quantum Sentinel-Alpha entdecken",
+        name: locale === "en" ? "Explore our work" : "Unsere Arbeit entdecken",
         exact: true,
       })
+      .click();
+    await expect(page).toHaveURL(`${home}#work`);
+    await expect(page.locator("#work-title")).toBeInViewport();
+    await page
+      .getByRole("link", {
+        name: locale === "en" ? "Explore our models" : "Modelle ansehen",
+        exact: true,
+      })
+      .first()
+      .click();
+    await expect(page).toHaveURL(models);
+    await page
+      .getByRole("link", { name: "quantum-sentinel-alpha", exact: true })
       .first()
       .click();
     await expect(page).toHaveURL(model);
@@ -62,7 +80,7 @@ for (const locale of ["en", "de"] as const) {
   });
 }
 
-for (const width of [320, 375, 768, 1440]) {
+for (const width of [320, 375, 414, 768, 1280]) {
   test(`Sentinel responsive layout and accessibility at ${width}px`, async ({
     page,
   }, testInfo) => {
@@ -94,13 +112,22 @@ for (const width of [320, 375, 768, 1440]) {
           return {
             textAlign: getComputedStyle(title).textAlign,
             titleX: title.getBoundingClientRect().left,
-            factsX: facts.getBoundingClientRect().left,
+            factsX: facts?.getBoundingClientRect().left,
             actionX: actions.getBoundingClientRect().left,
           };
         });
       expect(alignment.textAlign).toBe("left");
-      expect(Math.abs(alignment.titleX - alignment.factsX)).toBeLessThan(1);
-      expect(Math.abs(alignment.titleX - alignment.actionX)).toBeLessThan(1);
+      if (route.includes("quantum-sentinel-alpha")) {
+        expect(Math.abs(alignment.titleX - alignment.factsX!)).toBeLessThan(1);
+        expect(Math.abs(alignment.titleX - alignment.actionX)).toBeLessThan(1);
+      } else {
+        await expect(page.locator("#work article")).toHaveCount(3);
+        expect(
+          await page
+            .locator("#introduction")
+            .evaluate((hero) => hero.getAnimations({ subtree: true }).length),
+        ).toBe(0);
+      }
       const violations = (
         await new AxeBuilder({ page }).analyze()
       ).violations.filter(({ impact }) =>

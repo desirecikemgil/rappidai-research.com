@@ -180,9 +180,9 @@ export const privacyPageContent = {
 
 export const pageMetadata = {
   "/": {
-    title: "rappidAI Research — Quantum Sentinel-Alpha",
+    title: "rappidAI Research — Models, tools and open research",
     description:
-      "rappidAI Research develops open AI systems including Quantum Sentinel-Alpha, a security-specialized model for source-code vulnerability analysis. Alpha is in development; open weights are planned.",
+      "Independent AI research from Berlin. Explore compact language models, open tools for AI agents and research notes with documented methods, results and limitations.",
   },
   "/models": {
     title: "Models — rappidAI Research",
