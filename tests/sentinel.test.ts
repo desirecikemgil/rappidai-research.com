@@ -44,9 +44,7 @@ describe("Sentinel announcement boundaries", () => {
   it("publishes bilingual Sentinel routes and metadata without changing Echelon's title", () => {
     expect(siteRoutes).toContain("/models/quantum-sentinel-alpha");
     for (const locale of ["en", "de"] as const) {
-      expect(metadataFor("/", locale).title).toContain(
-        "Quantum Sentinel-Alpha",
-      );
+      expect(metadataFor("/", locale).title).not.toContain("Sentinel");
       const metadata = metadataFor("/models/quantum-sentinel-alpha", locale);
       expect(metadata.alternates?.languages?.en).toBe(
         "https://www.rappidai-research.com/models/quantum-sentinel-alpha",

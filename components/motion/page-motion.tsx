@@ -52,9 +52,13 @@ export function PageMotion({ pathname }: { pathname: string }) {
 
     // Only the incoming introduction moves. Navigation never waits for an exit.
     const intro = main.querySelector(
-      ".page-intro-main, .echelon-hero-content, .model-hero, .studio-article > header",
+      "[data-introduction], .page-intro-main, .echelon-hero-content, .model-hero, .studio-article > header",
     );
-    if (changed && intro) animate(intro, 4, 220);
+    if (intro?.hasAttribute("data-introduction")) {
+      // One quiet entrance for the company introduction, including first load.
+      // Server-rendered content remains visible without JavaScript.
+      animate(intro, 6, 480);
+    } else if (changed && intro) animate(intro, 4, 220);
 
     const observer = new IntersectionObserver(
       (entries) => {

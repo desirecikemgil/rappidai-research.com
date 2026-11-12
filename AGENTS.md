@@ -8,6 +8,8 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable visual direction
 
+- November 2026 neutral homepage (supersedes earlier model-led homepage directions): lead with a short introduction to rappidAI as an independent research initiative. Give models, agent tools and publications a balanced overview. Keep the light-first identity, left alignment and “Three research areas” section; use one restrained entrance animation with reduced-motion and hidden-tab support. Sentinel's hero, architecture, capabilities and roadmap belong on its model detail page, not on the homepage. Preserve all model and tool routes and evidence boundaries.
+
 - September 2026 redesign: give rappidAI a confident, product-led presence, with a deep-navy opening, generous typography, concise introductions and distinct Quantum, Ghost and Replay compositions. The latest brief authorizes reworking the overall layout and supersedes the earlier liquid-glass emphasis.
 - Use lightweight signal-line SVG illustrations and sparse, slow CSS transform/opacity motion. Pause passive effects outside the viewport, on hidden tabs and for reduced-motion preferences. Keep evidence and current implementation limits intact.
 

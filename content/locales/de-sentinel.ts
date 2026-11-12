@@ -1,8 +1,8 @@
 export const deSentinelTranslations: Readonly<Record<string, string>> = {
   "Our current focus is Quantum Sentinel-Alpha, a security-specialized source-code model in development. Local inference and an open-weight release are planned. Quantum 1 Echelon remains our separate German-first language-model project, available in the model index.":
     "Unser aktueller Schwerpunkt ist Quantum Sentinel-Alpha: ein auf Sicherheit spezialisiertes Modell für Quellcode, das sich in Entwicklung befindet. Geplant sind lokale Inferenz und eine Veröffentlichung mit offenen Gewichten. Quantum 1 Echelon bleibt unser eigenständiges Sprachmodellprojekt mit Schwerpunkt Deutsch und ist weiterhin im Modellindex zu finden.",
-  "Independent AI research from Berlin, developing Quantum Sentinel-Alpha for source-code security alongside compact model experiments and open agent infrastructure.":
-    "Unabhängige KI-Forschung aus Berlin: Wir entwickeln Quantum Sentinel-Alpha für die Sicherheit von Quellcode, experimentieren mit kompakten Modellen und bauen offene Infrastruktur für KI-Agenten.",
+  "Independent AI research from Berlin, exploring compact language models and building open tools for AI agents.":
+    "Unabhängige KI-Forschung aus Berlin. Wir erforschen kompakte Sprachmodelle und entwickeln offene Werkzeuge für KI-Agenten.",
   Introducing: "Neu",
   "Alpha · In Development": "Alpha · In Entwicklung",
   "Target: October 2026": "Ziel: Oktober 2026",

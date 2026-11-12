@@ -606,6 +606,10 @@ export const deTranslations: Readonly<Record<string, string>> = {
     "Alle Ressourcenbereiche mit ihrem aktuellen Dokumentationsstand. Gestrichelte Felder markieren offene Lücken, keine Auslassungen.",
 
   CONCLUSIONS: "Fazit",
+  "rappidAI Research — Models, tools and open research":
+    "rappidAI Research — Modelle, Werkzeuge und offene Forschung",
+  "Independent AI research from Berlin. Explore compact language models, open tools for AI agents and research notes with documented methods, results and limitations.":
+    "Unabhängige KI-Forschung aus Berlin. Entdecken Sie kompakte Sprachmodelle, offene Werkzeuge für KI-Agenten und Forschungsnotizen mit dokumentierten Methoden, Ergebnissen und Grenzen.",
   ...deEchelonTranslations,
   ...deSentinelTranslations,
   ...dePublicationTranslations,
