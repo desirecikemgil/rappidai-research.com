@@ -151,7 +151,7 @@ describe("resource content contracts", () => {
   });
 
   it("keeps documentation and legal review dates separate", () => {
-    expect(resourceReview.isoDate).toBe("2026-11-02");
+    expect(resourceReview.isoDate).toBe("2026-11-12");
     expect(siteConfig.lastReviewed).toBe("2026-09-18");
     expect(resourceReview.explanation).toContain("historical snapshot");
     expect(siteConfig.legal.serviceAddress).toBe(
