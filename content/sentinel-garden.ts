@@ -75,11 +75,11 @@ export const sentinelGarden = {
     ["JavaScript", 300, 271, 63, 634],
     ["TypeScript", 161, 150, 47, 358],
     ["Go", 284, 262, 109, 655],
-    ["Total", 1053, 960, 309, 2309],
+    ["Total", 1047, 954, 308, 2309],
   ],
   splitColumns: ["Split", "Records", "Repositories", "Used for"],
   splits: [
-    ["train", 1737, 685, "Training, after approval"],
+    ["train", 1724, 680, "Training, after approval"],
     ["validation", 191, 81, "Training-time validation, after approval"],
     ["holdout_reserved", 235, 89, "Evaluation only; never trained on"],
     [
@@ -168,12 +168,12 @@ export const sentinelGarden = {
     [
       "A",
       "Permissive license, consistent across revisions and with the package registry",
-      513,
-      1260,
+      511,
+      1256,
     ],
-    ["B", "Permissive license with an open question", 111, 328],
+    ["B", "Permissive license with an open question", 110, 328],
     ["C", "Weak copyleft", 15, 33],
-    ["D", "Strong copyleft, unknown or no license file", 127, 298],
+    ["D", "Strong copyleft, unknown or no license file", 125, 298],
   ],
   sources: [
     { label: "Sentinel Garden design", url: sentinelResearchLinks.garden },
