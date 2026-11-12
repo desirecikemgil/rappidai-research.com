@@ -3,7 +3,7 @@
 ## Status correction — 18 September 2026
 
 This is a historical 23 July assessment, not a current AWS eligibility decision.
-Quantum now has Apache-2.0 source licensing and [recorded maintainer approval](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). Pilot artifacts are deliberately all rights reserved, without a reuse grant. The [Echelon compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) adds planning evidence; production data, training and evaluation remain incomplete. The original test results and scores below are historical and have not been promoted to current measurements.
+Quantum now has Apache-2.0 source licensing and [recorded maintainer approval](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). Pilot artifacts are deliberately all rights reserved, without a reuse grant. The [Echelon compute plan](https://github.com/rappidAI-Research/quantum-models/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) adds planning evidence; production data, training and evaluation remain incomplete. The original test results and scores below are historical and have not been promoted to current measurements.
 
 - **Assessment date:** 2026-07-23
 - **Pre-remediation website baseline:**

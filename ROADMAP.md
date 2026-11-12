@@ -6,8 +6,8 @@ release dates. Priorities may change as evidence and maintainer capacity change.
 ## Current
 
 - Keep Quantum identity, canonical repository ownership and source/artifact license boundaries aligned with the research repositories.
-- Link the [Echelon compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) while keeping production data, training, evaluation and release evidence separate.
-- Preserve the distinction between released Ghost v0.2.0 and unreleased v0.3 work, and between Replay live reruns and future controlled-I/O modes.
+- Link the [Echelon compute plan](https://github.com/rappidAI-Research/quantum-models/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) while keeping production data, training, evaluation and release evidence separate.
+- Preserve the distinction between released Ghost v0.3.0 and unreleased v0.3.1 reliability work, and between Replay live reruns and future controlled-I/O modes.
 
 - Establish a clear open-source contribution, conduct, security, governance,
   citation, and release baseline for the website repository.

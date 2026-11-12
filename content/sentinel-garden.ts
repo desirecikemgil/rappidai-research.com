@@ -1,6 +1,6 @@
 import { sentinelResearchLinks, sentinelReview } from "./security-evidence";
 
-// Sentinel Garden as reviewed on 4 November 2026 (Sentinel main 3c46606, pull requests #4–#6).
+// Sentinel Garden reviewed on 12 November 2026 at Sentinel main 47c3121.
 // Every number below is read from the committed stats.json, audit/summary.json and
 // review/summary.json at that revision. No record is training-approved.
 export const sentinelGarden = {
@@ -33,7 +33,7 @@ export const sentinelGarden = {
     {
       name: "Audit",
       command: "python -m sentinel.garden audit",
-      text: "Checks each fix group against outside evidence: later advisories of the same package that change the same function again, advisories that call the fix incomplete, unreadable later fixes, broad localization spans and invalid abstentions. A stratified sample is reviewed by hand.",
+      text: "Checks each fix group against outside evidence, including later fixes, incomplete fixes, imprecise spans, invalid abstentions and package overlap across splits. The existing sample was reviewed by the implementing AI assistant; an independent human review has not been performed.",
       output: "audit/exclusions.yaml",
     },
     {
@@ -57,7 +57,7 @@ export const sentinelGarden = {
     { label: "Candidates with one fix commit", value: 4830 },
     { label: "Fixes confined to one function", value: 1206 },
     { label: "Records built", value: 2773 },
-    { label: "Records accepted after checks and audit", value: 2322 },
+    { label: "Records accepted after checks and audit", value: 2309 },
     { label: "Records approved for training", value: 0 },
   ],
   compositionTitle: "Accepted records by language and label",
@@ -72,10 +72,10 @@ export const sentinelGarden = {
   ],
   composition: [
     ["Python", 302, 271, 89, 662],
-    ["JavaScript", 302, 273, 63, 638],
+    ["JavaScript", 300, 271, 63, 634],
     ["TypeScript", 161, 150, 47, 358],
-    ["Go", 288, 266, 110, 664],
-    ["Total", 1053, 960, 309, 2322],
+    ["Go", 284, 262, 109, 655],
+    ["Total", 1053, 960, 309, 2309],
   ],
   splitColumns: ["Split", "Records", "Repositories", "Used for"],
   splits: [
@@ -91,7 +91,7 @@ export const sentinelGarden = {
   ],
   auditTitle: "What the audit removed",
   auditCaption:
-    "Exclusions of the 4 November 2026 run over 1,157 fix groups. Records are only ever excluded, never relabelled; an excluded vulnerable record takes its hard negative and abstention with it.",
+    "Exclusions in the snapshot reviewed on 12 November 2026, covering 1,157 fix groups. Records are excluded rather than relabelled; related records are excluded together.",
   auditColumns: ["Reason", "Excluded", "Evidence"],
   audit: [
     [
@@ -171,9 +171,9 @@ export const sentinelGarden = {
       513,
       1260,
     ],
-    ["B", "Permissive license with an open question", 111, 330],
+    ["B", "Permissive license with an open question", 111, 328],
     ["C", "Weak copyleft", 15, 33],
-    ["D", "Strong copyleft, unknown or no license file", 127, 305],
+    ["D", "Strong copyleft, unknown or no license file", 127, 298],
   ],
   sources: [
     { label: "Sentinel Garden design", url: sentinelResearchLinks.garden },

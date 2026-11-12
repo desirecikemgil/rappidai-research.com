@@ -241,7 +241,7 @@ export const reproducibilityContent = {
       available:
         "Public synthetic cases, a strict parser/scorer, a revision-pinned comparison protocol and a reproducible, audited Garden dataset with hash verification.",
       missing:
-        "No training-approved record, model evaluation, trained adapter, private holdout or patch evaluation.",
+        "No training-approved record, model evaluation, trained adapter, private holdout or measured model-patch result.",
     },
     {
       area: "Replay execution records",

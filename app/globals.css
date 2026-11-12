@@ -1,9 +1,6 @@
 @import "tailwindcss";
 @import "./styles/figures.css";
 
-/* old/ is a frozen backup of the previous site; keep it out of class scanning. */
-@source not "../old";
-
 /* ==========================================================================
    rappidAI research — design system
    Institutional and light: white reading surfaces, a quiet stone tone for

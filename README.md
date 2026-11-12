@@ -5,14 +5,14 @@
 
 rappidAI is a self-funded, founder-led, early-stage AI research and development initiative based in Berlin. Its public legal status remains private individual / independent initiative.
 
-This repository contains the source for the [public rappidAI research website](https://www.rappidai-research.com) and its source-linked research documentation. It does **not** contain model training code, datasets, tokenizers, checkpoints or an inference runtime. Those implementation files currently live in the separate [`lumen-quantum`](https://github.com/rappidAI-Research/lumen-quantum) research repository.
+This repository contains the source for the [public rappidAI research website](https://www.rappidai-research.com) and its source-linked research documentation. It does **not** contain model training code, datasets, tokenizers, checkpoints or an inference runtime. The pilot/Echelon implementation lives in [`quantum-models`](https://github.com/rappidAI-Research/quantum-models); the security-model pipeline lives in [`quantum-sentinel-alpha`](https://github.com/rappidAI-Research/quantum-sentinel-alpha).
 
 ## Project status
 
 - **Early-stage research project** under active development.
 - The website is a statically rendered Next.js application with no database, API routes, analytics or model execution.
 - `quantum-1-pilot` and `quantum-1.6-pilot` are public experimental base-completion releases, not chat assistants or production systems.
-- `quantum-sentinel-alpha` is the current security-model focus, in Phase 0 with an evaluation harness but no trained release.
+- `quantum-sentinel-alpha` is the current security-model focus, with a selected Qwen3.5-9B foundation, audited data preparation and a governance-gated QLoRA pipeline; no model is trained, evaluated or released.
 - Ghost v0.3.0 is a released experimental security runtime; Replay provides execution recording and restore tooling.
 - `quantum-1-echelon` is the separate German-first model line. Architecture, tokenizer and data-pipeline preflight artifacts are public, but no trained model has been released.
 - Model-weight reuse rights and several training-data/run details remain unresolved; see [Licensing](docs/licensing.md) and [Data and training](docs/data-and-training.md).
@@ -31,11 +31,12 @@ The project does not claim frontier-model capability, benchmark competitiveness,
 
 ## Models
 
-| Model line          | Public status                        | Verified public facts                                                                                                         | Local documentation                            |
-| ------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| `quantum-1-pilot`   | Experimental F16 GGUF release        | 49,295,872 parameters; 512-token context; 98,990,560-byte artifact                                                            | [Model card](model_cards/quantum-1-pilot.md)   |
-| `quantum-1.6-pilot` | Experimental F16 GGUF release        | Same 49.3M architecture; public card reports 500M additional tokens, validation loss 3.348852 and perplexity 28.4700          | [Model card](model_cards/quantum-1.6-pilot.md) |
-| `quantum-1-echelon` | Coming Soon; 1B model in development | Targets: ~1.0–1.02B parameters, 4,096-token Base context, BF16 and 40B pretraining tokens; 32K/48K tokenizer under evaluation | [Model card](model_cards/quantum-1-echelon.md) |
+| Model line               | Public status                        | Verified public facts                                                                                                         | Local documentation                                 |
+| ------------------------ | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| `quantum-sentinel-alpha` | Security model in development        | Selected Qwen3.5-9B foundation; 2,309 accepted staging records, zero training-approved; no trained or evaluated model         | [Model card](model_cards/quantum-sentinel-alpha.md) |
+| `quantum-1-pilot`        | Experimental F16 GGUF release        | 49,295,872 parameters; 512-token context; 98,990,560-byte artifact                                                            | [Model card](model_cards/quantum-1-pilot.md)        |
+| `quantum-1.6-pilot`      | Experimental F16 GGUF release        | Same 49.3M architecture; public card reports 500M additional tokens, validation loss 3.348852 and perplexity 28.4700          | [Model card](model_cards/quantum-1.6-pilot.md)      |
+| `quantum-1-echelon`      | Coming Soon; 1B model in development | Targets: ~1.0–1.02B parameters, 4,096-token Base context, BF16 and 40B pretraining tokens; 32K/48K tokenizer under evaluation | [Model card](model_cards/quantum-1-echelon.md)      |
 
 Historical display names such as `Quantum 1 Base` refer to the `quantum-1-pilot` baseline release. `quantum-1-echelon-base` and `quantum-1-echelon-chat` are stages or variants within the `quantum-1-echelon` line, not separate model families.
 
@@ -83,12 +84,13 @@ content/       Typed public facts and page copy
 docs/          Architecture, licensing, training context and maintainer guidance
 lib/           Small framework-independent helpers
 model_cards/   Evidence-bounded cards for each model line
-old/           Frozen backup of the previous website (not built or deployed)
 public/        Brand and model-card images used by the site
 tests/         CPU-only content and serialization tests
 ```
 
 The idiomatic Next.js App Router layout is retained intentionally. Empty Python-style `training/`, `evaluation/` or `inference/` directories would misrepresent this repository's scope.
+
+The previous website remains available in [Git history](docs/website-history.md).
 
 ## Content and configuration
 
@@ -108,7 +110,7 @@ Keep claims source-linked. Do not add benchmark scores, release status, people, 
 “Documented clearly” is implemented as a content rule:
 
 - Research claims link to public model cards, configurations, reports, manifests or checksums.
-- Echelon evidence is pinned to an immutable `lumen-quantum` commit in `content/site.ts`.
+- Echelon evidence is pinned to an immutable `quantum-models` commit in `content/site.ts`.
 - A configuration, preflight or smoke test is not presented as a completed training or production-data run.
 - Echelon Base and Echelon Chat are stages within the `quantum-1-echelon` line, not separate model families.
 - Missing evidence is displayed explicitly as `Not published`, `Not measured`, `Not yet available`, `Partial evidence` or `Maintainer input required`.
@@ -119,7 +121,7 @@ The `/research` route contains the public evidence ledger, findings, negative re
 
 ## Training, inference and evaluation
 
-This website has no training, evaluation or generation CLI. The external `lumen-quantum` repository contains the current Python scripts and YAML configurations. Its source, configurations, tests and original documentation are Apache-2.0 licensed, with [maintainer approval recorded](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). Model weights, trained tokenizers, datasets and third-party material remain separate. The published `quantum-1.6-pilot` release is not accompanied by a final public run manifest or complete training log.
+This website has no training, evaluation or generation CLI. The external `quantum-models` repository contains the current Python scripts and YAML configurations. Its source, configurations, tests and original documentation are Apache-2.0 licensed, with [maintainer approval recorded](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). Model weights, trained tokenizers, datasets and third-party material remain separate. The published `quantum-1.6-pilot` release is not accompanied by a final public run manifest or complete training log.
 
 The model cards distinguish among:
 
@@ -138,13 +140,13 @@ The model workflows are only partially reproducible from public materials. Code 
 
 The historical research snapshot had an uninitializable llama.cpp Git link.
 Current Quantum documents an external checkout with an explicit revision in
-[`docs/gguf-export.md`](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md). This corrects tool setup, but does not fill the missing pilot run records.
+[`docs/gguf-export.md`](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/gguf-export.md). This corrects tool setup, but does not fill the missing pilot run records.
 
 ## Echelon milestone
 
 Quantum 1 Echelon remains the separate German-first language-model project.
 Quantum Sentinel-Alpha is the homepage focus; its earlier October target has
-passed, and no revised release date or trained model is announced. The [1B execution contract](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
+passed, and no revised release date or trained model is announced. The [1B execution contract](https://github.com/rappidAI-Research/quantum-models/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
 sets a German-first, from-scratch ~1.0–1.02B parameter target, 4,096-token Base
 context, BF16 and 40B Base pretraining tokens. English coverage is planned;
 32K/48K tokenizer selection remains open. Base → SFT → Preference Optimization
@@ -198,8 +200,8 @@ Use [`CITATION.cff`](CITATION.cff) for this website repository. Model releases s
 
 - Maintainer: Jonas Désiré Cikemgil (`@desirecikemgil`)
 - Public contact: [cikemgil@rappidai-research.com](mailto:cikemgil@rappidai-research.com)
-- Hugging Face: [rappidAI](https://huggingface.co/rappidAI)
-- Research implementation: [`lumen-quantum`](https://github.com/rappidAI-Research/lumen-quantum)
+- Hugging Face: [rappidAI](https://huggingface.co/rappidai-research)
+- Research implementation: [`quantum-models`](https://github.com/rappidAI-Research/quantum-models)
 
 The imprint and privacy pages contain the maintainer-confirmed service address. Deployment-specific hosting details still require privacy and legal review. This repository does not present legal documentation as legal advice.
 

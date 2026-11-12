@@ -1,3 +1,4 @@
+import { deCurrentReviewTranslations } from "./de-current-review";
 import { deDocumentationTranslations } from "./de-documentation";
 import { deSecurityResearchTranslations } from "./de-security-research";
 import { deSentinelTranslations } from "./de-sentinel";
@@ -610,4 +611,5 @@ export const deTranslations: Readonly<Record<string, string>> = {
   ...dePublicationTranslations,
   ...deDocumentationTranslations,
   ...deSentinelGardenTranslations,
+  ...deCurrentReviewTranslations,
 };

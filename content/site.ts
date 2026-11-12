@@ -5,7 +5,7 @@ export const publicContact = {
 } as const;
 
 export const publicProfiles = {
-  huggingFace: "https://huggingface.co/rappidAI",
+  huggingFace: "https://huggingface.co/rappidai-research",
   github: "https://github.com/rappidAI-Research",
 } as const;
 
@@ -37,7 +37,7 @@ const reviewedModelRevisions = {
 } as const;
 
 const lumenQuantumRepository =
-  "https://github.com/rappidAI-Research/lumen-quantum";
+  "https://github.com/rappidAI-Research/quantum-models";
 const lumenQuantumReviewedRevision = "f7eda1fb0ae153f0f9cc3477ead997cbdb462b39";
 const lumenQuantumLicenseDecisionRevision =
   "f79c395c1da82827a63706ea9b55c913c073bd91";

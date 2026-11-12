@@ -32,7 +32,7 @@ export const reproducibilityWorkflows = {
       title: "Sentinel: separate harness checks from model results",
       paragraphs: [
         "The CPU baseline exercises the parser, scorer and output contract. Its results are engineering checks. QuickEval v1 contains 86 public synthetic cases; it is not a private holdout and provides no evidence that a Sentinel model has been trained or evaluated.",
-        "A reportable model comparison requires an immutable model revision, a clean known code commit, the full case set and the shared prompt, parser, scorer and generation settings. Retain case and prompt hashes, per-case outputs, library versions and runtime measurements. Invalid output remains invalid; patch metrics stay null until patch evaluation exists.",
+        "A reportable model comparison requires an immutable model revision, a clean known code commit, the full case set and matching prompt, parser, scorer and generation settings. Retain case and prompt hashes, per-case outputs, library versions and runtime measurements. Invalid output remains invalid. Offline patch scoring is implemented, but no model-generated patch result or functional-security validation is published.",
         "Sentinel Garden data is rebuilt, not downloaded: the committed manifest holds metadata and content hashes, and python -m sentinel.garden verify rebuilds every record from the frozen candidate list at the pinned upstream commits and compares the hashes. Two consecutive runs of the pipeline, including the audit, are byte-identical; the parser grammars are pinned and checked.",
       ],
       sources: [
@@ -61,12 +61,12 @@ export const reproducibilityWorkflows = {
 export const sentinelDataGovernance = {
   title: "Sentinel Garden: records you can check",
   introduction:
-    "Sentinel uses its own source-code data pipeline, separate from the FineWeb2-HQ corpus documented below for the language-model experiments. The sections explain what a record is, how it is checked and why none is used for training yet. Figures reflect the Sentinel repository reviewed on 4 November 2026.",
+    "Sentinel uses its own source-code data pipeline, separate from the FineWeb2-HQ corpus documented below for the language-model experiments. The sections explain what a record is, how it is checked and why none is used for training yet. Figures reflect the Sentinel repository reviewed on 12 November 2026.",
   sections: [
     {
       title: "Current data and evaluation record",
       paragraphs: [
-        "The reviewed Sentinel registry lists nine sources, all with production_approved: false, and the repository approval list is empty. Sentinel Garden has built 2,773 records from real advisories and accepted 2,322 of them, but zero are training-approved, so the training export is empty. Public accessibility alone does not authorize collection, training or redistribution.",
+        "The reviewed Sentinel registry lists nine sources, all with production_approved: false, and the repository approval list is empty. Sentinel Garden has built 2,773 records from real advisories and accepted 2,309 of them, but zero are training-approved, so the training export is empty. Public accessibility alone does not authorize collection, training or redistribution.",
         "QuickEval v1 contains 37 vulnerable, 34 hard-negative and 15 abstention cases across Python, JavaScript/TypeScript and Go. These clean-room synthetic cases and the 16 Python coding-regression tasks are evaluation-only, and every Garden record is checked for overlap with them. No imported public benchmark cases or private holdout are reported.",
       ],
       sources: [
@@ -115,12 +115,12 @@ export const sentinelDataGovernance = {
     {
       title: "Default-deny rights review",
       paragraphs: [
-        "Training needs two kinds of approval: the registry sources that describe the advisories and fixes, and every upstream repository whose code appears in a record. The review queue lists 766 repositories with the license file URL at the used revision, its sha256 and the license the package registry reports. An approval is bound to that license file hash and stops applying if the file changes.",
+        "Training needs two kinds of approval: the registry sources that describe the advisories and fixes, and every upstream repository whose code appears in a record. The review queue lists 761 repositories with the license file URL at the used revision, its sha256 and the license the package registry reports. An approval is bound to that license file hash and stops applying if the file changes.",
         "Repositories with strong copyleft, unknown or missing licenses are not excluded by tooling, but approving them requires a written justification in addition to the approval. No upstream code is committed to the repository or uploaded anywhere; the committed manifest contains metadata and hashes only.",
       ],
       items: [
         "Approve the registry sources ghsa-osv-fix-commits, osv and github-advisory-db after reviewing their terms and attribution requirements.",
-        "Review repositories in tier order, starting with the 513 permissive repositories in tier A.",
+        "Review repositories in tier order, starting with the 511 permissive repositories in tier A.",
         "Record each decision with the reviewer, date, license identifier and license file hash; curate then fills the training export deterministically.",
       ],
       sources: [
@@ -192,7 +192,7 @@ export const responsibleUseBoundaries = {
       title: "Sentinel: verify findings before acting",
       paragraphs: [
         "Sentinel-Alpha has no trained model or release. Treat future vulnerability findings and patches as candidates for expert review. Require code location, CWE, supporting evidence and independent verification; an abstention or no-finding response does not establish that code is secure.",
-        "Review only repositories and systems for which permission exists. Protect private source code and credentials, and use isolated execution for generated code. The coding-regression harness currently uses a child process and resource limits; it is not a complete sandbox for untrusted code on a shared host.",
+        "Review only repositories and systems for which permission exists. Protect private source code and credentials. Generated coding-regression solutions run in disposable, digest-pinned containers with network disabled, a read-only root filesystem and resource limits; failed isolation checks stop the run. Containers still share the host kernel.",
       ],
       sources: [
         { label: "Finding contract", url: sentinelResearchLinks.finding },

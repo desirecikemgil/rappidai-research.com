@@ -117,7 +117,7 @@ Apache-2.0 license.
 ## External research repository and tools
 
 The separate repository at
-<https://github.com/rappidAI-Research/lumen-quantum> contains the training and
+<https://github.com/rappidAI-Research/quantum-models> contains the training and
 evaluation source material referenced by this website. Its top-level Apache-2.0
 license covers the repository's source code, configurations, tests and original
 documentation, not pilot weights, GGUF artifacts or trained tokenizer binaries.
@@ -175,5 +175,5 @@ recorded in the pull request.
 
 ## References
 
-[1]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
-[2]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/LICENSE "lumen-quantum Apache License 2.0"
+[1]: https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
+[2]: https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/LICENSE "lumen-quantum Apache License 2.0"

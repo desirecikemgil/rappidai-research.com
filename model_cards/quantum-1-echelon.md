@@ -8,7 +8,7 @@ German focus. Base pretraining comes first; the evaluated Chat stage is the
 planned final user-facing product. Base and Chat are stages of one model line.
 
 Reviewed on 23 September 2026 against the immutable Quantum repository revision
-[`c78300c`](https://github.com/rappidAI-Research/lumen-quantum/tree/c78300cdc76e68917c7122cf0c76df88badff174).
+[`c78300c`](https://github.com/rappidAI-Research/quantum-models/tree/c78300cdc76e68917c7122cf0c76df88badff174).
 The repository's newer 1B execution contract supersedes the earlier 506M plan.
 
 ## Planned specifications
@@ -33,11 +33,11 @@ release date, future-model license or weights availability are claimed.
 
 Public source records:
 
-- [1B execution contract](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
-- [Development status](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/STATUS.md)
-- [32K candidate](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/model-32k.yaml)
-- [48K candidate](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/model-48k.yaml)
-- [Base training plan](https://github.com/rappidAI-Research/lumen-quantum/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/train-base.yaml)
+- [1B execution contract](https://github.com/rappidAI-Research/quantum-models/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/README.md)
+- [Development status](https://github.com/rappidAI-Research/quantum-models/blob/c78300cdc76e68917c7122cf0c76df88badff174/docs/echelon/1b/STATUS.md)
+- [32K candidate](https://github.com/rappidAI-Research/quantum-models/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/model-32k.yaml)
+- [48K candidate](https://github.com/rappidAI-Research/quantum-models/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/model-48k.yaml)
+- [Base training plan](https://github.com/rappidAI-Research/quantum-models/blob/c78300cdc76e68917c7122cf0c76df88badff174/configs/echelon/1b/train-base.yaml)
 
 ## Historical evidence boundary
 
@@ -143,13 +143,13 @@ The project-wide publication and use boundary is recorded in
 
 Licensing must be evaluated per component:
 
-| Component                          | Current evidence                                                                                                                                                                                                                                                                                      |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website code and documentation     | Governed only by the top-level `LICENSE` and `NOTICE` in this website repository, within their stated scope.                                                                                                                                                                                          |
-| Research code and configuration    | Apache-2.0 in the separate Quantum repository; [source approval is recorded](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). This does not license trained artifacts, datasets or third-party material. |
-| Future model weights and tokenizer | No Echelon weights exist in the reviewed public artifacts, and no future weights/tokenizer license is established here. Explicit terms must accompany any future artifacts.                                                                                                                           |
-| Training data                      | FineWeb2-HQ is published under ODC-By 1.0 and is also subject to the Common Crawl terms and rights in source documents. Those terms do not automatically license future weights or other code.                                                                                                        |
-| Brand and model-card images        | No reusable-asset license is claimed; see the READMEs under `public/brand` and `public/models`.                                                                                                                                                                                                       |
+| Component                          | Current evidence                                                                                                                                                                                                                                                                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Website code and documentation     | Governed only by the top-level `LICENSE` and `NOTICE` in this website repository, within their stated scope.                                                                                                                                                                                           |
+| Research code and configuration    | Apache-2.0 in the separate Quantum repository; [source approval is recorded](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/docs/maintainer-source-license-approval.md). This does not license trained artifacts, datasets or third-party material. |
+| Future model weights and tokenizer | No Echelon weights exist in the reviewed public artifacts, and no future weights/tokenizer license is established here. Explicit terms must accompany any future artifacts.                                                                                                                            |
+| Training data                      | FineWeb2-HQ is published under ODC-By 1.0 and is also subject to the Common Crawl terms and rights in source documents. Those terms do not automatically license future weights or other code.                                                                                                         |
+| Brand and model-card images        | No reusable-asset license is claimed; see the READMEs under `public/brand` and `public/models`.                                                                                                                                                                                                        |
 
 This section is a provenance record, not legal advice.
 
@@ -166,15 +166,15 @@ This section is a provenance record, not legal advice.
 
 ## Compute planning
 
-The [Echelon compute plan](https://github.com/rappidAI-Research/lumen-quantum/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) documents production-data, training and evaluation gates, static memory calculations, storage planning and cost controls. It is a plan, not evidence of a completed run.
+The [Echelon compute plan](https://github.com/rappidAI-Research/quantum-models/blob/22ad246b7a2850ae7544aa6169d851485a1a1960/docs/compute-plan.md) documents production-data, training and evaluation gates, static memory calculations, storage planning and cost controls. It is a plan, not evidence of a completed run.
 
 ## Primary sources
 
-- [Public research repository](https://github.com/rappidAI-Research/lumen-quantum)
-- [Echelon base configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/quantum-1-echelon-base.yaml)
-- [Architecture preflight](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/quantum-1-echelon-base-preflight.json)
-- [Tokenizer configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/tokenizer.yaml)
-- [Tokenizer validation](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/tokenizer_validation.json)
-- [Garden production configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/garden_production.yaml)
-- [Garden Phase 3 report](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/garden_phase3_report.md)
+- [Public research repository](https://github.com/rappidAI-Research/quantum-models)
+- [Echelon base configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/quantum-1-echelon-base.yaml)
+- [Architecture preflight](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/quantum-1-echelon-base-preflight.json)
+- [Tokenizer configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/tokenizer.yaml)
+- [Tokenizer validation](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/tokenizer_validation.json)
+- [Garden production configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/echelon/garden_production.yaml)
+- [Garden Phase 3 report](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/reports/quantum-1-echelon/garden_phase3_report.md)
 - [FineWeb2-HQ dataset card](https://huggingface.co/datasets/epfml/FineWeb2-HQ)

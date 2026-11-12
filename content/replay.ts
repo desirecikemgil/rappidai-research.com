@@ -1,5 +1,5 @@
 const repository = "https://github.com/rappidAI-Research/rappid-replay";
-const revision = "dc9c2b953d84074164e752dc13ea1f8d538f3056";
+const revision = "735d124647e3c5f64cfb99723942eef94caf978a";
 const source = `${repository}/blob/${revision}`;
 
 export const replayLinks = {

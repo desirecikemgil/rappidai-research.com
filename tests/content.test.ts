@@ -175,7 +175,7 @@ describe("public source configuration", () => {
     const profileUrl = new URL(publicProfiles.huggingFace);
 
     expect(profileUrl.origin).toBe("https://huggingface.co");
-    expect(profileUrl.pathname).toBe("/rappidAI");
+    expect(profileUrl.pathname).toBe("/rappidai-research");
   });
 
   it("keeps every configured Hugging Face model URL in rappidAI", () => {
@@ -183,7 +183,7 @@ describe("public source configuration", () => {
       const parsedUrl = new URL(modelUrl);
 
       expect(parsedUrl.origin).toBe("https://huggingface.co");
-      expect(parsedUrl.pathname.split("/")[1]).toBe("rappidAI");
+      expect(parsedUrl.pathname.split("/")[1]).toBe("rappidai-research");
       expect(parsedUrl.pathname.split("/")[2]).toBeTruthy();
     }
   });
@@ -211,7 +211,7 @@ describe("public source configuration", () => {
       "https://github.com/rappidAI-Research",
     );
     expect(publicResearchUrls.repository).toBe(
-      "https://github.com/rappidAI-Research/lumen-quantum",
+      "https://github.com/rappidAI-Research/quantum-models",
     );
   });
 

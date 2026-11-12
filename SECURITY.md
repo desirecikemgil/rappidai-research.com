@@ -5,12 +5,12 @@
 This project does not yet publish a versioned support matrix or long-term
 support releases.
 
-| Version or artifact                                      | Support status                          |
-| -------------------------------------------------------- | --------------------------------------- |
-| Current default branch and current website deployment    | Best-effort security fixes              |
-| Older commits, forks, and unmaintained deployments       | Not supported                           |
-| Tagged website releases                                  | No tagged release line currently exists |
-| Model weights, tokenizers, datasets, and `lumen-quantum` | Outside this repository's support scope |
+| Version or artifact                                       | Support status                          |
+| --------------------------------------------------------- | --------------------------------------- |
+| Current default branch and current website deployment     | Best-effort security fixes              |
+| Older commits, forks, and unmaintained deployments        | Not supported                           |
+| Tagged website releases                                   | No tagged release line currently exists |
+| Model weights, tokenizers, datasets, and `quantum-models` | Outside this repository's support scope |
 
 Support means that maintainers may investigate and address a report. It does
 not promise a particular response time, resolution time, disclosure date, or

@@ -147,15 +147,15 @@ Before treating this release as fully reproducible, publish or pin:
 
 ## Sources
 
-- [Hugging Face model repository](https://huggingface.co/rappidAI/quantum-1.6-pilot)
-- [Release manifest](https://huggingface.co/rappidAI/quantum-1.6-pilot/blob/507662c095b5ba6e14f24d3fc7f0a5e29d76b7f3/manifest.json)
-- [Published checksums](https://huggingface.co/rappidAI/quantum-1.6-pilot/blob/507662c095b5ba6e14f24d3fc7f0a5e29d76b7f3/SHA256SUMS.txt)
-- [Model and tokenizer license registry](https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md)
-- [Continued-pretraining documentation](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/docs/quantum_1_6_pilot.md)
-- [Data configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
-- [Training configuration](https://github.com/rappidAI-Research/lumen-quantum/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
+- [Hugging Face model repository](https://huggingface.co/rappidai-research/quantum-1.6-pilot)
+- [Release manifest](https://huggingface.co/rappidai-research/quantum-1.6-pilot/blob/507662c095b5ba6e14f24d3fc7f0a5e29d76b7f3/manifest.json)
+- [Published checksums](https://huggingface.co/rappidai-research/quantum-1.6-pilot/blob/507662c095b5ba6e14f24d3fc7f0a5e29d76b7f3/SHA256SUMS.txt)
+- [Model and tokenizer license registry](https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md)
+- [Continued-pretraining documentation](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/docs/quantum_1_6_pilot.md)
+- [Data configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_data.yaml)
+- [Training configuration](https://github.com/rappidAI-Research/quantum-models/blob/f7eda1fb0ae153f0f9cc3477ead997cbdb462b39/configs/quantum_1_6_pilot_train.yaml)
 - [FineWeb2-HQ dataset card](https://huggingface.co/datasets/epfml/FineWeb2-HQ)
 
 ## References
 
-[1]: https://github.com/rappidAI-Research/lumen-quantum/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"
+[1]: https://github.com/rappidAI-Research/quantum-models/blob/f79c395c1da82827a63706ea9b55c913c073bd91/MODEL_LICENSES.md "Model and tokenizer license registry"

@@ -1,5 +1,5 @@
 import type { PublicationRecord } from "./types";
-import { sentinelResearchLinks } from "./security-evidence";
+import { sentinelGardenPublicationLinks as sentinelResearchLinks } from "./security-evidence";
 
 // Engineering report published on 4 November 2026 about building Sentinel Garden and the
 // Sentinel QLoRA pipeline (Sentinel pull requests #4–#6, merged at 3c46606). It reports

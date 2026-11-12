@@ -118,7 +118,7 @@ export const sentinelPreview = {
   ],
   modelCardTitle: "Model card",
   modelCardText:
-    "The technical record of Quantum Sentinel-Alpha as reviewed on 4 November 2026. Values marked as planned or not run describe the prepared pipeline, not a trained model.",
+    "The technical record of Quantum Sentinel-Alpha as reviewed on 12 November 2026. Values marked as planned or not run describe the prepared pipeline, not a trained model.",
   modelCard: [
     {
       label: "Model",
@@ -150,12 +150,12 @@ export const sentinelPreview = {
     {
       label: "Training data",
       value:
-        "Sentinel Garden seed v1: 2,322 accepted records from 911 repositories; 0 approved for training",
+        "Sentinel Garden seed v1: 2,309 accepted records; 0 approved for training",
     },
     {
       label: "Prompt and output",
       value:
-        "Shared review prompt quickeval-review-v1; JSON finding with decision, CWE, lines and evidence",
+        "Shared review prompt quickeval-review-v2; JSON finding with decision, CWE, lines and evidence; no supervised confidence",
     },
     {
       label: "Evaluation plan",
@@ -180,14 +180,14 @@ export const sentinelPreview = {
       label: "Advisories inspected",
       value: "19,959 (PyPI, npm, Go)",
     },
-    { label: "Accepted records", value: "2,322" },
+    { label: "Accepted records", value: "2,309" },
     {
       label: "Composition",
-      value: "1,053 vulnerable · 960 hard negatives · 309 abstentions",
+      value: "1,047 vulnerable · 954 hard negatives · 308 abstentions",
     },
     {
       label: "Coverage",
-      value: "947 vulnerable/fixed pairs · 911 repositories · 161 CWEs",
+      value: "941 vulnerable/fixed pairs · 4 languages · 161 CWEs",
     },
     { label: "Training-approved", value: "0 (rights review pending)" },
   ],
@@ -205,7 +205,7 @@ export const sentinelPreview = {
     "Sentinel Scanner / CLI",
   ],
   hardwareNotice:
-    "The primary candidate is in the approximately 9B class. Quantization is intended to make consumer-hardware inference possible. RAM and VRAM requirements will be published after measurement of the final variants.",
+    "The selected foundation is in the approximately 9B class. Quantization is intended to make consumer-hardware inference possible. RAM and VRAM requirements will be published after measurement of the final variants.",
   roadmapTitle: "Development path to a stable release",
   roadmapText:
     "Alpha is the first real security-SFT milestone, before Beta, Release Candidate and the later stable Quantum Sentinel 1.0. Each phase below carries its state in the reviewed repository; a built pipeline is not a completed training run.",
@@ -262,7 +262,7 @@ export const sentinelModel = {
     },
     {
       label: "Training data",
-      value: "Sentinel Garden: 2,322 accepted records, 0 training-approved",
+      value: "Sentinel Garden: 2,309 accepted records, 0 training-approved",
     },
     { label: "Release timing", value: sentinelPreview.releaseTiming },
   ],
