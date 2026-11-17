@@ -1,8 +1,8 @@
 /* ---------------- Introduction ---------------- */
 
 .hero {
-  border-bottom: 1px solid var(--line);
-  background: var(--white);
+  border-bottom: 1px solid var(--night-line);
+  background: var(--night);
   text-align: left;
 }
 
@@ -21,7 +21,7 @@
 
 .heroTitle {
   margin: 1.5rem 0 0;
-  color: var(--ink);
+  color: var(--night-title);
   font-size: clamp(2.6rem, 5.4vw, 4.6rem);
   font-weight: 500;
   line-height: 1.04;
@@ -47,7 +47,7 @@
 
 .heroBody p {
   margin: 0;
-  color: var(--ink-2);
+  color: var(--night-body);
   font-size: clamp(1.05rem, 1.3vw, 1.15rem);
   line-height: 1.7;
 }
@@ -57,6 +57,14 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1.25rem 1.5rem;
+}
+
+.heroActions :global(.text-link) {
+  color: var(--night-accent);
+}
+
+.heroActions :global(.text-link):hover {
+  color: var(--night-title);
 }
 
 /* ---------------- Portfolio ---------------- */

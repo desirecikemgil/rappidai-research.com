@@ -8,6 +8,8 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable visual direction
 
+- November 2026 homepage banner contrast: use the established deep-navy surface and light typography for the introductory “AI research, openly documented” banner in both locales. Reuse the site's dark-section button, link and focus treatments to contrast with the light homepage sections below.
+
 - November 2026 model overview copy: keep the introductory subtext on the model index neutral and portfolio-wide. Individual model names, capabilities and development details belong on the respective model pages. Preserve EN/DE parity.
 
 - November 2026 neutral homepage (supersedes earlier model-led homepage directions): lead with a short introduction to rappidAI as an independent research initiative. Give models, agent tools and publications a balanced overview. Keep the light-first identity, left alignment and “Three research areas” section; use one restrained entrance animation with reduced-motion and hidden-tab support. Sentinel's hero, architecture, capabilities and roadmap belong on its model detail page, not on the homepage. Preserve all model and tool routes and evidence boundaries.
