@@ -10,7 +10,7 @@ export const modelsPageContent = {
     eyebrow: "Models",
     title: "The Quantum model family",
     description:
-      "Meet Quantum Sentinel-Alpha, our security-specialized code model in development, alongside Quantum 1 Echelon and the two public experimental Quantum pilots.",
+      "An overview of our models. Individual model pages provide information on use cases, technical specifications and development status.",
   } satisfies PageIntroduction,
   filterLabel: "Filter models",
   missingParameterLabel: "Final parameter size not yet defined",

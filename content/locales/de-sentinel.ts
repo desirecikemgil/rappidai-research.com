@@ -143,8 +143,8 @@ export const deSentinelTranslations: Readonly<Record<string, string>> = {
   "Research status": "Forschungsstand",
   "Development status and open questions":
     "Entwicklungsstand und offene Fragen",
-  "Meet Quantum Sentinel-Alpha, our security-specialized code model in development, alongside Quantum 1 Echelon and the two public experimental Quantum pilots.":
-    "Quantum Sentinel-Alpha, unser auf Sicherheit spezialisiertes Code-Modell in Entwicklung, sowie Quantum 1 Echelon und die beiden öffentlichen experimentellen Quantum-Pilotmodelle im Überblick.",
+  "An overview of our models. Individual model pages provide information on use cases, technical specifications and development status.":
+    "Unsere Modelle im Überblick. Die jeweiligen Modellseiten enthalten Informationen zu Einsatzbereichen, technischen Eigenschaften und Entwicklungsstand.",
   "Browse Sentinel Alpha, Echelon and the released pilots.":
     "Sentinel-Alpha, Echelon und die veröffentlichten Pilotmodelle im Überblick.",
   "rappidAI Research develops open AI systems including Quantum Sentinel-Alpha, a security-specialized model for source-code vulnerability analysis. Alpha is in development; open weights are planned.":
