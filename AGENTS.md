@@ -8,6 +8,8 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable visual direction
 
+- November 2026 model overview copy: keep the introductory subtext on the model index neutral and portfolio-wide. Individual model names, capabilities and development details belong on the respective model pages. Preserve EN/DE parity.
+
 - November 2026 neutral homepage (supersedes earlier model-led homepage directions): lead with a short introduction to rappidAI as an independent research initiative. Give models, agent tools and publications a balanced overview. Keep the light-first identity, left alignment and “Three research areas” section; use one restrained entrance animation with reduced-motion and hidden-tab support. Sentinel's hero, architecture, capabilities and roadmap belong on its model detail page, not on the homepage. Preserve all model and tool routes and evidence boundaries.
 
 - September 2026 redesign: give rappidAI a confident, product-led presence, with a deep-navy opening, generous typography, concise introductions and distinct Quantum, Ghost and Replay compositions. The latest brief authorizes reworking the overall layout and supersedes the earlier liquid-glass emphasis.
