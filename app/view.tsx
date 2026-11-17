@@ -155,7 +155,7 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
     <>
       <section
         id="introduction"
-        className={styles.hero}
+        className={`dark-band ${styles.hero}`}
         aria-labelledby="introduction-title"
       >
         <div className={`page-shell ${styles.heroInner}`} data-introduction>
