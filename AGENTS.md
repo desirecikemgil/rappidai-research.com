@@ -8,6 +8,8 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable visual direction
 
+- November 2026 homepage subtext: use the selected impersonal statement about system capabilities, behavior and limits of authority. Keep its neutral perspective and EN/DE parity.
+
 - November 2026 homepage banner contrast: use the established deep-navy surface and light typography for the introductory “AI research, openly documented” banner in both locales. Reuse the site's dark-section button, link and focus treatments to contrast with the light homepage sections below.
 
 - November 2026 model overview copy: keep the introductory subtext on the model index neutral and portfolio-wide. Individual model names, capabilities and development details belong on the respective model pages. Preserve EN/DE parity.

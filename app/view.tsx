@@ -15,7 +15,7 @@ const copy = {
     intro: "Independent AI research from Berlin",
     title: ["AI research,", "openly documented"],
     description:
-      "We research compact language models and build open tools for AI agents. Our methods, results and limitations are documented in public.",
+      "Security begins with understanding what a system can do, how it behaves and where its authority ends.",
     workLink: "Explore our work",
     explore: "Explore our models",
     research: "Inside the research",
@@ -81,7 +81,7 @@ const copy = {
     intro: "Unabhängige KI-Forschung aus Berlin",
     title: ["KI-Forschung,", "offen dokumentiert"],
     description:
-      "Wir erforschen kompakte Sprachmodelle und entwickeln offene Werkzeuge für KI-Agenten. Unsere Methoden, Ergebnisse und Grenzen dokumentieren wir öffentlich.",
+      "Sicherheit beginnt mit dem Verständnis dafür, was ein System kann, wie es sich verhält und wo seine Befugnisse enden.",
     workLink: "Unsere Arbeit entdecken",
     explore: "Modelle ansehen",
     research: "Mehr zur Forschung",
