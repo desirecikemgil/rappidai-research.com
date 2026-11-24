@@ -175,6 +175,10 @@ export const documentationNavigation = [
       { label: "Evidence ledger", href: "/research" },
       { label: "Publications", href: "/resources/publications" },
       {
+        label: "Approved training data",
+        href: "/resources/publications/from-audited-records-to-approved-training-data",
+      },
+      {
         label: "Building Sentinel Garden",
         href: "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
       },

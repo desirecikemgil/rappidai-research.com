@@ -1,7 +1,7 @@
 import type { ModelRecord } from "./types";
 
 // Public development plan, supplied by the maintainer on 7 October 2026, updated
-// with the reviewed repository state of 4 November 2026 (content/security-evidence.ts).
+// with the reviewed repository state of 24 November 2026 (content/security-evidence.ts).
 // Capabilities and release artifacts are objectives, not measured results.
 export const sentinelPreview = {
   name: "Quantum Sentinel-Alpha",
@@ -19,7 +19,7 @@ export const sentinelPreview = {
   explore: "Explore Quantum Sentinel-Alpha",
   roadmapLink: "View roadmap",
   targetNotice:
-    "The earlier October 2026 Alpha target has passed. The foundation is selected and the data and training pipelines are built, but no model has been trained or evaluated yet; no revised release date is announced. Quantum Sentinel 1.0 remains a later milestone.",
+    "The earlier October 2026 Alpha target has passed. The foundation is selected, the training data is approved and the training pipeline passes its preflight on that data, but no model has been trained or evaluated yet; the first run waits for approved GPU time and no revised release date is announced. Quantum Sentinel 1.0 remains a later milestone.",
   positioning: ["Cybersecurity-focused", "Local-first", "Open weights planned"],
   overview:
     "Quantum Sentinel-Alpha is the first substantial security fine-tuning milestone of the Quantum Sentinel 1 model line. It is designed as a specialized second security reviewer for developers, open-source maintainers, small engineering teams, security researchers and coding-agent builders.",
@@ -99,7 +99,7 @@ export const sentinelPreview = {
     "Quantum Sentinel-Alpha is built on Qwen3.5-9B, pinned to one immutable Hugging Face revision under the Apache-2.0 license. The selection of 4 November 2026 rests on expected capability for multi-step code reasoning, CWE discrimination and patch generation, not on a measured security advantage: neither Qwen3.5-9B nor Qwen3.5-4B has been evaluated yet, and the 4B/9B comparison remains an optional experiment rather than a gate.",
   trainingTitle: "Security post-training with a focus on evidence",
   trainingText:
-    "Sentinel builds on an existing open-weight foundation rather than pretraining from scratch. The QLoRA pipeline is implemented and tested on CPU with a tiny model of the same architecture, but it has not been run on the real model. It trains only on governance-approved Sentinel Garden records, computes the loss on the reply alone and refuses to start while no record is approved. Preference training or domain adaptation will be added only if evaluations show measurable value.",
+    "Sentinel builds on an existing open-weight foundation rather than pretraining from scratch. The QLoRA pipeline is implemented, tested on CPU with a tiny model of the same architecture and checked end to end on the approved data, but it has not been run on the real model. The first run trains vulnerability detection and patch generation on 1,871 approved examples, computes the loss on the reply alone and refuses to start if a record, label or hash no longer matches the approved manifest. Preference training or domain adaptation will be added only if evaluations show measurable value.",
   trainingFacts: [
     { label: "Method", value: "QLoRA: 4-bit NF4 base, bf16 compute" },
     {
@@ -114,11 +114,19 @@ export const sentinelPreview = {
       label: "Architecture",
       value: "24 Gated DeltaNet and 8 full-attention layers",
     },
-    { label: "Training runs", value: "None yet" },
+    {
+      label: "Training data",
+      value: "1,871 training and 187 validation examples",
+    },
+    {
+      label: "Token budget",
+      value: "1.73M tokens per epoch; longest example 2,918 of 4,096",
+    },
+    { label: "Training runs", value: "None yet; awaiting GPU time" },
   ],
   modelCardTitle: "Model card",
   modelCardText:
-    "The technical record of Quantum Sentinel-Alpha as reviewed on 12 November 2026. Values marked as planned or not run describe the prepared pipeline, not a trained model.",
+    "The technical record of Quantum Sentinel-Alpha as reviewed on 24 November 2026. Values marked as planned or not run describe the prepared pipeline, not a trained model.",
   modelCard: [
     {
       label: "Model",
@@ -150,7 +158,17 @@ export const sentinelPreview = {
     {
       label: "Training data",
       value:
-        "Sentinel Garden seed v1: 2,309 accepted records; 0 approved for training",
+        "Sentinel Garden v3: 3,427 accepted records; 1,464 approved for training from 533 repositories",
+    },
+    {
+      label: "Training tasks",
+      value:
+        "Detection with finding, no finding or abstention; minimal patches from 594 verified upstream fixes",
+    },
+    {
+      label: "Data rights",
+      value:
+        "Three sources and 535 repositories approved by the project owner, each bound to its license-file hash",
     },
     {
       label: "Prompt and output",
@@ -164,7 +182,8 @@ export const sentinelPreview = {
     },
     {
       label: "Training runs",
-      value: "None; the pipeline is tested on CPU only",
+      value:
+        "None; the preflight on the approved data passes, the GPU run is pending",
     },
     { label: "Evaluation results", value: "Not measured" },
     {
@@ -174,22 +193,25 @@ export const sentinelPreview = {
   ],
   gardenTitle: "Training data: Sentinel Garden",
   gardenText:
-    "Sentinel Garden turns real, GitHub-reviewed security advisories into training records: the vulnerable function before the upstream fix, the same function after the fix as a hard negative, and a caller of the vulnerable function with the callee withheld, where the right answer is to abstain. Every record keeps its source revision, license evidence and content hash. Training export is default-deny: nothing is used until a reviewer approves its source and repository.",
+    "Sentinel Garden turns real, GitHub-reviewed security advisories into training records: the vulnerable function before the upstream fix, the same function after the fix as a hard negative, and a caller of the vulnerable function with the callee withheld, where the right answer is to abstain. Every record keeps its source revision, license evidence and content hash. Training export is default-deny: on 15 and 24 November 2026 the project owner approved the three advisory sources and 535 permissively licensed repositories; everything else stays excluded.",
   gardenFacts: [
     {
       label: "Advisories inspected",
       value: "19,959 (PyPI, npm, Go)",
     },
-    { label: "Accepted records", value: "2,309" },
+    { label: "Accepted records", value: "3,427" },
     {
       label: "Composition",
-      value: "1,047 vulnerable · 954 hard negatives · 308 abstentions",
+      value: "1,566 vulnerable · 1,392 hard negatives · 469 abstentions",
     },
     {
       label: "Coverage",
-      value: "941 vulnerable/fixed pairs · 4 languages · 161 CWEs",
+      value: "1,363 vulnerable/fixed pairs · 4 languages · 194 CWEs",
     },
-    { label: "Training-approved", value: "0 (rights review pending)" },
+    {
+      label: "Training-approved",
+      value: "1,464 records from 533 repositories",
+    },
   ],
   languageNotice:
     "First-generation language focus: Python, JavaScript / TypeScript and Go. Other languages may follow through additional data and evaluation.",
@@ -208,17 +230,21 @@ export const sentinelPreview = {
     "The selected foundation is in the approximately 9B class. Quantization is intended to make consumer-hardware inference possible. RAM and VRAM requirements will be published after measurement of the final variants.",
   roadmapTitle: "Development path to a stable release",
   roadmapText:
-    "Alpha is the first real security-SFT milestone, before Beta, Release Candidate and the later stable Quantum Sentinel 1.0. Each phase below carries its state in the reviewed repository; a built pipeline is not a completed training run.",
+    "Alpha is the first real security-SFT milestone, before Beta, Release Candidate and the later stable Quantum Sentinel 1.0. Each phase below carries its state in the reviewed repository; approved data and a passing preflight are not a completed training run.",
   phases: [
     { title: "Foundation", state: "Selected", current: false },
     { title: "Baseline", state: "Prepared, not run", current: true },
     {
       title: "Dataset / Garden",
-      state: "Built, rights review pending",
-      current: true,
+      state: "Garden v3 built and approved",
+      current: false,
     },
     { title: "Calibration", state: "Planned", current: false },
-    { title: "SFT Alpha", state: "Pipeline ready, not run", current: false },
+    {
+      title: "SFT Alpha",
+      state: "Data approved, awaiting GPU time",
+      current: true,
+    },
     { title: "Data Iteration + Beta", state: "Planned", current: false },
     { title: "Optional Hardening", state: "Planned", current: false },
     { title: "Release Candidate", state: "Planned", current: false },
@@ -262,7 +288,8 @@ export const sentinelModel = {
     },
     {
       label: "Training data",
-      value: "Sentinel Garden: 2,309 accepted records, 0 training-approved",
+      value:
+        "Sentinel Garden v3: 1,464 training-approved records, 1,871 training examples",
     },
     { label: "Release timing", value: sentinelPreview.releaseTiming },
   ],
@@ -273,7 +300,7 @@ export const sentinelModel = {
   limitations: [sentinelPreview.researchNotice, sentinelPreview.safetyText],
   relatedResearchNoteIds: [],
   indexFacts: [
-    "Foundation selected · not yet trained",
+    "Training data approved · not yet trained",
     sentinelPreview.status,
     "Security-specialized code model",
     sentinelPreview.target,

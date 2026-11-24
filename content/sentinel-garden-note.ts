@@ -20,7 +20,7 @@ export const sentinelGardenNote = {
   doi: null,
   href: "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
   notice:
-    "This note is an engineering report on the Sentinel Garden data pipeline and the Sentinel training pipeline at repository revision 3c46606. It reports dataset counts, audit results and code-review findings. No model has been trained or evaluated, no record is approved for training, and the manual quality sample was reviewed by the implementing AI engineering assistant rather than an authorized reviewer. Code examples are simplified and written for this note.",
+    "This note is an engineering report on the Sentinel Garden data pipeline and the Sentinel training pipeline at repository revision 3c46606. It reports dataset counts, audit results and code-review findings. No model has been trained or evaluated, no record is approved for training, and the manual quality sample was reviewed by the implementing AI engineering assistant rather than an authorized reviewer. Code examples are simplified and written for this note. Update, 24 November 2026: 1,464 records of Sentinel Garden v3 have since been approved for training; the follow-up note “From Audited Records to Approved Training Data” describes how.",
   sources: [
     { label: "Sentinel Garden design", url: sentinelResearchLinks.garden },
     { label: "Dataset report", url: sentinelResearchLinks.seedReport },

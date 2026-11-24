@@ -14,6 +14,7 @@ import { LocalizedLicensingPage } from "@/app/resources/licensing/view";
 import { LocalizedResourcesPage } from "@/app/resources/view";
 import { LocalizedFalsePositiveNotePage } from "@/app/resources/publications/false-positive-problem-in-ai-vulnerability-detection/view";
 import { LocalizedSentinelGardenNotePage } from "@/app/resources/publications/building-a-vulnerability-fix-dataset-you-can-check/view";
+import { LocalizedTrainingDataNotePage } from "@/app/resources/publications/from-audited-records-to-approved-training-data/view";
 import { LocalizedPilotResearchNotePage } from "@/app/resources/publications/from-100m-to-600m-german-tokens/view";
 import { LocalizedPublicationsPage } from "@/app/resources/publications/view";
 import { LocalizedReproducibilityPage } from "@/app/resources/reproducibility/view";
@@ -78,6 +79,8 @@ export default async function GermanPage({ params }: GermanPageProps) {
       return <LocalizedFalsePositiveNotePage locale="de" />;
     case "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check":
       return <LocalizedSentinelGardenNotePage locale="de" />;
+    case "/resources/publications/from-audited-records-to-approved-training-data":
+      return <LocalizedTrainingDataNotePage locale="de" />;
     case "/resources/reproducibility":
       return <LocalizedReproducibilityPage locale="de" />;
     case "/resources/data-and-training":

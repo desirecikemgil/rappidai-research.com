@@ -258,6 +258,11 @@ export const pageMetadata = {
       description:
         "A research note on Sentinel Garden: turning 19,959 security advisories into 2,322 audited training records, the errors code review found on the way and why no record is approved for training yet.",
     },
+  "/resources/publications/from-audited-records-to-approved-training-data": {
+    title: "From Audited Records to Approved Training Data — rappidAI Research",
+    description:
+      "A research note on Sentinel Garden v3: fixes spread over several commits, the rights review of 878 repositories, 1,464 approved training records for Quantum Sentinel-Alpha and what is still open before training.",
+  },
   "/resources/publications/from-100m-to-600m-german-tokens": {
     title: "From 100M to 600M German Tokens — rappidAI Research",
     description:
@@ -271,7 +276,7 @@ export const pageMetadata = {
   "/resources/data-and-training": {
     title: "Data & Training — rappidAI Research",
     description:
-      "The Sentinel Garden data pipeline, its audit, rights review and QLoRA training gate, plus FineWeb2-HQ provenance, configured targets and training evidence for the Quantum pilots and Echelon.",
+      "The Sentinel Garden data pipeline, its audit, rights review, training authorization and QLoRA training gate, plus FineWeb2-HQ provenance, configured targets and training evidence for the Quantum pilots and Echelon.",
   },
   "/resources/responsible-use": {
     title: "Responsible Use — rappidAI Research",

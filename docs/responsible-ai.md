@@ -31,9 +31,9 @@ connections. Follow Ghost's own threat model and private security policy.
 
 ### Quantum Sentinel-Alpha
 
-As reviewed on 12 November 2026, the foundation is selected and the data and
-QLoRA pipelines are implemented, with no evaluated or trained model and no
-training-approved records. The earlier October Alpha target has passed; no revised date is announced.
+As reviewed on 24 November 2026, the foundation is selected, the QLoRA
+pipeline is implemented and 1,464 Sentinel Garden records are approved for
+training by the project owner, but no model has been trained or evaluated. The earlier October Alpha target has passed; no revised date is announced.
 Future findings and patches require expert review, location/CWE/evidence checks
 and independent verification. A no-finding or abstention answer cannot certify
 secure code. Review only authorized systems and protect private source material.
@@ -41,7 +41,7 @@ Generated coding-regression solutions now run in disposable, digest-pinned
 containers with network disabled, a read-only root filesystem and bounded
 resources. Isolation is probed before model loading and failures stop the run.
 Containers share the host kernel; trusted reference solutions use a separate
-child-process path. See the [coding sandbox contract](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/CODING_SANDBOX.md).
+child-process path. See the [coding sandbox contract](https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/cec6f961272f0e5b3b83ed7d645591b90cf42a0a/docs/CODING_SANDBOX.md).
 
 ### Replay
 

@@ -550,6 +550,15 @@ export function SentinelPreview({ locale }: { locale: Locale }) {
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
               <Link
                 href={localizePath(
+                  "/resources/publications/from-audited-records-to-approved-training-data",
+                  locale,
+                )}
+                className="text-link"
+              >
+                {t(locale, "Research note: approved training data")}
+              </Link>
+              <Link
+                href={localizePath(
                   "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
                   locale,
                 )}

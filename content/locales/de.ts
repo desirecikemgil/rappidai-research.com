@@ -13,6 +13,8 @@ import { deReadinessTranslations } from "./de-readiness";
 import { deRedesignTranslations } from "./de-redesign";
 import { deSentinelGardenTranslations } from "./de-sentinel-garden";
 import { deSentinelEngineTranslations } from "./de-sentinel-engine";
+import { deGardenV3Translations } from "./de-garden-v3";
+import { deTrainingDataNoteTranslations } from "./de-training-data-note";
 
 export const deTranslations: Readonly<Record<string, string>> = {
   ...deSentinelEngineTranslations,
@@ -616,4 +618,6 @@ export const deTranslations: Readonly<Record<string, string>> = {
   ...deDocumentationTranslations,
   ...deSentinelGardenTranslations,
   ...deCurrentReviewTranslations,
+  ...deGardenV3Translations,
+  ...deTrainingDataNoteTranslations,
 };

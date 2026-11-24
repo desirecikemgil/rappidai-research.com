@@ -18,6 +18,7 @@ const publicRoutes = [
   "/resources/publications/from-100m-to-600m-german-tokens",
   "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
   "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+  "/resources/publications/from-audited-records-to-approved-training-data",
   "/resources/reproducibility",
   "/resources/data-and-training",
   "/resources/responsible-use",
@@ -338,6 +339,7 @@ for (const route of [
   "/resources/publications/from-100m-to-600m-german-tokens",
   "/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
   "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+  "/resources/publications/from-audited-records-to-approved-training-data",
   "/resources/reproducibility",
   "/resources/data-and-training",
   "/resources/responsible-use",
@@ -366,6 +368,7 @@ for (const route of [
   "/de/resources/publications/from-100m-to-600m-german-tokens",
   "/de/resources/publications/false-positive-problem-in-ai-vulnerability-detection",
   "/de/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+  "/de/resources/publications/from-audited-records-to-approved-training-data",
   "/de/resources/data-and-training",
   "/de/models/quantum-sentinel-alpha",
   "/de/resources/licensing",
@@ -456,16 +459,20 @@ for (const locale of ["en", "de"] as const) {
   }) => {
     await page.goto(`${prefix}/resources/publications`);
     const covers = page.locator(".publication-cover");
-    await expect(covers).toHaveCount(3);
+    await expect(covers).toHaveCount(4);
     await expect(covers.first()).toHaveAttribute(
       "href",
-      `${prefix}/resources/publications/building-a-vulnerability-fix-dataset-you-can-check`,
+      `${prefix}/resources/publications/from-audited-records-to-approved-training-data`,
     );
     await expect(covers.nth(1)).toHaveAttribute(
       "href",
+      `${prefix}/resources/publications/building-a-vulnerability-fix-dataset-you-can-check`,
+    );
+    await expect(covers.nth(2)).toHaveAttribute(
+      "href",
       `${prefix}/resources/publications/false-positive-problem-in-ai-vulnerability-detection`,
     );
-    await covers.nth(1).click();
+    await covers.nth(2).click();
     await expect(page.locator("h1")).toHaveText(
       locale === "de"
         ? "Das False-Positive-Problem bei der KI-gestützten Erkennung von Schwachstellen"
@@ -494,11 +501,12 @@ for (const locale of ["en", "de"] as const) {
       'section[aria-labelledby="sentinel-garden-title"]',
     );
     await expect(garden).toContainText(locale === "de" ? "19.959" : "19,959");
-    await expect(garden).toContainText(locale === "de" ? "2.309" : "2,309");
-    await expect(garden.locator("table")).toHaveCount(5);
+    await expect(garden).toContainText(locale === "de" ? "3.427" : "3,427");
+    await expect(garden).toContainText(locale === "de" ? "1.871" : "1,871");
+    await expect(garden.locator("table")).toHaveCount(7);
     await expect(
-      garden.locator('a[href*="47c312158e9a68352e9a59eb31e658d0c22bd7c1"]'),
-    ).toHaveCount(6);
+      garden.locator('a[href*="cec6f961272f0e5b3b83ed7d645591b90cf42a0a"]'),
+    ).toHaveCount(7);
 
     await page.goto(
       `${prefix}/resources/publications/building-a-vulnerability-fix-dataset-you-can-check`,
@@ -520,9 +528,30 @@ for (const locale of ["en", "de"] as const) {
         .first(),
     ).toBeVisible();
 
+    await page.goto(
+      `${prefix}/resources/publications/from-audited-records-to-approved-training-data`,
+    );
+    await expect(page.locator("h1")).toHaveText(
+      locale === "de"
+        ? "Von auditierten Beispielen zu freigegebenen Trainingsdaten"
+        : "From Audited Records to Approved Training Data",
+    );
+    await expect(page.locator("main")).toContainText(
+      locale === "de" ? "1.464" : "1,464",
+    );
+    await expect(page.locator("main table")).toHaveCount(5);
+    await expect(
+      page
+        .locator('a[href*="cec6f961272f0e5b3b83ed7d645591b90cf42a0a"]')
+        .first(),
+    ).toBeVisible();
+
     await page.goto(`${prefix}/models/quantum-sentinel-alpha`);
     await expect(page.locator("#model-card")).toContainText(
       "40,108,032".replace(/,/g, locale === "de" ? "." : ","),
+    );
+    await expect(page.locator("#model-card")).toContainText(
+      locale === "de" ? "1.464" : "1,464",
     );
   });
 }

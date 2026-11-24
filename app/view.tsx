@@ -58,9 +58,9 @@ const copy = {
     latest: "From the lab",
     latestTitle: "Latest research and publications",
     all: "All publications",
-    articleTitle: "Building a vulnerability-fix dataset you can check",
+    articleTitle: "From audited records to approved training data",
     articleText:
-      "How 19,959 security advisories became 2,322 audited training records for Quantum Sentinel-Alpha, what code review found on the way and why none is approved for training yet.",
+      "How Sentinel Garden grew to 3,427 audited records, how 535 repositories were reviewed and approved, and why Quantum Sentinel-Alpha now has 1,871 approved training examples but no trained model yet.",
     articleType: "Research note",
     read: "Read the research note",
     fpTitle: "The false positive problem in AI vulnerability detection",
@@ -124,9 +124,9 @@ const copy = {
     latest: "Aus dem Labor",
     latestTitle: "Aktuelle Forschung und Veröffentlichungen",
     all: "Alle Veröffentlichungen",
-    articleTitle: "Ein Datensatz aus Schwachstellen-Fixes, den man prüfen kann",
+    articleTitle: "Von auditierten Beispielen zu freigegebenen Trainingsdaten",
     articleText:
-      "Wie aus 19.959 Security Advisories 2.322 auditierte Trainingsbeispiele für Quantum Sentinel-Alpha wurden, was das Code-Review dabei fand und warum noch keines für das Training freigegeben ist.",
+      "Wie Sentinel Garden auf 3.427 auditierte Beispiele gewachsen ist, wie 535 Repositories geprüft und freigegeben wurden und warum Quantum Sentinel-Alpha jetzt 1.871 freigegebene Trainingsbeispiele hat, aber noch kein trainiertes Modell.",
     articleType: "Forschungsnotiz",
     read: "Forschungsnotiz lesen",
     fpTitle:
@@ -347,7 +347,7 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
           <div className={styles.notes}>
             <Link
               href={path(
-                "/resources/publications/building-a-vulnerability-fix-dataset-you-can-check",
+                "/resources/publications/from-audited-records-to-approved-training-data",
               )}
               className={styles.feature}
               data-reveal
@@ -356,20 +356,17 @@ export function LocalizedHomePage({ locale }: { locale: Locale }) {
                 <div className={styles.bars}>
                   <div>
                     <i style={{ height: "100%" }} />
-                    <span>{t(locale, "Advisories")}</span>
-                    <strong>{t(locale, "19,959")}</strong>
+                    <span>{t(locale, "Audited")}</span>
+                    <strong>{t(locale, "3,427")}</strong>
                   </div>
                   <div>
-                    <i style={{ height: `${(2322 / 19959) * 100}%` }} />
-                    <span>{t(locale, "Records")}</span>
-                    <strong>{t(locale, "2,322")}</strong>
+                    <i style={{ height: `${(1464 / 3427) * 100}%` }} />
+                    <span>{t(locale, "Approved")}</span>
+                    <strong>{t(locale, "1,464")}</strong>
                   </div>
                 </div>
                 <figcaption>
-                  {t(
-                    locale,
-                    "From security advisories to accepted training records",
-                  )}
+                  {t(locale, "From audited records to approved training data")}
                 </figcaption>
               </figure>
               <div className={styles.featureCopy}>

@@ -11,6 +11,7 @@ import type {
 } from "./types";
 import { falsePositiveNote } from "./false-positive-note";
 import { sentinelGardenNote } from "./sentinel-garden-note";
+import { trainingDataNote } from "./training-data-note";
 import {
   publicModelUrls,
   publicProjectUrls,
@@ -51,7 +52,7 @@ export const resourceCards = [
     eyebrow: "Provenance",
     title: "Data & training",
     description:
-      "The Sentinel Garden data pipeline, audit and rights review alongside pilot and Echelon corpus provenance.",
+      "The Sentinel Garden data pipeline, audit, rights review and training authorization alongside pilot and Echelon corpus provenance.",
     href: "/resources/data-and-training",
     status: "Partial evidence",
   },
@@ -95,6 +96,7 @@ export const resourceCards = [
 
 // Newest first: the publications index and the homepage list in this order.
 export const publications = [
+  trainingDataNote,
   sentinelGardenNote,
   falsePositiveNote,
   {
@@ -239,9 +241,9 @@ export const reproducibilityContent = {
       area: "Sentinel evaluation and data pipeline",
       status: "Partial evidence",
       available:
-        "Public synthetic cases, a strict parser/scorer, a revision-pinned comparison protocol and a reproducible, audited Garden dataset with hash verification.",
+        "Public synthetic cases, a strict parser/scorer, a revision-pinned comparison protocol and a reproducible, audited Garden dataset with hash verification and 1,464 owner-approved training records.",
       missing:
-        "No training-approved record, model evaluation, trained adapter, private holdout or measured model-patch result.",
+        "No model evaluation, trained adapter, private holdout, independent human data review or measured model-patch result.",
     },
     {
       area: "Replay execution records",
@@ -328,7 +330,7 @@ export const dataAndTrainingContent = {
     eyebrow: "Data & training",
     title: "Data and training methods",
     description:
-      "How the Sentinel Garden pipeline turns real security advisories into checked training records, what its audit removed, why no record is approved yet and how the QLoRA training pipeline is gated, followed by the data provenance and training evidence for the Quantum pilots and Echelon.",
+      "How the Sentinel Garden pipeline turns real security advisories into checked training records, what its audit removed, which records are approved for training and how the QLoRA training pipeline is gated, followed by the data provenance and training evidence for the Quantum pilots and Echelon.",
   },
   dataset: {
     name: "epfml/FineWeb2-HQ",
@@ -679,7 +681,7 @@ export const statusContent = {
     text: string;
   }[],
   roadmap: [
-    "Complete the Sentinel rights review, starting with the registry sources and the tier A repositories, before any training run.",
+    "Run the first Sentinel QLoRA training on approved GPU time with the 1,871 approved training examples, and complete the independent human review of the 64 prepared evidence packages before reporting results.",
     "Run the Sentinel foundation baseline on approved GPU time and establish a separate private holdout before claiming detection quality.",
 
     "Maintain the published all-rights-reserved pilot-artifact decision; attach an explicit reuse license only if the policy changes.",
@@ -712,7 +714,7 @@ export const faqEntries = [
   {
     question: "Has Sentinel-Alpha been trained or benchmarked?",
     answer:
-      "No. Qwen3.5-9B is selected as the foundation, and the Sentinel Garden dataset and a QLoRA training pipeline are built, but no model has been trained or evaluated. No training source or repository is approved yet, so the training export is empty, and no adapter exists.",
+      "No. Qwen3.5-9B is selected as the foundation, 1,464 Sentinel Garden records from 533 repositories are approved for training and the QLoRA pipeline passes its preflight on them, but no model has been trained or evaluated and no adapter exists. The first training run waits for approved GPU time.",
   },
   {
     question: "Does a successful GhostBench run prove an agent is safe?",

@@ -22,8 +22,15 @@ describe("Sentinel announcement boundaries", () => {
     );
     expect(sentinelPreview.gardenFacts).toContainEqual({
       label: "Training-approved",
-      value: "0 (rights review pending)",
+      value: "1,464 records from 533 repositories",
     });
+    expect(sentinelPreview.trainingFacts).toContainEqual({
+      label: "Training runs",
+      value: "None yet; awaiting GPU time",
+    });
+    expect(sentinelPreview.researchNotice).toContain(
+      "No model has been trained or evaluated",
+    );
     expect(sentinelPreview.targetNotice).toContain(
       "no revised release date is announced",
     );
