@@ -8,6 +8,14 @@ versioned releases are introduced.
 
 ## [Unreleased]
 
+### Sentinel Garden v3, training authorization and fourth research note — 24 November 2026
+
+- Moved every current Sentinel statement to the review of Sentinel commit `cec6f96`: Garden v3 with 3,427 accepted records, the owner's training authorization of 15 and 24 November 2026 (three sources, 535 repositories) and 1,464 training-approved records, i.e. 1,871 training and 187 validation examples for detection and patch generation. No model has been trained or evaluated; the first run waits for GPU time. The dated research notes keep their own snapshots.
+- Updated the Data & training figures to v3 (stages incl. multi-commit resolution and `materialize`, funnel, composition, splits, audit exclusions counted as distinct records, the current manual sample, rights queue) and added two tables: training authorization and the approved training data.
+- Updated the Quantum Sentinel-Alpha page, model card, development phases, Sentinel Engine status, security research, reproducibility, FAQ, status and metadata in English and German.
+- Published the research note "From Audited Records to Approved Training Data" in English and German: v2 and v3, fixes spread over several commits and the two code-review findings in that rule, the repository rights review, what was approved, the loader/export mismatch, the approved training data, `materialize` and what is still open. Featured it on the home page, in the sidebar and on the model page, and added a dated pointer to it in the earlier Garden note.
+- Rewrote `model_cards/quantum-sentinel-alpha.md` and the Sentinel section of `docs/data-and-training.md` for the new review.
+
 ### Sentinel Garden, model card and third research note — 4 November 2026
 
 - Moved every current Sentinel statement to the review of Sentinel commit `3c46606`: Qwen3.5-9B is selected as the foundation on expected capability (not on a measured advantage), the Sentinel Garden data pipeline and a governance-gated QLoRA pipeline are built, and no model has been trained or evaluated. The dated false-positive note keeps its historical snapshot `d7354b6`.

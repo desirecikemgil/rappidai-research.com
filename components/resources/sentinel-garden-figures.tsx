@@ -152,7 +152,9 @@ function PipelineFunnel({ locale }: { locale: Locale }) {
       />
       <ol className="space-y-5 border-y border-line py-6">
         {g.funnel.map((step) => {
-          const share = step.value / max;
+          // Widen the literal type: a stage can be empty (drawn as a hairline).
+          const value: number = step.value;
+          const share = value / max;
           return (
             <li key={step.label} className="grid gap-2">
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -169,10 +171,8 @@ function PipelineFunnel({ locale }: { locale: Locale }) {
                 aria-hidden="true"
               >
                 <div
-                  className={`h-2 rounded-full ${step.value === 0 ? "w-px bg-line-strong" : "bg-accent"}`}
-                  style={
-                    step.value === 0 ? undefined : { width: `${share * 100}%` }
-                  }
+                  className={`h-2 rounded-full ${value === 0 ? "w-px bg-line-strong" : "bg-accent"}`}
+                  style={value === 0 ? undefined : { width: `${share * 100}%` }}
                 />
               </div>
             </li>
@@ -286,6 +286,36 @@ export function SentinelGardenFigures({ locale }: { locale: Locale }) {
               locale={locale}
               title={t(locale, g.rightsTitle)}
               mono
+            />
+          </figure>
+        </Reveal>
+        <Reveal>
+          <figure className="m-0">
+            <FigureHead
+              label={t(locale, "Table 6")}
+              title={t(locale, g.approvalsTitle)}
+              caption={t(locale, g.approvalsCaption)}
+            />
+            <DataTable
+              columns={g.approvalsColumns}
+              rows={g.approvals}
+              locale={locale}
+              title={t(locale, g.approvalsTitle)}
+            />
+          </figure>
+        </Reveal>
+        <Reveal>
+          <figure className="m-0">
+            <FigureHead
+              label={t(locale, "Table 7")}
+              title={t(locale, g.trainingTitle)}
+              caption={t(locale, g.trainingCaption)}
+            />
+            <DataTable
+              columns={g.trainingColumns}
+              rows={g.training}
+              locale={locale}
+              title={t(locale, g.trainingTitle)}
             />
           </figure>
         </Reveal>

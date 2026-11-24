@@ -1,12 +1,12 @@
 // Planning baseline: maintainer-supplied Masterplan v1.4, 6 November 2026.
-// Checked against Sentinel main on 11 November 2026. No Engine implementation
+// Checked against Sentinel main on 24 November 2026. No Engine implementation
 // or public CLI was found. Garden and the model-training pipeline are separate.
 export const sentinelEngineEvidence = {
-  reviewed: "2026-11-11",
-  revision: "47c312158e9a68352e9a59eb31e658d0c22bd7c1",
+  reviewed: "2026-11-24",
+  revision: "cec6f961272f0e5b3b83ed7d645591b90cf42a0a",
   status: "planned",
   source:
-    "https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/47c312158e9a68352e9a59eb31e658d0c22bd7c1/docs/STATUS.md",
+    "https://github.com/rappidAI-Research/quantum-sentinel-alpha/blob/cec6f961272f0e5b3b83ed7d645591b90cf42a0a/docs/STATUS.md",
 } as const;
 
 export const sentinelEngineCopy = {
@@ -37,7 +37,7 @@ export const sentinelEngineCopy = {
     stageLabel: "Development status",
     statusText:
       "The Engine is a later product milestone, after model quality and local model availability. No public Engine release, installable CLI or completed repository-scanning workflow is available in the reviewed source.",
-    statusDate: "Source reviewed 11 November 2026",
+    statusDate: "Source reviewed 24 November 2026",
     planning: "Proposed workflow",
     flowTitle: "From source context to reviewable findings",
     flowNote:
@@ -181,16 +181,16 @@ export const sentinelEngineCopy = {
     ],
     modelTitle: "Powered by Quantum Sentinel-Alpha",
     modelText:
-      "Quantum Sentinel provides the model-level security reasoning. The Engine is designed to supply the surrounding workflow. The selected model foundation is Qwen3.5-9B, with specialized QLoRA adapter training planned; the Engine does not train its own foundation model.",
+      "Quantum Sentinel provides the model-level security reasoning. The Engine is designed to supply the surrounding workflow. The selected model foundation is Qwen3.5-9B. Training data for the specialized QLoRA adapter is approved and the training pipeline is ready, but no adapter has been trained yet; the Engine does not train its own foundation model.",
     modelPriorities:
-      "Current model priorities are vulnerability detection, localization and calibrated uncertainty, including abstaining when evidence is insufficient. Patch capabilities are a later priority. Model-quality improvements have not yet been demonstrated through completed comparative benchmarks.",
+      "Current model priorities are vulnerability detection, localization and calibrated uncertainty, including abstaining when evidence is insufficient. The first training run also covers minimal patches learned from verified upstream fixes. Model-quality improvements have not yet been demonstrated through completed comparative benchmarks.",
     roadmapTitle: "Model validation comes before the Engine",
     roadmapText:
       "Development sequence from Masterplan v1.4, dated 6 November 2026. No release dates are announced.",
     milestones: [
       {
         title: "Validate model quality",
-        text: "Prioritize data quality and approvals, train Quantum Sentinel-Alpha and compare it with the unchanged foundation under the same evaluation conditions.",
+        text: "Train Quantum Sentinel-Alpha on the approved, audited data and compare it with the unchanged foundation under the same evaluation conditions.",
       },
       {
         title: "Make the model locally available",
@@ -237,7 +237,7 @@ export const sentinelEngineCopy = {
     stageLabel: "Entwicklungsstand",
     statusText:
       "Die Engine ist ein späterer Produktmeilenstein, nach dem Nachweis der Modellqualität und der lokalen Verfügbarkeit des Modells. Im geprüften Quellstand gibt es keinen öffentlichen Engine-Release, keine installierbare CLI und keinen fertigen Ablauf für Repository-Scans.",
-    statusDate: "Quellstand geprüft am 11. November 2026",
+    statusDate: "Quellstand geprüft am 24. November 2026",
     planning: "Geplanter Ablauf",
     flowTitle: "Vom Codekontext zum prüfbaren Befund",
     flowNote:
@@ -383,16 +383,16 @@ export const sentinelEngineCopy = {
     ],
     modelTitle: "Analyse durch Quantum Sentinel-Alpha",
     modelText:
-      "Quantum Sentinel übernimmt die modellseitige Sicherheitsanalyse. Die Engine soll den Ablauf darum herum bereitstellen. Als Modellbasis ist Qwen3.5-9B ausgewählt; ein spezialisiertes QLoRA-Adaptertraining ist geplant. Die Engine trainiert kein eigenes Basismodell.",
+      "Quantum Sentinel übernimmt die modellseitige Sicherheitsanalyse. Die Engine soll den Ablauf darum herum bereitstellen. Als Modellbasis ist Qwen3.5-9B ausgewählt. Die Trainingsdaten für den spezialisierten QLoRA-Adapter sind freigegeben und die Trainingspipeline ist bereit, trainiert wurde der Adapter aber noch nicht. Die Engine trainiert kein eigenes Basismodell.",
     modelPriorities:
-      "Derzeit stehen die Erkennung und Lokalisierung von Schwachstellen sowie angemessene Unsicherheit im Vordergrund. Bei unzureichenden Belegen soll das Modell auf eine Aussage verzichten. Patch-Funktionen folgen später. Verbesserungen der Modellqualität sind noch nicht durch abgeschlossene Vergleichsbenchmarks belegt.",
+      "Derzeit stehen die Erkennung und Lokalisierung von Schwachstellen sowie angemessene Unsicherheit im Vordergrund. Bei unzureichenden Belegen soll das Modell auf eine Aussage verzichten. Der erste Trainingslauf umfasst außerdem minimale Patches, gelernt an geprüften Upstream-Fixes. Verbesserungen der Modellqualität sind noch nicht durch abgeschlossene Vergleichsbenchmarks belegt.",
     roadmapTitle: "Die Modellvalidierung kommt vor der Engine",
     roadmapText:
       "Entwicklungsfolge aus Masterplan v1.4 vom 6. November 2026. Veröffentlichungstermine sind nicht angekündigt.",
     milestones: [
       {
         title: "Modellqualität nachweisen",
-        text: "Datenqualität und Freigaben priorisieren, Quantum Sentinel-Alpha trainieren und unter gleichen Bedingungen mit dem unveränderten Basismodell vergleichen.",
+        text: "Quantum Sentinel-Alpha mit den freigegebenen, auditierten Daten trainieren und unter gleichen Bedingungen mit dem unveränderten Basismodell vergleichen.",
       },
       {
         title: "Modell lokal bereitstellen",

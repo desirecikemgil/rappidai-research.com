@@ -33,7 +33,7 @@ export const reproducibilityWorkflows = {
       paragraphs: [
         "The CPU baseline exercises the parser, scorer and output contract. Its results are engineering checks. QuickEval v1 contains 86 public synthetic cases; it is not a private holdout and provides no evidence that a Sentinel model has been trained or evaluated.",
         "A reportable model comparison requires an immutable model revision, a clean known code commit, the full case set and matching prompt, parser, scorer and generation settings. Retain case and prompt hashes, per-case outputs, library versions and runtime measurements. Invalid output remains invalid. Offline patch scoring is implemented, but no model-generated patch result or functional-security validation is published.",
-        "Sentinel Garden data is rebuilt, not downloaded: the committed manifest holds metadata and content hashes, and python -m sentinel.garden verify rebuilds every record from the frozen candidate list at the pinned upstream commits and compares the hashes. Two consecutive runs of the pipeline, including the audit, are byte-identical; the parser grammars are pinned and checked.",
+        "Sentinel Garden data is rebuilt, not downloaded: the committed manifest holds metadata and content hashes, and python -m sentinel.garden verify rebuilds every record from the frozen candidate list at the pinned upstream commits and compares the hashes; for Garden v3 that is 4,200 records with 0 differences. On a training machine, python -m sentinel.garden materialize rebuilds only the training-approved records and refuses on any hash difference. A curate and audit round after the exclusions is byte-identical; the parser grammars are pinned and checked.",
       ],
       sources: [
         { label: "Repository status", url: sentinelResearchLinks.status },
@@ -61,12 +61,12 @@ export const reproducibilityWorkflows = {
 export const sentinelDataGovernance = {
   title: "Sentinel Garden: records you can check",
   introduction:
-    "Sentinel uses its own source-code data pipeline, separate from the FineWeb2-HQ corpus documented below for the language-model experiments. The sections explain what a record is, how it is checked and why none is used for training yet. Figures reflect the Sentinel repository reviewed on 12 November 2026.",
+    "Sentinel uses its own source-code data pipeline, separate from the FineWeb2-HQ corpus documented below for the language-model experiments. The sections explain what a record is, how it is checked and which records are approved for training. Figures reflect Sentinel Garden v3 in the Sentinel repository reviewed on 24 November 2026.",
   sections: [
     {
       title: "Current data and evaluation record",
       paragraphs: [
-        "The reviewed Sentinel registry lists nine sources, all with production_approved: false, and the repository approval list is empty. Sentinel Garden has built 2,773 records from real advisories and accepted 2,309 of them, but zero are training-approved, so the training export is empty. Public accessibility alone does not authorize collection, training or redistribution.",
+        "The reviewed Sentinel registry lists nine sources. Three of them, the GitHub Advisory Database, OSV and the upstream fix commits, are approved for training by the project owner; the other six stay evaluation-only or unapproved. Sentinel Garden v3 has built 4,200 records from real advisories and accepted 3,427 of them; 1,464 records from 533 approved repositories are training-approved. Public accessibility alone does not authorize collection, training or redistribution.",
         "QuickEval v1 contains 37 vulnerable, 34 hard-negative and 15 abstention cases across Python, JavaScript/TypeScript and Go. These clean-room synthetic cases and the 16 Python coding-regression tasks are evaluation-only, and every Garden record is checked for overlap with them. No imported public benchmark cases or private holdout are reported.",
       ],
       sources: [
@@ -88,6 +88,20 @@ export const sentinelDataGovernance = {
       ],
     },
     {
+      title: "Fixes spread over several commits",
+      paragraphs: [
+        "Many advisories name more than one fix commit, for example a code change plus a test, or the same fix on a release branch. Garden v3 keeps such advisories when all commits lie in one repository and uses them only when the fix is unambiguous: exactly one commit changes the code and the others only tests, documentation, changelogs or CI files, or every commit makes the identical change at the same position in the same function, as a backport or a merge does. The earliest such commit is the fix.",
+        "Everything else is rejected, never guessed. A fix split over several commits would leave the first commit's still-vulnerable function looking fixed, so it cannot become a hard negative. Of 1,128 multi-commit advisories, 100 yield records; 778 are rejected as distinct changes and 116 because a companion commit changes something that might itself be the fix. Every v2 candidate is unchanged in v3.",
+      ],
+      sources: [
+        { label: "Garden v3", url: sentinelResearchLinks.gardenV3 },
+        {
+          label: "Multi-commit tests",
+          url: sentinelResearchLinks.multiCommitTests,
+        },
+      ],
+    },
+    {
       title: "Structure from parse trees, not text patterns",
       paragraphs: [
         "Where a function starts and ends, what is a string, a regular expression or a comment, which lines are imports and who calls whom decide whether a fix is accepted and where its label points. Python is read with its own ast and tokenize modules; Go, JavaScript and TypeScript with tree-sitter grammars pinned to exact versions, recorded with the dataset and enforced by the consistency check.",
@@ -102,7 +116,7 @@ export const sentinelDataGovernance = {
       title: "Evidence beyond the diff: the quality audit",
       paragraphs: [
         "A fix commit alone cannot show that the fixed function is safe. The audit therefore queries every other OSV advisory of the same package. If a later fix changes the same function again, or an advisory calls the fix incomplete, the hard negative is excluded; if the later fix commit cannot be read, it is excluded as unverified. Broad localization spans and abstentions whose caller passes only constants are excluded as well.",
-        "A stratified manual sample of 44 items estimates the remaining error. After the automated exclusions it found no wrong label, one imprecise localization in 29 pairs and one unsafe hard negative in 28. The sample was reviewed by the implementing AI engineer, not an authorized reviewer, and its upper bounds of about 17 % are what to plan with.",
+        "A stratified manual sample of 44 items estimates the remaining error; 25 have been reviewed so far. After the automated exclusions it found one imprecise localization in 14 pairs and no mismatched advisory, unsafe hard negative or invalid abstention. The reviewer was the implementing AI engineer, not an authorized reviewer, and with so few items the upper bounds of 21 to 35 % are what to plan with. 64 evidence packages for an independent human review are prepared; that review has not been performed.",
       ],
       sources: [
         { label: "Audit report", url: sentinelResearchLinks.auditReport },
@@ -113,20 +127,25 @@ export const sentinelDataGovernance = {
       ],
     },
     {
-      title: "Default-deny rights review",
+      title: "Rights review and training authorization",
       paragraphs: [
-        "Training needs two kinds of approval: the registry sources that describe the advisories and fixes, and every upstream repository whose code appears in a record. The review queue lists 761 repositories with the license file URL at the used revision, its sha256 and the license the package registry reports. An approval is bound to that license file hash and stops applying if the file changes.",
-        "Repositories with strong copyleft, unknown or missing licenses are not excluded by tooling, but approving them requires a written justification in addition to the approval. No upstream code is committed to the repository or uploaded anywhere; the committed manifest contains metadata and hashes only.",
+        "Training needs two kinds of approval: the registry sources that describe the advisories and fixes, and every upstream repository whose code appears in a record. The review queue lists 878 repositories with the license file URL at each used revision, its sha256 and the license the package registry reports. Before a repository was proposed, every revision its records use was inspected for NOTICE, PATENTS and third-party files, license files on the path of each used file and the license named in package.json, pyproject.toml, setup.cfg or setup.py. A failed read counts as an open question, never as absence.",
+        "On 15 November 2026 the project owner approved the three advisory sources and the 484 tier A repositories the evidence review recommended. On 24 November 2026 51 tier B repositories followed that passed the same inspection: 28 whose package registry reports no usable license and 23 whose registry entry also lists licenses of bundled code. Each approval is bound to the sha256 of the reviewed license file and stops applying if the file changes. No upstream code is committed to the repository or uploaded anywhere; the committed manifest contains metadata and hashes only.",
       ],
       items: [
-        "Approve the registry sources ghsa-osv-fix-commits, osv and github-advisory-db after reviewing their terms and attribution requirements.",
-        "Review repositories in tier order, starting with the 511 permissive repositories in tier A.",
-        "Record each decision with the reviewer, date, license identifier and license file hash; curate then fills the training export deterministically.",
+        "Approved: 535 repositories under MIT, Apache-2.0, BSD-3-Clause, BSD-2-Clause or ISC, recorded with reviewer, date, license identifier and license-file hash.",
+        "Prepared but not approved: 26 further tier A repositories, 16 with a changed license text and 2 under the Unlicense. Clarification cases, copyleft and unknown licenses stay default-deny.",
+        "Withdrawing an approval takes effect at the next curate and at the start of training.",
+        "Open questions remain for a legal review before any weights are published: whether weights redistribute the training code or advisory text, and the open-access condition in GitHub's terms for research use.",
       ],
       sources: [
         {
-          label: "Rights review workflow",
-          url: sentinelResearchLinks.rightsReview,
+          label: "Training authorization",
+          url: sentinelResearchLinks.trainingAuthorization,
+        },
+        {
+          label: "Cohort rights review",
+          url: sentinelResearchLinks.cohortRightsReview,
         },
         { label: "Review queue", url: sentinelResearchLinks.reviewQueue },
         { label: "Data governance", url: sentinelResearchLinks.governance },
@@ -136,7 +155,8 @@ export const sentinelDataGovernance = {
       title: "Frozen splits, contamination and reproducibility",
       paragraphs: [
         "The split policy was frozen before the dataset was expanded: repositories are assigned to train, validation or the reserved holdout by a salted hash, so a repository never appears in two splits, and fixes committed on or after 1 July 2026 never enter training. Records are compared with every evaluation case and coding task; the reviewed run found no contamination.",
-        "The pipeline is a fixed point: two consecutive runs, including the audit, produce byte-identical manifests and exclusions, and verify rebuilds every record from the pinned upstream commits with matching content hashes. EXTERNAL_RESOURCES.json lists every upstream repository and commit the dataset depends on.",
+        "The training loader refuses every record of a repository that also has holdout or temporal-quarantine records, so the temporal holdout stays free of same-repository training data. Garden v3 gave two approved repositories new post-cutoff records; curate now applies the same rule, so those 6 records are excluded from the export instead of stopping the training run.",
+        "The pipeline is a fixed point: a curate and audit round after the exclusions produces byte-identical manifests and exclusions, and verify rebuilds all 4,200 records from the pinned upstream commits with matching content hashes. EXTERNAL_RESOURCES.json lists every upstream repository and commit the dataset depends on.",
       ],
       sources: [
         { label: "Split policy", url: sentinelResearchLinks.splitPolicy },
@@ -151,10 +171,11 @@ export const sentinelDataGovernance = {
       ],
     },
     {
-      title: "Training pipeline: built, gated and not yet run",
+      title: "Training pipeline: ready, with approved data, not yet run",
       paragraphs: [
         "The QLoRA pipeline fine-tunes Qwen3.5-9B at its pinned revision with a 4-bit NF4 base and bf16 compute. LoRA rank 16 adapters cover the 200 linear modules of the real architecture, 24 Gated DeltaNet and 8 full-attention layers, about 40.1 million trainable parameters. The loss covers only the model's reply; examples longer than the context limit are dropped, never truncated.",
-        "Before training starts, the loader checks that every record is approved and still passes the governance gate, that its label and content hash match the manifest and that no repository is shared with validation or the holdout. Checkpoints record the data and configuration they were trained on and cannot be resumed with different inputs. The pipeline is tested on CPU with a tiny model of the same architecture; it has not been run on the real model.",
+        "The first run trains vulnerability detection and patch generation: 1,331 detection and 540 patch examples for training, 133 and 54 for validation. With the pinned tokenizer no example exceeds the 4,096-token limit; the median is 764 tokens, the longest has 2,918, and one epoch covers about 1.73 million tokens.",
+        "Before training starts, the loader checks that every record is approved and still passes the governance gate, that its label, content and supervision hashes match the manifest and that no repository is shared with validation, the holdout or the quarantine. Checkpoints record the data and configuration they were trained on and cannot be resumed with different inputs. The dry run on the approved data passes. The pipeline has not been run on the real model; that requires approved GPU time.",
       ],
       sources: [
         {
@@ -166,6 +187,10 @@ export const sentinelDataGovernance = {
           url: sentinelResearchLinks.trainingConfig,
         },
         { label: "Foundation decision", url: sentinelResearchLinks.foundation },
+        {
+          label: "Patch supervision",
+          url: sentinelResearchLinks.patchSupervision,
+        },
       ],
     },
   ] satisfies readonly DocumentationSection[],

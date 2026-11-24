@@ -9,7 +9,7 @@ export {
 
 export const securityResearch = {
   title: "Agent security and verified code review",
-  reviewed: "Reviewed 28 October 2026; Sentinel updated 12 November 2026",
+  reviewed: "Reviewed 28 October 2026; Sentinel updated 24 November 2026",
   introduction:
     "Two complementary research directions: controlling an agent's access with Ghost, and investigating evidence-backed vulnerability review with Quantum Sentinel-Alpha.",
   projects: [
@@ -34,15 +34,14 @@ export const securityResearch = {
     },
     {
       name: "Quantum Sentinel-Alpha",
-      status:
-        "Foundation selected · Data and training pipelines built · Not trained",
+      status: "Foundation selected · Training data approved · Not trained",
       question: "Can a reviewer reject plausible but unsupported findings?",
       evidence:
-        "The public repository contains a versioned finding contract, a default-deny source registry, a strict parser/scorer, a model runner and QuickEval v1: 86 synthetic cases, comprising 37 vulnerable, 34 hard-negative and 15 abstention cases, plus 16 Python coding-regression tasks. Since 4 November 2026 it also contains Sentinel Garden, which turned 19,959 GitHub-reviewed advisories into 2,309 audited training records, and a governance-gated QLoRA pipeline for the selected Qwen3.5-9B foundation.",
+        "The public repository contains a versioned finding contract, a default-deny source registry, a strict parser/scorer, a model runner and QuickEval v1: 86 synthetic cases, comprising 37 vulnerable, 34 hard-negative and 15 abstention cases, plus 16 Python coding-regression tasks. Since 4 November 2026 it also contains Sentinel Garden, which now turns 19,959 GitHub-reviewed advisories into 3,427 audited records, 1,464 of them approved for training, and a governance-gated QLoRA pipeline for the selected Qwen3.5-9B foundation.",
       method:
-        "Qwen3.5-9B is selected at a pinned revision on expected capability; the 4B/9B comparison remains an optional experiment with shared cases, prompt, parser, scorer and generation settings. Training data pairs each vulnerable function with its upstream fix as a hard negative and adds abstention cases where the decisive code is withheld. The engine design separates repository context and static signals from model-generated candidates and subsequent verification; the full engine remains planned.",
+        "Qwen3.5-9B is selected at a pinned revision on expected capability; the 4B/9B comparison remains an optional experiment with shared cases, prompt, parser, scorer and generation settings. Training data pairs each vulnerable function with its upstream fix as a hard negative and a patch target, and adds abstention cases where the decisive code is withheld. The engine design separates repository context and static signals from model-generated candidates and subsequent verification; the full engine remains planned.",
       boundary:
-        "The status report records no model evaluation, adapter or training run, and no training-approved data source or record: every Garden record awaits a rights review. Existing regex-baseline results validate the harness only. The public synthetic cases are not a private holdout. Offline patch scoring and independent-review packages are implemented, but no model patch result or independent human review exists. Detection quality, false-positive rate, model latency and VRAM use are not established.",
+        "The status report records no model evaluation, adapter or training run; the approved training data waits for GPU time, and legal questions about publishing weights remain open. Existing regex-baseline results validate the harness only. The public synthetic cases are not a private holdout. Offline patch scoring and independent-review packages are implemented, but no model patch result or independent human review exists. Detection quality, false-positive rate, model latency and VRAM use are not established.",
       href: "/models/quantum-sentinel-alpha",
       linkLabel: "Explore Sentinel-Alpha",
       sources: [
@@ -50,6 +49,10 @@ export const securityResearch = {
         { label: "Finding contract", url: sentinelResearchLinks.finding },
         { label: "Foundation decision", url: sentinelResearchLinks.foundation },
         { label: "Sentinel Garden", url: sentinelResearchLinks.garden },
+        {
+          label: "Training authorization",
+          url: sentinelResearchLinks.trainingAuthorization,
+        },
         { label: "Data governance", url: sentinelResearchLinks.governance },
       ],
     },

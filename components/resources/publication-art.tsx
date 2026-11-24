@@ -16,6 +16,8 @@ export function PublicationArt({
     return <DetectionOutcomesArt locale={locale} />;
   if (slug === "building-a-vulnerability-fix-dataset-you-can-check")
     return <DatasetFunnelArt locale={locale} />;
+  if (slug === "from-audited-records-to-approved-training-data")
+    return <ApprovedDataArt locale={locale} />;
 
   return (
     <div className="research-token-figure" aria-hidden="true">
@@ -50,6 +52,17 @@ export function DatasetFunnelArt({ locale }: { locale: Locale }) {
       <span>{t(locale, "19,959")}</span>
       <div style={{ width: "40%" }} />
       <span>{t(locale, "2,322")}</span>
+    </div>
+  );
+}
+
+/** Audited records narrowing to the approved training data, drawn to scale (1,464 of 3,427). */
+export function ApprovedDataArt({ locale }: { locale: Locale }) {
+  return (
+    <div className="research-token-figure" aria-hidden="true">
+      <span>{t(locale, "3,427")}</span>
+      <div style={{ width: "43%" }} />
+      <span>{t(locale, "1,464")}</span>
     </div>
   );
 }

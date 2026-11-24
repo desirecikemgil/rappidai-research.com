@@ -89,6 +89,16 @@ export const experimentLogs = [
 
 export const researchNotes = [
   {
+    id: "from-audited-records-to-approved-training-data",
+    title: "From Audited Records to Approved Training Data",
+    kind: "research-note",
+    kindLabel: "Research note",
+    progress: "published",
+    progressLabel: "Published",
+    href: "/resources/publications/from-audited-records-to-approved-training-data",
+    publicationDate: "2026-11-24",
+  },
+  {
     id: "building-a-vulnerability-fix-dataset-you-can-check",
     title: "Building a Vulnerability-Fix Dataset You Can Check",
     kind: "research-note",
